@@ -1,0 +1,30 @@
+---
+layout: default
+title: Command reference
+nav_order: 50
+has_children: true
+parent: SmartObserve Benchmark Reference
+redirect_from:
+  - /benchmark/commands/index/
+  - /benchmark/reference/commands/
+  - /benchmark/commands/execute-test/
+---
+
+# SmartObserve Benchmark command reference
+
+This section provides a list of commands supported by SmartObserve Benchmark, including commonly used commands such as `run` and `list`.
+
+- [compare]({{site.url}}{{site.baseurl}}/benchmark/commands/compare/)
+- [download]({{site.url}}{{site.baseurl}}/benchmark/commands/download/)
+- [run]({{site.url}}{{site.baseurl}}/benchmark/commands/run/)
+- [info]({{site.url}}{{site.baseurl}}/benchmark/commands/info/)
+- [list]({{site.url}}{{site.baseurl}}/benchmark/commands/list/)
+
+## List of common options
+
+All SmartObserve Benchmark commands support the following options:
+
+- `--h` or `--help`: Provides options and other useful information about each command.
+- `--quiet`: Hides as much of the results output as possible. Default is `false`.
+- `--offline`: Indicates whether SmartObserve Benchmark has a connection to the internet. Default is `false`.
+

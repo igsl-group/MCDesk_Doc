@@ -1,0 +1,61 @@
+columns:
+  -
+    title: 'Get Involved'
+    links:
+      -
+        title: Code of Conduct
+        url: 'https://magiccreative.io/code-of-conduct/'
+      -
+        title: 'Forum'
+        url: 'https://forum.magiccreative.io/'
+      -
+        title: 'GitHub'
+        url: 'https://github.com/igsl-group'
+      -
+        title: 'Slack'
+        url: 'https://magiccreative.io/slack/'
+  -
+    title: 'Resources'
+    links:
+      - 
+        title: About
+        url: 'https://magiccreative.io/about/'
+      - 
+        title: Release Schedule
+        url: 'https://magiccreative.io/releases/#release-schedule'
+      - 
+        title: Maintenance Policy
+        url: 'https://magiccreative.io/releases/#maintenance-policy'
+      - 
+        title: FAQ
+        url: 'https://magiccreative.io/faq/'
+      -
+        title: 'Testimonials'
+        url: 'https://magiccreative.io/testimonials/'
+      -
+        title: 'Trademark and Brand Policy'
+        url: 'https://magiccreative.io/trademark-brand-policy/'
+      -
+        title: 'Privacy'
+        url: 'https://aws.amazon.com/privacy/'
+  -
+    title: 'Contact Us'
+    links:
+      -
+        title: 'Connect'
+        url: 'https://magiccreative.io/connect/'
+      -
+        title: 'Twitter'
+        url: 'https://twitter.com/SmartObserveProj'
+      -
+        title: 'LinkedIn'
+        url: 'https://www.linkedin.com/company/smartobserve-project/'
+      -
+        title: 'YouTube'
+        url: 'https://www.youtube.com/c/SmartObserveProject'
+      -
+        title: 'Meetup'
+        url: 'https://www.meetup.com/pro/smartobserveproject/'
+      -
+        title: 'Facebook'
+        url: 'https://www.facebook.com/SmartObserveProject/'

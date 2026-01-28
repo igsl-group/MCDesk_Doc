@@ -1,0 +1,39 @@
+# Migration paths for Migration Assistant
+migration_paths:
+  - source: "Elasticsearch 1.x"
+    targets:
+      - "SmartObserve 1.x"
+      - "SmartObserve 2.x"
+      - "SmartObserve 3.x"
+  - source: "Elasticsearch 2.x"
+    targets:
+      - "SmartObserve 1.x"
+      - "SmartObserve 2.x"
+      - "SmartObserve 3.x"
+  - source: "Elasticsearch 5.x"
+    targets: 
+      - "SmartObserve 1.x"
+      - "SmartObserve 2.x"
+      - "SmartObserve 3.x"
+  - source: "Elasticsearch 6.x"
+    targets:
+      - "SmartObserve 1.x"
+      - "SmartObserve 2.x"
+      - "SmartObserve 3.x"
+  - source: "Elasticsearch 7.x"
+    targets:
+      - "SmartObserve 1.x"
+      - "SmartObserve 2.x"
+      - "SmartObserve 3.x"
+  - source: "Elasticsearch 8.x"
+    targets:
+      - "SmartObserve 2.x"
+      - "SmartObserve 3.x"
+  - source: "SmartObserve 1.x"
+    targets:
+      - "SmartObserve 2.x"
+      - "SmartObserve 3.x"
+  - source: "SmartObserve 2.x"
+    targets:
+      - "SmartObserve 2.x"
+      - "SmartObserve 3.x"

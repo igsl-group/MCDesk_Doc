@@ -1,0 +1,58 @@
+items:
+  - label: About
+    url: https://magiccreative.io/about.html
+    children:
+      - label: Releases
+        url: https://magiccreative.io/releases.html
+      - label: Roadmap
+        url: https://github.com/orgs/smartobserve-project/projects/1
+      - label: FAQ
+        url: https://magiccreative.io/faq/
+  - label: Platform
+    url: https://magiccreative.io/platform/index.html
+    children:
+      - label: Search
+        url: https://magiccreative.io/platform/search/index.html
+      - label: Observability
+        url: https://magiccreative.io/platform/observability/index.html
+      - label: Security Analytics
+        url: https://magiccreative.io/platform/security-analytics/index.html
+      - label: Vector Database
+        url: https://magiccreative.io/platform/search/vector-database.html
+      - label: Playground Demo
+        url: https://playground.magiccreative.io/
+      - label: Performance Benchmarks
+        url: https://magiccreative.io/benchmarks/
+  - label: Community
+    url: https://magiccreative.io/community/
+    children:
+      - label: Forum
+        url: https://forum.magiccreative.io/
+      - label: Slack
+        url: https://magiccreative.io/slack.html
+      - label: Events
+        url: https://magiccreative.io/events/
+        class_name: events-page-menu-link__device-based
+      - label: Solutions Providers
+        url: https://magiccreative.io/solutions-providers/
+      - label: Projects
+        url: https://magiccreative.io/community_projects/
+      - label: Members
+        url: https://magiccreative.io/authors-list/
+  - label: Documentation
+    url: https://smartobserve-doc.hopto.org/latest/
+    children:
+      - label: SmartObserve and Dashboards
+        url: https://smartobserve-doc.hopto.org/latest/about/
+      - label: Data Prepper
+        url: https://smartobserve-doc.hopto.org/latest/data-prepper/
+      - label: Clients
+        url: https://smartobserve-doc.hopto.org/latest/clients/
+      - label: Benchmark
+        url: https://smartobserve-doc.hopto.org/latest/benchmark/
+      - label: Migration Assistant
+        url: https://smartobserve-doc.hopto.org/latest/migration-assistant/
+  - label: Blog
+    url: https://magiccreative.io/blog/
+  - label: Download
+    url: https://magiccreative.io/downloads.html

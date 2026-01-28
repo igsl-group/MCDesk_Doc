@@ -1,0 +1,132 @@
+---
+layout: default
+title: Create index
+parent: Index APIs
+nav_order: 40
+redirect_from:
+  - /smartobserve/rest-api/index-apis/create-index/
+  - /smartobserve/rest-api/create-index/
+---
+
+# Create Index API
+**Introduced 1.0**
+{: .label .label-purple }
+
+While you can create an index by using a document as a base, you can also create an empty index for later use.
+
+When creating an index, you can specify its mappings, settings, and aliases. 
+
+## Endpoints
+
+```json
+PUT <index>
+```
+
+## Index naming restrictions
+
+SmartObserve indexes have the following naming restrictions:
+
+- All letters must be lowercase.
+- Index names can't begin with underscores (`_`) or hyphens (`-`).
+- Index names can't contain spaces, commas, or the following characters:
+
+  `:`, `"`, `*`, `+`, `/`, `\`, `|`, `?`, `#`, `>`, or `<`
+
+## Path parameters
+
+Parameter | Data type | Description
+:--- | :--- | :---
+index | String | The index name. Must conform to the [index naming restrictions](#index-naming-restrictions). Required. 
+
+## Query parameters
+
+You can include the following query parameters in your request. All parameters are optional.
+
+Parameter | Type | Description
+:--- | :--- | :---
+wait_for_active_shards | String | Specifies the number of active shards that must be available before SmartObserve processes the request. Default is 1 (only the primary shard). Set to `all` or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the request to succeed.
+cluster_manager_timeout | Time | How long to wait for a connection to the cluster manager node. Default is `30s`.
+timeout | Time | How long to wait for the request to return. Default is `30s`.
+
+## Request body
+
+As part of your request, you can optionally specify [index settings]({{site.url}}{{site.baseurl}}/im-plugin/index-settings/), [mappings]({{site.url}}{{site.baseurl}}/field-types/index/), [aliases]({{site.url}}{{site.baseurl}}/smartobserve/index-alias/), and [index context]({{site.url}}{{site.baseurl}}/smartobserve/index-context/). 
+
+## Example request
+
+<!-- spec_insert_start
+component: example_code
+rest: PUT /sample-index1
+body: |
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 2,
+      "number_of_replicas": 1
+    }
+  },
+  "mappings": {
+    "properties": {
+      "age": {
+        "type": "integer"
+      }
+    }
+  },
+  "aliases": {
+    "sample-alias1": {}
+  }
+}
+-->
+{% capture step1_rest %}
+PUT /sample-index1
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 2,
+      "number_of_replicas": 1
+    }
+  },
+  "mappings": {
+    "properties": {
+      "age": {
+        "type": "integer"
+      }
+    }
+  },
+  "aliases": {
+    "sample-alias1": {}
+  }
+}
+{% endcapture %}
+
+{% capture step1_python %}
+
+
+response = client.indices.create(
+  index = "sample-index1",
+  body =   {
+    "settings": {
+      "index": {
+        "number_of_shards": 2,
+        "number_of_replicas": 1
+      }
+    },
+    "mappings": {
+      "properties": {
+        "age": {
+          "type": "integer"
+        }
+      }
+    },
+    "aliases": {
+      "sample-alias1": {}
+    }
+  }
+)
+
+{% endcapture %}
+
+{% include code-block.html
+    rest=step1_rest
+    python=step1_python %}
+<!-- spec_insert_end -->

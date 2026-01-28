@@ -1,0 +1,66 @@
+services:
+  smartobserve-node1: # This is also the hostname of the container within the Docker network (i.e. https://smartobserve-node1/)
+    image: smartobserveproject/smartobserve:latest
+    container_name: smartobserve-node1
+    environment:
+      - cluster.name=smartobserve-cluster # Name the cluster
+      - node.name=smartobserve-node1 # Name the node that will run in this container
+      - discovery.seed_hosts=smartobserve-node1,smartobserve-node2 # Nodes to look for when discovering the cluster
+      - cluster.initial_cluster_manager_nodes=smartobserve-node1,smartobserve-node2 # Nodes eligibile to serve as cluster manager
+      - bootstrap.memory_lock=true # Disable JVM heap memory swapping
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # Set min and max JVM heap sizes to at least 50% of system RAM
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_INITIAL_ADMIN_PASSWORD} # Sets the demo admin user password when using demo configuration (for SmartObserve 2.12 and later)
+    ulimits:
+      memlock:
+        soft: -1 # Set memlock to unlimited (no soft or hard limit)
+        hard: -1
+      nofile:
+        soft: 65536 # Maximum number of open files for the smartobserve user - set to at least 65536
+        hard: 65536
+    volumes:
+      - smartobserve-data1:/usr/share/smartobserve/data # Creates volume called smartobserve-data1 and mounts it to the container
+    ports:
+      - 9200:9200 # REST API
+      - 9600:9600 # Performance Analyzer
+    networks:
+      - smartobserve-net # All of the containers will join the same Docker bridge network
+  smartobserve-node2:
+    image: smartobserveproject/smartobserve:latest # This should be the same image used for smartobserve-node1 to avoid issues
+    container_name: smartobserve-node2
+    environment:
+      - cluster.name=smartobserve-cluster
+      - node.name=smartobserve-node2
+      - discovery.seed_hosts=smartobserve-node1,smartobserve-node2
+      - cluster.initial_cluster_manager_nodes=smartobserve-node1,smartobserve-node2
+      - bootstrap.memory_lock=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_INITIAL_ADMIN_PASSWORD}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - smartobserve-data2:/usr/share/smartobserve/data
+    networks:
+      - smartobserve-net
+  smartobserve-dashboards:
+    image: smartobserveproject/smartobserve-dashboards:latest # Make sure the version of smartobserve-dashboards matches the version of smartobserve installed on other nodes
+    container_name: smartobserve-dashboards
+    ports:
+      - 5601:5601 # Map host port 5601 to container port 5601
+    expose:
+      - "5601" # Expose port 5601 for web access to SmartObserve Dashboards
+    environment:
+      OPENSEARCH_HOSTS: '["https://smartobserve-node1:9200","https://smartobserve-node2:9200"]' # Define the SmartObserve nodes that SmartObserve Dashboards will query
+    networks:
+      - smartobserve-net
+
+volumes:
+  smartobserve-data1:
+  smartobserve-data2:
+
+networks:
+  smartobserve-net:
