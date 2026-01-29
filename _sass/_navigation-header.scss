@@ -264,7 +264,7 @@ $max-container: 1440px;
                                 flex-grow: 0;
                                 box-sizing: content-box;
                             }
-                            > .smartobserve-toggle-button--wrapper {
+                            > .mcdesk-toggle-button--wrapper {
                                 @media screen and (max-width: $header-banner-mobile-breakpoint) {
                                     display: inline-block;
                                     padding: 0;
@@ -272,7 +272,7 @@ $max-container: 1440px;
                                     height: 30px;
                                     width: 30px;
                                 }
-                                > .smartobserve-toggle-button-link {
+                                > .mcdesk-toggle-button-link {
                                     @media screen and (max-width: $header-banner-mobile-breakpoint) {
                                         display: none;
                                         padding: 0;
@@ -280,7 +280,7 @@ $max-container: 1440px;
                                         height: 30px;
                                         width: 30px;
                                     }
-                                    &.smartobserve-toggle-button-link__visible {
+                                    &.mcdesk-toggle-button-link__visible {
                                         @media screen and (max-width: $header-banner-mobile-breakpoint) {
                                             display: inline-block;
                                         }
@@ -485,7 +485,7 @@ $max-container: 1440px;
                                         flex-grow: 0;
                                         box-sizing: content-box;
                                     }
-                                    > .smartobserve-toggle-button--wrapper {
+                                    > .mcdesk-toggle-button--wrapper {
                                         @media screen and (max-width: $header-banner-mobile-breakpoint) {
                                             display: inline-block;
                                             padding: 0;
@@ -493,7 +493,7 @@ $max-container: 1440px;
                                             height: 30px;
                                             width: 30px;
                                         }
-                                        > .smartobserve-toggle-button-link {
+                                        > .mcdesk-toggle-button-link {
                                             @media screen and (max-width: $header-banner-mobile-breakpoint) {
                                                 display: none;
                                                 padding: 0;
@@ -501,7 +501,7 @@ $max-container: 1440px;
                                                 height: 30px;
                                                 width: 30px;
                                             }
-                                            &.smartobserve-toggle-button-link__visible {
+                                            &.mcdesk-toggle-button-link__visible {
                                                 @media screen and (max-width: $header-banner-mobile-breakpoint) {
                                                     display: inline-block;
                                                 }

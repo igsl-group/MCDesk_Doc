@@ -13,7 +13,7 @@ Deletes a snapshot from a repository.
 
 Deleting a snapshot that is in progress stops the snapshot operation and deletes the partially created snapshot.
 
-* To learn more about snapshots, see [Snapshots]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/index).
+* To learn more about snapshots, see [Snapshots]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/index).
 
 * To view a list of your repositories, see [cat repositories]({{site.url}}{{site.baseurl}}/api-reference/cat/cat-repositories).
 
@@ -34,21 +34,21 @@ snapshot | String | Snapshot to delete. |
 
 ## Example request
 
-The following request deletes a snapshot called `my-first-snapshot` from the `my-smartobserve-repo` repository:
+The following request deletes a snapshot called `my-first-snapshot` from the `my-mcdesk-repo` repository:
 
 <!-- spec_insert_start
 component: example_code
-rest: DELETE /_snapshot/my-smartobserve-repo/my-first-snapshot
+rest: DELETE /_snapshot/my-mcdesk-repo/my-first-snapshot
 -->
 {% capture step1_rest %}
-DELETE /_snapshot/my-smartobserve-repo/my-first-snapshot
+DELETE /_snapshot/my-mcdesk-repo/my-first-snapshot
 {% endcapture %}
 
 {% capture step1_python %}
 
 
 response = client.snapshot.delete(
-  repository = "my-smartobserve-repo",
+  repository = "my-mcdesk-repo",
   snapshot = "my-first-snapshot"
 )
 

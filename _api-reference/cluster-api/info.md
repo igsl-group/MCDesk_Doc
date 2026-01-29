@@ -8,7 +8,7 @@ has_children: false
 
 # Cluster Information API
 
-The Cluster Information API (`/`) retrieves information about the running SmartObserve cluster and node, including version, build details, and cluster name. This is the simplest way to verify that a cluster is reachable and to discover the SmartObserve version.
+The Cluster Information API (`/`) retrieves information about the running MCdesk cluster and node, including version, build details, and cluster name. This is the simplest way to verify that a cluster is reachable and to discover the MCdesk version.
 
 ## Endpoints
 
@@ -33,11 +33,11 @@ GET /
 
 ```json
 {
-  "name": "smartobserve-node1",
-  "cluster_name": "smartobserve-cluster",
+  "name": "mcdesk-node1",
+  "cluster_name": "mcdesk-cluster",
   "cluster_uuid": "sQj1b9cZQICv0b8iYc3y5A",
   "version": {
-    "distribution": "smartobserve",
+    "distribution": "mcdesk",
     "number": "3.2.0",
     "build_type": "tar",
     "build_hash": "abc123def456",
@@ -47,7 +47,7 @@ GET /
     "minimum_wire_compatibility_version": "7.10.0",
     "minimum_index_compatibility_version": "7.0.0"
   },
-  "tagline": "The SmartObserve Project: https://magiccreative.io/"
+  "tagline": "The MCdesk Project: https://magiccreative.io/"
 }
 ```
 
@@ -60,8 +60,8 @@ Field | Type | Description
 `cluster_uuid` | String | The universally unique identifier (UUID) of the cluster.
 `tagline` | String | The tagline string.
 `version` | Object | The object containing version and build metadata.
-`version.distribution` | String | The distribution identifier, typically `smartobserve`.
-`version.number` | String | The SmartObserve version number, for example, `3.2.0`.
+`version.distribution` | String | The distribution identifier, typically `mcdesk`.
+`version.number` | String | The MCdesk version number, for example, `3.2.0`.
 `version.build_type` | String | The distribution type.
 `version.build_hash` | String | The commit hash the build was created from.
 `version.build_date` | String | The build timestamp in ISO 8601 format.

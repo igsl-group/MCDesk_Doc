@@ -23,7 +23,7 @@ Each metric has a set of corresponding settings:
 - `search.insights.top_queries.<metric>.window_size`: [Configure the window size of the top N queries](#configuring-the-window-size) by the metric. 
 - `search.insights.top_queries.<metric>.top_n_size`: [Specify the value of N for the top N queries by the metric](#configuring-the-value-of-n).
 
-For example, to enable top N query monitoring by CPU usage, set `search.insights.top_queries.cpu.enabled` to `true`. For more information about ways to specify dynamic settings, see [Dynamic settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/#dynamic-settings).
+For example, to enable top N query monitoring by CPU usage, set `search.insights.top_queries.cpu.enabled` to `true`. For more information about ways to specify dynamic settings, see [Dynamic settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/#dynamic-settings).
 
 It's important to exercise caution when enabling this feature because it can consume system resources.
 {: .important}
@@ -287,7 +287,7 @@ To view historical query data, the exporter type must be set to `local_index`. F
 
 ## Exporting top N query data
 
-You can configure your desired exporter to export top N query data to different sinks, allowing for better monitoring and analysis of your SmartObserve queries. Currently, the following exporters are supported:
+You can configure your desired exporter to export top N query data to different sinks, allowing for better monitoring and analysis of your MCdesk queries. Currently, the following exporters are supported:
 - [Debug exporter](#configuring-a-debug-exporter)
 - [Local index exporter](#configuring-a-local-index-exporter)
 
@@ -307,7 +307,7 @@ PUT _cluster/settings
 
 ### Configuring a local index exporter
 
-The default exporter is `local_index`. A local index exporter allows you to save top N query data to indexes that are automatically created in your SmartObserve domain. Query Insights creates these indexes following the naming pattern `top_queries-YYYY.MM.dd-hashcode`, where `hashcode` is a 5-digit number generated based on the current UTC date. A new index is created daily. For historical top N lookups using the Top Queries API or the Query Insights dashboard, you must enable the local index exporter.
+The default exporter is `local_index`. A local index exporter allows you to save top N query data to indexes that are automatically created in your MCdesk domain. Query Insights creates these indexes following the naming pattern `top_queries-YYYY.MM.dd-hashcode`, where `hashcode` is a 5-digit number generated based on the current UTC date. A new index is created daily. For historical top N lookups using the Top Queries API or the Query Insights dashboard, you must enable the local index exporter.
 
 To use the local index exporter, set the exporter type to `local_index`:
 

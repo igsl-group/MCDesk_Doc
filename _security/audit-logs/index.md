@@ -24,23 +24,23 @@ redirect_from:
 
 ---
 
-Audit logs let you track access to your SmartObserve cluster and are useful for compliance purposes or in the aftermath of a security breach. You can configure the categories to be logged, the detail level of the logged messages, and where to store the logs.
+Audit logs let you track access to your MCdesk cluster and are useful for compliance purposes or in the aftermath of a security breach. You can configure the categories to be logged, the detail level of the logged messages, and where to store the logs.
 
 Audit logging is disabled by default. To enable audit logging:
 
-1. Add the following line to `smartobserve.yml` on each node:
+1. Add the following line to `mcdesk.yml` on each node:
 
    ```yml
-   plugins.security.audit.type: internal_smartobserve
+   plugins.security.audit.type: internal_mcdesk
    ```
 
    This setting stores audit logs on the current cluster. For other storage options, see [Audit Log Storage Types]({{site.url}}{{site.baseurl}}/security/audit-logs/storage-types/).
 
 2. Restart each node.
 
-After this initial setup, you can use SmartObserve Dashboards to manage your audit log categories and other settings. In SmartObserve Dashboards, select **Security** and then **Audit logs**. 
+After this initial setup, you can use MCdesk Dashboards to manage your audit log categories and other settings. In MCdesk Dashboards, select **Security** and then **Audit logs**. 
 
-An alternative is to specify initial settings for audit logging in the `audit.yml` and `smartobserve.yml` files (which file depends on the setting---see [Audit log settings](#audit-log-settings)). Thereafter, you can use Dashboards or the [Audit logs]({{site.url}}{{site.baseurl}}/security/access-control/api/#audit-logs) API to manage and update settings.
+An alternative is to specify initial settings for audit logging in the `audit.yml` and `mcdesk.yml` files (which file depends on the setting---see [Audit log settings](#audit-log-settings)). Thereafter, you can use Dashboards or the [Audit logs]({{site.url}}{{site.baseurl}}/security/access-control/api/#audit-logs) API to manage and update settings.
 
 
 ## Tracked events
@@ -52,10 +52,10 @@ Event | Logged on REST | Logged on transport | Description
 `FAILED_LOGIN` | Yes | Yes | The credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect.
 `AUTHENTICATED` | Yes | Yes | A user successfully authenticated.
 `MISSING_PRIVILEGES` | No | Yes | The user does not have the required permissions to make the request.
-`GRANTED_PRIVILEGES` | No | Yes | A user made a successful request to SmartObserve.
-`SSL_EXCEPTION` | Yes | Yes | An attempt was made to access SmartObserve without a valid SSL/TLS certificate.
-`smartobserve_SECURITY_INDEX_ATTEMPT` | No | Yes | An attempt was made to modify the Security plugin internal user and privileges index without the required permissions or TLS admin certificate.
-`BAD_HEADERS` | Yes | Yes | An attempt was made to spoof a request to SmartObserve with the Security plugin internal headers.
+`GRANTED_PRIVILEGES` | No | Yes | A user made a successful request to MCdesk.
+`SSL_EXCEPTION` | Yes | Yes | An attempt was made to access MCdesk without a valid SSL/TLS certificate.
+`mcdesk_SECURITY_INDEX_ATTEMPT` | No | Yes | An attempt was made to modify the Security plugin internal user and privileges index without the required permissions or TLS admin certificate.
+`BAD_HEADERS` | Yes | Yes | An attempt was made to spoof a request to MCdesk with the Security plugin internal headers.
 
 
 ## Audit log settings
@@ -80,7 +80,7 @@ plugins.security.audit.config.disabled_transport_categories: <disabled categorie
 For example:
 
 ```yml
-plugins.security.audit.config.disabled_rest_categories: AUTHENTICATED, smartobserve_SECURITY_INDEX_ATTEMPT
+plugins.security.audit.config.disabled_rest_categories: AUTHENTICATED, mcdesk_SECURITY_INDEX_ATTEMPT
 plugins.security.audit.config.disabled_transport_categories: GRANTED_PRIVILEGES
 ```
 
@@ -160,7 +160,7 @@ plugins.security.audit.config.ignore_requests: ["indices:data/read/*", "SearchRe
 
 #### Exclude users
 
-By default, the Security plugin logs events from all users but excludes the internal SmartObserve Dashboards server user `kibanaserver`. You can exclude other users:
+By default, the Security plugin logs events from all users but excludes the internal MCdesk Dashboards server user `kibanaserver`. You can exclude other users:
 
 ```yml
 plugins.security.audit.config.ignore_users:
@@ -184,9 +184,9 @@ plugins.security.audit.config.exclude_sensitive_headers: true
 ```
 
 
-### Settings in smartobserve.yml
+### Settings in mcdesk.yml
 
-The following settings are stored in the `smartobserve.yml` file.
+The following settings are stored in the `mcdesk.yml` file.
 
 
 #### Configure the audit log index name
@@ -222,7 +222,7 @@ plugins.security.audit.config.threadpool.max_queue_len: 100000
 
 ## Disabling audit logs
 
-To disable audit logs after they've been enabled, remove the `plugins.security.audit.type: internal_smartobserve` setting from `smartobserve.yml`, or switch off the **Enable audit logging** check box in SmartObserve Dashboards.
+To disable audit logs after they've been enabled, remove the `plugins.security.audit.type: internal_mcdesk` setting from `mcdesk.yml`, or switch off the **Enable audit logging** check box in MCdesk Dashboards.
 
 ## Audit user account manipulation
 

@@ -321,7 +321,7 @@ PUT /_plugins/_replication/<follower-index>/_update
 Introduced 1.1
 {: .label .label-purple }
 
-Automatically starts replication on indexes matching a specified pattern. If a new index on the leader cluster matches the pattern, SmartObserve automatically creates a follower index and begins replication. You can also use this API to update existing replication rules.
+Automatically starts replication on indexes matching a specified pattern. If a new index on the leader cluster matches the pattern, MCdesk automatically creates a follower index and begins replication. You can also use this API to update existing replication rules.
 
 Send this request to the follower cluster.
 

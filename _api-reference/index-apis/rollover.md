@@ -59,7 +59,7 @@ Parameter | Data type | Description
 :--- | :--- | :--- 
 `cluster_manager_timeout` | Time | The amount of time to wait for a connection to the cluster manager node. Default is `30s`.
 `timeout` | Time | The amount of time to wait for a response. Default is `30s`.
-`wait_for_active_shards` | String | The number of active shards that must be available before SmartObserve processes the request. Default is `1` (only the primary shard). You can also set to `all` or a positive integer. Values greater than `1` require replicas. For example, if you specify a value of `3`, then the index must have two replicas distributed across two additional nodes in order for the operation to succeed.
+`wait_for_active_shards` | String | The number of active shards that must be available before MCdesk processes the request. Default is `1` (only the primary shard). You can also set to `all` or a positive integer. Values greater than `1` require replicas. For example, if you specify a value of `3`, then the index must have two replicas distributed across two additional nodes in order for the operation to succeed.
 
 ## Request body fields
 
@@ -85,7 +85,7 @@ The `mappings` parameter specifies the index field mappings. It is optional. See
 
 ### `conditions`
 
-The `conditions` parameter is an optional object defining criteria for triggering the rollover. When provided, SmartObserve only rolls over if the current index satisfies one or more specified conditions. If omitted, then the rollover occurs unconditionally without prerequisites.
+The `conditions` parameter is an optional object defining criteria for triggering the rollover. When provided, MCdesk only rolls over if the current index satisfies one or more specified conditions. If omitted, then the rollover occurs unconditionally without prerequisites.
 
 The object body supports the following parameters.
 
@@ -97,7 +97,7 @@ Parameter | Data type | Description
 
 ### `settings`
 
-The `settings` parameter specifies the index configuration options. See [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/) for more information.
+The `settings` parameter specifies the index configuration options. See [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/) for more information.
 
 ## Example requests
 
@@ -263,7 +263,7 @@ response = client.indices.rollover(
 
 ## Example response
 
-SmartObserve returns the following response confirming that all conditions except `max_size` were met:
+MCdesk returns the following response confirming that all conditions except `max_size` were met:
 
 ```json
 {

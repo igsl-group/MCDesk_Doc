@@ -12,7 +12,7 @@ grand_parent: Agents and tools
 **Introduced 2.13**
 {: .label .label-purple }
 
-Similarly to a [conversational flow agent]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/conversational-flow/), a conversational agent stores a conversation in an index, in the following example, the `conversation_index`. A conversational agent can be configured with a large language model (LLM) and a set of supplementary tools that perform specific jobs. For example, you can set up an LLM and a `CATIndexTool` when configuring an agent. When you send a question to the model, the agent also includes the `CATIndexTool` as context. The LLM then decides whether it needs to use the `CATIndexTool` to answer questions like "How many indexes are in my cluster?" The context allows an LLM to answer specific questions that are outside of its knowledge base. For example, the following agent is configured with an LLM and a `CATIndexTool` that retrieves information about your SmartObserve indexes:
+Similarly to a [conversational flow agent]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/conversational-flow/), a conversational agent stores a conversation in an index, in the following example, the `conversation_index`. A conversational agent can be configured with a large language model (LLM) and a set of supplementary tools that perform specific jobs. For example, you can set up an LLM and a `CATIndexTool` when configuring an agent. When you send a question to the model, the agent also includes the `CATIndexTool` as context. The LLM then decides whether it needs to use the `CATIndexTool` to answer questions like "How many indexes are in my cluster?" The context allows an LLM to answer specific questions that are outside of its knowledge base. For example, the following agent is configured with an LLM and a `CATIndexTool` that retrieves information about your MCdesk indexes:
 
 ```json
 POST /_plugins/_ml/agents/_register
@@ -35,7 +35,7 @@ POST /_plugins/_ml/agents/_register
     {
       "type": "VectorDBTool",
       "name": "VectorDBTool",
-      "description": "A tool to search smartobserve index with natural language question. If you don't know answer for some question, you should always try to search data with this tool. Action Input: <natural language question>",
+      "description": "A tool to search mcdesk index with natural language question. If you don't know answer for some question, you should always try to search data with this tool. Action Input: <natural language question>",
       "parameters": {
         "model_id": "YOUR_TEXT_EMBEDDING_MODEL_ID",
         "index": "my_test_data",
@@ -47,7 +47,7 @@ POST /_plugins/_ml/agents/_register
     {
       "type": "CatIndexTool",
       "name": "RetrieveIndexMetaTool",
-      "description": "Use this tool to get SmartObserve index information: (health, status, index, uuid, primary count, replica count, docs.count, docs.deleted, store.size, primary.store.size)."
+      "description": "Use this tool to get MCdesk index information: (health, status, index, uuid, primary count, replica count, docs.count, docs.deleted, store.size, primary.store.size)."
     }
   ],
   "app_type": "my app"

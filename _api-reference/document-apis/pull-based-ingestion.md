@@ -10,16 +10,16 @@ nav_order: 90
 **Introduced 3.0**
 {: .label .label-purple }
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
-Pull-based ingestion enables SmartObserve to ingest data from streaming sources such as Apache Kafka or Amazon Kinesis. Unlike traditional ingestion methods where clients actively push data to SmartObserve through REST APIs, pull-based ingestion allows SmartObserve to control the data flow by retrieving data directly from streaming sources. This approach provides exactly-once ingestion semantics and native backpressure handling, helping prevent server overload during traffic spikes.
+Pull-based ingestion enables MCdesk to ingest data from streaming sources such as Apache Kafka or Amazon Kinesis. Unlike traditional ingestion methods where clients actively push data to MCdesk through REST APIs, pull-based ingestion allows MCdesk to control the data flow by retrieving data directly from streaming sources. This approach provides exactly-once ingestion semantics and native backpressure handling, helping prevent server overload during traffic spikes.
 
 ## Prerequisites
 
 Before using pull-based ingestion, ensure that the following prerequisites are met:
 
-* Install an ingestion plugin for your streaming source using the command `bin/smartobserve-plugin install <plugin-name>`. For more information, see [Additional plugins]({{site.url}}{{site.baseurl}}/install-and-configure/additional-plugins/index/). SmartObserve supports the following ingestion plugins: 
+* Install an ingestion plugin for your streaming source using the command `bin/mcdesk-plugin install <plugin-name>`. For more information, see [Additional plugins]({{site.url}}{{site.baseurl}}/install-and-configure/additional-plugins/index/). MCdesk supports the following ingestion plugins: 
   - `ingestion-kafka`
   - `ingestion-kinesis`
 * Configure pull-based ingestion during [index creation](#creating-an-index-for-pull-based-ingestion). You cannot convert an existing push-based index to a pull-based one.
@@ -62,7 +62,7 @@ PUT /my-index
 
 ### Ingestion source parameters
 
-The `ingestion_source` parameters control how SmartObserve pulls data from the streaming source. A _poll_ is an operation in which SmartObserve actively requests a batch of data from the streaming source. The following table lists all parameters that `ingestion_source` supports.
+The `ingestion_source` parameters control how MCdesk pulls data from the streaming source. A _poll_ is an operation in which MCdesk actively requests a batch of data from the streaming source. The following table lists all parameters that `ingestion_source` supports.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -101,7 +101,7 @@ There is no replication or coordination between the shards, although replica sha
 
 ### Stream position
 
-When creating an index, you can specify where SmartObserve should start reading from the stream by configuring the `pointer.init.reset` and `pointer.init.reset.value` settings in the `ingestion_source` parameter. SmartObserve will resume reading from the last commited position for existing indexes.
+When creating an index, you can specify where MCdesk should start reading from the stream by configuring the `pointer.init.reset` and `pointer.init.reset.value` settings in the `ingestion_source` parameter. MCdesk will resume reading from the last commited position for existing indexes.
 
 The following table provides the valid `pointer.init.reset` values and their corresponding `pointer.init.reset.value` values.
 
@@ -115,9 +115,9 @@ The following table provides the valid `pointer.init.reset` values and their cor
 
 ### Stream partitioning
 
-When using partitioned streams (such as Kafka topics or Kinesis shards), note the following relationships between stream partitions and SmartObserve shards:
+When using partitioned streams (such as Kafka topics or Kinesis shards), note the following relationships between stream partitions and MCdesk shards:
 
-- SmartObserve shards map one-to-one to stream partitions.
+- MCdesk shards map one-to-one to stream partitions.
 - The number of index shards must be greater than or equal to the number of stream partitions.
 - Extra shards beyond the number of partitions remain empty.
 - Documents must be sent to the same partition for successful updates.
@@ -165,19 +165,19 @@ response = client.indices.put_settings(
 
 ## Message format
 
-To be correctly processed by SmartObserve, messages in the streaming source must have the following format:
+To be correctly processed by MCdesk, messages in the streaming source must have the following format:
 
 ```json
 {"_id":"1", "_version":"1", "_source":{"name": "alice", "age": 30}, "_op_type": "index"}
 {"_id":"2", "_version":"2", "_source":{"name": "alice", "age": 30}, "_op_type": "delete"}
 ```
 
-Each data unit in the streaming source (Kafka message or Kinesis record) must include the following fields that specify how to create or modify an SmartObserve document.
+Each data unit in the streaming source (Kafka message or Kinesis record) must include the following fields that specify how to create or modify an MCdesk document.
 
 | Field | Data type | Required | Description |
 | :--- | :--- | :--- | :--- |
-| `_id` | String | No | A unique identifier for a document. If not provided, SmartObserve auto-generates an ID. Required for document updates or deletions. |
-| `_version` | Long | No | A document version number, which must be maintained externally. If provided, SmartObserve drops messages with versions earlier than the current document version. If not provided, no version checking occurs. |
+| `_id` | String | No | A unique identifier for a document. If not provided, MCdesk auto-generates an ID. Required for document updates or deletions. |
+| `_version` | Long | No | A document version number, which must be maintained externally. If provided, MCdesk drops messages with versions earlier than the current document version. If not provided, no version checking occurs. |
 | `_op_type` | String | No | The operation to perform. Valid values are:<br>- `index`: Creates a new document or updates an existing one.<br>- `create`: Creates a new document in append mode. Note that this will not update existing documents. <br>- `delete`: Soft deletes a document. |
 | `_source` | Object | Yes | The message payload containing the document data. |
 

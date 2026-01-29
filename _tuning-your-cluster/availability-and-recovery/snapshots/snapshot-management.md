@@ -6,12 +6,12 @@ nav_order: 20
 has_children: false
 grand_parent: Availability and recovery
 redirect_from: 
-  - /smartobserve/snapshots/snapshot-management/
+  - /mcdesk/snapshots/snapshot-management/
 ---
 
 # Snapshot management
 
-Snapshot management (SM) lets you automate [taking snapshots]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/snapshot-restore#take-snapshots). To use this feature, you need to install the [Index Management (IM) Plugin]({{site.url}}{{site.baseurl}}/im-plugin). Snapshots store only incremental changes since the last snapshot. Thus, while taking an initial snapshot may be a heavy operation, subsequent snapshots have minimal overhead. To set up automatic snapshots, you have to create an SM policy with a desired SM schedule and configuration. 
+Snapshot management (SM) lets you automate [taking snapshots]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/snapshot-restore#take-snapshots). To use this feature, you need to install the [Index Management (IM) Plugin]({{site.url}}{{site.baseurl}}/im-plugin). Snapshots store only incremental changes since the last snapshot. Thus, while taking an initial snapshot may be a heavy operation, subsequent snapshots have minimal overhead. To set up automatic snapshots, you have to create an SM policy with a desired SM schedule and configuration. 
 
 When you create an SM policy, its document ID is given the name `<policy_name>-sm-policy`. Because of this, SM policies have to obey the following rules:
 
@@ -21,11 +21,11 @@ When you create an SM policy, its document ID is given the name `<policy_name>-s
 
 SM-created snapshots have names in the format `<policy_name>-<date>-<random number>`. Two snapshots created by different policies at the same time always have different names because of the `<policy_name>` prefix. To avoid name collisions within the same policy, each snapshot's name contains a random string suffix.
 
-Each policy has associated metadata that stores the policy status. Snapshot management saves SM policies and metadata in the system index and reads them from the system index. Thus, Snapshot Management depends on the SmartObserve cluster's indexing and searching functions. The policy's metadata keeps information about the latest creation and deletion only. The metadata is read before running every scheduled job so that SM can continue execution from the previous job's state. You can view the metadata using the [explain API]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#explain).
+Each policy has associated metadata that stores the policy status. Snapshot management saves SM policies and metadata in the system index and reads them from the system index. Thus, Snapshot Management depends on the MCdesk cluster's indexing and searching functions. The policy's metadata keeps information about the latest creation and deletion only. The metadata is read before running every scheduled job so that SM can continue execution from the previous job's state. You can view the metadata using the [explain API]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#explain).
 
 An SM schedule is a custom [cron]({{site.url}}{{site.baseurl}}/monitoring-plugins/alerting/cron) expression. It consists of two parts: a creation schedule and a deletion schedule. You must set up a creation schedule that specifies the frequency and timing of snapshot creation. Optionally, you can set up a separate schedule for deleting snapshots.
 
-An SM configuration includes the indexes and repository for the snapshots and supports all parameters you can define when [creating a snapshot]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/snapshot-restore#take-snapshots) using the API. Additionally, you can specify the format and time zone for the date used in the snapshot's name.
+An SM configuration includes the indexes and repository for the snapshots and supports all parameters you can define when [creating a snapshot]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/snapshot-restore#take-snapshots) using the API. Additionally, you can specify the format and time zone for the date used in the snapshot's name.
 
 
 ## Performance 
@@ -47,7 +47,7 @@ We don't recommend setting up the same repository for multiple SM policies with 
 
 ## Failure management
 
-If a snapshot operation fails, it is retried a maximum of three times. The failure message is saved in `metadata.latest_execution` and is overwritten when a subsequent snapshot operation starts. You can view the failure message using the [explain API]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#explain). When using SmartObserve Dashboards, you can view the failure message on the [policy details page]({{site.url}}{{site.baseurl}}/dashboards/admin-ui-index/sm-dashboards#view-edit-or-delete-an-sm-policy). Possible reasons for failure include red index status and shard reallocation.
+If a snapshot operation fails, it is retried a maximum of three times. The failure message is saved in `metadata.latest_execution` and is overwritten when a subsequent snapshot operation starts. You can view the failure message using the [explain API]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#explain). When using MCdesk Dashboards, you can view the failure message on the [policy details page]({{site.url}}{{site.baseurl}}/dashboards/admin-ui-index/sm-dashboards#view-edit-or-delete-an-sm-policy). Possible reasons for failure include red index status and shard reallocation.
 
 ## Security
 
@@ -57,25 +57,25 @@ The following table lists the required permissions for each Snapshot Management 
 
 Function | API | Permission
 :--- | :--- | :---
-Get policy | GET _plugins/_sm/policies<br>GET _plugins/_sm/policies/`policy_name` | cluster:admin/smartobserve/snapshot_management/policy/get<br>cluster:admin/smartobserve/snapshot_management/policy/search 
-Create/update policy | POST _plugins/_sm/policies/`policy_name`<br> PUT _plugins/_sm/policies/`policy_name`?if_seq_no=1&if_primary_term=1 | cluster:admin/smartobserve/snapshot_management/policy/write
-Delete policy | DELETE  _plugins/_sm/policies/`policy_name` | cluster:admin/smartobserve/snapshot_management/policy/delete
-Explain | GET _plugins/_sm/policies/`policy_names`/_explain | cluster:admin/smartobserve/snapshot_management/policy/explain
-Start | POST  _plugins/_sm/policies/`policy_name`/_start | cluster:admin/smartobserve/snapshot_management/policy/start
-Stop| POST  _plugins/_sm/policies/`policy_name`/_stop | cluster:admin/smartobserve/snapshot_management/policy/stop
+Get policy | GET _plugins/_sm/policies<br>GET _plugins/_sm/policies/`policy_name` | cluster:admin/mcdesk/snapshot_management/policy/get<br>cluster:admin/mcdesk/snapshot_management/policy/search 
+Create/update policy | POST _plugins/_sm/policies/`policy_name`<br> PUT _plugins/_sm/policies/`policy_name`?if_seq_no=1&if_primary_term=1 | cluster:admin/mcdesk/snapshot_management/policy/write
+Delete policy | DELETE  _plugins/_sm/policies/`policy_name` | cluster:admin/mcdesk/snapshot_management/policy/delete
+Explain | GET _plugins/_sm/policies/`policy_names`/_explain | cluster:admin/mcdesk/snapshot_management/policy/explain
+Start | POST  _plugins/_sm/policies/`policy_name`/_start | cluster:admin/mcdesk/snapshot_management/policy/start
+Stop| POST  _plugins/_sm/policies/`policy_name`/_stop | cluster:admin/mcdesk/snapshot_management/policy/stop
 
 
 ## API
 
-The following table lists all [Snapshot Management API]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api) functions.
+The following table lists all [Snapshot Management API]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api) functions.
 
 Function | API | Description
 :--- | :--- | :---
-[Create policy]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#create-or-update-a-policy) | POST _plugins/_sm/policies/`policy_name` | Creates an SM policy.
-[Update policy]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#create-or-update-a-policy) | PUT _plugins/_sm/policies/`policy_name`?if_seq_no=`sequence_number`&if_primary_term=`primary_term` | Modifies the `policy_name` policy.
-[Get all policies]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#get-policies) | GET _plugins/_sm/policies | Returns all SM policies.
-[Get the policy `policy_name`]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#get-policies) | GET _plugins/_sm/policies/`policy_name` | Returns the `policy_name` SM policy.
-[Delete policy]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#delete-a-policy) | DELETE  _plugins/_sm/policies/`policy_name` | Deletes the `policy_name` policy.
-[Explain]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#explain) | GET _plugins/_sm/policies/`policy_names`/_explain | Provides the enabled/disabled status and the metadata for all policies specified by `policy_names`.
-[Start policy]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#start-a-policy) | POST  _plugins/_sm/policies/`policy_name`/_start | Starts the `policy_name` policy.
-[Stop policy]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/sm-api#stop-a-policy)| POST  _plugins/_sm/policies/`policy_name`/_stop | Stops the `policy_name` policy.
+[Create policy]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#create-or-update-a-policy) | POST _plugins/_sm/policies/`policy_name` | Creates an SM policy.
+[Update policy]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#create-or-update-a-policy) | PUT _plugins/_sm/policies/`policy_name`?if_seq_no=`sequence_number`&if_primary_term=`primary_term` | Modifies the `policy_name` policy.
+[Get all policies]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#get-policies) | GET _plugins/_sm/policies | Returns all SM policies.
+[Get the policy `policy_name`]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#get-policies) | GET _plugins/_sm/policies/`policy_name` | Returns the `policy_name` SM policy.
+[Delete policy]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#delete-a-policy) | DELETE  _plugins/_sm/policies/`policy_name` | Deletes the `policy_name` policy.
+[Explain]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#explain) | GET _plugins/_sm/policies/`policy_names`/_explain | Provides the enabled/disabled status and the metadata for all policies specified by `policy_names`.
+[Start policy]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#start-a-policy) | POST  _plugins/_sm/policies/`policy_name`/_start | Starts the `policy_name` policy.
+[Stop policy]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/sm-api#stop-a-policy)| POST  _plugins/_sm/policies/`policy_name`/_stop | Stops the `policy_name` policy.

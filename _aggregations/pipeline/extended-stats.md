@@ -43,10 +43,10 @@ The `extended_stats_bucket` aggregation takes the following parameters.
 
 ## Example
 
-The following example creates a date histogram with a one-month interval using the SmartObserve Dashboards e-commerce sample data. The `sum` sub-aggregation calculates the sum of all bytes for each month. Finally, the `extended_stats_bucket` aggregation returns the extended stats for these sums:
+The following example creates a date histogram with a one-month interval using the MCdesk Dashboards e-commerce sample data. The `sum` sub-aggregation calculates the sum of all bytes for each month. Finally, the `extended_stats_bucket` aggregation returns the extended stats for these sums:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

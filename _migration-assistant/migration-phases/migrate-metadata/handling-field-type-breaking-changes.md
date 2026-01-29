@@ -15,7 +15,7 @@ redirect_from:
 {: .note }
 These transformations may not apply to your use case, but the framework for creating a transformation is designed to handle mutations, data enrichments, and other modifications when modifying workloads or moving them to a new target.
 
-This guide explains how to use Migration Assistant to transform field types that are deprecated or incompatible during a migration to SmartObserve.
+This guide explains how to use Migration Assistant to transform field types that are deprecated or incompatible during a migration to MCdesk.
 
 Field types define how data is stored and queried in an index. Each field in a document is mapped to a data type, which determines how it is indexed and what operations can be performed on it.
 
@@ -163,4 +163,4 @@ The following JSON file references your transformation script and initializes th
 
 ## Summary
 
-By using a transformation configuration, you can rewrite deprecated or incompatible field types during metadata migration or data replay. This ensures that your target SmartObserve cluster only receives compatible mappings—even if the source cluster includes outdated types like `string` or features like `flattened` that need conversion.
+By using a transformation configuration, you can rewrite deprecated or incompatible field types during metadata migration or data replay. This ensures that your target MCdesk cluster only receives compatible mappings—even if the source cluster includes outdated types like `string` or features like `flattened` that need conversion.

@@ -1,16 +1,16 @@
 ---
 layout: default
-title: Configuring SmartObserve Data Prepper
-parent: Managing SmartObserve Data Prepper
+title: Configuring MCdesk Data Prepper
+parent: Managing MCdesk Data Prepper
 nav_order: 5
 redirect_from:
  - /clients/data-prepper/data-prepper-reference/
  - /monitoring-plugins/trace/data-prepper-reference/
 ---
 
-# Configuring SmartObserve Data Prepper
+# Configuring MCdesk Data Prepper
 
-You can customize your SmartObserve Data Prepper configuration by editing the `data-prepper-config.yaml` file in your Data Prepper installation. The following configuration options are independent from pipeline configuration options. 
+You can customize your MCdesk Data Prepper configuration by editing the `data-prepper-config.yaml` file in your Data Prepper installation. The following configuration options are independent from pipeline configuration options. 
 
 
 ## Data Prepper configuration
@@ -194,7 +194,7 @@ After `<YOUR_SECRET_CONFIG_ID>` is configured, you can reference the IDs in your
 
 ```
 sink:
-    - smartobserve:
+    - mcdesk:
         hosts: [ {% raw %}"${{aws_secrets:host-secret-config}}"{% endraw %} ]
         username: {% raw %}"${{aws_secrets:credential-secret-config:username}}"{% endraw %}
         password: {% raw %}"${{aws_secrets:credential-secret-config:password}}"{% endraw %}

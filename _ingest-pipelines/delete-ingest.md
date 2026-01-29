@@ -3,7 +3,7 @@ layout: default
 title: Delete pipeline
 nav_order: 13
 redirect_from:
-  - /smartobserve/rest-api/ingest-apis/delete-ingest/
+  - /mcdesk/rest-api/ingest-apis/delete-ingest/
   - /api-reference/ingest-apis/delete-ingest/
 ---
 

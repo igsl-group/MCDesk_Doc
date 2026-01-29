@@ -2,24 +2,24 @@
 layout: default
 title: Telemetry devices
 nav_order: 45
-parent: SmartObserve Benchmark Reference
+parent: MCdesk Benchmark Reference
 ---
 
 # Telemetry devices
 
-Telemetry devices give you additional insights on benchmark results. To view a list of the available telemetry devices, use the command `smartobserve-benchmark list telemetry`. 
+Telemetry devices give you additional insights on benchmark results. To view a list of the available telemetry devices, use the command `mcdesk-benchmark list telemetry`. 
 
-All telemetry devices with a `--stats` can be used with clusters not provisioned by SmartObserve Benchmark. These devices are referred to as **Runtime level telemetry devices**. Alternatively, **Setup level telemetry devices** encompass devices that can only be used when SmartObserve Benchmark provisions a cluster. 
+All telemetry devices with a `--stats` can be used with clusters not provisioned by MCdesk Benchmark. These devices are referred to as **Runtime level telemetry devices**. Alternatively, **Setup level telemetry devices** encompass devices that can only be used when MCdesk Benchmark provisions a cluster. 
 
-This page lists the telemetry devices supported by SmartObserve Benchmark.
+This page lists the telemetry devices supported by MCdesk Benchmark.
 
 <!-- vale off -->
 ## jfr
 <!-- vale on -->
 
-The `jfr` telemetry device enables the [Java Flight Recorder (JFR)](https://docs.oracle.com/javacomponents/jmc-5-5/jfr-runtime-guide/index.html) on the benchmark candidate. Up to Java Development Kit (JDK) 11, JFR ships only with Oracle JDK. SmartObserve Benchmark assumes that Oracle JDK is used for benchmarking. If you run benchmarks on JDK 11 or later, [JFR](https://jdk.java.net/jmc/) is also available on OpenJDK.
+The `jfr` telemetry device enables the [Java Flight Recorder (JFR)](https://docs.oracle.com/javacomponents/jmc-5-5/jfr-runtime-guide/index.html) on the benchmark candidate. Up to Java Development Kit (JDK) 11, JFR ships only with Oracle JDK. MCdesk Benchmark assumes that Oracle JDK is used for benchmarking. If you run benchmarks on JDK 11 or later, [JFR](https://jdk.java.net/jmc/) is also available on OpenJDK.
 
-To enable `jfr`, invoke **Workload** with the command `smartobserve-benchmark workload --workload=pmc --telemetry jfr`. Then `jfr` will write a flight recording file that can be opened in Java Mission Control. SmartObserve Benchmark prints the location of the flight recording file on the command line.
+To enable `jfr`, invoke **Workload** with the command `mcdesk-benchmark workload --workload=pmc --telemetry jfr`. Then `jfr` will write a flight recording file that can be opened in Java Mission Control. MCdesk Benchmark prints the location of the flight recording file on the command line.
 
 The `jfr` devices support the following parameters:
 
@@ -75,7 +75,7 @@ The `node-stats` device supports the following parameters:
 - `node-stats-include-breakers`: A Boolean indicating whether circuit breaker stats should be included. Default is `true`.
 - `node-stats-include-gc`: A Boolean indicating whether JVM GC stats should be included. Default is `true`.
 - `node-stats-include-mem`: A Boolean indicating whether both JVM heap and OS mem stats should be included. Default is `true`.
-- `node-stats-include-cgroup`: A Boolean to include operating system cgroup stats. Memory stats are omitted since SmartObserve outputs them as string values. Use the `os_mem_*` fields instead. Default is `true`.
+- `node-stats-include-cgroup`: A Boolean to include operating system cgroup stats. Memory stats are omitted since MCdesk outputs them as string values. Use the `os_mem_*` fields instead. Default is `true`.
 - `node-stats-include-network`: A Boolean indicating whether network-related stats should be included. Default is `true`.
 - `node-stats-include-process`: A Boolean indicating whether process CPU stats should be included. Default is `true`.
 - `node-stats-include-indexing-pressure`:  A Boolean indicating whether indexing presser stats should be included. Default is `true`.

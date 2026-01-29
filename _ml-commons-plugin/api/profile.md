@@ -84,7 +84,7 @@ GET /_plugins/_ml/profile
       "models" : {
         "WWQI44MBbzI2oUKAvNUt" : { # model id
           "model_state" : "DEPLOYED", # model status
-          "predictor" : "org.smartobserve.ml.engine.algorithms.text_embedding.TextEmbeddingModel@592814c9",
+          "predictor" : "org.mcdesk.ml.engine.algorithms.text_embedding.TextEmbeddingModel@592814c9",
           "worker_nodes" : [ # routing table
             "KzONM8c8T4Od-NoUANQNGg"
           ],

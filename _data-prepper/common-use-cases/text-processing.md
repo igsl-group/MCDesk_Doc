@@ -7,7 +7,7 @@ nav_order: 55
 
 # Text processing
 
-SmartObserve Data Prepper provides text processing capabilities with the [`grok processor`]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/grok/). The `grok` processor is based on the [`java-grok`](https://mvnrepository.com/artifact/io.krakens/java-grok) library and supports all compatible patterns. The `java-grok` library is built using the [`java.util.regex`](https://docs.oracle.com/javase/8/docs/api/java/util/regex/package-summary.html) regular expression library.
+MCdesk Data Prepper provides text processing capabilities with the [`grok processor`]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/grok/). The `grok` processor is based on the [`java-grok`](https://mvnrepository.com/artifact/io.krakens/java-grok) library and supports all compatible patterns. The `java-grok` library is built using the [`java.util.regex`](https://docs.oracle.com/javase/8/docs/api/java/util/regex/package-summary.html) regular expression library.
 
 You can add custom patterns to your pipelines by using the `patterns_definitions` option. When debugging custom patterns, the [Grok Debugger](https://grokdebugger.com/) can be helpful.
 
@@ -24,8 +24,8 @@ patten-matching-pipeline:
         match:
           message: ['%{IPORHOST:clientip} \[%{HTTPDATE:timestamp}\] %{NUMBER:response_status:int}']
   sink:
-    - smartobserve:
-        # Provide an SmartObserve cluster endpoint
+    - mcdesk:
+        # Provide an MCdesk cluster endpoint
 ```
 {% include copy-curl.html %}
 

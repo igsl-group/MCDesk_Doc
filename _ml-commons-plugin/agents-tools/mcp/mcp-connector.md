@@ -10,9 +10,9 @@ nav_order: 10
 **Introduced 3.0**
 {: .label .label-purple }
 
-SmartObserve supports agentic workflows using [agents]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/). While SmartObserve provides built-in tools for running complex queries, [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) enables integration with external tools and data sources. MCP is an open protocol standard that provides a standardized way for AI models to connect to external data sources and tools, acting as a "universal adapter" for remote MCP server tools.
+MCdesk supports agentic workflows using [agents]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/). While MCdesk provides built-in tools for running complex queries, [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) enables integration with external tools and data sources. MCP is an open protocol standard that provides a standardized way for AI models to connect to external data sources and tools, acting as a "universal adapter" for remote MCP server tools.
 
-SmartObserve supports MCP servers that use either the Server-Sent Events (SSE) protocol or the Streamable HTTP protocol. Standard Input/Output (`stdio`) protocol is not supported.
+MCdesk supports MCP servers that use either the Server-Sent Events (SSE) protocol or the Streamable HTTP protocol. Standard Input/Output (`stdio`) protocol is not supported.
 {: .note}
 
 The following example demonstrates using MCP tools in agentic workflows.
@@ -43,7 +43,7 @@ PUT /_cluster/settings/
 
 ### Set up an MCP server
 
-Ensure you have a running MCP server that is accessible from your SmartObserve cluster.
+Ensure you have a running MCP server that is accessible from your MCdesk cluster.
 
 ## Step 1: Create an MCP connector
 
@@ -186,7 +186,7 @@ POST /_plugins/_ml/agents/_register
 {
   "name":        "Weather & Search Bot",
   "type":        "conversational",
-  "description": "Uses MCP to fetch forecasts and SmartObserve indices",
+  "description": "Uses MCP to fetch forecasts and MCdesk indices",
   "llm": {
     "model_id": "<MODEL_ID_FROM_STEP_2>",
     "parameters": {
@@ -241,7 +241,7 @@ POST /_plugins/_ml/agents/<Agent_ID>/_execute
 ```
 {% include copy-curl.html %}
 
-The agent uses both the SmartObserve tools specified in the `tools` array and the selected tools from the MCP server (based on your tool filters) to return the answer:
+The agent uses both the MCdesk tools specified in the `tools` array and the selected tools from the MCP server (based on your tool filters) to return the answer:
 
 ```json
 {

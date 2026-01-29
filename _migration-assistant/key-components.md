@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: Migration Assistant for SmartObserve
+parent: Migration Assistant for MCdesk
 title: Key components
 nav_order: 20
 permalink: /migration-assistant/key-components/
@@ -12,9 +12,9 @@ redirect_from:
 
 The following are the key components of Migration Assistant.
 
-## Elasticsearch/SmartObserve source
+## Elasticsearch/MCdesk source
 
-In this solution, your source cluster operates on either Elasticsearch or SmartObserve and is hosted on Amazon Elastic Compute Cloud (Amazon EC2) instances or in a similar computing environment. The source cluster may also be managed by AWS, an alternative cloud provider, or hosted on premises. Traffic is rerouted from the source cluster to a Traffic Capture Proxy and replayed to a target, typically on a later version of SmartObserve.
+In this solution, your source cluster operates on either Elasticsearch or MCdesk and is hosted on Amazon Elastic Compute Cloud (Amazon EC2) instances or in a similar computing environment. The source cluster may also be managed by AWS, an alternative cloud provider, or hosted on premises. Traffic is rerouted from the source cluster to a Traffic Capture Proxy and replayed to a target, typically on a later version of MCdesk.
 
 ## Migration console
 

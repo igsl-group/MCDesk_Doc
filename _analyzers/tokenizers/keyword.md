@@ -48,7 +48,7 @@ Use the following request to examine the tokens generated using the analyzer:
 POST /my_index/_analyze
 {
   "analyzer": "my_keyword_analyzer",
-  "text": "SmartObserve Example"
+  "text": "MCdesk Example"
 }
 ```
 {% include copy-curl.html %}
@@ -59,7 +59,7 @@ The response contains the single token representing the original text:
 {
   "tokens": [
     {
-      "token": "SmartObserve Example",
+      "token": "MCdesk Example",
       "start_offset": 0,
       "end_offset": 18,
       "type": "word",

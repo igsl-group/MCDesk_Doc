@@ -56,7 +56,7 @@ predictor = huggingface_model.deploy(
     instance_type='ml.m5.xlarge' # ec2 instance type
 )
 
-# Save the endpoint name for SmartObserve configuration
+# Save the endpoint name for MCdesk configuration
 print(f"SageMaker Endpoint Name: {predictor.endpoint_name}")
 ```
 {% include copy.html %}
@@ -76,7 +76,7 @@ To implement late interaction reranking, follow these steps:
 
 ## Step 1: Register the model
 
-Register the ColPali model by creating a connector and registering it with SmartObserve:
+Register the ColPali model by creating a connector and registering it with MCdesk:
 
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
@@ -320,7 +320,7 @@ GET /multimodal_docs/_search?search_pipeline=colpali_search_pipeline
 ```
 {% include copy-curl.html %}
 
-When you run this search request, SmartObserve executes the following steps:
+When you run this search request, MCdesk executes the following steps:
 
 1. **Query processing**: The search text (`"financial data charts"`) is sent to the ColPali model, which generates query vectors.
 

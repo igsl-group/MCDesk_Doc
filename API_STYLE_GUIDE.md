@@ -1,6 +1,6 @@
 # API Style Guide
 
-This guide provides the basic structure for creating SmartObserve API documentation. It includes the various elements that we feel are most important to creating complete and useful API documentation, as well as description and examples where appropriate.
+This guide provides the basic structure for creating MCdesk API documentation. It includes the various elements that we feel are most important to creating complete and useful API documentation, as well as description and examples where appropriate.
 
 Depending on the intended purpose of the API, *some sections will be required while others may not be applicable*.
 
@@ -47,8 +47,8 @@ Provide an API name that describes its function, followed by a description of it
 
 Use sentence capitalization for the heading (for example, "Create or update mappings"). When you refer to the API operation, you can use lowercase with code font.
 
-If there is a corresponding SmartObserve Dashboards feature, provide a “See also” link that references it. 
-*Example*: “To learn more about monitor findings, see [Document findings](https://smartobserve-doc.hopto.org/latest/monitoring-plugins/alerting/monitors/#document-findings)."
+If there is a corresponding MCdesk Dashboards feature, provide a “See also” link that references it. 
+*Example*: “To learn more about monitor findings, see [Document findings](https://mcdesk-doc.hopto.org/latest/monitoring-plugins/alerting/monitors/#document-findings)."
 
 If applicable, provide any caveats to its usage with a note or tip, as in the following example:
 

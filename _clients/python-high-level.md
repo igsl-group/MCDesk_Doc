@@ -4,35 +4,35 @@ title: High-level Python client
 nav_order: 5
 ---
 
-The SmartObserve high-level Python client (`smartobserve-dsl-py`) will be deprecated after version 2.1.0. We recommend switching to the [Python client (`smartobserve-py`)]({{site.url}}{{site.baseurl}}/clients/python-low-level/), which now includes the functionality of `smartobserve-dsl-py`.
+The MCdesk high-level Python client (`mcdesk-dsl-py`) will be deprecated after version 2.1.0. We recommend switching to the [Python client (`mcdesk-py`)]({{site.url}}{{site.baseurl}}/clients/python-low-level/), which now includes the functionality of `mcdesk-dsl-py`.
 {: .warning}
 
 # High-level Python client
 
-The SmartObserve high-level Python client (`smartobserve-dsl-py`) provides wrapper classes for common SmartObserve entities, like documents, so you can work with them as Python objects. Additionally, the high-level client simplifies writing queries and supplies convenient Python methods for common SmartObserve operations. The high-level Python client supports creating and indexing documents, searching with and without filters, and updating documents using queries.
+The MCdesk high-level Python client (`mcdesk-dsl-py`) provides wrapper classes for common MCdesk entities, like documents, so you can work with them as Python objects. Additionally, the high-level client simplifies writing queries and supplies convenient Python methods for common MCdesk operations. The high-level Python client supports creating and indexing documents, searching with and without filters, and updating documents using queries.
 
-This getting started guide illustrates how to connect to SmartObserve, index documents, and run queries. For the client source code, see the [smartobserve-dsl-py repo](https://github.com/igsl-group/smartobserve-dsl-py).
+This getting started guide illustrates how to connect to MCdesk, index documents, and run queries. For the client source code, see the [mcdesk-dsl-py repo](https://github.com/igsl-group/mcdesk-dsl-py).
 
 ## Setup
 
 To add the client to your project, install it using [pip](https://pip.pypa.io/):
 
 ```bash
-pip install smartobserve-dsl
+pip install mcdesk-dsl
 ```
 {% include copy.html %}
 
 After installing the client, you can import it like any other module:
 
 ```python
-from smartobservepy import SmartObserve
-from smartobserve_dsl import Search
+from mcdeskpy import MCdesk
+from mcdesk_dsl import Search
 ```
 {% include copy.html %}
 
-## Connecting to SmartObserve
+## Connecting to MCdesk
 
-To connect to the default SmartObserve host, create a client object with SSL enabled if you are using the Security plugin. You can use the default credentials for testing purposes:
+To connect to the default MCdesk host, create a client object with SSL enabled if you are using the Security plugin. You can use the default credentials for testing purposes:
 
 ```python
 host = 'localhost'
@@ -41,7 +41,7 @@ auth = ('admin', 'admin') # For testing only. Don't store credentials in code.
 ca_certs_path = '/full/path/to/root-ca.pem' # Provide a CA bundle if you use intermediate CAs with your root CA.
 
 # Create the client with SSL/TLS enabled, but hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     http_auth = auth,
@@ -67,7 +67,7 @@ client_cert_path = '/full/path/to/client.pem'
 client_key_path = '/full/path/to/client-key.pem'
 
 # Create the client with SSL/TLS enabled, but hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     http_auth = auth,
@@ -89,7 +89,7 @@ host = 'localhost'
 port = 9200
 
 # Create the client with SSL/TLS and hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     use_ssl = False,
@@ -102,7 +102,7 @@ client = SmartObserve(
 
 ## Creating an index
 
-To create an SmartObserve index, use the `client.indices.create()` method. You can use the following code to construct a JSON object with custom settings:
+To create an MCdesk index, use the `client.indices.create()` method. You can use the following code to construct a JSON object with custom settings:
 
 ```python
 index_name = 'my-dsl-index'
@@ -120,7 +120,7 @@ response = client.indices.create(index_name, body=index_body)
 
 ## Indexing a document
 
-You can create a class to represent the documents that you'll index in SmartObserve by extending the `Document` class:
+You can create a class to represent the documents that you'll index in MCdesk by extending the `Document` class:
 
 ```python
 class Movie(Document):
@@ -139,7 +139,7 @@ class Movie(Document):
 To index a document, create an object of the new class and call its `save()` method:
 
 ```python
-# Set up the smartobserve-py version of the document
+# Set up the mcdesk-py version of the document
 Movie.init(using=client)
 doc = Movie(meta={'id': 1}, title='Moneyball', director='Bennett Miller', year='2011')
 response = doc.save(using=client)
@@ -170,7 +170,7 @@ response = s.execute()
 ```
 {% include copy.html %}
 
-The preceding query is equivalent to the following query in SmartObserve domain-specific language (DSL):
+The preceding query is equivalent to the following query in MCdesk domain-specific language (DSL):
 
 ```json
 GET my-dsl-index/_search 
@@ -220,8 +220,8 @@ response = client.indices.delete(
 The following sample program creates a client, adds an index with non-default settings, inserts a document, performs bulk operations, searches for the document, deletes the document, and then deletes the index:
 
 ```python
-from smartobservepy import SmartObserve
-from smartobserve_dsl import Search, Document, Text, Keyword
+from mcdeskpy import MCdesk
+from mcdesk_dsl import Search, Document, Text, Keyword
 
 host = 'localhost'
 port = 9200
@@ -230,7 +230,7 @@ auth = ('admin', 'admin')  # For testing only. Don't store credentials in code.
 ca_certs_path = 'root-ca.pem'
 
 # Create the client with SSL/TLS enabled, but hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts=[{'host': host, 'port': port}],
     http_compress=True,  # enables gzip compression for request bodies
     # http_auth=auth,
@@ -266,7 +266,7 @@ class Movie(Document):
     def save(self, ** kwargs):
         return super(Movie, self).save(** kwargs)
 
-# Set up the smartobserve-py version of the document
+# Set up the mcdesk-py version of the document
 Movie.init(using=client)
 doc = Movie(meta={'id': 1}, title='Moneyball', director='Bennett Miller', year='2011')
 response = doc.save(using=client)

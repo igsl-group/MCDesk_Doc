@@ -4,8 +4,8 @@ title: Boolean
 parent: Compound queries
 nav_order: 10
 redirect_from:
-  - /smartobserve/query-dsl/compound/bool/
-  - /smartobserve/query-dsl/bool/
+  - /mcdesk/query-dsl/compound/bool/
+  - /mcdesk/query-dsl/bool/
   - /query-dsl/query-dsl/compound/bool/
 ---
 
@@ -44,7 +44,7 @@ GET _search
 }
 ```
 
-For example, assume you have the complete works of Shakespeare indexed in an SmartObserve cluster. You want to construct a single query that meets the following requirements:
+For example, assume you have the complete works of Shakespeare indexed in an MCdesk cluster. You want to construct a single query that meets the following requirements:
 
 1. The `text_entry` field must contain the word `love` and should contain either `life` or `grace`.
 2. The `speaker` field must not contain `ROMEO`.
@@ -189,7 +189,7 @@ GET shakespeare/_search
 }
 ```
 
-SmartObserve returns a `matched_queries` array that lists the queries that matched these results:
+MCdesk returns a `matched_queries` array that lists the queries that matched these results:
 
 ```json
 "matched_queries": [

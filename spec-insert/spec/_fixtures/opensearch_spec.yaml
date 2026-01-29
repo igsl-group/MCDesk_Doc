@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: SmartObserve API Specification
+  title: MCdesk API Specification
   version: 1.0.0
   x-api-version: 2.16.0
 paths:
@@ -19,7 +19,7 @@ paths:
       x-version-added: '1.0'
       description: Returns results matching a query.
       externalDocs:
-        url: https://smartobserve-doc.hopto.org/latest/api-reference/search/
+        url: https://mcdesk-doc.hopto.org/latest/api-reference/search/
       parameters:
         - $ref: '#/components/parameters/search___query.analyze_wildcard'
         - $ref: '#/components/parameters/search___query.analyzer'
@@ -29,7 +29,7 @@ paths:
       x-version-added: '1.0'
       description: Returns results matching a query.
       externalDocs:
-          url: https://smartobserve-doc.hopto.org/latest/api-reference/search/
+          url: https://mcdesk-doc.hopto.org/latest/api-reference/search/
       parameters:
           - $ref: '#/components/parameters/search___query.analyze_wildcard'
           - $ref: '#/components/parameters/search___query.analyzer'
@@ -41,7 +41,7 @@ paths:
       x-version-added: '1.0'
       description: Returns results matching a query.
       externalDocs:
-        url: https://smartobserve-doc.hopto.org/latest/api-reference/search/
+        url: https://mcdesk-doc.hopto.org/latest/api-reference/search/
       parameters:
         - $ref: '#/components/parameters/search___path.index'
         - $ref: '#/components/parameters/search___query.analyze_wildcard'
@@ -53,7 +53,7 @@ paths:
       x-version-added: '1.0'
       description: Returns results matching a query.
       externalDocs:
-        url: https://smartobserve-doc.hopto.org/latest/api-reference/search/
+        url: https://mcdesk-doc.hopto.org/latest/api-reference/search/
       parameters:
         - $ref: '#/components/parameters/search___path.index'
         - $ref: '#/components/parameters/search___query.analyze_wildcard'
@@ -66,7 +66,7 @@ paths:
       x-version-added: '1.0'
       description: Updates the index settings.
       externalDocs:
-        url: https://smartobserve-doc.hopto.org/latest/api-reference/index-apis/update-settings/
+        url: https://mcdesk-doc.hopto.org/latest/api-reference/index-apis/update-settings/
       requestBody:
         $ref: '#/components/requestBodies/indices.put_settings'
       parameters:
@@ -82,7 +82,7 @@ paths:
       x-version-added: '1.0'
       description: Allows to perform multiple index/update/delete operations in a single request.
       externalDocs:
-        url: https://smartobserve-doc.hopto.org/latest/api-reference/document-apis/bulk/
+        url: https://mcdesk-doc.hopto.org/latest/api-reference/document-apis/bulk/
       parameters:
         - $ref: '#/components/parameters/cat.health___query.expand_wildcard'
       requestBody:
@@ -118,7 +118,7 @@ components:
       name: expand_wildcard
       description: |-
           Whether to expand wildcard expression to concrete indices that are open, closed, or both.
-          For more information, see [cat health API](https://smartobserve-doc.hopto.org/latest/api-reference/cat/health/).
+          For more information, see [cat health API](https://mcdesk-doc.hopto.org/latest/api-reference/cat/health/).
       schema:
         oneOf:
           - type: string

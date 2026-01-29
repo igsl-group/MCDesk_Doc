@@ -7,7 +7,7 @@ nav_order: 15
 
 # Dead-letter queues
 
-SmartObserve Data Prepper pipelines support dead-letter queues (DLQs) for offloading failed events and making them accessible for analysis.
+MCdesk Data Prepper pipelines support dead-letter queues (DLQs) for offloading failed events and making them accessible for analysis.
 
 As of Data Prepper 2.3, only the `s3` source supports DLQs.
 
@@ -17,7 +17,7 @@ To configure a DLQ writer for the `s3` source, add the following to your pipelin
 
 ```yaml
   sink:
-    smartobserve:
+    mcdesk:
       dlq:
         s3:
           bucket: "my-dlq-bucket"
@@ -49,7 +49,7 @@ key_path_prefix | No | String | The `key_prefix` used in the S3 bucket. Defaults
 region | No | String | The AWS Region of the S3 bucket. Defaults to `us-east-1`.
 sts_role_arn | No | String | The STS role the DLQ assumes in order to write to an AWS S3 bucket. Default is `null`, which uses the standard SDK behavior for credentials. To use this option, the S3 bucket must have the `S3:PutObject` permission configured.
 
-When using DLQ with an SmartObserve sink, you can configure the [max_retries]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/sinks/smartobserve/#configure-max_retries) option to send failed data to the DLQ when the sink reaches the maximum number of retries.
+When using DLQ with an MCdesk sink, you can configure the [max_retries]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/sinks/mcdesk/#configure-max_retries) option to send failed data to the DLQ when the sink reaches the maximum number of retries.
 
 
 ## Metrics

@@ -5,8 +5,8 @@ nav_order: 80
 has_children: true
 has_toc: false
 redirect_from:
-  - /smartobserve/supported-field-types/
-  - /smartobserve/supported-field-types/index/
+  - /mcdesk/supported-field-types/
+  - /mcdesk/supported-field-types/index/
   - /field-types/supported-field-types/
 ---
 
@@ -77,7 +77,7 @@ You can specify data types for your fields when creating a mapping. The followin
 
 ## Arrays
 
-There is no dedicated array field type in SmartObserve. Instead, you can pass an array of values into any field. All values in the array must have the same field type.
+There is no dedicated array field type in MCdesk. Instead, you can pass an array of values into any field. All values in the array must have the same field type.
 
 ```json
 PUT testindex1/_doc/1

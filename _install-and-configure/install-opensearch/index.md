@@ -1,20 +1,20 @@
 ---
 layout: default
-title: Installing SmartObserve
+title: Installing MCdesk
 nav_order: 2
 has_children: true
 redirect_from:
-  - /smartobserve/install/
-  - /smartobserve/install/compatibility/
-  - /smartobserve/install/important-settings/
+  - /mcdesk/install/
+  - /mcdesk/install/compatibility/
+  - /mcdesk/install/important-settings/
   - /install-and-configure/index/
-  - /smartobserve/install/index/
-  - /install-and-configure/install-smartobserve/
+  - /mcdesk/install/index/
+  - /install-and-configure/install-mcdesk/
 ---
 
-# Installing SmartObserve
+# Installing MCdesk
 
-This section provides information about how to install SmartObserve on your host, including which [ports to open](#network-requirements) and which [important settings](#important-settings) to configure on your host.
+This section provides information about how to install MCdesk on your host, including which [ports to open](#network-requirements) and which [important settings](#important-settings) to configure on your host.
 
 For operating system compatibility, see [Compatible operating systems]({{site.url}}{{site.baseurl}}/install-and-configure/os-comp/).
 
@@ -22,13 +22,13 @@ For operating system compatibility, see [Compatible operating systems]({{site.ur
 
 Installation steps vary depending on the deployment method. For steps specific to your deployment, see the following installation guides:
 
-- [Docker]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/docker/)
-- [Helm]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/helm/)
-- [Tarball]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/tar/)
-- [RPM]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/rpm/)
-- [Debian]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/debian/)
-- [Ansible playbook]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/ansible/)
-- [Windows]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/windows/)
+- [Docker]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/docker/)
+- [Helm]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/helm/)
+- [Tarball]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/tar/)
+- [RPM]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/rpm/)
+- [Debian]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/debian/)
+- [Ansible playbook]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/ansible/)
+- [Windows]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/windows/)
 
 
 ## File system recommendations
@@ -37,9 +37,9 @@ Avoid using a network file system for node storage in a production workflow. Usi
 
 ## Java compatibility
 
-The SmartObserve distribution for Linux ships with a compatible [Adoptium JDK](https://adoptium.net/) version of Java in the `jdk` directory. To find the JDK version, run `./jdk/bin/java -version`. For example, the SmartObserve 1.0.0 tarball ships with Java 15.0.1+9 (non-LTS), SmartObserve 1.3.0 ships with Java 11.0.14.1+1 (LTS), and SmartObserve 2.0.0 ships with Java 17.0.2+8 (LTS). SmartObserve is tested with all compatible Java versions.
+The MCdesk distribution for Linux ships with a compatible [Adoptium JDK](https://adoptium.net/) version of Java in the `jdk` directory. To find the JDK version, run `./jdk/bin/java -version`. For example, the MCdesk 1.0.0 tarball ships with Java 15.0.1+9 (non-LTS), MCdesk 1.3.0 ships with Java 11.0.14.1+1 (LTS), and MCdesk 2.0.0 ships with Java 17.0.2+8 (LTS). MCdesk is tested with all compatible Java versions.
 
-SmartObserve Version | Compatible Java Versions | Bundled Java Version
+MCdesk Version | Compatible Java Versions | Bundled Java Version
 :---------- | :-------- | :-----------
 1.0--1.2.x    | 11, 15     | 15.0.1+9
 1.3.x          | 8, 11, 14  | 11.0.25+9
@@ -49,18 +49,18 @@ SmartObserve Version | Compatible Java Versions | Bundled Java Version
 
 To use a different Java installation, set the `OPENSEARCH_JAVA_HOME` or `JAVA_HOME` environment variable to the Java install location. For example:
 ```bash
-export OPENSEARCH_JAVA_HOME=/path/to/smartobserve-{{site.smartobserve_version}}/jdk
+export OPENSEARCH_JAVA_HOME=/path/to/mcdesk-{{site.mcdesk_version}}/jdk
 ```
 
 ## Network requirements
 
-The following TCP ports need to be open for SmartObserve components.
+The following TCP ports need to be open for MCdesk components.
 
-Port number | SmartObserve component
+Port number | MCdesk component
 :--- | :--- 
-443 | SmartObserve Dashboards in AWS SmartObserve Service with encryption in transit (TLS)
-5601 | SmartObserve Dashboards
-9200 | SmartObserve REST API
+443 | MCdesk Dashboards in AWS MCdesk Service with encryption in transit (TLS)
+5601 | MCdesk Dashboards
+9200 | MCdesk REST API
 9300 | Node communication and transport (internal), cross cluster search
 9600 | Performance Analyzer
 
@@ -90,7 +90,7 @@ wsl -d docker-desktop
 sysctl -w vm.max_map_count=262144
 ```
 
-The [sample docker-compose.yml]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/docker/#sample-docker-composeyml) file also contains several key settings:
+The [sample docker-compose.yml]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/docker/#sample-docker-composeyml) file also contains several key settings:
 
 - `bootstrap.memory_lock=true`
 
@@ -102,28 +102,28 @@ The [sample docker-compose.yml]({{site.url}}{{site.baseurl}}/install-and-configu
 
   Sets the size of the Java heap (we recommend half of system RAM).
   
- SmartObserve defaults to `-Xms1g -Xmx1g` for heap memory allocation, which takes precedence over configurations specified using percentage notation (`-XX:MinRAMPercentage`, `-XX:MaxRAMPercentage`). For example, if you set `OPENSEARCH_JAVA_OPTS=-XX:MinRAMPercentage=30 -XX:MaxRAMPercentage=70`, the predefined `-Xms1g -Xmx1g` values will override these settings. When using `OPENSEARCH_JAVA_OPTS` to define memory allocation, make sure you use the `-Xms` and `-Xmx` notation.
+ MCdesk defaults to `-Xms1g -Xmx1g` for heap memory allocation, which takes precedence over configurations specified using percentage notation (`-XX:MinRAMPercentage`, `-XX:MaxRAMPercentage`). For example, if you set `OPENSEARCH_JAVA_OPTS=-XX:MinRAMPercentage=30 -XX:MaxRAMPercentage=70`, the predefined `-Xms1g -Xmx1g` values will override these settings. When using `OPENSEARCH_JAVA_OPTS` to define memory allocation, make sure you use the `-Xms` and `-Xmx` notation.
 {: .note}
 
 - `nofile 65536`
 
-  Sets a limit of 65536 open files for the SmartObserve user.
+  Sets a limit of 65536 open files for the MCdesk user.
 
 - `port 9600`
 
   Allows you to access Performance Analyzer on port 9600.
 
-Do not declare the same JVM options in multiple locations because it can result in unexpected behavior or a failure of the SmartObserve service to start. If you declare JVM options using an environment variable, such as `OPENSEARCH_JAVA_OPTS=-Xms3g -Xmx3g`, then you should comment out any references to that JVM option in `config/jvm.options`. Conversely, if you define JVM options in `config/jvm.options`, then you should not define those JVM options using environment variables.
+Do not declare the same JVM options in multiple locations because it can result in unexpected behavior or a failure of the MCdesk service to start. If you declare JVM options using an environment variable, such as `OPENSEARCH_JAVA_OPTS=-Xms3g -Xmx3g`, then you should comment out any references to that JVM option in `config/jvm.options`. Conversely, if you define JVM options in `config/jvm.options`, then you should not define those JVM options using environment variables.
 {: .note}
 
 ## Important system properties
 
-SmartObserve has a number of system properties, listed in the following table, that you can specify in `config/jvm.options` or `OPENSEARCH_JAVA_OPTS` using `-D` command line argument notation.
+MCdesk has a number of system properties, listed in the following table, that you can specify in `config/jvm.options` or `OPENSEARCH_JAVA_OPTS` using `-D` command line argument notation.
 
 Property | Description
 :---------- | :-------- 
-`smartobserve.xcontent.string.length.max=<value>` | By default, SmartObserve does not impose any limits on the maximum length of the JSON/YAML/CBOR/Smile string fields. To protect your cluster against potential distributed denial-of-service (DDoS) or memory issues, you can set the `smartobserve.xcontent.string.length.max` system property to a reasonable limit (the maximum is 2,147,483,647), for example, `-Dsmartobserve.xcontent.string.length.max=5000000`.  | 
-`smartobserve.xcontent.fast_double_writer=[true|false]` | By default, SmartObserve serializes floating-point numbers using the default implementation provided by the Java Runtime Environment. Set this value to `true` to use the Schubfach algorithm, which is faster but may lead to small differences in precision. Default is `false`. |
-`smartobserve.xcontent.name.length.max=<value>` | By default, SmartObserve does not impose any limits on the maximum length of the JSON/YAML/CBOR/Smile field names. To protect your cluster against potential DDoS or memory issues, you can set the `smartobserve.xcontent.name.length.max` system property to a reasonable limit (the maximum is 2,147,483,647), for example, `-Dsmartobserve.xcontent.name.length.max=50000`. |
-`smartobserve.xcontent.depth.max=<value>` | By default, SmartObserve does not impose any limits on the maximum nesting depth for JSON/YAML/CBOR/Smile documents. To protect your cluster against potential DDoS or memory issues, you can set the `smartobserve.xcontent.depth.max` system property to a reasonable limit (the maximum is 2,147,483,647), for example, `-Dsmartobserve.xcontent.depth.max=1000`. |
-`smartobserve.xcontent.codepoint.max=<value>` | By default, SmartObserve imposes a limit of `52428800` on the maximum size of the YAML documents (in code points). To protect your cluster against potential DDoS or memory issues, you can change the `smartobserve.xcontent.codepoint.max` system property to a reasonable limit (the maximum is 2,147,483,647). For example, `-Dsmartobserve.xcontent.codepoint.max=5000000`. |
+`mcdesk.xcontent.string.length.max=<value>` | By default, MCdesk does not impose any limits on the maximum length of the JSON/YAML/CBOR/Smile string fields. To protect your cluster against potential distributed denial-of-service (DDoS) or memory issues, you can set the `mcdesk.xcontent.string.length.max` system property to a reasonable limit (the maximum is 2,147,483,647), for example, `-Dmcdesk.xcontent.string.length.max=5000000`.  | 
+`mcdesk.xcontent.fast_double_writer=[true|false]` | By default, MCdesk serializes floating-point numbers using the default implementation provided by the Java Runtime Environment. Set this value to `true` to use the Schubfach algorithm, which is faster but may lead to small differences in precision. Default is `false`. |
+`mcdesk.xcontent.name.length.max=<value>` | By default, MCdesk does not impose any limits on the maximum length of the JSON/YAML/CBOR/Smile field names. To protect your cluster against potential DDoS or memory issues, you can set the `mcdesk.xcontent.name.length.max` system property to a reasonable limit (the maximum is 2,147,483,647), for example, `-Dmcdesk.xcontent.name.length.max=50000`. |
+`mcdesk.xcontent.depth.max=<value>` | By default, MCdesk does not impose any limits on the maximum nesting depth for JSON/YAML/CBOR/Smile documents. To protect your cluster against potential DDoS or memory issues, you can set the `mcdesk.xcontent.depth.max` system property to a reasonable limit (the maximum is 2,147,483,647), for example, `-Dmcdesk.xcontent.depth.max=1000`. |
+`mcdesk.xcontent.codepoint.max=<value>` | By default, MCdesk imposes a limit of `52428800` on the maximum size of the YAML documents (in code points). To protect your cluster against potential DDoS or memory issues, you can change the `mcdesk.xcontent.codepoint.max` system property to a reasonable limit (the maximum is 2,147,483,647). For example, `-Dmcdesk.xcontent.codepoint.max=5000000`. |

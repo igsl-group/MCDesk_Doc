@@ -58,7 +58,7 @@ The following table lists the available query parameters. All query parameters a
 | `routing` | List or String | A custom value used to route operations to a specific shard. |
 | `term_statistics` | Boolean | If `true`, the response includes term frequency and document frequency. _(Default: `false`)_ |
 | `version` | Integer | If `true`, returns the document version as part of a hit. |
-| `version_type` | String | The specific version type. <br> Valid values are: <br> - `external`: The version number must be greater than the current version. <br> - `external_gte`: The version number must be greater than or equal to the current version. <br> - `force`: The version number is forced to be the given value. <br> - `internal`: The version number is managed internally by SmartObserve. |
+| `version_type` | String | The specific version type. <br> Valid values are: <br> - `external`: The version number must be greater than the current version. <br> - `external_gte`: The version number must be greater than or equal to the current version. <br> - `force`: The version number is forced to be the given value. <br> - `internal`: The version number is managed internally by MCdesk. |
 
 <!-- spec_insert_end -->
 
@@ -121,13 +121,13 @@ component: example_code
 rest: POST /my-index/_doc/1
 body: |
 {
-  "text": "SmartObserve is a search engine."
+  "text": "MCdesk is a search engine."
 }
 -->
 {% capture step1_rest %}
 POST /my-index/_doc/1
 {
-  "text": "SmartObserve is a search engine."
+  "text": "MCdesk is a search engine."
 }
 {% endcapture %}
 
@@ -138,7 +138,7 @@ response = client.index(
   index = "my-index",
   id = "1",
   body =   {
-    "text": "SmartObserve is a search engine."
+    "text": "MCdesk is a search engine."
   }
 )
 
@@ -156,13 +156,13 @@ component: example_code
 rest: POST /my-index/_doc/2
 body: |
 {
-  "text": "SmartObserve provides powerful features."
+  "text": "MCdesk provides powerful features."
 }
 -->
 {% capture step1_rest %}
 POST /my-index/_doc/2
 {
-  "text": "SmartObserve provides powerful features."
+  "text": "MCdesk provides powerful features."
 }
 {% endcapture %}
 
@@ -173,7 +173,7 @@ response = client.index(
   index = "my-index",
   id = "2",
   body =   {
-    "text": "SmartObserve provides powerful features."
+    "text": "MCdesk provides powerful features."
   }
 )
 
@@ -380,7 +380,7 @@ The response contains term vector information for the two documents:
                 }
               ]
             },
-            "smartobserve": {
+            "mcdesk": {
               "term_freq": 1,
               "tokens": [
                 {
@@ -428,7 +428,7 @@ The response contains term vector information for the two documents:
                 }
               ]
             },
-            "smartobserve": {
+            "mcdesk": {
               "term_freq": 1,
               "tokens": [
                 {

@@ -4,13 +4,13 @@ title: Faceted search
 nav_order: 60
 ---
 
-# Implementing faceted search in SmartObserve
+# Implementing faceted search in MCdesk
 
 A _facet_ is a filterable field that users can select to narrow their search results. In an e-commerce context, you might see facets like brand, color, size, and price range on the left side of search results. For example, a query like "winter jacket" may return many products. Facets let users filter products by a particular color or price range.
 
 Faceted search displays value or range counts for each facet, helping users understand the distribution of results and quickly apply filters. This approach is especially useful in e-commerce and location-based search. You can implement facets using [`terms`]({{site.url}}{{site.baseurl}}/aggregations/bucket/terms/) aggregations for exact values (like colors or sizes) and [`range`]({{site.url}}{{site.baseurl}}/aggregations/bucket/range/) aggregations for continuous values (like prices, dates, or distances).
 
-This tutorial shows you how to implement faceted search in SmartObserve using a product catalog for an e-commerce website as an example.
+This tutorial shows you how to implement faceted search in MCdesk using a product catalog for an e-commerce website as an example.
 
 ## Step 1: Define your index mapping
 
@@ -1970,7 +1970,7 @@ The response contains only `Clothing` products:
 
 </details>
 
-Similarly, you can aggregate the `Clothing>Shirts` category by specifying `"category_path": "Clothing>Shirts"` in the `prefix` query. Your application code can then strip prefixes to provide a cleaner display (for example, change `Clothing>Shirts` to `Shirts`) if necessary. SmartObserve does the heavy lifting (tokenizing and aggregating), while your application code handles the display formatting by stripping prefixes based on hierarchy level.
+Similarly, you can aggregate the `Clothing>Shirts` category by specifying `"category_path": "Clothing>Shirts"` in the `prefix` query. Your application code can then strip prefixes to provide a cleaner display (for example, change `Clothing>Shirts` to `Shirts`) if necessary. MCdesk does the heavy lifting (tokenizing and aggregating), while your application code handles the display formatting by stripping prefixes based on hierarchy level.
 
 
 ## Related articles

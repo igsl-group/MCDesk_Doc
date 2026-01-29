@@ -9,7 +9,7 @@ redirect_from:
 
 # Geotile grid aggregations
 
-The geotile grid aggregation groups documents into grid cells for geographical analysis. Each grid cell corresponds to a [map tile](https://en.wikipedia.org/wiki/Tiled_web_map) and is identified using the `{zoom}/{x}/{y}` format. You can aggregate documents on [geopoint]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point/) or [geoshape]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-shape/) fields using a geotile grid aggregation. One notable difference is that a geopoint is only present in one bucket, but a geoshape is counted in all geotile grid cells with which it intersects.
+The geotile grid aggregation groups documents into grid cells for geographical analysis. Each grid cell corresponds to a [map tile](https://en.wikipedia.org/wiki/Tiled_web_map) and is identified using the `{zoom}/{x}/{y}` format. You can aggregate documents on [geopoint]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point/) or [geoshape]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-shape/) fields using a geotile grid aggregation. One notable difference is that a geopoint is only present in one bucket, but a geoshape is counted in all geotile grid cells with which it intersects.
 
 ## Precision
 
@@ -62,7 +62,7 @@ PUT national_parks/_doc/3
 ```
 {% include copy-curl.html %}
 
-You can index geopoints in several formats. For a list of all supported formats, see the [geopoint documentation]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point#formats). 
+You can index geopoints in several formats. For a list of all supported formats, see the [geopoint documentation]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point#formats). 
 {: .note}
 
 ## Low-precision requests
@@ -250,7 +250,7 @@ All three documents are bucketed separately because of higher granularity:
 ```
 </details>
 
-You can also restrict the geographical area by providing the coordinates of the bounding envelope in the `bounds` parameter. Both `bounds` and `geo_bounding_box` coordinates can be specified in any of the [geopoint formats]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point#formats). The following query uses the well-known text (WKT) "POINT(`longitude` `latitude`)" format for the `bounds` parameter:
+You can also restrict the geographical area by providing the coordinates of the bounding envelope in the `bounds` parameter. Both `bounds` and `geo_bounding_box` coordinates can be specified in any of the [geopoint formats]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point#formats). The following query uses the well-known text (WKT) "POINT(`longitude` `latitude`)" format for the `bounds` parameter:
 
 ```json
 GET national_parks/_search
@@ -533,7 +533,7 @@ When aggregating geoshapes, one geoshape can be counted for multiple buckets bec
 ```
 </details>
 
-Currently, SmartObserve supports geoshape aggregation through the API but not in SmartObserve Dashboards visualizations. If you'd like to see geoshape aggregation implemented for visualizations, upvote the related [GitHub issue](https://github.com/igsl-group/dashboards-maps/issues/250).
+Currently, MCdesk supports geoshape aggregation through the API but not in MCdesk Dashboards visualizations. If you'd like to see geoshape aggregation implemented for visualizations, upvote the related [GitHub issue](https://github.com/igsl-group/dashboards-maps/issues/250).
 {: .note}
 
 ## Supported parameters
@@ -544,6 +544,6 @@ Parameter | Data type | Description
 :--- | :--- | :---
 field | String | The field that contains the geopoints. This field must be mapped as a `geo_point` field. If the field contains an array, all array values are aggregated. Required.
 precision | Integer | The granularity level used to determine grid cells for bucketing results. Cells cannot exceed the specified size (diagonal) of the required precision. Valid values are in the [0, 29] range. Optional. Default is 7. 
-bounds | Object | The bounding box for filtering geopoints. The bounding box is defined by the upper-left and lower-right vertices. The vertices are specified as geopoints in one of the following formats: <br>- An object with a latitude and longitude<br>- An array in the [`longitude`, `latitude`] format<br>- A string in the "`latitude`,`longitude`" format<br>- A geohash <br>- WKT<br> See the [geopoint formats]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point#formats) for formatting examples. Optional.
-size | Integer | The maximum number of buckets to return. When there are more buckets than `size`, SmartObserve returns buckets with more documents. Optional. Default is 10,000.
+bounds | Object | The bounding box for filtering geopoints. The bounding box is defined by the upper-left and lower-right vertices. The vertices are specified as geopoints in one of the following formats: <br>- An object with a latitude and longitude<br>- An array in the [`longitude`, `latitude`] format<br>- A string in the "`latitude`,`longitude`" format<br>- A geohash <br>- WKT<br> See the [geopoint formats]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point#formats) for formatting examples. Optional.
+size | Integer | The maximum number of buckets to return. When there are more buckets than `size`, MCdesk returns buckets with more documents. Optional. Default is 10,000.
 shard_size | Integer | The maximum number of buckets to return from each shard. Optional. Default is max (10, `size` &middot; number of shards), which provides a more accurate count of more highly prioritized buckets.

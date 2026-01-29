@@ -3,7 +3,7 @@ layout: default
 title: Simulate pipeline
 nav_order: 11
 redirect_from:
-  - /smartobserve/rest-api/ingest-apis/simulate-ingest/
+  - /mcdesk/rest-api/ingest-apis/simulate-ingest/
   - /api-reference/ingest-apis/simulate-ingest/
 ---
 

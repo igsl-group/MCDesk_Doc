@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Availability and recovery settings
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 80
 ---
 
@@ -18,11 +18,11 @@ Availability and recovery settings include settings for the following:
 - [Segment replication](#segment-replication-settings)
 - [Cross-cluster replication](#cross-cluster-replication-settings)
 
-To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 ## General recovery settings
 
-SmartObserve supports the following general recovery settings:
+MCdesk supports the following general recovery settings:
 
 - `indices.recovery.chunk_size` (Dynamic, byte unit): Controls the chunk size used when transferring data during index recovery operations. This setting affects the amount of data transferred in each network request during shard recovery. Larger chunk sizes can improve recovery speed but may increase memory usage. Default is `512kb`.
 
@@ -30,13 +30,13 @@ SmartObserve supports the following general recovery settings:
 
 ## Snapshot settings
 
-SmartObserve supports the following snapshot settings:
+MCdesk supports the following snapshot settings:
 
 - `snapshot.max_concurrent_operations`(Dynamic, integer): The maximum number of concurrent snapshot operations. Default is `1000`. 
 
 ### Security-related snapshot settings
 
-For security-related snapshot settings, see [Security settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/security-settings/).
+For security-related snapshot settings, see [Security settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/security-settings/).
 
 ### Shared file system
 
@@ -52,7 +52,7 @@ For information about cluster manager task throttling settings, see [Setting thr
 
 ## Remote-backed storage settings
 
-SmartObserve supports the following cluster-level remote-backed storage settings:
+MCdesk supports the following cluster-level remote-backed storage settings:
 
 - `cluster.remote_store.translog.buffer_interval` (Dynamic, time unit): The default value of the translog buffer interval used when performing periodic translog updates. This setting is only effective when the index setting `index.remote_store.translog.buffer_interval` is not present. 
 

@@ -23,7 +23,7 @@ The Security plugin can integrate with identify providers that use the OpenID Co
 
   You can change the keys used for signing the JWTs directly in your IdP. If the Security plugin detects an unknown key, it tries to retrieve it from the IdP. This rollover is transparent to the user.
 
-* SmartObserve Dashboards as single sign-on or as one option among multiple authentication types in the Dashboards sign-in window.
+* MCdesk Dashboards as single sign-on or as one option among multiple authentication types in the Dashboards sign-in window.
 
 
 ## Configure OpenID Connect integration
@@ -67,7 +67,7 @@ Name | Description
 `roles_key` | The key in the JSON payload that stores the user's roles. The value must be a comma-separated list of roles. This key is required only if you want to use roles in the JWT. You can configure `roles_key` as a list to extract roles from nested JWT claims.
 `required_audience` | The name of the audience that the JWT must specify. You can specify a single value (for example, `project1`) or multiple comma-separated values (for example, `project1,admin`). If you specify multiple values, the JWT must have at least one required audience. This parameter corresponds to the [`aud` claim of the JWT](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3).
 `required_issuer` | The target issuer of the JWT stored in the JSON payload. This corresponds to the [`iss` claim of the JWT](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.1).
-`jwt_clock_skew_tolerance_seconds` | Specifies a window of time, in seconds, to compensate for any disparity between the JWT authentication server and SmartObserve node clock times, thereby preventing authentication failures due to the misalignment. The Security plugin sets 30 seconds as the default. Use this setting to apply a custom value.
+`jwt_clock_skew_tolerance_seconds` | Specifies a window of time, in seconds, to compensate for any disparity between the JWT authentication server and MCdesk node clock times, thereby preventing authentication failures due to the misalignment. The Security plugin sets 30 seconds as the default. Use this setting to apply a custom value.
 
 
 ## OpenID Connect URL
@@ -115,7 +115,7 @@ For more information about IdP endpoints, see the following:
 
 ## Time disparity compensation for JWT validation
 
-Occasionally you may find that the clock times between the authentication server and the SmartObserve node are not perfectly synchronized. When this is the case, even by a few seconds, the system that either issues or receives a JWT may try to validate `nbf` (not before) and `exp` (expiration) claims and fail to authenticate the user due to the time disparity.
+Occasionally you may find that the clock times between the authentication server and the MCdesk node are not perfectly synchronized. When this is the case, even by a few seconds, the system that either issues or receives a JWT may try to validate `nbf` (not before) and `exp` (expiration) claims and fail to authenticate the user due to the time disparity.
 
 By default, Security allows for a window of 30 seconds to compensate for possible misalignment between server clock times. To set a custom value for this feature and override the default, you can add the `jwt_clock_skew_tolerance_seconds` setting to the `config.yml`:
 
@@ -284,23 +284,23 @@ Name | Description
 `refresh_rate_limit_time_window_ms` | The time frame to use when checking the maximum number of unknown key IDs, in milliseconds. Default is 10000 (10 seconds).
 
 
-## SmartObserve Dashboards single sign-on
+## MCdesk Dashboards single sign-on
 
-Activate OpenID Connect by adding the following to `smartobserve_dashboards.yml`:
+Activate OpenID Connect by adding the following to `mcdesk_dashboards.yml`:
 
 ```
-smartobserve_security.auth.type: "openid"
+mcdesk_security.auth.type: "openid"
 ```
 
 
 ### Configuration
 
-OpenID Connect providers usually publish their configuration in JSON format under the *metadata url*. Therefore, most settings can be pulled in automatically, so the SmartObserve Dashboards configuration becomes minimal. The most important settings are the following:
+OpenID Connect providers usually publish their configuration in JSON format under the *metadata url*. Therefore, most settings can be pulled in automatically, so the MCdesk Dashboards configuration becomes minimal. The most important settings are the following:
 
 - [Connect URL](#openid-connect-url)
 - Client ID
 
-  Every IdP can host multiple clients (sometimes called applications) with different settings and authentication protocols. When enabling OpenID Connect, you should create a new client for SmartObserve Dashboards in your IdP. The client ID uniquely identifies SmartObserve Dashboards.
+  Every IdP can host multiple clients (sometimes called applications) with different settings and authentication protocols. When enabling OpenID Connect, you should create a new client for MCdesk Dashboards in your IdP. The client ID uniquely identifies MCdesk Dashboards.
 
 - Client secret
 
@@ -311,54 +311,54 @@ OpenID Connect providers usually publish their configuration in JSON format unde
 
 Name | Description
 :--- | :---
-`smartobserve_security.openid.connect_url` | The URL where the IdP publishes the OpenID metadata. Required.
-`smartobserve_security.openid.client_id` | The ID of the OpenID Connect client configured in your IdP. Required.
-`smartobserve_security.openid.client_secret` | The client secret of the OpenID Connect client configured in your IdP. Required.
-`smartobserve_security.openid.scope` | The [scope of the identity token](https://openid.net/specs/openid-connect-messages-1_0-20.html#scopes) issued by the IdP. Optional. Default is `openid profile email address phone`.
-`smartobserve_security.openid.header` | HTTP header name of the JWT token. Optional. Default is `Authorization`.
-`smartobserve_security.openid.logout_url` | The logout URL of your IdP. Optional. Only necessary if your IdP does not publish the logout URL in its metadata.
-`smartobserve_security.openid.base_redirect_url` | The base of the redirect URL that will be sent to your IdP. Optional. Only necessary when SmartObserve Dashboards is behind a reverse proxy, in which case it should be different than `server.host` and `server.port` in `smartobserve_dashboards.yml`.
-`smartobserve_security.openid.trust_dynamic_headers` | Compute `base_redirect_url` from the reverse proxy HTTP headers (`X-Forwarded-Host` / `X-Forwarded-Proto`). Optional. Default is `false`.
-`smartobserve_security.openid.root_ca` | Path to the root CAs (PEM format) that your IdP's certificate can match or chain to. Optional.
-`smartobserve_security.openid.certificate` | Cert chains (PEM format) to be used for mTLS when obtaining endpoints from your IdP. Optional.
-`smartobserve_security.openid.private_key` | Private keys (PEM format) to be used for mTLS when obtaining endpoints from your IdP. Optional.
-`smartobserve_security.openid.passphrase` | Passphrase used for a single `private_key` or a `pfx`. Optional.
-`smartobserve_security.openid.pfx` | PFX or PKCS12 encoded private key and certificate chain to be used for mTLS when obtaining endpoints from your IdP. Alternative to `certificate` and `private_key`. Optional.
-`smartobserve_security.openid.verify_hostnames` | Whether to verify the hostnames of the IdP's TLS certificate. Default is `true`. Optional. 
+`mcdesk_security.openid.connect_url` | The URL where the IdP publishes the OpenID metadata. Required.
+`mcdesk_security.openid.client_id` | The ID of the OpenID Connect client configured in your IdP. Required.
+`mcdesk_security.openid.client_secret` | The client secret of the OpenID Connect client configured in your IdP. Required.
+`mcdesk_security.openid.scope` | The [scope of the identity token](https://openid.net/specs/openid-connect-messages-1_0-20.html#scopes) issued by the IdP. Optional. Default is `openid profile email address phone`.
+`mcdesk_security.openid.header` | HTTP header name of the JWT token. Optional. Default is `Authorization`.
+`mcdesk_security.openid.logout_url` | The logout URL of your IdP. Optional. Only necessary if your IdP does not publish the logout URL in its metadata.
+`mcdesk_security.openid.base_redirect_url` | The base of the redirect URL that will be sent to your IdP. Optional. Only necessary when MCdesk Dashboards is behind a reverse proxy, in which case it should be different than `server.host` and `server.port` in `mcdesk_dashboards.yml`.
+`mcdesk_security.openid.trust_dynamic_headers` | Compute `base_redirect_url` from the reverse proxy HTTP headers (`X-Forwarded-Host` / `X-Forwarded-Proto`). Optional. Default is `false`.
+`mcdesk_security.openid.root_ca` | Path to the root CAs (PEM format) that your IdP's certificate can match or chain to. Optional.
+`mcdesk_security.openid.certificate` | Cert chains (PEM format) to be used for mTLS when obtaining endpoints from your IdP. Optional.
+`mcdesk_security.openid.private_key` | Private keys (PEM format) to be used for mTLS when obtaining endpoints from your IdP. Optional.
+`mcdesk_security.openid.passphrase` | Passphrase used for a single `private_key` or a `pfx`. Optional.
+`mcdesk_security.openid.pfx` | PFX or PKCS12 encoded private key and certificate chain to be used for mTLS when obtaining endpoints from your IdP. Alternative to `certificate` and `private_key`. Optional.
+`mcdesk_security.openid.verify_hostnames` | Whether to verify the hostnames of the IdP's TLS certificate. Default is `true`. Optional. 
 
 
 ### Configuration example
 
 ```yml
 # Enable OpenID authentication
-smartobserve_security.auth.type: "openid"
+mcdesk_security.auth.type: "openid"
 
 # The IdP metadata endpoint
-smartobserve_security.openid.connect_url: "http://keycloak.example.com:8080/auth/realms/master/.well-known/openid-configuration"
+mcdesk_security.openid.connect_url: "http://keycloak.example.com:8080/auth/realms/master/.well-known/openid-configuration"
 
 # The ID of the OpenID Connect client in your IdP
-smartobserve_security.openid.client_id: "smartobserve-dashboards-sso"
+mcdesk_security.openid.client_id: "mcdesk-dashboards-sso"
 
 # The client secret of the OpenID Connect client
-smartobserve_security.openid.client_secret: "a59c51f5-f052-4740-a3b0-e14ba355b520"
+mcdesk_security.openid.client_secret: "a59c51f5-f052-4740-a3b0-e14ba355b520"
 
 # mTLS Options for obtaining endpoints from IdP
-smartobserve_security.openid.root_ca: /usr/share/smartobserve-dashboards/config/certs/ca.pem
-smartobserve_security.openid.certificate: /usr/share/smartobserve-dashboards/config/certs/cert.pem
-smartobserve_security.openid.private_key: /usr/share/smartobserve-dashboards/config/certs/key.pem
+mcdesk_security.openid.root_ca: /usr/share/mcdesk-dashboards/config/certs/ca.pem
+mcdesk_security.openid.certificate: /usr/share/mcdesk-dashboards/config/certs/cert.pem
+mcdesk_security.openid.private_key: /usr/share/mcdesk-dashboards/config/certs/key.pem
 
 # Use HTTPS instead of HTTP
-smartobserve.url: "https://<hostname>.com:<http port>"
+mcdesk.url: "https://<hostname>.com:<http port>"
 
-# Configure the SmartObserve Dashboards internal server user
-smartobserve.username: "kibanaserver"
-smartobserve.password: "kibanaserver"
+# Configure the MCdesk Dashboards internal server user
+mcdesk.username: "kibanaserver"
+mcdesk.password: "kibanaserver"
 
 # Disable SSL verification when using self-signed demo certificates
-smartobserve.ssl.verificationMode: none
+mcdesk.ssl.verificationMode: none
 
 # allowlist basic headers and multi-tenancy header
-smartobserve.requestHeadersAllowlist: ["Authorization", "securitytenant"]
+mcdesk.requestHeadersAllowlist: ["Authorization", "securitytenant"]
 ```
 
 To include OpenID Connect with other authentication types in the Dashboards sign-in window, see [Configuring sign-in options]({{site.url}}{{site.baseurl}}/security/configuration/multi-auth/).
@@ -366,13 +366,13 @@ To include OpenID Connect with other authentication types in the Dashboards sign
 
 ### Additional parameters
 
-Some identity providers require custom parameters to complete the authentication process. You can add custom parameters to the `smartobserve_dashboards.yml` configuration file under the `smartobserve_security.openid.additional_parameters` namespace. You can find these additional parameters by sending a GET request to your identity provider. This feature allows for greater flexibility and customization when communicating with various identity providers.
+Some identity providers require custom parameters to complete the authentication process. You can add custom parameters to the `mcdesk_dashboards.yml` configuration file under the `mcdesk_security.openid.additional_parameters` namespace. You can find these additional parameters by sending a GET request to your identity provider. This feature allows for greater flexibility and customization when communicating with various identity providers.
 
 In the following example, two custom parameters, `foo` and `acr_values`, and their values, `bar` and `1`, were found using a GET request to an OpenID provider:
 
 ```yml
-smartobserve_security.openid.additional_parameters.foo: "bar"
-smartobserve_security.openid.additional_parameters.acr_values: "1"
+mcdesk_security.openid.additional_parameters.foo: "bar"
+mcdesk_security.openid.additional_parameters.acr_values: "1"
 ```
 {% include copy.html %}
 
@@ -380,22 +380,22 @@ smartobserve_security.openid.additional_parameters.acr_values: "1"
 
 #### Session management with additional cookies
 
-To improve session management---especially for users who have multiple roles assigned to them---Dashboards provides an option to split cookie payloads into multiple cookies and then recombine the payloads when receiving them. This can help prevent larger OpenID Connect assertions from exceeding size limits for each cookie. The two settings in the following example allow you to set a prefix name for additional cookies and specify the number of them. They are added to the `smartobserve_dashboards.yml` file. The default number of additional cookies is three:
+To improve session management---especially for users who have multiple roles assigned to them---Dashboards provides an option to split cookie payloads into multiple cookies and then recombine the payloads when receiving them. This can help prevent larger OpenID Connect assertions from exceeding size limits for each cookie. The two settings in the following example allow you to set a prefix name for additional cookies and specify the number of them. They are added to the `mcdesk_dashboards.yml` file. The default number of additional cookies is three:
 
 ```yml
-smartobserve_security.openid.extra_storage.cookie_prefix: security_authentication_oidc
-smartobserve_security.openid.extra_storage.additional_cookies: 3
+mcdesk_security.openid.extra_storage.cookie_prefix: security_authentication_oidc
+mcdesk_security.openid.extra_storage.additional_cookies: 3
 ```
 
 Note that reducing the number of additional cookies can cause some of the cookies that were in use before the change to stop working. We recommend establishing a fixed number of additional cookies and not changing the configuration after that.
 
-If the ID token from the IdP is especially large, SmartObserve may throw a server log authentication error indicating that the HTTP header is too large. In this case, you can increase the value for the `http.max_header_size` setting in the `smartobserve.yml` file.
+If the ID token from the IdP is especially large, MCdesk may throw a server log authentication error indicating that the HTTP header is too large. In this case, you can increase the value for the `http.max_header_size` setting in the `mcdesk.yml` file.
 {: .tip }
 
 
-### SmartObserve security configuration
+### MCdesk security configuration
 
-SmartObserve Dashboards does not strictly require HTTP basic authentication. You can configure it to authenticate using only OpenID Connect. However, if you need to support multiple authentication methods (for example, using OpenID for users and HTTP basic for automated services), you must configure multiple authentication domains.
+MCdesk Dashboards does not strictly require HTTP basic authentication. You can configure it to authenticate using only OpenID Connect. However, if you need to support multiple authentication methods (for example, using OpenID for users and HTTP basic for automated services), you must configure multiple authentication domains.
 
 If you're using OpenID as the primary method, set the `challenge` flag to `false`.
 
@@ -442,13 +442,13 @@ The following steps use Docker and [Keycloak IdP](https://www.keycloak.org/) to 
 
 1. Download and unzip the [example OpenID Connect zip file]({{site.url}}{{site.baseurl}}/assets/examples/oidc_example.zip)
 2. Update the `.env` file with a strong password for the `admin` user.
-3. Substitute the `{IP}` placeholders in `config.yml` and `smartobserve_dashboards.yml` with the IP of the local machine.
+3. Substitute the `{IP}` placeholders in `config.yml` and `mcdesk_dashboards.yml` with the IP of the local machine.
 4. Review the following files:
-  - `docker-compose.yml` defines a single SmartObserve node, SmartObserve Dashboards, and Keycloak server.
+  - `docker-compose.yml` defines a single MCdesk node, MCdesk Dashboards, and Keycloak server.
   - `new-realm.json` specifies the details of the [realm](https://www.keycloak.org/docs/latest/server_admin/#core-concepts-and-terms). In this example, the realm is named `new`.
   - `config.yml` configures `basic_internal_auth_domain` and `oidc_auth_domain`.
-  - `smartobserve_dashboards.yml` should point to Keycloak for authentication. Make sure that the `smartobserve_security.openid.connect_url` setting points to the URL of the realm.
+  - `mcdesk_dashboards.yml` should point to Keycloak for authentication. Make sure that the `mcdesk_security.openid.connect_url` setting points to the URL of the realm.
 5. At the command line, run `docker compose up`.
-6. Access SmartObserve Dashboards at `http://localhost:5601` and log in with username `testuser` and password `testpassword` configured in the `new-realm.json` file. 
+6. Access MCdesk Dashboards at `http://localhost:5601` and log in with username `testuser` and password `testpassword` configured in the `new-realm.json` file. 
 
-After logging in, the `testuser` receives the backend role `admin` from Keycloak, which is mapped to the `all_access` SmartObserve role. These backend roles can be managed using the Keycloak Administrative Console at http://localhost:8080, using username `admin` and password `admin`.
+After logging in, the `testuser` receives the backend role `admin` from Keycloak, which is mapped to the `all_access` MCdesk role. These backend roles can be managed using the Keycloak Administrative Console at http://localhost:8080, using username `admin` and password `admin`.

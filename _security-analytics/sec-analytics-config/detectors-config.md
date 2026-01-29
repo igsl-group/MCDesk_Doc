@@ -144,7 +144,7 @@ Predefined mappings that correlate the field names from Sigma rules to those of 
 
 ## Amazon Security Lake logs
 
-[Amazon Security Lake](https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html) converts security log and event data to the [OCSF](https://docs.aws.amazon.com/security-lake/latest/userguide/open-cybersecurity-schema-framework.html) format to normalize combined data and facilitate its management. SmartObserve supports ingestion of log data from Amazon Security Lake in the OCSF format. Security Analytics can automatically map fields from OCSF to ECS (the default field mapping schema).
+[Amazon Security Lake](https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html) converts security log and event data to the [OCSF](https://docs.aws.amazon.com/security-lake/latest/userguide/open-cybersecurity-schema-framework.html) format to normalize combined data and facilitate its management. MCdesk supports ingestion of log data from Amazon Security Lake in the OCSF format. Security Analytics can automatically map fields from OCSF to ECS (the default field mapping schema).
 
 The Amazon Security Lake log types that can be used as log sources for detector creation include AWS CloudTrail, Amazon Route 53, and VPC Flow Logs. Because Amazon Route 53 logs capture DNS activity, the log type must be specified as **dns** when [defining a detector](#step-1-define-a-detector). Because AWS CloudTrail logs can be captured in both raw format and OCSF, you should name indexes distinctly and identifiably. This can be helpful when specifying an index name in an API associated with Security Analytics.
 

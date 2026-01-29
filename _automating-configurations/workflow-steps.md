@@ -6,7 +6,7 @@ nav_order: 10
 
 # Workflow steps
 
-_Workflow steps_ form basic "building blocks" for process automation. Most steps directly correspond to SmartObserve or plugin API operations, such as CRUD operations on machine learning (ML) connectors, models, and agents. Some steps simplify the configuration by reusing the body expected by these APIs across multiple steps. For example, once you configure a _tool_, you can use it with multiple _agents_.  
+_Workflow steps_ form basic "building blocks" for process automation. Most steps directly correspond to MCdesk or plugin API operations, such as CRUD operations on machine learning (ML) connectors, models, and agents. Some steps simplify the configuration by reusing the body expected by these APIs across multiple steps. For example, once you configure a _tool_, you can use it with multiple _agents_.  
 
 ## Workflow step fields
 
@@ -30,16 +30,16 @@ The following table lists the workflow step types. The `user_inputs` fields for 
 |`delete_connector`	|[Delete Connector]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/connector-apis/delete-connector/)	|Deletes a connector to a model hosted on a third-party platform.	|
 |`register_model_group`	|[Register Model Group]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-group-apis/register-model-group/)	|Registers a model group. The model group will be deleted automatically once no model is present in the group.	|
 |`register_remote_model`	|[Register Model (remote)]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/#register-a-model-hosted-on-a-third-party-platform)	| Registers a model hosted on a third-party platform. If the `user_inputs` field contains a `deploy` key that is set to `true`, the model is also deployed.	| 
-|`register_local_pretrained_model`	|[Register Model (pretrained)]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/#register-a-pretrained-text-embedding-model)	| Registers an SmartObserve-provided pretrained text embedding model that is hosted on your SmartObserve cluster. If the `user_inputs` field contains a `deploy` key that is set to `true`, also deploys the model.	|
-|`register_local_sparse_encoding_model`	|[Register Model (sparse)]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/#register-a-pretrained-sparse-encoding-model)	| Registers an SmartObserve-provided pretrained sparse encoding model that is hosted on your SmartObserve cluster. If the `user_inputs` field contains a `deploy` key that is set to `true`, also deploys the model.	|
-|`register_local_custom_model`	|[Register Model (custom)]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/#register-a-custom-model)	| Registers a custom model that is hosted on your SmartObserve cluster. If the `user_inputs` field contains a `deploy` key that is set to `true`, also deploys the model.		|
+|`register_local_pretrained_model`	|[Register Model (pretrained)]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/#register-a-pretrained-text-embedding-model)	| Registers an MCdesk-provided pretrained text embedding model that is hosted on your MCdesk cluster. If the `user_inputs` field contains a `deploy` key that is set to `true`, also deploys the model.	|
+|`register_local_sparse_encoding_model`	|[Register Model (sparse)]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/#register-a-pretrained-sparse-encoding-model)	| Registers an MCdesk-provided pretrained sparse encoding model that is hosted on your MCdesk cluster. If the `user_inputs` field contains a `deploy` key that is set to `true`, also deploys the model.	|
+|`register_local_custom_model`	|[Register Model (custom)]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/#register-a-custom-model)	| Registers a custom model that is hosted on your MCdesk cluster. If the `user_inputs` field contains a `deploy` key that is set to `true`, also deploys the model.		|
 |`delete_model`	|[Delete Model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/delete-model/)	|Unregisters and deletes a model.	|
 |`deploy_model`	|[Deploy Model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/deploy-model/)	|Deploys a registered model into memory.	|
 |`undeploy_model`	|[Undeploy Model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/undeploy-model/)	|Undeploys a deployed model from memory.	|
 |`register_agent`	|[Register Agent API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/)	|Registers an agent as part of the ML Commons Agent Framework.	|
 |`delete_agent`	|[Delete Agent API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/)	|Deletes an agent.	|
 |`create_tool`	|No API	| A special-case non-API step encapsulating the specification of a tool for an agent in the ML Commons Agent Framework. These will be listed as `previous_node_inputs` for the appropriate register agent step, with the value set to `tools`.	|
-|`create_index`|[Create Index]({{site.url}}{{site.baseurl}}/api-reference/index-apis/create-index/)     | Creates a new SmartObserve index. The inputs include `index_name`, which should be the name of the index to be created, and `configurations`, which contains the payload body of a regular REST request for creating an index.
+|`create_index`|[Create Index]({{site.url}}{{site.baseurl}}/api-reference/index-apis/create-index/)     | Creates a new MCdesk index. The inputs include `index_name`, which should be the name of the index to be created, and `configurations`, which contains the payload body of a regular REST request for creating an index.
 |`create_ingest_pipeline`|[Create Ingest Pipeline]({{site.url}}{{site.baseurl}}/ingest-pipelines/create-ingest/) | Creates or updates an ingest pipeline. The inputs include `pipeline_id`, which should be the ID of the pipeline, and `configurations`, which contains the payload body of a regular REST request for creating an ingest pipeline.
 |`create_search_pipeline`|[Create Search Pipeline]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/creating-search-pipeline/) | Creates or updates a search pipeline. The inputs include `pipeline_id`, which should be the ID of the pipeline, and `configurations`, which contains the payload body of a regular REST request for creating a search pipeline.
 |`reindex`|[Reindex]({{site.url}}{{site.baseurl}}/api-reference/document-apis/reindex/)  | The reindex document API operation lets you copy all or a subset of your data from a source index into a destination index. The input includes source_index, destination_index, and the following optional parameters from the document reindex API: `refresh`, `requests_per_second`, `require_alias`, `slices`, and `max_docs`. For more information, see [Reindexing considerations](#reindexing-considerations).
@@ -50,7 +50,7 @@ Reindexing can be a resource-intensive operation, and if not managed properly, i
 
 When using a `reindex` step, follow these best practices to ensure a smooth reindexing process and prevent cluster instability:
 
-- **Cluster scaling**: Before initiating a reindexing operation, ensure that your SmartObserve cluster is properly scaled to handle the additional workload. Increase the number of nodes and adjust resource allocation (CPU, memory, and disk) as needed to accommodate the reindexing process without impacting other operations.
+- **Cluster scaling**: Before initiating a reindexing operation, ensure that your MCdesk cluster is properly scaled to handle the additional workload. Increase the number of nodes and adjust resource allocation (CPU, memory, and disk) as needed to accommodate the reindexing process without impacting other operations.
 
 - **Request rate control**: Use the `requests_per_second` parameter to control the rate at which the reindexing requests are sent to the cluster. This helps to regulate the load on the cluster and prevent resource exhaustion. Start with a lower value and gradually increase it based on your cluster's capacity and performance.
 
@@ -60,7 +60,7 @@ When using a `reindex` step, follow these best practices to ensure a smooth rein
 
 - **Prioritization and scheduling**: If possible, schedule reindexing operations during off-peak hours or periods of lower cluster utilization to minimize the impact on other operations and user traffic.
 
-By following these best practices and carefully managing the reindexing process, you can ensure that your SmartObserve cluster remains stable and performant while efficiently copying data between indexes.
+By following these best practices and carefully managing the reindexing process, you can ensure that your MCdesk cluster remains stable and performant while efficiently copying data between indexes.
 
 ## Additional fields
 

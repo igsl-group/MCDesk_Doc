@@ -5,7 +5,7 @@ nav_order: 5
 has_children: true
 has_toc: false
 redirect_from:
-  - /smartobserve/pipeline-agg/
+  - /mcdesk/pipeline-agg/
   - /query-dsl/aggregations/pipeline-agg/
   - /aggregations/pipeline/
   - /aggregations/pipeline-agg/
@@ -41,7 +41,7 @@ We strongly recommend setting `min_doc_count` to `0` (the default for `histogram
 
 ## Supported pipeline aggregations
 
-SmartObserve supports the following pipeline aggregations.
+MCdesk supports the following pipeline aggregations.
 
 | Name | Type | Description |
 |------|------|-------------|
@@ -112,10 +112,10 @@ For multi-value metric aggregations like `stats` or `percentiles`, you must incl
 
 ### Buckets path example
 
-The following example operates on the SmartObserve Dashboards logs sample data. It creates a histogram of values in the `bytes` field, sums the `phpmemory` fields in each histogram bucket, and finally sums the buckets using the `sum_bucket` pipeline aggregation. The `buckets_path` follows the `number_of_bytes>sum_total_memory ` path from the `number_of_bytes` parent aggregation to the `sum_total_memory` subaggregation:
+The following example operates on the MCdesk Dashboards logs sample data. It creates a histogram of values in the `bytes` field, sums the `phpmemory` fields in each histogram bucket, and finally sums the buckets using the `sum_bucket` pipeline aggregation. The `buckets_path` follows the `number_of_bytes>sum_total_memory ` path from the `number_of_bytes` parent aggregation to the `sum_total_memory` subaggregation:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {
@@ -179,10 +179,10 @@ The pipeline aggregation returns the total memory summed from all the buckets:
 
 You can direct the `buckets_path` to use a count rather than a value as its input. To do so, use the `_count` buckets path variable.
 
-The following example computes basic stats on a histogram of the number of bytes from the SmartObserve Dashboards logs sample data. It creates a histogram of values in the `bytes` field and then computes the stats on the counts in the histogram buckets.
+The following example computes basic stats on a histogram of the number of bytes from the MCdesk Dashboards logs sample data. It creates a histogram of values in the `bytes` field and then computes the stats on the counts in the histogram buckets.
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

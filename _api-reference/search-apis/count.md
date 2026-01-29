@@ -4,7 +4,7 @@ title: Count
 parent: Search APIs
 nav_order: 35
 redirect_from:
- - /smartobserve/rest-api/count/
+ - /mcdesk/rest-api/count/
  - /api-reference/count/
 ---
 
@@ -36,18 +36,18 @@ Parameter | Type | Description
 `df` | String | The default field in case a field prefix is not provided in the query string.
 `expand_wildcards` | String | Specifies the type of index that wildcard expressions can match. Supports comma-separated values. Valid values are `all` (match any index), `open` (match open, non-hidden indexes), `closed` (match closed, non-hidden indexes), `hidden` (match hidden indexes), and `none` (deny wildcard expressions). Default is `open`.
 `ignore_unavailable` | Boolean | Specifies whether to include missing or closed indexes in the response. Default is `false`.
-`lenient` | Boolean | Specifies whether SmartObserve should accept requests if queries have format errors (for example, querying a text field for an integer). Default is `false`.
+`lenient` | Boolean | Specifies whether MCdesk should accept requests if queries have format errors (for example, querying a text field for an integer). Default is `false`.
 `min_score` | Float |	Include only documents with a minimum `_score` value in the result.
 `routing` | String | Value used to route the operation to a specific shard.
-`preference` | String | Specifies which shard or node SmartObserve should perform the count operation on.
-`terminate_after` | Integer | The maximum number of matching documents (hits) SmartObserve should process before terminating the request.
+`preference` | String | Specifies which shard or node MCdesk should perform the count operation on.
+`terminate_after` | Integer | The maximum number of matching documents (hits) MCdesk should process before terminating the request.
 
 ## Example requests
 To see the number of documents that match a query:
 
 <!-- spec_insert_start
 component: example_code
-rest: GET /smartobserve_dashboards_sample_data_logs/_count
+rest: GET /mcdesk_dashboards_sample_data_logs/_count
 body: |
 {
   "query": {
@@ -58,7 +58,7 @@ body: |
 }
 -->
 {% capture step1_rest %}
-GET /smartobserve_dashboards_sample_data_logs/_count
+GET /mcdesk_dashboards_sample_data_logs/_count
 {
   "query": {
     "term": {
@@ -72,7 +72,7 @@ GET /smartobserve_dashboards_sample_data_logs/_count
 
 
 response = client.count(
-  index = "smartobserve_dashboards_sample_data_logs",
+  index = "mcdesk_dashboards_sample_data_logs",
   body =   {
     "query": {
       "term": {
@@ -93,7 +93,7 @@ The following call to the search API produces equivalent results:
 
 <!-- spec_insert_start
 component: example_code
-rest: GET /smartobserve_dashboards_sample_data_logs/_search
+rest: GET /mcdesk_dashboards_sample_data_logs/_search
 body: |
 {
   "query": {
@@ -106,7 +106,7 @@ body: |
 }
 -->
 {% capture step1_rest %}
-GET /smartobserve_dashboards_sample_data_logs/_search
+GET /mcdesk_dashboards_sample_data_logs/_search
 {
   "query": {
     "term": {
@@ -122,7 +122,7 @@ GET /smartobserve_dashboards_sample_data_logs/_search
 
 
 response = client.search(
-  index = "smartobserve_dashboards_sample_data_logs",
+  index = "mcdesk_dashboards_sample_data_logs",
   body =   {
     "query": {
       "term": {
@@ -145,17 +145,17 @@ To see the number of documents in an index:
 
 <!-- spec_insert_start
 component: example_code
-rest: GET /smartobserve_dashboards_sample_data_logs/_count
+rest: GET /mcdesk_dashboards_sample_data_logs/_count
 -->
 {% capture step1_rest %}
-GET /smartobserve_dashboards_sample_data_logs/_count
+GET /mcdesk_dashboards_sample_data_logs/_count
 {% endcapture %}
 
 {% capture step1_python %}
 
 
 response = client.count(
-  index = "smartobserve_dashboards_sample_data_logs",
+  index = "mcdesk_dashboards_sample_data_logs",
   body = { "Insert body here" }
 )
 
@@ -166,7 +166,7 @@ response = client.count(
     python=step1_python %}
 <!-- spec_insert_end -->
 
-To check for the number of documents in a [data stream]({{site.url}}{{site.baseurl}}/smartobserve/data-streams/), replace the index name with the data stream name.
+To check for the number of documents in a [data stream]({{site.url}}{{site.baseurl}}/mcdesk/data-streams/), replace the index name with the data stream name.
 
 To see the number of documents in your cluster:
 

@@ -11,7 +11,7 @@ redirect_from:
 
 This topic provides performance tuning recommendations for improving indexing and search performance for approximate k-NN (ANN) search. At a high level, k-NN works according to these principles:
 * Vector indexes are created per `knn_vector` field/Lucene segment pair.
-* Queries execute sequentially on segments in the shard (as with any other SmartObserve query).
+* Queries execute sequentially on segments in the shard (as with any other MCdesk query).
 * The coordinator node selects the final `size` neighbors from the neighbors returned by each shard.
 
 The following sections provide recommendations regarding comparing ANN to exact k-NN with a scoring script.
@@ -22,7 +22,7 @@ Each of the three engines used for ANN search has attributes that make it more s
 
 To optimize for indexing throughput, Faiss is a good option. For relatively smaller datasets (up to a few million vectors), the Lucene engine demonstrates better latencies and recall. At the same time, the size of the index is smallest compared to the other engines, which allows it to use smaller AWS instances for data nodes. For further considerations, see [Choosing the right method]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#choosing-the-right-method) and [Memory estimation]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#memory-estimation).
 
-When considering cluster node sizing, a general approach is to first establish an even distribution of the index across the cluster. However, there are other considerations. To help make these choices, you can refer to the SmartObserve managed service guidance in the [Sizing domains](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/sizing-domains.html) section.
+When considering cluster node sizing, a general approach is to first establish an even distribution of the index across the cluster. However, there are other considerations. To help make these choices, you can refer to the MCdesk managed service guidance in the [Sizing domains](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/sizing-domains.html) section.
 
 ## Improving recall
 

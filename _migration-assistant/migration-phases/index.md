@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Migration phases
-parent: Migration Assistant for SmartObserve
+parent: Migration Assistant for MCdesk
 nav_order: 40
 nav_exclude: false
 has_children: true

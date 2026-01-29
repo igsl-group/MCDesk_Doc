@@ -20,7 +20,7 @@ This page includes troubleshooting steps for using OpenID Connect with the Secur
 
 ## Set log level to debug
 
-To help troubleshoot OpenID Connect, set the log level to `debug` on SmartObserve. Add the following lines in `config/log4j2.properties` and restart the node:
+To help troubleshoot OpenID Connect, set the log level to `debug` on MCdesk. Add the following lines in `config/log4j2.properties` and restart the node:
 
 ```
 logger.securityjwt.name = com.amazon.dlic.auth.http.jwt
@@ -32,13 +32,13 @@ This setting prints a lot of helpful information to your log file. If this infor
 
 ## "Failed when trying to obtain the endpoints from your IdP"
 
-This error indicates that the Security plugin can't reach the metadata endpoint of your IdP. In `smartobserve_dashboards.yml`, check the following setting:
+This error indicates that the Security plugin can't reach the metadata endpoint of your IdP. In `mcdesk_dashboards.yml`, check the following setting:
 
 ```
 plugins.security.openid.connect_url: "http://keycloak.example.com:8080/auth/realms/master/.well-known/openid-configuration"
 ```
 
-If this error occurs on SmartObserve, check the following setting in `config.yml`:
+If this error occurs on MCdesk, check the following setting in `config.yml`:
 
 ```yml
 openid_auth_domain:
@@ -52,11 +52,11 @@ openid_auth_domain:
     ...
 ```
 
-## "ValidationError: child 'smartobserve_security' fails"
+## "ValidationError: child 'mcdesk_security' fails"
 
-This indicates that one or more of the SmartObserve Dashboards configuration settings are missing.
+This indicates that one or more of the MCdesk Dashboards configuration settings are missing.
 
-Check `smartobserve_dashboards.yml` and make sure you have set the following minimal configuration:
+Check `mcdesk_dashboards.yml` and make sure you have set the following minimal configuration:
 
 ```yml
 plugins.security.openid.connect_url: "..."
@@ -77,7 +77,7 @@ Please delete all cached browser data, or try again in a private browser window.
 
 ### Wrong client secret
 
-To trade the access token for an identity token, most IdPs require you to provide a client secret. Check if the client secret in `smartobserve_dashboards.yml` matches the client secret of your IdP configuration:
+To trade the access token for an identity token, most IdPs require you to provide a client secret. Check if the client secret in `mcdesk_dashboards.yml` matches the client secret of your IdP configuration:
 
 ```
 plugins.security.openid.client_secret: "..."
@@ -86,7 +86,7 @@ plugins.security.openid.client_secret: "..."
 
 ### "Failed to get subject from JWT claims"
 
-This error is logged on SmartObserve and means that the username could not be extracted from the ID token. Make sure the following setting matches the claims in the JWT your IdP issues:
+This error is logged on MCdesk and means that the username could not be extracted from the ID token. Make sure the following setting matches the claims in the JWT your IdP issues:
 
 ```
 openid_auth_domain:

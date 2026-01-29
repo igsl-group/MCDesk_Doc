@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Configuring agentic search
-parent: Building AI search workflows in SmartObserve Dashboards
+parent: Building AI search workflows in MCdesk Dashboards
 grand_parent: AI search
 nav_order: 20
 ---
@@ -10,10 +10,10 @@ nav_order: 20
 **Introduced 3.3**
 {: .label .label-purple }
 
-This is an experimental UI feature. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).  
+This is an experimental UI feature. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).  
 {: .warning}
 
-[Agentic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/) lets you ask questions in natural language and have SmartObserve agents plan and execute the retrieval automatically. SmartObserve Dashboards offers an intuitive UI for configuring agents, equipping agents with different tools, and executing agentic searches.
+[Agentic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/) lets you ask questions in natural language and have MCdesk agents plan and execute the retrieval automatically. MCdesk Dashboards offers an intuitive UI for configuring agents, equipping agents with different tools, and executing agentic searches.
 
 ## Prerequisites
 
@@ -32,9 +32,9 @@ Ensure that you have a sufficient number of documents in your cluster to reasona
 This example uses a deployed OpenAI GPT-5 model described in [this documentation]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/agent-customization/#gpt-5-recommended).
 {: .note}
 
-To build and test your agentic search workflow in SmartObserve Dashboards, follow these steps:
+To build and test your agentic search workflow in MCdesk Dashboards, follow these steps:
 
-1. Go to **SmartObserve Dashboards** and select **SmartObserve Plugins** > **AI Search Flows** from the top menu.
+1. Go to **MCdesk Dashboards** and select **MCdesk Plugins** > **AI Search Flows** from the top menu.
 1. On the **Workflows** page, select the **New workflow** tab, as shown in the following image. In the **Agentic Search** template, select **Create**.
    ![New workflow page]({{site.url}}{{site.baseurl}}/images/dashboards-flow-framework/new-workflow-page.png)
 1. Provide a unique workflow **Name** and an optional **Description**, as shown in the following image. Then select **Create** to create your workflow. You are automatically directed to the workflow editor, where you can begin configuring the agent.

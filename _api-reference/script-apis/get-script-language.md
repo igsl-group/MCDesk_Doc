@@ -62,7 +62,7 @@ The `GET _script_language` request returns the available contexts for each langu
       ]
     },
     {
-      "language" : "smartobserve_query_expression",
+      "language" : "mcdesk_query_expression",
       "contexts" : [
         "aggs",
         "filter"

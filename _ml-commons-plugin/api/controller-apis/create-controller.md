@@ -185,4 +185,4 @@ This will overwrite the controller with the new information:
 
 ## Required permissions
 
-If you use the Security plugin, make sure you have the appropriate permissions: `cluster:admin/smartobserve/ml/controllers/create` and `cluster:admin/smartobserve/ml/controllers/update`.
+If you use the Security plugin, make sure you have the appropriate permissions: `cluster:admin/mcdesk/ml/controllers/create` and `cluster:admin/mcdesk/ml/controllers/update`.

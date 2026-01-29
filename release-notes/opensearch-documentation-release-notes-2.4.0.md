@@ -1,6 +1,6 @@
-# SmartObserve Documentation Website 2.4.0 Release Notes
+# MCdesk Documentation Website 2.4.0 Release Notes
 
-The following page provides a list of updates made to SmartObserve documentation for SmartObserve 2.4.
+The following page provides a list of updates made to MCdesk documentation for MCdesk 2.4.
 
 - Add Alerting RBAC backend roles [#1866](https://github.com/igsl-group/documentation-website/pull/1866)
 - Adds Windows Installation documentation [#1825](https://github.com/igsl-group/documentation-website/pull/1825)

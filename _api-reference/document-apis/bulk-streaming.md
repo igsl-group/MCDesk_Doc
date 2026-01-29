@@ -4,19 +4,19 @@ title: Streaming bulk
 parent: Document APIs
 nav_order: 25
 redirect_from:
- - /smartobserve/rest-api/document-apis/bulk/streaming/
+ - /mcdesk/rest-api/document-apis/bulk/streaming/
 ---
 
 # Streaming Bulk API
 **Introduced 2.17.0**
 {: .label .label-purple }
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, see the associated [GitHub issue](https://github.com/igsl-group/SmartObserve/issues/9065).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, see the associated [GitHub issue](https://github.com/igsl-group/MCdesk/issues/9065).    
 {: .warning}
 
 The streaming bulk operation lets you add, update, or delete multiple documents by streaming the request and getting the results as a streaming response. In comparison to the traditional [Bulk API]({{site.url}}{{site.baseurl}}/api-reference/document-apis/bulk/), streaming ingestion eliminates the need to estimate the batch size (which is affected by the cluster operational state at any given time) and naturally applies backpressure between many clients and the cluster. The streaming works over HTTP/2 or HTTP/1.1 (using chunked transfer encoding), depending on the capabilities of the clients and the cluster.
 
-The default HTTP transport method does not support streaming. You must install the [`transport-reactor-netty4`]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/network-settings/#selecting-the-transport) HTTP transport plugin and use it as the default HTTP transport layer. Both the `transport-reactor-netty4` plugin and the Streaming Bulk API are experimental.
+The default HTTP transport method does not support streaming. You must install the [`transport-reactor-netty4`]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/network-settings/#selecting-the-transport) HTTP transport plugin and use it as the default HTTP transport layer. Both the `transport-reactor-netty4` plugin and the Streaming Bulk API are experimental.
 {: .note}
 
 ## Endpoints
@@ -28,7 +28,7 @@ POST <index>/_bulk/stream
 
 If you specify the index in the path, then you don't need to include it in the [request body chunks]({{site.url}}{{site.baseurl}}/api-reference/document-apis/bulk/#request-body).
 
-SmartObserve also accepts PUT requests to the `_bulk/stream` path, but we highly recommend using POST. The accepted usage of PUT---adding or replacing a single resource on a given path---doesn't make sense for streaming bulk requests.
+MCdesk also accepts PUT requests to the `_bulk/stream` path, but we highly recommend using POST. The accepted usage of PUT---adding or replacing a single resource on a given path---doesn't make sense for streaming bulk requests.
 {: .note }
 
 
@@ -44,7 +44,7 @@ Parameter | Data type | Description
 `routing` | String | Routes the request to the specified shard.
 `timeout` | Time | How long to wait for the request to return. Default is `1m`.
 `type` | String | (Deprecated) The default document type for documents that don't specify a type. Default is `_doc`. We highly recommend ignoring this parameter and using the `_doc` type for all indexes.
-`wait_for_active_shards` | String | Specifies the number of active shards that must be available before SmartObserve processes the bulk request. Default is `1` (only the primary shard). Set to `all` or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have 2 replicas distributed across 2 additional nodes in order for the request to succeed.
+`wait_for_active_shards` | String | Specifies the number of active shards that must be available before MCdesk processes the bulk request. Default is `1` (only the primary shard). Set to `all` or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have 2 replicas distributed across 2 additional nodes in order for the request to succeed.
 `batch_interval` | Time | Specifies for how long bulk operations should be accumulated into a batch before sending the batch to data nodes.
 `batch_size` | Time | Specifies how many bulk operations should be accumulated into a batch before sending the batch to data nodes. Default is `1`.
 {% comment %}_source | List | asdf

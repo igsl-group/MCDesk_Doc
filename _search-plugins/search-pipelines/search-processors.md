@@ -10,7 +10,7 @@ parent: Search pipelines
 
 **User-defined search processors** are processors that you manually configure in search pipelines to customize search behavior. You define these processors in your pipeline configuration and control their parameters, execution order, and conditions.
 
-The following sections list all user-defined search processors available in SmartObserve. SmartObserve can also create processors automatically based on search request parameters. For more information, see [System-generated search processors]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/system-generated-search-processors/).
+The following sections list all user-defined search processors available in MCdesk. MCdesk can also create processors automatically based on search request parameters. For more information, see [System-generated search processors]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/system-generated-search-processors/).
 
 ## Search request processors
 
@@ -20,7 +20,7 @@ The following table lists all supported search request processors.
 
 Processor | Description | Earliest available version
 :--- | :--- | :---
-[`agentic_query_translator`]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/agentic-query-translator-processor/) | Translates `agentic` queries into SmartObserve query domain-specific language (DSL) and executes an agent to process the query. | 3.2
+[`agentic_query_translator`]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/agentic-query-translator-processor/) | Translates `agentic` queries into MCdesk query domain-specific language (DSL) and executes an agent to process the query. | 3.2
 [`filter_query`]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/filter-query-processor/) | Adds a filtering query that is used to filter requests. | 2.8
 [`ml_inference`]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/ml-inference-search-request/) | Invokes registered machine learning (ML) models in order to rewrite queries. | 2.16 
 [`neural_query_enricher`]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/neural-query-enricher/) | Sets a default model for neural search and neural sparse search at the index or field level. | 2.11 (neural), 2.13 (neural sparse)
@@ -123,9 +123,9 @@ The response contains the `search_pipelines` object that lists the available req
 ```
 </details>
 
-In addition to the processors provided by SmartObserve, additional processors may be provided by plugins.
+In addition to the processors provided by MCdesk, additional processors may be provided by plugins.
 {: .note}
 
 ## Selectively enabling processors
 
-Processors defined by the [search-pipeline-common module](https://github.com/igsl-group/SmartObserve/blob/2.x/modules/search-pipeline-common/src/main/java/org/smartobserve/search/pipeline/common/SearchPipelineCommonModulePlugin.java) are selectively enabled through the following cluster settings: `search.pipeline.common.request.processors.allowed`, `search.pipeline.common.response.processors.allowed`, or `search.pipeline.common.search.phase.results.processors.allowed`. If unspecified, then all processors are enabled. An empty list disables all processors. Removing enabled processors causes pipelines using them to fail after a node restart.
+Processors defined by the [search-pipeline-common module](https://github.com/igsl-group/MCdesk/blob/2.x/modules/search-pipeline-common/src/main/java/org/mcdesk/search/pipeline/common/SearchPipelineCommonModulePlugin.java) are selectively enabled through the following cluster settings: `search.pipeline.common.request.processors.allowed`, `search.pipeline.common.response.processors.allowed`, or `search.pipeline.common.search.phase.results.processors.allowed`. If unspecified, then all processors are enabled. An empty list disables all processors. Removing enabled processors causes pipelines using them to fail after a node restart.

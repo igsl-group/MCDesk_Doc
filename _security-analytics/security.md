@@ -1,27 +1,27 @@
 ---
 layout: default
-title: SmartObserve Security for Security Analytics
+title: MCdesk Security for Security Analytics
 nav_order: 2
 has_children: false
 ---
 
-# SmartObserve Security for Security Analytics
+# MCdesk Security for Security Analytics
 
-You can use SmartObserve Security with Security Analytics to assign user permissions and manage the actions that users can and cannot perform. For example, you might want one group of users to be able to create, update, or delete detectors and another group of users to only view detectors. You may want still another group to be able to receive and acknowledge alerts but to be prevented from performing other tasks. The SmartObserve Security framework allows you to control the level of access users have to Security Analytics functionality.
+You can use MCdesk Security with Security Analytics to assign user permissions and manage the actions that users can and cannot perform. For example, you might want one group of users to be able to create, update, or delete detectors and another group of users to only view detectors. You may want still another group to be able to receive and acknowledge alerts but to be prevented from performing other tasks. The MCdesk Security framework allows you to control the level of access users have to Security Analytics functionality.
 
 ---
 ## Security Analytics system indexes
 
-Security Analytics indexes are protected as system indexes and treated differently than other indexes in a cluster. System indexes store configurations and other system settings and, for that reason, cannot be modified using the REST API or the SmartObserve Dashboards interface. Only a user with a TLS [admin certificate]({{site.url}}{{site.baseurl}}/security/configuration/tls/#configuring-admin-certificates) can access system indexes. For more information about working with this type of index, see [System indexes]({{site.url}}{{site.baseurl}}/security/configuration/system-indices/).
+Security Analytics indexes are protected as system indexes and treated differently than other indexes in a cluster. System indexes store configurations and other system settings and, for that reason, cannot be modified using the REST API or the MCdesk Dashboards interface. Only a user with a TLS [admin certificate]({{site.url}}{{site.baseurl}}/security/configuration/tls/#configuring-admin-certificates) can access system indexes. For more information about working with this type of index, see [System indexes]({{site.url}}{{site.baseurl}}/security/configuration/system-indices/).
 
 ---
 ## Basic permissions
 
-As an administrator, you can use SmartObserve Dashboards or the Security REST API to assign specific permissions to users based on the specific APIs they need to access. For a list of supported APIs, see [API tools]({{site.url}}{{site.baseurl}}/security-analytics/api-tools/index/).
+As an administrator, you can use MCdesk Dashboards or the Security REST API to assign specific permissions to users based on the specific APIs they need to access. For a list of supported APIs, see [API tools]({{site.url}}{{site.baseurl}}/security-analytics/api-tools/index/).
 
-SmartObserve Security has three built-in roles that cover most Security Analytics use cases: `security_analytics_full_access`, `security_analytics_read_access`, and `security_analytics_ack_alerts`. For descriptions of these and other roles, see [Predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles#predefined-roles).
+MCdesk Security has three built-in roles that cover most Security Analytics use cases: `security_analytics_full_access`, `security_analytics_read_access`, and `security_analytics_ack_alerts`. For descriptions of these and other roles, see [Predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles#predefined-roles).
 
-If these roles don't meet your needs, mix and match individual Security Analytics [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/#security-analytics-permissions) to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/smartobserve/securityanalytics/detector/delete` permission allows you to delete detectors.
+If these roles don't meet your needs, mix and match individual Security Analytics [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/#security-analytics-permissions) to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/mcdesk/securityanalytics/detector/delete` permission allows you to delete detectors.
 
 ---
 ## (Advanced) Limit access by backend role
@@ -42,7 +42,7 @@ PUT /_cluster/settings
 ```
 {% include copy-curl.html %}
 
-Now when users view Security Analytics resources in SmartObserve Dashboards (or make REST API calls), they only see detectors created by users who share at least one backend role.
+Now when users view Security Analytics resources in MCdesk Dashboards (or make REST API calls), they only see detectors created by users who share at least one backend role.
 For example, consider two users: `alice` and `bob`.
 
 The following example assigns the user `alice` the `analyst` backend role:

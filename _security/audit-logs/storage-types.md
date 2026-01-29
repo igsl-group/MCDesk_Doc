@@ -15,58 +15,58 @@ Audit logs can take up quite a bit of space, so the Security plugin offers sever
 Setting | Description
 :--- | :---
 debug | Outputs to stdout. Useful for testing and debugging.
-internal_smartobserve | Writes to an audit index on the current SmartObserve cluster.
-internal_smartobserve_data_stream | Writes to an audit log data stream on the current SmartObserve cluster.
-external_smartobserve | Writes to an audit index on a remote SmartObserve cluster.
+internal_mcdesk | Writes to an audit index on the current MCdesk cluster.
+internal_mcdesk_data_stream | Writes to an audit log data stream on the current MCdesk cluster.
+external_mcdesk | Writes to an audit index on a remote MCdesk cluster.
 webhook | Sends events to an arbitrary HTTP endpoint.
 log4j | Writes the events to a Log4j logger. You can use any Log4j [appender](https://logging.apache.org/log4j/2.x/manual/appenders.html), such as SNMP, JDBC, Cassandra, and Kafka.
 
-You configure the output location in `smartobserve.yml`:
+You configure the output location in `mcdesk.yml`:
 
 ```
-plugins.security.audit.type: <debug|internal_smartobserve|internal_smartobserve_data_stream|external_smartobserve|webhook|log4j>
+plugins.security.audit.type: <debug|internal_mcdesk|internal_mcdesk_data_stream|external_mcdesk|webhook|log4j>
 ```
 
-`internal_smartobserve_data_stream`, `external_smartobserve`, `webhook`, and `log4j` can be customized with additional configuration options. For more information, see [Internal SmartObserve data streams](#internal-smartobserve-data-streams).
+`internal_mcdesk_data_stream`, `external_mcdesk`, `webhook`, and `log4j` can be customized with additional configuration options. For more information, see [Internal MCdesk data streams](#internal-mcdesk-data-streams).
 
 
-## Internal SmartObserve data streams
+## Internal MCdesk data streams
 
-You can configure the `internal_smartobserve_data_stream` type with the following parameters.
+You can configure the `internal_mcdesk_data_stream` type with the following parameters.
 
 
 Name | Data type | Description
 :--- | :--- | :---
-`plugins.security.audit.config.data_stream.name` | String | The name of the audit log data stream. Default is `smartobserve-security-auditlog`.
+`plugins.security.audit.config.data_stream.name` | String | The name of the audit log data stream. Default is `mcdesk-security-auditlog`.
 
 ### Template settings
 
 Name | Data type | Description
 :--- | :--- | :---
-`plugins.security.audit.config.data_stream.template.manage` | Boolean | When `true`, the template for the data stream is managed by SmartObserve. Default is `true`.
-`plugins.security.audit.config.data_stream.template.name` | String | The name of the data stream template. Default is `smartobserve-security-auditlog`.
+`plugins.security.audit.config.data_stream.template.manage` | Boolean | When `true`, the template for the data stream is managed by MCdesk. Default is `true`.
+`plugins.security.audit.config.data_stream.template.name` | String | The name of the data stream template. Default is `mcdesk-security-auditlog`.
 `plugins.security.audit.config.data_stream.template.number_of_replicas` | Integer | The number of replicas for the data stream. Default is `0`.
 `plugins.security.audit.config.data_stream.template.number_of_shards` | Integer | The number of shards for the data stream. Default is `1`.
 
 
-## External SmartObserve
+## External MCdesk
 
-The `external_smartobserve` storage type requires one or more SmartObserve endpoints with a host/IP address and port. Optionally, provide the index name and a document type.
+The `external_mcdesk` storage type requires one or more MCdesk endpoints with a host/IP address and port. Optionally, provide the index name and a document type.
 
 ```yml
-plugins.security.audit.type: external_smartobserve
+plugins.security.audit.type: external_mcdesk
 plugins.security.audit.config.http_endpoints: [<endpoints>]
 plugins.security.audit.config.index: <indexname>
 plugins.security.audit.config.type: _doc
 ```
 
-The Security plugin uses the SmartObserve REST API to send events, just like any other indexing request. For `plugins.security.audit.config.http_endpoints`, use a comma-separated list of hosts/IP addresses and the REST port (default 9200).
+The Security plugin uses the MCdesk REST API to send events, just like any other indexing request. For `plugins.security.audit.config.http_endpoints`, use a comma-separated list of hosts/IP addresses and the REST port (default 9200).
 
 ```
-plugins.security.audit.config.http_endpoints: ['https://my-smartobserve-cluster.company.com:9200', 'http://my-smartobserve-cluster.company.com:9200', 'my-smartobserve-cluster.company.com:9200', '192.168.178.1:9200', '192.168.178.2:9200']
+plugins.security.audit.config.http_endpoints: ['https://my-mcdesk-cluster.company.com:9200', 'http://my-mcdesk-cluster.company.com:9200', 'my-mcdesk-cluster.company.com:9200', '192.168.178.1:9200', '192.168.178.2:9200']
 ```
 
-If you use `external_smartobserve` and the remote cluster also uses the Security plugin, you must supply some additional parameters for authentication. These parameters depend on which authentication type you configured for the remote cluster.
+If you use `external_mcdesk` and the remote cluster also uses the Security plugin, you must supply some additional parameters for authentication. These parameters depend on which authentication type you configured for the remote cluster.
 
 
 ### TLS settings
@@ -75,12 +75,12 @@ Name | Data type | Description
 :--- | :--- | :---
 `plugins.security.audit.config.enable_ssl` | Boolean | If you enabled SSL/TLS on the receiving cluster, set to true. The Default is `false`.
 `plugins.security.audit.config.verify_hostnames` |  Boolean | Whether to verify the hostname of the SSL/TLS certificate of the receiving cluster. Default is `true`.
-`plugins.security.audit.config.pemtrustedcas_filepath` | String | The trusted root certificate of the external SmartObserve cluster, relative to the `config` directory.
+`plugins.security.audit.config.pemtrustedcas_filepath` | String | The trusted root certificate of the external MCdesk cluster, relative to the `config` directory.
 `plugins.security.audit.config.pemtrustedcas_content` | String | Instead of specifying the path (`plugins.security.audit.config.pemtrustedcas_filepath`), you can configure the Base64-encoded certificate content directly.
 `plugins.security.audit.config.enable_ssl_client_auth` | Boolean | Whether to enable SSL/TLS client authentication. If you set this to true, the audit log module sends the node's certificate along with the request. The receiving cluster can use this certificate to verify the identity of the caller.
-`plugins.security.audit.config.pemcert_filepath` | String | The path to the TLS certificate to send to the external SmartObserve cluster, relative to the `config` directory.
+`plugins.security.audit.config.pemcert_filepath` | String | The path to the TLS certificate to send to the external MCdesk cluster, relative to the `config` directory.
 `plugins.security.audit.config.pemcert_content` | String | Instead of specifying the path (`plugins.security.audit.config.pemcert_filepath`), you can configure the Base64-encoded certificate content directly.
-`plugins.security.audit.config.pemkey_filepath` | String | The path to the private key of the TLS certificate to send to the external SmartObserve cluster, relative to the `config` directory.
+`plugins.security.audit.config.pemkey_filepath` | String | The path to the private key of the TLS certificate to send to the external MCdesk cluster, relative to the `config` directory.
 `plugins.security.audit.config.pemkey_content` | String | Instead of specifying the path (`plugins.security.audit.config.pemkey_filepath`), you can configure the Base64-encoded certificate content directly.
 `plugins.security.audit.config.pemkey_password` | String | The password of the private key.
 

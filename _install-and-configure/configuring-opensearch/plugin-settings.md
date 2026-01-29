@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Plugin settings
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 110
 ---
 
 # Plugin settings
 
-The following settings are related to SmartObserve plugins.
+The following settings are related to MCdesk plugins.
 
 ## Alerting plugin settings
 
@@ -61,25 +61,25 @@ For information about Neural Search plugin settings, see [Neural Search plugin s
 
 The Notifications plugin supports the following settings. All settings in this list are dynamic:
 
-- `smartobserve.notifications.core.allowed_config_types` (List): The allowed configuration types of the Notifications plugin. Use the `GET /_plugins/_notifications/features` API to retrieve the value of this setting. Configuration types include `slack`, `chime`, `microsoft_teams`, `webhook`, `email`, `sns`, `ses_account`, `smtp_account`, and `email_group`.
+- `mcdesk.notifications.core.allowed_config_types` (List): The allowed configuration types of the Notifications plugin. Use the `GET /_plugins/_notifications/features` API to retrieve the value of this setting. Configuration types include `slack`, `chime`, `microsoft_teams`, `webhook`, `email`, `sns`, `ses_account`, `smtp_account`, and `email_group`.
 
-- `smartobserve.notifications.core.email.minimum_header_length` (Integer): The minimum email header length. Used for email message total length validation. Default is `160`.
+- `mcdesk.notifications.core.email.minimum_header_length` (Integer): The minimum email header length. Used for email message total length validation. Default is `160`.
 
-- `smartobserve.notifications.core.email.size_limit` (Integer): The email size limit. Used for email message total length validation. Default is `10000000`.
+- `mcdesk.notifications.core.email.size_limit` (Integer): The email size limit. Used for email message total length validation. Default is `10000000`.
 
-- `smartobserve.notifications.core.http.connection_timeout` (Integer): The internal HTTP client connection timeout. The client is used for webhook-based notification channels. Default is `5000`.
+- `mcdesk.notifications.core.http.connection_timeout` (Integer): The internal HTTP client connection timeout. The client is used for webhook-based notification channels. Default is `5000`.
 
-- `smartobserve.notifications.core.http.host_deny_list` (List): A list of denied hosts. The HTTP client does not send notifications to webhook URLs in this list.
+- `mcdesk.notifications.core.http.host_deny_list` (List): A list of denied hosts. The HTTP client does not send notifications to webhook URLs in this list.
 
-- `smartobserve.notifications.core.http.max_connection_per_route` (Integer): The maximum number of HTTP connections per route of the internal HTTP client. The client is used for webhook-based notification channels. Default is `20`.
+- `mcdesk.notifications.core.http.max_connection_per_route` (Integer): The maximum number of HTTP connections per route of the internal HTTP client. The client is used for webhook-based notification channels. Default is `20`.
 
-- `smartobserve.notifications.core.http.max_connections` (Integer): The maximum number of HTTP connections of the internal HTTP client. The client is used for webhook-based notification channels. Default is `60`.
+- `mcdesk.notifications.core.http.max_connections` (Integer): The maximum number of HTTP connections of the internal HTTP client. The client is used for webhook-based notification channels. Default is `60`.
 
-- `smartobserve.notifications.core.http.socket_timeout` (Integer): The socket timeout configuration of the internal HTTP client. The client is used for webhook-based notification channels. Default is `50000`.
+- `mcdesk.notifications.core.http.socket_timeout` (Integer): The socket timeout configuration of the internal HTTP client. The client is used for webhook-based notification channels. Default is `50000`.
 
-- `smartobserve.notifications.core.tooltip_support` (Boolean): Enables tooltip support for the Notifications plugin. Use the `GET /_plugins/_notifications/features` API to retrieve the value of this setting. Default is `true`.
+- `mcdesk.notifications.core.tooltip_support` (Boolean): Enables tooltip support for the Notifications plugin. Use the `GET /_plugins/_notifications/features` API to retrieve the value of this setting. Default is `true`.
 
-- `smartobserve.notifications.general.filter_by_backend_roles` (Boolean): Enables filtering by backend roles (role-based access control for the notification channels). Default is `false`.
+- `mcdesk.notifications.general.filter_by_backend_roles` (Boolean): Enables filtering by backend roles (role-based access control for the notification channels). Default is `false`.
 
 ## Query Insights plugin settings
 
@@ -87,7 +87,7 @@ For information about Query Insights plugin settings, see [Query Insights featur
 
 ## Security plugin settings
 
-For information about the Security plugin settings, see [Security settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/security-settings/).
+For information about the Security plugin settings, see [Security settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/security-settings/).
 
 ## Security Analytics plugin settings
 
@@ -103,6 +103,6 @@ For information about workload management settings, see [Workload management set
 
 ## General plugin settings
 
-SmartObserve supports the following general plugin configuration settings:
+MCdesk supports the following general plugin configuration settings:
 
 - `plugin.mandatory` (Static, list): Specifies plugins that are required for the node to start successfully. If any of the listed plugins are not available or fail to load, the node will not start. This setting is particularly important for clusters that depend on custom processors or other critical plugin functionality to ensure consistent behavior across all nodes. You can specify multiple plugins as a comma-separated list. Default is `[]` (empty list).

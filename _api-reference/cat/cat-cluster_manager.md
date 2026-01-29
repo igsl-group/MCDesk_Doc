@@ -3,7 +3,7 @@ layout: default
 title: CAT cluster manager
 parent: CAT APIs
 redirect_from:
- - /smartobserve/rest-api/cat/cat-master/
+ - /mcdesk/rest-api/cat/cat-master/
 nav_order: 30
 has_children: false
 ---
@@ -77,5 +77,5 @@ response = client.cat.cluster_manager(
 
 ```json
 id                     |   host     |     ip     |   node
-ZaIkkUd4TEiAihqJGkp5CA | 172.18.0.3 | 172.18.0.3 | smartobserve-node2
+ZaIkkUd4TEiAihqJGkp5CA | 172.18.0.3 | 172.18.0.3 | mcdesk-node2
 ```

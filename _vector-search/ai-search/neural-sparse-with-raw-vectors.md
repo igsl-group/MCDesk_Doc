@@ -15,7 +15,7 @@ If you're using self-hosted sparse embedding models, you can ingest raw sparse v
 
 ## Example
 
-The following example ingests sparse vectors into an SmartObserve index and then uses a sparse vector to search for matching documents.
+The following example ingests sparse vectors into an MCdesk index and then uses a sparse vector to search for matching documents.
 
 ### Step 1: Create an index
 

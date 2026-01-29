@@ -482,7 +482,7 @@ POST _plugins/_alerting/monitors
       {
         "search" : {
           "indices" : [
-            "smartobserve_dashboards_sample_data_flights"
+            "mcdesk_dashboards_sample_data_flights"
           ],
           "query" : {
             "size" : 0,
@@ -606,7 +606,7 @@ To learn more about per document monitors that function similarly to the documen
 
 ### Search the findings index
 
-You can use the alerting search API operation to search the findings index `.smartobserve-alerting-finding*` for available document findings with a GET request. By default, a GET request without path parameters returns all available findings. 
+You can use the alerting search API operation to search the findings index `.mcdesk-alerting-finding*` for available document findings with a GET request. By default, a GET request without path parameters returns all available findings. 
 
 To retrieve any available findings, send a GET request without any path parameters as follows:
 
@@ -743,7 +743,7 @@ If you run a document-level query while the index is getting reindexed, the API 
 
 ## Update monitor
 
-When updating a monitor, you can optionally include `seq_no` and `primary_term` as parameters. If these numbers do not match the existing monitor or the monitor does not exist, the Alerting plugin throws an error. SmartObserve increments the version number and the sequence number automatically (see the example response).
+When updating a monitor, you can optionally include `seq_no` and `primary_term` as parameters. If these numbers do not match the existing monitor or the monitor does not exist, the Alerting plugin throws an error. MCdesk increments the version number and the sequence number automatically (see the example response).
 
 #### Example request
 ```json
@@ -1224,7 +1224,7 @@ DELETE _plugins/_alerting/monitors/<monitor_id>
 #### Example response
 ```json
 {
-  "_index": ".smartobserve-scheduled-jobs",
+  "_index": ".mcdesk-scheduled-jobs",
   "_id": "OYAHOmgBl3cmwnqZl_yH",
   "_version": 2,
   "result": "deleted",
@@ -1283,7 +1283,7 @@ GET _plugins/_alerting/monitors/_search
     "total": 1,
     "max_score": 0.6931472,
     "hits": [{
-      "_index": ".smartobserve-scheduled-jobs",
+      "_index": ".mcdesk-scheduled-jobs",
       "_type": "_doc",
       "_id": "eGQi7GcBRS7-AJEqfAnr",
       "_score": 0.6931472,
@@ -1410,7 +1410,7 @@ The following table lists the available path parameters. All path parameters are
 | `severityLevel` | String | Defines the severity level to filter for. Default is `ALL`.
 | `alertState` | String | Defines the alert state to filter for. Default is `ALL`.
 | `monitorId` | String | Filters by monitor ID.
-| `workflowIds` | String | Allows for monitoring the status of chained alerts from multiple workflows within a single dashboard. Available in SmartObserve 2.9 or later.
+| `workflowIds` | String | Allows for monitoring the status of chained alerts from multiple workflows within a single dashboard. Available in MCdesk 2.9 or later.
 
 #### Example request
 ```json
@@ -1609,7 +1609,7 @@ POST _plugins/_alerting/destinations
 
 ## Update destination
 
-When updating a destination, you can optionally include `seq_no` and `primary_term` as parameters. If these numbers do not match the existing destination or the destination doesn't exist, the Alerting plugin throws an error. SmartObserve increments the version number and the sequence number automatically (see the example response).
+When updating a destination, you can optionally include `seq_no` and `primary_term` as parameters. If these numbers do not match the existing destination or the destination doesn't exist, the Alerting plugin throws an error. MCdesk increments the version number and the sequence number automatically (see the example response).
 
 #### Example request
 ```json
@@ -1857,7 +1857,7 @@ POST _plugins/_alerting/destinations/email_accounts
 
 ## Update email account
 
-When updating an email account, you can optionally include `seq_no` and `primary_term` as parameters. If these numbers don't match the existing email account or the email account doesn't exist, the Alerting plugin throws an error. SmartObserve increments the version number and the sequence number automatically (see the example response).
+When updating an email account, you can optionally include `seq_no` and `primary_term` as parameters. If these numbers don't match the existing email account or the email account doesn't exist, the Alerting plugin throws an error. MCdesk increments the version number and the sequence number automatically (see the example response).
 
 #### Example request
 ```json
@@ -2117,7 +2117,7 @@ POST _plugins/_alerting/destinations/email_groups
 
 ## Update email group
 
-When updating an email group, you can optionally include `seq_no` and `primary_term` as parameters. If these numbers don't match the existing email group or the email group doesn't exist, the Alerting plugin throws an error. SmartObserve increments the version number and the sequence number automatically (see the example response).
+When updating an email group, you can optionally include `seq_no` and `primary_term` as parameters. If these numbers don't match the existing email group or the email group doesn't exist, the Alerting plugin throws an error. MCdesk increments the version number and the sequence number automatically (see the example response).
 
 #### Example request
 ```json
@@ -2450,7 +2450,7 @@ GET _plugins/_alerting/comments/_search
     "max_score": 1,
     "hits": [
       {
-        "_index": ".smartobserve-alerting-comments-history-2024.06.10-1",
+        "_index": ".mcdesk-alerting-comments-history-2024.06.10-1",
         "_id": "xE5tBJABVWc3FrmWRL5i",
         "_version": 1,
         "_seq_no": 3,
@@ -2466,7 +2466,7 @@ GET _plugins/_alerting/comments/_search
         }
       },
       {
-        "_index": ".smartobserve-alerting-comments-history-2024.06.10-1",
+        "_index": ".mcdesk-alerting-comments-history-2024.06.10-1",
         "_id": "0U6aBJABVWc3FrmWer9s",
         "_version": 3,
         "_seq_no": 9,

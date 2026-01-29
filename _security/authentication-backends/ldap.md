@@ -24,7 +24,7 @@ We provide a fully functional example that can help you understand how to use an
 1. At the command line, run `docker compose up`.
 1. Review the files:
 
-   * `docker-compose.yml` defines a single SmartObserve node, an LDAP server, and a PHP administration tool for the LDAP server.
+   * `docker-compose.yml` defines a single MCdesk node, an LDAP server, and a PHP administration tool for the LDAP server.
 
      You can access the administration tool at https://localhost:6443. Acknowledge the security warning and log in using `cn=admin,dc=example,dc=org` and `changethis`.
 
@@ -59,9 +59,9 @@ We provide a fully functional example that can help you understand how to use an
 
 ## Connection settings
 
-To enable LDAP authentication and authorization, add the following lines to `config/smartobserve-security/config.yml`:
+To enable LDAP authentication and authorization, add the following lines to `config/mcdesk-security/config.yml`:
 
-The internal user database authentication should also be enabled because SmartObserve Dashboards connects to SmartObserve using the `kibanaserver` internal user.
+The internal user database authentication should also be enabled because MCdesk Dashboards connects to MCdesk using the `kibanaserver` internal user.
 {: .note}
 
 ```yml
@@ -165,7 +165,7 @@ Name | Description
 
 ### Certificate validation
 
-By default, the Security plugin validates the TLS certificate of the LDAP servers against the root CA configured in `smartobserve.yml`, either as a PEM certificate or a truststore:
+By default, the Security plugin validates the TLS certificate of the LDAP servers against the root CA configured in `mcdesk.yml`, either as a PEM certificate or a truststore:
 
 ```
 plugins.security.ssl.transport.pemtrustedcas_filepath: ...
@@ -206,7 +206,7 @@ Name | Description
 
 ### Client authentication
 
-If you use TLS client authentication, the Security plugin sends the PEM certificate of the node, as configured in `smartobserve.yml`. Set one of the following configuration options:
+If you use TLS client authentication, the Security plugin sends the PEM certificate of the node, as configured in `mcdesk.yml`. Set one of the following configuration options:
 
 ```yml
 config:
@@ -275,7 +275,7 @@ Name | Description
 
 ## Use Active Directory and LDAP for authentication
 
-To use Active Directory/LDAP for authentication, first configure a respective authentication domain in the `authc` section of `config/smartobserve-security/config.yml`:
+To use Active Directory/LDAP for authentication, first configure a respective authentication domain in the `authc` section of `config/mcdesk-security/config.yml`:
 
 ```yml
 authc:
@@ -488,11 +488,11 @@ authc:
 
 If you are using multiple authentication methods, it can make sense to exclude certain users from the LDAP role lookup.
 
-Consider the following scenario for a typical SmartObserve Dashboards setup: All SmartObserve Dashboards users are stored in an LDAP/Active Directory server.
+Consider the following scenario for a typical MCdesk Dashboards setup: All MCdesk Dashboards users are stored in an LDAP/Active Directory server.
 
-However, you also have an SmartObserve Dashboards server user. SmartObserve Dashboards uses this user to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this user to your Active Directory installation, but rather store it in the Security plugin internal user database.
+However, you also have an MCdesk Dashboards server user. MCdesk Dashboards uses this user to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this user to your Active Directory installation, but rather store it in the Security plugin internal user database.
 
-In this case, it makes sense to exclude the SmartObserve Dashboards server user from the LDAP authorization because we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. Wildcards and regular expressions are supported:
+In this case, it makes sense to exclude the MCdesk Dashboards server user from the LDAP authorization because we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. Wildcards and regular expressions are supported:
 
 ```yml
 skip_users:
@@ -506,7 +506,7 @@ skip_users:
 
 If the users in your LDAP installation have a large number of roles, and you have the requirement to resolve nested roles as well, you might run into performance issues.
 
-In most cases, however, not all user roles are related to SmartObserve and SmartObserve Dashboards. You might need only a couple of roles. In this case, you can use the nested role filter feature to define a list of roles that are filtered out from the list of the user's roles. Wildcards and regular expressions are supported.
+In most cases, however, not all user roles are related to MCdesk and MCdesk Dashboards. You might need only a couple of roles. In this case, you can use the nested role filter feature to define a list of roles that are filtered out from the list of the user's roles. Wildcards and regular expressions are supported.
 
 This has an effect only if `resolve_nested_roles` is `true`:
 

@@ -9,7 +9,7 @@ redirect_from:
 
 # Cross-cluster search
 
-You can use cross-cluster search (CCS) in SmartObserve to search and analyze data across multiple clusters, enabling you to gain insights from distributed data sources. Cross-cluster search is available by default with the Security plugin, but you need to configure each cluster to allow remote connections from other clusters. This involves setting up remote cluster connections and configuring access permissions.
+You can use cross-cluster search (CCS) in MCdesk to search and analyze data across multiple clusters, enabling you to gain insights from distributed data sources. Cross-cluster search is available by default with the Security plugin, but you need to configure each cluster to allow remote connections from other clusters. This involves setting up remote cluster connections and configuring access permissions.
 
 ---
 
@@ -32,7 +32,7 @@ The following sequence describes the authentication flow when using cross-cluste
 
 ## Setting permissions
 
-To query indexes on remote clusters, users must have `READ` or `SEARCH` permissions. Furthermore, when the search request includes the query parameter `ccs_minimize_roundtrips=false`---which tells SmartObserve not to minimize outgoing and incoming requests to remote clusters---users need to have the following additional index permission:
+To query indexes on remote clusters, users must have `READ` or `SEARCH` permissions. Furthermore, when the search request includes the query parameter `ccs_minimize_roundtrips=false`---which tells MCdesk not to minimize outgoing and incoming requests to remote clusters---users need to have the following additional index permission:
 
 ```
 indices:admin/shards/search_shards
@@ -54,9 +54,9 @@ humanresources:
 ```
 
 
-#### Example role in SmartObserve Dashboards
+#### Example role in MCdesk Dashboards
 
-![SmartObserve Dashboards UI for creating a cross-cluster search role]({{site.url}}{{site.baseurl}}/images/security-ccs.png)
+![MCdesk Dashboards UI for creating a cross-cluster search role]({{site.url}}{{site.baseurl}}/images/security-ccs.png)
 
 
 ## Sample Docker setup
@@ -66,11 +66,11 @@ To define Docker permissions, save the following sample file as `docker-compose.
 ```yml
 version: '3'
 services:
-  smartobserve-ccs-node1:
-    image: smartobserveproject/smartobserve:{{site.smartobserve_version}}
-    container_name: smartobserve-ccs-node1
+  mcdesk-ccs-node1:
+    image: mcdeskproject/mcdesk:{{site.mcdesk_version}}
+    container_name: mcdesk-ccs-node1
     environment:
-      - cluster.name=smartobserve-ccs-cluster1
+      - cluster.name=mcdesk-ccs-cluster1
       - discovery.type=single-node
       - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
@@ -80,18 +80,18 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - smartobserve-data1:/usr/share/smartobserve/data
+      - mcdesk-data1:/usr/share/mcdesk/data
     ports:
       - 9200:9200
       - 9600:9600 # required for Performance Analyzer
     networks:
-      - smartobserve-net
+      - mcdesk-net
 
-  smartobserve-ccs-node2:
-    image: smartobserveproject/smartobserve:{{site.smartobserve_version}}
-    container_name: smartobserve-ccs-node2
+  mcdesk-ccs-node2:
+    image: mcdeskproject/mcdesk:{{site.mcdesk_version}}
+    container_name: mcdesk-ccs-node2
     environment:
-      - cluster.name=smartobserve-ccs-cluster2
+      - cluster.name=mcdesk-ccs-cluster2
       - discovery.type=single-node
       - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
@@ -101,19 +101,19 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - smartobserve-data2:/usr/share/smartobserve/data
+      - mcdesk-data2:/usr/share/mcdesk/data
     ports:
       - 9250:9200
       - 9700:9600 # required for Performance Analyzer
     networks:
-      - smartobserve-net
+      - mcdesk-net
 
 volumes:
-  smartobserve-data1:
-  smartobserve-data2:
+  mcdesk-data1:
+  mcdesk-data2:
 
 networks:
-  smartobserve-net:
+  mcdesk-net:
 ```
 
 After the clusters start, verify the names of each cluster using the following commands:
@@ -121,26 +121,26 @@ After the clusters start, verify the names of each cluster using the following c
 ```json
 curl -XGET -u 'admin:<custom-admin-password>' -k 'https://localhost:9200'
 {
-  "cluster_name" : "smartobserve-ccs-cluster1",
+  "cluster_name" : "mcdesk-ccs-cluster1",
   ...
 }
 
 curl -XGET -u 'admin:<custom-admin-password>' -k 'https://localhost:9250'
 {
-  "cluster_name" : "smartobserve-ccs-cluster2",
+  "cluster_name" : "mcdesk-ccs-cluster2",
   ...
 }
 ```
 
-Both clusters run on `localhost`, so the important identifier is the port number. In this case, use port 9200 (`smartobserve-ccs-node1`) as the remote cluster, and port 9250 (`smartobserve-ccs-node2`) as the coordinating cluster.
+Both clusters run on `localhost`, so the important identifier is the port number. In this case, use port 9200 (`mcdesk-ccs-node1`) as the remote cluster, and port 9250 (`mcdesk-ccs-node2`) as the coordinating cluster.
 
 To get the IP address for the remote cluster, first identify its container ID:
 
 ```bash
 docker ps
 CONTAINER ID    IMAGE                                       PORTS                                                      NAMES
-6fe89ebc5a8e    smartobserveproject/smartobserve:{{site.smartobserve_version}}   0.0.0.0:9200->9200/tcp, 0.0.0.0:9600->9600/tcp, 9300/tcp   smartobserve-ccs-node1
-2da08b6c54d8    smartobserveproject/smartobserve:{{site.smartobserve_version}}   9300/tcp, 0.0.0.0:9250->9200/tcp, 0.0.0.0:9700->9600/tcp   smartobserve-ccs-node2
+6fe89ebc5a8e    mcdeskproject/mcdesk:{{site.mcdesk_version}}   0.0.0.0:9200->9200/tcp, 0.0.0.0:9600->9600/tcp, 9300/tcp   mcdesk-ccs-node1
+2da08b6c54d8    mcdeskproject/mcdesk:{{site.mcdesk_version}}   9300/tcp, 0.0.0.0:9250->9200/tcp, 0.0.0.0:9700->9600/tcp   mcdesk-ccs-node2
 ```
 
 Then get that container's IP address:
@@ -157,17 +157,17 @@ curl -k -XPUT -H 'Content-Type: application/json' -u 'admin:<custom-admin-passwo
 {
   "persistent": {
     "cluster.remote": {
-      "smartobserve-ccs-cluster1": {
+      "mcdesk-ccs-cluster1": {
         "seeds": ["172.31.0.3:9300"]
       }
     }
   }
 }'
 ```
-All of the cURL requests can also be sent using SmartObserve Dashboards Dev Tools.
+All of the cURL requests can also be sent using MCdesk Dashboards Dev Tools.
 {: .tip }
 The following image shows an example of a cURL request using Dev Tools.
-![SmartObserve Dashboards UI for configuring remote cluster for Cross-cluster search]({{site.url}}{{site.baseurl}}/images/ccs-devtools.png)
+![MCdesk Dashboards UI for configuring remote cluster for Cross-cluster search]({{site.url}}{{site.baseurl}}/images/ccs-devtools.png)
 
 On the remote cluster, index a document:
 
@@ -178,11 +178,11 @@ curl -XPUT -k -H 'Content-Type: application/json' -u 'admin:<custom-admin-passwo
 At this point, cross-cluster search works. You can test it using the `admin` user:
 
 ```bash
-curl -XGET -k -u 'admin:<custom-admin-password>' 'https://localhost:9250/smartobserve-ccs-cluster1:books/_search?pretty'
+curl -XGET -k -u 'admin:<custom-admin-password>' 'https://localhost:9250/mcdesk-ccs-cluster1:books/_search?pretty'
 {
   ...
   "hits": [{
-    "_index": "smartobserve-ccs-cluster1:books",
+    "_index": "mcdesk-ccs-cluster1:books",
     "_id": "1",
     "_score": 1.0,
     "_source": {
@@ -202,7 +202,7 @@ curl -XPUT -k -u 'admin:<custom-admin-password>' 'https://localhost:9250/_plugin
 Then run the same search as before with `booksuser`:
 
 ```json
-curl -XGET -k -u booksuser:password 'https://localhost:9250/smartobserve-ccs-cluster1:books/_search?pretty'
+curl -XGET -k -u booksuser:password 'https://localhost:9250/mcdesk-ccs-cluster1:books/_search?pretty'
 {
   "error" : {
     "root_cause" : [
@@ -231,11 +231,11 @@ Both clusters must have the user role, but only the remote cluster needs both th
 Finally, repeat the search:
 
 ```bash
-curl -XGET -k -u booksuser:password 'https://localhost:9250/smartobserve-ccs-cluster1:books/_search?pretty'
+curl -XGET -k -u booksuser:password 'https://localhost:9250/mcdesk-ccs-cluster1:books/_search?pretty'
 {
   ...
   "hits": [{
-    "_index": "smartobserve-ccs-cluster1:books",
+    "_index": "mcdesk-ccs-cluster1:books",
     "_id": "1",
     "_score": 1.0,
     "_source": {
@@ -247,16 +247,16 @@ curl -XGET -k -u booksuser:password 'https://localhost:9250/smartobserve-ccs-clu
 
 ## Sample bare metal/virtual machine setup
 
-If you are running SmartObserve on a bare metal server or using a virtual machine, you can run the same commands, specifying the IP (or domain) of the SmartObserve cluster.
+If you are running MCdesk on a bare metal server or using a virtual machine, you can run the same commands, specifying the IP (or domain) of the MCdesk cluster.
 For example, in order to configure a remote cluster for cross-cluster search, find the IP of the remote node or domain of the remote cluster and run the following command:
 
 ```json
-curl -k -XPUT -H 'Content-Type: application/json' -u 'admin:<custom-admin-password>' 'https://smartobserve-domain-1:9200/_cluster/settings' -d '
+curl -k -XPUT -H 'Content-Type: application/json' -u 'admin:<custom-admin-password>' 'https://mcdesk-domain-1:9200/_cluster/settings' -d '
 {
   "persistent": {
     "cluster.remote": {
-      "smartobserve-ccs-cluster2": {
-        "seeds": ["smartobserve-domain-2:9300"]
+      "mcdesk-ccs-cluster2": {
+        "seeds": ["mcdesk-domain-2:9300"]
       }
     }
   }
@@ -268,11 +268,11 @@ It is sufficient to point to only one of the node IPs on the remote cluster beca
 You can now run queries across both clusters:
 
 ```bash
-curl -XGET -k -u 'admin:<custom-admin-password>' 'https://smartobserve-domain-1:9200/smartobserve-ccs-cluster2:books/_search?pretty'
+curl -XGET -k -u 'admin:<custom-admin-password>' 'https://mcdesk-domain-1:9200/mcdesk-ccs-cluster2:books/_search?pretty'
 {
   ...
   "hits": [{
-    "_index": "smartobserve-ccs-cluster2:books",
+    "_index": "mcdesk-ccs-cluster2:books",
     "_id": "1",
     "_score": 1.0,
     "_source": {
@@ -283,14 +283,14 @@ curl -XGET -k -u 'admin:<custom-admin-password>' 'https://smartobserve-domain-1:
 ```
 
 ## Sample Kubernetes/Helm setup
-If you are using Kubernetes clusters to deploy SmartObserve, you need to configure the remote cluster using either the `LoadBalancer` or `Ingress`. The Kubernetes services created using the following [Helm]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/helm/) example are of the `ClusterIP` type and are only accessible from within the cluster; therefore, you must use an externally accessible endpoint:
+If you are using Kubernetes clusters to deploy MCdesk, you need to configure the remote cluster using either the `LoadBalancer` or `Ingress`. The Kubernetes services created using the following [Helm]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/helm/) example are of the `ClusterIP` type and are only accessible from within the cluster; therefore, you must use an externally accessible endpoint:
 
 ```bash
-curl -k -XPUT -H 'Content-Type: application/json' -u 'admin:<custom-admin-password>' 'https://smartobserve-domain-1:9200/_cluster/settings' -d '
+curl -k -XPUT -H 'Content-Type: application/json' -u 'admin:<custom-admin-password>' 'https://mcdesk-domain-1:9200/_cluster/settings' -d '
 {
   "persistent": {
     "cluster.remote": {
-      "smartobserve-ccs-cluster2": {
+      "mcdesk-ccs-cluster2": {
         "seeds": ["ingress:9300"]
       }
     }
@@ -300,7 +300,7 @@ curl -k -XPUT -H 'Content-Type: application/json' -u 'admin:<custom-admin-passwo
 
 ## Proxy settings
 
-You can configure cross-cluster search on a cluster running behind a proxy. There are many ways to configure a reverse proxy and various proxies to choose from. The following example demonstrates the basic NGINX reverse proxy configuration without TLS termination, though there are many proxies and reverse proxies to choose from. For this example to work, SmartObserve must have both transport and HTTP TLS encryption enabled. For more information about configuring TLS encryption, see [Configuring TLS certificates]({{site.url}}{{site.baseurl}}/security/configuration/tls/).
+You can configure cross-cluster search on a cluster running behind a proxy. There are many ways to configure a reverse proxy and various proxies to choose from. The following example demonstrates the basic NGINX reverse proxy configuration without TLS termination, though there are many proxies and reverse proxies to choose from. For this example to work, MCdesk must have both transport and HTTP TLS encryption enabled. For more information about configuring TLS encryption, see [Configuring TLS certificates]({{site.url}}{{site.baseurl}}/security/configuration/tls/).
 
 ### Prerequisites
 
@@ -315,27 +315,27 @@ The following is the basic NGINX configuration for HTTP and transport communicat
 
 ```
 stream {
-    upstream smartobserve-transport {
-        server <smartobserve>:9300;
+    upstream mcdesk-transport {
+        server <mcdesk>:9300;
     }
-    upstream smartobserve-http {
-        server <smartobserve>:9200;
+    upstream mcdesk-http {
+        server <mcdesk>:9200;
     }
     server {
         listen 8300;
-        ssl_certificate /.../{{site.smartobserve_version}}/config/esnode.pem;
-        ssl_certificate_key /.../{{site.smartobserve_version}}/config/esnode-key.pem;
-        ssl_trusted_certificate /.../{{site.smartobserve_version}}/config/root-ca.pem;
-        proxy_pass smartobserve-transport;
+        ssl_certificate /.../{{site.mcdesk_version}}/config/esnode.pem;
+        ssl_certificate_key /.../{{site.mcdesk_version}}/config/esnode-key.pem;
+        ssl_trusted_certificate /.../{{site.mcdesk_version}}/config/root-ca.pem;
+        proxy_pass mcdesk-transport;
         ssl_preread on;
     }
     server {
         listen 443;
         listen [::]:443;
-        ssl_certificate /.../{{site.smartobserve_version}}/config/esnode.pem;
-        ssl_certificate_key /.../{{site.smartobserve_version}}/config/esnode-key.pem;
-        ssl_trusted_certificate /.../{{site.smartobserve_version}}/config/root-ca.pem;
-        proxy_pass smartobserve-http;
+        ssl_certificate /.../{{site.mcdesk_version}}/config/esnode.pem;
+        ssl_certificate_key /.../{{site.mcdesk_version}}/config/esnode-key.pem;
+        ssl_trusted_certificate /.../{{site.mcdesk_version}}/config/root-ca.pem;
+        proxy_pass mcdesk-http;
         ssl_preread on;
     }
 }
@@ -343,16 +343,16 @@ stream {
 
 The listening ports for HTTP and transport communication are set to `443` and `8300`, respectively. 
 
-### SmartObserve configuration
+### MCdesk configuration
 
 The remote cluster can be configured to point to the `proxy` by using the following command:
 
 ```bash
-curl -k -XPUT -H 'Content-Type: application/json' -u 'admin:<custom-admin-password>' 'https://smartobserve:9200/_cluster/settings' -d '
+curl -k -XPUT -H 'Content-Type: application/json' -u 'admin:<custom-admin-password>' 'https://mcdesk:9200/_cluster/settings' -d '
 {
   "persistent": {
     "cluster.remote": {
-      "smartobserve-remote-cluster": {
+      "mcdesk-remote-cluster": {
         "mode": "proxy",
         "proxy_address": "<remote-cluster-proxy>:8300"
       }

@@ -50,7 +50,7 @@ POST /_plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with a connector ID:
+MCdesk responds with a connector ID:
 
 ```json
 {
@@ -60,7 +60,7 @@ SmartObserve responds with a connector ID:
 
 ## Step 2: Register and deploy the model 
 
-To register and deploy the model to SmartObserve, send the following request, providing the connector ID from the previous step:
+To register and deploy the model to MCdesk, send the following request, providing the connector ID from the previous step:
 
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
@@ -73,7 +73,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with a model ID:
+MCdesk responds with a model ID:
 
 ```json
 {
@@ -109,7 +109,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -131,7 +131,7 @@ POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 ```
 {% include copy-curl.html %} 
 
-SmartObserve returns the inference results:
+MCdesk returns the inference results:
 
 ```json
 {

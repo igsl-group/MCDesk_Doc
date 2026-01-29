@@ -7,7 +7,7 @@ nav_order: 80
 
 # Retrieve specific fields
 
-When you run a basic search in SmartObserve, by default, the original JSON objects that were used during indexing are also returned in the response for each hit in the `_source` object. This can lead to large amounts of data being transferred through the network, increasing latency and costs. There are several ways to limit the responses to only the required information.
+When you run a basic search in MCdesk, by default, the original JSON objects that were used during indexing are also returned in the response for each hit in the `_source` object. This can lead to large amounts of data being transferred through the network, increasing latency and costs. There are several ways to limit the responses to only the required information.
 
 <!-- vale off -->
 ## Disabling _source
@@ -161,7 +161,7 @@ Additionally, you can use [most fields]({{site.url}}{{site.baseurl}}/query-dsl/f
 <!-- vale off -->
 ## Searching with docvalue_fields
 <!-- vale on -->
-To retrieve specific fields from the index, you can also use the `docvalue_fields` parameter. This parameter works slightly differently as compared to the `fields` parameter. It retrieves information from doc values rather than from the `_source` field, which is more efficient for fields that are not analyzed, like keyword, date, and numeric fields. Doc values have a columnar storage format optimized for efficient sorting and aggregations. It stores the values on disk in a way that is easy to read. When you use `docvalue_fields`, SmartObserve reads the values directly from this optimized storage format. It is useful for retrieving values of fields that are primarily used for sorting, aggregations, and for use in scripts.
+To retrieve specific fields from the index, you can also use the `docvalue_fields` parameter. This parameter works slightly differently as compared to the `fields` parameter. It retrieves information from doc values rather than from the `_source` field, which is more efficient for fields that are not analyzed, like keyword, date, and numeric fields. Doc values have a columnar storage format optimized for efficient sorting and aggregations. It stores the values on disk in a way that is easy to read. When you use `docvalue_fields`, MCdesk reads the values directly from this optimized storage format. It is useful for retrieving values of fields that are primarily used for sorting, aggregations, and for use in scripts.
 
 The following example demonstrates how to use the `docvalue_fields` parameter.
 
@@ -188,7 +188,7 @@ The following example demonstrates how to use the `docvalue_fields` parameter.
     ```json
     POST /my_index/_doc/1
     {
-      "title": "SmartObserve Basics",
+      "title": "MCdesk Basics",
       "author": "John Doe",
       "publication_date": "2021-01-01",
       "price": 29.99
@@ -199,7 +199,7 @@ The following example demonstrates how to use the `docvalue_fields` parameter.
     ```json
     POST /my_index/_doc/2
     {
-      "title": "Advanced SmartObserve",
+      "title": "Advanced MCdesk",
       "author": "Jane Smith",
       "publication_date": "2022-01-01",
       "price": 39.99
@@ -257,7 +257,7 @@ The response contains the `author` and `publication_date` fields:
 <!-- vale off -->
 ### Using docvalue_fields with nested objects
 <!-- vale on -->
-In SmartObserve, if you want to retrieve doc values for nested objects, you cannot directly use the `docvalue_fields` parameter because it will return an empty array. Instead, you should use the `inner_hits` parameter with its own `docvalue_fields` property, as shown in the following example.
+In MCdesk, if you want to retrieve doc values for nested objects, you cannot directly use the `docvalue_fields` parameter because it will return an empty array. Instead, you should use the `inner_hits` parameter with its own `docvalue_fields` property, as shown in the following example.
 
 1. Define the index mappings:
 
@@ -287,7 +287,7 @@ In SmartObserve, if you want to retrieve doc values for nested objects, you cann
     ```json
     POST /my_index/_doc/1
     {
-      "title": "SmartObserve Basics",
+      "title": "MCdesk Basics",
       "author": "John Doe",
       "comments": [
         {
@@ -341,7 +341,7 @@ The following is the expected response:
         "_id": "1",
         "_score": 1.0,
         "_source": {
-          "title": "SmartObserve Basics",
+          "title": "MCdesk Basics",
           "author": "John Doe",
           "comments": [
             {
@@ -401,7 +401,7 @@ The following is the expected response:
 <!-- vale off -->
 ## Searching with stored_fields
 <!-- vale on -->
-By default, SmartObserve stores the entire document in the `_source` field and uses it to return document contents in search results. However, you might also want to store certain fields separately for more efficient retrieval. You can explicitly store and retrieve specific document fields separately from the `_source` field by using `stored_fields`. 
+By default, MCdesk stores the entire document in the `_source` field and uses it to return document contents in search results. However, you might also want to store certain fields separately for more efficient retrieval. You can explicitly store and retrieve specific document fields separately from the `_source` field by using `stored_fields`. 
 
 Unlike `_source`, `stored_fields` must be explicitly defined in the mappings for fields you want to store separately. It can be useful if you frequently need to retrieve only a small subset of fields and want to avoid retrieving the entire `_source` field. The following example demonstrates how to use the `stored_fields` parameter.
 
@@ -437,7 +437,7 @@ Unlike `_source`, `stored_fields` must be explicitly defined in the mappings for
     ```json
     POST /my_index/_doc/1
     {
-      "title": "SmartObserve Basics",
+      "title": "MCdesk Basics",
       "author": "John Doe",
       "publication_date": "2022-01-01",
       "price": 29.99
@@ -448,7 +448,7 @@ Unlike `_source`, `stored_fields` must be explicitly defined in the mappings for
     ```json
     POST my_index/_doc/2
     {
-      "title": "Advanced SmartObserve",
+      "title": "Advanced MCdesk",
       "author": "Jane Smith",
       "publication_date": "2023-01-01",
       "price": 39.99
@@ -486,7 +486,7 @@ The following is the expected response:
         "_id": "1",
         "_score": 1.0,
         "fields": {
-          "title": ["SmartObserve Basics"],
+          "title": ["MCdesk Basics"],
           "author": ["John Doe"]
         }
       },
@@ -495,7 +495,7 @@ The following is the expected response:
         "_id": "2",
         "_score": 1.0,
         "fields": {
-          "title": ["Advanced SmartObserve"],
+          "title": ["Advanced MCdesk"],
           "author": ["Jane Smith"]
         }
       }
@@ -509,7 +509,7 @@ The `stored_fields` parameter can be disabled completely by setting `stored_fiel
 <!-- vale off -->
 ### Searching stored_fields with nested objects
 <!-- vale on -->
-In SmartObserve, if you want to retrieve `stored_fields` for nested objects, you cannot directly use the `stored_fields` parameter because no data will be returned. Instead, you should use the `inner_hits` parameter with its own `stored_fields` property, as shown in the following example.
+In MCdesk, if you want to retrieve `stored_fields` for nested objects, you cannot directly use the `stored_fields` parameter because no data will be returned. Instead, you should use the `inner_hits` parameter with its own `stored_fields` property, as shown in the following example.
 
 1. Create an index with the following mappings:
 
@@ -539,7 +539,7 @@ In SmartObserve, if you want to retrieve `stored_fields` for nested objects, you
     ```json
     POST /my_index/_doc/1
     {
-      "title": "SmartObserve Basics",
+      "title": "MCdesk Basics",
       "author": "John Doe",
       "comments": [
         {
@@ -649,7 +649,7 @@ You can include or exclude specific fields from the `_source` field in the searc
     ```json
     PUT /my_index/_doc/1
     {
-      "title": "SmartObserve Basics",
+      "title": "MCdesk Basics",
       "author": "John Doe",
       "publication_date": "2021-01-01",
       "price": 29.99
@@ -686,7 +686,7 @@ The following is the expected response:
         "_id": "1",
         "_score": 1.0,
         "_source": {
-          "title": "SmartObserve Basics",
+          "title": "MCdesk Basics",
           "author": "John Doe"
         }
       }
@@ -728,7 +728,7 @@ The following is the expected response:
         "_id": "1",
         "_score": 1.0,
         "_source": {
-          "title": "SmartObserve Basics",
+          "title": "MCdesk Basics",
           "author": "John Doe",
           "publication_date": "2021-01-01"
         }

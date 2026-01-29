@@ -12,16 +12,16 @@ redirect_from:
 Introduced 2.5
 {: .label .label-purple }
 
-The trace analytics functionality in the SmartObserve Observability plugin now supports Jaeger trace data. If you use SmartObserve as the backend for Jaeger trace data, you can use the built-in trace analytics capabilities. This provides support for OpenTelemetry (OTel) trace data.
+The trace analytics functionality in the MCdesk Observability plugin now supports Jaeger trace data. If you use MCdesk as the backend for Jaeger trace data, you can use the built-in trace analytics capabilities. This provides support for OpenTelemetry (OTel) trace data.
 
 When you perform trace analytics, you can select from two data sources:
 
-- **Data Prepper** – Data ingested into SmartObserve through Data Prepper
-- **Jaeger** – Trace data stored within SmartObserve as its backend
+- **Data Prepper** – Data ingested into MCdesk through Data Prepper
+- **Jaeger** – Trace data stored within MCdesk as its backend
 
-If you store your Jaeger trace data in SmartObserve, you can now use the built-in trace analytics capabilities to analyze the error rates and latency. You can also filter the traces and analyze the span details of a trace to pinpoint any service issues.
+If you store your Jaeger trace data in MCdesk, you can now use the built-in trace analytics capabilities to analyze the error rates and latency. You can also filter the traces and analyze the span details of a trace to pinpoint any service issues.
 
-When you ingest Jaeger data into SmartObserve, it gets stored in a different index than the OTel-generated index that gets created when you run data through Data Prepper. Use the data source selector in SmartObserve Dashboards to indicate the data source on which you want to perform trace analytics.
+When you ingest Jaeger data into MCdesk, it gets stored in a different index than the OTel-generated index that gets created when you run data through Data Prepper. Use the data source selector in MCdesk Dashboards to indicate the data source on which you want to perform trace analytics.
 
 Jaeger trace data that you can analyze includes span data as well as service and operation endpoint data. <!-- Need more info for next release. add how to configure for span analysis. Jaeger span data analysis requires some configuration.-->
 
@@ -33,7 +33,7 @@ To learn more about Jaeger data tracing, see the [Jaeger](https://www.jaegertrac
 
 To perform trace analytics on Jaeger data, you need to configure error capability.
 
-Jaeger data that is ingested into SmartObserve must have the environment variable `ES_TAGS_AS_FIELDS_ALL` set to `true` for errors. If data is not ingested in this format, it will not work for errors, and error data will not be available for traces in trace analytics with SmartObserve.
+Jaeger data that is ingested into MCdesk must have the environment variable `ES_TAGS_AS_FIELDS_ALL` set to `true` for errors. If data is not ingested in this format, it will not work for errors, and error data will not be available for traces in trace analytics with MCdesk.
 
 ### About data ingestion with Jaeger indexes
 
@@ -41,7 +41,7 @@ Trace analytics for non-Jaeger data uses OTel indexes with the naming convention
 
 Jaeger indexes follow the naming conventions `jaeger-span-*` or `jaeger-service-*`.
 
-## Setting up SmartObserve to use Jaeger data
+## Setting up MCdesk to use Jaeger data
 
 The following section provides a sample Docker Compose file that contains the configuration required to enable errors for trace analytics.
 
@@ -54,14 +54,14 @@ Copy the following Docker Compose file and save it as `docker-compose.yml`:
 ```
 version: '3'
 services:
-  smartobserve-node1: # This is also the hostname of the container within the Docker network (i.e. https://smartobserve-node1/)
-    image: smartobserveproject/smartobserve:latest # Specifying the latest available image - modify if you want a specific version
-    container_name: smartobserve-node1
+  mcdesk-node1: # This is also the hostname of the container within the Docker network (i.e. https://mcdesk-node1/)
+    image: mcdeskproject/mcdesk:latest # Specifying the latest available image - modify if you want a specific version
+    container_name: mcdesk-node1
     environment:
-      - cluster.name=smartobserve-cluster # Name the cluster
-      - node.name=smartobserve-node1 # Name the node that will run in this container
-      - discovery.seed_hosts=smartobserve-node1,smartobserve-node2 # Nodes to look for when discovering the cluster
-      - cluster.initial_cluster_manager_nodes=smartobserve-node1,smartobserve-node2 # Nodes eligible to serve as cluster manager
+      - cluster.name=mcdesk-cluster # Name the cluster
+      - node.name=mcdesk-node1 # Name the node that will run in this container
+      - discovery.seed_hosts=mcdesk-node1,mcdesk-node2 # Nodes to look for when discovering the cluster
+      - cluster.initial_cluster_manager_nodes=mcdesk-node1,mcdesk-node2 # Nodes eligible to serve as cluster manager
       - bootstrap.memory_lock=true # Disable JVM heap memory swapping
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # Set min and max JVM heap sizes to at least 50% of system RAM
     ulimits:
@@ -69,24 +69,24 @@ services:
         soft: -1 # Set memlock to unlimited (no soft or hard limit)
         hard: -1
       nofile:
-        soft: 65536 # Maximum number of open files for the smartobserve user - set to at least 65536
+        soft: 65536 # Maximum number of open files for the mcdesk user - set to at least 65536
         hard: 65536
     volumes:
-      - smartobserve-data1:/usr/share/smartobserve/data # Creates volume called smartobserve-data1 and mounts it to the container
+      - mcdesk-data1:/usr/share/mcdesk/data # Creates volume called mcdesk-data1 and mounts it to the container
     ports:
       - "9200:9200"
       - "9600:9600"
     networks:
-      - smartobserve-net # All of the containers will join the same Docker bridge network
+      - mcdesk-net # All of the containers will join the same Docker bridge network
 
-  smartobserve-node2:
-    image: smartobserveproject/smartobserve:latest # This should be the same image used for smartobserve-node1 to avoid issues
-    container_name: smartobserve-node2
+  mcdesk-node2:
+    image: mcdeskproject/mcdesk:latest # This should be the same image used for mcdesk-node1 to avoid issues
+    container_name: mcdesk-node2
     environment:
-      - cluster.name=smartobserve-cluster
-      - node.name=smartobserve-node2
-      - discovery.seed_hosts=smartobserve-node1,smartobserve-node2
-      - cluster.initial_cluster_manager_nodes=smartobserve-node1,smartobserve-node2
+      - cluster.name=mcdesk-cluster
+      - node.name=mcdesk-node2
+      - discovery.seed_hosts=mcdesk-node1,mcdesk-node2
+      - cluster.initial_cluster_manager_nodes=mcdesk-node1,mcdesk-node2
       - bootstrap.memory_lock=true
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
@@ -97,20 +97,20 @@ services:
         soft: 65536
         hard: 65536
     volumes:
-      - smartobserve-data2:/usr/share/smartobserve/data
+      - mcdesk-data2:/usr/share/mcdesk/data
     networks:
-      - smartobserve-net
-  smartobserve-dashboards:
-    image: smartobserveproject/smartobserve-dashboards:latest # Make sure the version of smartobserve-dashboards matches the version of smartobserve installed on other nodes
-    container_name: smartobserve-dashboards
+      - mcdesk-net
+  mcdesk-dashboards:
+    image: mcdeskproject/mcdesk-dashboards:latest # Make sure the version of mcdesk-dashboards matches the version of mcdesk installed on other nodes
+    container_name: mcdesk-dashboards
     ports:
       - 5601:5601 # Map host port 5601 to container port 5601
     expose:
-      - "5601" # Expose port 5601 for web access to SmartObserve Dashboards
+      - "5601" # Expose port 5601 for web access to MCdesk Dashboards
     environment:
-      OPENSEARCH_HOSTS: '["https://smartobserve-node1:9200","https://smartobserve-node2:9200"]' # Define the SmartObserve nodes that SmartObserve Dashboards will query
+      OPENSEARCH_HOSTS: '["https://mcdesk-node1:9200","https://mcdesk-node2:9200"]' # Define the MCdesk nodes that MCdesk Dashboards will query
     networks:
-      - smartobserve-net
+      - mcdesk-net
 
   jaeger-collector:
     image: jaegertracing/jaeger-collector:latest
@@ -121,20 +121,20 @@ services:
       - "14250:14250"
       - "9411:9411"
     networks:
-      - smartobserve-net
+      - mcdesk-net
     restart: on-failure
     environment:
-      - SPAN_STORAGE_TYPE=smartobserve
+      - SPAN_STORAGE_TYPE=mcdesk
       - ES_TAGS_AS_FIELDS_ALL=true
       - ES_USERNAME=admin
       - ES_PASSWORD=admin
       - ES_TLS_SKIP_HOST_VERIFY=true
     command: [
-      "--es.server-urls=https://smartobserve-node1:9200",
+      "--es.server-urls=https://mcdesk-node1:9200",
       "--es.tls.enabled=true",
     ]
     depends_on:
-      - smartobserve-node1
+      - mcdesk-node1
 
   jaeger-agent:
     image: jaegertracing/jaeger-agent:latest
@@ -146,10 +146,10 @@ services:
       - "6832:6832/udp"
       - "5778:5778"
     networks:
-      - smartobserve-net
+      - mcdesk-net
     restart: on-failure
     environment:
-      - SPAN_STORAGE_TYPE=smartobserve
+      - SPAN_STORAGE_TYPE=mcdesk
     depends_on:
       - jaeger-collector
 
@@ -162,16 +162,16 @@ services:
       - JAEGER_AGENT_HOST=jaeger-agent
       - JAEGER_AGENT_PORT=6831
     networks:
-      - smartobserve-net
+      - mcdesk-net
     depends_on:
       - jaeger-agent
 
 volumes:
-  smartobserve-data1:
-  smartobserve-data2:
+  mcdesk-data1:
+  mcdesk-data2:
 
 networks:
-  smartobserve-net:
+  mcdesk-net:
 ```
 
 ### Step 2: Start the cluster
@@ -195,13 +195,13 @@ Use the sample app provided with the Docker file to generate data. After you run
 
 In the sample app, Hot R.O.D., select any button to generate data. Now you can view trace data in Dashboards.
 
-### Step 4: View trace data in SmartObserve Dashboards
+### Step 4: View trace data in MCdesk Dashboards
 
 After you generate Jaeger trace data, you can view it in Dashboards.
 
 Go to **Trace analytics** at [http://localhost:5601/app/observability-dashboards#/trace_analytics/home](http://localhost:5601/app/observability-dashboards#/trace_analytics/home).
 
-## Using trace analytics in SmartObserve Dashboards
+## Using trace analytics in MCdesk Dashboards
 
 To analyze the Jaeger trace data in Dashboards, first set up the trace analytics functionality. To get started, see [Get started with trace analytics]({{site.url}}{{site.baseurl}}/observability-plugin/trace/get-started/).
 

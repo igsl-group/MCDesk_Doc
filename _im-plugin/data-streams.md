@@ -3,12 +3,12 @@ layout: default
 title: Data streams
 nav_order: 10
 redirect_from:
-  - /smartobserve/data-streams/
+  - /mcdesk/data-streams/
 ---
 
 # Data streams
 
-If you're ingesting continuously generated time-series data such as logs, events, and metrics into SmartObserve, you're likely in a scenario where the number of documents grows rapidly and you don't need to update older documents.
+If you're ingesting continuously generated time-series data such as logs, events, and metrics into MCdesk, you're likely in a scenario where the number of documents grows rapidly and you don't need to update older documents.
 
 A typical workflow to manage time-series data involves multiple steps, such as creating a rollover index alias, defining a write index, and defining common mappings and settings for the backing indexes.
 
@@ -57,7 +57,7 @@ PUT _index_template/logs-template-nginx
 }
 ```
 
-In this case, `logs-nginx` index matches both the `logs-template` and `logs-template-nginx` templates. When you have a tie, SmartObserve selects the matching index template with the higher priority value.
+In this case, `logs-nginx` index matches both the `logs-template` and `logs-template-nginx` templates. When you have a tie, MCdesk selects the matching index template with the higher priority value.
 
 ### Step 2: Create a data stream
 
@@ -71,7 +71,7 @@ PUT _data_stream/logs-nginx
 
 You can also directly start ingesting data without creating a data stream.
 
-Because we have a matching index template with a data_stream object, SmartObserve automatically creates the data stream:
+Because we have a matching index template with a data_stream object, MCdesk automatically creates the data stream:
 
 ```json
 POST logs-staging/_doc
@@ -241,9 +241,9 @@ The ISM policy is applied to the backing indexes at the time of their creation. 
 
 You also don’t need to provide the `rollover_alias` setting, because the ISM policy infers this information from the backing index.
 
-### Step 6: Manage data streams in SmartObserve Dashboards
+### Step 6: Manage data streams in MCdesk Dashboards
 
-To manage data streams from SmartObserve Dashboards, open **SmartObserve Dashboards**, choose **Index Management**, select **Indices** or **Policy managed indices**.
+To manage data streams from MCdesk Dashboards, open **MCdesk Dashboards**, choose **Index Management**, select **Indices** or **Policy managed indices**.
 
 You see a toggle switch for data streams that you can use to show or hide indexes belonging to a data stream.
 

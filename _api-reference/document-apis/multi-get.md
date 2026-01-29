@@ -4,7 +4,7 @@ title: Multi-get documents
 parent: Document APIs
 nav_order: 30
 redirect_from: 
- - /smartobserve/rest-api/document-apis/multi-get/
+ - /mcdesk/rest-api/document-apis/multi-get/
 ---
 
 # Multi-get Documents API
@@ -34,11 +34,11 @@ All parameters are optional.
 
 Parameter | Type | Description
 :--- | :--- | :--- | :---
-preference | String | Specifies the nodes or shards SmartObserve should execute the multi-get operation on. Default is `random`.
+preference | String | Specifies the nodes or shards MCdesk should execute the multi-get operation on. Default is `random`.
 realtime | Boolean | Specifies whether the operation should run in realtime. If false, the operation waits for the index to refresh to analyze the source to retrieve data, which makes the operation near-realtime. Default is `true`.
-refresh | Boolean | If true, SmartObserve refreshes shards to make the multi-get operation available to search results. Valid options are `true`, `false`, and `wait_for`, which tells SmartObserve to wait for a refresh before executing the operation. Default is `false`.
+refresh | Boolean | If true, MCdesk refreshes shards to make the multi-get operation available to search results. Valid options are `true`, `false`, and `wait_for`, which tells MCdesk to wait for a refresh before executing the operation. Default is `false`.
 routing | String | Value used to route the multi-get operation to a specific shard.
-stored_fields | Boolean | Specifies whether SmartObserve should retrieve documents fields from the index instead of the document's `_source`. Default is `false`.
+stored_fields | Boolean | Specifies whether MCdesk should retrieve documents fields from the index instead of the document's `_source`. Default is `false`.
 _source | String | Whether to include the `_source` field in the query response. Default is `true`.
 _source_excludes | String | A comma-separated list of source fields to exclude in the query response.
 _source_includes | String | A comma-separated list of source fields to include in the query response.

@@ -161,7 +161,7 @@ You must configure a `QueryPlanningTool` for agentic search. You can configure a
 
 ### QueryPlanningTool
 
-The [`QueryPlanningTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/query-planning-tool/) is required for agentic search functionality. It translates natural language queries into SmartObserve query domain-specific language (DSL).
+The [`QueryPlanningTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/query-planning-tool/) is required for agentic search functionality. It translates natural language queries into MCdesk query domain-specific language (DSL).
 
 ### Additional tools
 
@@ -258,7 +258,7 @@ The agent must have the following output format:
 
 ```json
 {
-    "dsl_query": "<SmartObserve DSL Object>",
+    "dsl_query": "<MCdesk DSL Object>",
     "agent_steps_summary": "<chronological steps taken by the agent>"
 }
 ```
@@ -324,12 +324,12 @@ The following system prompt is used by default. You can customize this to modify
 
 ```json
 ==== PURPOSE ====
-Produce correct SmartObserve DSL by orchestrating tools. You MUST call the Query Planner Tool (query_planner_tool, "qpt") to author the DSL.
+Produce correct MCdesk DSL by orchestrating tools. You MUST call the Query Planner Tool (query_planner_tool, "qpt") to author the DSL.
 Your job: (a) gather only essential factual context, (b) compose a self-contained natural-language question for qpt, (c) validate coverage of qpt's DSL and iterate if needed, then (d) return a strict JSON result with the DSL and a brief step trace.
 
 ==== OUTPUT CONTRACT (STRICT) ====
 Return ONLY a valid JSON object with exactly these keys:
-{"dsl_query": <SmartObserve DSL Object>, "agent_steps_summary": "<chronological steps taken by the agent>"}
+{"dsl_query": <MCdesk DSL Object>, "agent_steps_summary": "<chronological steps taken by the agent>"}
 - No markdown, no extra text, no code fences. Double-quote all keys/strings.
 - Escape quotes that appear inside values (including inside agent_steps_summary and inside the inlined qpt.question you report there).
 - The output MUST parse as JSON.

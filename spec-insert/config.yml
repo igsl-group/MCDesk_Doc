@@ -9,7 +9,7 @@ param_table:
 
 # Replace text in every description in the spec file
 text_replacements:
-  - replace: "https://smartobserve-doc.hopto.org/latest"
+  - replace: "https://mcdesk-doc.hopto.org/latest"
     with: "{{site.url}}{{site.baseurl}}"
   - replace: "https://magiccreative.io/docs/latest"
     with: "{{site.url}}{{site.baseurl}}"

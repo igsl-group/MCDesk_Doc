@@ -18,21 +18,21 @@ The `NeuralSparseSearchTool` performs sparse vector retrieval. For more informat
 
 ## Step 1: Register and deploy a sparse encoding model
 
-SmartObserve supports several pretrained sparse encoding models. You can either use one of those models or your own custom model. For a list of supported pretrained models, see [Sparse encoding models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sparse-encoding-models). For more information, see [SmartObserve-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/) and [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/). 
+MCdesk supports several pretrained sparse encoding models. You can either use one of those models or your own custom model. For a list of supported pretrained models, see [Sparse encoding models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sparse-encoding-models). For more information, see [MCdesk-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/) and [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/). 
 
-In this example, you'll use the `amazon/neural-sparse/smartobserve-neural-sparse-encoding-v2-distill` pretrained model for both ingestion and search. To register the model and deploy it to SmartObserve, send the following request:
+In this example, you'll use the `amazon/neural-sparse/mcdesk-neural-sparse-encoding-v2-distill` pretrained model for both ingestion and search. To register the model and deploy it to MCdesk, send the following request:
 
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
 {
-  "name": "amazon/neural-sparse/smartobserve-neural-sparse-encoding-v2-distill",
+  "name": "amazon/neural-sparse/mcdesk-neural-sparse-encoding-v2-distill",
   "version": "1.0.0",
   "model_format": "TORCH_SCRIPT"
 }
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with a task ID for the model registration and deployment task:
+MCdesk responds with a task ID for the model registration and deployment task:
 
 ```json
 {
@@ -48,7 +48,7 @@ GET _plugins/_ml/tasks/M_9KY40Bk4MTqirc5lP8
 ```
 {% include copy-curl.html %} 
 
-Once the model is registered and deployed, the task `state` changes to `COMPLETED` and SmartObserve returns a model ID for the model:
+Once the model is registered and deployed, the task `state` changes to `COMPLETED` and MCdesk returns a model ID for the model:
 
 ```json
 {
@@ -155,7 +155,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -165,7 +165,7 @@ SmartObserve responds with an agent ID:
 
 ## Step 4: Run the agent
 
-Before you run the agent, make sure that you add the sample SmartObserve Dashboards `Sample web logs` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
+Before you run the agent, make sure that you add the sample MCdesk Dashboards `Sample web logs` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
 
 Then, run the agent by sending the following request:
 
@@ -179,7 +179,7 @@ POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 ```
 {% include copy-curl.html %} 
 
-SmartObserve returns the inference results:
+MCdesk returns the inference results:
 
 ```json
 {

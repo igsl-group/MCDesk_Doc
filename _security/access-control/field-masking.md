@@ -30,7 +30,7 @@ Field masking works alongside field-level security on the same per-role, per-ind
 
 ## Set the salt setting
 
-You can set the salt (a random string used to hash your data) in `smartobserve.yml` using the optional `plugins.security.compliance.salt` setting. The salt value must fulfill the following requirements:
+You can set the salt (a random string used to hash your data) in `mcdesk.yml` using the optional `plugins.security.compliance.salt` setting. The salt value must fulfill the following requirements:
 
 - Must be at least 16 characters.
 - Use only ASCII characters.
@@ -46,9 +46,9 @@ Although setting the salt is optional, it is highly recommended.
 
 ## Configure field masking
 
-You configure field masking using SmartObserve Dashboards, `roles.yml`, or the REST API.
+You configure field masking using MCdesk Dashboards, `roles.yml`, or the REST API.
 
-### SmartObserve Dashboards
+### MCdesk Dashboards
 
 1. Choose a role.
 1. Choose an index permission.
@@ -79,12 +79,12 @@ See [Create role]({{site.url}}{{site.baseurl}}/security/access-control/api/#crea
 
 By default, the Security plugin uses the BLAKE2b algorithm, but you can use any hashing algorithm that your JVM provides. This list typically includes MD5, SHA-1, SHA-384, and SHA-512.
 
-You can override the default algorithm in `smartobserve.yml` using the optional default masking algorithm setting `plugins.security.masked_fields.algorithm.default`, as shown in the following example:
+You can override the default algorithm in `mcdesk.yml` using the optional default masking algorithm setting `plugins.security.masked_fields.algorithm.default`, as shown in the following example:
 
 ```yml
 plugins.security.masked_fields.algorithm.default: SHA-256
 ```
-SmartObserve 3.x contains a bug fix to apply the default BLAKE2b algorithm correctly. You can override the default algorithm in SmartObserve 3.x to continue to produce the same masked values as SmartObserve 1.x and 2.x  in `smartobserve.yml` using the optional default masking algorithm setting `plugins.security.masked_fields.algorithm.default`, as shown in the following example:
+MCdesk 3.x contains a bug fix to apply the default BLAKE2b algorithm correctly. You can override the default algorithm in MCdesk 3.x to continue to produce the same masked values as MCdesk 1.x and 2.x  in `mcdesk.yml` using the optional default masking algorithm setting `plugins.security.masked_fields.algorithm.default`, as shown in the following example:
 
 ```yml
 plugins.security.masked_fields.algorithm.default: BLAKE2B_LEGACY_DEFAULT

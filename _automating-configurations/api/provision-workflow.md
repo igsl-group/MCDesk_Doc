@@ -74,7 +74,7 @@ POST /_plugins/_flow_framework/workflow/8xL8bowB8y25Tqfenm50/_provision
 
 ## Example response
 
-SmartObserve responds with the same `workflow_id` that was used in the request:
+MCdesk responds with the same `workflow_id` that was used in the request:
 
 ```json
 {

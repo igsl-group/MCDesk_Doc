@@ -11,7 +11,7 @@ has_math: true
 **Introduced 1.0**
 {: .label .label-purple }
 
-The `knn_vector` data type allows you to ingest vectors into an SmartObserve index and perform different kinds of vector search. The `knn_vector` field is highly configurable and can serve many different vector workloads. In general, a `knn_vector` field can be built either by [providing a method definition](#method-definitions) or [specifying a model ID](#model-ids).
+The `knn_vector` data type allows you to ingest vectors into an MCdesk index and perform different kinds of vector search. The `knn_vector` field is highly configurable and can serve many different vector workloads. In general, a `knn_vector` field can be built either by [providing a method definition](#method-definitions) or [specifying a model ID](#model-ids).
 
 ## Example
 

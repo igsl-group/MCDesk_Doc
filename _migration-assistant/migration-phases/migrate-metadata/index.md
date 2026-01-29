@@ -3,7 +3,7 @@ layout: default
 title: Migrate metadata
 nav_order: 5
 parent: Migration phases
-grand_parent: Migration Assistant for SmartObserve
+grand_parent: Migration Assistant for MCdesk
 has_children: true
 has_toc: true
 permalink: /migration-assistant/migration-phases/migrate-metadata/
@@ -45,7 +45,7 @@ INFO:console_link.cli:Logging set to INFO
 .
 .
 .
-INFO:console_link.models.metadata:Migrating metadata with command: /root/metadataMigration/bin/MetadataMigration --otel-collector-endpoint http://otel-collector:4317 migrate --snapshot-name snapshot_2023_01_01 --target-host https://smartobservetarget:9200 --min-replicas 0 --file-system-repo-path /snapshot/test-console --target-username admin --target-password ******** --target-insecure --help
+INFO:console_link.models.metadata:Migrating metadata with command: /root/metadataMigration/bin/MetadataMigration --otel-collector-endpoint http://otel-collector:4317 migrate --snapshot-name snapshot_2023_01_01 --target-host https://mcdesktarget:9200 --min-replicas 0 --file-system-repo-path /snapshot/test-console --target-username admin --target-password ******** --target-insecure --help
 .
 .
 .
@@ -67,10 +67,10 @@ You should receive a response similar to the following:
 Starting Metadata Evaluation
 Clusters:
    Source:
-      Remote Cluster: SmartObserve 1.3.16 ConnectionContext(uri=http://localhost:33039, protocol=HTTP, insecure=false, compressionSupported=false)
+      Remote Cluster: MCdesk 1.3.16 ConnectionContext(uri=http://localhost:33039, protocol=HTTP, insecure=false, compressionSupported=false)
 
    Target:
-      Remote Cluster: SmartObserve 2.14.0 ConnectionContext(uri=http://localhost:33037, protocol=HTTP, insecure=false, compressionSupported=false)
+      Remote Cluster: MCdesk 2.14.0 ConnectionContext(uri=http://localhost:33037, protocol=HTTP, insecure=false, compressionSupported=false)
 
 
 Migration Candidates:
@@ -108,10 +108,10 @@ Starting Metadata Migration
 
 Clusters:
    Source:
-      Snapshot: SmartObserve 1.3.16 FileSystemRepo(repoRootDir=/tmp/junit10626813752669559861)
+      Snapshot: MCdesk 1.3.16 FileSystemRepo(repoRootDir=/tmp/junit10626813752669559861)
 
    Target:
-      Remote Cluster: SmartObserve 2.14.0 ConnectionContext(uri=http://localhost:33042, protocol=HTTP, insecure=false, compressionSupported=false)
+      Remote Cluster: MCdesk 2.14.0 ConnectionContext(uri=http://localhost:33042, protocol=HTTP, insecure=false, compressionSupported=false)
 
 
 Migrated Items:
@@ -161,14 +161,14 @@ tail /shared-logs-output/migration-console-default/*/metadata/*.log
 
 When encountering `WARN` or `ERROR` elements in the response, they will be accompanied by a short message, such as `WARN - my_index already exists`. More information can be found in the detailed logs associated with the warning or error.
 
-### SmartObserve running in compatibility mode
+### MCdesk running in compatibility mode
 
-There might be an error about being unable to update an ES 7.10.2 cluster, this can occur when compatibility mode has been enabled on an SmartObserve cluster disable it to continue, see [Enable compatibility mode](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/rename.html#rename-upgrade).
+There might be an error about being unable to update an ES 7.10.2 cluster, this can occur when compatibility mode has been enabled on an MCdesk cluster disable it to continue, see [Enable compatibility mode](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/rename.html#rename-upgrade).
 
 
 ### Breaking change compatibility
 
-Metadata migration requires modifying data from the source to the target versions to recreate items. Sometimes these features are no longer supported and have been removed from the target version. Sometimes these features are not available in the target version, which is especially true when downgrading. While this tool is meant to make this process easier, it is not exhaustive in its support. When encountering a compatibility issue or an important feature gap for your migration, [search the issues and comment on the existing issue](https://github.com/igsl-group/smartobserve-migrations/issues) or [create a new](https://github.com/igsl-group/smartobserve-migrations/issues/new/choose) issue if one cannot be found.
+Metadata migration requires modifying data from the source to the target versions to recreate items. Sometimes these features are no longer supported and have been removed from the target version. Sometimes these features are not available in the target version, which is especially true when downgrading. While this tool is meant to make this process easier, it is not exhaustive in its support. When encountering a compatibility issue or an important feature gap for your migration, [search the issues and comment on the existing issue](https://github.com/igsl-group/mcdesk-migrations/issues) or [create a new](https://github.com/igsl-group/mcdesk-migrations/issues/new/choose) issue if one cannot be found.
 
 For information about handling specific field type compatibility issues, see:
 - [Transform type mappings]({{site.url}}{{site.baseurl}}/migration-assistant/migration-phases/migrate-metadata/handling-type-mapping-deprecation/) -- Handle deprecated mapping types from Elasticsearch 6.x.
@@ -179,9 +179,9 @@ For information about handling specific field type compatibility issues, see:
 
 #### Deprecation of Mapping Types
 
-In Elasticsearch 6.8 the mapping types feature was discontinued in Elasticsearch 7.0+ which has created complexity in migrating to newer versions of Elasticsearch and SmartObserve, [learn more](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html) ↗.
+In Elasticsearch 6.8 the mapping types feature was discontinued in Elasticsearch 7.0+ which has created complexity in migrating to newer versions of Elasticsearch and MCdesk, [learn more](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html) ↗.
 
-As Metadata migration supports migrating from ES 6.8 on to the latest versions of SmartObserve this scenario is handled by removing the type mapping types and restructuring the template or index properties.  Note that, at the time of this writing multiple type mappings are not supported, [tracking task](https://smartobserve.atlassian.net/browse/MIGRATIONS-1778) ↗.
+As Metadata migration supports migrating from ES 6.8 on to the latest versions of MCdesk this scenario is handled by removing the type mapping types and restructuring the template or index properties.  Note that, at the time of this writing multiple type mappings are not supported, [tracking task](https://mcdesk.atlassian.net/browse/MIGRATIONS-1778) ↗.
 
 
 **Example starting state with mapping type foo (ES 6):**
@@ -216,6 +216,6 @@ As Metadata migration supports migrating from ES 6.8 on to the latest versions o
 ```
 {% include copy.html %}
 
-For additional technical details, [view the mapping type removal source code](https://github.com/igsl-group/smartobserve-migrations/blob/main/transformation/src/main/java/org/smartobserve/migrations/transformation/rules/IndexMappingTypeRemoval.java).
+For additional technical details, [view the mapping type removal source code](https://github.com/igsl-group/mcdesk-migrations/blob/main/transformation/src/main/java/org/mcdesk/migrations/transformation/rules/IndexMappingTypeRemoval.java).
 
 {% include migration-phase-navigation.html %}

@@ -17,12 +17,12 @@ The Execute Tool API is ideal for:
 
 - **Direct tool execution**: Run specific tools like search, data analysis, or retrieval operations without agent setup.
 - **Testing and debugging**: Quickly test tool functionality during development.
-- **Lightweight integrations**: Integrate specific SmartObserve capabilities into applications without full agent workflows.
+- **Lightweight integrations**: Integrate specific MCdesk capabilities into applications without full agent workflows.
 - **Standalone operations**: Perform single tasks that don't require conversation memory or complex orchestration.
 
 ## Supported tools
 
-This API supports all available SmartObserve tools. Each tool can be executed independently with its specific parameters.
+This API supports all available MCdesk tools. Each tool can be executed independently with its specific parameters.
 
 For more information regarding the list of available tools, see [Tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/index/).
 

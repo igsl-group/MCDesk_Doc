@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 10
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-count/
+- /mcdesk/rest-api/cat/cat-count/
 
 ---
 

@@ -7,7 +7,7 @@ nav_order: 85
 
 # Search shards API
 
-The `_search_shards` API provides information about which shards SmartObserve would route a search request to if the request were executed. This helps you understand how SmartObserve plans to distribute the query across shards without actually running the search. This API does not execute the search but allows you to inspect routing decisions, shard distribution, and the nodes that would handle the request. 
+The `_search_shards` API provides information about which shards MCdesk would route a search request to if the request were executed. This helps you understand how MCdesk plans to distribute the query across shards without actually running the search. This API does not execute the search but allows you to inspect routing decisions, shard distribution, and the nodes that would handle the request. 
 
 ## Endpoints
 
@@ -215,7 +215,7 @@ The response displays the node and shard that would be searched if the search we
 {
   "nodes": {
     "12ljrWLsQyiWHLzhFZgL9Q": {
-      "name": "smartobserve-node3",
+      "name": "mcdesk-node3",
       "ephemeral_id": "-JPvYKPMSGubd0VmSEzlbw",
       "transport_address": "172.18.0.4:9300",
       "attributes": {

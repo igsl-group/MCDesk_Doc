@@ -25,7 +25,7 @@ For information about installing the OpenTelemetry plugin, see [Distributed trac
 
 ### Step 3: Enable query metrics
 
-Enable query metrics by configuring the following `smartobserve.yml` settings:
+Enable query metrics by configuring the following `mcdesk.yml` settings:
 
 ```yaml
 telemetry.feature.metrics.enabled: true
@@ -41,7 +41,7 @@ search.query.metrics.enabled: true
 telemetry.feature.metrics.enabled: true
 
 # OTel-related configuration
-smartobserve.experimental.feature.telemetry.enabled: true
+mcdesk.experimental.feature.telemetry.enabled: true
 telemetry.tracer.sampler.probability: 1.0
 telemetry.feature.tracer.enabled: true
 ```
@@ -80,7 +80,7 @@ Query metrics provide the following measurements:
 
 ## Default logging exporter
 
-By default, if no gRPC exporters are configured, then the metrics and traces are exported to log files. The data is saved in the `smartobserve/logs` directory in the following files:
+By default, if no gRPC exporters are configured, then the metrics and traces are exported to log files. The data is saved in the `mcdesk/logs` directory in the following files:
 
-- `smartobserve_otel_metrics.log`
-- `smartobserve_otel_traces.log`
+- `mcdesk_otel_metrics.log`
+- `mcdesk_otel_traces.log`

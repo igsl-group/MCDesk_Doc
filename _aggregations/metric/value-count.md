@@ -14,7 +14,7 @@ The `value_count` metric is a single-value metric aggregation that calculates th
 For example, you can use the `value_count` metric with the `avg` metric to find how many numbers the aggregation uses to calculate an average value.
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
    "aggs": {

@@ -9,11 +9,11 @@ redirect_from:
 
 # Dashboards Query Language (DQL)
 
-Dashboards Query Language (DQL) is a simple text-based query language used to filter data in SmartObserve Dashboards. 
+Dashboards Query Language (DQL) is a simple text-based query language used to filter data in MCdesk Dashboards. 
 
 DQL and [query string query]({{site.url}}{{site.baseurl}}/query-dsl/full-text/query-string/) (Lucene) language are the two search bar language options in Discover and Dashboards. This page provides a reference for the DQL syntax. For the Lucene syntax, see [Query string query]({{site.url}}{{site.baseurl}}/query-dsl/full-text/query-string/). For a syntax comparison, see the [Command quick reference](#dql-and-query-string-query-quick-reference).
 
-By default, SmartObserve Dashboards uses DQL syntax. To switch to query string query (Lucene), select the **DQL** button next to the search box and then toggle the **On** switch, as shown in the following image. 
+By default, MCdesk Dashboards uses DQL syntax. To switch to query string query (Lucene), select the **DQL** button next to the search box and then toggle the **On** switch, as shown in the following image. 
 
 ![Search term using DQL toolbar in Dashboard]({{site.url}}{{site.baseurl}}/images/dashboards/dql-interface.png)
 
@@ -25,7 +25,7 @@ When running queries, understanding whether your fields are analyzed ([`text`]({
 
 ## Setup
 
-To follow this tutorial in SmartObserve Dashboards, expand the following setup steps.
+To follow this tutorial in MCdesk Dashboards, expand the following setup steps.
 
 <details markdown="block">
   <summary>

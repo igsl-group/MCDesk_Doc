@@ -10,7 +10,7 @@ redirect_from:
 
 # Authentication APIs
 
-Authentication is a fundamental aspect of security in SmartObserve, verifying the identity of users and services before granting access to protected resources. The Security plugin provides several APIs you can use to manage authentication, obtain user information, and handle credentials.
+Authentication is a fundamental aspect of security in MCdesk, verifying the identity of users and services before granting access to protected resources. The Security plugin provides several APIs you can use to manage authentication, obtain user information, and handle credentials.
 
 ## Available APIs
 
@@ -37,4 +37,4 @@ The Security plugin supports [multiple authentication methods]({{site.url}}{{sit
 - Certificate-based authentication.
 - Single sign-on (SSO) methods, such as SAML and OpenID Connect.
 
-The APIs in this section are compatible with all supported authentication methods and offer a consistent interface for managing authentication in SmartObserve.
+The APIs in this section are compatible with all supported authentication methods and offer a consistent interface for managing authentication in MCdesk.

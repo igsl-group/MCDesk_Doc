@@ -1,24 +1,24 @@
 ---
 layout: default
-title: SmartObserve Assistant Toolkit
+title: MCdesk Assistant Toolkit
 has_children: false
 has_toc: false
 nav_order: 70
 ---
 
-# SmartObserve Assistant Toolkit
+# MCdesk Assistant Toolkit
 **Introduced 2.13**
 {: .label .label-purple }
 
-The SmartObserve Assistant Toolkit helps you create AI-powered assistants for SmartObserve Dashboards. The toolkit includes the following elements:
+The MCdesk Assistant Toolkit helps you create AI-powered assistants for MCdesk Dashboards. The toolkit includes the following elements:
 
 - [**Agents and tools**]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/index/): _Agents_ interface with a large language model (LLM) and execute high-level tasks, such as summarization or generating Piped Processing Language (PPL) queries from natural language. The agent's high-level tasks consist of low-level tasks called _tools_, which can be reused by multiple agents.
 - [**Configuration automation**]({{site.url}}{{site.baseurl}}/automating-configurations/index/): Uses templates to set up infrastructure for artificial intelligence and machine learning (AI/ML) applications. For example, you can automate configuring agents to be used for chat or generating PPL queries from natural language.
-- [**SmartObserve Assistant for SmartObserve Dashboards**]({{site.url}}{{site.baseurl}}/dashboards/dashboards-assistant/index/): This is the SmartObserve Dashboards UI for the AI-powered assistant. The assistant's workflow is configured with various agents and tools.
+- [**MCdesk Assistant for MCdesk Dashboards**]({{site.url}}{{site.baseurl}}/dashboards/dashboards-assistant/index/): This is the MCdesk Dashboards UI for the AI-powered assistant. The assistant's workflow is configured with various agents and tools.
  
-## Enabling SmartObserve Assistant
+## Enabling MCdesk Assistant
 
-To enable SmartObserve Assistant, perform the following steps:
+To enable MCdesk Assistant, perform the following steps:
 
 - Enable the agent framework and retrieval-augmented generation (RAG) by configuring the following settings:
     ```yaml
@@ -35,4 +35,4 @@ To enable SmartObserve Assistant, perform the following steps:
 
 ## Next steps
 
-- For more information about the SmartObserve Assistant UI, see [SmartObserve Assistant for SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/dashboards-assistant/index/)
+- For more information about the MCdesk Assistant UI, see [MCdesk Assistant for MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/dashboards-assistant/index/)

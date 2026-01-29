@@ -10,7 +10,7 @@ redirect_from:
 
 # Workflow APIs
 
-SmartObserve supports the following workflow APIs:
+MCdesk supports the following workflow APIs:
 
 * [Create or update workflow]({{site.url}}{{site.baseurl}}/automating-configurations/api/create-workflow/)
 * [Get workflow]({{site.url}}{{site.baseurl}}/automating-configurations/api/get-workflow/)

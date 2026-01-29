@@ -24,7 +24,7 @@ To determine whether an Elasticsearch cluster uses `string` field types, make a 
 
 The `string` to `text`/`keyword` field type transformation applies to:
 - **Source clusters**: Elasticsearch 1.x--5.x
-- **Target clusters**: Elasticsearch 5.x+ or SmartObserve 1.x+
+- **Target clusters**: Elasticsearch 5.x+ or MCdesk 1.x+
 - **Automatic conversion**: No configuration required during metadata migrations.
 
 ## Automatic conversion logic

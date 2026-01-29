@@ -8,7 +8,7 @@ nav_order: 20
 
 # Ingest-attachment plugin
 
-The `ingest-attachment` plugin enables SmartObserve to extract content and other information from files using the Apache text extraction library [Tika](https://tika.apache.org/).
+The `ingest-attachment` plugin enables MCdesk to extract content and other information from files using the Apache text extraction library [Tika](https://tika.apache.org/).
 Supported document formats include PPT, PDF, RTF, ODF, and many more Tika ([Supported Document Formats](https://tika.apache.org/2.9.2/formats.html)).
 
 The input field must be a base64-encoded binary.
@@ -18,7 +18,7 @@ The input field must be a base64-encoded binary.
 Install the `ingest-attachment` plugin using the following command:
 
 ```sh
-./bin/smartobserve-plugin install ingest-attachment
+./bin/mcdesk-plugin install ingest-attachment
 ```
 
 ## Attachment processor options
@@ -115,7 +115,7 @@ POST example-attachment-index/_search
 }
 ```
 
-SmartObserve responds with the following:
+MCdesk responds with the following:
 
 ```json
 {
@@ -187,7 +187,7 @@ PUT _ingest/pipeline/attachment
 ## Limit the extracted content
 
 To prevent extracting too many characters and overloading the node memory, the default limit is `100_000`.
-You can change this value using the setting `indexed_chars`. For example, you can use `-1` for unlimited characters, but you need to make sure you have enough HEAP space on your SmartObserve node to extract the content of large documents.
+You can change this value using the setting `indexed_chars`. For example, you can use `-1` for unlimited characters, but you need to make sure you have enough HEAP space on your MCdesk node to extract the content of large documents.
 
 You can also define this limit per document using the `indexed_chars_field` request field.
 If a document contains `indexed_chars_field`, it will overwrite the `indexed_chars` setting, as shown in the following example:

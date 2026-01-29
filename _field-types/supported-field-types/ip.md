@@ -5,7 +5,7 @@ nav_order: 30
 has_children: false
 parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/ip/
+  - /mcdesk/supported-field-types/ip/
   - /field-types/ip/
 ---
 
@@ -15,7 +15,7 @@ redirect_from:
 
 An ip field type contains an IP address in IPv4 or IPv6 format. 
 
-To represent IP address ranges, there is an IP [range field type]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/range/).
+To represent IP address ranges, there is an IP [range field type]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/range/).
 {: .note }
 
 ## Example
@@ -116,7 +116,7 @@ Parameter | Description
 `doc_values` | A Boolean value that specifies if the field should be stored on disk so that it can be used for aggregations, sorting, or scripting. Default is `true`.
 `ignore_malformed` | A Boolean value that specifies to ignore malformed values and not to throw an exception. Default is `false`. Dynamically updatable.
 `index` | A Boolean value that specifies whether the field should be searchable. Default is `true`. 
-[`null_value`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/index#null-value) | A  value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
+[`null_value`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/index#null-value) | A  value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
 `store` | A Boolean value that specifies whether the field value should be stored and can be retrieved separately from the _source field. Default is `false`. 
 
 

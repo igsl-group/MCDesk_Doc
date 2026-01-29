@@ -23,4 +23,4 @@ ML Commons supports the following controller-level APIs:
 
 ## Required permissions
 
-To call the Controller APIs, you must have `cluster:admin/smartobserve/ml/controllers/` permissions. Links to more information about each Controller API are provided in the preceding section.
+To call the Controller APIs, you must have `cluster:admin/mcdesk/ml/controllers/` permissions. Links to more information about each Controller API are provided in the preceding section.

@@ -49,10 +49,10 @@ The `moving_avg` aggregation takes the following parameters.
 
 ## Example
 
-The following example creates a date histogram with a one-month interval from the SmartObserve Dashboards logs sample data. The `sum` subaggregation calculates the sum of all bytes for each month. Finally, the `moving_avg` aggregation calculates the moving average of bytes per month from these sums:
+The following example creates a date histogram with a one-month interval from the MCdesk Dashboards logs sample data. The `sum` subaggregation calculates the sum of all bytes for each month. Finally, the `moving_avg` aggregation calculates the moving average of bytes per month from these sums:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {
@@ -146,7 +146,7 @@ You can use the `moving_avg` aggregation to predict future buckets.
 The following example reduces the interval of the previous example to one week and appends five predicted one-week buckets to the end of the response:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {
@@ -397,7 +397,7 @@ The `holt` model computes weights with exponential decay controlled by the `alph
 The following request calculates a moving average of total weekly byte data using a Holt model with a `window` size of `6`, an `alpha` value of `0.4`, and a `beta` value of `0.2`:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

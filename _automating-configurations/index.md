@@ -12,12 +12,12 @@ redirect_from:
 **Introduced 2.13**
 {: .label .label-purple }
 
-You can automate complex SmartObserve setup and preprocessing tasks by providing templates for common use cases. For example, automating machine learning (ML) setup tasks streamlines the use of SmartObserve ML offerings.
+You can automate complex MCdesk setup and preprocessing tasks by providing templates for common use cases. For example, automating machine learning (ML) setup tasks streamlines the use of MCdesk ML offerings.
 
-In SmartObserve 2.12, configuration automation is limited to ML tasks.
+In MCdesk 2.12, configuration automation is limited to ML tasks.
 {: .info}
 
-SmartObserve use case templates provide a compact description of the setup process in a JSON or YAML document. These templates describe automated workflow configurations for conversational chat or query generation, AI connectors, tools, agents, and other components that prepare SmartObserve as a backend for generative models. For custom template examples, see [Sample templates](https://github.com/igsl-group/flow-framework/tree/main/sample-templates). For SmartObserve-provided templates, see [Workflow templates]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/).
+MCdesk use case templates provide a compact description of the setup process in a JSON or YAML document. These templates describe automated workflow configurations for conversational chat or query generation, AI connectors, tools, agents, and other components that prepare MCdesk as a backend for generative models. For custom template examples, see [Sample templates](https://github.com/igsl-group/flow-framework/tree/main/sample-templates). For MCdesk-provided templates, see [Workflow templates]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/).
 
 ## Key features
 
@@ -29,9 +29,9 @@ Workflow automation provides the following benefits:
 
 ## Overview
 
-**Templates** implement workflow automation in SmartObserve. You can provide these templates in JSON or YAML format. You can describe one or more templates with a sequence of steps required for a particular use case. Each template consists of the following elements:
+**Templates** implement workflow automation in MCdesk. You can provide these templates in JSON or YAML format. You can describe one or more templates with a sequence of steps required for a particular use case. Each template consists of the following elements:
 
-* **Metadata**: A name, description, use case category, template version, and SmartObserve version compatibility range.
+* **Metadata**: A name, description, use case category, template version, and MCdesk version compatibility range.
 * **User input**: Parameters expected from the user that are common to all automation steps across all workflows, such as an index name.
 * **Workflows**: One or more workflows containing the following elements:
     * **User input**: Parameters expected from the user that are specific to the steps in this workflow.

@@ -7,7 +7,7 @@ nav_order: 120
 
 # Resolve Index API
 
-The Resolve Index API helps you understand how SmartObserve resolves aliases, data streams, and concrete indexes that match a specified name or wildcard expression.
+The Resolve Index API helps you understand how MCdesk resolves aliases, data streams, and concrete indexes that match a specified name or wildcard expression.
 
 ## Endpoints
 

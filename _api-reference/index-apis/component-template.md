@@ -48,10 +48,10 @@ The following options can be used in the request body to customize the index tem
 Parameter | Data type | Description
 :--- | :--- | :---
 `template` | Object | The template that includes the `aliases`, `mappings`, or `settings` for the index. For more information, see [#template]. Required.
-`version` | Integer | The version number used to manage index templates. Version numbers are not automatically set by SmartObserve. Optional.
+`version` | Integer | The version number used to manage index templates. Version numbers are not automatically set by MCdesk. Optional.
 `_meta` | Object | The metadata that provides details about the index template. Optional.
 `allow_auto_create` | Boolean | When `true`, indexes can be automatically created with this template even if the `actions.auto_create_index` is disabled. When `false`, indexes and data streams matching the template cannot be automatically created. Optional.
-`deprecated` | Boolean | When `true`, the component template is deprecated. If deprecated, SmartObserve will output a warning whenever the template is referenced.
+`deprecated` | Boolean | When `true`, the component template is deprecated. If deprecated, MCdesk will output a warning whenever the template is referenced.
 
 
 ### Template
@@ -79,7 +79,7 @@ The field mappings that exist in the index. For more information, see [Mappings 
 
 #### `settings`
 
-Any configuration options for the index. For more information, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/).
+Any configuration options for the index. For more information, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/).
 
 ## Example requests
 

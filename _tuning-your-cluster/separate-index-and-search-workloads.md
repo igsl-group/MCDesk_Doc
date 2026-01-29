@@ -11,7 +11,7 @@ redirect_from:
 
 In a remote-store-enabled cluster with a segment-replication-enabled index, you can segregate indexing and search workloads across different hardware by using the specialized `search` node role and provisioning corresponding search replicas in the index.
 
-SmartObserve uses two types of replicas:
+MCdesk uses two types of replicas:
 
 - **Write replicas**: Act as redundant copies of the primary shard. If a primary shard fails (for example, due to node drop or hardware issues), a write replica can be promoted as the new primary to ensure high availability for write operations.
 - **Search replicas**: Work for search queries exclusively. Search replicas cannot be promoted as primaries.
@@ -34,7 +34,7 @@ To separate indexing and search workloads, you need to configure search nodes, e
 
 Before you can separate your workloads, you need to designate specific nodes for search operations. Search nodes are dedicated to serving search requests and can help optimize your cluster's search performance.
 
-The following request configures a node for search-only workloads in `smartobserve.yml`:
+The following request configures a node for search-only workloads in `mcdesk.yml`:
 
 ```yaml
 node.name: searcher-node1
@@ -45,7 +45,7 @@ node.roles: [ search ]
 
 The remote store provides a centralized storage location for your index data. This configuration is essential for segment replication and ensures that all nodes can access the same data, regardless of their role. Remote storage is particularly useful in cloud environments where you want to separate storage from compute resources.
 
-The following request sets the repository configuration for a remote store (for example, Amazon Simple Storage Service [Amazon S3]) in `smartobserve.yml`:
+The following request sets the repository configuration for a remote store (for example, Amazon Simple Storage Service [Amazon S3]) in `mcdesk.yml`:
 
 ```yaml
 node.attr.remote_store.segment.repository: "my-repository"
@@ -59,7 +59,7 @@ node.attr.remote_store.repository.my-repository.settings.region: <Region>
 
 For more information, see [Remote-backed storage]({{site.url}}{{site.baseurl}}/tuning-your-cluster/availability-and-recovery/remote-store/index/).
 
-When separating index and search workloads, set `cluster.remote_store.state.enabled` to `true` during initial setup. This setting ensures that SmartObserve stores index metadata in the remote store, enabling seamless recovery of search replicas in [search-only mode](#turn-off-write-workloads-with-search-only-mode). For more information, see [Search replica recovery scenarios](#search-replica-recovery-scenarios).
+When separating index and search workloads, set `cluster.remote_store.state.enabled` to `true` during initial setup. This setting ensures that MCdesk stores index metadata in the remote store, enabling seamless recovery of search replicas in [search-only mode](#turn-off-write-workloads-with-search-only-mode). For more information, see [Search replica recovery scenarios](#search-replica-recovery-scenarios).
 {: .note}
 
 
@@ -152,7 +152,7 @@ The `cluster.routing.search_replica.strict` setting supports the following optio
 
 ### Automatically scale search replicas
 
-Use the `auto_expand_search_replicas` index setting to automatically scale search replicas based on the number of available search nodes in the cluster. For more information, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/#dynamic-index-level-index-settings).
+Use the `auto_expand_search_replicas` index setting to automatically scale search replicas based on the number of available search nodes in the cluster. For more information, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/#dynamic-index-level-index-settings).
 
 ### Turn off write workloads with search-only mode
 
@@ -180,7 +180,7 @@ POST my_index/_scale
 
 #### Search replica recovery scenarios
 
-SmartObserve handles recovery of search replicas in search-only mode differently depending on the configuration.
+MCdesk handles recovery of search replicas in search-only mode differently depending on the configuration.
 
 ##### Scenario 1: Persistent data directory with remote store state disabled
 
@@ -188,13 +188,13 @@ When you use a persistent data directory and set `cluster.remote_store.state.ena
 
 ##### Scenario 2: Remote store state enabled without a persistent data directory
 
-When `cluster.remote_store.state.enabled` is set to `true` and there is no persistent data directory, SmartObserve recovers search replicas without requiring primaries or write replicas. Because remote store state is enabled, SmartObserve retains the index metadata after a restart. The allocation logic skips the active primary check for search replicas, allowing them to be allocated so that search queries remain functional.
+When `cluster.remote_store.state.enabled` is set to `true` and there is no persistent data directory, MCdesk recovers search replicas without requiring primaries or write replicas. Because remote store state is enabled, MCdesk retains the index metadata after a restart. The allocation logic skips the active primary check for search replicas, allowing them to be allocated so that search queries remain functional.
 
 ##### Scenario 3: Remote store state enabled with a persistent data directory
 
-This configuration provides seamless recovery. In search-only mode, with both a persistent data directory and `cluster.remote_store.state.enabled` set to `true`, SmartObserve starts only search replicas—excluding primaries and write replicas—ensuring the index can be queried after restart.
+This configuration provides seamless recovery. In search-only mode, with both a persistent data directory and `cluster.remote_store.state.enabled` set to `true`, MCdesk starts only search replicas—excluding primaries and write replicas—ensuring the index can be queried after restart.
 
 ##### Scenario 4: No persistent data directory and remote store state disabled
 
-When both the persistent data directory is missing and `cluster.remote_store.state.enabled` is set to `false`, all local state is lost on restart. SmartObserve has no metadata reference, so the index becomes unrecoverable.
+When both the persistent data directory is missing and `cluster.remote_store.state.enabled` is set to `false`, all local state is lost on restart. MCdesk has no metadata reference, so the index becomes unrecoverable.
 

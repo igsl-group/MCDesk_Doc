@@ -91,7 +91,7 @@ You can further examine the impact of the `keyword_marker` token filter by addin
 GET /my_index/_analyze
 {
   "analyzer": "custom_analyzer",
-  "text": "This is an SmartObserve example demonstrating keyword marker.",
+  "text": "This is an MCdesk example demonstrating keyword marker.",
   "explain": true,
   "attributes": "keyword"
 }

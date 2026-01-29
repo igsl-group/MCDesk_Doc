@@ -12,7 +12,7 @@ redirect_from:
 
 Searching large volumes of data can take a long time, especially if you're searching across warm nodes or multiple remote clusters.
 
-Asynchronous search in SmartObserve lets you send search requests that run in the background. You can monitor the progress of these searches and get back partial results as they become available. After the search finishes, you can save the results to examine at a later time.
+Asynchronous search in MCdesk lets you send search requests that run in the background. You can monitor the progress of these searches and get back partial results as they become available. After the search finishes, you can save the results to examine at a later time.
 
 ## REST API
 Introduced 1.0
@@ -201,8 +201,8 @@ To delete an asynchronous search:
 DELETE _plugins/_asynchronous_search/<ID>?pretty
 ```
 
-- If the search is still running, SmartObserve cancels it.
-- If the search is complete, SmartObserve deletes the saved results.
+- If the search is still running, MCdesk cancels it.
+- If the search is complete, MCdesk deletes the saved results.
 
 
 #### Example response

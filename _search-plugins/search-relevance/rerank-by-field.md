@@ -49,7 +49,7 @@ For more information about the request fields, see [Request fields]({{site.url}}
 
 ## Step 2: Create an index for ingestion
 
-In order to use the `rerank` processor defined in your pipeline, create an SmartObserve index and add the pipeline created in the previous step as the default pipeline:
+In order to use the `rerank` processor defined in your pipeline, create an MCdesk index and add the pipeline created in the previous step as the default pipeline:
 
 ```json
 PUT /book-index

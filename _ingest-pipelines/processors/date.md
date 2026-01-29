@@ -7,7 +7,7 @@ redirect_from:
    - /api-reference/ingest-apis/processors/date/
 ---
 
-This documentation describes using the `date` processor in SmartObserve ingest pipelines. Consider using the [Data Prepper `date` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/date/), which runs on the SmartObserve cluster, if your use case involves large or complex datasets.
+This documentation describes using the `date` processor in MCdesk ingest pipelines. Consider using the [Data Prepper `date` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/date/), which runs on the MCdesk cluster, if your use case involves large or complex datasets.
 {: .note}
 
 # Date processor

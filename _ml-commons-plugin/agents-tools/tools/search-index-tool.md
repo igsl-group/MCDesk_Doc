@@ -38,7 +38,7 @@ POST /_plugins/_ml/agents/_register
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -48,7 +48,7 @@ SmartObserve responds with an agent ID:
 
 ## Step 2: Run the agent
 
-Before you run the agent, make sure that you add the sample SmartObserve Dashboards `Sample eCommerce orders` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
+Before you run the agent, make sure that you add the sample MCdesk Dashboards `Sample eCommerce orders` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
 
 Then, run the agent by sending the following request. The `SearchIndexTool` takes one parameter named `input`. This parameter includes the index name and the query:
 
@@ -56,7 +56,7 @@ Then, run the agent by sending the following request. The `SearchIndexTool` take
 POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 {
   "parameters": {
-    "input": "{\"index\": \"smartobserve_dashboards_sample_data_ecommerce\", \"query\": {\"size\": 20,  \"_source\": \"email\"}}"
+    "input": "{\"index\": \"mcdesk_dashboards_sample_data_ecommerce\", \"query\": {\"size\": 20,  \"_source\": \"email\"}}"
   }
 }
 ```
@@ -67,14 +67,14 @@ For parameter descriptions, see [Execute parameters](#execute-parameters).
 The query passed in the previous request is equivalent to the following query:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 20,
   "_source": "email"
 }
 ```
 
-SmartObserve returns the query results:
+MCdesk returns the query results:
 
 ```json
 {
@@ -83,26 +83,26 @@ SmartObserve returns the query results:
       "output": [
         {
           "name": "response",
-          "result": """{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"eddie@underwood-family.zzz"},"_id":"_bJVWY0BAehlDanXJnAJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"mary@bailey-family.zzz"},"_id":"_rJVWY0BAehlDanXJnAJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"gwen@butler-family.zzz"},"_id":"_7JVWY0BAehlDanXJnAJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"diane@chandler-family.zzz"},"_id":"ALJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"eddie@weber-family.zzz"},"_id":"AbJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"diane@goodwin-family.zzz"},"_id":"ArJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"oliver@rios-family.zzz"},"_id":"A7JVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"abd@sutton-family.zzz"},"_id":"BLJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"wilhemina st.@tran-family.zzz"},"_id":"BbJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"rabbia al@baker-family.zzz"},"_id":"BrJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"rabbia al@romero-family.zzz"},"_id":"B7JVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"eddie@gregory-family.zzz"},"_id":"CLJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"sultan al@pratt-family.zzz"},"_id":"CbJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"eddie@wolfe-family.zzz"},"_id":"CrJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"sultan al@thompson-family.zzz"},"_id":"C7JVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"sultan al@boone-family.zzz"},"_id":"DLJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"george@hubbard-family.zzz"},"_id":"DbJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"boris@maldonado-family.zzz"},"_id":"DrJVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"yahya@rivera-family.zzz"},"_id":"D7JVWY0BAehlDanXJnEJ","_score":1.0}
-{"_index":"smartobserve_dashboards_sample_data_ecommerce","_source":{"email":"brigitte@morris-family.zzz"},"_id":"ELJVWY0BAehlDanXJnEJ","_score":1.0}
+          "result": """{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"eddie@underwood-family.zzz"},"_id":"_bJVWY0BAehlDanXJnAJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"mary@bailey-family.zzz"},"_id":"_rJVWY0BAehlDanXJnAJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"gwen@butler-family.zzz"},"_id":"_7JVWY0BAehlDanXJnAJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"diane@chandler-family.zzz"},"_id":"ALJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"eddie@weber-family.zzz"},"_id":"AbJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"diane@goodwin-family.zzz"},"_id":"ArJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"oliver@rios-family.zzz"},"_id":"A7JVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"abd@sutton-family.zzz"},"_id":"BLJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"wilhemina st.@tran-family.zzz"},"_id":"BbJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"rabbia al@baker-family.zzz"},"_id":"BrJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"rabbia al@romero-family.zzz"},"_id":"B7JVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"eddie@gregory-family.zzz"},"_id":"CLJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"sultan al@pratt-family.zzz"},"_id":"CbJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"eddie@wolfe-family.zzz"},"_id":"CrJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"sultan al@thompson-family.zzz"},"_id":"C7JVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"sultan al@boone-family.zzz"},"_id":"DLJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"george@hubbard-family.zzz"},"_id":"DbJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"boris@maldonado-family.zzz"},"_id":"DrJVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"yahya@rivera-family.zzz"},"_id":"D7JVWY0BAehlDanXJnEJ","_score":1.0}
+{"_index":"mcdesk_dashboards_sample_data_ecommerce","_source":{"email":"brigitte@morris-family.zzz"},"_id":"ELJVWY0BAehlDanXJnEJ","_score":1.0}
 """
         }
       ]
@@ -117,7 +117,7 @@ The following table lists all tool parameters that are available when registerin
 
 Parameter | Type | Description
 :--- | :--- | :---
-`input`| String | The index name and the query to use for search, in JSON format. The `index` parameter contains the name of the index, and the `query` parameter contains the query formatted in Query DSL. For example, `"{\"index\": \"smartobserve_dashboards_sample_data_ecommerce\", \"query\": {\"size\": 22,  \"_source\": \"category\"}}"`. The `input` parameter and the `index` and `query` parameters it contains are required.
+`input`| String | The index name and the query to use for search, in JSON format. The `index` parameter contains the name of the index, and the `query` parameter contains the query formatted in Query DSL. For example, `"{\"index\": \"mcdesk_dashboards_sample_data_ecommerce\", \"query\": {\"size\": 22,  \"_source\": \"category\"}}"`. The `input` parameter and the `index` and `query` parameters it contains are required.
 
 ## Testing the tool
 

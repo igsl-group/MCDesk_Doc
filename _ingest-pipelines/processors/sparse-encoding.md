@@ -35,7 +35,7 @@ The following table lists the required and optional parameters for the `sparse_e
 
 | Parameter  | Data type | Required/Optional  | Description  |
 |:---|:---|:---|:---|
-`model_id` | String | Required | The ID of the model that will be used to generate the embeddings. The model must be deployed in SmartObserve before it can be used in neural search. For more information, see [Using custom models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/) and [Neural sparse search]({{site.url}}{{site.baseurl}}/search-plugins/neural-sparse-search/).
+`model_id` | String | Required | The ID of the model that will be used to generate the embeddings. The model must be deployed in MCdesk before it can be used in neural search. For more information, see [Using custom models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/) and [Neural sparse search]({{site.url}}{{site.baseurl}}/search-plugins/neural-sparse-search/).
 `prune_type` | String | Optional | The prune strategy for sparse vectors. Valid values are `max_ratio`, `alpha_mass`, `top_k`, `abs_value`, and `none`. Default is `none`.
 `prune_ratio` | Float | Optional | The ratio for the pruning strategy. Required when `prune_type` is specified.
 `field_map` | Object | Required | Contains key-value pairs that specify the mapping of a text field to a `rank_features` field.
@@ -64,7 +64,7 @@ Among all pruning options, specifying `max_ratio` as equal to `0.1` demonstrates
 
 ## Using the processor
 
-Follow these steps to use the processor in a pipeline. You must provide a model ID when creating the processor. For more information, see [Using custom models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). 
+Follow these steps to use the processor in a pipeline. You must provide a model ID when creating the processor. For more information, see [Using custom models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). 
 
 **Step 1: Create a pipeline.** 
 
@@ -162,5 +162,5 @@ Once you have created an ingest pipeline, you need to create an index for ingest
 
 - To learn how to use the `neural_sparse` query for a sparse search, see [Neural sparse query]({{site.url}}{{site.baseurl}}/query-dsl/specialized/neural-sparse/).
 - To learn more about sparse search, see [Neural sparse search]({{site.url}}{{site.baseurl}}/search-plugins/neural-sparse-search/).
-- To learn more about using models in SmartObserve, see [Choosing a model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/#choosing-a-model).
+- To learn more about using models in MCdesk, see [Choosing a model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/#choosing-a-model).
 - For a comprehensive example, see [Getting started with semantic and hybrid search]({{site.url}}{{site.baseurl}}/search-plugins/neural-search-tutorial/).

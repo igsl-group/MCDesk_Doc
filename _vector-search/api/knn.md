@@ -10,7 +10,7 @@ redirect_from:
 
 # k-NN API
 
-SmartObserve provides several k-nearest neighbors (k-NN) APIs for managing, monitoring, and optimizing your vector workload.
+MCdesk provides several k-nearest neighbors (k-NN) APIs for managing, monitoring, and optimizing your vector workload.
 
 ## Stats
 
@@ -42,7 +42,7 @@ Field |  Description
 `cache_capacity_reached` | Whether `knn.memory.circuit_breaker.limit` has been reached. This statistic is only relevant to approximate k-NN search.
 `load_success_count` | The number of times k-NN successfully loaded a native library index into the cache. This statistic is only relevant to approximate k-NN search.
 `load_exception_count` | The number of times an exception occurred when trying to load a native library index into the cache. This statistic is only relevant to approximate k-NN search.
-`indices_in_cache` | For each SmartObserve index with a `knn_vector` field and approximate k-NN turned on, this statistic provides the number of native library indexes that SmartObserve index has and the total `graph_memory_usage` that the SmartObserve index is using, in kilobytes.
+`indices_in_cache` | For each MCdesk index with a `knn_vector` field and approximate k-NN turned on, this statistic provides the number of native library indexes that MCdesk index has and the total `graph_memory_usage` that the MCdesk index is using, in kilobytes.
 `script_compilations` | The number of times the k-NN script has been compiled. This value should usually be 1 or 0, but if the cache containing the compiled scripts is filled, the k-NN script might be recompiled. This statistic is only relevant to k-NN scoring script search.
 `script_compilation_errors` | The number of errors during script compilation. This statistic is only relevant to k-NN scoring script search.
 `script_query_requests` | The total number of script queries. This statistic is only relevant to k-NN scoring script search.
@@ -193,7 +193,7 @@ GET /_plugins/_knn/warmup/index1,index2,index3?pretty
 
 The `total` value indicates the number of shards that the k-NN plugin attempted to warm up. The response also includes the number of shards that the plugin successfully warmed up and failed to warm up.
 
-The call does not return results until the warmup operation finishes or the request times out. If the request times out, then the operation continues on the cluster. To monitor the warmup operation, use the SmartObserve `_tasks` API:
+The call does not return results until the warmup operation finishes or the request times out. If the request times out, then the operation continues on the cluster. To monitor the warmup operation, use the MCdesk `_tasks` API:
 
 ```json
 GET /_tasks
@@ -326,11 +326,11 @@ GET /_plugins/_knn/models/test-model?pretty&filter_path=model_id,state
 
 ## Search for a model
 
-You can use an SmartObserve query to search for a model in the index. See the following usage example. 
+You can use an MCdesk query to search for a model in the index. See the following usage example. 
 
 #### Example request
 
-The following example shows how to search for k-NN models in an SmartObserve cluster and how to retrieve the metadata for those models, excluding the potentially large `model_blob` field:
+The following example shows how to search for k-NN models in an MCdesk cluster and how to retrieve the metadata for those models, excluding the potentially large `model_blob` field:
 
 ```json
 GET/POST /_plugins/_knn/models/_search?pretty&_source_excludes=model_blob
@@ -362,7 +362,7 @@ The response contains the model information:
     "max_score" : 1.0,
     "hits" : [
       {
-        "_index" : ".smartobserve-knn-models",
+        "_index" : ".mcdesk-knn-models",
         "_id" : "test-model",
         "_score" : 1.0,
         "_source" : {

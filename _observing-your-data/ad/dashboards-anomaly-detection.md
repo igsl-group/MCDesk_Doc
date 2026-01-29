@@ -9,17 +9,17 @@ nav_order: 50
 Introduced 2.9
 {: .label .label-purple }
 
-SmartObserve provides an automated means of detecting harmful outliers and protecting your data when you enable anomaly detection. When applied to metrics, SmartObserve uses algorithms to continuously analyze systems and applications, determine normal baselines, and surface anomalies. 
+MCdesk provides an automated means of detecting harmful outliers and protecting your data when you enable anomaly detection. When applied to metrics, MCdesk uses algorithms to continuously analyze systems and applications, determine normal baselines, and surface anomalies. 
 
-You can connect data visualizations to SmartObserve datasets and then create, run, and view real-time anomaly results from visualizations in the **Dashboard** interface. With only a couple of steps, you can bring together traces, metrics, and logs to make your applications and infrastructure fully observable.
+You can connect data visualizations to MCdesk datasets and then create, run, and view real-time anomaly results from visualizations in the **Dashboard** interface. With only a couple of steps, you can bring together traces, metrics, and logs to make your applications and infrastructure fully observable.
 
 ## Getting started 
 
 Before getting started, you must have:
 
-- Installed SmartObserve and SmartObserve Dashboards version 2.9 or later. See [Installing SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/index/).
-- Installed the Anomaly Detection plugin version 2.9 or later. See [Installing SmartObserve plugins]/({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
-- Installed the Anomaly Detection Dashboards plugin version 2.9 or later. See [Managing SmartObserve Dashboards plugins]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/plugins/) to get started.
+- Installed MCdesk and MCdesk Dashboards version 2.9 or later. See [Installing MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/index/).
+- Installed the Anomaly Detection plugin version 2.9 or later. See [Installing MCdesk plugins]/({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
+- Installed the Anomaly Detection Dashboards plugin version 2.9 or later. See [Managing MCdesk Dashboards plugins]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/plugins/) to get started.
 
 ## General requirements for anomaly detection visualizations
 
@@ -37,13 +37,13 @@ Keep in mind the following requirements when setting up or creating anomaly dete
 
 ## Configuring admin settings
 
-Users can only access, create, or manage anomaly detectors for resources for which they have permissions. Access to anomaly detection dashboards and visualizations is controlled by SmartObserve and SmartObserve Dashboards permissions. It is enabled by default and appears as a feature under **Dashboards Management** > **Advanced Settings** > **Visualization**. If the setting is disabled, it does not appear under **Dashboards Management**. You can disable the setting at the cluster level in the `smartobserve-dashboards.yml` file.
+Users can only access, create, or manage anomaly detectors for resources for which they have permissions. Access to anomaly detection dashboards and visualizations is controlled by MCdesk and MCdesk Dashboards permissions. It is enabled by default and appears as a feature under **Dashboards Management** > **Advanced Settings** > **Visualization**. If the setting is disabled, it does not appear under **Dashboards Management**. You can disable the setting at the cluster level in the `mcdesk-dashboards.yml` file.
 
 ## Creating anomaly detectors
 
 To start, first create an anomaly detector:
 
-1. Select **Dashboard** from the SmartObserve Dashboards main menu.
+1. Select **Dashboard** from the MCdesk Dashboards main menu.
 2. From the **Dashboards** window, select **Create** and then choose **Dashboard**.
 3. Select **Add an existing**, then select the appropriate visualization from the **Add panels** list. The visualization is added to the dashboard.
 4. From the visualization panel, choose the ellipsis icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/ellipsis-icon.png" class="inline-icon" alt="ellipsis icon"/>{:/}).

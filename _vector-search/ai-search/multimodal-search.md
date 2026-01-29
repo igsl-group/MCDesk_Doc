@@ -28,7 +28,7 @@ There are two ways to configure multimodal search:
 
 ## Automated workflow
 
-SmartObserve provides a [workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/#multimodal-search) that automatically creates both an ingest pipeline and an index. You must provide the model ID for the configured model when creating a workflow. Review the multimodal search workflow template [defaults](https://github.com/igsl-group/flow-framework/blob/main/src/main/resources/defaults/multi-modal-search-defaults.json) to determine whether you need to update any of the parameters. For example, if the model dimensionality is different from the default (`1024`), specify the dimensionality of your model in the `output_dimension` parameter. To create the default multimodal search workflow, send the following request:
+MCdesk provides a [workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/#multimodal-search) that automatically creates both an ingest pipeline and an index. You must provide the model ID for the configured model when creating a workflow. Review the multimodal search workflow template [defaults](https://github.com/igsl-group/flow-framework/blob/main/src/main/resources/defaults/multi-modal-search-defaults.json) to determine whether you need to update any of the parameters. For example, if the model dimensionality is different from the default (`1024`), specify the dimensionality of your model in the `output_dimension` parameter. To create the default multimodal search workflow, send the following request:
 
 ```json
 POST /_plugins/_flow_framework/workflow?use_case=multimodal_search&provision=true
@@ -38,7 +38,7 @@ POST /_plugins/_flow_framework/workflow?use_case=multimodal_search&provision=tru
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with a workflow ID for the created workflow:
+MCdesk responds with a workflow ID for the created workflow:
 
 ```json
 {
@@ -151,7 +151,7 @@ Before the document is ingested into the index, the ingest pipeline runs the `te
 
 ## Step 4: Search the index
 
-To perform a vector search on your index, use the `neural` query clause either in the [Search for a Model API]({{site.url}}{{site.baseurl}}/vector-search/api/knn/#search-for-a-model) or [Query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/index/) queries. You can refine the results by using a [vector search filter]({{site.url}}{{site.baseurl}}/search-plugins/knn/filter-search-knn/). You can search by text, image, or both text and image.
+To perform a vector search on your index, use the `neural` query clause either in the [Search for a Model API]({{site.url}}{{site.baseurl}}/vector-search/api/knn/#search-for-a-model) or [Query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/index/) queries. You can refine the results by using a [vector search filter]({{site.url}}{{site.baseurl}}/search-plugins/knn/filter-search-knn/). You can search by text, image, or both text and image.
 
 The following example request uses a neural query to search for text and image:
 

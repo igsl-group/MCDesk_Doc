@@ -186,7 +186,7 @@ This list is extensive. We recommend using Ctrl/Cmd + F to find what you're look
     <tr>
       <td>Cache_FieldData_Eviction
       </td>
-      <td>The number of times SmartObserve has evicted data from the fielddata heap space (occurs when the heap space is full) in the past five seconds.
+      <td>The number of times MCdesk has evicted data from the fielddata heap space (occurs when the heap space is full) in the past five seconds.
       </td>
     </tr>
     <tr>
@@ -210,7 +210,7 @@ This list is extensive. We recommend using Ctrl/Cmd + F to find what you're look
     <tr>
       <td>Cache_Request_Eviction
       </td>
-      <td>The number of times SmartObserve evicts data from shard request cache (occurs when the request cache is full) in the past five seconds.
+      <td>The number of times MCdesk evicts data from shard request cache (occurs when the request cache is full) in the past five seconds.
       </td>
     </tr>
     <tr>
@@ -253,7 +253,7 @@ This list is extensive. We recommend using Ctrl/Cmd + F to find what you're look
     <tr>
       <td>Indexing_Pressure_Rejection_Count
       </td>
-      <td>The total number of rejections performed by SmartObserve for an index shard in a particular indexing stage (Coordinating, Primary, or Replica).
+      <td>The total number of rejections performed by MCdesk for an index shard in a particular indexing stage (Coordinating, Primary, or Replica).
       </td>
     </tr>
     <tr>
@@ -346,7 +346,7 @@ This list is extensive. We recommend using Ctrl/Cmd + F to find what you're look
     <tr>
       <td>Disk_Utilization
       </td>
-      <td>Disk utilization rate: percentage of disk time spent reading and writing by the SmartObserve process in the past five seconds.
+      <td>Disk utilization rate: percentage of disk time spent reading and writing by the MCdesk process in the past five seconds.
       </td>
     </tr>
     <tr>
@@ -897,17 +897,17 @@ The following metrics are relevant to the cluster as a whole and do not require 
 | `IndexName`            | The name of the index, for example, `my-index`.   |
 | `Operation`            | The type of operation, for example, `shardbulk`.  |
 | `ShardRole`            | The shard role, for example, `primary` or `replica`.                            |
-| `Exception`            | SmartObserve exceptions, for example, `org.smartobserve.index_not_found_exception`. |
+| `Exception`            | MCdesk exceptions, for example, `org.mcdesk.index_not_found_exception`. |
 | `Indices`              | The list of indexes in the request URL.        |
-| `HTTPRespCode`         | The SmartObserve response code, for example, `200`. |
+| `HTTPRespCode`         | The MCdesk response code, for example, `200`. |
 | `MemType`              | The memory type, for example, `totYoungGC`, `totFullGC`, `Survivor`, `PermGen`, `OldGen`, `Eden`, `NonHeap`, or `Heap`. |
 | `DiskName`             | The name of the disk, for example, `sda1`.        |
 | `DestAddr`             | The destination address, for example, `010015AC`. |
 | `Direction`            | The direction, for example, `in` or `out`.                                    |
-| `ThreadPoolType`       | The SmartObserve thread pools, for example, `index`, `search`, or `snapshot`. |
+| `ThreadPoolType`       | The MCdesk thread pools, for example, `index`, `search`, or `snapshot`. |
 | `CBType`               | The circuit breaker type, for example, `accounting`, `fielddata`, `in_flight_requests`, `parent`, or `request`. |
 | `ClusterManagerTaskInsertOrder`| The order in which the task was inserted, for example, `3691`. |
-| `ClusterManagerTaskPriority`   | The priority of the task, for example, `URGENT`. SmartObserve executes higher-priority tasks before lower-priority ones, regardless of `insert_order`. |
+| `ClusterManagerTaskPriority`   | The priority of the task, for example, `URGENT`. MCdesk executes higher-priority tasks before lower-priority ones, regardless of `insert_order`. |
 | `ClusterManagerTaskType`       | The task type, for example, `shard-started`, `create-index`, `delete-index`, `refresh-mapping`, `put-mapping`, `CleanupSnapshotRestoreState`, or `Update snapshot state`. |
 | `ClusterManagerTaskMetadata`   | The metadata for the task (if any).                 |
 | `CacheType`            | The cache type, for example, `Field_Data_Cache`, `Shard_Request_Cache`, or `Node_Query_Cache`. |

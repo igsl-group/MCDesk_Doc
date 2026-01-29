@@ -13,7 +13,7 @@ The `ip_range` aggregation is for IP addresses.
 It works on `ip` type fields. You can define the IP ranges and masks in the [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation.
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {
@@ -61,7 +61,7 @@ GET smartobserve_dashboards_sample_data_logs/_search
 }
 ```
 
-If you add a document with malformed fields to an index that has `ip_range` set to `false` in its mappings, SmartObserve rejects the entire document. You can set `ignore_malformed` to `true` to specify that SmartObserve should ignore malformed fields. The default is `false`.
+If you add a document with malformed fields to an index that has `ip_range` set to `false` in its mappings, MCdesk rejects the entire document. You can set `ignore_malformed` to `true` to specify that MCdesk should ignore malformed fields. The default is `false`.
 
 ```json
 ...

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Migration Assistant for SmartObserve
+title: Migration Assistant for MCdesk
 nav_order: 30
 has_children: true
 permalink: /migration-assistant/
@@ -22,9 +22,9 @@ items:
     link: "/migration-assistant/migration-phases/"
 ---
 
-# Migration Assistant for SmartObserve
+# Migration Assistant for MCdesk
 
-Migration Assistant for SmartObserve helps you successfully perform an end-to-end, zero-downtime upgrade and migration to SmartObserve. There are three aspects of a migration that must be understood:
+Migration Assistant for MCdesk helps you successfully perform an end-to-end, zero-downtime upgrade and migration to MCdesk. There are three aspects of a migration that must be understood:
 
 - **Metadata migration**: Migrate cluster metadata, such as index settings, aliases, and templates.
 - **Backfill migration**: Migrate existing or historical data from a source to a target cluster.

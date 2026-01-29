@@ -10,7 +10,7 @@ nav_order: 30
 {: .label .label-purple }
 
 
-The gRPC k-NN API is generally available starting with SmartObserve 3.2. However, expect updates to the protobuf structure as the feature matures in upcoming versions.
+The gRPC k-NN API is generally available starting with MCdesk 3.2. However, expect updates to the protobuf structure as the feature matures in upcoming versions.
 
 The gRPC k-NN API provides an efficient, binary-encoded interface for performing k-nearest neighbor searches using protocol buffers over gRPC. The k-NN plugin offers a specific search query type for vector similarity searches. This API offers superior performance compared to the traditional HTTP-based approach, making it ideal for large-scale machine learning and vector database applications.
 
@@ -22,15 +22,15 @@ To submit gRPC requests, you must have a set of protobufs on the client side. Fo
 
 ## gRPC service and method
 
-gRPC k-NN APIs reside in the [`SearchService`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/services/search_service.proto#L22), the same service used for general search operations.
+gRPC k-NN APIs reside in the [`SearchService`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/services/search_service.proto#L22), the same service used for general search operations.
 
-You can submit k-NN search requests by invoking the [`Search`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/services/search_service.proto#L23) gRPC method within the `SearchService`, using a [`KnnQuery`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/schemas/common.proto#L1262) within the search request. The method takes a [`SearchRequest`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/schemas/search.proto#L18) and returns a [`SearchResponse`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/schemas/search.proto#L270).
+You can submit k-NN search requests by invoking the [`Search`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/services/search_service.proto#L23) gRPC method within the `SearchService`, using a [`KnnQuery`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/schemas/common.proto#L1262) within the search request. The method takes a [`SearchRequest`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/schemas/search.proto#L18) and returns a [`SearchResponse`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/schemas/search.proto#L270).
 
 The gRPC implementation uses the same underlying k-NN functionality as the HTTP API while providing improved performance through protocol buffer serialization.
 
 ## KnnQuery fields
 
-The gRPC k-NN API uses the [`KnnQuery`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/schemas/common.proto#L1262) message within a [`QueryContainer`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/schemas/common.proto#L395) for k-NN searches. The `KnnQuery` message accepts the following fields.
+The gRPC k-NN API uses the [`KnnQuery`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/schemas/common.proto#L1262) message within a [`QueryContainer`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/schemas/common.proto#L395) for k-NN searches. The `KnnQuery` message accepts the following fields.
 
 | Field | Protobuf type | Description |
 | :---- | :---- | :---- |
@@ -39,11 +39,11 @@ The gRPC k-NN API uses the [`KnnQuery`](https://github.com/igsl-group/smartobser
 | `k` | `int32` | The number of nearest neighbors to return as top hits. Optional. |
 | `min_score` | `float` | The minimum similarity score required for a neighbor to be considered a hit. Optional. |
 | `max_distance` | `float` | The maximum physical distance in vector space required for a neighbor to be considered a hit. Optional. |
-| `filter` | [`QueryContainer`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/schemas/common.proto#L395) | Filters for the k-NN search query. See [Filter limitations](#filter-limitations). Optional. |
+| `filter` | [`QueryContainer`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/schemas/common.proto#L395) | Filters for the k-NN search query. See [Filter limitations](#filter-limitations). Optional. |
 | `boost` | `float` | A boost value used to increase or decrease relevance scores. Default is 1.0. Optional. |
 | `underscore_name` | `string` | A query name for query tagging (JSON key: `_name`). Optional. |
-| `method_parameters` | [`ObjectMap`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/schemas/common.proto#L111) | Algorithm-specific parameters (for example, `ef_search` or `nprobes`). Optional. |
-| `rescore` | [`KnnQueryRescore`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/schemas/common.proto#L1311) | A rescoring configuration for improved accuracy. Available in versions later than 2.17. Optional. |
+| `method_parameters` | [`ObjectMap`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/schemas/common.proto#L111) | Algorithm-specific parameters (for example, `ef_search` or `nprobes`). Optional. |
+| `rescore` | [`KnnQueryRescore`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/schemas/common.proto#L1311) | A rescoring configuration for improved accuracy. Available in versions later than 2.17. Optional. |
 | `expand_nested_docs` | `bool` | When `true`, retrieves scores for all nested field documents within each parent document. Used with nested queries. Optional. |
 
 ## Example request
@@ -72,7 +72,7 @@ The following example shows a gRPC search request with a k-NN query. It searches
 The following is a basic example of using the gRPC k-NN API (the actual implementation depends on your gRPC client setup):
 
 ```java
-import org.smartobserve.protobufs.*;
+import org.mcdesk.protobufs.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -136,7 +136,7 @@ public class KnnGrpcClient {
 
 ## Response fields
 
-k-NN search requests return the same [`SearchResponse`](https://github.com/igsl-group/smartobserve-protobufs/blob/0.19.0/protos/schemas/search.proto#L270) structure as regular search operations. For information about response fields, see [Search (gRPC) response fields]({{site.url}}{{site.baseurl}}/api-reference/grpc-apis/search/#response-fields).
+k-NN search requests return the same [`SearchResponse`](https://github.com/igsl-group/mcdesk-protobufs/blob/0.19.0/protos/schemas/search.proto#L270) structure as regular search operations. For information about response fields, see [Search (gRPC) response fields]({{site.url}}{{site.baseurl}}/api-reference/grpc-apis/search/#response-fields).
 
 The response includes the standard search metadata (`took`, `timed_out`, and `shards`) and a `hits` array containing the k-NN documents with their similarity scores.
 
@@ -156,7 +156,7 @@ For complex filtering requirements, consider using the HTTP k-NN API, simplifyin
 
 ## Next steps
 
-- Learn more about [vector search in SmartObserve]({{site.url}}{{site.baseurl}}/search-plugins/knn/index/).
+- Learn more about [vector search in MCdesk]({{site.url}}{{site.baseurl}}/search-plugins/knn/index/).
 - Explore [k-NN index settings]({{site.url}}{{site.baseurl}}/search-plugins/knn/knn-index/).
 - Review [performance tuning for k-NN]({{site.url}}{{site.baseurl}}/search-plugins/knn/performance-tuning/).
 - Read about [gRPC configuration]({{site.url}}{{site.baseurl}}/api-reference/grpc-apis/index/#grpc-settings).

@@ -10,7 +10,7 @@ nav_order: 20
 **Introduced 2.13**
 {: .label .label-purple }
 
-When an agent is executed, it runs the tools with which it is configured. Starting with SmartObserve version 3.0, you can execute an agent asynchronously by setting the `async` query parameter to `true`.
+When an agent is executed, it runs the tools with which it is configured. Starting with MCdesk version 3.0, you can execute an agent asynchronously by setting the `async` query parameter to `true`.
 
 ### Endpoints
 

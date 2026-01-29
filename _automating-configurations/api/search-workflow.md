@@ -44,4 +44,4 @@ GET /_plugins/_flow_framework/workflow/_search
 
 ## Example response
 
-SmartObserve responds with a list of workflow templates matching the search parameters.
+MCdesk responds with a list of workflow templates matching the search parameters.

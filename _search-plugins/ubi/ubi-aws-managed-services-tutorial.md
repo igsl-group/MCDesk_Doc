@@ -1,28 +1,28 @@
 ---
 layout: default
-title: Using UBI in Amazon SmartObserve Service
+title: Using UBI in Amazon MCdesk Service
 parent: User Behavior Insights
 has_children: false
 nav_order: 30
 ---
 
 
-# Using UBI in Amazon SmartObserve Service
+# Using UBI in Amazon MCdesk Service
 
-This tutorial shows you how to collect queries and events in the User Behavior Insights (UBI) format when using Amazon SmartObserve Service. After following this tutorial, you'll be able to send authenticated queries and events to both Amazon Simple Storage Service (Amazon S3) for long-term storage and SmartObserve for real-time processing using the `curl` command-line tool. 
+This tutorial shows you how to collect queries and events in the User Behavior Insights (UBI) format when using Amazon MCdesk Service. After following this tutorial, you'll be able to send authenticated queries and events to both Amazon Simple Storage Service (Amazon S3) for long-term storage and MCdesk for real-time processing using the `curl` command-line tool. 
 
 This tutorial assumes the following:
 
-1. You are using Amazon SmartObserve Service version 2.19.
-2. You are not using the UBI plugin for SmartObserve, which becomes available in version 3.1 for Amazon SmartObserve Service.
-3. You are writing UBI data to SmartObserve using [Amazon SmartObserve Ingestion](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/ingestion.html), the managed version of SmartObserve Data Prepper.
-4. You have already configured permissions between SmartObserve Ingestion and your managed clusters by following the instructions found in [Tutorial: Ingesting data into a domain using Amazon SmartObserve Ingestion](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/osis-get-started.html), specifically the *Required permissions* step.
+1. You are using Amazon MCdesk Service version 2.19.
+2. You are not using the UBI plugin for MCdesk, which becomes available in version 3.1 for Amazon MCdesk Service.
+3. You are writing UBI data to MCdesk using [Amazon MCdesk Ingestion](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/ingestion.html), the managed version of MCdesk Data Prepper.
+4. You have already configured permissions between MCdesk Ingestion and your managed clusters by following the instructions found in [Tutorial: Ingesting data into a domain using Amazon MCdesk Ingestion](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/osis-get-started.html), specifically the *Required permissions* step.
 
-## Step 1: Set up SmartObserve indexes for UBI
+## Step 1: Set up MCdesk indexes for UBI
 
 Follow these steps to create the indexes needed for UBI data:
 
-1. Log in to SmartObserve Dashboards in Amazon SmartObserve Service.
+1. Log in to MCdesk Dashboards in Amazon MCdesk Service.
 1. On the main menu, select **Management > Dev Tools** to open the **Dev Tools** console.
 1. Create two new indexes: `ubi_events` and `ubi_queries`.
 
@@ -101,7 +101,7 @@ To complete this tutorial, your user or role must have an attached identity-base
       },
       {
          "Resource":[
-            "arn:aws:iam::111122223333:role/SmartObserveIngestion-PipelineRole"
+            "arn:aws:iam::111122223333:role/MCdeskIngestion-PipelineRole"
          ],
          "Effect":"Allow",
          "Action":[
@@ -115,7 +115,7 @@ To complete this tutorial, your user or role must have an attached identity-base
 ```
 {% include copy.html %}
 
-Your `DataPrepperSmartObserveRole` must have permissions similar to the following:
+Your `DataPrepperMCdeskRole` must have permissions similar to the following:
 
 ```json
 {
@@ -147,17 +147,17 @@ Your `DataPrepperSmartObserveRole` must have permissions similar to the followin
 
 Follow these steps to create a pipeline for UBI query data:
 
-1. In the Amazon SmartObserve Service console, select **Pipelines** from the left navigation pane.
+1. In the Amazon MCdesk Service console, select **Pipelines** from the left navigation pane.
 1. Select **Create pipeline**.
 1. Select a **Blank** pipeline, then select **Select blueprint**.
-1. Configure the pipeline to use the **HTTP** source plugin, which accepts UBI query data in JSON array format. Set the SmartObserve Service domain as the sink, directing all data into the `ubi_queries` index. Additionally, log all events to an S3 bucket in `.ndjson` format.
+1. Configure the pipeline to use the **HTTP** source plugin, which accepts UBI query data in JSON array format. Set the MCdesk Service domain as the sink, directing all data into the `ubi_queries` index. Additionally, log all events to an S3 bucket in `.ndjson` format.
 1. In the **Source** menu, select **HTTP**. For **Path**, enter `/ubi/queries`.
 1. For **Source network options**, select **Public access** to allow the posting of data from your application.
 1. Select **Next**.
 1. Skip intermediate **Processor** steps by selecting **Next** on the **Processor** screen.
 1. Configure the first sink:
-   * In **SmartObserve resource type**, select **Managed cluster**.  
-   * Select the SmartObserve Service domain you created earlier.  
+   * In **MCdesk resource type**, select **Managed cluster**.  
+   * Select the MCdesk Service domain you created earlier.  
    * In **Index name**, enter `ubi_queries`. Make sure this index exists with the required UBI schema.
 1. Configure the second sink:
     * Select **Add Sink**.  
@@ -177,7 +177,7 @@ To test the pipeline, use these steps:
 
 1. Retrieve the ingestion URL from the **Pipeline settings** page, shown in the following image.
 
-    ![Pipeline Settings]({{site.url}}{{site.baseurl}}/images/ubi/smartobserve-ingestion-pipeline.png "Pipeline Settings")
+    ![Pipeline Settings]({{site.url}}{{site.baseurl}}/images/ubi/mcdesk-ingestion-pipeline.png "Pipeline Settings")
 
 1. Post a UBI query to the ingest pipeline. The following is an example of posting a query using [awscurl](https://github.com/okigan/awscurl):
 
@@ -222,7 +222,7 @@ To test the pipeline, use these steps:
 
     You should receive a `200 OK` response.
 
-1. Query for the event data that you posted using the Dev Tools console. Note that it may take some time for the data to flow through SmartObserve Ingestion into the `ubi_queries` index:
+1. Query for the event data that you posted using the Dev Tools console. Note that it may take some time for the data to flow through MCdesk Ingestion into the `ubi_queries` index:
 
     ```json
     GET /ubi_queries/_search

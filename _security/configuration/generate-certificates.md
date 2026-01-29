@@ -9,7 +9,7 @@ redirect_from:
 
 # Generating self-signed certificates
 
-If you don't have access to a certificate authority (CA) for your organization and want to use SmartObserve for non-demo purposes, you can generate your own self-signed certificates using [OpenSSL](https://www.openssl.org/){:target='\_blank'}.
+If you don't have access to a certificate authority (CA) for your organization and want to use MCdesk for non-demo purposes, you can generate your own self-signed certificates using [OpenSSL](https://www.openssl.org/){:target='\_blank'}.
 
 You can probably find OpenSSL in the package manager for your operating system.
 
@@ -92,7 +92,7 @@ Just like the root certificate, use the `-days` option to specify an expiration 
 
 ## (Optional) Generate node and client certificates
 
-Similar to the steps in [Generate an admin certificate](#generate-an-admin-certificate), you will generate keys and CSRs with new file names for each node and as many client certificates as you need. For example, you might generate one client certificate for SmartObserve Dashboards and another for a Python client. Each certificate should use its own private key and should be generated from a unique CSR with matching SAN extension specific to the intended host. A SAN extension is not needed for the admin cert because that cert is not tied to a specific host.
+Similar to the steps in [Generate an admin certificate](#generate-an-admin-certificate), you will generate keys and CSRs with new file names for each node and as many client certificates as you need. For example, you might generate one client certificate for MCdesk Dashboards and another for a Python client. Each certificate should use its own private key and should be generated from a unique CSR with matching SAN extension specific to the intended host. A SAN extension is not needed for the admin cert because that cert is not tied to a specific host.
 
 To generate a node or client certificate, first create a new key:
 
@@ -211,9 +211,9 @@ rm combined-admin.pem
 rm combined-node1.pem
 ```
 
-## Add distinguished names to smartobserve.yml
+## Add distinguished names to mcdesk.yml
 
-You must specify the distinguished names (DNs) for all admin and node certificates in `smartobserve.yml` on all nodes. Using the certificates from the sample script above, part of `smartobserve.yml` might look like this:
+You must specify the distinguished names (DNs) for all admin and node certificates in `mcdesk.yml` on all nodes. Using the certificates from the sample script above, part of `mcdesk.yml` might look like this:
 
 ```yml
 plugins.security.authcz.admin_dn:
@@ -235,10 +235,10 @@ If you compare this string to the ones above, you can see that you need to inver
 openssl x509 -subject -nameopt RFC2253 -noout -in node.pem
 ```
 
-Then copy and paste the output into `smartobserve.yml`.
+Then copy and paste the output into `mcdesk.yml`.
 
 
-## Add certificate files to smartobserve.yml
+## Add certificate files to mcdesk.yml
 
 This process generates many files, but these are the ones you need to add to each node:
 
@@ -250,7 +250,7 @@ This process generates many files, but these are the ones you need to add to eac
 
 For most users, the `admin.pem` and `admin-key.pem` files only need to be added to the nodes you plan to run the `securityadmin` script or reload certificates from. For information about how to use the `securityadmin` script, see [Applying changes to configuration files]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/). If you intend to run the `securityadmin` script directly from a node, that node will need to have a copy of `admin.pem` and `admin-key.pem` on it.
 
-On one node, the security configuration portion of `smartobserve.yml` might look like this:
+On one node, the security configuration portion of `mcdesk.yml` might look like this:
 
 ```yml
 plugins.security.ssl.transport.pemcert_filepath: node1.pem
@@ -268,8 +268,8 @@ plugins.security.nodes_dn:
   - 'CN=node2.dns.a-record,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA'
 ```
 
-For more information about adding and using these certificates in your own setup, see [Configuring basic security settings]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/docker/#configuring-basic-security-settings) for Docker, [Configure TLS certificates]({{site.url}}{{site.baseurl}}/security/configuration/tls/), and [Client certificate authentication]({{site.url}}{{site.baseurl}}/security/configuration/client-auth/).
+For more information about adding and using these certificates in your own setup, see [Configuring basic security settings]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/docker/#configuring-basic-security-settings) for Docker, [Configure TLS certificates]({{site.url}}{{site.baseurl}}/security/configuration/tls/), and [Client certificate authentication]({{site.url}}{{site.baseurl}}/security/configuration/client-auth/).
 
-## SmartObserve Dashboards
+## MCdesk Dashboards
 
-For information on using your root CA and a client certificate to enable TLS for SmartObserve Dashboards, see [Configure TLS for SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/tls/).
+For information on using your root CA and a client certificate to enable TLS for MCdesk Dashboards, see [Configure TLS for MCdesk Dashboards]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/tls/).

@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 15
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-field-data/
+- /mcdesk/rest-api/cat/cat-field-data/
 ---
 
 # CAT Field Data API

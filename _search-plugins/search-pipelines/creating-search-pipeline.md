@@ -8,7 +8,7 @@ parent: Search pipelines
 
 # Creating a search pipeline
 
-Search pipelines are stored in the cluster state. To create a search pipeline, you must configure an ordered list of processors in your SmartObserve cluster. You can have more than one processor of the same type in the pipeline. Each processor has a `tag` identifier that distinguishes it from the others. Tagging a specific processor can be helpful when debugging error messages, especially if you add multiple processors of the same type.
+Search pipelines are stored in the cluster state. To create a search pipeline, you must configure an ordered list of processors in your MCdesk cluster. You can have more than one processor of the same type in the pipeline. Each processor has a `tag` identifier that distinguishes it from the others. Tagging a specific processor can be helpful when debugging error messages, especially if you add multiple processors of the same type.
 
 #### Example request
 
@@ -59,7 +59,7 @@ By default, a search pipeline stops if one of its processors fails. If you want 
 }
 ```
 
-If the processor fails, SmartObserve logs the failure and continues to run all remaining processors in the search pipeline. To check whether there were any failures, you can use [search pipeline metrics]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/search-pipeline-metrics/). 
+If the processor fails, MCdesk logs the failure and continues to run all remaining processors in the search pipeline. To check whether there were any failures, you can use [search pipeline metrics]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/search-pipeline-metrics/). 
 
 ## Updating a search pipeline
 

@@ -5,7 +5,7 @@ nav_order: 60
 has_children: false
 parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/rank/
+  - /mcdesk/supported-field-types/rank/
   - /field-types/rank/
 ---
 
@@ -13,7 +13,7 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-The following table lists all rank field types that SmartObserve supports.
+The following table lists all rank field types that MCdesk supports.
 
 Field data type | Description
 :--- | :---  
@@ -25,7 +25,7 @@ Rank feature and rank features fields can be queried with [rank feature queries]
 
 ## Rank feature
 
-A rank feature field type uses a positive [float]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/numeric/) value to boost or decrease the relevance score of a document in a `rank_feature` query. By default, this value boosts the relevance score. To decrease the relevance score, set the optional `positive_score_impact` parameter to false.
+A rank feature field type uses a positive [float]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/numeric/) value to boost or decrease the relevance score of a document in a `rank_feature` query. By default, this value boosts the relevance score. To decrease the relevance score, set the optional `positive_score_impact` parameter to false.
 
 ### Example
 

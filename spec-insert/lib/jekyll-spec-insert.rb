@@ -14,7 +14,7 @@ class JekyllSpecInsert < Jekyll::Command
     prog.command(:'spec-insert') do |c|
       c.syntax 'spec-insert [options]'
       c.option 'watch', '--watch', '-W', 'Watch for changes and rebuild'
-      c.option 'refresh-spec', '--refresh-spec', '-R', 'Redownload the SmartObserve API specification'
+      c.option 'refresh-spec', '--refresh-spec', '-R', 'Redownload the MCdesk API specification'
       c.option 'fail-on-error', '--fail-on-error', '-F', 'Fail on error'
       c.action do |_args, options|
         Utils.load_spec(forced: options['refresh-spec'], logger: Jekyll.logger)

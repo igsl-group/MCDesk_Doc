@@ -4,16 +4,16 @@ title: Autocomplete
 parent: Search options
 nav_order: 60
 redirect_from:
-  - /smartobserve/search/autocomplete/
+  - /mcdesk/search/autocomplete/
 ---
 
 # Autocomplete functionality
 
 Autocomplete shows suggestions to users while they type.
 
-For example, if a user types "pop," SmartObserve provides suggestions like "popcorn" or "popsicles." These suggestions preempt your user's intention and lead them to a possible search term more quickly.
+For example, if a user types "pop," MCdesk provides suggestions like "popcorn" or "popsicles." These suggestions preempt your user's intention and lead them to a possible search term more quickly.
 
-SmartObserve lets you design autocomplete that updates with each keystroke, provides a few relevant suggestions, and tolerates typos.
+MCdesk lets you design autocomplete that updates with each keystroke, provides a few relevant suggestions, and tolerates typos.
 
 Implement autocomplete using one of the following methods:
 
@@ -84,7 +84,7 @@ n | Type | n-gram
 4 | Four-gram | [ `quic`, `uick` ]
 5 | Five-gram | [ `quick` ]
 
-Autocomplete needs only the beginning n-grams of a search phrase, so SmartObserve uses a special type of n-gram called *edge n-gram*.
+Autocomplete needs only the beginning n-grams of a search phrase, so MCdesk uses a special type of n-gram called *edge n-gram*.
 
 Edge n-gramming the word "quick" results in the following:
 
@@ -250,7 +250,7 @@ As the user types, the completion suggester moves through the FST graph one char
 
 The completion suggester makes your autocomplete solution as efficient as possible and lets you have explicit control over its suggestions.
 
-Use a dedicated field type called [`completion`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/completion), which stores the FST-like data structures in the index:
+Use a dedicated field type called [`completion`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/completion), which stores the FST-like data structures in the index:
 
 ```json
 PUT shakespeare
@@ -685,11 +685,11 @@ GET shakespeare/_search
 }
 ```
 
-For more information, see the [`completion` field type documentation]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/completion).
+For more information, see the [`completion` field type documentation]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/completion).
 
 ## Search as you type
 
-SmartObserve has a dedicated [`search_as_you_type`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/search-as-you-type) field type that is optimized for search-as-you-type functionality and can match terms using both prefix and infix completion. The `search_as_you_type` field does not require you to set up a custom analyzer or index suggestions beforehand. 
+MCdesk has a dedicated [`search_as_you_type`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/search-as-you-type) field type that is optimized for search-as-you-type functionality and can match terms using both prefix and infix completion. The `search_as_you_type` field does not require you to set up a custom analyzer or index suggestions beforehand. 
 
 First, map the field as `search_as_you_type`:
 
@@ -706,7 +706,7 @@ PUT shakespeare
 }
 ```
 
-After you index a document, SmartObserve automatically creates and stores its n-grams and edge n-grams. For example, consider the string `that is the question`. First, it is split into terms using the standard analyzer, and the terms are stored in the `text_entry` field:
+After you index a document, MCdesk automatically creates and stores its n-grams and edge n-grams. For example, consider the string `that is the question`. First, it is split into terms using the standard analyzer, and the terms are stored in the `text_entry` field:
 
 ```json
 [
@@ -1030,4 +1030,4 @@ The result is empty:
 }
 ```
 
-For more information, see the [`search_as_you_type` field type documentation]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/search-as-you-type).
+For more information, see the [`search_as_you_type` field type documentation]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/search-as-you-type).

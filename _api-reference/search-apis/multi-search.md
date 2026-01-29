@@ -4,7 +4,7 @@ title: Multi-search
 parent: Search APIs
 nav_order: 20
 redirect_from: 
- - /smartobserve/rest-api/multi-search/
+ - /mcdesk/rest-api/multi-search/
  - /api-reference/multi-search/
 ---
 
@@ -12,7 +12,7 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-As the name suggests, the multi-search operation lets you bundle multiple search requests into a single request. SmartObserve then executes the searches in parallel, so you get back the response more quickly compared to sending one request per search. SmartObserve executes each search independently, so the failure of one doesn't affect the others.
+As the name suggests, the multi-search operation lets you bundle multiple search requests into a single request. MCdesk then executes the searches in parallel, so you get back the response more quickly compared to sending one request per search. MCdesk executes each search independently, so the failure of one doesn't affect the others.
 
 
 ## Endpoints
@@ -35,7 +35,7 @@ Parameter | Type | Description | Supported in metadata line
 :--- | :--- | :---
 allow_no_indices | Boolean | Whether to ignore wildcards that don't match any indexes. Default is `true`. | Yes
 cancel_after_time_interval | Time | The time after which the search request will be canceled. Supported at both parent and child request levels. The order of precedence is:<br> 1. Child-level parameter<br> 2. Parent-level parameter<br> 3. [Cluster settings]({{site.url}}{{site.baseurl}}/api-reference/cluster-settings/).<br>Default is -1. | Yes
-css_minimize_roundtrips | Boolean | Whether SmartObserve should try to minimize the number of network round trips between the coordinating node and remote clusters (only applicable to cross-cluster search requests). Default is `true`. | No
+css_minimize_roundtrips | Boolean | Whether MCdesk should try to minimize the number of network round trips between the coordinating node and remote clusters (only applicable to cross-cluster search requests). Default is `true`. | No
 expand_wildcards | Enum | Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are `all`, `open`, `closed`, `hidden`, and `none`. Default is `open`. | Yes
 ignore_unavailable | Boolean | If an index or shard from the indexes list doesn’t exist, whether to ignore it rather than fail the query. Default is `false`. | Yes
 include_named_queries_score | Boolean | Whether to return scores for named queries. Default is `false`. | No
@@ -75,9 +75,9 @@ Query\n
 ```
 
 - Metadata lines include options, such as which indexes to search and the type of search.
-- Query lines use the [query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/).
+- Query lines use the [query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/).
 
-Just like the [bulk]({{site.url}}{{site.baseurl}}/api-reference/document-apis/bulk/) operation, the JSON doesn't need to be minified---spaces are fine---but it does need to be on a single line. SmartObserve uses newline characters to parse multi-search requests and requires that the request body end with a newline character.
+Just like the [bulk]({{site.url}}{{site.baseurl}}/api-reference/document-apis/bulk/) operation, the JSON doesn't need to be minified---spaces are fine---but it does need to be on a single line. MCdesk uses newline characters to parse multi-search requests and requires that the request body end with a newline character.
 
 
 ## Example request
@@ -89,16 +89,16 @@ The following example `msearch` API request runs queries against multiple indexe
 component: example_code
 rest: GET /_msearch
 body: |
-{ "index": "smartobserve_dashboards_sample_data_logs"}
+{ "index": "mcdesk_dashboards_sample_data_logs"}
 { "query": { "match_all": {} }, "from": 0, "size": 10}
-{ "index": "smartobserve_dashboards_sample_data_ecommerce", "search_type": "dfs_query_then_fetch"}
+{ "index": "mcdesk_dashboards_sample_data_ecommerce", "search_type": "dfs_query_then_fetch"}
 { "query": { "match_all": {} } }
 -->
 {% capture step1_rest %}
 GET /_msearch
-{ "index": "smartobserve_dashboards_sample_data_logs"}
+{ "index": "mcdesk_dashboards_sample_data_logs"}
 { "query": { "match_all": {} }, "from": 0, "size": 10}
-{ "index": "smartobserve_dashboards_sample_data_ecommerce", "search_type": "dfs_query_then_fetch"}
+{ "index": "mcdesk_dashboards_sample_data_ecommerce", "search_type": "dfs_query_then_fetch"}
 { "query": { "match_all": {} } }
 {% endcapture %}
 
@@ -107,9 +107,9 @@ GET /_msearch
 
 response = client.msearch(
   body = '''
-{ "index": "smartobserve_dashboards_sample_data_logs"}
+{ "index": "mcdesk_dashboards_sample_data_logs"}
 { "query": { "match_all": {} }, "from": 0, "size": 10}
-{ "index": "smartobserve_dashboards_sample_data_ecommerce", "search_type": "dfs_query_then_fetch"}
+{ "index": "mcdesk_dashboards_sample_data_ecommerce", "search_type": "dfs_query_then_fetch"}
 { "query": { "match_all": {} } }
 '''
 )
@@ -124,7 +124,7 @@ response = client.msearch(
 
 ## Example response
 
-SmartObserve returns an array with the results of each search in the same order as the multi-search request.
+MCdesk returns an array with the results of each search in the same order as the multi-search request.
 
 ```json
 {
@@ -147,7 +147,7 @@ SmartObserve returns an array with the results of each search in the same order 
         "max_score" : 1.0,
         "hits" : [
           {
-            "_index" : "smartobserve_dashboards_sample_data_logs",
+            "_index" : "mcdesk_dashboards_sample_data_logs",
             "_id" : "_fnhBXsBgv2Zxgu9dZ8Y",
             "_score" : 1.0,
             "_source" : {
@@ -165,24 +165,24 @@ SmartObserve returns an array with the results of each search in the same order 
                 }
               },
               "host" : "artifacts.magiccreative.io",
-              "index" : "smartobserve_dashboards_sample_data_logs",
+              "index" : "mcdesk_dashboards_sample_data_logs",
               "ip" : "213.116.129.196",
               "machine" : {
                 "ram" : 16106127360,
                 "os" : "ios"
               },
               "memory" : null,
-              "message" : "213.116.129.196 - - [2018-07-30T14:12:11.387Z] \"GET /smartobserve_dashboards/smartobserve_dashboards-1.0.0-windows-x86_64.zip HTTP/1.1\" 200 4657 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\"",
+              "message" : "213.116.129.196 - - [2018-07-30T14:12:11.387Z] \"GET /mcdesk_dashboards/mcdesk_dashboards-1.0.0-windows-x86_64.zip HTTP/1.1\" 200 4657 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\"",
               "phpmemory" : null,
               "referer" : "http://twitter.com/success/ellison-onizuka",
-              "request" : "/smartobserve_dashboards/smartobserve_dashboards-1.0.0-windows-x86_64.zip",
+              "request" : "/mcdesk_dashboards/mcdesk_dashboards-1.0.0-windows-x86_64.zip",
               "response" : 200,
               "tags" : [
                 "success",
                 "info"
               ],
               "timestamp" : "2021-08-02T14:12:11.387Z",
-              "url" : "https://artifacts.magiccreative.io/downloads/smartobserve_dashboards/smartobserve_dashboards-1.0.0-windows-x86_64.zip",
+              "url" : "https://artifacts.magiccreative.io/downloads/mcdesk_dashboards/mcdesk_dashboards-1.0.0-windows-x86_64.zip",
               "utc_time" : "2021-08-02T14:12:11.387Z",
               "event" : {
                 "dataset" : "sample_web_logs"
@@ -211,7 +211,7 @@ SmartObserve returns an array with the results of each search in the same order 
         "max_score" : 1.0,
         "hits" : [
           {
-            "_index" : "smartobserve_dashboards_sample_data_ecommerce",
+            "_index" : "mcdesk_dashboards_sample_data_ecommerce",
             "_id" : "efnhBXsBgv2Zxgu9ap7e",
             "_score" : 1.0,
             "_source" : {

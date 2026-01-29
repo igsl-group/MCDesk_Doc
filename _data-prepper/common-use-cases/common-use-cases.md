@@ -9,4 +9,4 @@ redirect_from:
 
 # Common use cases
 
-You can use SmartObserve Data Prepper for several different purposes, including trace analytics, log analytics, Amazon S3 log analytics, and metrics ingestion.
+You can use MCdesk Data Prepper for several different purposes, including trace analytics, log analytics, Amazon S3 log analytics, and metrics ingestion.

@@ -11,7 +11,7 @@ nav_order: 50
 **Introduced 2.13**
 {: .label .label-purple }
 
-You can enhance search results by combining a hybrid query clause with any aggregation that SmartObserve supports. Aggregations allow you to use SmartObserve as an analytics engine. For more information about aggregations, see [Aggregations]({{site.url}}{{site.baseurl}}/aggregations/).
+You can enhance search results by combining a hybrid query clause with any aggregation that MCdesk supports. Aggregations allow you to use MCdesk as an analytics engine. For more information about aggregations, see [Aggregations]({{site.url}}{{site.baseurl}}/aggregations/).
 
 Most aggregations are performed on the subset of documents that is returned by a hybrid query. The only aggregation that operates on all documents is the [`global`]({{site.url}}{{site.baseurl}}/aggregations/bucket/global/) aggregation.
 

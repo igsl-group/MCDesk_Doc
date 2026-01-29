@@ -10,7 +10,7 @@ redirect_from:
 
 # API tools
 
-Security Analytics includes a number of APIs to help administrators maintain and update an implementation. The APIs often mimic the same controls available for setting up Security Analytics in SmartObserve Dashboards, and they provide another option for administering the plugin.
+Security Analytics includes a number of APIs to help administrators maintain and update an implementation. The APIs often mimic the same controls available for setting up Security Analytics in MCdesk Dashboards, and they provide another option for administering the plugin.
 
 The APIs for Security Analytics are separated into the following categories:
 

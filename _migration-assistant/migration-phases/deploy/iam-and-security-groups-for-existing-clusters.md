@@ -14,13 +14,13 @@ redirect_from:
 
 This page outlines security scenarios for using the migration tools with existing clusters, including any necessary configuration changes to ensure proper communication between them.
 
-## Importing Amazon SmartObserve Service
+## Importing Amazon MCdesk Service
 
-Use the following configuration for Amazon SmartObserve Service.
+Use the following configuration for Amazon MCdesk Service.
 
-### SmartObserve Service
+### MCdesk Service
 
-For an SmartObserve Domain, two main configurations are typically required to ensure proper functioning of the migration solution:
+For an MCdesk Domain, two main configurations are typically required to ensure proper functioning of the migration solution:
 
 1. **Security group configuration**
 
@@ -32,7 +32,7 @@ For an SmartObserve Domain, two main configurations are typically required to en
   
 ### Managed service role mapping (Cross-managed-cluster migrations)
 
-When migrating between two managed clusters, for example, when both domains were created using Amazon SmartObserve Service, provide Migration Assistant components with sufficient permissions to modify both the source and target clusters.
+When migrating between two managed clusters, for example, when both domains were created using Amazon MCdesk Service, provide Migration Assistant components with sufficient permissions to modify both the source and target clusters.
 
 Use the following steps to grant the required permissions:
 
@@ -47,7 +47,7 @@ Use the following steps to grant the required permissions:
    ```
    
 4. In both the source and target clusters, map users to each Amazon Resource Name (ARN) using the following steps:
-    A. Access SmartObserve Dashboards. If you're using Elasticsearch, access Kibana.
+    A. Access MCdesk Dashboards. If you're using Elasticsearch, access Kibana.
     B. Navigate to **Security -> Roles -> all_access**.
     C. In the "Mapped users" section, add each ARN as a backend role.
     D. Save your changes.

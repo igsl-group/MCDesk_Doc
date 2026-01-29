@@ -45,7 +45,7 @@ Query parameters are optional.
 
 Query parameter | Data type | Description
 :--- | :--- | :---
-accept_data_loss | Boolean | Must be set to `true` for an `import` or `delete` because SmartObserve is unaware of where the dangling index data came from.
+accept_data_loss | Boolean | Must be set to `true` for an `import` or `delete` because MCdesk is unaware of where the dangling index data came from.
 timeout | Time units | The amount of time to wait for a response. If no response is received in the defined time period, an error is returned. Default is `30` seconds.
 cluster_manager_timeout | Time units | The amount of time to wait for a connection to the cluster manager. If no response is received in the defined time period, an error is returned. Default is `30` seconds.
 
@@ -131,7 +131,7 @@ response = client.dangling_indices.delete_dangling_index(
         "successful": 1,
         "failed": 0
     },
-    "cluster_name": "smartobserve-cluster",
+    "cluster_name": "mcdesk-cluster",
     "dangling_indices": [msdjernajxAT23RT-BupMB]
 }
 ````

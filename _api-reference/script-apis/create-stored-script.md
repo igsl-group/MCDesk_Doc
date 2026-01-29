@@ -158,13 +158,13 @@ response = client.put_script(
     python=step1_python %}
 <!-- spec_insert_end -->
 
-The preceding example uses the syntax of the Dev Tools console in SmartObserve Dashboards. You can also use a curl request.
+The preceding example uses the syntax of the Dev Tools console in MCdesk Dashboards. You can also use a curl request.
 {: .note }
 
 The following curl request is equivalent to the previous Dashboards console example:
 
 ````json
-curl -XPUT "http://smartobserve:9200/_scripts/my-first-script" -H 'Content-Type: application/json' -d'
+curl -XPUT "http://mcdesk:9200/_scripts/my-first-script" -H 'Content-Type: application/json' -d'
 {
   "script": {
       "lang": "painless",

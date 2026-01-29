@@ -4,7 +4,7 @@ title: Search
 parent: Search APIs
 nav_order: 10
 redirect_from:
-  - /smartobserve/rest-api/search/
+  - /mcdesk/rest-api/search/
   - /api-reference/search/
 ---
 
@@ -39,24 +39,24 @@ cancel_after_time_interval | Time | The time after which the search request will
 ccs_minimize_roundtrips | Boolean | Whether to minimize roundtrips between a node and remote clusters. Default is `true`.
 default_operator | String | Indicates whether the default operator for a string query should be AND or OR. Default is OR.
 df | String | The default field in case a field prefix is not provided in the query string.
-docvalue_fields | String | The fields that SmartObserve should return using their docvalue forms.
+docvalue_fields | String | The fields that MCdesk should return using their docvalue forms.
 expand_wildcards | String | Specifies the type of index that wildcard expressions can match. Supports comma-separated values. Valid values are all (match any index), open (match open, non-hidden indexes), closed (match closed, non-hidden indexes), hidden (match hidden indexes), and none (deny wildcard expressions). Default is open.
-explain | Boolean | Whether to return details about how SmartObserve computed the document's score. Default is `false`.
+explain | Boolean | Whether to return details about how MCdesk computed the document's score. Default is `false`.
 from | Integer | The starting index to search from. Default is 0.
 ignore_throttled | Boolean | Whether to ignore concrete, expanded, or indexes with aliases if indexes are frozen. Default is `true`.
 ignore_unavailable | Boolean | Specifies whether to include missing or closed indexes in the response and ignores unavailable shards during the search request. Default is `false`.
 include_named_queries_score | Boolean | Whether to return scores for named queries. Default is `false`.
-lenient | Boolean | Specifies whether SmartObserve should accept requests if queries have format errors (for example, querying a text field for an integer). Default is `false`.
+lenient | Boolean | Specifies whether MCdesk should accept requests if queries have format errors (for example, querying a text field for an integer). Default is `false`.
 max_concurrent_shard_requests | Integer | How many concurrent shard requests this request should execute on each node. Default is 5.
 phase_took | Boolean | Whether to return phase-level `took` time values in the response. Default is `false`.
 pre_filter_shard_size | Integer | A prefilter size threshold that triggers a prefilter operation if the request exceeds the threshold. Default is 128 shards.
-preference | String | Specifies the shards or nodes on which SmartObserve should perform the search. For valid values, see [The `preference` query parameter](#the-preference-query-parameter). 
+preference | String | Specifies the shards or nodes on which MCdesk should perform the search. For valid values, see [The `preference` query parameter](#the-preference-query-parameter). 
 q | String | Lucene query string’s query.
-request_cache | Boolean | Specifies whether SmartObserve should use the request cache. Default is whether it’s enabled in the index’s settings.
+request_cache | Boolean | Specifies whether MCdesk should use the request cache. Default is whether it’s enabled in the index’s settings.
 rest_total_hits_as_int | Boolean | Whether to return `hits.total` as an integer. Returns an object otherwise. Default is `false`.
 routing | String | Value used to route the update by query operation to a specific shard.
 scroll | Time | How long to keep the search context open.
-search_type | String | Whether SmartObserve should use global term and document frequencies when calculating relevance scores. Valid choices are `query_then_fetch` and `dfs_query_then_fetch`. `query_then_fetch` scores documents using local term and document frequencies for the shard. It’s usually faster but less accurate. `dfs_query_then_fetch` scores documents using global term and document frequencies across all shards. It’s usually slower but more accurate. Default is `query_then_fetch`.
+search_type | String | Whether MCdesk should use global term and document frequencies when calculating relevance scores. Valid choices are `query_then_fetch` and `dfs_query_then_fetch`. `query_then_fetch` scores documents using local term and document frequencies for the shard. It’s usually faster but less accurate. `dfs_query_then_fetch` scores documents using global term and document frequencies across all shards. It’s usually slower but more accurate. Default is `query_then_fetch`.
 seq_no_primary_term | Boolean | Whether to return sequence number and primary term of the last operation of each document hit.
 size | Integer | How many results to include in the response.
 sort | List | A comma-separated list of &lt;field&gt; : &lt;direction&gt; pairs to sort by.
@@ -65,11 +65,11 @@ _source_excludes | List | A comma-separated list of source fields to exclude fro
 _source_includes | List | A comma-separated list of source fields to include in the response.
 stats | String | Value to associate with the request for additional logging.
 stored_fields | Boolean | Whether the get operation should retrieve fields stored in the index. Default is `false`.
-suggest_field | String | Fields SmartObserve can use to look for similar terms.
+suggest_field | String | Fields MCdesk can use to look for similar terms.
 suggest_mode | String | The mode to use when searching. Available options are `always` (use suggestions based on the provided terms), `popular` (use suggestions that have more occurrences), and `missing` (use suggestions for terms not in the index).
 suggest_size | Integer | How many suggestions to return.
 suggest_text | String | The source that suggestions should be based off of.
-terminate_after | Integer | The maximum number of matching documents (hits) SmartObserve should process before terminating the request. Default is 0.
+terminate_after | Integer | The maximum number of matching documents (hits) MCdesk should process before terminating the request. Default is 0.
 timeout | Time | How long the operation should wait for a response from active shards. Default is `1m`.
 track_scores | Boolean | Whether to return document scores. Default is `false`.
 track_total_hits | Boolean or Integer | Whether to return how many documents matched the query.
@@ -78,7 +78,7 @@ version | Boolean | Whether to include the document version as a match.
 
 ### The `preference` query parameter
 
-The `preference` query parameter specifies the shards or nodes on which SmartObserve should perform the search. The following are valid values:
+The `preference` query parameter specifies the shards or nodes on which MCdesk should perform the search. The following are valid values:
 
 - `_primary`: Perform the search only on primary shards.
 - `_replica`: Perform the search only on replica shards.
@@ -96,20 +96,20 @@ All fields are optional.
 
 Field | Type | Description
 :--- | :--- | :---
-aggs | Object | In the optional `aggs` parameter, you can define any number of aggregations. Each aggregation is defined by its name and one of the types of aggregations that SmartObserve supports. For more information, see [Aggregations]({{site.url}}{{site.baseurl}}/aggregations/).
-docvalue_fields | Array of objects | The fields that SmartObserve should return using their docvalue forms. Specify a format to return results in a certain format, such as date and time.
+aggs | Object | In the optional `aggs` parameter, you can define any number of aggregations. Each aggregation is defined by its name and one of the types of aggregations that MCdesk supports. For more information, see [Aggregations]({{site.url}}{{site.baseurl}}/aggregations/).
+docvalue_fields | Array of objects | The fields that MCdesk should return using their docvalue forms. Specify a format to return results in a certain format, such as date and time.
 fields | Array | The fields to search for in the request. Specify a format to return results in a certain format, such as date and time.
-explain | String | Whether to return details about how SmartObserve computed the document's score. Default is `false`.
+explain | String | Whether to return details about how MCdesk computed the document's score. Default is `false`.
 from | Integer | The starting index to search from. Default is 0.
 include_named_queries_score | Boolean | Whether to return scores for named queries.
 indices_boost | Array of objects | Values used to boost the score of specified indexes. Specify in the format of &lt;index&gt; : &lt;boost-multiplier&gt;
 min_score | Integer | Specify a score threshold to return only documents above the threshold.
-query | Object | The [DSL query]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/index/) to use in the request.
+query | Object | The [DSL query]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/index/) to use in the request.
 seq_no_primary_term | Boolean | Whether to return sequence number and primary term of the last operation of each document hit.
 size | Integer | How many results to return. Default is 10.
 _source | | Whether to include the `_source` field in the response.
 stats | String | Value to associate with the request for additional logging.
-terminate_after | Integer | The maximum number of matching documents (hits) SmartObserve should process before terminating the request. Default is 0.
+terminate_after | Integer | The maximum number of matching documents (hits) MCdesk should process before terminating the request. Default is 0.
 timeout | Time | How long to wait for a response. Default is no timeout.
 version | Boolean | Whether to include the document version in the response.
 
@@ -215,7 +215,7 @@ response = client.search(
 
 ## The `ext` object
 
-Starting with SmartObserve 2.10, plugin authors can add an `ext` object to the search response. The `ext` object contains plugin-specific response fields. For example, in conversational search, the result of retrieval-augmented generation (RAG) is a single "hit" (answer). Plugin authors can include this answer in the search response as part of the `ext` object so that it is separate from the search hits. In the following example response, the RAG result is in the `ext.retrieval_augmented_generation.answer` field:
+Starting with MCdesk 2.10, plugin authors can add an `ext` object to the search response. The `ext` object contains plugin-specific response fields. For example, in conversational search, the result of retrieval-augmented generation (RAG) is a single "hit" (answer). Plugin authors can include this answer in the search response as part of the `ext` object so that it is separate from the search hits. In the following example response, the RAG result is in the `ext.retrieval_augmented_generation.answer` field:
 
 ```json
 {

@@ -3,7 +3,7 @@ layout: default
 title: list
 nav_order: 80
 parent: Command reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 redirect_from:
   - /benchmark/commands/list/
 ---
@@ -12,14 +12,14 @@ redirect_from:
 # list
 <!-- vale on -->
 
-The `list` command lists the following elements used by SmartObserve Benchmark:
+The `list` command lists the following elements used by MCdesk Benchmark:
 
 - `telemetry`: Telemetry devices
 - `workloads`: Workloads
 - `pipelines`: Pipelines
 - `test-runs`: Single run of a workload
-- `cluster-configs`: SmartObserve cluster configurations
-- `smartobserve-plugins`: SmartObserve plugins
+- `cluster-configs`: MCdesk cluster configurations
+- `mcdesk-plugins`: MCdesk plugins
 
 
 ## Usage
@@ -27,13 +27,13 @@ The `list` command lists the following elements used by SmartObserve Benchmark:
 The following example lists any workload test runs and detailed information about each test:
 
 ```
-`smartobserve-benchmark list test-runs
+`mcdesk-benchmark list test-runs
 ```
 
-SmartObserve Benchmark returns information about each test.
+MCdesk Benchmark returns information about each test.
 
 ```
-smartobserve-benchmark list test-runs
+mcdesk-benchmark list test-runs
 
    ____                  _____                      __       ____                  __                         __
   / __ \____  ___  ____ / ___/___  ____ ___________/ /_     / __ )___  ____  _____/ /_  ____ ___  ____ ______/ /__
@@ -68,8 +68,8 @@ ba643ed3-0db5-452e-a680-2b0dc0350cf2  20230522T224450Z           geonames       
 You can use the following options with the `test` command:
 
 - `--limit`: Limits the number of search results for recent test runs. Default is `10`.
-- `--workload-repository`: Defines the repository from where SmartObserve Benchmark loads workloads.
+- `--workload-repository`: Defines the repository from where MCdesk Benchmark loads workloads.
 - `--workload-path`: Defines the path to a downloaded or custom workload.
-- `--workload-revision`: Defines a specific revision from the workload source tree that SmartObserve Benchmark should use.
+- `--workload-revision`: Defines a specific revision from the workload source tree that MCdesk Benchmark should use.
 
 

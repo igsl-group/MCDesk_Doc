@@ -1,6 +1,6 @@
 ## Overview
 
-This document lists the maintainers in this repo. See [smartobserve-project/.github/RESPONSIBILITIES.md](https://github.com/igsl-group/.github/blob/main/RESPONSIBILITIES.md#maintainer-responsibilities) for information about the role of a maintainer, what maintainers do in this and other repos, and how they should be doing it. If you're interested in contributing or becoming a maintainer, see [CONTRIBUTING](CONTRIBUTING.md).  
+This document lists the maintainers in this repo. See [mcdesk-project/.github/RESPONSIBILITIES.md](https://github.com/igsl-group/.github/blob/main/RESPONSIBILITIES.md#maintainer-responsibilities) for information about the role of a maintainer, what maintainers do in this and other repos, and how they should be doing it. If you're interested in contributing or becoming a maintainer, see [CONTRIBUTING](CONTRIBUTING.md).  
 
 ## Current Maintainers
 

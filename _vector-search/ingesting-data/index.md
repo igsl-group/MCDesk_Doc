@@ -23,7 +23,7 @@ The following table compares the two ingestion methods.
 
 ## Raw vector ingestion
 
-When working with raw vectors or embeddings generated outside of SmartObserve, you directly ingest vector data into the `knn_vector` field. No pipeline is required because the vectors are already generated:
+When working with raw vectors or embeddings generated outside of MCdesk, you directly ingest vector data into the `knn_vector` field. No pipeline is required because the vectors are already generated:
 
 ```json
 PUT /my-raw-vector-index/_doc/1
@@ -72,7 +72,7 @@ PUT /_bulk
 
 ## Working with sparse vectors
 
-SmartObserve also supports sparse vectors. For more information, see [Neural sparse search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-search/).
+MCdesk also supports sparse vectors. For more information, see [Neural sparse search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-search/).
 
 ## Text chunking
 

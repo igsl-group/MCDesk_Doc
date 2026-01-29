@@ -10,7 +10,7 @@ redirect_from:
 
 # Pipelines
 
-Pipelines are critical components that streamline the process of acquiring, transforming, and loading data from various sources into a centralized data repository or processing system. The following diagram illustrates how SmartObserve Data Prepper ingests data into SmartObserve.
+Pipelines are critical components that streamline the process of acquiring, transforming, and loading data from various sources into a centralized data repository or processing system. The following diagram illustrates how MCdesk Data Prepper ingests data into MCdesk.
 
 <img src="{{site.url}}{{site.baseurl}}/images/data-prepper-pipeline.png" alt="Data Prepper pipeline">{: .img-fluid}
 
@@ -65,7 +65,7 @@ If a pipeline component fails to process and send an event, then the source rece
 
 Pipelines also support conditional routing, which enables the routing of events to different sinks based on specific conditions. To add conditional routing, specify a list of named routes using the `route` component and assign specific routes to sinks using the `routes` property. Any sink with the `routes` property only accepts events matching at least one of the routing conditions.
 
-In the following example pipeline, `application-logs` is a named route with a condition set to `/log_type == "application"`. The route uses [Data Prepper expressions](https://github.com/igsl-group/data-prepper/tree/main/examples) to define the condition. Data Prepper routes events satisfying this condition to the first SmartObserve sink. By default, Data Prepper routes all events to sinks without a defined route, as shown in the third SmartObserve sink of the given pipeline:
+In the following example pipeline, `application-logs` is a named route with a condition set to `/log_type == "application"`. The route uses [Data Prepper expressions](https://github.com/igsl-group/data-prepper/tree/main/examples) to define the condition. Data Prepper routes events satisfying this condition to the first MCdesk sink. By default, Data Prepper routes all events to sinks without a defined route, as shown in the third MCdesk sink of the given pipeline:
 
 ```yml
 conditional-routing-sample-pipeline:
@@ -76,16 +76,16 @@ conditional-routing-sample-pipeline:
     - application-logs: '/log_type == "application"'
     - http-logs: '/log_type == "apache"'
   sink:
-    - smartobserve:
-        hosts: [ "https://smartobserve:9200" ]
+    - mcdesk:
+        hosts: [ "https://mcdesk:9200" ]
         index: application_logs
         routes: [application-logs]
-    - smartobserve:
-        hosts: [ "https://smartobserve:9200" ]
+    - mcdesk:
+        hosts: [ "https://mcdesk:9200" ]
         index: http_logs
         routes: [http-logs]
-    - smartobserve:
-        hosts: [ "https://smartobserve:9200" ]
+    - mcdesk:
+        hosts: [ "https://mcdesk:9200" ]
         index: all_logs
 ```
 {% include copy.html %}

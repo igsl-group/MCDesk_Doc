@@ -157,7 +157,7 @@ The following response returns detailed recovery information about an index name
           "host": "172.18.0.3",
           "transport_address": "172.18.0.3:9300",
           "ip": "172.18.0.3",
-          "name": "smartobserve-node2"
+          "name": "mcdesk-node2"
         },
         "index": {
           "size": {
@@ -271,14 +271,14 @@ The following response returns detailed recovery information about an index name
           "host": "172.18.0.3",
           "transport_address": "172.18.0.3:9300",
           "ip": "172.18.0.3",
-          "name": "smartobserve-node2"
+          "name": "mcdesk-node2"
         },
         "target": {
           "id": "HFYKietmTO6Ud9COgP0k9Q",
           "host": "172.18.0.2",
           "transport_address": "172.18.0.2:9300",
           "ip": "172.18.0.2",
-          "name": "smartobserve-node1"
+          "name": "mcdesk-node1"
         },
         "index": {
           "size": {

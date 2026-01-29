@@ -1,13 +1,13 @@
-# SmartObserve Documentation Website 2.5.0 Release Notes
+# MCdesk Documentation Website 2.5.0 Release Notes
 
-The SmartObserve 2.5.0 documentation includes the following additions and updates.
+The MCdesk 2.5.0 documentation includes the following additions and updates.
 
 ## New documentation for 2.5.0
 
 - Add k-NN filter to neural search [#2466](https://github.com/igsl-group/documentation-website/pull/2466)
 - Add two new settings for Anomaly Detection 2.5 [#2450](https://github.com/igsl-group/documentation-website/pull/2450)
 - Add new ML cluster settings for 2.5 [#2442](https://github.com/igsl-group/documentation-website/pull/2442)
-- Adds installation guide for SmartObserve Dashboards debian distribution [#2440](https://github.com/igsl-group/documentation-website/pull/2440)
+- Adds installation guide for MCdesk Dashboards debian distribution [#2440](https://github.com/igsl-group/documentation-website/pull/2440)
 - Add cluster awareness and decommission docs [#2438](https://github.com/igsl-group/documentation-website/pull/2438)
 - Add Query String for rollups [#2428](https://github.com/igsl-group/documentation-website/pull/2428)
 - Update field mapping documentation for Security Analytics [#2422](https://github.com/igsl-group/documentation-website/pull/2422)

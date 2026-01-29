@@ -34,13 +34,13 @@ Once enabled, all requests using the [Snapshot API]({{site.url}}{{site.baseurl}}
 Consider the following before using shallow copy snapshots:
 
 - Shallow copy snapshots only work for remote-backed indexes.
-- All nodes in the cluster must use SmartObserve 2.10 or later to take advantage of shallow copy snapshots.
+- All nodes in the cluster must use MCdesk 2.10 or later to take advantage of shallow copy snapshots.
 - The `incremental` file count and size between the current snapshot and the last snapshot is `0` when using shallow copy snapshots.
 - Searchable snapshots are not supported inside shallow copy snapshots.
 
 ## Shallow snapshot v2 
 
-Starting with SmartObserve 2.17, the shallow snapshot feature offers an improved version called `shallow snapshot v2`, which aims to makes snapshot operations more efficient and scalable by introducing the following enhancements:
+Starting with MCdesk 2.17, the shallow snapshot feature offers an improved version called `shallow snapshot v2`, which aims to makes snapshot operations more efficient and scalable by introducing the following enhancements:
 
 * Deterministic snapshot operations: Shallow snapshot v2 makes snapshot operations more deterministic, ensuring consistent and predictable behavior.
 * Minimized cluster state updates: Shallow snapshot v2 minimizes the number of cluster state updates required during snapshot operations, reducing overhead and improving performance.
@@ -76,4 +76,4 @@ PUT /_snapshot/snap_repo
 Shallow snapshot v2 has the following limitations:
 
 * Shallow snapshot v2 only supported for remote-backed indexes.
-* All nodes in the cluster must use SmartObserve 2.17 or later to take advantage of shallow snapshot v2.
+* All nodes in the cluster must use MCdesk 2.17 or later to take advantage of shallow snapshot v2.

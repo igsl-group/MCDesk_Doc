@@ -25,7 +25,7 @@ You will need to add the URL with the `-u` argument when you request the report 
 The following command requests a report in PNG format with basic authentication and sends the report to an email address using Amazon SES:
 
 ```
-smartobserve-reporting-cli -u https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d -a basic -c admin:Test@1234 -e ses -s <email address>  -r <email address> -f png
+mcdesk-reporting-cli -u https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d -a basic -c admin:Test@1234 -e ses -s <email address>  -r <email address> -f png
 ```
 
 #### Example: Requesting a PDF file
@@ -33,7 +33,7 @@ smartobserve-reporting-cli -u https://localhost:5601/app/dashboards#/view/7adfa7
 The following command requests a PDF file and specifies the recipient's email address:
 
 ```
-smartobserve-reporting-cli -u https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d -a basic -c admin:Test@1234 -e ses -s <email address> -r <email address> -f pdf
+mcdesk-reporting-cli -u https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d -a basic -c admin:Test@1234 -e ses -s <email address> -r <email address> -f pdf
 ```
 
 Upon success, the file will be sent to the specified email address. The following image shows an example PDF report.
@@ -45,7 +45,7 @@ Upon success, the file will be sent to the specified email address. The followin
 The following command generates a report that contains all table content in CSV format and sends the report to an email address using Amazon SES transport:
 
 ```
-smartobserve-reporting-cli -u https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d -f csv -a basic -c admin:Test@1234 -e ses -s <email address> -r <email address>
+mcdesk-reporting-cli -u https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d -f csv -a basic -c admin:Test@1234 -e ses -s <email address> -r <email address>
 ```
 
 Upon success, the email will be sent to the specified email address with the CSV file attached.

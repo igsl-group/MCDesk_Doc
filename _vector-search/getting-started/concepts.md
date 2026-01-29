@@ -7,7 +7,7 @@ nav_order: 40
 
 # Concepts  
 
-This page defines key terms and techniques related to vector search in SmartObserve.
+This page defines key terms and techniques related to vector search in MCdesk.
 
 ## Vector representations  
 

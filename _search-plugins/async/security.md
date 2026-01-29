@@ -21,11 +21,11 @@ As an admin user, you can use the Security plugin to assign specific permissions
 
 The Security plugin has two built-in roles that cover most asynchronous search use cases: `asynchronous_search_full_access` and `asynchronous_search_read_access`. For descriptions of each, see [Predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles#predefined-roles).
 
-If these roles don’t meet your needs, mix and match individual asynchronous search permissions to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/smartobserve/asynchronous_search/delete` permission lets you delete a previously submitted asynchronous search.
+If these roles don’t meet your needs, mix and match individual asynchronous search permissions to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/mcdesk/asynchronous_search/delete` permission lets you delete a previously submitted asynchronous search.
 
 ### A note on Asynchronous Search and fine-grained access control
 
-By design, the Asynchronous Search plugin extracts data from a target index and stores the data in a separate index to make search results available to users with the proper permissions. Although a user with either the `asynchronous_search_read_access` or `cluster:admin/smartobserve/asynchronous_search/get` permission cannot submit the asynchronous search request itself, that user can get and view the search results using the associated search ID. [Document-level security]({{site.url}}{{site.baseurl}}/security/access-control/document-level-security) (DLS) and [field-level security]({{site.url}}{{site.baseurl}}/security/access-control/field-level-security) (FLS) access controls are designed to protect the data in the target index. But once the data is stored outside this index, users with these access permissions are able to use search IDs to get and view asynchronous search results, which may include data that is otherwise concealed by DLS and FLS access control in the target index.
+By design, the Asynchronous Search plugin extracts data from a target index and stores the data in a separate index to make search results available to users with the proper permissions. Although a user with either the `asynchronous_search_read_access` or `cluster:admin/mcdesk/asynchronous_search/get` permission cannot submit the asynchronous search request itself, that user can get and view the search results using the associated search ID. [Document-level security]({{site.url}}{{site.baseurl}}/security/access-control/document-level-security) (DLS) and [field-level security]({{site.url}}{{site.baseurl}}/security/access-control/field-level-security) (FLS) access controls are designed to protect the data in the target index. But once the data is stored outside this index, users with these access permissions are able to use search IDs to get and view asynchronous search results, which may include data that is otherwise concealed by DLS and FLS access control in the target index.
 
 To reduce the chances of unintended users viewing search results that could describe an index, we recommend that administrators enable role-based access control and keep these kinds of design elements in mind when assigning permissions to the intended group of users. See [Limit access by backend role](#advanced-limit-access-by-backend-role) for details.
 
@@ -35,7 +35,7 @@ Use backend roles to configure fine-grained access to asynchronous searches base
 
 First, make sure your users have the appropriate [backend roles]({{site.url}}{{site.baseurl}}/security/access-control/index/). Backend roles usually come from an [LDAP server]({{site.url}}{{site.baseurl}}/security/configuration/ldap/) or [SAML provider]({{site.url}}{{site.baseurl}}/security/configuration/saml/). However, if you use the internal user database, you can use the REST API to [add them manually]({{site.url}}{{site.baseurl}}/security/access-control/api#create-user).
 
-Now when users view asynchronous search resources in SmartObserve Dashboards (or make REST API calls), they only see asynchronous searches submitted by users who have a subset of the backend role.
+Now when users view asynchronous search resources in MCdesk Dashboards (or make REST API calls), they only see asynchronous searches submitted by users who have a subset of the backend role.
 For example, consider two users: `judy` and `elon`.
 
 `judy` has an IT backend role:

@@ -4,7 +4,7 @@ title: Term-level and full-text queries compared
 nav_order: 10
 redirect_from:
   - /query-dsl/query-dsl/term-vs-full-text/
-  - /smartobserve/query-dsl/term-vs-full-text/
+  - /mcdesk/query-dsl/term-vs-full-text/
 ---
 
 # Term-level and full-text queries compared
@@ -18,12 +18,12 @@ You can use both term-level and full-text queries to search text, but while term
 *Relevance* | Term-level queries simply return documents that match without sorting them based on the relevance score. They still calculate the relevance score, but this score is the same for all the documents that are returned. | Full-text queries calculate a relevance score for each match and sort the results by decreasing order of relevance.
 *Use Case* | Use term-level queries when you want to match exact values such as numbers, dates, or tags and don't need the matches to be sorted by relevance. | Use full-text queries to match text fields and sort by relevance after taking into account factors like casing and stemming variants.
 
-SmartObserve uses the BM25 ranking algorithm to calculate relevance scores. To learn more, see [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25).
+MCdesk uses the BM25 ranking algorithm to calculate relevance scores. To learn more, see [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25).
 {: .note }
 
 ## Should I use a full-text or a term-level query?
 
-To clarify the difference between full-text and term-level queries, consider the following two examples that search for a specific text phrase. The complete works of Shakespeare are indexed in an SmartObserve cluster.
+To clarify the difference between full-text and term-level queries, consider the following two examples that search for a specific text phrase. The complete works of Shakespeare are indexed in an MCdesk cluster.
 
 ### Example: Phrase search
 
@@ -147,7 +147,7 @@ The search query “To be, or not to be” is analyzed and tokenized into an arr
 ...
 ```
 
-For a list of all full-text queries, see [Full-text queries]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/full-text/index).
+For a list of all full-text queries, see [Full-text queries]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/full-text/index).
 
 ### Example: Exact term search
 
@@ -231,5 +231,5 @@ The response contains document matches:
 ...
 ```
 
-The term-level queries provide exact matches. So if you search for “Hamlet”, you don’t receive any matches, because “HAMLET” is a keyword field and is stored in SmartObserve literally and not in an analyzed form.
+The term-level queries provide exact matches. So if you search for “Hamlet”, you don’t receive any matches, because “HAMLET” is a keyword field and is stored in MCdesk literally and not in an analyzed form.
 The search query “HAMLET” is also searched literally. So to get a match for this field, we need to enter the exact same characters.

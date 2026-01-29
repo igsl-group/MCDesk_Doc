@@ -4,13 +4,13 @@ title: Geo-bounding box
 parent: Geographic and xy queries
 nav_order: 10
 redirect_from:
-  - /smartobserve/query-dsl/geo-and-xy/geo-bounding-box/
+  - /mcdesk/query-dsl/geo-and-xy/geo-bounding-box/
   - /query-dsl/query-dsl/geo-and-xy/geo-bounding-box/
 ---
 
 # Geo-bounding box query
 
-To search for documents that contain [geopoint]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point/) fields, use a geo-bounding box query. The geo-bounding box query returns documents whose geopoints are within the bounding box specified in the query. A document with multiple geopoints matches the query if at least one geopoint is within the bounding box.
+To search for documents that contain [geopoint]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point/) fields, use a geo-bounding box query. The geo-bounding box query returns documents whose geopoints are within the bounding box specified in the query. A document with multiple geopoints matches the query if at least one geopoint is within the bounding box.
 
 ## Example
 
@@ -186,7 +186,7 @@ Parameter | Data type | Description
 
 ## Accepted formats
 
-You can specify coordinates of the bounding box vertices in any [format]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point#formats) that the geopoint field type accepts.  
+You can specify coordinates of the bounding box vertices in any [format]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point#formats) that the geopoint field type accepts.  
 
 ### Using a geohash to specify the bounding box
 

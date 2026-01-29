@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 35
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-nodeattrs/
+- /mcdesk/rest-api/cat/cat-nodeattrs/
 ---
 
 # CAT Nodeattrs API

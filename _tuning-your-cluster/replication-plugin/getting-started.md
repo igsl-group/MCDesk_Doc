@@ -9,13 +9,13 @@ redirect_from:
 
 # Getting started with cross-cluster replication
 
-With cross-cluster replication, you index data to a leader index, and SmartObserve replicates that data to one or more read-only follower indexes. All subsequent operations on the leader are replicated on the follower, such as creating, updating, or deleting documents.
+With cross-cluster replication, you index data to a leader index, and MCdesk replicates that data to one or more read-only follower indexes. All subsequent operations on the leader are replicated on the follower, such as creating, updating, or deleting documents.
 
 ## Prerequisites
 
 Cross-cluster replication has the following prerequisites:
 - Both the leader and follower cluster must have the replication plugin installed.
-- If you've overridden `node.roles` in `smartobserve.yml` on the follower cluster, make sure it also includes the `remote_cluster_client` role:
+- If you've overridden `node.roles` in `mcdesk.yml` on the follower cluster, make sure it also includes the `remote_cluster_client` role:
 
    ```yaml
    node.roles: [<other_roles>, remote_cluster_client]
@@ -46,7 +46,7 @@ curl -XGET -k -u 'admin:<custom-admin-password>' 'https://localhost:9200/_opendi
 }
   ```
 
-Then verify that it's part of the leader cluster configuration in `smartobserve.yml`. Otherwise, add it under the following setting:
+Then verify that it's part of the leader cluster configuration in `mcdesk.yml`. Otherwise, add it under the following setting:
 
   ```yaml
 plugins.security.nodes_dn:
@@ -61,7 +61,7 @@ To start two single-node clusters on the same network, save this sample file as 
 version: '3'
 services:
   replication-node1:
-    image: smartobserveproject/smartobserve:{{site.smartobserve_version}}
+    image: mcdeskproject/mcdesk:{{site.mcdesk_version}}
     container_name: replication-node1
     environment:
       - cluster.name=leader-cluster
@@ -73,14 +73,14 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - smartobserve-data2:/usr/share/smartobserve/data
+      - mcdesk-data2:/usr/share/mcdesk/data
     ports:
       - 9201:9200
       - 9700:9600 # required for Performance Analyzer
     networks:
-      - smartobserve-net
+      - mcdesk-net
   replication-node2:
-    image: smartobserveproject/smartobserve:{{site.smartobserve_version}}
+    image: mcdeskproject/mcdesk:{{site.mcdesk_version}}
     container_name: replication-node2
     environment:
       - cluster.name=follower-cluster
@@ -92,19 +92,19 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - smartobserve-data1:/usr/share/smartobserve/data
+      - mcdesk-data1:/usr/share/mcdesk/data
     ports:
       - 9200:9200
       - 9600:9600 # required for Performance Analyzer
     networks:
-      - smartobserve-net
+      - mcdesk-net
 
 volumes:
-  smartobserve-data1:
-  smartobserve-data2:
+  mcdesk-data1:
+  mcdesk-data2:
 
 networks:
-  smartobserve-net:
+  mcdesk-net:
 ```
 
 After the clusters start, verify the names of each:
@@ -130,8 +130,8 @@ To get the IP address for the leader cluster, first identify its container ID:
 ```bash
 docker ps
 CONTAINER ID    IMAGE                                       PORTS                                                      NAMES
-3b8cdc698be5    smartobserveproject/smartobserve:{{site.smartobserve_version}}   0.0.0.0:9200->9200/tcp, 0.0.0.0:9600->9600/tcp, 9300/tcp   replication-node2
-731f5e8b0f4b    smartobserveproject/smartobserve:{{site.smartobserve_version}}   9300/tcp, 0.0.0.0:9201->9200/tcp, 0.0.0.0:9700->9600/tcp   replication-node1
+3b8cdc698be5    mcdeskproject/mcdesk:{{site.mcdesk_version}}   0.0.0.0:9200->9200/tcp, 0.0.0.0:9600->9600/tcp, 9300/tcp   replication-node2
+731f5e8b0f4b    mcdeskproject/mcdesk:{{site.mcdesk_version}}   9300/tcp, 0.0.0.0:9201->9200/tcp, 0.0.0.0:9700->9600/tcp   replication-node1
 ```
 
 Then get that container's IP address:
@@ -209,7 +209,7 @@ curl -XPUT -k -H 'Content-Type: application/json' -u 'admin:<custom-admin-passwo
 }'
 ```
 
-If the Security plugin is disabled, omit the `use_roles` parameter. If it's enabled, however, you must specify the leader and follower cluster roles that SmartObserve will use to authenticate the request. This example uses `all_access` for simplicity, but we recommend creating a replication user on each cluster and [mapping it accordingly]({{site.url}}{{site.baseurl}}/replication-plugin/permissions/#map-the-leader-and-follower-cluster-roles).
+If the Security plugin is disabled, omit the `use_roles` parameter. If it's enabled, however, you must specify the leader and follower cluster roles that MCdesk will use to authenticate the request. This example uses `all_access` for simplicity, but we recommend creating a replication user on each cluster and [mapping it accordingly]({{site.url}}{{site.baseurl}}/replication-plugin/permissions/#map-the-leader-and-follower-cluster-roles).
 {: .tip }
 
 This command creates an identical read-only index named `follower-01` on the follower cluster that continuously stays updated with changes to the `leader-01` index on the leader cluster. Starting replication creates a follower index from scratch -- you can't convert an existing index to a follower index. 

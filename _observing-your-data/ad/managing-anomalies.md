@@ -165,9 +165,9 @@ Note the following key configuration in the example alert monitor:
 
 - **`"size": 1`** in the search input: Retrieves a single document so you can reference `ctx.results.0.hits.hits.0` in the notification to identify which entity (such as `host` or `service`) triggered the alert.
 
-- **`execution_end_time` range `"{{period_end}}||-2m"` → `"{{period_end}}"`**: Filters results based on detector `execution_end_time`---the time the detector finishes running and indexes the result. Because SmartObserve operates in near real time (results are not immediate), indexing and refresh operations introduce a delay before a document becomes searchable. To account for this write-to-search latency, this example includes a small overlap (`-2m`). Specify the overlap based on your system's worst-case delay. Avoid using `data_end_time` (the bucket's logical end), which can miss results that arrive later.
+- **`execution_end_time` range `"{{period_end}}||-2m"` → `"{{period_end}}"`**: Filters results based on detector `execution_end_time`---the time the detector finishes running and indexes the result. Because MCdesk operates in near real time (results are not immediate), indexing and refresh operations introduce a delay before a document becomes searchable. To account for this write-to-search latency, this example includes a small overlap (`-2m`). Specify the overlap based on your system's worst-case delay. Avoid using `data_end_time` (the bucket's logical end), which can miss results that arrive later.
 
-- **`"indices": [".opendistro-anomaly-results*"]`**: Matches the default result index pattern. Update this pattern if you route results to a custom index, such as `smartobserve-ad-plugin-result-abc*`.
+- **`"indices": [".opendistro-anomaly-results*"]`**: Matches the default result index pattern. Update this pattern if you route results to a custom index, such as `mcdesk-ad-plugin-result-abc*`.
 
 - **`"detector_id": {"value": "oJzeoZkB8KmRTvydzJDF"}`** (optional): Use this filter to target a specific detector and avoid matching unrelated anomalies from other detectors.
 

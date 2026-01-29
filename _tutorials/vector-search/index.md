@@ -46,7 +46,7 @@ other:
 
 # Vector search tutorials
 
-Explore the following tutorials to learn about implementing vector search applications using the SmartObserve vector database. For more information about using SmartObserve as a vector database, see [Vector search]({{site.url}}{{site.baseurl}}/vector-search/).
+Explore the following tutorials to learn about implementing vector search applications using the MCdesk vector database. For more information about using MCdesk as a vector database, see [Vector search]({{site.url}}{{site.baseurl}}/vector-search/).
 
 ## Vector search 101
 

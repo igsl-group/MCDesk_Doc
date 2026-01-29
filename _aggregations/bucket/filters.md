@@ -15,7 +15,7 @@ While the `filter` aggregation results in a single bucket, the `filters` aggrega
 To create a bucket for all the documents that didn't match the any of the filter queries, set the `other_bucket` property to `true`:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

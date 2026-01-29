@@ -11,7 +11,7 @@ We don't recommend changing these settings; the defaults should work well for mo
 
 Index State Management (ISM) stores its configuration in the `.opendistro-ism-config` index. Don't modify this index without using the [ISM API operations]({{site.url}}{{site.baseurl}}/im-plugin/ism/api/).
 
-All settings are available using the SmartObserve `_cluster/settings` operation. None require a restart, and all can be marked `persistent` or `transient`. To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+All settings are available using the MCdesk `_cluster/settings` operation. None require a restart, and all can be marked `persistent` or `transient`. To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 Setting | Default | Description
 :--- | :--- | :---

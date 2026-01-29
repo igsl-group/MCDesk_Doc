@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 55
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-segments/
+- /mcdesk/rest-api/cat/cat-segments/
 ---
 
 # CAT Segments API
@@ -132,4 +132,4 @@ movies | 0 | r | 172.18.0.3 | _0 | 0 | 1 | 0 | 3.5kb | 1364 | true | true | 8.7.
 
 ## Limiting the response size
 
-To limit the number of indexes returned, configure the `cat.segments.response.limit.number_of_indices` setting. For more information, see [Cluster-level CAT response limit settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/cluster-settings/#cluster-level-cat-response-limit-settings).
+To limit the number of indexes returned, configure the `cat.segments.response.limit.number_of_indices` setting. For more information, see [Cluster-level CAT response limit settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/cluster-settings/#cluster-level-cat-response-limit-settings).

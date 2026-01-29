@@ -52,7 +52,7 @@ POST /_plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with a connector ID:
+MCdesk responds with a connector ID:
 
 ```json
 {
@@ -64,7 +64,7 @@ For information about connecting to an Anthropic Claude model or OpenAI models, 
 
 ## Step 2: Register and deploy the model 
 
-To register and deploy the model to SmartObserve, send the following request, providing the connector ID from the previous step:
+To register and deploy the model to MCdesk, send the following request, providing the connector ID from the previous step:
 
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
@@ -77,7 +77,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with a model ID:
+MCdesk responds with a model ID:
 
 ```json
 {
@@ -120,7 +120,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -130,7 +130,7 @@ SmartObserve responds with an agent ID:
 
 ## Step 4: Run the agent
 
-Before you run the agent, make sure that you add the sample SmartObserve Dashboards `Sample web logs` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
+Before you run the agent, make sure that you add the sample MCdesk Dashboards `Sample web logs` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
 
 Then, run the agent by sending the following request:
 
@@ -140,13 +140,13 @@ POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
   "parameters": {
     "verbose": true,
     "question": "what is the error rate yesterday",
-    "index": "smartobserve_dashboards_sample_data_logs"
+    "index": "mcdesk_dashboards_sample_data_logs"
   }
 }
 ```
 {% include copy-curl.html %} 
 
-SmartObserve returns the PPL query and the query results:
+MCdesk returns the PPL query and the query results:
 
 ```json
 {
@@ -155,7 +155,7 @@ SmartObserve returns the PPL query and the query results:
       "output": [
         {
           "name": "response",
-          "result":"{\"ppl\":\"source\=smartobserve_dashboards_sample_data_logs| where timestamp \> DATE_SUB(NOW(), INTERVAL 1 DAY) AND timestamp \< NOW() | eval is_error\=IF(response\=\'200\', 0, 1.0) | stats AVG(is_error) as error_rate\",\"executionResult\":\"{\\n  \\\"schema\\\": [\\n    {\\n      \\\"name\\\": \\\"error_rate\\\",\\n      \\\"type\\\": \\\"double\\\"\\n    }\\n  ],\\n  \\\"datarows\\\": [\\n    [\\n      null\\n    ]\\n  ],\\n  \\\"total\\\": 1,\\n  \\\"size\\\": 1\\n}\"}"
+          "result":"{\"ppl\":\"source\=mcdesk_dashboards_sample_data_logs| where timestamp \> DATE_SUB(NOW(), INTERVAL 1 DAY) AND timestamp \< NOW() | eval is_error\=IF(response\=\'200\', 0, 1.0) | stats AVG(is_error) as error_rate\",\"executionResult\":\"{\\n  \\\"schema\\\": [\\n    {\\n      \\\"name\\\": \\\"error_rate\\\",\\n      \\\"type\\\": \\\"double\\\"\\n    }\\n  ],\\n  \\\"datarows\\\": [\\n    [\\n      null\\n    ]\\n  ],\\n  \\\"total\\\": 1,\\n  \\\"size\\\": 1\\n}\"}"
         }
       ]
     }
@@ -163,7 +163,7 @@ SmartObserve returns the PPL query and the query results:
 }
 ```
 
-If you set `execute` to `false`, SmartObserve only returns the query but does not run it:
+If you set `execute` to `false`, MCdesk only returns the query but does not run it:
 
 ```json
 {
@@ -172,7 +172,7 @@ If you set `execute` to `false`, SmartObserve only returns the query but does no
       "output": [
         {
             "name": "response",
-            "result": "source=smartobserve_dashboards_sample_data_logs| where timestamp > DATE_SUB(NOW(), INTERVAL 1 DAY) AND timestamp < NOW() | eval is_error=IF(response='200', 0, 1.0) | stats AVG(is_error) as error_rate"
+            "result": "source=mcdesk_dashboards_sample_data_logs| where timestamp > DATE_SUB(NOW(), INTERVAL 1 DAY) AND timestamp < NOW() | eval is_error=IF(response='200', 0, 1.0) | stats AVG(is_error) as error_rate"
         }
       ]
     }

@@ -13,11 +13,11 @@ Introduced 2.12
 
 The `rerank` search response processor intercepts and reranks search results. The processor orders documents in the search results based on their new scores. 
 
-SmartObserve supports the following rerank types.
+MCdesk supports the following rerank types.
 
 Type | Description | Earliest available version
 :--- | :--- | :---
-[`ml_smartobserve`](#the-ml_smartobserve-rerank-type) | Applies an SmartObserve-provided cross-encoder model. | 2.12
+[`ml_mcdesk`](#the-ml_mcdesk-rerank-type) | Applies an MCdesk-provided cross-encoder model. | 2.12
 [`by_field`](#the-by_field-rerank-type) | Applies reranking based on a user-provided field. | 2.18
 
 ## Request body fields
@@ -26,34 +26,34 @@ The following table lists all available request fields.
 
 Field | Data type | Required/Optional | Description
 :--- | :--- | :--- | :---
-`<rerank_type>` | Object | Required | The rerank type for document reranking. Valid values are `ml-smartobserve` and `by_field`.
-`context` | Object |  Required for the `ml_smartobserve` rerank type. Optional and does not affect the results for the `by_field` rerank type. | Provides the `rerank` processor with information necessary for reranking at query time. 
+`<rerank_type>` | Object | Required | The rerank type for document reranking. Valid values are `ml-mcdesk` and `by_field`.
+`context` | Object |  Required for the `ml_mcdesk` rerank type. Optional and does not affect the results for the `by_field` rerank type. | Provides the `rerank` processor with information necessary for reranking at query time. 
 `tag` | String | Optional | The processor's identifier.
 `description` | String | Optional | A description of the processor.
-`ignore_failure` | Boolean | Optional | If `true`, SmartObserve [ignores any failure]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/creating-search-pipeline/#ignoring-processor-failures) of this processor and continues to run the remaining processors in the search pipeline. Default is `false`.
+`ignore_failure` | Boolean | Optional | If `true`, MCdesk [ignores any failure]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/creating-search-pipeline/#ignoring-processor-failures) of this processor and continues to run the remaining processors in the search pipeline. Default is `false`.
 
 <!-- vale off -->
-## The ml_smartobserve rerank type
+## The ml_mcdesk rerank type
 <!-- vale on -->
 Introduced 2.12
 {: .label .label-purple }
 
-To rerank results using a cross-encoder model, specify the `ml_smartobserve` rerank type.
+To rerank results using a cross-encoder model, specify the `ml_mcdesk` rerank type.
 
 ### Prerequisite
 
-Before using the `ml_smartobserve` rerank type, you must configure a cross-encoder model. For information about using an SmartObserve-provided model, see [Cross-encoder models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#cross-encoder-models). For information about using a custom model, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
+Before using the `ml_mcdesk` rerank type, you must configure a cross-encoder model. For information about using an MCdesk-provided model, see [Cross-encoder models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#cross-encoder-models). For information about using a custom model, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
 
-The `ml_smartobserve` rerank type supports the following fields. All fields are required.
+The `ml_mcdesk` rerank type supports the following fields. All fields are required.
 
 Field  | Data type | Description
 :--- | :---  | :--- 
-`ml_smartobserve.model_id` | String | The model ID of the cross-encoder model for reranking. For more information, see [Using ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/).
+`ml_mcdesk.model_id` | String | The model ID of the cross-encoder model for reranking. For more information, see [Using ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/).
 `context.document_fields` | Array | An array of document fields that specifies the fields from which to retrieve context for the cross-encoder model. 
 
 ### Example 
 
-The following example demonstrates using a search pipeline with a `rerank` processor implemented using the `ml_smartobserve` rerank type. For a complete example, see [Reranking using a cross-encoder model]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/rerank-cross-encoder/).
+The following example demonstrates using a search pipeline with a `rerank` processor implemented using the `ml_mcdesk` rerank type. For a complete example, see [Reranking using a cross-encoder model]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/rerank-cross-encoder/).
 
 ### Creating a search pipeline
 
@@ -65,7 +65,7 @@ PUT /_search/pipeline/rerank_pipeline
   "response_processors": [
     {
       "rerank": {
-        "ml_smartobserve": {
+        "ml_mcdesk": {
           "model_id": "gnDIbI0BfUsSoeNT_jAw"
         },
         "context": {
@@ -80,7 +80,7 @@ PUT /_search/pipeline/rerank_pipeline
 
 ### Using a search pipeline
 
-Combine an SmartObserve query with an `ext` object that contains the query context for the large language model (LLM). Provide the `query_text` that will be used to rerank the results:
+Combine an MCdesk query with an `ext` object that contains the query context for the large language model (LLM). Provide the `query_text` that will be used to rerank the results:
 
 ```json
 POST /_search?search_pipeline=rerank_pipeline

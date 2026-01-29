@@ -91,7 +91,7 @@ The following example action has a timeout period of one hour. The policy retrie
 }
 ```
 
-For a list of available unit types, see [Supported units]({{site.url}}{{site.baseurl}}/smartobserve/units/).
+For a list of available unit types, see [Supported units]({{site.url}}{{site.baseurl}}/mcdesk/units/).
 
 ## ISM supported operations
 
@@ -395,7 +395,7 @@ Parameter | Description | Type
 
 ### snapshot
 
-Back up your cluster’s indexes and state. For more information about snapshots, see [Take and restore snapshots]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/snapshot-restore).
+Back up your cluster’s indexes and state. For more information about snapshots, see [Take and restore snapshots]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/snapshot-restore).
 
 The `snapshot` operation has the following parameters:
 
@@ -462,7 +462,7 @@ Parameter | Description | Type | Required | Default
 
 ### allocation
 
-Allocate the index to a node with a specific attribute set [like this]({{site.url}}{{site.baseurl}}/smartobserve/cluster/#advanced-step-7-set-up-a-hot-warm-architecture).
+Allocate the index to a node with a specific attribute set [like this]({{site.url}}{{site.baseurl}}/mcdesk/cluster/#advanced-step-7-set-up-a-hot-warm-architecture).
 For example, setting `require` to `warm` moves your data only to "warm" nodes.
 
 The `allocation` operation has the following parameters:
@@ -641,7 +641,7 @@ Parameter | Description | Type | Required
 `cron.cron.expression` | The `cron` expression that triggers the transition. | String | Yes
 `cron.cron.timezone` | The time zone that triggers the transition. | String | Yes
 
-All time-based values (`min_index_age`, `min_rollover_age`, `min_state_age`) use [standard SmartObserve time units]({{site.url}}{{site.baseurl}}/api-reference/common-parameters/#time-units).
+All time-based values (`min_index_age`, `min_rollover_age`, `min_state_age`) use [standard MCdesk time units]({{site.url}}{{site.baseurl}}/api-reference/common-parameters/#time-units).
 {: .note}
 
 

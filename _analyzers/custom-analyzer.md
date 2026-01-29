@@ -60,7 +60,7 @@ Use the following request to examine the tokens generated using the analyzer:
 GET simple_html_strip_analyzer_index/_analyze
 {
   "analyzer": "html_strip_analyzer",
-  "text": "<p>SmartObserve is <strong>awesome</strong>!</p>"
+  "text": "<p>MCdesk is <strong>awesome</strong>!</p>"
 }
 ```
 {% include copy-curl.html %}
@@ -71,7 +71,7 @@ The response contains the generated tokens:
 {
   "tokens": [
     {
-      "token": "smartobserve",
+      "token": "mcdesk",
       "start_offset": 3,
       "end_offset": 13,
       "type": "word",

@@ -12,7 +12,7 @@
 
 # Contributing guidelines
 
-Thank you for your interest in improving the SmartObserve documentation! We value and appreciate all feedback and contributions from our community, including requests for additional documentation, corrections to existing content, and reports of technical issues with the documentation site. 
+Thank you for your interest in improving the MCdesk documentation! We value and appreciate all feedback and contributions from our community, including requests for additional documentation, corrections to existing content, and reports of technical issues with the documentation site. 
 
 You can [create an issue](#creating-an-issue) asking us to change the documentation or [contribute content](#contributing-content) yourself.
 
@@ -48,7 +48,7 @@ The workflow for contributing documentation is the same as the one for contribut
 
 Before contributing content, make sure to read the following resources:
 - [README](README.md)
-- [SmartObserve Project Style Guidelines](STYLE_GUIDE.md)
+- [MCdesk Project Style Guidelines](STYLE_GUIDE.md)
 - [API Style Guide](API_STYLE_GUIDE.md)
 - [Formatting Guide](FORMATTING_GUIDE.md) 
 
@@ -151,12 +151,12 @@ We greatly appreciate all contributions to the documentation and will review the
 
 During the PR process, expect that there will be some back-and-forth. If you want your contribution to be merged quickly, try to respond to comments in a timely fashion, and let us know if you don't want to continue with the PR. 
 
-We use the [Vale](https://github.com/errata-ai/vale) linter to ensure that our documentation adheres to the [SmartObserve Project Style Guidelines](STYLE_GUIDE.md). Addressing Vale comments on the PR expedites the review process. You can also install Vale locally so you can address the comments before creating a PR. For more information, see [Style linting](#style-linting).
+We use the [Vale](https://github.com/errata-ai/vale) linter to ensure that our documentation adheres to the [MCdesk Project Style Guidelines](STYLE_GUIDE.md). Addressing Vale comments on the PR expedites the review process. You can also install Vale locally so you can address the comments before creating a PR. For more information, see [Style linting](#style-linting).
 
 
 ### Style linting
 
-To ensure that our documentation adheres to the [SmartObserve Project Style Guidelines](STYLE_GUIDE.md), we use the [Vale](https://github.com/errata-ai/vale) linter. Addressing Vale comments on the PR expedites the review process. You can also install Vale locally as follows so you can address the comments before creating a PR:
+To ensure that our documentation adheres to the [MCdesk Project Style Guidelines](STYLE_GUIDE.md), we use the [Vale](https://github.com/errata-ai/vale) linter. Addressing Vale comments on the PR expedites the review process. You can also install Vale locally as follows so you can address the comments before creating a PR:
 
 1. Download and install [Vale version 2.28.0](https://github.com/errata-ai/vale/releases/tag/v2.28.0).
 2. Run `vale *` from the documentation site root directory to lint all Markdown files. To lint a specific file, run `vale /path/to/file`.

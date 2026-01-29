@@ -43,7 +43,7 @@ To install the driver, download the bundled distribution installer from [here](h
 
 ### Windows
 
-1. Open the downloaded `SmartObserve SQL ODBC Driver-<version>-Windows.msi` installer.
+1. Open the downloaded `MCdesk SQL ODBC Driver-<version>-Windows.msi` installer.
 
    The installer is unsigned and shows a security dialog. Choose **More info** and **Run anyway**.
 
@@ -70,7 +70,7 @@ To customize the DSN, use **ODBC Data Source Administrator** which is pre-instal
 
 Before installing the ODBC Driver on macOS, install the iODBC Driver Manager.
 
-1. Open the downloaded `SmartObserve SQL ODBC Driver-<version>-Darwin.pkg` installer.
+1. Open the downloaded `MCdesk SQL ODBC Driver-<version>-Darwin.pkg` installer.
 
    The installer is unsigned and shows a security dialog. Right-click on the installer and choose **Open**.
 
@@ -92,19 +92,19 @@ This command gives the application permissions to save the driver and DSN config
 
 1. Choose **ODBC Drivers** tab.
 2. Choose **Add a Driver** and fill in the following details:
-   - **Description of the Driver**: Enter the driver name that you used for the ODBC connection (for example, SmartObserve SQL ODBC Driver).
-   - **Driver File Name**: Enter the path to the driver file (default: `<driver-install-dir>/bin/libsmartobservesqlodbc.dylib`).
-   - **Setup File Name**: Enter the path to the setup file (default: `<driver-install-dir>/bin/libsmartobservesqlodbc.dylib`).
+   - **Description of the Driver**: Enter the driver name that you used for the ODBC connection (for example, MCdesk SQL ODBC Driver).
+   - **Driver File Name**: Enter the path to the driver file (default: `<driver-install-dir>/bin/libmcdesksqlodbc.dylib`).
+   - **Setup File Name**: Enter the path to the setup file (default: `<driver-install-dir>/bin/libmcdesksqlodbc.dylib`).
 
 3. Choose the user driver.
 4. Choose **OK** to save the options.
 5. Choose the **User DSN** tab.
 6. Select **Add**.
 7. Choose the driver that you added above.
-8. For **Data Source Name (DSN)**, enter the name of the DSN used to store connection options (for example, SmartObserve SQL ODBC DSN).
+8. For **Data Source Name (DSN)**, enter the name of the DSN used to store connection options (for example, MCdesk SQL ODBC DSN).
 9. For **Comment**, add an optional comment.
-10. Add key-value pairs by using the `+` button. We recommend the following options for a default local SmartObserve installation:
-   - **Host**: `localhost` - SmartObserve server endpoint
+10. Add key-value pairs by using the `+` button. We recommend the following options for a default local MCdesk installation:
+   - **Host**: `localhost` - MCdesk server endpoint
    - **Port**: `9200` - The server port
    - **Auth**: `NONE` - The authentication mode
    - **Username**: `(blank)` - The username used for BASIC auth
@@ -118,10 +118,10 @@ This command gives the application permissions to save the driver and DSN config
 
 ## Customizing the ODBC driver
 
-The driver is in the form of a library file: `smartobservesqlodbc.dll` for Windows and `libsmartobservesqlodbc.dylib` for macOS.
+The driver is in the form of a library file: `mcdesksqlodbc.dll` for Windows and `libmcdesksqlodbc.dylib` for macOS.
 
 If you're using with ODBC compatible BI tools, refer to your BI tool documentation for configuring a new ODBC driver.
-Typically, all that's required is to make the BI tool aware of the location of the driver library file and then use it to set up the database (i.e., SmartObserve) connection.
+Typically, all that's required is to make the BI tool aware of the location of the driver library file and then use it to set up the database (i.e., MCdesk) connection.
 
 
 ### Connection strings and other settings
@@ -144,7 +144,7 @@ Option | Description | Type | Default
 :--- | :---
 `DSN` | Data source name that you used for configuring the connection. | `string` | -
 `Host / Server` | Hostname or IP address for the target cluster. | `string` | -
-`Port` | Port number on which the SmartObserve cluster's REST interface is listening. | `string` | -
+`Port` | Port number on which the MCdesk cluster's REST interface is listening. | `string` | -
 
 #### Authentication Options
 
@@ -178,14 +178,14 @@ You need administrative privileges to change the logging options.
 Pre-requisites:
 
 - Make sure the DSN is already set up.
-- Make sure SmartObserve is running on _host_ and _port_ as configured in DSN.
+- Make sure MCdesk is running on _host_ and _port_ as configured in DSN.
 - Make sure the `.tdc` is copied to `<user_home_directory>/Documents/My Tableau Repository/Datasources` in both macOS and Windows.
 
 1. Start Tableau. Under the **Connect** section, go to **To a Server** and choose **Other Databases (ODBC)**.
 
-2. In the **DSN drop-down**, select the SmartObserve DSN you set up in the previous set of steps. The options you added will be automatically filled in under the **Connection Attributes**.
+2. In the **DSN drop-down**, select the MCdesk DSN you set up in the previous set of steps. The options you added will be automatically filled in under the **Connection Attributes**.
 
-3. Select **Sign In**. After a few seconds, Tableau connects to your SmartObserve server. Once connected, you will be directed to the **Datasource** window. The **Database** will be already be populated with the name of the SmartObserve cluster.
+3. Select **Sign In**. After a few seconds, Tableau connects to your MCdesk server. Once connected, you will be directed to the **Datasource** window. The **Database** will be already be populated with the name of the MCdesk cluster.
 To list all the indexes, click the search icon under **Table**.
 
 4. Start experimenting with data by dragging the table to the connection area. Choose **Update Now** or **Automatically Update** to populate the table data.
@@ -200,8 +200,8 @@ Unable to connect to server.
 
 **Workaround**
 
-This is most likely due to SmartObserve server not running on **host** and **post** configured in DSN.
-Confirm **host** and **post** are correct and SmartObserve server is running with SmartObserve SQL plugin.
+This is most likely due to MCdesk server not running on **host** and **post** configured in DSN.
+Confirm **host** and **post** are correct and MCdesk server is running with MCdesk SQL plugin.
 Also make sure `.tdc` that was downloaded with the installer is copied correctly to `<user_home_directory>/Documents/My Tableau Repository/Datasources` directory.
 
 ## Connecting to Microsoft Power BI

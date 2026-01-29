@@ -6,14 +6,14 @@ parent: Cluster APIs
 has_children: false
 redirect_from: 
  - /api-reference/cluster-health/
- - /smartobserve/rest-api/cluster-health/
+ - /mcdesk/rest-api/cluster-health/
 ---
 
 # Cluster Health API
 **Introduced 1.0**
 {: .label .label-purple }
 
-The most basic cluster health request returns a simple status of the health of your cluster. SmartObserve expresses cluster health in three colors: green, yellow, and red. A green status means all primary shards and their replicas are allocated to nodes. A yellow status means all primary shards are allocated to nodes, but some replicas aren't. A red status means at least one primary shard is not allocated to any node.
+The most basic cluster health request returns a simple status of the health of your cluster. MCdesk expresses cluster health in three colors: green, yellow, and red. A green status means all primary shards and their replicas are allocated to nodes. A yellow status means all primary shards are allocated to nodes, but some replicas aren't. A red status means at least one primary shard is not allocated to any node.
 
 To get the status of a specific index, provide the index name.
 
@@ -109,7 +109,7 @@ The response contains cluster health information:
 
 ```json
 {
-  "cluster_name" : "smartobserve-cluster",
+  "cluster_name" : "mcdesk-cluster",
   "status" : "green",
   "timed_out" : false,
   "number_of_nodes" : 2,
@@ -279,9 +279,9 @@ response = client.cluster.health(
     python=step1_python %}
 <!-- spec_insert_end -->
 
-In response to the preceding request, SmartObserve returns cluster health information only for the `zone` awareness attribute.
+In response to the preceding request, MCdesk returns cluster health information only for the `zone` awareness attribute.
 
-The unassigned shard information will be accurate only if you [enable replica count enforcement]({{site.url}}{{site.baseurl}}/smartobserve/cluster#replica-count-enforcement) and [configure forced awareness]({{site.url}}{{site.baseurl}}/smartobserve/cluster#forced-awareness) for the awareness attribute either before cluster start or after cluster start but before any indexing requests. If you enable replica enforcement after the cluster receives indexing requests, the unassigned shard information may be inaccurate. If you don't configure replica count enforcement and forced awareness, the `unassigned_shards` field will contain -1.
+The unassigned shard information will be accurate only if you [enable replica count enforcement]({{site.url}}{{site.baseurl}}/mcdesk/cluster#replica-count-enforcement) and [configure forced awareness]({{site.url}}{{site.baseurl}}/mcdesk/cluster#forced-awareness) for the awareness attribute either before cluster start or after cluster start but before any indexing requests. If you enable replica enforcement after the cluster receives indexing requests, the unassigned shard information may be inaccurate. If you don't configure replica count enforcement and forced awareness, the `unassigned_shards` field will contain -1.
 {: .warning}
 
 ## Required permissions

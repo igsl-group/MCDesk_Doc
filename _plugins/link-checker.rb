@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright SmartObserve Contributors
+# Copyright MCdesk Contributors
 # SPDX-License-Identifier: BSD-3-Clause
 
 require 'net/http'
@@ -138,7 +138,7 @@ module Jekyll::LinkChecker
         logger: Jekyll.logger,
         hydra: { max_concurrency: 2 },
         retries: 3,
-        user_agent: 'SmartObserve Documentation Website Link Checker/1.0'
+        user_agent: 'MCdesk Documentation Website Link Checker/1.0'
       )
 
       @external_link_checker.on :failure, :error do |result|

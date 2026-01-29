@@ -8,7 +8,7 @@ has_children: false
 
 # Advanced functionality
 
-SmartObserve Learning to Rank (LTR) offers additional functionality. It is recommended that you have a foundational understanding of SmartObserve LTR before working with these features.
+MCdesk Learning to Rank (LTR) offers additional functionality. It is recommended that you have a foundational understanding of MCdesk LTR before working with these features.
 
 ## Reusable features
 
@@ -73,17 +73,17 @@ Additionally, derived features can accept query-time variables of type [`Number`
 
 ### Script features
 
-Script features are a type of [derived feature](#derived-features). These features have access to the `feature_vector`, but they are implemented as native or Painless SmartObserve scripts rather than as [Lucene
+Script features are a type of [derived feature](#derived-features). These features have access to the `feature_vector`, but they are implemented as native or Painless MCdesk scripts rather than as [Lucene
 expressions](http://lucene.apache.org/core/7_1_0/expressions/index.html?org/apache/lucene/expressions/js/package-summary.html). 
 
 To identify these features, set the `"template_language": "script_feature""`. The custom script can access the `feature_vector` through the [Java Map](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html), as described in [Create a feature set]({{site.url}}{{site.baseurl}}/search-plugins/ltr/working-with-features#creating-feature-sets).
 
-Script-based features may impact the performance of your SmartObserve cluster, so it is best to avoid them if you require highly performant queries.
+Script-based features may impact the performance of your MCdesk cluster, so it is best to avoid them if you require highly performant queries.
 {: .warning}
 
 ### Script feature parameters
 
-Script features are native or Painless scripts within the context of LTR. These script features can accept parameters as described in the [SmartObserve script documentation]({{site.url}}{{site.baseurl}}/api-reference/script-apis/index/). When working with LTR scripts, you can override parameter values and names. The priority for parameterization, in increasing order, is as follows:
+Script features are native or Painless scripts within the context of LTR. These script features can accept parameters as described in the [MCdesk script documentation]({{site.url}}{{site.baseurl}}/api-reference/script-apis/index/). When working with LTR scripts, you can override parameter values and names. The priority for parameterization, in increasing order, is as follows:
 
 - The parameter name and value are passed directly to the source script, but not in the LTR script parameters. These cannot be configured at query time. 
 - The parameter name is passed to both the `sltr` query and the source script, allowing the script parameter values to be overridden at query time.
@@ -135,7 +135,7 @@ POST _ltr/_featureset/more_movie_features
 
 ## Multiple feature stores
 
-A feature store corresponds to an independent LTR system, including features, feature sets, and models backed by a single index and cache. A feature store typically represents a single search problem or application, like Wikipedia or Wiktionary. To use multiple feature stores in your SmartObserve cluster, you can create and manage them using the provided API. For example, you can create a feature set for the `wikipedia` feature store as follows:
+A feature store corresponds to an independent LTR system, including features, feature sets, and models backed by a single index and cache. A feature store typically represents a single search problem or application, like Wikipedia or Wiktionary. To use multiple feature stores in your MCdesk cluster, you can create and manage them using the provided API. For example, you can create a feature set for the `wikipedia` feature store as follows:
 
 ```json
 PUT _ltr/wikipedia

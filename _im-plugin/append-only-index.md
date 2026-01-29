@@ -6,7 +6,7 @@ nav_order: 15
 
 # Append-only index
 
-An append-only index is an immutable index that only allows document ingestion (appending) while blocking all updates or deletions after initial document creation. When you enable the append-only setting for an index, SmartObserve prevents any modifications to existing documents. You can only add new documents to the index.
+An append-only index is an immutable index that only allows document ingestion (appending) while blocking all updates or deletions after initial document creation. When you enable the append-only setting for an index, MCdesk prevents any modifications to existing documents. You can only add new documents to the index.
 
 When you configure an index as append-only, the following operations return an error:
 

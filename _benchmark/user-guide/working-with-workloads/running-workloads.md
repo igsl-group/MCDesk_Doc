@@ -10,27 +10,27 @@ redirect_from:
 
 # Running a workload
 
-Once you have a complete understanding of the various components of an SmartObserve Benchmark [workload]({{site.url}}{{site.baseurl}}/benchmark/user-guide/understanding-workloads/anatomy-of-a-workload/), you can run your first workload.
+Once you have a complete understanding of the various components of an MCdesk Benchmark [workload]({{site.url}}{{site.baseurl}}/benchmark/user-guide/understanding-workloads/anatomy-of-a-workload/), you can run your first workload.
 
 ## Step 1: Find the workload name
 
-To learn more about the standard workloads included with SmartObserve Benchmark, use the following command:
+To learn more about the standard workloads included with MCdesk Benchmark, use the following command:
 
 ```
-smartobserve-benchmark list workloads
+mcdesk-benchmark list workloads
 ```
 {% include copy.html %}
 
-A list of all workloads supported by SmartObserve Benchmark appears. Review the list and select the workload that's most similar to your cluster's use case.
+A list of all workloads supported by MCdesk Benchmark appears. Review the list and select the workload that's most similar to your cluster's use case.
 
 ## Step 2: Running the test
 
-After you've selected the workload, you can invoke the workload using the `smartobserve-benchmark run` command. Replace  `--target-host` with the `host:port` pairs for your cluster and `--client-options` with any authorization options required to access the cluster. The following example runs the `nyc_taxis` workload on a localhost for testing purposes.
+After you've selected the workload, you can invoke the workload using the `mcdesk-benchmark run` command. Replace  `--target-host` with the `host:port` pairs for your cluster and `--client-options` with any authorization options required to access the cluster. The following example runs the `nyc_taxis` workload on a localhost for testing purposes.
 
 If you want to run a test on an external cluster, see [Running the workload on your own cluster](#running-a-workload-on-an-external-cluster).
 
 ```bash
-smartobserve-benchmark run --pipeline=benchmark-only --workload=nyc_taxis --target-host=https://localhost:9200 --client-options=basic_auth_user:admin,basic_auth_password:admin,verify_certs:false
+mcdesk-benchmark run --pipeline=benchmark-only --workload=nyc_taxis --target-host=https://localhost:9200 --client-options=basic_auth_user:admin,basic_auth_password:admin,verify_certs:false
 ```
 {% include copy.html %}
 
@@ -56,7 +56,7 @@ To pass workload parameters, use the following syntax:
 Add this option to your `run` command, as shown in the following example:
 
 ```bash
-smartobserve-benchmark run \
+mcdesk-benchmark run \
 --pipeline=benchmark-only \
 --workload=nyc_taxis \
 --target-host=https://localhost:9200 \
@@ -64,7 +64,7 @@ smartobserve-benchmark run \
 --workload-params="bulk_size:500,index_name:nyc_custom"
 ```
 
-Available workload parameters can be found in the `README` of each workload in the [SmartObserve Benchmark Workloads GitHub repository](https://github.com/igsl-group/smartobserve-benchmark-workloads).
+Available workload parameters can be found in the `README` of each workload in the [MCdesk Benchmark Workloads GitHub repository](https://github.com/igsl-group/mcdesk-benchmark-workloads).
 {: .tip}
 
 
@@ -72,10 +72,10 @@ Available workload parameters can be found in the `README` of each workload in t
 
 ## Step 3: Validate the test
 
-After running an SmartObserve Benchmark test, take the following steps to verify that it has run properly:
+After running an MCdesk Benchmark test, take the following steps to verify that it has run properly:
 
-1. Note the number of documents in the SmartObserve or SmartObserve Dashboards index that you plan to run the benchmark against.
-2. In the results returned by SmartObserve Benchmark, compare the `workload.json` file for your specific workload and verify that the document count matches the number of documents. For example, based on the [nyc_taxis](https://github.com/igsl-group/smartobserve-benchmark-workloads/blob/main/nyc_taxis/workload.json#L20) `workload.json` file, you should expect to see `165346692` documents in your cluster.
+1. Note the number of documents in the MCdesk or MCdesk Dashboards index that you plan to run the benchmark against.
+2. In the results returned by MCdesk Benchmark, compare the `workload.json` file for your specific workload and verify that the document count matches the number of documents. For example, based on the [nyc_taxis](https://github.com/igsl-group/mcdesk-benchmark-workloads/blob/main/nyc_taxis/workload.json#L20) `workload.json` file, you should expect to see `165346692` documents in your cluster.
 
 ## Expected results
 
@@ -184,7 +184,7 @@ OSB returns the following response once the benchmark completes:
 
 ## Running a workload on an external cluster
 
-Now that you're familiar with running SmartObserve Benchmark on a local cluster, you can run it on your external cluster, as described in the following steps:
+Now that you're familiar with running MCdesk Benchmark on a local cluster, you can run it on your external cluster, as described in the following steps:
 
 1. Replace `https://localhost:9200` with your target cluster endpoint. This could be a Uniform Resource Identifier (URI), such as `https://search.mydomain.com`, or a `HOST:PORT` specification.
 2. If the cluster is configured with basic authentication, replace the username and password in the command line with the appropriate credentials.
@@ -195,6 +195,6 @@ Now that you're familiar with running SmartObserve Benchmark on a local cluster,
 You can copy the following command template to use it in your own terminal:
 
 ```bash
-smartobserve-benchmark run --pipeline=benchmark-only --workload=nyc_taxis --target-host=<SmartObserve Cluster Endpoint> --client-options=basic_auth_user:admin,basic_auth_password:admin
+mcdesk-benchmark run --pipeline=benchmark-only --workload=nyc_taxis --target-host=<MCdesk Cluster Endpoint> --client-options=basic_auth_user:admin,basic_auth_password:admin
 ```
 {% include copy.html %}

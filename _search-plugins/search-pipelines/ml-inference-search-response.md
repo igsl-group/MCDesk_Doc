@@ -14,7 +14,7 @@ Introduced 2.16
 The `ml_inference` search response processor is used to invoke registered machine learning (ML) models in order to incorporate their outputs as new fields in documents within search results.
 
 **PREREQUISITE**<br>
-Before using the `ml_inference` search response processor, you must have either a local ML model hosted on your SmartObserve cluster or an externally hosted model connected to your SmartObserve cluster through the ML Commons plugin. For more information about local models, see [Using ML models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For more information about externally hosted models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/).
+Before using the `ml_inference` search response processor, you must have either a local ML model hosted on your MCdesk cluster or an externally hosted model connected to your MCdesk cluster through the ML Commons plugin. For more information about local models, see [Using ML models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For more information about externally hosted models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/).
 {: .note}
 
 ## Syntax
@@ -102,7 +102,7 @@ The following example shows you how to configure an `ml_inference` search respon
 
 **Step 1: Create a pipeline**
 
-The following example shows you how to create a search pipeline for the `huggingface/sentence-transformers/all-distilroberta-v1` local model. The model is a [pretrained sentence transformer model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sentence-transformers) hosted in your SmartObserve cluster.
+The following example shows you how to create a search pipeline for the `huggingface/sentence-transformers/all-distilroberta-v1` local model. The model is a [pretrained sentence transformer model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sentence-transformers) hosted in your MCdesk cluster.
 
 If you invoke the model using the Predict API, then the request appears as follows:
 

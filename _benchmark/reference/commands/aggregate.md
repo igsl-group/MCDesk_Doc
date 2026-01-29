@@ -3,7 +3,7 @@ layout: default
 title: aggregate
 nav_order: 85
 parent: Command reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 redirect_from:
   - /benchmark/commands/aggregate/
 ---
@@ -24,7 +24,7 @@ The auto-aggregation method runs multiple iterations of benchmark tests and auto
 The following example runs the `geonames` workload and aggregates the results twice:
 
 ```bash
-smartobserve-benchmark execute --test-iterations=2 --aggregate=true --workload=geonames --target-hosts=127.0.0.1:9200
+mcdesk-benchmark execute --test-iterations=2 --aggregate=true --workload=geonames --target-hosts=127.0.0.1:9200
 ```
 {% include copy-curl.html %}
 
@@ -46,13 +46,13 @@ You can use the `aggregate` command to manually aggregate results from multiple 
 To aggregate multiple test runs manually, specify the `test_run_ids` you would like to aggregate, as shown in the following example:
 
 ```bash
-smartobserve-benchmark aggregate --test-executions=<test_run_id1>,<test_run_id2>,...
+mcdesk-benchmark aggregate --test-executions=<test_run_id1>,<test_run_id2>,...
 ```
 {% include copy-curl.html %}
 
 ### Response
 
-SmartObserve Benchmark responds with the following:
+MCdesk Benchmark responds with the following:
 
 ```
    ____                  _____                      __       ____                  __                         __
@@ -74,7 +74,7 @@ The results will be aggregated into one test run and stored under the ID shown i
 ### Additional options
 - `--test-execution-id`: Define a unique ID for the aggregated test run.
 - `--results-file`: Write the aggregated results to the provided file.
-- `--workload-repository`: Define the repository from which SmartObserve Benchmark will load workloads (default is `default`).
+- `--workload-repository`: Define the repository from which MCdesk Benchmark will load workloads (default is `default`).
 
 ## Aggregated results
 

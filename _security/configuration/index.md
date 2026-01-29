@@ -12,16 +12,16 @@ redirect_from:
 
 # Security configuration
 
-The Security plugin includes demo certificates so that you can get up and running quickly. To use SmartObserve with the Security plugin in a production environment, you must make changes to the demo certificates and other configuration options manually.
+The Security plugin includes demo certificates so that you can get up and running quickly. To use MCdesk with the Security plugin in a production environment, you must make changes to the demo certificates and other configuration options manually.
 
 ## Replace the demo certificates
 
-SmartObserve ships with demo certificates intended for quick setup and demonstration purposes. For a production environment, it's critical to replace these with your own trusted certificates, using the following steps, to ensure secure communication:
+MCdesk ships with demo certificates intended for quick setup and demonstration purposes. For a production environment, it's critical to replace these with your own trusted certificates, using the following steps, to ensure secure communication:
 
 1. **Generate your own certificates:** Use tools like OpenSSL or a certificate authority (CA) to generate your own certificates. For more information about generating certificates with OpenSSL, see [Generating self-signed certificates]({{site.url}}{{site.baseurl}}/security/configuration/generate-certificates/).
-2. **Store the generated certificates and private key in the appropriate directory:** Generated certificates are typically stored in `<OPENSEARCH_HOME>/config/`. For more information, see [Add certificate files to smartobserve.yml]({{site.url}}{{site.baseurl}}/security/configuration/generate-certificates/#add-certificate-files-to-smartobserveyml).
+2. **Store the generated certificates and private key in the appropriate directory:** Generated certificates are typically stored in `<OPENSEARCH_HOME>/config/`. For more information, see [Add certificate files to mcdesk.yml]({{site.url}}{{site.baseurl}}/security/configuration/generate-certificates/#add-certificate-files-to-mcdeskyml).
 3. **Set the following file permissions:**
-    - Private key (.key files): Set the file mode to `600`. This restricts access so that only the file owner (the SmartObserve user) can read and write to the file, ensuring that the private key remains secure and inaccessible to unauthorized users.
+    - Private key (.key files): Set the file mode to `600`. This restricts access so that only the file owner (the MCdesk user) can read and write to the file, ensuring that the private key remains secure and inaccessible to unauthorized users.
     - Public certificates (.crt, .pem files): Set the file mode to `644`. This allows the file owner to read and write to the file, while other users can only read it.
 
 For additional guidance on file modes, see the following table.
@@ -32,13 +32,13 @@ For additional guidance on file modes, see the following table.
         | Private key | `~/.ssh/id_rsa`     | `600`   | `-rw-------` |
         | SSH folder  | `~/.ssh`            | `700`   | `drwx------` |
 
-For more information, see [Configuring basic security settings]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/docker/#configuring-basic-security-settings).
+For more information, see [Configuring basic security settings]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/docker/#configuring-basic-security-settings).
 
-## Reconfigure `smartobserve.yml` to use your certificates
+## Reconfigure `mcdesk.yml` to use your certificates
 
-The `smartobserve.yml` file is the main configuration file for SmartObserve; you can find the file at `<OPENSEARCH_HOME>/config/smartobserve.yml`. Use the following steps to update this file to point to your custom certificates:
+The `mcdesk.yml` file is the main configuration file for MCdesk; you can find the file at `<OPENSEARCH_HOME>/config/mcdesk.yml`. Use the following steps to update this file to point to your custom certificates:
 
-In `smartobserve.yml`, set the correct paths for your certificates and keys, as shown in the following example:
+In `mcdesk.yml`, set the correct paths for your certificates and keys, as shown in the following example:
    ```
    plugins.security.ssl.transport.pemcert_filepath: /path/to/your/cert.pem
    plugins.security.ssl.transport.pemkey_filepath: /path/to/your/key.pem
@@ -52,7 +52,7 @@ For more information, see [Configuring TLS certificates]({{site.url}}{{site.base
 
 ## Reconfigure `config.yml` to use your authentication backend
 
-The `config.yml` file allows you to configure the authentication and authorization mechanisms for SmartObserve. Update the authentication backend settings in `<OPENSEARCH_HOME>/config/smartobserve-security/config.yml` according to your requirements. 
+The `config.yml` file allows you to configure the authentication and authorization mechanisms for MCdesk. Update the authentication backend settings in `<OPENSEARCH_HOME>/config/mcdesk-security/config.yml` according to your requirements. 
 
 For example, to use the internal authentication backend, add the following settings:
 
@@ -80,25 +80,25 @@ When using the internal user database, we recommend enforcing a password policy 
 
 ## Apply changes using the `securityadmin` script
 
-The following steps do not apply to first-time users because the security index is automatically initialized from the YAML configuration files when SmartObserve starts.
+The following steps do not apply to first-time users because the security index is automatically initialized from the YAML configuration files when MCdesk starts.
 {: .note}
 
 After initial setup, if you make changes to your security configuration or disable automatic initialization by setting `plugins.security.allow_default_init_securityindex` to `false` (which prevents security index initialization from `yaml` files), you need to manually apply changes using the `securityadmin` script:
 
-1. Find the `securityadmin` script. The script is typically stored in the SmartObserve plugins directory, `plugins/smartobserve-security/tools/securityadmin.[sh|bat]`. 
-   - Note: If you're using SmartObserve 1.x, the `securityadmin` script is located in the `plugins/opendistro_security/tools/` directory. 
+1. Find the `securityadmin` script. The script is typically stored in the MCdesk plugins directory, `plugins/mcdesk-security/tools/securityadmin.[sh|bat]`. 
+   - Note: If you're using MCdesk 1.x, the `securityadmin` script is located in the `plugins/opendistro_security/tools/` directory. 
    - For more information, see [Basic usage]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/#basic-usage).
 2. Run the script by using the following command:
    ```
-    ./plugins/smartobserve-security/tools/securityadmin.[sh|bat]
+    ./plugins/mcdesk-security/tools/securityadmin.[sh|bat]
    ```
-3. Check the SmartObserve logs and configuration to ensure that the changes have been successfully applied.
+3. Check the MCdesk logs and configuration to ensure that the changes have been successfully applied.
 
 For more information about using the `securityadmin` script, see [Applying changes to configuration files]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/).
 
 ## Add users, roles, role mappings, and tenants
 
-If you don't want to use the Security plugin, you can disable it by adding the following setting to the `smartobserve.yml` file:
+If you don't want to use the Security plugin, you can disable it by adding the following setting to the `mcdesk.yml` file:
 
 ```
 plugins.security.disabled: true
@@ -108,9 +108,9 @@ You can then enable the plugin by removing the `plugins.security.disabled` setti
 
 For more information about disabling the Security plugin, see [Disable security]({{site.url}}{{site.baseurl}}/security/configuration/disable-enable-security/).
 
-The Security plugin has several default users, roles, action groups, permissions, and settings for SmartObserve Dashboards that contain "Kibana" in their names. We will change these names in a future version.
+The Security plugin has several default users, roles, action groups, permissions, and settings for MCdesk Dashboards that contain "Kibana" in their names. We will change these names in a future version.
 {: .note }
 
-For a full list of `smartobserve.yml` Security plugin settings, see [Security settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/security-settings/).
+For a full list of `mcdesk.yml` Security plugin settings, see [Security settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/security-settings/).
 {: .note}
 

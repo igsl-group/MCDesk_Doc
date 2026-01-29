@@ -9,7 +9,7 @@ nav_order: 10
 
 Creating a workflow adds the content of a workflow template to the flow framework system index. You can provide workflows in JSON format (by specifying `Content-Type: application/json`) or YAML format (by specifying `Content-Type: application/yaml`). By default, the workflow is validated to help identify invalid configurations, including:
 
-* Workflow steps requiring an SmartObserve plugin that is not installed.
+* Workflow steps requiring an MCdesk plugin that is not installed.
 * Workflow steps relying on previous node input that is provided by those steps.
 * Workflow step fields with invalid values.
 * Workflow graph (node/edge) configurations containing cycles or with duplicate IDs.
@@ -51,7 +51,7 @@ POST /_plugins/_flow_framework/workflow?provision=true
 
 When set to `true`, the [Provision Workflow API]({{site.url}}{{site.baseurl}}/automating-configurations/api/provision-workflow/) is executed immediately following creation. 
 
-By default, workflows are validated when they are created to ensure that the syntax is valid and that the graph does not contain cycles. This behavior can be controlled with the `validation` query parameter. If `validation` is set to `all`, SmartObserve performs a complete template validation. Any other value of the `validation` parameter suppresses validation, allowing an incomplete/work-in-progress template to be saved. To disable template validation, set `validation` to `none`:
+By default, workflows are validated when they are created to ensure that the syntax is valid and that the graph does not contain cycles. This behavior can be controlled with the `validation` query parameter. If `validation` is set to `all`, MCdesk performs a complete template validation. Any other value of the `validation` parameter suppresses validation, allowing an incomplete/work-in-progress template to be saved. To disable template validation, set `validation` to `none`:
 
 ```json
 POST /_plugins/_flow_framework/workflow?validation=none
@@ -133,7 +133,7 @@ The following table lists the available request fields.
 |`name`	|String	|Required	|The name of the workflow.	|
 |`description`	|String	|Optional	|A description of the workflow.	|
 |`use_case`	|String	|Optional	| A user-provided use case, which can be used with the [Search Workflow API]({{site.url}}{{site.baseurl}}/automating-configurations/api/search-workflow/) to find related workflows. You can use this field to specify custom values. This is distinct from the `use_case` query parameter. |
-|`version`	|Object	|Optional	| A key-value map with two fields: `template`, which identifies the template version, and `compatibility`, which identifies a list of minimum required SmartObserve versions.	|
+|`version`	|Object	|Optional	| A key-value map with two fields: `template`, which identifies the template version, and `compatibility`, which identifies a list of minimum required MCdesk versions.	|
 |`workflows`	|Object	|Optional	|A map of workflows. Presently, only the `provision` key is supported. The value for the workflow key is a key-value map that includes fields for `user_params` and lists of `nodes` and `edges`.	|
 
 ## Example request: Register and deploy an externally hosted model (YAML)
@@ -160,7 +160,7 @@ use_case: REMOTE_MODEL_DEPLOYMENT
 version:
   # Templates may be versioned by their authors
   template: 1.0.0
-  # Compatibility with SmartObserve 2.12.0 and higher and 3.0.0 and higher
+  # Compatibility with MCdesk 2.12.0 and higher and 3.0.0 and higher
   compatibility:
   - 2.12.0
   - 3.0.0
@@ -302,7 +302,7 @@ The following JSON template is equivalent to the YAML template provided in the p
 
 ## Example response
 
-SmartObserve responds with the `workflow_id`:
+MCdesk responds with the `workflow_id`:
 
 ```json
 {

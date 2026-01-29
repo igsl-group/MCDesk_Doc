@@ -59,7 +59,7 @@ Option | Required | Type | Description
 `tables` | No | Object | The configuration for specifying which tables to include or exclude. See [tables](#tables) for more information.
 `authentication` | Yes | Object | Database authentication credentials. See [authentication](#authentication) for more information.
 `aws` | Yes | Object | The AWS configuration. See [aws](#aws) for more information.
-`acknowledgments` | No | Boolean | When `true`, enables the source to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines#end-to-end-acknowledgments) when events are received by SmartObserve sinks. Default is `true`.
+`acknowledgments` | No | Boolean | When `true`, enables the source to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines#end-to-end-acknowledgments) when events are received by MCdesk sinks. Default is `true`.
 `s3_data_file_acknowledgment_timeout` | No | Duration | The amount of time that elapses before the data read from an RDS export expires when used with acknowledgments. Default is 30 minutes.
 `stream_acknowledgment_timeout` | No | Duration | The amount of time that elapses before the data read from database streams expires when used with acknowledgments. Default is 10 minutes.
 `s3_bucket` | Yes | String | The name of the S3 bucket in which RDS export data will be stored.
@@ -124,7 +124,7 @@ The following metadata will be added to each event that is processed by the `rds
 * `primary_key`: The primary key of the database record. For tables with composite primary keys, values are concatenated with a `|` separator.
 * `event_timestamp`: The timestamp, in epoch milliseconds, of when the database change occurred. For export events, this represents the export time. For stream events, this represents the transaction commit time.
 * `document_version`: A long integer number generated from the event timestamp to use as the document version. 
-* `smartobserve_action`: The bulk action that will be used to send the event to SmartObserve, such as `index` or `delete`.
+* `mcdesk_action`: The bulk action that will be used to send the event to MCdesk, such as `index` or `delete`.
 * `change_event_type`: The stream event type. Can be `insert`, `update`, or `delete`.
 * `table_name`: The name of the database table from which the event originated.
 * `schema_name`: The name of the schema from which the event originated. For MySQL, `schema_name` is the same as `database_name`.

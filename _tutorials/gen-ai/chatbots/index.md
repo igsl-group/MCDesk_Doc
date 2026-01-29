@@ -12,19 +12,19 @@ chatbots:
   - heading: RAG chatbot
     link: /tutorials/gen-ai/chatbots/rag-chatbot/
     list:
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Anthropic Claude" 
       - "<b>Deployment:</b> Amazon Bedrock"  
   - heading: RAG with a conversational flow agent
     link: /tutorials/gen-ai/chatbots/rag-conversational-agent/
     list: 
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Anthropic Claude"  
       - "<b>Deployment:</b> Amazon Bedrock"  
   - heading: Build your own chatbot
     link: /tutorials/gen-ai/chatbots/build-chatbot/
     list: 
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Anthropic Claude"  
       - "<b>Deployment:</b> Amazon Bedrock"
 ---

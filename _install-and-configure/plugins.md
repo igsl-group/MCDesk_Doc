@@ -4,24 +4,24 @@ title: Installing plugins
 nav_order: 90
 has_children: true
 redirect_from:
-   - /smartobserve/install/plugins/
-   - /install-and-configure/install-smartobserve/plugins/
+   - /mcdesk/install/plugins/
+   - /install-and-configure/install-mcdesk/plugins/
 ---
 
 # Installing plugins
 
-SmartObserve includes a number of plugins that add features and capabilities to the core platform. The plugins available to you are dependent on how SmartObserve was installed and which plugins were subsequently added or removed. For example, the minimal distribution of SmartObserve enables only core functionality, such as indexing and search. Using the minimal distribution of SmartObserve is beneficial when you are working in a testing environment, have custom plugins, or are intending to integrate SmartObserve with other services.
+MCdesk includes a number of plugins that add features and capabilities to the core platform. The plugins available to you are dependent on how MCdesk was installed and which plugins were subsequently added or removed. For example, the minimal distribution of MCdesk enables only core functionality, such as indexing and search. Using the minimal distribution of MCdesk is beneficial when you are working in a testing environment, have custom plugins, or are intending to integrate MCdesk with other services.
 
-The standard distribution of SmartObserve includes many more plugins offering much more functionality. You can choose to add additional plugins or remove any of the plugins you don't need. 
+The standard distribution of MCdesk includes many more plugins offering much more functionality. You can choose to add additional plugins or remove any of the plugins you don't need. 
 
 For a list of the available plugins, see [Available plugins](#available-plugins).
 
-For a plugin to work properly with SmartObserve, it may request certain permissions as part of the installation process. Review the requested permissions and proceed accordingly. It is important that you understand a plugin's functionality before installation. When opting for a community-provided plugin, ensure that the source is trustworthy and reliable.
+For a plugin to work properly with MCdesk, it may request certain permissions as part of the installation process. Review the requested permissions and proceed accordingly. It is important that you understand a plugin's functionality before installation. When opting for a community-provided plugin, ensure that the source is trustworthy and reliable.
 {: .warning}
 
 ## Managing plugins
 
-To manage plugins in SmartObserve, you can use a command line tool called `smartobserve-plugin`. This tool allows you to perform the following actions:
+To manage plugins in MCdesk, you can use a command line tool called `mcdesk-plugin`. This tool allows you to perform the following actions:
 
 - [List](#list) installed plugins.
 - [Install](#install) plugins.
@@ -29,7 +29,7 @@ To manage plugins in SmartObserve, you can use a command line tool called `smart
 
 You can print help text by passing `-h` or `--help`. Depending on your host configuration, you might also need to run the command with `sudo` privileges.
 
-If you're running SmartObserve in a Docker container, plugins must be installed, removed, and configured by modifying the Docker image. For more information, see [Working with plugins]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/docker#working-with-plugins).
+If you're running MCdesk in a Docker container, plugins must be installed, removed, and configured by modifying the Docker image. For more information, see [Working with plugins]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/docker#working-with-plugins).
 {: .note}
 
 ## List
@@ -38,28 +38,28 @@ Use `list` to see a list of plugins that have already been installed.
 
 #### Usage
 ```bash
-bin/smartobserve-plugin list
+bin/mcdesk-plugin list
 ```
 
 #### Example
 ```bash
-$ ./smartobserve-plugin list
-smartobserve-alerting
-smartobserve-anomaly-detection
-smartobserve-asynchronous-search
-smartobserve-cross-cluster-replication
-smartobserve-geospatial
-smartobserve-index-management
-smartobserve-job-scheduler
-smartobserve-knn
-smartobserve-ml
-smartobserve-notifications
-smartobserve-notifications-core
-smartobserve-observability
-smartobserve-performance-analyzer
-smartobserve-reports-scheduler
-smartobserve-security
-smartobserve-sql
+$ ./mcdesk-plugin list
+mcdesk-alerting
+mcdesk-anomaly-detection
+mcdesk-asynchronous-search
+mcdesk-cross-cluster-replication
+mcdesk-geospatial
+mcdesk-index-management
+mcdesk-job-scheduler
+mcdesk-knn
+mcdesk-ml
+mcdesk-notifications
+mcdesk-notifications-core
+mcdesk-observability
+mcdesk-performance-analyzer
+mcdesk-reports-scheduler
+mcdesk-security
+mcdesk-sql
 ```
 
 ## List (with CAT API)
@@ -74,21 +74,21 @@ GET _cat/plugins
 #### Example response
 
 ```bash
-smartobserve-node1 smartobserve-alerting                  2.0.1.0
-smartobserve-node1 smartobserve-anomaly-detection         2.0.1.0
-smartobserve-node1 smartobserve-asynchronous-search       2.0.1.0
-smartobserve-node1 smartobserve-cross-cluster-replication 2.0.1.0
-smartobserve-node1 smartobserve-index-management          2.0.1.0
-smartobserve-node1 smartobserve-job-scheduler             2.0.1.0
-smartobserve-node1 smartobserve-knn                       2.0.1.0
-smartobserve-node1 smartobserve-ml                        2.0.1.0
-smartobserve-node1 smartobserve-notifications             2.0.1.0
-smartobserve-node1 smartobserve-notifications-core        2.0.1.0
+mcdesk-node1 mcdesk-alerting                  2.0.1.0
+mcdesk-node1 mcdesk-anomaly-detection         2.0.1.0
+mcdesk-node1 mcdesk-asynchronous-search       2.0.1.0
+mcdesk-node1 mcdesk-cross-cluster-replication 2.0.1.0
+mcdesk-node1 mcdesk-index-management          2.0.1.0
+mcdesk-node1 mcdesk-job-scheduler             2.0.1.0
+mcdesk-node1 mcdesk-knn                       2.0.1.0
+mcdesk-node1 mcdesk-ml                        2.0.1.0
+mcdesk-node1 mcdesk-notifications             2.0.1.0
+mcdesk-node1 mcdesk-notifications-core        2.0.1.0
 ```
 
 ## Install
 
-There are three ways to install plugins using the `smartobserve-plugin` tool:
+There are three ways to install plugins using the `mcdesk-plugin` tool:
 
 - [Install a plugin by name](#install-a-plugin-by-name).
 - [Install a plugin from a zip file](#install-a-plugin-from-a-zip-file).
@@ -100,14 +100,14 @@ You can install plugins that aren't already preinstalled in your installation by
 
 #### Usage
 ```bash
-bin/smartobserve-plugin install <plugin-name>
+bin/mcdesk-plugin install <plugin-name>
 ```
 
 #### Example
 ```bash
-$ sudo ./smartobserve-plugin install analysis-icu
+$ sudo ./mcdesk-plugin install analysis-icu
 -> Installing analysis-icu
--> Downloading analysis-icu from smartobserve
+-> Downloading analysis-icu from mcdesk
 [=================================================] 100%   
 -> Installed analysis-icu with folder name analysis-icu
 ```
@@ -118,7 +118,7 @@ You can install remote zip files by replacing `<zip-file>` with the URL of the h
 
 #### Usage
 ```bash
-bin/smartobserve-plugin install <zip-file>
+bin/mcdesk-plugin install <zip-file>
 ```
 
 #### Example
@@ -130,9 +130,9 @@ bin/smartobserve-plugin install <zip-file>
   
 ```bash
 # Zip file is hosted on a remote server - in this case, Maven central repository.
-$ sudo ./smartobserve-plugin install https://repo1.maven.org/maven2/org/smartobserve/plugin/smartobserve-anomaly-detection/2.2.0.0/smartobserve-anomaly-detection-2.2.0.0.zip
--> Installing https://repo1.maven.org/maven2/org/smartobserve/plugin/smartobserve-anomaly-detection/2.2.0.0/smartobserve-anomaly-detection-2.2.0.0.zip
--> Downloading https://repo1.maven.org/maven2/org/smartobserve/plugin/smartobserve-anomaly-detection/2.2.0.0/smartobserve-anomaly-detection-2.2.0.0.zip
+$ sudo ./mcdesk-plugin install https://repo1.maven.org/maven2/org/mcdesk/plugin/mcdesk-anomaly-detection/2.2.0.0/mcdesk-anomaly-detection-2.2.0.0.zip
+-> Installing https://repo1.maven.org/maven2/org/mcdesk/plugin/mcdesk-anomaly-detection/2.2.0.0/mcdesk-anomaly-detection-2.2.0.0.zip
+-> Downloading https://repo1.maven.org/maven2/org/mcdesk/plugin/mcdesk-anomaly-detection/2.2.0.0/mcdesk-anomaly-detection-2.2.0.0.zip
 [=================================================] 100%   
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @     WARNING: plugin requires additional permissions     @
@@ -151,12 +151,12 @@ See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.h
 for descriptions of what these permissions allow and the associated risks.
 
 Continue with installation? [y/N]y
--> Installed smartobserve-anomaly-detection with folder name smartobserve-anomaly-detection
+-> Installed mcdesk-anomaly-detection with folder name mcdesk-anomaly-detection
 
 # Zip file in a local directory.
-$ sudo ./smartobserve-plugin install file:/home/user/smartobserve-anomaly-detection-2.2.0.0.zip
--> Installing file:/home/user/smartobserve-anomaly-detection-2.2.0.0.zip
--> Downloading file:/home/user/smartobserve-anomaly-detection-2.2.0.0.zip
+$ sudo ./mcdesk-plugin install file:/home/user/mcdesk-anomaly-detection-2.2.0.0.zip
+-> Installing file:/home/user/mcdesk-anomaly-detection-2.2.0.0.zip
+-> Downloading file:/home/user/mcdesk-anomaly-detection-2.2.0.0.zip
 [=================================================] 100%   
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @     WARNING: plugin requires additional permissions     @
@@ -175,17 +175,17 @@ See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.h
 for descriptions of what these permissions allow and the associated risks.
 
 Continue with installation? [y/N]y
--> Installed smartobserve-anomaly-detection with folder name smartobserve-anomaly-detection
+-> Installed mcdesk-anomaly-detection with folder name mcdesk-anomaly-detection
 ```
 </details>
 
 ### Install a plugin using Maven coordinates
 
-The `smartobserve-plugin install` tool also allows you to specify Maven coordinates for available artifacts and versions hosted on [Maven Central](https://central.sonatype.com/namespace/org.smartobserve.plugin). The tool parses the Maven coordinates you provide and constructs a URL. As a result, the host must be able to connect directly to the Maven Central site. The plugin installation fails if you pass coordinates to a proxy or local repository.
+The `mcdesk-plugin install` tool also allows you to specify Maven coordinates for available artifacts and versions hosted on [Maven Central](https://central.sonatype.com/namespace/org.mcdesk.plugin). The tool parses the Maven coordinates you provide and constructs a URL. As a result, the host must be able to connect directly to the Maven Central site. The plugin installation fails if you pass coordinates to a proxy or local repository.
 
 #### Usage
 ```bash
-bin/smartobserve-plugin install <groupId>:<artifactId>:<version>
+bin/mcdesk-plugin install <groupId>:<artifactId>:<version>
 ```
 
 #### Example
@@ -197,9 +197,9 @@ bin/smartobserve-plugin install <groupId>:<artifactId>:<version>
   {: .text-delta}
 
 ```console
-$ sudo ./smartobserve-plugin install org.smartobserve.plugin:smartobserve-anomaly-detection:2.2.0.0
--> Installing org.smartobserve.plugin:smartobserve-anomaly-detection:2.2.0.0
--> Downloading org.smartobserve.plugin:smartobserve-anomaly-detection:2.2.0.0 from maven central
+$ sudo ./mcdesk-plugin install org.mcdesk.plugin:mcdesk-anomaly-detection:2.2.0.0
+-> Installing org.mcdesk.plugin:mcdesk-anomaly-detection:2.2.0.0
+-> Downloading org.mcdesk.plugin:mcdesk-anomaly-detection:2.2.0.0 from maven central
 [=================================================] 100%   
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @     WARNING: plugin requires additional permissions     @
@@ -218,11 +218,11 @@ See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.h
 for descriptions of what these permissions allow and the associated risks.
 
 Continue with installation? [y/N]y
--> Installed smartobserve-anomaly-detection with folder name smartobserve-anomaly-detection
+-> Installed mcdesk-anomaly-detection with folder name mcdesk-anomaly-detection
 ```
 </details>
 
-Restart your SmartObserve node after installing a plugin.
+Restart your MCdesk node after installing a plugin.
 {: .note}
 
 ## Installing multiple plugins
@@ -231,12 +231,12 @@ Multiple plugins can be installed in a single invocation.
 
 #### Usage
 ```bash
-bin/smartobserve-plugin install <plugin-name> <plugin-name> ... <plugin-name>
+bin/mcdesk-plugin install <plugin-name> <plugin-name> ... <plugin-name>
 ```
 
 #### Example
 ```console
-$ sudo ./smartobserve-plugin install analysis-nori repository-s3
+$ sudo ./mcdesk-plugin install analysis-nori repository-s3
 ```
 
 ## Remove
@@ -245,16 +245,16 @@ You can remove a plugin that has already been installed with the `remove` option
 
 #### Usage
 ```bash
-bin/smartobserve-plugin remove <plugin-name>
+bin/mcdesk-plugin remove <plugin-name>
 ```
 
 #### Example
 ```console
-$ sudo ./smartobserve-plugin remove smartobserve-anomaly-detection
--> removing [smartobserve-anomaly-detection]...
+$ sudo ./mcdesk-plugin remove mcdesk-anomaly-detection
+-> removing [mcdesk-anomaly-detection]...
 ```
 
-Restart your SmartObserve node after removing a plugin.
+Restart your MCdesk node after removing a plugin.
 {: .note}
 
 ## Batch mode
@@ -263,49 +263,49 @@ When installing a plugin that requires additional privileges that are not includ
 
 To force batch mode when installing plugins, add the `-b` or `--batch` option:
 ```bash
-bin/smartobserve-plugin install --batch <plugin-name>
+bin/mcdesk-plugin install --batch <plugin-name>
 ```
 
 ## Available plugins
 
-SmartObserve provides several bundled plugins that are available for immediate use with all SmartObserve distributions except for the minimal distribution. Additional plugins are available but must be installed separately using one of the installation options.  
+MCdesk provides several bundled plugins that are available for immediate use with all MCdesk distributions except for the minimal distribution. Additional plugins are available but must be installed separately using one of the installation options.  
 
 ### Bundled plugins
 
-The following plugins are bundled with all SmartObserve distributions except for the minimal distribution. If you are using the minimal distribution, you can add these plugins by using one of the installation methods.
+The following plugins are bundled with all MCdesk distributions except for the minimal distribution. If you are using the minimal distribution, you can add these plugins by using one of the installation methods.
 
 | Plugin name | Repository | Earliest available version |
 | :--- | :--- | :--- |
-| Alerting | [smartobserve-alerting](https://github.com/igsl-group/alerting) | 1.0.0 |
-| Anomaly Detection | [smartobserve-anomaly-detection](https://github.com/igsl-group/anomaly-detection) | 1.0.0 |
-| Asynchronous Search | [smartobserve-asynchronous-search](https://github.com/igsl-group/asynchronous-search) | 1.0.0 |
-| Cross Cluster Replication | [smartobserve-cross-cluster-replication](https://github.com/igsl-group/cross-cluster-replication) | 1.1.0 |
-| Custom Codecs | [smartobserve-custom-codecs](https://github.com/igsl-group/custom-codecs) | 2.10.0 |
+| Alerting | [mcdesk-alerting](https://github.com/igsl-group/alerting) | 1.0.0 |
+| Anomaly Detection | [mcdesk-anomaly-detection](https://github.com/igsl-group/anomaly-detection) | 1.0.0 |
+| Asynchronous Search | [mcdesk-asynchronous-search](https://github.com/igsl-group/asynchronous-search) | 1.0.0 |
+| Cross Cluster Replication | [mcdesk-cross-cluster-replication](https://github.com/igsl-group/cross-cluster-replication) | 1.1.0 |
+| Custom Codecs | [mcdesk-custom-codecs](https://github.com/igsl-group/custom-codecs) | 2.10.0 |
 | Flow Framework | [flow-framework](https://github.com/igsl-group/flow-framework) | 2.12.0 |
-| Notebooks<sup>1</sup> | [smartobserve-notebooks](https://github.com/igsl-group/dashboards-notebooks) | 1.0.0 to 1.1.0 |
+| Notebooks<sup>1</sup> | [mcdesk-notebooks](https://github.com/igsl-group/dashboards-notebooks) | 1.0.0 to 1.1.0 |
 | Notifications | [notifications](https://github.com/igsl-group/notifications) | 2.0.0
-| Reports Scheduler | [smartobserve-reports-scheduler](https://github.com/igsl-group/dashboards-reports) | 1.0.0 |
-| Geospatial | [smartobserve-geospatial](https://github.com/igsl-group/geospatial) | 2.2.0 |
-| Index Management | [smartobserve-index-management](https://github.com/igsl-group/index-management) | 1.0.0 |
-| Job Scheduler | [smartobserve-job-scheduler](https://github.com/igsl-group/job-scheduler) | 1.0.0 |
-| k-NN | [smartobserve-knn](https://github.com/igsl-group/k-NN) | 1.0.0 |
-| Learning to Rank | [smartobserve-ltr](https://github.com/igsl-group/smartobserve-learning-to-rank-base) | 2.19.0 |
-| ML Commons | [smartobserve-ml](https://github.com/igsl-group/ml-commons) | 1.3.0 |
-| Skills | [smartobserve-skills](https://github.com/igsl-group/skills) | 2.12.0 |
+| Reports Scheduler | [mcdesk-reports-scheduler](https://github.com/igsl-group/dashboards-reports) | 1.0.0 |
+| Geospatial | [mcdesk-geospatial](https://github.com/igsl-group/geospatial) | 2.2.0 |
+| Index Management | [mcdesk-index-management](https://github.com/igsl-group/index-management) | 1.0.0 |
+| Job Scheduler | [mcdesk-job-scheduler](https://github.com/igsl-group/job-scheduler) | 1.0.0 |
+| k-NN | [mcdesk-knn](https://github.com/igsl-group/k-NN) | 1.0.0 |
+| Learning to Rank | [mcdesk-ltr](https://github.com/igsl-group/mcdesk-learning-to-rank-base) | 2.19.0 |
+| ML Commons | [mcdesk-ml](https://github.com/igsl-group/ml-commons) | 1.3.0 |
+| Skills | [mcdesk-skills](https://github.com/igsl-group/skills) | 2.12.0 |
 | Neural Search | [neural-search](https://github.com/igsl-group/neural-search) | 2.4.0 |
-| Observability | [smartobserve-observability](https://github.com/igsl-group/observability) | 1.2.0 |
-| Performance Analyzer<sup>2</sup> | [smartobserve-performance-analyzer](https://github.com/igsl-group/performance-analyzer) | 1.0.0 |
-| Security | [smartobserve-security](https://github.com/igsl-group/security) | 1.0.0 |
-| Security Analytics | [smartobserve-security-analytics](https://github.com/igsl-group/security-analytics) | 2.4.0 |
-| SQL | [smartobserve-sql](https://github.com/igsl-group/sql) | 1.0.0 |
-| Learning to Rank Base | [smartobserve-learning-to-rank-base](https://github.com/igsl-group/smartobserve-learning-to-rank-base) | 2.19.0 |
-| Remote Metadata SDK | [smartobserve-remote-metadata-sdk](https://github.com/igsl-group/smartobserve-remote-metadata-sdk) | 2.19.0 |
+| Observability | [mcdesk-observability](https://github.com/igsl-group/observability) | 1.2.0 |
+| Performance Analyzer<sup>2</sup> | [mcdesk-performance-analyzer](https://github.com/igsl-group/performance-analyzer) | 1.0.0 |
+| Security | [mcdesk-security](https://github.com/igsl-group/security) | 1.0.0 |
+| Security Analytics | [mcdesk-security-analytics](https://github.com/igsl-group/security-analytics) | 2.4.0 |
+| SQL | [mcdesk-sql](https://github.com/igsl-group/sql) | 1.0.0 |
+| Learning to Rank Base | [mcdesk-learning-to-rank-base](https://github.com/igsl-group/mcdesk-learning-to-rank-base) | 2.19.0 |
+| Remote Metadata SDK | [mcdesk-remote-metadata-sdk](https://github.com/igsl-group/mcdesk-remote-metadata-sdk) | 2.19.0 |
 | Query Insights | [query-insights](https://github.com/igsl-group/query-insights) | 2.16.0 |
-| System Templates | [smartobserve-system-templates](https://github.com/igsl-group/smartobserve-system-templates) | 2.17.0 |
+| System Templates | [mcdesk-system-templates](https://github.com/igsl-group/mcdesk-system-templates) | 2.17.0 |
 | User Behavior Insights | [ubi](https://github.com/igsl-group/user-behavior-insights) | 3.0.0 |
 | Search Relevance | [search-relevance](https://github.com/igsl-group/search-relevance) | 3.1.0 |
 
-_<sup>1</sup>Dashboard Notebooks was merged in to the Observability plugin with the release of SmartObserve 1.2.0._<br>
+_<sup>1</sup>Dashboard Notebooks was merged in to the Observability plugin with the release of MCdesk 1.2.0._<br>
 _<sup>2</sup>Performance Analyzer is not available on Windows._
 
 
@@ -317,20 +317,20 @@ The URL for the corresponding plugin can be found in the `manifest.yml` file loc
 
 ### Core plugins
 
-A _core_ (or _native_) plugin in SmartObserve is a plugin that resides in the [SmartObserve core engine repository](https://github.com/igsl-group/SmartObserve/tree/main/plugins). These plugins are tightly integrated with the SmartObserve engine, are versioned alongside core releases, and are not bundled by default in the standard SmartObserve distribution.
+A _core_ (or _native_) plugin in MCdesk is a plugin that resides in the [MCdesk core engine repository](https://github.com/igsl-group/MCdesk/tree/main/plugins). These plugins are tightly integrated with the MCdesk engine, are versioned alongside core releases, and are not bundled by default in the standard MCdesk distribution.
 
 
 #### Downloading core plugins for offline installation
 
-Each core plugins in [this list](https://github.com/igsl-group/SmartObserve/tree/main/plugins) can be downloaded and installed offline from a [zip file](#install-a-plugin-from-a-zip-file) using the official `plugins` repository URL template:
+Each core plugins in [this list](https://github.com/igsl-group/MCdesk/tree/main/plugins) can be downloaded and installed offline from a [zip file](#install-a-plugin-from-a-zip-file) using the official `plugins` repository URL template:
 
 ```html
 https://artifacts.magiccreative.io/releases/plugins/<plugin-name>/<version>/<plugin-name>-<version>.zip
 ```
 
-The `<plugin-name>` corresponds to the name of the bundled plugin (for example, `analysis-icu`). The `<version>` must match the version of the SmartObserve distribution (for example, `2.19.1`). 
+The `<plugin-name>` corresponds to the name of the bundled plugin (for example, `analysis-icu`). The `<version>` must match the version of the MCdesk distribution (for example, `2.19.1`). 
 
-For example, use the following URL to download the `analysis-icu` bundled plugin distribution for SmartObserve version `2.19.1`:
+For example, use the following URL to download the `analysis-icu` bundled plugin distribution for MCdesk version `2.19.1`:
 
 ```
 https://artifacts.magiccreative.io/releases/plugins/analysis-icu/2.19.1/analysis-icu-2.19.1.zip
@@ -338,27 +338,27 @@ https://artifacts.magiccreative.io/releases/plugins/analysis-icu/2.19.1/analysis
 
 ### Additional plugins
 
-There are many more plugins available in addition to those provided by the default distribution. These additional plugins have been built by SmartObserve developers or members of the SmartObserve community. For a list of additional plugins you can install, see [Additional plugins]({{site.url}}{{site.baseurl}}/install-and-configure/additional-plugins/index/).
+There are many more plugins available in addition to those provided by the default distribution. These additional plugins have been built by MCdesk developers or members of the MCdesk community. For a list of additional plugins you can install, see [Additional plugins]({{site.url}}{{site.baseurl}}/install-and-configure/additional-plugins/index/).
 
 ## Plugin compatibility
 
-You can specify plugin compatibility with a particular SmartObserve version in the `plugin-descriptor.properties` file. For example, a plugin with the following property is compatible only with SmartObserve 2.3.0:
+You can specify plugin compatibility with a particular MCdesk version in the `plugin-descriptor.properties` file. For example, a plugin with the following property is compatible only with MCdesk 2.3.0:
 
 ```properties
-smartobserve.version=2.3.0
+mcdesk.version=2.3.0
 ```
-Alternatively, you can specify a range of compatible SmartObserve versions by setting the `dependencies` property in the `plugin-descriptor.properties` file to one of the following notations:
-- `dependencies={ smartobserve: "2.3.0" }`: The plugin is compatible only with SmartObserve version 2.3.0.
-- `dependencies={ smartobserve: "=2.3.0" }`: The plugin is compatible only with SmartObserve version 2.3.0.
-- `dependencies={ smartobserve: "~2.3.0" }`: The plugin is compatible with all versions from 2.3.0 up to the next minor version, in this example, 2.4.0 (exclusive).
-- `dependencies={ smartobserve: "^2.3.0" }`: The plugin is compatible with all versions from 2.3.0 up to the next major version, in this example, 3.0.0 (exclusive).
+Alternatively, you can specify a range of compatible MCdesk versions by setting the `dependencies` property in the `plugin-descriptor.properties` file to one of the following notations:
+- `dependencies={ mcdesk: "2.3.0" }`: The plugin is compatible only with MCdesk version 2.3.0.
+- `dependencies={ mcdesk: "=2.3.0" }`: The plugin is compatible only with MCdesk version 2.3.0.
+- `dependencies={ mcdesk: "~2.3.0" }`: The plugin is compatible with all versions from 2.3.0 up to the next minor version, in this example, 2.4.0 (exclusive).
+- `dependencies={ mcdesk: "^2.3.0" }`: The plugin is compatible with all versions from 2.3.0 up to the next major version, in this example, 3.0.0 (exclusive).
 
-You can specify only one of the `smartobserve.version` or `dependencies` properties.
+You can specify only one of the `mcdesk.version` or `dependencies` properties.
 {: .note}
 
 ## Plugin dependencies
 
-Some plugins extend functionality of other plugins. If a plugin has a dependency on another plugin, you must install the required dependency before installing the dependent plugin. For plugin dependencies, see the [manifest file](https://github.com/igsl-group/smartobserve-build/blob/main/manifests/{{site.smartobserve_version}}/smartobserve-{{site.smartobserve_version}}.yml). In this file, each plugin's dependencies are listed in the `depends_on` parameter.
+Some plugins extend functionality of other plugins. If a plugin has a dependency on another plugin, you must install the required dependency before installing the dependent plugin. For plugin dependencies, see the [manifest file](https://github.com/igsl-group/mcdesk-build/blob/main/manifests/{{site.mcdesk_version}}/mcdesk-{{site.mcdesk_version}}.yml). In this file, each plugin's dependencies are listed in the `depends_on` parameter.
 
 ## Related links
 
@@ -375,6 +375,6 @@ Some plugins extend functionality of other plugins. If a plugin has a dependency
 - [ML Commons]({{site.url}}{{site.baseurl}}/ml-commons-plugin/index/)
 - [Neural search]({{site.url}}{{site.baseurl}}/neural-search-plugin/index/)
 - [Notifications]({{site.url}}{{site.baseurl}}/notifications-plugin/index/)
-- [SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/index/)
+- [MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/index/)
 - [Performance Analyzer]({{site.url}}{{site.baseurl}}/monitoring-plugins/pa/index/)
 - [SQL]({{site.url}}{{site.baseurl}}/search-plugins/sql/index/)

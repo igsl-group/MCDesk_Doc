@@ -19,14 +19,14 @@ This is an experimental feature and is not recommended for use in a production e
 
 Sometimes a large language model (LLM) cannot answer a question right away. For example, an LLM can't tell you how many errors there are in your log index for last week because its knowledge base does not contain your proprietary data. In this case, you need to provide additional information to an LLM in a subsequent call. You can use an agent to solve such complex problems. The agent can run tools to obtain more information from configured data sources and send the additional information to the LLM as context.
 
-This tutorial describes how to build your own chatbot in SmartObserve using a `conversational` agent. For more information about agents, see [Agents and tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/index/).
+This tutorial describes how to build your own chatbot in MCdesk using a `conversational` agent. For more information about agents, see [Agents and tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/index/).
 
 Replace the placeholders starting with the prefix `your_` with your own values.
 {: .note}
 
 ## Prerequisite
 
-Log in to the SmartObserve Dashboards home page, select **Add sample data**, and add the **Sample eCommerce orders** data.
+Log in to the MCdesk Dashboards home page, select **Add sample data**, and add the **Sample eCommerce orders** data.
 
 ## Step 1: Configure a knowledge base
 
@@ -190,7 +190,7 @@ The agent is configured with the following information:
 - Meta information: `name`, `type`, `description`.
 - LLM information: The agent uses an LLM to reason and select the next step, including choosing an appropriate tool and preparing the tool input.
 - Tools: A tool is a function that can be executed by the agent. Each tool can define its own `name`, `description`, and `parameters`.
-- Memory: Stores chat messages. Currently, SmartObserve only supports one memory type: `conversation_index`.
+- Memory: Stores chat messages. Currently, MCdesk only supports one memory type: `conversation_index`.
 
 The agent contains the following parameters:
 
@@ -201,7 +201,7 @@ The agent contains the following parameters:
    - `"response_filter": "$.completion"`: Needed to retrieve the LLM answer from the Bedrock Claude model response.
    - `"message_history_limit": 5`: The agent retrieves a maximum of the five most recent historical messages and adds them to the LLM context. Set this parameter to `0` to omit message history in the context.
    - `disable_trace`: If `true`, then the agent does not store trace data in memory. Trace data is included in each message and provides a detailed recount of steps performed while generating the message.
-- `memory`: Defines how to store messages. Currently, SmartObserve only supports the `conversation_index` memory, which stores messages in a memory index.
+- `memory`: Defines how to store messages. Currently, MCdesk only supports the `conversation_index` memory, which stores messages in a memory index.
 - Tools: 
    - An LLM will reason to decide which tool to run and will prepare the tool's input. 
    - To include the tool's output in the response, specify `"include_output_in_agent_response": true`. In this tutorial, you will include the `PPLTool` output in the response (see the example response in [Test the agent](#test-the-agent)). 
@@ -283,7 +283,7 @@ POST _plugins/_ml/agents/_register
     },
     {
       "type": "ListIndexTool",
-      "description": "Use this tool to get SmartObserve index information: (health, status, index, uuid, primary count, replica count, docs.count, docs.deleted, store.size, primary.store.size). \nIt takes 2 optional arguments named `index` which is a comma-delimited list of one or more indices to get information from (default is an empty list meaning all indices), and `local` which means whether to return information from the local node only instead of the cluster manager node (default is false)."
+      "description": "Use this tool to get MCdesk index information: (health, status, index, uuid, primary count, replica count, docs.count, docs.deleted, store.size, primary.store.size). \nIt takes 2 optional arguments named `index` which is a comma-delimited list of one or more indices to get information from (default is an empty list meaning all indices), and `local` which means whether to return information from the local node only instead of the cluster manager node (default is false)."
     },
     {
       "type": "SearchAnomalyDetectorsTool"
@@ -315,7 +315,7 @@ Note the following testing tips:
 - An LLM may hallucinate. It may choose the wrong tool to solve your problem, especially when you have configured many tools. To avoid hallucinations, try the following options:
    - Avoid configuring many tools in an agent.
    - Provide a detailed tool description clarifying what the tool can do. 
-   - Specify the tool to use in the LLM question, for example, `Can you use the PPLTool to query the smartobserve_dashboards_sample_data_ecommerce index so it can calculate how many orders were placed last week?`.
+   - Specify the tool to use in the LLM question, for example, `Can you use the PPLTool to query the mcdesk_dashboards_sample_data_ecommerce index so it can calculate how many orders were placed last week?`.
    - Specify the tool to use when executing an agent. For example, specify that only the `PPLTool` and `ListIndexTool` should be used to process the current request.
 
 Test the agent:
@@ -324,7 +324,7 @@ Test the agent:
 POST _plugins/_ml/agents/your_agent_id/_execute
 {
     "parameters": {
-    "question": "Can you query with index smartobserve_dashboards_sample_data_ecommerce to calculate how many orders in last week?",
+    "question": "Can you query with index mcdesk_dashboards_sample_data_ecommerce to calculate how many orders in last week?",
     "verbose": false,
     "selected_tools": ["PPLTool", "ListIndexTool"]
     }
@@ -340,7 +340,7 @@ POST _plugins/_ml/agents/your_agent_id/_execute
 POST _plugins/_ml/agents/your_agent_id/_execute
 {
   "parameters": {
-    "question": "Can you query with index smartobserve_dashboards_sample_data_ecommerce to calculate how many orders in last week?",
+    "question": "Can you query with index mcdesk_dashboards_sample_data_ecommerce to calculate how many orders in last week?",
     "verbose": false
   }
 }
@@ -365,10 +365,10 @@ Because you specified `"include_output_in_agent_response": true` for the `PPLToo
         {
           "name": "response",
           "dataAsMap": {
-            "response": "The tool response from the PPLTool shows that there were 3812 orders in the smartobserve_dashboards_sample_data_ecommerce index within the last week.",
+            "response": "The tool response from the PPLTool shows that there were 3812 orders in the mcdesk_dashboards_sample_data_ecommerce index within the last week.",
             "additional_info": {
               "PPLTool.output": [
-                """{"ppl":"source\u003dsmartobserve_dashboards_sample_data_ecommerce| where order_date \u003e DATE_SUB(NOW(), INTERVAL 1 WEEK) | stats COUNT() AS count","executionResult":"{\n  \"schema\": [\n    {\n      \"name\": \"count\",\n      \"type\": \"integer\"\n    }\n  ],\n  \"datarows\": [\n    [\n      3812\n    ]\n  ],\n  \"total\": 1,\n  \"size\": 1\n}"}"""
+                """{"ppl":"source\u003dmcdesk_dashboards_sample_data_ecommerce| where order_date \u003e DATE_SUB(NOW(), INTERVAL 1 WEEK) | stats COUNT() AS count","executionResult":"{\n  \"schema\": [\n    {\n      \"name\": \"count\",\n      \"type\": \"integer\"\n    }\n  ],\n  \"datarows\": [\n    [\n      3812\n    ]\n  ],\n  \"total\": 1,\n  \"size\": 1\n}"}"""
               ]
             }
           }
@@ -849,9 +849,9 @@ The response shows that the agent runs both the `population_data_knowledge_base`
 }
 ```
 
-## Step 5: Configure a root chatbot agent in SmartObserve Dashboards
+## Step 5: Configure a root chatbot agent in MCdesk Dashboards
 
-To use the [SmartObserve Assistant for SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/dashboards-assistant/index/), you need to configure a root chatbot agent.
+To use the [MCdesk Assistant for MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/dashboards-assistant/index/), you need to configure a root chatbot agent.
 
 A root chatbot agent consists of the following parts:
 
@@ -881,7 +881,7 @@ POST /_plugins/_ml/agents/_register
       "description": "A general tool to answer any question",
       "parameters": {
         "model_id": "your_llm_model_id_created_in_previous_steps",  
-        "prompt": "Human:  You are an AI that only speaks JSON. Do not write normal text. Output should follow example JSON format: \n\n {\"response\": [\"question1\", \"question2\"]}\n\n. \n\nHuman:You will be given a chat history between SmartObserve Assistant and a Human.\nUse the context provided to generate follow up questions the Human would ask to the Assistant.\nThe Assistant can answer general questions about logs, traces and metrics.\nAssistant can access a set of tools listed below to answer questions given by the Human:\nQuestion suggestions generator tool\nHere's the chat history between the human and the Assistant.\n${parameters.LLMResponseGenerator.output}\nUse the following steps to generate follow up questions Human may ask after the response of the Assistant:\nStep 1. Use the chat history to understand what human is trying to search and explore.\nStep 2. Understand what capabilities the assistant has with the set of tools it has access to.\nStep 3. Use the above context and generate follow up questions.Step4:You are an AI that only speaks JSON. Do not write normal text. Output should follow example JSON format: \n\n {\"response\": [\"question1\", \"question2\"]} \n \n----------------\n\nAssistant:"
+        "prompt": "Human:  You are an AI that only speaks JSON. Do not write normal text. Output should follow example JSON format: \n\n {\"response\": [\"question1\", \"question2\"]}\n\n. \n\nHuman:You will be given a chat history between MCdesk Assistant and a Human.\nUse the context provided to generate follow up questions the Human would ask to the Assistant.\nThe Assistant can answer general questions about logs, traces and metrics.\nAssistant can access a set of tools listed below to answer questions given by the Human:\nQuestion suggestions generator tool\nHere's the chat history between the human and the Assistant.\n${parameters.LLMResponseGenerator.output}\nUse the following steps to generate follow up questions Human may ask after the response of the Assistant:\nStep 1. Use the chat history to understand what human is trying to search and explore.\nStep 2. Understand what capabilities the assistant has with the set of tools it has access to.\nStep 3. Use the above context and generate follow up questions.Step4:You are an AI that only speaks JSON. Do not write normal text. Output should follow example JSON format: \n\n {\"response\": [\"question1\", \"question2\"]} \n \n----------------\n\nAssistant:"
       },
       "include_output_in_agent_response": true
     }
@@ -893,7 +893,7 @@ POST /_plugins/_ml/agents/_register
 ```
 {% include copy-curl.html %}
 
-Note the root chatbot agent ID, log in to your SmartObserve server, go to the SmartObserve config folder (`$OS_HOME/config`), and run the following command:
+Note the root chatbot agent ID, log in to your MCdesk server, go to the MCdesk config folder (`$OS_HOME/config`), and run the following command:
 
 ```bashx
  curl -k --cert ./kirk.pem --key ./kirk-key.pem -X PUT https://localhost:9200/.plugins-ml-config/_doc/os_chat -H 'Content-Type: application/json' -d'
@@ -906,12 +906,12 @@ Note the root chatbot agent ID, log in to your SmartObserve server, go to the Sm
 ```
 {% include copy.html %}
 
-Go to your SmartObserve Dashboards config folder (`$OSD_HOME/config`) and edit `smartobserve_dashboards.yml` by adding the following line to the end of the file: `assistant.chat.enabled: true`.
+Go to your MCdesk Dashboards config folder (`$OSD_HOME/config`) and edit `mcdesk_dashboards.yml` by adding the following line to the end of the file: `assistant.chat.enabled: true`.
 
-Restart SmartObserve Dashboards and then select the chat icon in the upper-right corner, shown in the following image.
+Restart MCdesk Dashboards and then select the chat icon in the upper-right corner, shown in the following image.
 
-<img width="300" src="{{site.url}}{{site.baseurl}}/images/dashboards/os-assistant-icon.png" alt="SmartObserve Assistant icon">
+<img width="300" src="{{site.url}}{{site.baseurl}}/images/dashboards/os-assistant-icon.png" alt="MCdesk Assistant icon">
 
-You can now chat in SmartObserve Dashboards, as shown in the following image.
+You can now chat in MCdesk Dashboards, as shown in the following image.
 
-<img src="{{site.url}}{{site.baseurl}}/images/dashboards/os-assistant-chat.png" alt="SmartObserve Assistant chat">
+<img src="{{site.url}}{{site.baseurl}}/images/dashboards/os-assistant-chat.png" alt="MCdesk Assistant chat">

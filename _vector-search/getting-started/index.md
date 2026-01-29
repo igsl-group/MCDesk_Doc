@@ -10,29 +10,29 @@ redirect_from:
 
 # Getting started with vector search
 
-This guide shows you how to use your own vectors in SmartObserve. You'll learn to create a vector index, add location data, and run a vector search to find the nearest hotels on a coordinate plane. While this example uses two-dimensional vectors for simplicity, the same approach applies to higher-dimensional vectors used in semantic search and recommendation systems.
+This guide shows you how to use your own vectors in MCdesk. You'll learn to create a vector index, add location data, and run a vector search to find the nearest hotels on a coordinate plane. While this example uses two-dimensional vectors for simplicity, the same approach applies to higher-dimensional vectors used in semantic search and recommendation systems.
 
 
-## Prerequisite: Install SmartObserve
+## Prerequisite: Install MCdesk
   
 
 <details markdown="block">
   <summary>
-  If you don't have SmartObserve installed, follow these steps to create a cluster.
+  If you don't have MCdesk installed, follow these steps to create a cluster.
   </summary>
 
 Before you start, ensure that [Docker](https://docs.docker.com/get-docker/) is installed and running in your environment. <br>
 This demo configuration is insecure and should not be used in production environments.
 {: .note} 
 
-Download and run SmartObserve: 
+Download and run MCdesk: 
 
 ```bash
-docker pull smartobserveproject/smartobserve:latest && docker run -it -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" -e "DISABLE_SECURITY_PLUGIN=true" smartobserveproject/smartobserve:latest
+docker pull mcdeskproject/mcdesk:latest && docker run -it -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" -e "DISABLE_SECURITY_PLUGIN=true" mcdeskproject/mcdesk:latest
 ```
 {% include copy.html %}
 
-SmartObserve is now running on port 9200. To verify that SmartObserve is running, send the following request: 
+MCdesk is now running on port 9200. To verify that MCdesk is running, send the following request: 
 
 ```bash
 curl http://localhost:9200
@@ -47,7 +47,7 @@ You should get a response that looks like this:
   "cluster_name" : "docker-cluster",
   "cluster_uuid" : "GLAjAG6bTeWErFUy_d-CLw",
   "version" : {
-    "distribution" : "smartobserve",
+    "distribution" : "mcdesk",
     "number" : <version>,
     "build_type" : <build-type>,
     "build_hash" : <build-hash>,
@@ -57,17 +57,17 @@ You should get a response that looks like this:
     "minimum_wire_compatibility_version" : "7.10.0",
     "minimum_index_compatibility_version" : "7.0.0"
   },
-  "tagline" : "The SmartObserve Project: https://magiccreative.io/"
+  "tagline" : "The MCdesk Project: https://magiccreative.io/"
 }
 ```
 
-For more information, see [Installation quickstart]({{site.url}}{{site.baseurl}}/getting-started/quickstart/) and [Install and upgrade SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/).
+For more information, see [Installation quickstart]({{site.url}}{{site.baseurl}}/getting-started/quickstart/) and [Install and upgrade MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/).
 
 </details>
 
 ## Step 1: Create a vector index
 
-First, create an index that will store sample hotel data. To signal to SmartObserve that this is a vector index, set `index.knn` to `true`. You'll store the vectors in a vector field named `location`. The vectors you'll ingest will be two-dimensional, and the distance between vectors will be calculated using the [Euclidean `l2` similarity metric]({{site.url}}{{site.baseurl}}/vector-search/getting-started/vector-search-basics/#calculating-similarity):
+First, create an index that will store sample hotel data. To signal to MCdesk that this is a vector index, set `index.knn` to `true`. You'll store the vectors in a vector field named `location`. The vectors you'll ingest will be two-dimensional, and the distance between vectors will be calculated using the [Euclidean `l2` similarity metric]({{site.url}}{{site.baseurl}}/vector-search/getting-started/vector-search-basics/#calculating-similarity):
 
 ```json
 PUT /hotels-index
@@ -88,7 +88,7 @@ PUT /hotels-index
 ```
 {% include copy-curl.html %}
 
-Vector queries usually have a `size` > 0, so by default they don't enter the request cache. In SmartObserve 2.19 or later, if your workload mostly consists of vector queries, consider increasing the dynamic `indices.requests.cache.maximum_cacheable_size` cluster setting to a larger value, such as `256`. This allows queries with a `size` of up to 256 to enter the request cache, improving performance. For more information, see [Request cache]({{site.url}}{{site.baseurl}}/search-plugins/caching/request-cache).
+Vector queries usually have a `size` > 0, so by default they don't enter the request cache. In MCdesk 2.19 or later, if your workload mostly consists of vector queries, consider increasing the dynamic `indices.requests.cache.maximum_cacheable_size` cluster setting to a larger value, such as `256`. This allows queries with a `size` of up to 256 to enter the request cache, improving performance. For more information, see [Request cache]({{site.url}}{{site.baseurl}}/search-plugins/caching/request-cache).
 
 ## Step 2: Add data to your index
 
@@ -192,7 +192,7 @@ The response contains the hotels closest to the specified pin location:
 
 ## Generating vector embeddings automatically
 
-If your data isn't already in vector format, you can generate vector embeddings directly within SmartObserve. This allows you to transform text or images into their numerical representations for similarity search. For more information, see [Generating vector embeddings automatically]({{site.url}}{{site.baseurl}}/vector-search/getting-started/auto-generated-embeddings/).
+If your data isn't already in vector format, you can generate vector embeddings directly within MCdesk. This allows you to transform text or images into their numerical representations for similarity search. For more information, see [Generating vector embeddings automatically]({{site.url}}{{site.baseurl}}/vector-search/getting-started/auto-generated-embeddings/).
 
 ## Next steps
 

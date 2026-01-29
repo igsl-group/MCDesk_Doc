@@ -7,9 +7,9 @@ parent: Metadata fields
 
 # ID
 
-Each document in SmartObserve has a unique `_id` field. This field is indexed, allowing you to retrieve documents using the GET API or the [`ids` query]({{site.url}}{{site.baseurl}}/query-dsl/term/ids/).
+Each document in MCdesk has a unique `_id` field. This field is indexed, allowing you to retrieve documents using the GET API or the [`ids` query]({{site.url}}{{site.baseurl}}/query-dsl/term/ids/).
 
-If you do not provide an `_id` value, then SmartObserve automatically generates one for the document.
+If you do not provide an `_id` value, then MCdesk automatically generates one for the document.
 {: .note}
 
 The following example request creates an index named `test-index1` and adds two documents with different `_id` values:

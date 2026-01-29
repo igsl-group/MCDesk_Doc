@@ -5,7 +5,7 @@ nav_order: 24
 has_children: false
 parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/boolean/
+  - /mcdesk/supported-field-types/boolean/
   - /field-types/boolean/
 ---
 
@@ -77,7 +77,7 @@ Parameter | Description
 `doc_values` | A Boolean value that specifies whether the field should be stored on disk so that it can be used for aggregations, sorting or scripting. Default is `true`.
 `index` | A Boolean value that specifies whether the field should be searchable. Default is `true`. 
 `meta` | Accepts metadata for this field.
-[`null_value`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/index#null-value) | A  value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
+[`null_value`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/index#null-value) | A  value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
 `store` | A Boolean value that specifies whether the field value should be stored and can be retrieved separately from the _source field. Default is `false`. 
 
 ## Boolean values in aggregations and scripts

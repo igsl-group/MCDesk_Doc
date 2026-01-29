@@ -27,10 +27,10 @@ The `cardinality` aggregation takes the following parameters.
 
 ## Example
 
-The following example request finds the number of unique product IDs in the SmartObserve Dashboards sample e-commerce data:
+The following example request finds the number of unique product IDs in the MCdesk Dashboards sample e-commerce data:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -93,7 +93,7 @@ For high-cardinality string fields, storing hash values for the index field and 
 Set the precision threshold to `10000` unique values:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -117,7 +117,7 @@ You can control how an aggregation runs using the `execution_hint` setting. This
 - `direct` – Uses field values directly.  
 - `ordinals` – Uses ordinals of the field. 
 
-If you don't specify `execution_hint`, SmartObserve automatically chooses the best option for the field.  
+If you don't specify `execution_hint`, MCdesk automatically chooses the best option for the field.  
 
 Setting `ordinals` on a non-ordinal field has no effect. Similarly, `direct` has no effect on ordinal fields.  
 {: .note}
@@ -130,7 +130,7 @@ This is an expert-level setting. Ordinals use byte arrays, where the array size 
 The following request runs a cardinality aggregation using ordinals: 
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {

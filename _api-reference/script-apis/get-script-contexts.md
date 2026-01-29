@@ -181,7 +181,7 @@ The `GET _script_context` request returns the following fields:
           "return_type" : "boolean",
           "params" : [
             {
-              "type" : "org.smartobserve.analysis.common.AnalysisPredicateScript$Token",
+              "type" : "org.mcdesk.analysis.common.AnalysisPredicateScript$Token",
               "name" : "token"
             }
           ]
@@ -271,7 +271,7 @@ The `GET _script_context` request returns the following fields:
           "return_type" : "boolean",
           "params" : [
             {
-              "type" : "org.smartobserve.index.query.IntervalFilterScript$Interval",
+              "type" : "org.mcdesk.index.query.IntervalFilterScript$Interval",
               "name" : "interval"
             }
           ]
@@ -365,7 +365,7 @@ The `GET _script_context` request returns the following fields:
           "return_type" : "double",
           "params" : [
             {
-              "type" : "org.smartobserve.script.ScoreScript$ExplanationHolder",
+              "type" : "org.mcdesk.script.ScoreScript$ExplanationHolder",
               "name" : "explanation"
             }
           ]
@@ -414,19 +414,19 @@ The `GET _script_context` request returns the following fields:
               "name" : "weight"
             },
             {
-              "type" : "org.smartobserve.index.similarity.ScriptedSimilarity$Query",
+              "type" : "org.mcdesk.index.similarity.ScriptedSimilarity$Query",
               "name" : "query"
             },
             {
-              "type" : "org.smartobserve.index.similarity.ScriptedSimilarity$Field",
+              "type" : "org.mcdesk.index.similarity.ScriptedSimilarity$Field",
               "name" : "field"
             },
             {
-              "type" : "org.smartobserve.index.similarity.ScriptedSimilarity$Term",
+              "type" : "org.mcdesk.index.similarity.ScriptedSimilarity$Term",
               "name" : "term"
             },
             {
-              "type" : "org.smartobserve.index.similarity.ScriptedSimilarity$Doc",
+              "type" : "org.mcdesk.index.similarity.ScriptedSimilarity$Doc",
               "name" : "doc"
             }
           ]
@@ -441,15 +441,15 @@ The `GET _script_context` request returns the following fields:
           "return_type" : "double",
           "params" : [
             {
-              "type" : "org.smartobserve.index.similarity.ScriptedSimilarity$Query",
+              "type" : "org.mcdesk.index.similarity.ScriptedSimilarity$Query",
               "name" : "query"
             },
             {
-              "type" : "org.smartobserve.index.similarity.ScriptedSimilarity$Field",
+              "type" : "org.mcdesk.index.similarity.ScriptedSimilarity$Field",
               "name" : "field"
             },
             {
-              "type" : "org.smartobserve.index.similarity.ScriptedSimilarity$Term",
+              "type" : "org.mcdesk.index.similarity.ScriptedSimilarity$Term",
               "name" : "term"
             }
           ]
@@ -524,7 +524,7 @@ The `GET _script_context` request returns the following fields:
           "return_type" : "boolean",
           "params" : [
             {
-              "type" : "org.smartobserve.alerting.script.QueryLevelTriggerExecutionContext",
+              "type" : "org.mcdesk.alerting.script.QueryLevelTriggerExecutionContext",
               "name" : "ctx"
             }
           ]

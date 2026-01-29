@@ -172,7 +172,7 @@ falsepositives:
         "reason": "Rule with id ZaFv1IMBdLpXWBiBa1XI is actively used by detectors. Update can be forced by setting forced flag to true",
         "caused_by": {
             "type": "exception",
-            "reason": "org.smartobserve.SmartObserveStatusException: Rule with id ZaFv1IMBdLpXWBiBa1XI is actively used by detectors. Update can be forced by setting forced flag to true"
+            "reason": "org.mcdesk.MCdeskStatusException: Rule with id ZaFv1IMBdLpXWBiBa1XI is actively used by detectors. Update can be forced by setting forced flag to true"
         }
     },
     "status": 500
@@ -305,7 +305,7 @@ POST /_plugins/_security_analytics/rules/_search?pre_packaged=true
         "max_score": 0.25863406,
         "hits": [
             {
-                "_index": ".smartobserve-pre-packaged-rules-config",
+                "_index": ".mcdesk-pre-packaged-rules-config",
                 "_id": "6KFv1IMBdLpXWBiBelZg",
                 "_version": 1,
                 "_seq_no": 386,
@@ -402,7 +402,7 @@ Body:
         "max_score": 0.2876821,
         "hits": [
             {
-                "_index": ".smartobserve-custom-rules-config",
+                "_index": ".mcdesk-custom-rules-config",
                 "_id": "ZaFv1IMBdLpXWBiBa1XI",
                 "_version": 2,
                 "_seq_no": 1,
@@ -475,7 +475,7 @@ DELETE /_plugins/_security_analytics/rules/ZaFv1IMBdLpXWBiBa1XI
         "reason": "Rule with id ZaFv1IMBdLpXWBiBa1XI is actively used by detectors. Deletion can be forced by setting forced flag to true",
         "caused_by": {
             "type": "exception",
-            "reason": "org.smartobserve.SmartObserveStatusException: Rule with id ZaFv1IMBdLpXWBiBa1XI is actively used by detectors. Deletion can be forced by setting forced flag to true"
+            "reason": "org.mcdesk.MCdeskStatusException: Rule with id ZaFv1IMBdLpXWBiBa1XI is actively used by detectors. Deletion can be forced by setting forced flag to true"
         }
     },
     "status": 500

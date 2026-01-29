@@ -9,7 +9,7 @@ redirect_from:
 
 # VisBuilder
 
-You can use the VisBuilder visualization type in SmartObserve Dashboards to create data visualizations by using a drag-and-drop gesture. With VisBuilder you have:
+You can use the VisBuilder visualization type in MCdesk Dashboards to create data visualizations by using a drag-and-drop gesture. With VisBuilder you have:
 
 * An immediate view of your data without the need to preselect the visualization output.
 * The flexibility to change visualization types and index patterns quickly.
@@ -17,9 +17,9 @@ You can use the VisBuilder visualization type in SmartObserve Dashboards to crea
 
 <img src="{{site.url}}{{site.baseurl}}/images/dashboards/vis-builder-2.png" alt="VisBuilder new visualization start page">
 
-## Try VisBuilder in the SmartObserve Dashboards playground
+## Try VisBuilder in the MCdesk Dashboards playground
 
-You can try VisBuilder without installing SmartObserve locally by using [SmartObserve Dashboards Playground](https://playground.magiccreative.io/app/vis-builder#/). VisBuilder is enabled by default.
+You can try VisBuilder without installing MCdesk locally by using [MCdesk Dashboards Playground](https://playground.magiccreative.io/app/vis-builder#/). VisBuilder is enabled by default.
 
 ## Try VisBuilder locally
 

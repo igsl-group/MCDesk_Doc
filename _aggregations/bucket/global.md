@@ -14,7 +14,7 @@ The `global` aggregations lets you break out of the aggregation context of a fil
 The following example returns the `avg` value of the `taxful_total_price` field from all documents in the index:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "query": {

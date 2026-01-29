@@ -12,13 +12,13 @@ redirect_from:
 
 Mapping parameters are used to configure the behavior of index fields. For parameter use cases, see a mapping parameter's respective page.
 
-The following table lists SmartObserve mapping parameters.
+The following table lists MCdesk mapping parameters.
 
 Parameter | Description
 :--- | :---
 [`analyzer`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/analyzer/) | Specifies the analyzer used to analyze string fields. Default is the `standard` analyzer, which is a general-purpose analyzer that splits text on white space and punctuation, converts to lowercase, and removes stop words. Allowed values are `standard`, `simple`, or `whitespace`. 
 [`boost`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/boost/) | Specifies a field-level boost factor applied at query time. Allows you to increase or decrease the relevance score of a specific field during search queries. Default boost value is `1.0`, which means that no boost is applied. Allowed values are any positive floating-point number.
-[`coerce`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/coerce/) | Controls how values are converted to the expected field data type during indexing. Default value is `true`, which means that SmartObserve tries to coerce the value to the expected value type. Allowed values are `true` or `false`.
+[`coerce`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/coerce/) | Controls how values are converted to the expected field data type during indexing. Default value is `true`, which means that MCdesk tries to coerce the value to the expected value type. Allowed values are `true` or `false`.
 [`copy_to`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/copy-to/) | Copies the value of a field to another field. There is no default value for this parameter. Optional.
 [`doc_values`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/doc-values/) | Specifies whether a field should be stored on disk to make sorting and aggregation faster. Default value is `true`, which means that the doc values are enabled. Allowed values are a single field name or a list of field names.
 [`dynamic`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/dynamic/) | Determines whether new fields should be added dynamically. Default value is `true`, which means that new fields can be added dynamically. Allowed values are `true`, `false`, or `strict`.

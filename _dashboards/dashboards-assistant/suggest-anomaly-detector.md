@@ -1,17 +1,17 @@
 ---
 layout: default
 title: Anomaly detector suggestions
-parent: SmartObserve Assistant for SmartObserve Dashboards
+parent: MCdesk Assistant for MCdesk Dashboards
 nav_order: 1
 has_children: false
 ---
 
 # Anomaly detector suggestions
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
-The SmartObserve Dashboards Assistant can use a large language model (LLM) to suggest the creation of an anomaly detector. The LLM analyzes data patterns in your SmartObserve indexes and recommends configuration settings for the anomaly detector, making it easier to identify unusual activity or trends in your data.
+The MCdesk Dashboards Assistant can use a large language model (LLM) to suggest the creation of an anomaly detector. The LLM analyzes data patterns in your MCdesk indexes and recommends configuration settings for the anomaly detector, making it easier to identify unusual activity or trends in your data.
 
 ## Configuration
 
@@ -19,7 +19,7 @@ To configure anomaly detector suggestions, use the following steps.
 
 ### Prerequisite
 
-Before using anomaly detector suggestions, enable query enhancements in SmartObserve Dashboards as follows:
+Before using anomaly detector suggestions, enable query enhancements in MCdesk Dashboards as follows:
 
 1. On the top menu bar, go to **Management > Dashboards Management**. 
 1. In the left navigation pane, select **Advanced settings**.
@@ -27,7 +27,7 @@ Before using anomaly detector suggestions, enable query enhancements in SmartObs
 
 ### Step 1: Enable anomaly detector suggestions
 
-To enable anomaly detector suggestions, configure the following `smartobserve_dashboards.yml` setting:
+To enable anomaly detector suggestions, configure the following `mcdesk_dashboards.yml` setting:
 
 ```yaml
 assistant.smartAnomalyDetector.enabled: true
@@ -36,7 +36,7 @@ assistant.smartAnomalyDetector.enabled: true
 
 ### Step 2: Create an anomaly detector suggestion agent
 
-To orchestrate anomaly detector suggestions, create an anomaly detector suggestion [agent]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/). To create an agent, send a `POST /_plugins/_flow_framework/workflow?provision=true` request and provide the agent template as a payload. For more information, see [Configuring SmartObserve Assistant]({{site.url}}{{site.baseurl}}/dashboards/dashboards-assistant/index/#configuring-smartobserve-assistant).
+To orchestrate anomaly detector suggestions, create an anomaly detector suggestion [agent]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/). To create an agent, send a `POST /_plugins/_flow_framework/workflow?provision=true` request and provide the agent template as a payload. For more information, see [Configuring MCdesk Assistant]({{site.url}}{{site.baseurl}}/dashboards/dashboards-assistant/index/#configuring-mcdesk-assistant).
 
 For sample agent templates, see [Flow Framework sample templates](https://github.com/igsl-group/flow-framework/tree/2.x/sample-templates). Note the agent ID; you'll use it in the following step.
 
@@ -72,11 +72,11 @@ POST /_plugins/_ml/agents/<SUGGEST_ANOMALY_DETECTOR_AGENT_ID>/_execute
 ```
 {% include copy-curl.html %}
 
-## Viewing anomaly detector suggestions in SmartObserve Dashboards
+## Viewing anomaly detector suggestions in MCdesk Dashboards
 
-To view anomaly detector suggestions in SmartObserve Dashboards, use the following steps:
+To view anomaly detector suggestions in MCdesk Dashboards, use the following steps:
 
-1. On the top menu bar, go to **SmartObserve Dashboards > Discover**.
+1. On the top menu bar, go to **MCdesk Dashboards > Discover**.
 
 1. From the index pattern dropdown list, select an index pattern.
 

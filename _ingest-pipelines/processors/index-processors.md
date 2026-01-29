@@ -12,7 +12,7 @@ redirect_from:
 
 Ingest processors are a core component of [ingest pipelines]({{site.url}}{{site.baseurl}}/ingest-pipelines/index/). They preprocess documents before indexing. For example, you can remove fields, extract values from text, convert data formats, or append additional information.
 
-SmartObserve provides a standard [set of ingest processors](#supported-processors) within your SmartObserve installation. For a list of processors available in SmartObserve, use the [Nodes Info]({{site.url}}{{site.baseurl}}/api-reference/nodes-apis/nodes-info/) API operation:
+MCdesk provides a standard [set of ingest processors](#supported-processors) within your MCdesk installation. For a list of processors available in MCdesk, use the [Nodes Info]({{site.url}}{{site.baseurl}}/api-reference/nodes-apis/nodes-info/) API operation:
 
 ```json
 GET /_nodes/ingest?filter_path=nodes.*.ingest.processors
@@ -24,7 +24,7 @@ To set up and deploy ingest processors, make sure you have the necessary permiss
 
 ## Supported processors
 
-Processor types and their required or optional parameters vary depending on your specific use case. SmartObserve supports the following ingest processors. For tutorials on using these processors in an SmartObserve pipeline, go to each processor's respective documentation. 
+Processor types and their required or optional parameters vary depending on your specific use case. MCdesk supports the following ingest processors. For tutorials on using these processors in an MCdesk pipeline, go to each processor's respective documentation. 
 
 Processor type | Description
 :--- | :--- 
@@ -81,4 +81,4 @@ Some processors support batch ingestion---they can process multiple documents at
 
 ## Selectively enabling processors
 
-Processors defined by the [ingest-common module](https://github.com/igsl-group/SmartObserve/blob/2.x/modules/ingest-common/src/main/java/org/smartobserve/ingest/common/IngestCommonPlugin.java) can be selectively enabled by providing the `ingest-common.processors.allowed` cluster setting. If not provided, then all processors are enabled by default. Specifying an empty list disables all processors. If the setting is changed to remove previously enabled processors, then any pipeline using a disabled processor will fail after node restart when the new setting takes effect.
+Processors defined by the [ingest-common module](https://github.com/igsl-group/MCdesk/blob/2.x/modules/ingest-common/src/main/java/org/mcdesk/ingest/common/IngestCommonPlugin.java) can be selectively enabled by providing the `ingest-common.processors.allowed` cluster setting. If not provided, then all processors are enabled by default. Specifying an empty list disables all processors. If the setting is changed to remove previously enabled processors, then any pipeline using a disabled processor will fail after node restart when the new setting takes effect.

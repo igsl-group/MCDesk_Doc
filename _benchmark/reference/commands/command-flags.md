@@ -5,23 +5,23 @@ nav_order: 51
 parent: Command reference
 redirect_from:
   - /benchmark/commands/command-flags/
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 ---
 
 # Command flags
-SmartObserve Benchmark uses command line flags to change Benchmark's behavior. Not all flags can be used with each command. To find out which flags are supported by a specific command, enter `smartobserve-benchmark <command> --h`.
+MCdesk Benchmark uses command line flags to change Benchmark's behavior. Not all flags can be used with each command. To find out which flags are supported by a specific command, enter `mcdesk-benchmark <command> --h`.
 
 All command flags are added to a command using the following syntax:
 
 ```bash
-smartobserve-benchmark <command> --<command-flag>
+mcdesk-benchmark <command> --<command-flag>
 ```
 
 Flags that accept comma-separated values, such `--telemetry`, can also accept a JSON array. This can be defined by passing a file path ending in `.json` or inline as a JSON string.
 
-- Comma-seperated values: `smartobserve-benchmark ... --test-procedure="ingest-only,search-aggregations"`
-- JSON file: `smartobserve-benchmark ... --workload-params="params.json"`
-- JSON inline string: `smartobserve-benchmark  ... --telemetry='["node-stats", "recovery-stats"]'`
+- Comma-seperated values: `mcdesk-benchmark ... --test-procedure="ingest-only,search-aggregations"`
+- JSON file: `mcdesk-benchmark ... --workload-params="params.json"`
+- JSON inline string: `mcdesk-benchmark  ... --telemetry='["node-stats", "recovery-stats"]'`
 
 <!-- vale off -->
 ## workload-path
@@ -33,31 +33,31 @@ This can be either a directory that contains a `workload.json` file or a `.json`
 ## workload-repositor
 <!-- vale on -->
 
-This defines the repository from which SmartObserve Benchmark loads workloads. `--workload-path` and `--workload-repository` as well as `--workload` are mutually exclusive.
+This defines the repository from which MCdesk Benchmark loads workloads. `--workload-path` and `--workload-repository` as well as `--workload` are mutually exclusive.
 
 <!-- vale off -->
 ## workload-revision
 <!-- vale on -->
 
-Defines a specific revision from the workload source tree that SmartObserve Benchmark should use.
+Defines a specific revision from the workload source tree that MCdesk Benchmark should use.
 
 <!-- vale off -->
 ## workload
 <!-- vale on -->
 
-Defines the workload to use based on the workload's name. You can find a list of preloaded workloads using `smartobserve-benchmark list workloads`. `--workload-path` and `--workload-repository` as well as `--workload` are mutually exclusive.
+Defines the workload to use based on the workload's name. You can find a list of preloaded workloads using `mcdesk-benchmark list workloads`. `--workload-path` and `--workload-repository` as well as `--workload` are mutually exclusive.
 
 <!-- vale off -->
 ## workload-params
 <!-- vale on -->
 
-Defines which variables to inject into the workload. Variables injected must be available in the workload. To see which parameters are valid in the official workloads, select the workload from [the workloads repository](https://github.com/igsl-group/smartobserve-benchmark-workloads).
+Defines which variables to inject into the workload. Variables injected must be available in the workload. To see which parameters are valid in the official workloads, select the workload from [the workloads repository](https://github.com/igsl-group/mcdesk-benchmark-workloads).
 
 <!-- vale off -->
 ## test-procedure
 <!-- vale on -->
 
-Defines the test procedures to use with each workload. You can find a list of test procedures that the workload supports by specifying the workload in the `info` command, for example, `smartobserve-benchmark info --workload=<workload_name>`. To look up information on a specific test procedure, use the command `smartobserve-benchmark info --workload=<workload_name> --test-procedure=<test-procedure>`.
+Defines the test procedures to use with each workload. You can find a list of test procedures that the workload supports by specifying the workload in the `info` command, for example, `mcdesk-benchmark info --workload=<workload_name>`. To look up information on a specific test procedure, use the command `mcdesk-benchmark info --workload=<workload_name> --test-procedure=<test-procedure>`.
 
 <!-- vale off -->
 ## test-execution-id
@@ -122,37 +122,37 @@ Determines whether or not to include the comparison in the results file.
 ## cluster-config-repository
 <!-- vale on -->
 
-Defines the repository from which SmartObserve Benchmark loads `cluster-configs` and `cluster-config-instances`.
+Defines the repository from which MCdesk Benchmark loads `cluster-configs` and `cluster-config-instances`.
 
 <!-- vale off -->
 ## cluster-config-revision
 <!-- vale on -->
 
-Defines the specific Git revision in the `cluster-config` that SmartObserve Benchmark should use.
+Defines the specific Git revision in the `cluster-config` that MCdesk Benchmark should use.
 
 <!-- vale off -->
 ## cluster-config-path
 <!-- vale on -->
 
-Defines the path to the `--cluster-config-instance` and any SmartObserve plugin configurations to use.
+Defines the path to the `--cluster-config-instance` and any MCdesk plugin configurations to use.
 
 <!-- vale off -->
 ## distribution-version
 <!-- vale on -->
 
-Downloads the specified SmartObserve distribution based on version number. For a list of released SmartObserve versions, see [Version history]({{site.url}}{{site.latesturl}}/version-history/).
+Downloads the specified MCdesk distribution based on version number. For a list of released MCdesk versions, see [Version history]({{site.url}}{{site.latesturl}}/version-history/).
 
 <!-- vale off -->
 ## distribution-repository
 <!-- vale on -->
 
-Defines the repository from which the SmartObserve distribution should be downloaded. Default is `release`.
+Defines the repository from which the MCdesk distribution should be downloaded. Default is `release`.
 
 <!-- vale off -->
 ## cluster-config-instance
 <!-- vale on -->
 
-Defines the `--cluster-config-instance` to use. You can view possible configuration instances by using the command `smartobserve-benchmark list cluster-config-instances`.
+Defines the `--cluster-config-instance` to use. You can view possible configuration instances by using the command `mcdesk-benchmark list cluster-config-instances`.
 
 <!-- vale off -->
 ## cluster-config-instance-params
@@ -170,7 +170,7 @@ Defines a comma-separated list of host-port pairs that should be targeted if usi
 ## target-os
 <!-- vale on -->
 
-The target operating system (OS) for which the SmartObserve artifact should be downloaded. Default is the current OS.
+The target operating system (OS) for which the MCdesk artifact should be downloaded. Default is the current OS.
 
 <!-- vale off -->
 ## target-arch
@@ -186,16 +186,16 @@ Defines the current source code revision to use for running a benchmark test. De
 
 This command flag can use the following options:
 
-   - `current`: Uses the source tree's current revision based on your SmartObserve distribution.
+   - `current`: Uses the source tree's current revision based on your MCdesk distribution.
    - `latest`: Fetches the latest revision from the main branch of the source tree.
 
 You can also use a timestamp or commit ID from the source tree. When using a timestamp, specify `@ts`, where "ts" is a valid ISO 8601 timestamp, for example, `@2013-07-27T10:37:00Z`.
 
 <!-- vale off -->
-## smartobserve-plugins
+## mcdesk-plugins
 <!-- vale on -->
 
-Defines which [SmartObserve plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/) to install. By default, no plugins are installed.
+Defines which [MCdesk plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/) to install. By default, no plugins are installed.
 
 <!-- vale off -->
 ## plugin-params
@@ -214,7 +214,7 @@ The major version of JDK to use.
 ## client-options
 <!-- vale on -->
 
-Defines a comma-separated list of clients to use. All options are passed to the SmartObserve Python client. Default is `timeout:60`.
+Defines a comma-separated list of clients to use. All options are passed to the MCdesk Python client. Default is `timeout:60`.
 
 <!-- vale off -->
 ## worker-ips
@@ -226,19 +226,19 @@ Defines a comma-separated list of hosts that coordinate loads. Default is `local
 ## enable-worker-coordinator-profiling
 <!-- vale on -->
 
-Enables a performance analysis of SmartObserve Benchmark's worker coordinator. Default is `false`.
+Enables a performance analysis of MCdesk Benchmark's worker coordinator. Default is `false`.
 
 <!-- vale off -->
 ## pipeline
 <!-- vale on -->
 
-The `--pipeline` option selects a pipeline to run. You can find a list of pipelines supported by SmartObserve Benchmark by running `smartobserve-benchmark list pipelines`.
+The `--pipeline` option selects a pipeline to run. You can find a list of pipelines supported by MCdesk Benchmark by running `mcdesk-benchmark list pipelines`.
 
 <!-- vale off -->
 ## telemetry
 <!-- vale on -->
 
-Enables the provided telemetry devices when the devices are provided using a comma-separated list. You can find a list of possible telemetry devices by using `smartobserve-benchmark list telemetry`.
+Enables the provided telemetry devices when the devices are provided using a comma-separated list. You can find a list of possible telemetry devices by using `mcdesk-benchmark list telemetry`.
 
 <!-- vale off -->
 ## telemetry-params
@@ -250,7 +250,7 @@ Enables setting parameters for telemetry devices. Accepts a list of comma-separa
 ## on-error
 <!-- vale on -->
 
-Controls how SmartObserve Benchmark responds to errors. Default is `continue`.
+Controls how MCdesk Benchmark responds to errors. Default is `continue`.
 
 You can use the following options with this command flag:
 
@@ -267,7 +267,7 @@ Keeps the Benchmark candidate and its index. Default is `false`.
 ## kill-running-processes
 <!-- vale on -->
 
-When set to `true`, stops any SmartObserve Benchmark processes currently running and allows Benchmark to continue to run. Default is `false`.
+When set to `true`, stops any MCdesk Benchmark processes currently running and allows Benchmark to continue to run. Default is `false`.
 
 <!-- vale off -->
 ## chart-spec-path
@@ -313,7 +313,7 @@ Enables randomization of values in `range` queries, where the values are drawn f
 
 A standard value function is a no-argument function that generates a random pair of values for a certain field, in a dict with keys `"gte"`, `"lte"`, and, optionally, `"format"`.
 
-If this argument is `True` but a search operation does not have a registered standard value function, SmartObserve Benchmark raises a `SystemSetupError`. Default is `False`.
+If this argument is `True` but a search operation does not have a registered standard value function, MCdesk Benchmark raises a `SystemSetupError`. Default is `False`.
 
 
 <!-- vale off -->
@@ -338,9 +338,9 @@ Specifies the number of times to run the workload. Default is `1`.
 ## aggregate
 <!-- vale on -->
 
-Determines whether SmartObserve Benchmark should aggregate the results of multiple test runs.
+Determines whether MCdesk Benchmark should aggregate the results of multiple test runs.
 
-When set to `true`, SmartObserve Benchmark will combine the results from all iterations into a single aggregated report. When set to `false`, results from each iteration will be reported separately.
+When set to `true`, MCdesk Benchmark will combine the results from all iterations into a single aggregated report. When set to `false`, results from each iteration will be reported separately.
 
 Default is `true`.
 
@@ -355,5 +355,5 @@ Specifies the number of seconds to sleep before starting the next test run. Defa
 ## cancel-on-error
 <!-- vale on -->
 
-When set, this flag instructs SmartObserve Benchmark to stop executing tests if an error occurs in one of the test iterations. Default is `false` (not set).
+When set, this flag instructs MCdesk Benchmark to stop executing tests if an error occurs in one of the test iterations. Default is `false` (not set).
 

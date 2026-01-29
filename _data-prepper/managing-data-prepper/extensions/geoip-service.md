@@ -3,12 +3,12 @@ layout: default
 title: geoip_service
 nav_order: 5
 parent: Extensions
-grand_parent: Managing SmartObserve Data Prepper
+grand_parent: Managing MCdesk Data Prepper
 ---
 
 # geoip_service
 
-The `geoip_service` extension configures all [`geoip`]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/geoip) processors in SmartObserve Data Prepper.
+The `geoip_service` extension configures all [`geoip`]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/geoip) processors in MCdesk Data Prepper.
 
 ## Usage
 

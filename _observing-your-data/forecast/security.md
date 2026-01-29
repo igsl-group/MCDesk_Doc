@@ -19,16 +19,16 @@ The following table describes the indexes used by the Forecasting API and their 
 
 | Index pattern | Purpose | Visible to regular users? |
 |---------------|---------|---------------------------|
-| `.smartobserve-forecasters` | Stores forecaster configuration. | No |
-| `.smartobserve-forecast-checkpoints` | Stores model snapshots (checkpoints). | No |
-| `.smartobserve-forecast-state` | Stores task metadata for real-time and run-once forecasting. | No |
-| `smartobserve-forecast-result*` | Stores forecast results from both backtests and real-time forecasting. | Yes |
+| `.mcdesk-forecasters` | Stores forecaster configuration. | No |
+| `.mcdesk-forecast-checkpoints` | Stores model snapshots (checkpoints). | No |
+| `.mcdesk-forecast-state` | Stores task metadata for real-time and run-once forecasting. | No |
+| `mcdesk-forecast-result*` | Stores forecast results from both backtests and real-time forecasting. | Yes |
 
-Users do not need direct access to `.smartobserve-forecast-checkpoints`; it is used internally by the plugin.  
+Users do not need direct access to `.mcdesk-forecast-checkpoints`; it is used internally by the plugin.  
 
-To view `.smartobserve-forecasters`, use the [Get forecaster]({{site.url}}{{site.baseurl}}/observing-your-data/forecast/api/#get-forecaster) or [Search forecasters]({{site.url}}{{site.baseurl}}/observing-your-data/forecast/api/#search-forecasters) APIs.
+To view `.mcdesk-forecasters`, use the [Get forecaster]({{site.url}}{{site.baseurl}}/observing-your-data/forecast/api/#get-forecaster) or [Search forecasters]({{site.url}}{{site.baseurl}}/observing-your-data/forecast/api/#search-forecasters) APIs.
 
-To view `.smartobserve-forecast-state`, use the [Get forecaster]({{site.url}}{{site.baseurl}}/observing-your-data/forecast/api/#get-forecaster) API with the `?task=true` query parameter or call the [Search tasks]({{site.url}}{{site.baseurl}}/observing-your-data/forecast/api/#search-tasks) API directly.
+To view `.mcdesk-forecast-state`, use the [Get forecaster]({{site.url}}{{site.baseurl}}/observing-your-data/forecast/api/#get-forecaster) API with the `?task=true` query parameter or call the [Search tasks]({{site.url}}{{site.baseurl}}/observing-your-data/forecast/api/#search-tasks) API directly.
 
 
 ## Cluster permissions
@@ -66,7 +66,7 @@ These responsibilities correspond to three distinct security layers, as shown in
 |-------|------------------|--------------|
 | **Forecaster control** | Permissions to create, edit, start, stop, delete, or view a forecaster's configuration. | `forecast_full_access` <br>(manage lifecycle)<br>or<br>`forecast_read_access` <br>(view only) |
 | **Data-source read** | Grants the forecaster permission to query the raw metrics index it uses for training and prediction. | Custom role, such as `data_source_read` |
-| **Result read** | Grants users and Alerting monitors access to documents in `smartobserve-forecast-result*`. | Custom role, such as `forecast_result_read` |
+| **Result read** | Grants users and Alerting monitors access to documents in `mcdesk-forecast-result*`. | Custom role, such as `forecast_result_read` |
 
 
 The built-in roles `forecast_full_access` and `forecast_read_access` apply only to Forecasting APIs. They do **not** include permissions for source or result indexes—those must be granted separately.
@@ -99,7 +99,7 @@ forecast_read_access:
     - 'cluster:admin/plugin/forecast/tasks/search'
   index_permissions:
     - index_patterns:
-        - 'smartobserve-forecast-result*'
+        - 'mcdesk-forecast-result*'
       allowed_actions:
         - 'indices:admin/mappings/fields/get*'
         - 'indices:admin/resolve/index'
@@ -154,13 +154,13 @@ You can modify the `index_patterns` to match your actual data source.
 
 The `forecast_result_read` role allows users to view forecast results and configure Alerting monitors that query those results.
 
-The following example request defines a role that grants read access to all indexes matching the `smartobserve-forecast-result*` pattern:
+The following example request defines a role that grants read access to all indexes matching the `mcdesk-forecast-result*` pattern:
 
 ```json
 PUT _plugins/_security/api/roles/forecast_result_read
 {
   "index_permissions": [{
-    "index_patterns": ["smartobserve-forecast-result*"],
+    "index_patterns": ["mcdesk-forecast-result*"],
     "allowed_actions": ["read"]
   }]
 }
@@ -203,7 +203,7 @@ You can use backend roles to enforce **team-specific isolation**. This pattern a
 The model includes three layers:
 
 1. **Configuration isolation** – Forecasting APIs are restricted to users with a matching backend role.
-2. **Result isolation** – DLS limits access to forecast results in `smartobserve-forecast-result*`.
+2. **Result isolation** – DLS limits access to forecast results in `mcdesk-forecast-result*`.
 3. **Source data access** – A minimal read-only role enables each forecaster to scan its own index.
 
 The following sections explain how to configure each layer.
@@ -245,7 +245,7 @@ PUT _cluster/settings
 ```
 {% include copy-curl.html %}
 
-When this setting is enabled, SmartObserve records the creator's backend roles in each forecaster document. Only users with a matching backend role can view, edit, or delete that forecaster.
+When this setting is enabled, MCdesk records the creator's backend roles in each forecaster document. Only users with a matching backend role can view, edit, or delete that forecaster.
 
 ### Create a `result‑access` role per team
 
@@ -258,7 +258,7 @@ The following example request creates a role that allows users with the `analyst
 PUT _plugins/_security/api/roles/forecast_analyst_result_access
 {
   "index_permissions": [{
-    "index_patterns": ["smartobserve-forecast-result*"],
+    "index_patterns": ["mcdesk-forecast-result*"],
     "dls": """
     {
       "bool": {
@@ -421,7 +421,7 @@ curl -XPUT -k -u 'admin:<custom-admin-password>' \
 
 ### Register the remote cluster with the local cluster
 
-Register the remote cluster with the local cluster using a seed node under the `cluster.remote.<alias>.seeds` setting. In SmartObserve, this is called adding a `follower` cluster.
+Register the remote cluster with the local cluster using a seed node under the `cluster.remote.<alias>.seeds` setting. In MCdesk, this is called adding a `follower` cluster.
 
 Assuming that the remote cluster is listening on transport port `9350`, run the following command in the local cluster:
 
@@ -454,7 +454,7 @@ You can specify a custom index for forecast results instead of using the default
 
 If the custom index already exists, the Forecasting API checks that the index mapping matches the expected forecast result structure. To ensure compatibility, the index must conform to the schema defined in the [`forecast-results.json`](https://github.com/igsl-group/anomaly-detection/blob/main/src/main/resources/mappings/forecast-results.json) file.
 
-When a user creates a forecaster—either in SmartObserve Dashboards or by calling the Forecasting API—the system verifies that the user has the following index-level permissions for the custom index:
+When a user creates a forecaster—either in MCdesk Dashboards or by calling the Forecasting API—the system verifies that the user has the following index-level permissions for the custom index:
 
 - `indices:admin/create` – Required to create and roll over the custom result index.
 - `indices:admin/aliases` – Required to create and manage the index alias.

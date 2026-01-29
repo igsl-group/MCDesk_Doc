@@ -6,7 +6,7 @@ has_children: false
 parent: Cartesian field types
 grand_parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/xy-shape/
+  - /mcdesk/supported-field-types/xy-shape/
   - /field-types/xy-shape/
 ---
 
@@ -14,9 +14,9 @@ redirect_from:
 **Introduced 2.4**
 {: .label .label-purple }
 
-An xy shape field type contains a shape, such as a polygon or a collection of xy points. It is based on the Lucene [XYShape](https://lucene.apache.org/core/9_3_0/core/org/apache/lucene/document/XYShape.html) field type. To index an xy shape, SmartObserve tessellates the shape into a triangular mesh and stores each triangle in a BKD tree (a set of balanced k-dimensional trees). This provides a 10<sup>-7</sup>decimal degree of precision, which represents near-perfect spatial resolution.
+An xy shape field type contains a shape, such as a polygon or a collection of xy points. It is based on the Lucene [XYShape](https://lucene.apache.org/core/9_3_0/core/org/apache/lucene/document/XYShape.html) field type. To index an xy shape, MCdesk tessellates the shape into a triangular mesh and stores each triangle in a BKD tree (a set of balanced k-dimensional trees). This provides a 10<sup>-7</sup>decimal degree of precision, which represents near-perfect spatial resolution.
 
-The xy shape field type is similar to the [geoshape]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-shape/) field type, but it represents shapes on the Cartesian plane, which is not based on the Earth-fixed terrestrial reference system. The coordinates of an xy shape are single-precision floating-point values. For information about the range and precision of floating-point values, see [Numeric field types]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/numeric/).
+The xy shape field type is similar to the [geoshape]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-shape/) field type, but it represents shapes on the Cartesian plane, which is not based on the Earth-fixed terrestrial reference system. The coordinates of an xy shape are single-precision floating-point values. For information about the range and precision of floating-point values, see [Numeric field types]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/numeric/).
 
 ## Example
 
@@ -50,7 +50,7 @@ In both GeoJSON and WKT, the coordinates must be specified in the `x, y` order w
 
 The following table describes the possible xy shape types and their relationship to the GeoJSON and WKT types.
 
-SmartObserve type | GeoJSON type | WKT type | Description 
+MCdesk type | GeoJSON type | WKT type | Description 
 :--- | :--- | :--- | :--- 
 [`point`](#point) | Point | POINT | A geographic point specified by the x and y coordinates. 
 [`linestring`](#linestring) | LineString | LINESTRING | A line specified by two or more points. May be a straight line or a path of connected line segments.

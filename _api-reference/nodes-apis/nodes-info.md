@@ -43,7 +43,7 @@ The following table lists all available metric groups.
 
 Metric | Description
 :--- |:----
-settings | A node's settings. This is a combination of the default settings, custom settings from the [configuration file]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/#configuration-file), and dynamically [updated settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/#updating-cluster-settings-using-the-api).
+settings | A node's settings. This is a combination of the default settings, custom settings from the [configuration file]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/#configuration-file), and dynamically [updated settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/#updating-cluster-settings-using-the-api).
 os | Static information about the host OS, including version, processor architecture, and available/allocated processors.
 process | Contains the process ID.
 jvm | Detailed static information about the running JVM, including arguments.
@@ -52,7 +52,7 @@ transport | Mostly static information about the transport layer.
 http | Mostly static information about the HTTP layer.
 plugins | Information about installed plugins and modules.
 ingest | Information about ingest pipelines and available ingest processors.
-aggregations | Information about available [aggregations]({{site.url}}{{site.baseurl}}/smartobserve/aggregations).
+aggregations | Information about available [aggregations]({{site.url}}{{site.baseurl}}/mcdesk/aggregations).
 indices | Static index settings configured at the node level.
 
 ## Query parameters
@@ -127,7 +127,7 @@ The response contains the metric groups specified in the `<metrics>` request par
     "successful": 1,
     "failed": 0
   },
-  "cluster_name": "smartobserve",
+  "cluster_name": "mcdesk",
   "nodes": {
     "VC0d4RgbTM6kLDwuud2XZQ": {
       "name": "node-m1-23",
@@ -174,7 +174,7 @@ name | The node's name.
 transport_address | The node's transport address.
 host | The node's host address.
 ip | The node's host IP address.
-version | The node's SmartObserve version.
+version | The node's MCdesk version.
 build_type | The node's build type, like `rpm`, `docker`, `tar`, etc.
 build_hash | The git commit hash of the build.
 total_indexing_buffer | The maximum heap size in bytes used to hold newly indexed documents. Once this heap size is exceeded, the documents are written to disk.
@@ -186,8 +186,8 @@ jvm | Information about the JVM, including PID, version, memory information, gar
 thread_pool | Information about the thread pool.
 transport | Information about the transport address, including bound address, publish address, and profiles.
 http | Information about the HTTP address, including bound address, publish address, and maximum content length, in bytes.
-plugins | Information about the installed plugins, including name, version, SmartObserve version, Java version, description, class name, custom folder name, a list of extended plugins, and `has_native_controller`, which specifies whether the plugin has a native controller process. 
-modules | Information about the modules, including name, version, SmartObserve version, Java version, description, class name, custom folder name, a list of extended plugins, and `has_native_controller`, which specifies whether the plugin has a native controller process. Modules are different from plugins because modules are loaded into SmartObserve automatically, while plugins have to be installed manually.
+plugins | Information about the installed plugins, including name, version, MCdesk version, Java version, description, class name, custom folder name, a list of extended plugins, and `has_native_controller`, which specifies whether the plugin has a native controller process. 
+modules | Information about the modules, including name, version, MCdesk version, Java version, description, class name, custom folder name, a list of extended plugins, and `has_native_controller`, which specifies whether the plugin has a native controller process. Modules are different from plugins because modules are loaded into MCdesk automatically, while plugins have to be installed manually.
 ingest | Information about ingest pipelines and processors.
 aggregations | Information about the available aggregation types.
 

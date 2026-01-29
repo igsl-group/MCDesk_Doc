@@ -10,7 +10,7 @@ nav_order: 50
 **Introduced 3.3**
 {: .label .label-purple }
 
-The MCP server is exposed via the `/_plugins/_ml/mcp` endpoint and implements the Streamable HTTP transport defined by the Model Context Protocol (MCP). It allows agents or clients to connect to SmartObserve and discover or invoke available tools.
+The MCP server is exposed via the `/_plugins/_ml/mcp` endpoint and implements the Streamable HTTP transport defined by the Model Context Protocol (MCP). It allows agents or clients to connect to MCdesk and discover or invoke available tools.
 
 This server does not open a persistent SSE connection with the client; all communication happens over stateless HTTP calls.
 If a client sends a `GET` request (typically, to establish an SSE connection), the server returns a `405 Method Not Allowed` response, allowing the client to continue using `POST` communication.
@@ -113,10 +113,10 @@ The server responds with its capabilities and server information. The `tools.lis
       }
     },
     "serverInfo": {
-      "name": "SmartObserve-MCP-Stateless-Server",
+      "name": "MCdesk-MCP-Stateless-Server",
       "version": "0.1.0"
     },
-    "instructions": "SmartObserve MCP Stateless Server - provides access to ML tools without sessions"
+    "instructions": "MCdesk MCP Stateless Server - provides access to ML tools without sessions"
   }
 }
 ```
@@ -169,7 +169,7 @@ The server returns an array of available tools with their names, descriptions, a
     "tools": [
       {
         "name": "ListIndexTool",
-        "description": "This tool returns information about indices in the SmartObserve cluster along with the index `health`, `status`, `index`, `uuid`, `pri`, `rep`, `docs.count`, `docs.deleted`, `store.size`, `pri.store. size `, `pri.store.size`, `pri.store`. Optional arguments: 1. `indices`, a comma-delimited list of one or more indices to get information from (default is an empty list meaning all indices). Use only valid index names. 2. `local`, whether to return information from the local node only instead of the cluster manager node (Default is false)",
+        "description": "This tool returns information about indices in the MCdesk cluster along with the index `health`, `status`, `index`, `uuid`, `pri`, `rep`, `docs.count`, `docs.deleted`, `store.size`, `pri.store. size `, `pri.store.size`, `pri.store`. Optional arguments: 1. `indices`, a comma-delimited list of one or more indices to get information from (default is an empty list meaning all indices). Use only valid index names. 2. `local`, whether to return information from the local node only instead of the cluster manager node (Default is false)",
         "inputSchema": {
           "type": "object",
           "properties": {
@@ -178,7 +178,7 @@ The server returns an array of available tools with their names, descriptions, a
               "items": {
                 "type": "string"
               },
-              "description": "SmartObserve index name list, separated by comma. for example: [\"index1\", \"index2\"], use empty array [] to list all indices in the cluster"
+              "description": "MCdesk index name list, separated by comma. for example: [\"index1\", \"index2\"], use empty array [] to list all indices in the cluster"
             }
           },
           "additionalProperties": false

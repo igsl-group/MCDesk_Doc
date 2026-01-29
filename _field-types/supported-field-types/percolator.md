@@ -5,7 +5,7 @@ nav_order: 65
 has_children: false
 parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/percolator/
+  - /mcdesk/supported-field-types/percolator/
   - /field-types/percolator/
 ---
 

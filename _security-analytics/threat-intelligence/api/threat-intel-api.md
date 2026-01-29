@@ -9,6 +9,6 @@ has_toc: true
 
 # Threat intelligence APIs
 
-SmartObserve provides several APIs that allow you to set up and interact with your threat intelligence feeds. 
+MCdesk provides several APIs that allow you to set up and interact with your threat intelligence feeds. 
 
 

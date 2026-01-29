@@ -12,7 +12,7 @@ redirect_from:
 
 # Vector search API
 
-In SmartObserve, vector search functionality is provided by the k-NN plugin and Neural Search plugin. The k-NN plugin provides basic k-NN functionality, while the Neural Search plugin provides automatic embedding generation at indexing and search time.
+In MCdesk, vector search functionality is provided by the k-NN plugin and Neural Search plugin. The k-NN plugin provides basic k-NN functionality, while the Neural Search plugin provides automatic embedding generation at indexing and search time.
 
 For k-NN plugin APIs, see [k-NN API]({{site.url}}{{site.baseurl}}/vector-search/api/knn/).
 

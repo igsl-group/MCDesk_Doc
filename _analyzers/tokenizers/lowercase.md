@@ -43,7 +43,7 @@ Use the following request to examine the tokens generated using the analyzer:
 POST /my-lowercase-index/_analyze
 {
   "analyzer": "my_lowercase_analyzer",
-  "text": "This is a Test. SmartObserve 123!"
+  "text": "This is a Test. MCdesk 123!"
 }
 ```
 {% include copy-curl.html %}
@@ -82,7 +82,7 @@ The response contains the generated tokens:
       "position": 3
     },
     {
-      "token": "smartobserve",
+      "token": "mcdesk",
       "start_offset": 16,
       "end_offset": 26,
       "type": "word",

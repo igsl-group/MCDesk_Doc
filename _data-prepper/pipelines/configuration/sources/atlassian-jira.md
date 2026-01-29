@@ -8,7 +8,7 @@ nav_order: 7
 
 # Atlassian Jira source
 
-You can use the SmartObserve Data Prepper `jira` source to ingest records from one or more [Atlassian Jira](https://www.atlassian.com/software/jira) projects.
+You can use the MCdesk Data Prepper `jira` source to ingest records from one or more [Atlassian Jira](https://www.atlassian.com/software/jira) projects.
 
 ## Usage
 
@@ -86,7 +86,7 @@ The `jira` source supports the following configuration options.
 | Option            | Required | Type                              | Description                                                                                                                                                                                                                   |
 |:------------------|:---------|:----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `hosts`           | Yes      | List                              | The Atlassian Confluence hostname. Currently, only one host is supported, so this list is expected to be of size 1.                                                                                                                        |
-| `acknowledgments` | No       | Boolean                           | When set to `true`, enables the `jira` source to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines#end-to-end-acknowledgments) when events are received by SmartObserve sinks. |
+| `acknowledgments` | No       | Boolean                           | When set to `true`, enables the `jira` source to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines#end-to-end-acknowledgments) when events are received by MCdesk sinks. |
 | `authentication`  | Yes      | [authentication](#Authentication) | Configures the authentication method used to access `jira` source records from the specified host.                                                                                                                                         |
 | `filter`          | No       | [filter](#Filter)                 | Applies specific filter criteria while extracting Jira tickets.                                                                                                                                                     |
 

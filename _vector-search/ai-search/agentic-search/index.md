@@ -13,9 +13,9 @@ redirect_from:
 **Introduced 3.2**
 {: .label .label-purple }
 
-Agentic search lets you ask questions in natural language and have SmartObserve plan and execute the retrieval automatically. A preconfigured agent reads the question, plans the search, and returns relevant results.
+Agentic search lets you ask questions in natural language and have MCdesk plan and execute the retrieval automatically. A preconfigured agent reads the question, plans the search, and returns relevant results.
 
-You can configure agentic search using the API or the SmartObserve Dashboards UI. This guide describes configuring agentic search using the API. To learn how to configure it in SmartObserve Dashboards, see [Building Agentic Search Flows]({{site.url}}{{site.baseurl}}/vector-search/ai-search/building-agentic-search-flows/).
+You can configure agentic search using the API or the MCdesk Dashboards UI. This guide describes configuring agentic search using the API. To learn how to configure it in MCdesk Dashboards, see [Building Agentic Search Flows]({{site.url}}{{site.baseurl}}/vector-search/ai-search/building-agentic-search-flows/).
 
 ## Agent types
 
@@ -96,7 +96,7 @@ POST _bulk
 
 ## Step 3: Create a model for the agent and QueryPlanningTool
 
-Register a single model that will be used by both the conversational agent and the `QueryPlanningTool`. This model analyzes natural language questions, coordinates tool usage, and generates the SmartObserve query domain-specific language (DSL). For available model options, see [Model configurations]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/agent-customization/#model-configuration):
+Register a single model that will be used by both the conversational agent and the `QueryPlanningTool`. This model analyzes natural language questions, coordinates tool usage, and generates the MCdesk query domain-specific language (DSL). For available model options, see [Model configurations]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/agent-customization/#model-configuration):
 
 ```json
 POST /_plugins/_ml/models/_register
@@ -199,7 +199,7 @@ GET iris-index/_search?search_pipeline=agentic-pipeline
 ```
 {% include copy-curl.html %}
 
-The agentic search request executes the agent with the `QueryPlanningTool` and sends the natural language question, along with the index mapping and a default prompt, to an LLM to generate a DSL query. The returned DSL query is then executed as a search request in SmartObserve:
+The agentic search request executes the agent with the `QueryPlanningTool` and sends the natural language question, along with the index mapping and a default prompt, to an LLM to generate a DSL query. The returned DSL query is then executed as a search request in MCdesk:
 
 ```json
 "hits": {
@@ -251,7 +251,7 @@ After setting up basic agentic search, you can enhance your implementation with 
 
 - [Connect external MCP servers]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/mcp-server/) -- Extend agentic search with external tools and data sources through Model Context Protocol (MCP) servers for enhanced functionality and real-time information access.
 
-- [Build agentic search flows]({{site.url}}{{site.baseurl}}/vector-search/ai-search/building-agentic-search-flows/) -- Configure agents and execute agentic search using AI search flows in SmartObserve Dashboards. 
+- [Build agentic search flows]({{site.url}}{{site.baseurl}}/vector-search/ai-search/building-agentic-search-flows/) -- Configure agents and execute agentic search using AI search flows in MCdesk Dashboards. 
 
 ## Next steps
 

@@ -21,7 +21,7 @@ By default, the filter applies the following rules.
 |:---|:---|:---|
 | Treats non-alphanumeric characters as delimiters.  | `ultra-fast`    | `ultra`, `fast`   |
 | Removes delimiters at the beginning or end of tokens.    | `Z99++'Decoder'`| `Z99`, `Decoder`  |
-| Splits tokens when there is a transition between uppercase and lowercase letters. | `SmartObserve`    | `Open`, `Search`  |
+| Splits tokens when there is a transition between uppercase and lowercase letters. | `MCdesk`    | `Open`, `Search`  |
 | Splits tokens when there is a transition between letters and numbers.  | `T1000`         | `T`, `1000`   |
 | Removes the possessive ('s) from the end of tokens.  | `John's`        | `John`  |
 
@@ -42,7 +42,7 @@ Parameter | Required/Optional | Data type | Description
 `preserve_original` | Optional | Boolean | Keeps the original token (which may include non-alphanumeric delimiters) alongside the generated tokens in the output. For example, `"auto-drive-300"` becomes `[ auto-drive-300, auto, drive, 300 ]`. If `true`, the filter generates multi-position tokens not supported by indexing, so do not use this filter in an index analyzer or use the `flatten_graph` filter after this filter. Default is `false`. 
 `protected_words` | Optional | Array of strings | Specifies tokens that should not be split.
 `protected_words_path` | Optional | String | Specifies a path (absolute or relative to the config directory) to a file containing tokens that should not be separated by new lines.
-`split_on_case_change` | Optional | Boolean | Splits tokens where consecutive letters have different cases (one is lowercase and the other is uppercase). For example, `"SmartObserve"` becomes `[ Open, Search ]`. Default is `true`.
+`split_on_case_change` | Optional | Boolean | Splits tokens where consecutive letters have different cases (one is lowercase and the other is uppercase). For example, `"MCdesk"` becomes `[ Open, Search ]`. Default is `true`.
 `split_on_numerics` | Optional | Boolean | Splits tokens where there are consecutive letters and numbers. For example `"v8engine"` will become `[ v, 8, engine ]`. Default is `true`.
 `stem_english_possessive` | Optional | Boolean | Removes English possessive endings, such as `'s`. Default is `true`.
 `type_table` | Optional | Array of strings | A custom map that specifies how to treat characters and whether to treat them as delimiters, which avoids unwanted splitting. For example, to treat a hyphen (`-`) as an alphanumeric character, specify `["- => ALPHA"]` so that words are not split on hyphens. Valid types are: <br> - `ALPHA`: alphabetical <br> - `ALPHANUM`: alphanumeric <br> - `DIGIT`: numeric <br> - `LOWER`: lowercase alphabetical <br> - `SUBWORD_DELIM`: non-alphanumeric delimiter <br> - `UPPER`: uppercase alphabetical

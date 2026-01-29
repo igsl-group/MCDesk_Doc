@@ -53,3 +53,7 @@ group :development, :test do
   gem 'rubocop', '~> 1.44', require: false
   gem 'rubocop-rake', require: false
 end
+
+gem "ostruct", "~> 0.6.3"
+
+gem "rake", "~> 13.0"

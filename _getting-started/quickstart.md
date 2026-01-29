@@ -4,39 +4,39 @@ title: Installation quickstart
 nav_order: 3
 redirect_from: 
   - /about/quickstart/
-  - /smartobserve/install/quickstart/
+  - /mcdesk/install/quickstart/
   - /quickstart/
 ---
 
 # Installation quickstart
 
-SmartObserve supports multiple installation methods: Docker, Debian, Helm, RPM, tarball, and Windows.
-This guide uses [Docker](https://www.docker.com/) for a quick local setup. For other installation options, see the full [Install and upgrade SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/) guide.
+MCdesk supports multiple installation methods: Docker, Debian, Helm, RPM, tarball, and Windows.
+This guide uses [Docker](https://www.docker.com/) for a quick local setup. For other installation options, see the full [Install and upgrade MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/) guide.
 
 There are two ways to get started:
 
-* [Try SmartObserve with a single command](#option-1-try-smartobserve-in-one-command) -- Great for quick demos.
+* [Try MCdesk with a single command](#option-1-try-mcdesk-in-one-command) -- Great for quick demos.
 * [Set up a custom Docker cluster](#option-2-set-up-a-custom-docker-cluster) -- Ideal for more control.
 
 ## Prerequisite
 
 Before you begin, install [Docker](https://docs.docker.com/get-docker/) on your machine.
 
-## Option 1: Try SmartObserve in one command
+## Option 1: Try MCdesk in one command
 
-Use this method to quickly spin up SmartObserve on your local machine with minimal setup.
+Use this method to quickly spin up MCdesk on your local machine with minimal setup.
 
 This configuration disables security and should only be used in test environments.
 {: .note }
 
-Download and run SmartObserve: 
+Download and run MCdesk: 
 
 ```bash
-docker pull smartobserveproject/smartobserve:latest && docker run -it -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" -e "DISABLE_SECURITY_PLUGIN=true" smartobserveproject/smartobserve:latest
+docker pull mcdeskproject/mcdesk:latest && docker run -it -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" -e "DISABLE_SECURITY_PLUGIN=true" mcdeskproject/mcdesk:latest
 ```
 {% include copy.html %}
 
-This process may take some time. After it finishes, SmartObserve is now running on port `9200`. To verify that SmartObserve is running, send the following request: 
+This process may take some time. After it finishes, MCdesk is now running on port `9200`. To verify that MCdesk is running, send the following request: 
 
 ```bash
 curl http://localhost:9200
@@ -51,7 +51,7 @@ You should get a response that looks like this:
   "cluster_name" : "docker-cluster",
   "cluster_uuid" : "GLAjAG6bTeWErFUy_d-CLw",
   "version" : {
-    "distribution" : "smartobserve",
+    "distribution" : "mcdesk",
     "number" : <version>,
     "build_type" : <build-type>,
     "build_hash" : <build-hash>,
@@ -61,16 +61,16 @@ You should get a response that looks like this:
     "minimum_wire_compatibility_version" : "7.10.0",
     "minimum_index_compatibility_version" : "7.0.0"
   },
-  "tagline" : "The SmartObserve Project: https://magiccreative.io/"
+  "tagline" : "The MCdesk Project: https://magiccreative.io/"
 }
 ```
 
 ## Option 2: Set up a custom Docker cluster
 
-Use [Docker Compose](https://docs.docker.com/compose/) to run a local multi-node SmartObserve and SmartObserve Dashboards cluster:
+Use [Docker Compose](https://docs.docker.com/compose/) to run a local multi-node MCdesk and MCdesk Dashboards cluster:
 
 - [Set up a cluster without security](#set-up-a-cluster-without-security-for-local-development) -- Best for local development.
-- [Set up a cluster with security](#set-up-a-cluster-with-security-recommended-for-most-use-cases) -- Try SmartObserve with security by installing it with default certificates.
+- [Set up a cluster with security](#set-up-a-cluster-with-security-recommended-for-most-use-cases) -- Try MCdesk with security by installing it with default certificates.
 
 ### Set up a cluster without security (for local development)
 
@@ -79,7 +79,7 @@ This setup uses a development Docker Compose file with security disabled.
 This configuration disables security and should only be used in test environments.
 {: .note }
 
-1. Create a directory for your SmartObserve cluster (for example, `smartobserve-cluster`). Create a `docker-compose.yml` file in this directory and copy the contents of the [Docker Compose file for development]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/docker/#sample-docker-compose-file-for-development) into this file.
+1. Create a directory for your MCdesk cluster (for example, `mcdesk-cluster`). Create a `docker-compose.yml` file in this directory and copy the contents of the [Docker Compose file for development]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/docker/#sample-docker-compose-file-for-development) into this file.
 
 1. Start the cluster by running the following command:
 
@@ -99,27 +99,27 @@ This configuration disables security and should only be used in test environment
 
     ```bash
     NAME                    COMMAND                  SERVICE                 STATUS              PORTS
-    smartobserve-dashboards   "./smartobserve-dashbo…"   smartobserve-dashboards   running             0.0.0.0:5601->5601/tcp
-    smartobserve-node1        "./smartobserve-docker…"   smartobserve-node1        running             0.0.0.0:9200->9200/tcp, 9300/tcp, 0.0.0.0:9600->9600/tcp, 9650/tcp
-    smartobserve-node2        "./smartobserve-docker…"   smartobserve-node2        running             9200/tcp, 9300/tcp, 9600/tcp, 9650/tcp
+    mcdesk-dashboards   "./mcdesk-dashbo…"   mcdesk-dashboards   running             0.0.0.0:5601->5601/tcp
+    mcdesk-node1        "./mcdesk-docker…"   mcdesk-node1        running             0.0.0.0:9200->9200/tcp, 9300/tcp, 0.0.0.0:9600->9600/tcp, 9650/tcp
+    mcdesk-node2        "./mcdesk-docker…"   mcdesk-node2        running             9200/tcp, 9300/tcp, 9600/tcp, 9650/tcp
     ```
 
-1. To verify that SmartObserve is running, send the following request: 
+1. To verify that MCdesk is running, send the following request: 
 
     ```bash
     curl http://localhost:9200
     ```
     {% include copy.html %}
 
-    You should get a response similar to the one in [Option 1](#option-1-try-smartobserve-in-one-command). 
+    You should get a response similar to the one in [Option 1](#option-1-try-mcdesk-in-one-command). 
 
-You can now explore SmartObserve Dashboards by opening `http://localhost:5601/`.
+You can now explore MCdesk Dashboards by opening `http://localhost:5601/`.
 
 ### Set up a cluster with security (recommended for most use cases)
 
 This configuration enables security using demo certificates and requires additional system setup.
 
-1. Before running SmartObserve on your machine, you should disable memory paging and swapping performance on the host to improve performance and increase the number of memory maps available to SmartObserve.
+1. Before running MCdesk on your machine, you should disable memory paging and swapping performance on the host to improve performance and increase the number of memory maps available to MCdesk.
     
     Disable memory paging and swapping:
     
@@ -149,21 +149,21 @@ This configuration enables security using demo certificates and requires additio
     ```  
     {% include copy.html %}
 
-    For more information, see [important system settings]({{site.url}}{{site.baseurl}}/smartobserve/install/important-settings/).
+    For more information, see [important system settings]({{site.url}}{{site.baseurl}}/mcdesk/install/important-settings/).
 
-1. Download the sample Compose file to your host. You can download the file with command line utilities like `curl` and `wget`, or you can manually copy [docker-compose.yml](https://github.com/igsl-group/documentation-website/blob/{{site.smartobserve_major_minor_version}}/assets/examples/docker-compose.yml) from the SmartObserve Project documentation-website repository using a web browser.
+1. Download the sample Compose file to your host. You can download the file with command line utilities like `curl` and `wget`, or you can manually copy [docker-compose.yml](https://github.com/igsl-group/documentation-website/blob/{{site.mcdesk_major_minor_version}}/assets/examples/docker-compose.yml) from the MCdesk Project documentation-website repository using a web browser.
 
     To use cURL, send the following request:
 
     ```bash
-    curl -O https://raw.githubusercontent.com/smartobserve-project/documentation-website/{{site.smartobserve_major_minor_version}}/assets/examples/docker-compose.yml
+    curl -O https://raw.githubusercontent.com/mcdesk-project/documentation-website/{{site.mcdesk_major_minor_version}}/assets/examples/docker-compose.yml
     ```
     {% include copy.html %}
 
     To use wget, send the following request:
 
     ```bash
-    wget https://raw.githubusercontent.com/smartobserve-project/documentation-website/{{site.smartobserve_major_minor_version}}/assets/examples/docker-compose.yml
+    wget https://raw.githubusercontent.com/mcdesk-project/documentation-website/{{site.mcdesk_major_minor_version}}/assets/examples/docker-compose.yml
     ```
     {% include copy.html %}
 
@@ -192,21 +192,21 @@ This configuration enables security using demo certificates and requires additio
 
     ```bash
     NAME                    COMMAND                  SERVICE                 STATUS              PORTS
-    smartobserve-dashboards   "./smartobserve-dashbo…"   smartobserve-dashboards   running             0.0.0.0:5601->5601/tcp
-    smartobserve-node1        "./smartobserve-docker…"   smartobserve-node1        running             0.0.0.0:9200->9200/tcp, 9300/tcp, 0.0.0.0:9600->9600/tcp, 9650/tcp
-    smartobserve-node2        "./smartobserve-docker…"   smartobserve-node2        running             9200/tcp, 9300/tcp, 9600/tcp, 9650/tcp
+    mcdesk-dashboards   "./mcdesk-dashbo…"   mcdesk-dashboards   running             0.0.0.0:5601->5601/tcp
+    mcdesk-node1        "./mcdesk-docker…"   mcdesk-node1        running             0.0.0.0:9200->9200/tcp, 9300/tcp, 0.0.0.0:9600->9600/tcp, 9650/tcp
+    mcdesk-node2        "./mcdesk-docker…"   mcdesk-node2        running             9200/tcp, 9300/tcp, 9600/tcp, 9650/tcp
     ```
 
-1. Verify that SmartObserve is running. You should use `-k` (also written as `--insecure`) to disable hostname checking because the default security configuration uses demo certificates. Use `-u` to pass the default username and password (`admin:<custom-admin-password>`):
+1. Verify that MCdesk is running. You should use `-k` (also written as `--insecure`) to disable hostname checking because the default security configuration uses demo certificates. Use `-u` to pass the default username and password (`admin:<custom-admin-password>`):
 
     ```bash
     curl https://localhost:9200 -ku admin:<custom-admin-password>
     ```
     {% include copy.html %}
 
-    You should get a response similar to the one in [Option 1](#option-1-try-smartobserve-in-one-command). 
+    You should get a response similar to the one in [Option 1](#option-1-try-mcdesk-in-one-command). 
 
-You can now explore SmartObserve Dashboards by opening `https://localhost:5601/` in a web browser on the same host that is running your SmartObserve cluster. The default username is `admin`, and the default password is set in your `docker-compose.yml` file in the `OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password>` setting.
+You can now explore MCdesk Dashboards by opening `https://localhost:5601/` in a web browser on the same host that is running your MCdesk cluster. The default username is `admin`, and the default password is set in your `docker-compose.yml` file in the `OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password>` setting.
 
 ## Common issues
 
@@ -221,25 +221,25 @@ sudo usermod -aG docker $USER
 
 ### Error message: "max virtual memory areas vm.max_map_count [65530] is too low"
 
-SmartObserve will fail to start if your host's `vm.max_map_count` is too low. Review the [important system settings]({{site.url}}{{site.baseurl}}/smartobserve/install/important-settings/) if you see the following errors in the service log, and set `vm.max_map_count` appropriately.
+MCdesk will fail to start if your host's `vm.max_map_count` is too low. Review the [important system settings]({{site.url}}{{site.baseurl}}/mcdesk/install/important-settings/) if you see the following errors in the service log, and set `vm.max_map_count` appropriately.
 ```bash
-smartobserve-node1         | ERROR: [1] bootstrap checks failed
-smartobserve-node1         | [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
-smartobserve-node1         | ERROR: SmartObserve did not exit normally - check the logs at /usr/share/smartobserve/logs/smartobserve-cluster.log
+mcdesk-node1         | ERROR: [1] bootstrap checks failed
+mcdesk-node1         | [1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+mcdesk-node1         | ERROR: MCdesk did not exit normally - check the logs at /usr/share/mcdesk/logs/mcdesk-cluster.log
 ```
 
 ## Other installation types
 
-In addition to Docker, you can install SmartObserve on various Linux distributions and on Windows. For all available installation guides, see [Install and upgrade SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/).
+In addition to Docker, you can install MCdesk on various Linux distributions and on Windows. For all available installation guides, see [Install and upgrade MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/).
 
 ## Further reading
 
-You successfully deployed your own SmartObserve cluster with SmartObserve Dashboards and added some sample data. Now you're ready to learn about configuration and functionality in more detail. Here are a few recommendations on where to begin:
+You successfully deployed your own MCdesk cluster with MCdesk Dashboards and added some sample data. Now you're ready to learn about configuration and functionality in more detail. Here are a few recommendations on where to begin:
 - [About the Security plugin]({{site.url}}{{site.baseurl}}/security/index/)
-- [SmartObserve configuration]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/)
-- [SmartObserve plugin installation]({{site.url}}{{site.baseurl}}/smartobserve/install/plugins/)
-- [SmartObserve Dashboards quickstart]({{site.url}}{{site.baseurl}}/dashboards/quickstart/)
+- [MCdesk configuration]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/)
+- [MCdesk plugin installation]({{site.url}}{{site.baseurl}}/mcdesk/install/plugins/)
+- [MCdesk Dashboards quickstart]({{site.url}}{{site.baseurl}}/dashboards/quickstart/)
 
 ## Next steps
 
-- See [Communicate with SmartObserve]({{site.url}}{{site.baseurl}}/getting-started/communicate/) to learn about how to send requests to SmartObserve.
+- See [Communicate with MCdesk]({{site.url}}{{site.baseurl}}/getting-started/communicate/) to learn about how to send requests to MCdesk.

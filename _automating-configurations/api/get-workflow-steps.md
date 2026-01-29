@@ -21,7 +21,7 @@ This API returns a list of workflow steps, including their required inputs, outp
       "register_model_status"
     ],
     "required_plugins": [
-      "smartobserve-ml"
+      "mcdesk-ml"
     ]
   }
 }
@@ -61,7 +61,7 @@ GET /_plugins/_flow_framework/workflow/_step?workflow_steps=create_connector,del
 
 ## Example response
 
-SmartObserve responds with the workflow steps. The order of fields in the returned steps may not exactly match the original JSON but will function identically.
+MCdesk responds with the workflow steps. The order of fields in the returned steps may not exactly match the original JSON but will function identically.
 
 To retrieve the template in YAML format, specify `Content-Type: application/yaml` in the request header:
 

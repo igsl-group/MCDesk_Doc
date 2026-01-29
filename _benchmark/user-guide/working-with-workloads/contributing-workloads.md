@@ -10,7 +10,7 @@ redirect_from:
 
 # Sharing custom workloads
 
-You can share a custom workload with other SmartObserve users by uploading it to the [workloads repository](https://github.com/igsl-group/smartobserve-benchmark-workloads/) on GitHub. 
+You can share a custom workload with other MCdesk users by uploading it to the [workloads repository](https://github.com/igsl-group/mcdesk-benchmark-workloads/) on GitHub. 
 
 Make sure that any data included in the workload's dataset does not contain proprietary data or personally identifiable information (PII). 
 
@@ -20,14 +20,14 @@ To share a custom workload, follow these steps.
 
 Provide a detailed `README.MD` file that includes the following:  
 
-- The purpose of the workload. When creating a description for the workload, consider its specific use and how the that use case differs from others in the [workloads repository](https://github.com/igsl-group/smartobserve-benchmark-workloads/).
+- The purpose of the workload. When creating a description for the workload, consider its specific use and how the that use case differs from others in the [workloads repository](https://github.com/igsl-group/mcdesk-benchmark-workloads/).
 - An example document from the dataset that helps users understand the data's structure.
 - The workload parameters that can be used to customize the workload.
 - A list of default test procedures included in the workload as well as other test procedures that the workload can run.
 - An output sample produced by the workload after a test is run.
-- A copy of the open-source license that gives the user and SmartObserve Benchmark permission to use the dataset.
+- A copy of the open-source license that gives the user and MCdesk Benchmark permission to use the dataset.
 
-For an example workload README file, go to the `http_logs` [README](https://github.com/igsl-group/smartobserve-benchmark-workloads/blob/main/http_logs/README.md).
+For an example workload README file, go to the `http_logs` [README](https://github.com/igsl-group/mcdesk-benchmark-workloads/blob/main/http_logs/README.md).
 
 ## Verify the workload's structure
 
@@ -43,18 +43,18 @@ Both `default.json` file names can be customized to have a descriptive name. The
 
 ## Testing the workload
 
-All workloads contributed to SmartObserve Benchmark must fulfill the following testing requirements: 
+All workloads contributed to MCdesk Benchmark must fulfill the following testing requirements: 
 
-- All tests run to explore and produce an example from the workload must target an SmartObserve cluster.
+- All tests run to explore and produce an example from the workload must target an MCdesk cluster.
 - The workload must pass all integration tests. Follow these steps to ensure that the workload passes the integration tests:
-   1. Add the workload to your forked copy of the [workloads repository](https://github.com/igsl-group/smartobserve-benchmark-workloads/). Make sure that you've forked both the `smartobserve-benchmark-workloads` repository and the [OpenSeach Benchmark](https://github.com/igsl-group/smartobserve-benchmark) repository.
-   3. In your forked SmartObserve Benchmark repository, update the `benchmark-os-it.ini` and `benchmark-in-memory.ini` files in the `/osbenchmark/it/resources` directory to point to the forked workloads repository containing your workload.
+   1. Add the workload to your forked copy of the [workloads repository](https://github.com/igsl-group/mcdesk-benchmark-workloads/). Make sure that you've forked both the `mcdesk-benchmark-workloads` repository and the [OpenSeach Benchmark](https://github.com/igsl-group/mcdesk-benchmark) repository.
+   3. In your forked MCdesk Benchmark repository, update the `benchmark-os-it.ini` and `benchmark-in-memory.ini` files in the `/osbenchmark/it/resources` directory to point to the forked workloads repository containing your workload.
    4. After you've modified the `.ini` files, commit your changes to a branch for testing.
    6. Run your integration tests using GitHub actions by selecting the branch for which you committed your changes. Verify that the tests have run as expected.
-   7. If your integration tests run as expected, go to your forked workloads repository and merge your workload changes into branches `1` and `2`. This allows for your workload to appear in both major versions of SmartObserve Benchmark.
+   7. If your integration tests run as expected, go to your forked workloads repository and merge your workload changes into branches `1` and `2`. This allows for your workload to appear in both major versions of MCdesk Benchmark.
 
 ## Create a PR
 
-After testing the workload, create a pull request (PR) from your fork to the `smartobserve-project` [workloads repository](https://github.com/igsl-group/smartobserve-benchmark-workloads/). Add a sample output and summary result to the PR description. The SmartObserve Benchmark maintainers will review the PR.
+After testing the workload, create a pull request (PR) from your fork to the `mcdesk-project` [workloads repository](https://github.com/igsl-group/mcdesk-benchmark-workloads/). Add a sample output and summary result to the PR description. The MCdesk Benchmark maintainers will review the PR.
 
-Once the PR is approved, you must share the data corpora of your dataset. The SmartObserve Benchmark team can then add the dataset to a shared S3 bucket. If your data corpora is stored in an S3 bucket, you can use [AWS DataSync](https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html) to share the data corpora. Otherwise, you must inform the maintainers of where the data corpora resides.
+Once the PR is approved, you must share the data corpora of your dataset. The MCdesk Benchmark team can then add the dataset to a shared S3 bucket. If your data corpora is stored in an S3 bucket, you can use [AWS DataSync](https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html) to share the data corpora. Otherwise, you must inform the maintainers of where the data corpora resides.

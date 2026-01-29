@@ -10,7 +10,7 @@ has_children: false
 
 # Notebooks
 
-An SmartObserve Dashboards notebook is an interface that lets you easily combine code snippets, live visualizations, and narrative text in a single notebook interface.
+An MCdesk Dashboards notebook is an interface that lets you easily combine code snippets, live visualizations, and narrative text in a single notebook interface.
 
 Notebooks let you interactively explore data by running different visualizations that you can share with team members to collaborate on a project.
 
@@ -20,13 +20,13 @@ You can also generate [reports]({{site.url}}{{site.baseurl}}/dashboards/reportin
 
 Common use cases include creating postmortem reports, designing runbooks, building live infrastructure reports, and writing documentation.
 
-Tenants in SmartObserve Dashboards are spaces for saving notebooks and other SmartObserve Dashboards objects. For more information, see [SmartObserve Dashboards multi-tenancy]({{site.url}}{{site.baseurl}}/security/multi-tenancy/tenant-index/).
+Tenants in MCdesk Dashboards are spaces for saving notebooks and other MCdesk Dashboards objects. For more information, see [MCdesk Dashboards multi-tenancy]({{site.url}}{{site.baseurl}}/security/multi-tenancy/tenant-index/).
 {: .note }
 
 
 ## Get started with notebooks
 
-To get started, choose **Notebooks** within SmartObserve Dashboards.
+To get started, choose **Notebooks** within MCdesk Dashboards.
 
 
 ### Step 1: Create a notebook
@@ -64,7 +64,7 @@ Add in text formatted in markdown.
 
 ```sql
 %sql
-Select * from smartobserve_dashboards_sample_data_flights limit 20;
+Select * from mcdesk_dashboards_sample_data_flights limit 20;
 ```
 
 ![SQL paragraph]({{site.url}}{{site.baseurl}}/images/sql_notebooks.gif)
@@ -73,7 +73,7 @@ Select * from smartobserve_dashboards_sample_data_flights limit 20;
 
 ```
 %ppl
-source=smartobserve_dashboards_sample_data_logs | head 20
+source=mcdesk_dashboards_sample_data_logs | head 20
 ```
 
 ![PPL paragraph]({{site.url}}{{site.baseurl}}/images/ppl_notebooks.gif)
@@ -103,9 +103,9 @@ You can perform the following actions on paragraphs:
 
 We prepared the following sample notebooks that showcase a variety of use cases:
 
-- Using SQL to query the SmartObserve Dashboards sample flight data.
-- Using PPL to query the SmartObserve Dashboards sample web logs data.
-- Using PPL and visualizations to perform sample root cause event analysis on the SmartObserve Dashboards sample web logs data.
+- Using SQL to query the MCdesk Dashboards sample flight data.
+- Using PPL to query the MCdesk Dashboards sample web logs data.
+- Using PPL and visualizations to perform sample root cause event analysis on the MCdesk Dashboards sample web logs data.
 
 To add a sample notebook, choose **Actions** and select **Add sample notebooks**.
 

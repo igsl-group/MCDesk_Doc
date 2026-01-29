@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Multi-tenancy aggregate view for saved objects
-parent: SmartObserve Dashboards multi-tenancy
+parent: MCdesk Dashboards multi-tenancy
 nav_order: 150
 ---
 
-# SmartObserve Dashboards multi-tenancy aggregate view for saved objects
+# MCdesk Dashboards multi-tenancy aggregate view for saved objects
 
-This is an experimental feature released in SmartObserve 2.4 and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, see the [Dashboards object sharing](https://github.com/igsl-group/SmartObserve-Dashboards/issues/2249) GitHub issue. For a more comprehensive view of the proposed future development of multi-tenancy, see the [Dashboards object sharing](https://github.com/igsl-group/security/issues/1869) issue.
+This is an experimental feature released in MCdesk 2.4 and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, see the [Dashboards object sharing](https://github.com/igsl-group/MCdesk-Dashboards/issues/2249) GitHub issue. For a more comprehensive view of the proposed future development of multi-tenancy, see the [Dashboards object sharing](https://github.com/igsl-group/security/issues/1869) issue.
 {: .warning}
 
 Aggregate view for saved objects allows a user who has access to multiple tenants to see all saved objects associated with those tenants in a single view without having to switch between tenants to do so. This includes both tenants created by the user and tenants shared with the user. Aggregate view introduces a Tenant dropdown menu and column in the Saved Objects table that gives the user the option to filter by tenants and make visible their associated saved objects.
@@ -16,7 +16,7 @@ Once you identify a saved object of interest, you can then switch to that tenant
 
 To access saved objects, expand the top menu and select **Management > Dashboards Management > Saved Objects**. The Saved Objects window opens. By default, all tenants the user has permissions for are displayed along with all saved objects associated with the tenants.
 
-As an experimental feature, aggregate view for saved objects is kept behind a feature flag and must be enabled in the `smartobserve_dashboards.yml` file before the feature is made available. See [Enabling aggregate view](#enabling-aggregate-view-for-saved-objects) for more information.
+As an experimental feature, aggregate view for saved objects is kept behind a feature flag and must be enabled in the `mcdesk_dashboards.yml` file before the feature is made available. See [Enabling aggregate view](#enabling-aggregate-view-for-saved-objects) for more information.
 {: .note }
 
 ### Feature benefits
@@ -26,7 +26,7 @@ As an experimental feature, aggregate view for saved objects is kept behind a fe
 
 ### Plans for future development
 
-In subsequent releases, we plan to expand the functionality of this feature to include the ability to perform actions directly from aggregate view and share items without having to first select a specific tenant. In the longer term, SmartObserve plans to evolve multi-tenancy so that it becomes a much more flexible tool for sharing objects among users and employs a more sophisticated way of assigning the roles and permissions that facilitate sharing. To learn more about the features being proposed for future releases, see the GitHub issue [Dashboards object sharing](https://github.com/igsl-group/security/issues/1869).
+In subsequent releases, we plan to expand the functionality of this feature to include the ability to perform actions directly from aggregate view and share items without having to first select a specific tenant. In the longer term, MCdesk plans to evolve multi-tenancy so that it becomes a much more flexible tool for sharing objects among users and employs a more sophisticated way of assigning the roles and permissions that facilitate sharing. To learn more about the features being proposed for future releases, see the GitHub issue [Dashboards object sharing](https://github.com/igsl-group/security/issues/1869).
 
 ### Known limitations
 
@@ -40,9 +40,9 @@ These limitations will be addressed in upcoming releases.
 
 ## Enabling aggregate view for saved objects
 
-By default, the aggregate view in the Saved Objects table is disabled. To enable the feature, add the `smartobserve_security.multitenancy.enable_aggregation_view` flag to the `smartobserve_dashboards.yml` file and set it to `true`:
+By default, the aggregate view in the Saved Objects table is disabled. To enable the feature, add the `mcdesk_security.multitenancy.enable_aggregation_view` flag to the `mcdesk_dashboards.yml` file and set it to `true`:
 
-`smartobserve_security.multitenancy.enable_aggregation_view: true`
+`mcdesk_security.multitenancy.enable_aggregation_view: true`
 
 After enabling the feature you can start the new cluster and then launch Dashboards. 
 

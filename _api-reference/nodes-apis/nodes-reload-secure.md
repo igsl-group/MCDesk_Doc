@@ -28,7 +28,7 @@ nodeId | String | A comma-separated list of nodeIds used to filter results. Supp
 
 ## Request body fields
 
-The request may include an optional object containing the password for the SmartObserve keystore.
+The request may include an optional object containing the password for the MCdesk keystore.
 
 ```json
 {
@@ -73,10 +73,10 @@ The following is an example response:
     "successful" : 1,
     "failed" : 0
   },
-  "cluster_name" : "smartobserve-cluster",
+  "cluster_name" : "mcdesk-cluster",
   "nodes" : {
     "t7uqHu4SSuWObK3ElkCRfw" : {
-      "name" : "smartobserve-node1"
+      "name" : "mcdesk-node1"
     }
   }
 }

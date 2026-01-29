@@ -21,18 +21,18 @@ steps:
 
 # Getting started with semantic and hybrid search
 
-By default, SmartObserve calculates document scores using the [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm. BM25 is a keyword-based algorithm that performs well on queries containing keywords but fails to capture the semantic meaning of the query terms. Semantic search, unlike keyword-based search, takes into account the meaning of the query in the search context. Thus, semantic search performs well when a query requires natural language understanding. 
+By default, MCdesk calculates document scores using the [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm. BM25 is a keyword-based algorithm that performs well on queries containing keywords but fails to capture the semantic meaning of the query terms. Semantic search, unlike keyword-based search, takes into account the meaning of the query in the search context. Thus, semantic search performs well when a query requires natural language understanding. 
 
 In this tutorial, you'll learn how to implement the following types of search:
 
 - **Semantic search**: Considers semantic meaning in order to determine the intention of the user's query in the search context, thereby improving search relevance.
 - **Hybrid search**: Combines semantic and keyword search to improve search relevance. 
 
-## SmartObserve components for semantic search
+## MCdesk components for semantic search
 
-In this tutorial, you'll use the following SmartObserve components:
+In this tutorial, you'll use the following MCdesk components:
 
-- [Pretrained language models provided by SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/)
+- [Pretrained language models provided by MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/)
 - [Ingest pipeline]({{site.url}}{{site.baseurl}}/api-reference/ingest-apis/index/)
 - [k-NN vector]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-vector/)
 - [Search pipeline]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/index/)
@@ -43,7 +43,7 @@ You'll find descriptions of all these components as you follow the tutorial, so 
 
 ## Prerequisites
 
-For this simple setup, you'll use an SmartObserve-provided machine learning (ML) model and a cluster with no dedicated ML nodes. To ensure that this basic local setup works, send the following request to update ML-related cluster settings:
+For this simple setup, you'll use an MCdesk-provided machine learning (ML) model and a cluster with no dedicated ML nodes. To ensure that this basic local setup works, send the following request to update ML-related cluster settings:
 
 ```json
 PUT _cluster/settings
@@ -71,7 +71,7 @@ This tutorial consists of the following steps:
 
 {% include list.html list_items=page.steps%}
 
-You can follow this tutorial by using your command line or the SmartObserve Dashboards [Dev Tools console]({{site.url}}{{site.baseurl}}/dashboards/dev-tools/run-queries/).
+You can follow this tutorial by using your command line or the MCdesk Dashboards [Dev Tools console]({{site.url}}{{site.baseurl}}/dashboards/dev-tools/run-queries/).
 
 Some steps in the tutorial contain optional <span>Test it</span>{: .text-delta} sections. You can confirm that the step completed successfully by running the requests in these sections.
 
@@ -81,7 +81,7 @@ After you're done, follow the steps in the [Clean up](#clean-up) section to dele
 
 First, you'll need to choose a language model in order to generate vector embeddings from text fields, both at ingestion time and query time.
 
-For this tutorial, you'll use the [DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert) model from Hugging Face. It is one of the pretrained sentence transformer models available in SmartObserve that has shown some of the best results in benchmarking tests (for more information, see [this blog post](https://magiccreative.io/blog/semantic-science-benchmarks/)). You'll need the name, version, and dimension of the model to register it. You can find this information in the [pretrained model table]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sentence-transformers) by selecting the `config_url` link corresponding to the model's TorchScript artifact:
+For this tutorial, you'll use the [DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert) model from Hugging Face. It is one of the pretrained sentence transformer models available in MCdesk that has shown some of the best results in benchmarking tests (for more information, see [this blog post](https://magiccreative.io/blog/semantic-science-benchmarks/)). You'll need the name, version, and dimension of the model to register it. You can find this information in the [pretrained model table]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sentence-transformers) by selecting the `config_url` link corresponding to the model's TorchScript artifact:
 
 - The model name is `huggingface/sentence-transformers/msmarco-distilbert-base-tas-b`.
 - The model version is `1.0.3`.
@@ -94,9 +94,9 @@ Take note of the dimensionality of the model because you'll need it when you set
 
 Alternatively, you can choose one of the following options for your model:
 
-- Use any other pretrained model provided by SmartObserve. For more information, see [SmartObserve-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
+- Use any other pretrained model provided by MCdesk. For more information, see [MCdesk-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
 
-- Upload your own model to SmartObserve. For more information, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
+- Upload your own model to MCdesk. For more information, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
 
 - Connect to a foundation model hosted on an external platform. For more information, see [Connecting to remote models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/).
 
@@ -116,7 +116,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 ```
 {% include copy-curl.html %}
 
-Registering a model is an asynchronous task. SmartObserve sends back a task ID for this task:
+Registering a model is an asynchronous task. MCdesk sends back a task ID for this task:
 
 ```json
 {
@@ -125,14 +125,14 @@ Registering a model is an asynchronous task. SmartObserve sends back a task ID f
 }
 ```
 
-SmartObserve downloads the config file for the model and the model contents from the URL. Because the model is larger than 10 MB in size, SmartObserve splits it into chunks of up to 10 MB and saves those chunks in the model index. You can check the status of the task by using the Tasks API:
+MCdesk downloads the config file for the model and the model contents from the URL. Because the model is larger than 10 MB in size, MCdesk splits it into chunks of up to 10 MB and saves those chunks in the model index. You can check the status of the task by using the Tasks API:
 
 ```json
 GET /_plugins/_ml/tasks/aFeif4oB5Vm0Tdw8yoN7
 ```
 {% include copy-curl.html %}
 
-SmartObserve saves the registered model in the model index. Deploying a model creates a model instance and caches the model in memory. 
+MCdesk saves the registered model in the model index. Deploying a model creates a model instance and caches the model in memory. 
 
 Once the task is complete, the task state will be `COMPLETED` and the Tasks API response will contain a model ID for the deployed model:
 
@@ -203,7 +203,7 @@ The response contains the model information. You can see that the `model_state` 
 
 #### Advanced: Registering a custom model
 
-To register a custom model, you must provide a model configuration in the register request. For more information, see [Using ML models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/).
+To register a custom model, you must provide a model configuration in the register request. For more information, see [Using ML models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/).
 
 <details markdown="block">
   <summary>
@@ -259,7 +259,7 @@ GET /_plugins/_ml/profile/models
 
 ### Step 3: Ingest data
 
-SmartObserve uses a language model to transform text into vector embeddings. During ingestion, SmartObserve creates vector embeddings for the text fields in the request. During search, you can generate vector embeddings for the query text by applying the same model, allowing you to perform vector similarity search on the documents.
+MCdesk uses a language model to transform text into vector embeddings. During ingestion, MCdesk creates vector embeddings for the text fields in the request. During search, you can generate vector embeddings for the query text by applying the same model, allowing you to perform vector similarity search on the documents.
 
 #### Step 3(a): Create an ingest pipeline
 
@@ -717,7 +717,7 @@ GET /my-nlp-index/_search?search_pipeline=nlp-search-pipeline
 ```
 {% include copy-curl.html %}
 
-Not only does SmartObserve return documents that match the semantic meaning of `wild west`, but now the documents containing words related to the wild west theme are also scored higher relative to the others:
+Not only does MCdesk return documents that match the semantic meaning of `wild west`, but now the documents containing words related to the wild west theme are also scored higher relative to the others:
 
 <details markdown="block">
   <summary>
@@ -815,7 +815,7 @@ You can quickly set up semantic or hybrid search using [_automated workflows_]({
 
 ### Automated semantic search setup
 
-SmartObserve provides a [workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/) that automatically registers and deploys a default local model (`huggingface/sentence-transformers/paraphrase-MiniLM-L3-v2`) and creates an ingest pipeline and a vector index: 
+MCdesk provides a [workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/) that automatically registers and deploys a default local model (`huggingface/sentence-transformers/paraphrase-MiniLM-L3-v2`) and creates an ingest pipeline and a vector index: 
 
 ```json
 POST /_plugins/_flow_framework/workflow?use_case=semantic_search_with_local_model&provision=true
@@ -832,7 +832,7 @@ POST /_plugins/_flow_framework/workflow?use_case=semantic_search_with_local_mode
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with a workflow ID for the created workflow:
+MCdesk responds with a workflow ID for the created workflow:
 
 ```json
 {
@@ -891,9 +891,9 @@ DELETE /_plugins/_ml/model_groups/Z1eQf4oB5Vm0Tdw8EIP2
 
 ## Further reading
 
-- Read about the basics of SmartObserve semantic search in [Building a semantic search engine in SmartObserve](https://magiccreative.io/blog/semantic-search-solutions/).
-- Read about the combining keyword and semantic search, the normalization and combination technique options, and benchmarking tests in [The ABCs of semantic search in SmartObserve: Architectures, benchmarks, and combination strategies](https://magiccreative.io/blog/semantic-science-benchmarks/).
+- Read about the basics of MCdesk semantic search in [Building a semantic search engine in MCdesk](https://magiccreative.io/blog/semantic-search-solutions/).
+- Read about the combining keyword and semantic search, the normalization and combination technique options, and benchmarking tests in [The ABCs of semantic search in MCdesk: Architectures, benchmarks, and combination strategies](https://magiccreative.io/blog/semantic-science-benchmarks/).
 
 ## Next steps
 
-- Explore [AI search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/index/) in SmartObserve.
+- Explore [AI search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/index/) in MCdesk.

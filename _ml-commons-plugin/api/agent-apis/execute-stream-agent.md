@@ -10,7 +10,7 @@ nav_order: 25
 **Introduced 3.3**
 {: .label .label-purple }
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
 The Execute Stream Agent API provides the same functionality as the [Execute Agent API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agent-apis/execute-agent/) but returns responses in a streaming format, delivering data in chunks as it becomes available. This streaming approach is particularly beneficial for large language model interactions with lengthy responses, allowing you to see partial results immediately rather than waiting for the complete response.
@@ -35,28 +35,28 @@ Follow these steps to set up your cluster.
 
 #### Step 1: Install the required plugins
 
-The Execute Stream Agent API depends on the following plugins, which are included in the SmartObserve distribution but must be explicitly installed as follows:
+The Execute Stream Agent API depends on the following plugins, which are included in the MCdesk distribution but must be explicitly installed as follows:
 
 ```bash
-bin/smartobserve-plugin install transport-reactor-netty4
-bin/smartobserve-plugin install arrow-flight-rpc
+bin/mcdesk-plugin install transport-reactor-netty4
+bin/mcdesk-plugin install arrow-flight-rpc
 ```
 
 For more information, see [Installing plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
 
-#### Step 2: Configure SmartObserve settings
+#### Step 2: Configure MCdesk settings
 
-Add these settings to your `smartobserve.yml` file or Docker Compose configuration:
+Add these settings to your `mcdesk.yml` file or Docker Compose configuration:
 
 ```yaml
-smartobserve.experimental.feature.transport.stream.enabled: true
+mcdesk.experimental.feature.transport.stream.enabled: true
 
 # Choose one based on your security settings
 http.type: reactor-netty4        # security disabled
 http.type: reactor-netty4-secure # security enabled
 
 # Multi-node cluster settings (if applicable)
-# Use network.host IP for smartobserve.yml or node name for Docker
+# Use network.host IP for mcdesk.yml or node name for Docker
 arrow.flight.publish_host: <ip>
 arrow.flight.bind_host: <ip>
 
@@ -67,10 +67,10 @@ transport.ssl.enforce_hostname_verification: false
 ```
 {% include copy.html %}
 
-If you're using the security demo certificates, change `plugins.security.ssl.transport.enforce_hostname_verification: false` to `transport.ssl.enforce_hostname_verification: false` in your `smartobserve.yml` file.
+If you're using the security demo certificates, change `plugins.security.ssl.transport.enforce_hostname_verification: false` to `transport.ssl.enforce_hostname_verification: false` in your `mcdesk.yml` file.
 {: .note}
 
-For more information about enabling experimental features, see [Experimental feature flags]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/experimental/).
+For more information about enabling experimental features, see [Experimental feature flags]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/experimental/).
 
 #### Step 3: Configure JVM options
 
@@ -220,7 +220,7 @@ POST /_plugins/_ml/agents/_register
         {
             "type": "ListIndexTool",
             "name": "RetrieveIndexMetaTool",
-            "description": "Use this tool to get SmartObserve index information: (health, status, index, uuid, primary count, replica count, docs.count, docs.deleted, store.size, primary.store.size)."
+            "description": "Use this tool to get MCdesk index information: (health, status, index, uuid, primary count, replica count, docs.count, docs.deleted, store.size, primary.store.size)."
         }
     ],
     "app_type": "my_app"

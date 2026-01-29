@@ -6,20 +6,20 @@ has_toc: false
 permalink: /upgrade-or-migrate/
 redirect_from:
   - /migrate-or-upgrade/index/
-  - /upgrade-smartobserve/index/
+  - /upgrade-mcdesk/index/
   - /migrate-or-upgrade/
   - /upgrade-to/index/
   - /upgrade-to/
   - /upgrade-to/upgrade-to/
-  - /install-and-configure/upgrade-smartobserve/index/
+  - /install-and-configure/upgrade-mcdesk/index/
   - /upgrade-to/docker-upgrade-to/
 nav_exclude: true
 ---
-# Migrate or upgrade SmartObserve
+# Migrate or upgrade MCdesk
 
-The SmartObserve Project releases regular updates that include new features, enhancements, and bug fixes. SmartObserve uses [Semantic Versioning](https://semver.org/), which means that breaking changes are only introduced between major version releases. To learn about upcoming features and fixes, review the [SmartObserve Project Roadmap](https://github.com/orgs/smartobserve-project/projects/206) on GitHub. To view a list of previous releases or to learn more about how SmartObserve uses versioning, see [Release schedule and maintenance policy](https://magiccreative.io/releases.html).
+The MCdesk Project releases regular updates that include new features, enhancements, and bug fixes. MCdesk uses [Semantic Versioning](https://semver.org/), which means that breaking changes are only introduced between major version releases. To learn about upcoming features and fixes, review the [MCdesk Project Roadmap](https://github.com/orgs/mcdesk-project/projects/206) on GitHub. To view a list of previous releases or to learn more about how MCdesk uses versioning, see [Release schedule and maintenance policy](https://magiccreative.io/releases.html).
 
-Upgrading or migrating SmartObserve is essential for maintaining optimal performance, security, and access to the latest features. Whether you're upgrading an existing SmartObserve deployment or migrating from another system such as Elasticsearch OSS, choosing the right approach is critical to a successful transition.
+Upgrading or migrating MCdesk is essential for maintaining optimal performance, security, and access to the latest features. Whether you're upgrading an existing MCdesk deployment or migrating from another system such as Elasticsearch OSS, choosing the right approach is critical to a successful transition.
 
 This page outlines upgrade planning guidance and four supported methods: rolling upgrades, snapshot and restore, remote reindexing, and using Migration Assistant.
 
@@ -37,7 +37,7 @@ Make sure to:
 
 - Review [breaking changes]({{site.url}}{{site.baseurl}}/breaking-changes/).
 - Check [plugin compatibility]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/#available-plugins).
-- Review the [SmartObserve tools compatibility matrices]({{site.url}}{{site.baseurl}}/tools/index/#compatibility-matrices).
+- Review the [MCdesk tools compatibility matrices]({{site.url}}{{site.baseurl}}/tools/index/#compatibility-matrices).
 - Back up [configuration files](#backing-up-configuration-files).
 - Take a [snapshot](#creating-a-snapshot).
 
@@ -68,7 +68,7 @@ Upgrade one node at a time while keeping the cluster operational.
 
 ### Snapshot and restore
 
-Take a snapshot of your current cluster and restore to a new SmartObserve version.
+Take a snapshot of your current cluster and restore to a new MCdesk version.
 
 **Pros**:
 - Supports large datasets and cold storage.
@@ -102,7 +102,7 @@ Migration Assistant provides the most automated and resilient upgrade path.
 
 ### Remote reindexing
 
-Reindex data from the old cluster into the new SmartObserve cluster.
+Reindex data from the old cluster into the new MCdesk cluster.
 
 **Pros**:
 - No downtime.
@@ -120,27 +120,27 @@ Learn more in the [Reindex API documentation]({{site.url}}{{site.baseurl}}/api-r
 
 Before proceeding with your chosen migration or upgrade method, review the following compatibility requirements.
 
-### Reviewing the SmartObserve tools compatibility matrices
+### Reviewing the MCdesk tools compatibility matrices
 
-If your SmartObserve cluster interacts with other services in your environment, like Logstash or Beats, then you should check the [SmartObserve tools compatibility matrices]({{site.url}}{{site.baseurl}}/tools/index/#compatibility-matrices) to determine whether other components will need to be upgraded.
+If your MCdesk cluster interacts with other services in your environment, like Logstash or Beats, then you should check the [MCdesk tools compatibility matrices]({{site.url}}{{site.baseurl}}/tools/index/#compatibility-matrices) to determine whether other components will need to be upgraded.
 
 ### Reviewing plugin compatibility
 
-Review your plugins to determine compatibility with the target version of SmartObserve. Official SmartObserve Project plugins can be found in the [SmartObserve Project](https://github.com/igsl-group) repository on GitHub. If you use any third-party plugins, then you should check the documentation for those plugins to determine whether they are compatible.
+Review your plugins to determine compatibility with the target version of MCdesk. Official MCdesk Project plugins can be found in the [MCdesk Project](https://github.com/igsl-group) repository on GitHub. If you use any third-party plugins, then you should check the documentation for those plugins to determine whether they are compatible.
 
-Go to [Available plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/#available-plugins) to see a reference table that highlights version compatibility for bundled SmartObserve plugins.
+Go to [Available plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/#available-plugins) to see a reference table that highlights version compatibility for bundled MCdesk plugins.
 
-Major, minor, and patch plugin versions must match SmartObserve major, minor, and patch versions in order to be compatible. For example, plugin versions 2.3.0.x work only with SmartObserve 2.3.0.
+Major, minor, and patch plugin versions must match MCdesk major, minor, and patch versions in order to be compatible. For example, plugin versions 2.3.0.x work only with MCdesk 2.3.0.
 {: .important}
 
 ---
 
 ## Backing up configuration files
 
-Back up important files such as `smartobserve.yml`, plugin configurations, and TLS certifications from these paths:
+Back up important files such as `mcdesk.yml`, plugin configurations, and TLS certifications from these paths:
 
-- `smartobserve/config`
-- `smartobserve-dashboards/config`
+- `mcdesk/config`
+- `mcdesk-dashboards/config`
 
 See [this security configuration guidance]({{site.url}}{{site.baseurl}}/security-plugin/configuration/security-admin/#a-word-of-caution).
 
@@ -148,16 +148,16 @@ See [this security configuration guidance]({{site.url}}{{site.baseurl}}/security
 
 ## Creating a snapshot
 
-We recommend that you back up your cluster state and indexes using [snapshots]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/index/). Snapshots you take before an upgrade can be used as restore points if you need to roll back the cluster to its original version.
+We recommend that you back up your cluster state and indexes using [snapshots]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/index/). Snapshots you take before an upgrade can be used as restore points if you need to roll back the cluster to its original version.
 
 You can further reduce the risk of data loss by storing your snapshots in external storage, such as a mounted Network File System (NFS) or a cloud storage solution like those listed in the following table.
 
 | Repository | Plugin |
 | --- | --- |
-| [Amazon S3](https://aws.amazon.com/s3/) | [repository-s3](https://github.com/igsl-group/SmartObserve/tree/{{site.smartobserve_version}}/plugins/repository-s3) |
-| [Google Cloud Storage](https://cloud.google.com/storage) | [repository-gcs](https://github.com/igsl-group/SmartObserve/tree/{{site.smartobserve_version}}/plugins/repository-gcs) |
-| [HDFS](https://hadoop.apache.org/) | [repository-hdfs](https://github.com/igsl-group/SmartObserve/tree/{{site.smartobserve_version}}/plugins/repository-hdfs) |
-| [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs) | [repository-azure](https://github.com/igsl-group/SmartObserve/tree/{{site.smartobserve_version}}/plugins/repository-azure) |
+| [Amazon S3](https://aws.amazon.com/s3/) | [repository-s3](https://github.com/igsl-group/MCdesk/tree/{{site.mcdesk_version}}/plugins/repository-s3) |
+| [Google Cloud Storage](https://cloud.google.com/storage) | [repository-gcs](https://github.com/igsl-group/MCdesk/tree/{{site.mcdesk_version}}/plugins/repository-gcs) |
+| [HDFS](https://hadoop.apache.org/) | [repository-hdfs](https://github.com/igsl-group/MCdesk/tree/{{site.mcdesk_version}}/plugins/repository-hdfs) |
+| [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs) | [repository-azure](https://github.com/igsl-group/MCdesk/tree/{{site.mcdesk_version}}/plugins/repository-azure) |
 
 ---
 
@@ -178,7 +178,7 @@ td {
 }
 </style>
 <table>
-  <tr><th>Lucene version</th><th>SmartObserve version</th><th>Elasticsearch version</th></tr>
+  <tr><th>Lucene version</th><th>MCdesk version</th><th>Elasticsearch version</th></tr>
   <tr><td>9.10.0</td><td>2.14.0<br>2.13.0</td><td>8.13</td></tr>
   <tr><td>9.9.2</td><td>2.12.0</td><td>&#8212;</td></tr>
   <tr><td>9.7.0</td><td>2.11.1<br>2.9.0</td><td>8.9.0</td></tr>

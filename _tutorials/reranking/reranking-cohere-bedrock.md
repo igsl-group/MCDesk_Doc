@@ -9,7 +9,7 @@ redirect_from:
 
 # Reranking search results using Cohere Rerank on Amazon Bedrock
 
-This tutorial shows you how to implement search result reranking in [Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/) and self-managed SmartObserve using the [Cohere Rerank model](https://docs.aws.amazon.com/bedrock/latest/userguide/rerank-supported.html) hosted on Amazon Bedrock.
+This tutorial shows you how to implement search result reranking in [Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/) and self-managed MCdesk using the [Cohere Rerank model](https://docs.aws.amazon.com/bedrock/latest/userguide/rerank-supported.html) hosted on Amazon Bedrock.
 
 A [reranking pipeline]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/reranking-search-results/) can rerank search results, providing a relevance score for each document in the search results with respect to the search query. The relevance score is calculated by a cross-encoder model. 
 
@@ -109,7 +109,7 @@ The sorted results are as follows:
 
 To create a connector for the model, send the following request. 
 
-If you are using self-managed SmartObserve, supply your AWS credentials:
+If you are using self-managed MCdesk, supply your AWS credentials:
 
 ```json
 POST /_plugins/_ml/connectors/_create
@@ -191,7 +191,7 @@ POST /_plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %}
 
-If you are using Amazon SmartObserve Service, you can provide an AWS Identity and Access Management (IAM) role Amazon Resource Name (ARN) that allows access to Amazon Bedrock:
+If you are using Amazon MCdesk Service, you can provide an AWS Identity and Access Management (IAM) role Amazon Resource Name (ARN) that allows access to Amazon Bedrock:
 
 ```json
 POST /_plugins/_ml/connectors/_create
@@ -270,7 +270,7 @@ POST /_plugins/_ml/connectors/_create
 }
 ```
 
-For more information, see the [AWS documentation](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/ml-amazon-connector.html).
+For more information, see the [AWS documentation](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/ml-amazon-connector.html).
 
 Use the connector ID from the response to register and deploy the model:
 
@@ -434,7 +434,7 @@ PUT /_search/pipeline/rerank_pipeline_bedrock
     "response_processors": [
         {
             "rerank": {
-                "ml_smartobserve": {
+                "ml_mcdesk": {
                     "model_id": "your_model_id_created_in_step1"
                 },
                 "context": {

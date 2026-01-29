@@ -9,7 +9,7 @@ redirect_from:
 
 # Constant score query
 
-If you need to return documents that contain a certain word regardless of how many times the word appears, you can use a `constant_score` query. A `constant_score` query wraps a filter query and assigns all documents in the results a relevance score equal to the value of the `boost` parameter. Thus, all returned documents have an equal relevance score, and term frequency/inverse document frequency (TF/IDF) is not considered. Filter queries do not calculate relevance scores. Further, SmartObserve caches frequently used filter queries to improve performance. 
+If you need to return documents that contain a certain word regardless of how many times the word appears, you can use a `constant_score` query. A `constant_score` query wraps a filter query and assigns all documents in the results a relevance score equal to the value of the `boost` parameter. Thus, all returned documents have an equal relevance score, and term frequency/inverse document frequency (TF/IDF) is not considered. Filter queries do not calculate relevance scores. Further, MCdesk caches frequently used filter queries to improve performance. 
 
 ## Example
 

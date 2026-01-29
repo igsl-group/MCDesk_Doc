@@ -15,4 +15,4 @@ Threat intelligence in Security Analytics offers the capability to integrate you
 You can interact with threat intelligence in the following ways:
 
 - Threat intelligence APsI: To configure threat intelligence using API operations, see [Threat Intelligence APIs]({{site.url}}{{site.baseurl}}/security-analytics/threat-intelligence/api/threat-intel-api/).
-- SmartObserve Dashboards: To configure and use threat intelligence through the SmartObserve Dashboards interface, see [Getting started]({{site.url}}{{site.baseurl}}/security-analytics/threat-intelligence/getting-started/).
+- MCdesk Dashboards: To configure and use threat intelligence through the MCdesk Dashboards interface, see [Getting started]({{site.url}}{{site.baseurl}}/security-analytics/threat-intelligence/getting-started/).

@@ -10,30 +10,30 @@ redirect_from:
 
 # Concepts
 
-Before you start using SmartObserve Benchmark, it's helpful to understand the following concepts, in order to effectively design, run, and analyze your benchmarks to evaluate SmartObserve performance under different scenarios.
+Before you start using MCdesk Benchmark, it's helpful to understand the following concepts, in order to effectively design, run, and analyze your benchmarks to evaluate MCdesk performance under different scenarios.
 
 ## Benchmark architecture
 
-The following diagram illustrates how SmartObserve Benchmark operates when running against a local host.
+The following diagram illustrates how MCdesk Benchmark operates when running against a local host.
 
 ![Benchmark workflow]({{site.url}}{{site.baseurl}}/images/benchmark/osb-workflow.jpg).
 
 ## Core concepts and definitions
 
-- **Workload**: A collection of one or more benchmarking scenarios that use a specific document corpus to perform a benchmark against your cluster. The document corpus contains any indexes, data files, and operations invoked when the workload runs. You can list the available workloads by using `smartobserve-benchmark list workloads` or view any included workloads in the [SmartObserve Benchmark Workloads repository](https://github.com/igsl-group/smartobserve-benchmark-workloads/). For more information about the elements of a workload, see [Anatomy of a workload]({{site.url}}{{site.baseurl}}/benchmark/user-guide/understanding-workloads/anatomy-of-a-workload/). For information about building a custom workload, see [Creating custom workloads]({{site.url}}{{site.baseurl}}/benchmark/creating-custom-workloads/). A workload typically includes the following:
+- **Workload**: A collection of one or more benchmarking scenarios that use a specific document corpus to perform a benchmark against your cluster. The document corpus contains any indexes, data files, and operations invoked when the workload runs. You can list the available workloads by using `mcdesk-benchmark list workloads` or view any included workloads in the [MCdesk Benchmark Workloads repository](https://github.com/igsl-group/mcdesk-benchmark-workloads/). For more information about the elements of a workload, see [Anatomy of a workload]({{site.url}}{{site.baseurl}}/benchmark/user-guide/understanding-workloads/anatomy-of-a-workload/). For information about building a custom workload, see [Creating custom workloads]({{site.url}}{{site.baseurl}}/benchmark/creating-custom-workloads/). A workload typically includes the following:
   - One or more data streams that are ingested into indexes.
   - A set of queries and operations that are invoked as part of the benchmark.
 
-- **Pipeline**: A series of steps occurring before and after a workload is run that determines benchmark results. SmartObserve Benchmark supports three pipelines:
-  - `from-sources`: Builds and provisions SmartObserve, runs a benchmark, and then publishes the results.
-  - `from-distribution`: Downloads an SmartObserve distribution, provisions it, runs a benchmark, and then publishes the results.
-  - `benchmark-only`: The default pipeline. Assumes an already running SmartObserve instance, runs a benchmark on that instance, and then publishes the results.
+- **Pipeline**: A series of steps occurring before and after a workload is run that determines benchmark results. MCdesk Benchmark supports three pipelines:
+  - `from-sources`: Builds and provisions MCdesk, runs a benchmark, and then publishes the results.
+  - `from-distribution`: Downloads an MCdesk distribution, provisions it, runs a benchmark, and then publishes the results.
+  - `benchmark-only`: The default pipeline. Assumes an already running MCdesk instance, runs a benchmark on that instance, and then publishes the results.
 
-- **Test**: A single invocation of the SmartObserve Benchmark binary.
+- **Test**: A single invocation of the MCdesk Benchmark binary.
 
 ## Test concepts
 
-At the end of each test, SmartObserve Benchmark produces a table that summarizes the following: 
+At the end of each test, MCdesk Benchmark produces a table that summarizes the following: 
 
   - [Processing time](#processing-time)
   - [Took time](#took-time)
@@ -41,26 +41,26 @@ At the end of each test, SmartObserve Benchmark produces a table that summarizes
   - [Latency](#latency)
   - [Throughput](#throughput)
 
-The following diagram illustrates how each component of the table is measured during the lifecycle of a request involving the SmartObserve cluster, the SmartObserve client, and SmartObserve Benchmark.
+The following diagram illustrates how each component of the table is measured during the lifecycle of a request involving the MCdesk cluster, the MCdesk client, and MCdesk Benchmark.
 
 <img src="{{site.url}}{{site.baseurl}}/images/benchmark/concepts-diagram.png" alt="">
 
-### Differences between SmartObserve Benchmark and a traditional client-server system
+### Differences between MCdesk Benchmark and a traditional client-server system
 
-While the definition for _throughput_ remains consistent with other client-server systems, the definitions for `service time` and `latency` differ from most client-server systems in the context of SmartObserve Benchmark. The following table compares the SmartObserve Benchmark definition of service time and latency versus the common definitions for a client-server system.
+While the definition for _throughput_ remains consistent with other client-server systems, the definitions for `service time` and `latency` differ from most client-server systems in the context of MCdesk Benchmark. The following table compares the MCdesk Benchmark definition of service time and latency versus the common definitions for a client-server system.
 
-| Metric | Common definition | **SmartObserve Benchmark definition**	|
+| Metric | Common definition | **MCdesk Benchmark definition**	|
 | :--- | :--- |:--- |
 | **Throughput** | The number of operations completed in a given period of time.	| The number of operations completed in a given period of time. |
-| **Service time**	| The amount of time that the server takes to process a request, from the point it receives the request to the point the response is returned. It includes the time spent waiting in server-side queues but _excludes_ network latency, load balancer overhead, and deserialization/serialization. | The amount of time that it takes for `smartobserve-py` to send a request and receive a response from the SmartObserve cluster. It includes the amount of time that it takes for the server to process a request and also _includes_ network latency, load balancer overhead, and deserialization/serialization.  |
+| **Service time**	| The amount of time that the server takes to process a request, from the point it receives the request to the point the response is returned. It includes the time spent waiting in server-side queues but _excludes_ network latency, load balancer overhead, and deserialization/serialization. | The amount of time that it takes for `mcdesk-py` to send a request and receive a response from the MCdesk cluster. It includes the amount of time that it takes for the server to process a request and also _includes_ network latency, load balancer overhead, and deserialization/serialization.  |
 | **Latency** | The total amount of time, including the service time and the amount of time that the request waits before responding. | Based on the `target-throughput` set by the user, the total amount of time that the request waits before receiving the response, in addition to any other delays that occur before the request is sent. |
 
-For more information about service time and latency in SmartObserve Benchmark, see the [Service time](#service-time) and [Latency](#latency) sections.
+For more information about service time and latency in MCdesk Benchmark, see the [Service time](#service-time) and [Latency](#latency) sections.
 
 
 ### Processing time
 
-*Processing time* accounts for any extra overhead tasks that SmartObserve Benchmark performs during the lifecycle of a request, such as setting up a request context manager or calling a method to pass the request to the SmartObserve client. This is in contrast to *service time*, which only accounts for the difference between when a request is sent and when the SmartObserve client receives the response.
+*Processing time* accounts for any extra overhead tasks that MCdesk Benchmark performs during the lifecycle of a request, such as setting up a request context manager or calling a method to pass the request to the MCdesk client. This is in contrast to *service time*, which only accounts for the difference between when a request is sent and when the MCdesk client receives the response.
 
 ### Took time
 
@@ -69,9 +69,9 @@ For more information about service time and latency in SmartObserve Benchmark, s
 ### Service time
 
 
-SmartObserve Benchmark does not have insight into how long SmartObserve takes to process a request, apart from extracting the [took time](#took-time) for the request. It makes function calls to `smartobserve-py` to communicate with an SmartObserve cluster. 
+MCdesk Benchmark does not have insight into how long MCdesk takes to process a request, apart from extracting the [took time](#took-time) for the request. It makes function calls to `mcdesk-py` to communicate with an MCdesk cluster. 
 
-SmartObserve Benchmark measures *service time*, which is the amount of time between when the `smartobserve-py` client sends a request to and receives a response from the SmartObserve cluster. Unlike the traditional definition of service time, the SmartObserve Benchmark definition includes overhead, such as network latency, load balancer overhead, or deserialization/serialization. The following image shows the differences between the traditional definition and the SmartObserve Benchmark definition.
+MCdesk Benchmark measures *service time*, which is the amount of time between when the `mcdesk-py` client sends a request to and receives a response from the MCdesk cluster. Unlike the traditional definition of service time, the MCdesk Benchmark definition includes overhead, such as network latency, load balancer overhead, or deserialization/serialization. The following image shows the differences between the traditional definition and the MCdesk Benchmark definition.
 
 <img src="{{site.url}}{{site.baseurl}}/images/benchmark/service-time.png" alt="">
 
@@ -82,7 +82,7 @@ SmartObserve Benchmark measures *service time*, which is the amount of time betw
 
 ### Throughput
 
-**Throughput** measures the rate at which SmartObserve Benchmark issues requests, assuming that responses will be returned instantaneously. 
+**Throughput** measures the rate at which MCdesk Benchmark issues requests, assuming that responses will be returned instantaneously. 
 
 
 

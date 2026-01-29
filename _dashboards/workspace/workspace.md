@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Workspace for SmartObserve Dashboards
+title: Workspace for MCdesk Dashboards
 nav_order: 110
 has_children: true
 ---
 
-# Workspace for SmartObserve Dashboards
+# Workspace for MCdesk Dashboards
 Introduced 2.18
 {: .label .label-purple }
 
-The Workspace feature in SmartObserve Dashboards enables you to tailor your environment with use-case-specific configurations. For example, you can create dedicated workspaces for observability scenarios, allowing you to focus on relevant functionalities. Additionally, the Workspace feature enables organization of visual assets, such as dashboards and visualizations, within a workspace with isolated storage.
+The Workspace feature in MCdesk Dashboards enables you to tailor your environment with use-case-specific configurations. For example, you can create dedicated workspaces for observability scenarios, allowing you to focus on relevant functionalities. Additionally, the Workspace feature enables organization of visual assets, such as dashboards and visualizations, within a workspace with isolated storage.
 
 ## Workspace data model
 
@@ -64,7 +64,7 @@ The following are predefined use case options:
 
 ## Associating saved objects with workspaces
 
-Saved objects in SmartObserve Dashboards, such as dashboards, visualizations, and index patterns, can be associated with specific workspaces, improving organization and accessibility as the volume of objects grows.
+Saved objects in MCdesk Dashboards, such as dashboards, visualizations, and index patterns, can be associated with specific workspaces, improving organization and accessibility as the volume of objects grows.
 
 The `workspaces` attribute, an array of strings, is added to saved objects to be linked with one or more workspaces. As a result, saved objects such as dashboards and visualizations are only accessible within their designated workspaces. 
 
@@ -94,13 +94,13 @@ The following example shows a data source object linked to multiple workspaces:
 
 ## Non-workspace saved objects
 
-Not all saved objects in SmartObserve Dashboards are associated with a workspace. Some objects operate independently of the workspace framework. These objects lack `workspace` attributes and serve system-wide functions. For example, the global user interface settings object manages configurations affecting the entire SmartObserve Dashboards interface in order to maintain consistent functionality across all workspaces.
+Not all saved objects in MCdesk Dashboards are associated with a workspace. Some objects operate independently of the workspace framework. These objects lack `workspace` attributes and serve system-wide functions. For example, the global user interface settings object manages configurations affecting the entire MCdesk Dashboards interface in order to maintain consistent functionality across all workspaces.
 
-This dual approach allows SmartObserve Dashboards to balance granular, context-specific customization with overall system consistency. 
+This dual approach allows MCdesk Dashboards to balance granular, context-specific customization with overall system consistency. 
 
 ## Enabling the Workspace feature
 
-In your `smartobserve_dashboards.yml` file, set the following option:
+In your `mcdesk_dashboards.yml` file, set the following option:
 
 ```yaml
 workspace.enabled: true
@@ -113,6 +113,6 @@ uiSettings:
 If your cluster has the Security plugin installed, then multi-tenancy must be disabled to avoid conflicts with similar workspaces:
 
 ```yaml
-smartobserve_security.multitenancy.enabled: false
+mcdesk_security.multitenancy.enabled: false
 ```
 {% include copy-curl.html %}

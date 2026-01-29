@@ -84,7 +84,7 @@ POST /_plugins/_security_analytics/logtype/_search
         "max_score": 2.0,
         "hits": [
             {
-                "_index": ".smartobserve-sap-log-types-config",
+                "_index": ".mcdesk-sap-log-types-config",
                 "_id": "s3",
                 "_score": 2.0,
                 "_source": {
@@ -97,7 +97,7 @@ POST /_plugins/_security_analytics/logtype/_search
                 }
             },
             {
-                "_index": ".smartobserve-sap-log-types-config",
+                "_index": ".mcdesk-sap-log-types-config",
                 "_id": "others_compliance",
                 "_score": 2.0,
                 "_source": {
@@ -110,7 +110,7 @@ POST /_plugins/_security_analytics/logtype/_search
                 }
             },
             {
-                "_index": ".smartobserve-sap-log-types-config",
+                "_index": ".mcdesk-sap-log-types-config",
                 "_id": "github",
                 "_score": 2.0,
                 "_source": {
@@ -123,7 +123,7 @@ POST /_plugins/_security_analytics/logtype/_search
                 }
             },
             {
-                "_index": ".smartobserve-sap-log-types-config",
+                "_index": ".mcdesk-sap-log-types-config",
                 "_id": "others_application",
                 "_score": 2.0,
                 "_source": {
@@ -136,7 +136,7 @@ POST /_plugins/_security_analytics/logtype/_search
                 }
             },
             {
-                "_index": ".smartobserve-sap-log-types-config",
+                "_index": ".mcdesk-sap-log-types-config",
                 "_id": "dns",
                 "_score": 2.0,
                 "_source": {
@@ -149,7 +149,7 @@ POST /_plugins/_security_analytics/logtype/_search
                 }
             },
             {
-                "_index": ".smartobserve-sap-log-types-config",
+                "_index": ".mcdesk-sap-log-types-config",
                 "_id": "m98uk4kBlb9cbROIpEj2",
                 "_score": 2.0,
                 "_source": {
@@ -232,6 +232,6 @@ DELETE /_plugins/_security_analytics/logtype/m98uk4kBlb9cbROIpEj2
 }
 ```
 
-Only custom log types can be deleted. Trying to delete a standard SmartObserve-defined log type results in an error.
+Only custom log types can be deleted. Trying to delete a standard MCdesk-defined log type results in an error.
 {: .note }
 

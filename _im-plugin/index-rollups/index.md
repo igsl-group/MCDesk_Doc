@@ -18,12 +18,12 @@ For example, say you collect CPU consumption data every five seconds and store i
 You can use index rollup in three ways:
 
 1. Use the Index Rollup API for an on-demand index rollup job that operates on an index that's not being actively ingested, such as a rolled-over index. For example, you can perform an index rollup operation to aggregate data collected at a 5-minute interval into a weekly average for trend analysis.
-2. Use the SmartObserve Dashboards UI to create an index rollup job that runs on a defined schedule. You can also set it up to roll up your indexes as it’s being actively ingested. For example, you can continuously roll up Logstash indexes from a five second interval to a one hour interval.
+2. Use the MCdesk Dashboards UI to create an index rollup job that runs on a defined schedule. You can also set it up to roll up your indexes as it’s being actively ingested. For example, you can continuously roll up Logstash indexes from a five second interval to a one hour interval.
 3. Specify the index rollup job as an ISM action for complete index management. This allows you to roll up an index after a certain event such as a rollover, index age reaching a certain point, index becoming read-only, and so on. You can also have rollover and index rollup jobs running in sequence, where the rollover first moves the current index to a warm node and then the index rollup job creates a new index with the minimized data on the hot node.
 
 ## Create an Index Rollup Job
 
-To get started, choose **Index Management** in SmartObserve Dashboards.
+To get started, choose **Index Management** in MCdesk Dashboards.
 Select **Rollup Jobs** and choose **Create rollup job**.
 
 ### Step 1: Set up indexes
@@ -89,12 +89,12 @@ Consider a scenario where you collect rolled up data from 1 PM to 9 PM in hourly
 
 ## Sample Walkthrough
 
-This walkthrough uses the SmartObserve Dashboards sample e-commerce data. To add that sample data, log in to SmartObserve Dashboards, choose **Home** and **Try our sample data**. For **Sample eCommerce orders**, choose **Add data**.
+This walkthrough uses the MCdesk Dashboards sample e-commerce data. To add that sample data, log in to MCdesk Dashboards, choose **Home** and **Try our sample data**. For **Sample eCommerce orders**, choose **Add data**.
 
 Then run a search:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 ```
 
 #### Example response
@@ -117,7 +117,7 @@ GET smartobserve_dashboards_sample_data_ecommerce/_search
     "max_score": 1,
     "hits": [
       {
-        "_index": "smartobserve_dashboards_sample_data_ecommerce",
+        "_index": "mcdesk_dashboards_sample_data_ecommerce",
         "_type": "_doc",
         "_id": "jlMlwXcBQVLeQPrkC_kQ",
         "_score": 1,
@@ -231,7 +231,7 @@ PUT _plugins/_rollup/jobs/example
     },
     "last_updated_time": 1602100553,
     "description": "An example policy that rolls up the sample ecommerce data",
-    "source_index": "smartobserve_dashboards_sample_data_ecommerce",
+    "source_index": "mcdesk_dashboards_sample_data_ecommerce",
     "target_index": "example_rollup",
     "page_size": 1000,
     "delay": 0,
@@ -303,7 +303,7 @@ PUT _plugins/_rollup/jobs/example
 ```
 
 You can query the `example_rollup` index for the terms aggregations on the fields set up in the rollup job.
-You get back the same response that you would on the original `smartobserve_dashboards_sample_data_ecommerce` source index:
+You get back the same response that you would on the original `mcdesk_dashboards_sample_data_ecommerce` source index:
 
 ```json
 POST example_rollup/_search
@@ -520,7 +520,7 @@ The `doc_count` field in bucket aggregations contains the number of documents co
 
 ## Query string queries
 
-To take advantage of shorter and more easily written strings in Query DSL, you can use [query strings]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/full-text/query-string/) to simplify search queries in rollup indexes. To use query strings, add the following fields to your rollup search request:
+To take advantage of shorter and more easily written strings in Query DSL, you can use [query strings]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/full-text/query-string/) to simplify search queries in rollup indexes. To use query strings, add the following fields to your rollup search request:
 
 ```json
 "query": {
@@ -567,7 +567,7 @@ GET my_server_logs_rollup/_search
 }
 ```
 
-For more information about query string query parameters, see [Query string query]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/full-text/query-string/#parameters).
+For more information about query string query parameters, see [Query string query]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/full-text/query-string/#parameters).
 
 ## Dynamic target index
 

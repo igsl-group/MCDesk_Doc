@@ -3,7 +3,7 @@ layout: default
 title: Assessment
 nav_order: 1
 parent: Migration phases
-grand_parent: Migration Assistant for SmartObserve
+grand_parent: Migration Assistant for MCdesk
 has_children: false
 has_toc: false
 permalink: /migration-assistant/migration-phases/assessment/
@@ -13,7 +13,7 @@ redirect_from:
 
 # Assessment
 
-The goal of Migration Assistant is to streamline the process of migrating from one location or version of Elasticsearch/SmartObserve to another. However, completing a migration sometimes requires resolving client compatibility issues before they can communicate directly with the target cluster.
+The goal of Migration Assistant is to streamline the process of migrating from one location or version of Elasticsearch/MCdesk to another. However, completing a migration sometimes requires resolving client compatibility issues before they can communicate directly with the target cluster.
 
 
 ## Understanding breaking changes
@@ -65,7 +65,7 @@ For complex migrations involving multiple transformations or breaking changes, w
 
 ## Supported transformations
 
-The following is a list of transformations that are included in Migration Assistant. They can be enabled, combined, and configured to customize a migration for your use case. Depending on your use case and the type of transformation, a transformation may have to be added to Capture-and-Replay, Metadata Migration Tool, or Reindex-from-Snapshot. To request additional Migration Assistant transformations, create a GitHub issue [in the SmartObserve migrations repository](https://github.com/igsl-group/smartobserve-migrations/issues).
+The following is a list of transformations that are included in Migration Assistant. They can be enabled, combined, and configured to customize a migration for your use case. Depending on your use case and the type of transformation, a transformation may have to be added to Capture-and-Replay, Metadata Migration Tool, or Reindex-from-Snapshot. To request additional Migration Assistant transformations, create a GitHub issue [in the MCdesk migrations repository](https://github.com/igsl-group/mcdesk-migrations/issues).
 
 - [Managing type mapping deprecation]({{site.url}}{{site.baseurl}}/migration-assistant/migration-phases/migrate-metadata/handling-type-mapping-deprecation/)
 - [Handling breaking changes in field types]({{site.url}}{{site.baseurl}}/migration-assistant/migration-phases/migrate-metadata/handling-field-type-breaking-changes/)

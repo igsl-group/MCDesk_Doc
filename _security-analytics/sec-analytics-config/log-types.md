@@ -30,11 +30,11 @@ The main **Log types** UI features and actions are shown in the following image.
 2. Create a [custom log type](#creating-custom-log-types).
 3. Select the log type **Name** to open the details page. The **Details** tab is shown by default. This tab includes the log type's ID. You can also select the **Detection rules** tab to show all detection rules associated with the log type.
 4. Select the **Category** or **Source** dropdown menu to sort by log type category or source. 
-5. From the **Actions** column, select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/alerting/trash-can-icon.png" class="inline-icon" alt="trash can icon"/>{:/} icon to delete a custom log type (you cannot delete a standard SmartObserve-defined log type). Then follow the prompts to confirm and delete it.
+5. From the **Actions** column, select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/alerting/trash-can-icon.png" class="inline-icon" alt="trash can icon"/>{:/} icon to delete a custom log type (you cannot delete a standard MCdesk-defined log type). Then follow the prompts to confirm and delete it.
 
 ## Standard log types
 
-As of SmartObserve 2.11, all standard log types are grouped by the following categories:
+As of MCdesk 2.11, all standard log types are grouped by the following categories:
 
 - **Access Management** includes [AD/LDAP]({{site.url}}{{site.baseurl}}/security-analytics/log-types-reference/ad-ldap/), [Apache Access]({{site.url}}{{site.baseurl}}/security-analytics/log-types-reference/apache-access/), and [Okta]({{site.url}}{{site.baseurl}}/security-analytics/log-types-reference/okta/).
 - **Applications** includes [GitHub]({{site.url}}{{site.baseurl}}/security-analytics/log-types-reference/github/), [Google Workspace]({{site.url}}{{site.baseurl}}/security-analytics/log-types-reference/gworkspace/), and [Microsoft 365]({{site.url}}{{site.baseurl}}/security-analytics/log-types-reference/m365/).
@@ -49,7 +49,7 @@ As of SmartObserve 2.11, all standard log types are grouped by the following cat
 
 When connecting to a data source not supported by a standard log type, create a custom log type by following these steps: 
 
-1. In SmartObserve Dashboards, select **SmartObserve Plugins** > **Security Analytics**, and then select **Detectors** > **Log types**.
+1. In MCdesk Dashboards, select **MCdesk Plugins** > **Security Analytics**, and then select **Detectors** > **Log types**.
 1. Select **Create log type**.
 1. Enter a name and, optionally, a description for the log type.
    

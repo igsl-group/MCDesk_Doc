@@ -23,7 +23,7 @@ Subquery in the `FROM` clause in this format: `SELECT outer FROM (SELECT inner)`
 SELECT t.f, t.d
 FROM (
     SELECT FlightNum as f, DestCountry as d
-    FROM smartobserve_dashboards_sample_data_flights
+    FROM mcdesk_dashboards_sample_data_flights
     WHERE OriginCountry = 'US') t
 ```
 
@@ -31,7 +31,7 @@ But, if the outer query has `GROUP BY` or `ORDER BY`, then it's not supported.
 
 ## JOIN queries
 
-Because SmartObserve doesn't natively support relational operations, `JOIN` queries are supported on a best-effort basis.
+Because MCdesk doesn't natively support relational operations, `JOIN` queries are supported on a best-effort basis.
 
 ### JOIN does not support aggregations on the joined result
 
@@ -78,7 +78,7 @@ Currently, the pagination only supports basic queries. For example, the followin
 POST _plugins/_sql/
 {
   "fetch_size" : 5,
-  "query" : "SELECT OriginCountry, DestCountry FROM smartobserve_dashboards_sample_data_flights ORDER BY OriginCountry ASC"
+  "query" : "SELECT OriginCountry, DestCountry FROM mcdesk_dashboards_sample_data_flights ORDER BY OriginCountry ASC"
 }
 ```
 
@@ -111,45 +111,45 @@ The query with `aggregation` and `join` does not support pagination for now.
 
 ## Query processing engines
 
-Before SmartObserve 3.0.0, the SQL plugin used two query processing engines: `V1` and `V2`. Both engines supported most features, but only `V2` was under active development. When you ran a query, the plugin first tried to execute it using the `V2` engine and fell back to `V1` if execution failed. If a query was supported in `V2` but not in `V1`, the query would fail and return an error response.
+Before MCdesk 3.0.0, the SQL plugin used two query processing engines: `V1` and `V2`. Both engines supported most features, but only `V2` was under active development. When you ran a query, the plugin first tried to execute it using the `V2` engine and fell back to `V1` if execution failed. If a query was supported in `V2` but not in `V1`, the query would fail and return an error response.
 
-Starting with SmartObserve 3.0.0, the SQL plugin introduced a new query engine (`V3`) that leverages Apache Calcite for query optimization and execution. Because `V3` is an experimental feature in SmartObserve 3.0.0, it's disabled by default. To enable this new engine, set `plugins.calcite.enabled` to `true`. Similar to the `V2` to `V1` fallback logic, when you run a query, the plugin first tries to execute it using the `V3` engine and falls back to `V2` if execution fails. For more information about `V3`, see [PPL Engine V3](https://github.com/igsl-group/sql/blob/main/docs/dev/intro-v3-engine.md).
+Starting with MCdesk 3.0.0, the SQL plugin introduced a new query engine (`V3`) that leverages Apache Calcite for query optimization and execution. Because `V3` is an experimental feature in MCdesk 3.0.0, it's disabled by default. To enable this new engine, set `plugins.calcite.enabled` to `true`. Similar to the `V2` to `V1` fallback logic, when you run a query, the plugin first tries to execute it using the `V3` engine and falls back to `V2` if execution fails. For more information about `V3`, see [PPL Engine V3](https://github.com/igsl-group/sql/blob/main/docs/dev/intro-v3-engine.md).
 
 ### V1 engine limitations
 
-The `V1` query engine is the original SQL processing engine in SmartObserve. While it's been largely replaced by newer engines, understanding its limitations helps explain certain query behaviors, especially when queries fall back from `V2` to `V1`. The following limitations apply specifically to the `V1` engine:
+The `V1` query engine is the original SQL processing engine in MCdesk. While it's been largely replaced by newer engines, understanding its limitations helps explain certain query behaviors, especially when queries fall back from `V2` to `V1`. The following limitations apply specifically to the `V1` engine:
 
 * The select literal expression without `FROM` clause is not supported. For example, `SELECT 1` is not supported.
-* The `WHERE` clause does not support expressions. For example, `SELECT FlightNum FROM smartobserve_dashboards_sample_data_flights where (AvgTicketPrice + 100) <= 1000` is not supported.
+* The `WHERE` clause does not support expressions. For example, `SELECT FlightNum FROM mcdesk_dashboards_sample_data_flights where (AvgTicketPrice + 100) <= 1000` is not supported.
 * Most [relevancy search functions]({{site.url}}{{site.baseurl}}/search-plugins/sql/full-text/) are implemented in the `V2` engine only.
 
 Such queries are successfully executed by the `V2` engine unless they have `V1`-specific functions. You will likely never meet these limitations.
 
 ### V2 engine limitations
 
-The `V2` query engine handles most modern SQL query patterns. However, it has certain limitations that may affect your query development, particularly for complex analytical workloads. Understanding these limitations can help you design queries that work optimally with SmartObserve:
+The `V2` query engine handles most modern SQL query patterns. However, it has certain limitations that may affect your query development, particularly for complex analytical workloads. Understanding these limitations can help you design queries that work optimally with MCdesk:
 
 * The [cursor feature](#pagination-only-supports-basic-queries) is supported by the `V1` engine only.
   * For support of `cursor`/`pagination` in the `V2` engine, track [GitHub issue #656](https://github.com/igsl-group/sql/issues/656).
 * `json` formatted output is supported in `V1` engine only. 
 * The `V2` engine does not track query execution time, so slow queries are not reported.
-* The `V2` query engine not only runs queries in the SmartObserve engine but also supports post-processing for complex queries. Accordingly, the `explain` output is no longer SmartObserve domain-specific language (DSL) but also includes query plan information from the `V2` query engine.
+* The `V2` query engine not only runs queries in the MCdesk engine but also supports post-processing for complex queries. Accordingly, the `explain` output is no longer MCdesk domain-specific language (DSL) but also includes query plan information from the `V2` query engine.
 * The `V2` query engine does not support aggregation queries such as `histogram`, `date_histogram`, `percentiles`, `topHits`, `stats`, `extended_stats`, `terms`, or `range`.
 * JOINs and sub-queries are not supported. To stay up to date on the development for JOINs and sub-queries, track [GitHub issue #1441](https://github.com/igsl-group/sql/issues/1441) and [GitHub issue #892](https://github.com/igsl-group/sql/issues/892).
-* SmartObserve does not natively support the array data type but does allow multi-value fields implicitly. The SQL/PPL plugin adheres strictly to the data type semantics defined in index mappings. When parsing SmartObserve responses, it expects data to match the declared type and does not interpret all data in an array. If the [`plugins.query.field_type_tolerance`](https://github.com/igsl-group/sql/blob/main/docs/user/admin/settings.rst#plugins-query-field-type-tolerance) setting is enabled, the SQL/PPL plugin handles array datasets by returning scalar data types, allowing basic queries (for example, `SELECT * FROM tbl WHERE condition`). However, using multi-value fields in expressions or functions will result in exceptions. If this setting is disabled or not set, only the first element of an array is returned, preserving the default behavior.
+* MCdesk does not natively support the array data type but does allow multi-value fields implicitly. The SQL/PPL plugin adheres strictly to the data type semantics defined in index mappings. When parsing MCdesk responses, it expects data to match the declared type and does not interpret all data in an array. If the [`plugins.query.field_type_tolerance`](https://github.com/igsl-group/sql/blob/main/docs/user/admin/settings.rst#plugins-query-field-type-tolerance) setting is enabled, the SQL/PPL plugin handles array datasets by returning scalar data types, allowing basic queries (for example, `SELECT * FROM tbl WHERE condition`). However, using multi-value fields in expressions or functions will result in exceptions. If this setting is disabled or not set, only the first element of an array is returned, preserving the default behavior.
 * PartiQL syntax for `nested` queries is not supported.
 
 ### V3 engine limitations and restrictions
 
-The `V3` query engine provides enhanced query processing capabilities using Apache Calcite. As an experimental feature in SmartObserve 3.0.0, it has certain limitations and behavioral differences you should be aware of when developing queries. These limitations fall into three categories: new restrictions, unsupported functionalities, and behavior changes.
+The `V3` query engine provides enhanced query processing capabilities using Apache Calcite. As an experimental feature in MCdesk 3.0.0, it has certain limitations and behavioral differences you should be aware of when developing queries. These limitations fall into three categories: new restrictions, unsupported functionalities, and behavior changes.
 
 #### Restrictions
 
-The `V3` engine introduces stricter validation for SmartObserve metadata fields. When working with commands that manipulate field names, be aware of the following restrictions:
+The `V3` engine introduces stricter validation for MCdesk metadata fields. When working with commands that manipulate field names, be aware of the following restrictions:
 
-- `eval` won't allow you to use [SmartObserve metadata fields]({{site.url}}{{site.baseurl}}/field-types/metadata-fields/index/) as the fields.
-- `rename` won't allow renaming to an [SmartObserve metadata field]({{site.url}}{{site.baseurl}}/field-types/metadata-fields/index/).
-- `as` won't allow you to use an [SmartObserve metadata field]({{site.url}}{{site.baseurl}}/field-types/metadata-fields/index/) as the alias name.
+- `eval` won't allow you to use [MCdesk metadata fields]({{site.url}}{{site.baseurl}}/field-types/metadata-fields/index/) as the fields.
+- `rename` won't allow renaming to an [MCdesk metadata field]({{site.url}}{{site.baseurl}}/field-types/metadata-fields/index/).
+- `as` won't allow you to use an [MCdesk metadata field]({{site.url}}{{site.baseurl}}/field-types/metadata-fields/index/) as the alias name.
 
 ### Unsupported functionalities
 

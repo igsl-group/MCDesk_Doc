@@ -114,7 +114,7 @@ POST /_plugins/_ml/mcp/tools/_update
 
 ## Example response
 
-For each node, SmartObserve responds with the node ID and the status of the update operation for all tools:
+For each node, MCdesk responds with the node ID and the status of the update operation for all tools:
 
 ```json
 {

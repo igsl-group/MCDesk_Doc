@@ -14,7 +14,7 @@ The `terms` aggregation dynamically creates a bucket for each unique term of a f
 The following example uses the `terms` aggregation to find the number of documents per response code in web log data:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {
@@ -95,7 +95,7 @@ You can use the `min_doc_count` parameter to filter out any unique terms with fe
 
 Separately, the `shard_min_doc_count` parameter is used to filter out the unique terms that a shard returns back to the coordinator with fewer than `shard_min_doc_count` results.
 
-When using concurrent segment search, the `shard_min_doc_count` parameter is not applied to each segment slice. For more information, see the [related GitHub issue](https://github.com/igsl-group/SmartObserve/issues/11847).
+When using concurrent segment search, the `shard_min_doc_count` parameter is not applied to each segment slice. For more information, see the [related GitHub issue](https://github.com/igsl-group/MCdesk/issues/11847).
 
 ## Collect mode
 
@@ -115,7 +115,7 @@ While the `doc_count` field provides a representation of the number of individua
 * The field does not support nested arrays; only positive integers can be used.
 * If a document does not contain the `_doc_count` field, aggregation uses the document to increase the count by 1.
 
-SmartObserve features that rely on an accurate document count illustrate the importance of using the `_doc_count` field. To see how this field can be used to support other search tools, refer to [Index rollups]({{site.url}}{{site.baseurl}}/im-plugin/index-rollups/index/), an SmartObserve feature for the Index Management (IM) plugin that stores documents with pre-aggregated data in rollup indexes.
+MCdesk features that rely on an accurate document count illustrate the importance of using the `_doc_count` field. To see how this field can be used to support other search tools, refer to [Index rollups]({{site.url}}{{site.baseurl}}/im-plugin/index-rollups/index/), an MCdesk feature for the Index Management (IM) plugin that stores documents with pre-aggregated data in rollup indexes.
 {: .tip}
 
 #### Example request

@@ -9,13 +9,13 @@ redirect_from:
 
 # Permissions
 
-Each permission in the Security plugin controls access to some action that the SmartObserve cluster can perform, such as indexing a document or checking cluster health.
+Each permission in the Security plugin controls access to some action that the MCdesk cluster can perform, such as indexing a document or checking cluster health.
 
 Most permissions are self-describing. For example, `cluster:admin/ingest/pipeline/get` lets you retrieve information about ingest pipelines. _In many cases_, a permission correlates to a specific REST API operation, such as `GET _ingest/pipeline`.
 
 Despite this correlation, permissions do **not** directly map to REST API operations. Operations such as `POST _bulk` and `GET _msearch` can access many indexes and perform many actions in a single request. Even a simple request, such as `GET _cat/nodes`, performs several actions in order to generate its response.
 
-In short, controlling access to the REST API is insufficient. Instead, the Security plugin controls access to the underlying SmartObserve actions.
+In short, controlling access to the REST API is insufficient. Instead, the Security plugin controls access to the underlying MCdesk actions.
 
 For example, consider the following `_bulk` request:
 
@@ -38,7 +38,7 @@ For this request to succeed, you must have the following permissions for `test-i
 - indices:data/write/index
 - indices:data/write/update
 
-These permissions also allow you add, update, or delete documents (e.g. `PUT test-index/_doc/tt0816711`), because they govern the underlying SmartObserve actions of indexing and deleting documents rather than a specific API path and HTTP method.
+These permissions also allow you add, update, or delete documents (e.g. `PUT test-index/_doc/tt0816711`), because they govern the underlying MCdesk actions of indexing and deleting documents rather than a specific API path and HTTP method.
 
 
 ## Test permissions
@@ -161,7 +161,7 @@ Keep in mind that enabling this feature and mapping system index permissions to 
 
 ### `do_not_fail_on_forbidden`
 
-If a user attempts to query multiple indexes, some of which they lack permissions for, by default they get an `error` in the SmartObserve Dashboards UI or an `exception` when using `cURL` or an API. If you instead want the user to receive the search results for any of the indexes for which they _do_ have permissions, you can set the option `do_not_fail_on_forbidden` to `true` in `config.yml`. See the following example:
+If a user attempts to query multiple indexes, some of which they lack permissions for, by default they get an `error` in the MCdesk Dashboards UI or an `exception` when using `cURL` or an API. If you instead want the user to receive the search results for any of the indexes for which they _do_ have permissions, you can set the option `do_not_fail_on_forbidden` to `true` in `config.yml`. See the following example:
 
 ```
 _meta:
@@ -224,7 +224,7 @@ Cross-references to API documentation in the permissions that follow are only in
 | `indices:data/read/mget` |  Permission to run [multiple GET operations]({{site.url}}{{site.baseurl}}/api-reference/document-apis/multi-get/) in one request. |
 | `indices:data/read/mget*` |  Permission to run multiple GET operations in one request. This setting must be configured as both a cluster- and index-level permission. |
 | `indices:data/read/msearch` |  Permission to run [multiple search]({{site.url}}{{site.baseurl}}/api-reference/multi-search/) requests in a single API request. This setting must be configured as both a cluster- and index-level permission. |
-| `indices:data/read/msearch/template` |  Permission to bundle [multiple search templates]({{site.url}}{{site.baseurl}}/api-reference/search-template/#multiple-search-templates) and send them to your SmartObserve cluster in a single request. This setting must be configured as both a cluster- and index-level permission. |
+| `indices:data/read/msearch/template` |  Permission to bundle [multiple search templates]({{site.url}}{{site.baseurl}}/api-reference/search-template/#multiple-search-templates) and send them to your MCdesk cluster in a single request. This setting must be configured as both a cluster- and index-level permission. |
 | `indices:data/read/mtv` |  Permission to retrieve multiple term vectors with a single request. This setting must be configured as both a cluster- and index-level permission. |
 | `indices:data/read/mtv*` |  Permission to retrieve multiple term vectors with a single request. This setting must be configured as both a cluster- and index-level permission. |
 | `indices:data/read/search/template/render` |  Permission to render search templates. This setting must be configured as both a cluster- and index-level permission. |
@@ -282,7 +282,7 @@ See [Alerting API]({{site.url}}{{site.baseurl}}/observing-your-data/alerting/api
 - cluster:admin/opendistro/alerting/monitor/get
 - cluster:admin/opendistro/alerting/monitor/search
 - cluster:admin/opendistro/alerting/monitor/write
-- cluster:admin/smartobserve/alerting/remote/indexes/get
+- cluster:admin/mcdesk/alerting/remote/indexes/get
 
 ### Asynchronous Search permissions
 
@@ -297,7 +297,7 @@ See [Asynchronous search]({{site.url}}{{site.baseurl}}/search-plugins/async/inde
 
 See [ISM API]({{site.url}}{{site.baseurl}}/im-plugin/ism/api/).
 
-- cluster:indices:admin/smartobserve/ism/managedindex
+- cluster:indices:admin/mcdesk/ism/managedindex
 - cluster:admin/opendistro/ism/managedindex/add
 - cluster:admin/opendistro/ism/managedindex/change
 - cluster:admin/opendistro/ism/managedindex/remove
@@ -350,10 +350,10 @@ See [Transforms APIs]({{site.url}}{{site.baseurl}}/im-plugin/index-transforms/tr
 
 See [Observability security]({{site.url}}{{site.baseurl}}/observing-your-data/observability-security/).
 
-- cluster:admin/smartobserve/observability/create
-- cluster:admin/smartobserve/observability/update
-- cluster:admin/smartobserve/observability/delete
-- cluster:admin/smartobserve/observability/get
+- cluster:admin/mcdesk/observability/create
+- cluster:admin/mcdesk/observability/update
+- cluster:admin/mcdesk/observability/delete
+- cluster:admin/mcdesk/observability/get
 
 ### Cross-cluster replication
 
@@ -419,14 +419,14 @@ See [Tasks]({{site.url}}{{site.baseurl}}/api-reference/tasks/) in the API Refere
 
 See [Data sources]({{site.url}}{{site.baseurl}}/dashboards/management/data-sources/)
 
-- cluster:admin/smartobserve/ql/datasources/create
-- cluster:admin/smartobserve/ql/datasources/read
-- cluster:admin/smartobserve/ql/datasources/update
-- cluster:admin/smartobserve/ql/datasources/delete
-- cluster:admin/smartobserve/ql/datasources/patch
-- cluster:admin/smartobserve/ql/async_query/create
-- cluster:admin/smartobserve/ql/async_query/result
-- cluster:admin/smartobserve/ql/async_query/delete
+- cluster:admin/mcdesk/ql/datasources/create
+- cluster:admin/mcdesk/ql/datasources/read
+- cluster:admin/mcdesk/ql/datasources/update
+- cluster:admin/mcdesk/ql/datasources/delete
+- cluster:admin/mcdesk/ql/datasources/patch
+- cluster:admin/mcdesk/ql/async_query/create
+- cluster:admin/mcdesk/ql/async_query/result
+- cluster:admin/mcdesk/ql/async_query/delete
 
 ### Security Analytics permissions
 
@@ -434,22 +434,22 @@ See [API tools]({{site.url}}{{site.baseurl}}/security-analytics/api-tools/index/
 
 | **Permission** | **Description** |
 | :--- | :--- |
-| cluster:admin/smartobserve/securityanalytics/alerts/get | Permission to get alerts |
-| cluster:admin/smartobserve/securityanalytics/alerts/ack | Permission to acknowledge alerts |
-| cluster:admin/smartobserve/securityanalytics/detector/get | Permission to get detectors |
-| cluster:admin/smartobserve/securityanalytics/detector/search | Permission to search detectors |
-| cluster:admin/smartobserve/securityanalytics/detector/write | Permission to create and update detectors |
-| cluster:admin/smartobserve/securityanalytics/detector/delete | Permission to delete detectors |
-| cluster:admin/smartobserve/securityanalytics/findings/get | Permission to get findings |
-| cluster:admin/smartobserve/securityanalytics/mapping/get | Permission to get field mappings by index |
-| cluster:admin/smartobserve/securityanalytics/mapping/view/get | Permission to get field mappings by index and view mapped and unmapped fields |
-| cluster:admin/smartobserve/securityanalytics/mapping/create | Permission to create field mappings |
-| cluster:admin/smartobserve/securityanalytics/mapping/update | Permission to update field mappings |
-| cluster:admin/smartobserve/securityanalytics/rules/categories | Permission to get all rule categories |
-| cluster:admin/smartobserve/securityanalytics/rule/write | Permission to create and update rules |
-| cluster:admin/smartobserve/securityanalytics/rule/search | Permission to search for rules |
-| cluster:admin/smartobserve/securityanalytics/rules/validate | Permission to validate rules |
-| cluster:admin/smartobserve/securityanalytics/rule/delete | Permission to delete rules |
+| cluster:admin/mcdesk/securityanalytics/alerts/get | Permission to get alerts |
+| cluster:admin/mcdesk/securityanalytics/alerts/ack | Permission to acknowledge alerts |
+| cluster:admin/mcdesk/securityanalytics/detector/get | Permission to get detectors |
+| cluster:admin/mcdesk/securityanalytics/detector/search | Permission to search detectors |
+| cluster:admin/mcdesk/securityanalytics/detector/write | Permission to create and update detectors |
+| cluster:admin/mcdesk/securityanalytics/detector/delete | Permission to delete detectors |
+| cluster:admin/mcdesk/securityanalytics/findings/get | Permission to get findings |
+| cluster:admin/mcdesk/securityanalytics/mapping/get | Permission to get field mappings by index |
+| cluster:admin/mcdesk/securityanalytics/mapping/view/get | Permission to get field mappings by index and view mapped and unmapped fields |
+| cluster:admin/mcdesk/securityanalytics/mapping/create | Permission to create field mappings |
+| cluster:admin/mcdesk/securityanalytics/mapping/update | Permission to update field mappings |
+| cluster:admin/mcdesk/securityanalytics/rules/categories | Permission to get all rule categories |
+| cluster:admin/mcdesk/securityanalytics/rule/write | Permission to create and update rules |
+| cluster:admin/mcdesk/securityanalytics/rule/search | Permission to search for rules |
+| cluster:admin/mcdesk/securityanalytics/rules/validate | Permission to validate rules |
+| cluster:admin/mcdesk/securityanalytics/rule/delete | Permission to delete rules |
 
 ### Monitoring permissions
 
@@ -537,7 +537,7 @@ These permissions apply to an index or index pattern. You might want a user to h
 | `indices:data/read/mget` |  Permission to run [multiple GET operations]({{site.url}}{{site.baseurl}}/api-reference/document-apis/multi-get/) in one request. |
 | `indices:data/read/mget*` |  Permission to run multiple GET operations in one request. This setting must be configured as both a cluster- and index-level permission. |
 | `indices:data/read/msearch` |  Permission to run [multiple search]({{site.url}}{{site.baseurl}}/api-reference/multi-search/)  requests in a single request. This setting must be configured as both a cluster- and index-level permission. |
-| `indices:data/read/msearch/template` |  Permission to bundle [multiple search templates]({{site.url}}{{site.baseurl}}/api-reference/search-template/#multiple-search-templates) and send them to your SmartObserve cluster in a single request. This setting must be configured as both a cluster- and index-level permission. |
+| `indices:data/read/msearch/template` |  Permission to bundle [multiple search templates]({{site.url}}{{site.baseurl}}/api-reference/search-template/#multiple-search-templates) and send them to your MCdesk cluster in a single request. This setting must be configured as both a cluster- and index-level permission. |
 | `indices:data/read/mtv` |  Permission to retrieve multiple term vectors with a single request. This setting must be configured as both a cluster- and index-level permission. |
 | `indices:data/read/mtv*` |  Permission to retrieve multiple term vectors with a single request. This setting must be configured as both a cluster- and index-level permission. |
 | `indices:data/read/plugins/replication/file_chunk` | Permission to check files during segment replication. |

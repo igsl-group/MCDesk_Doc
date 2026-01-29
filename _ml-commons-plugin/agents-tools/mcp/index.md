@@ -12,7 +12,7 @@ redirect_from:
 **Introduced 3.0**
 {: .label .label-purple }
 
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) is an open protocol standard that provides a standardized way for AI models to connect to external data sources and tools. SmartObserve integrates with MCP, enabling agents to use external tools and data sources through MCP servers.
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) is an open protocol standard that provides a standardized way for AI models to connect to external data sources and tools. MCdesk integrates with MCP, enabling agents to use external tools and data sources through MCP servers.
 
 Connecting to external MCP servers expands agent capabilities to include the following functionality:
 

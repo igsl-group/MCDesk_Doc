@@ -12,7 +12,7 @@ The correlation graph is a security findings knowledge graph. It provides a visu
 ---
 ## Acccessing the graph
 
-Begin by selecting **Security Analytics** in the SmartObserve Dashboards main menu. Then select **Correlations** from the Security Analytics menu on the left side of the screen. The **Correlations** page is displayed, as shown in the following image.
+Begin by selecting **Security Analytics** in the MCdesk Dashboards main menu. Then select **Correlations** from the Security Analytics menu on the left side of the screen. The **Correlations** page is displayed, as shown in the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/Security/sec-analytics/corr-graph.png" alt="The correlation graph" width="85%">
 

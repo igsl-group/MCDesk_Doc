@@ -4,8 +4,8 @@ title: Rolling upgrade lab
 parent: Rolling upgrade
 nav_exclude: true
 redirect_from:
-  - /upgrade-smartobserve/appendix/rolling-upgrade-lab/
-  - /install-and-configure/upgrade-smartobserve/appendix/index/
+  - /upgrade-mcdesk/appendix/rolling-upgrade-lab/
+  - /install-and-configure/upgrade-mcdesk/appendix/index/
   - /migrate-or-upgrade/rolling-upgrade/appendix/
   - /migrate-or-upgrade/rolling-upgrade/appendix/rolling-upgrade-lab/
 ---
@@ -38,9 +38,9 @@ To use, invoke class="codeblock-label"
 
 # Rolling upgrade lab
 
-You can follow these steps on your own compatible host to recreate the same cluster state that the SmartObserve Project used for testing [rolling upgrades]({{site.url}}{{site.baseurl}}/migrate-or-upgrade/rolling-upgrade/). This exercise is useful if you want to test the upgrade process in a development environment.
+You can follow these steps on your own compatible host to recreate the same cluster state that the MCdesk Project used for testing [rolling upgrades]({{site.url}}{{site.baseurl}}/migrate-or-upgrade/rolling-upgrade/). This exercise is useful if you want to test the upgrade process in a development environment.
 
-The steps used in this lab were validated on an arbitrarily chosen [Amazon Elastic Compute Cloud (Amazon EC2)](https://aws.amazon.com/ec2/) `t2.large` instance using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) kernel version `Linux 5.10.162-141.675.amzn2.x86_64` and [Docker](https://www.docker.com/) version `20.10.17, build 100c701`. The instance was provisioned with an attached 20 GiB gp2 [Amazon EBS](https://aws.amazon.com/ebs/) root volume. These specifications are included for informational purposes and do not represent hardware requirements for SmartObserve or SmartObserve Dashboards.
+The steps used in this lab were validated on an arbitrarily chosen [Amazon Elastic Compute Cloud (Amazon EC2)](https://aws.amazon.com/ec2/) `t2.large` instance using [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) kernel version `Linux 5.10.162-141.675.amzn2.x86_64` and [Docker](https://www.docker.com/) version `20.10.17, build 100c701`. The instance was provisioned with an attached 20 GiB gp2 [Amazon EBS](https://aws.amazon.com/ebs/) root volume. These specifications are included for informational purposes and do not represent hardware requirements for MCdesk or MCdesk Dashboards.
 
 References in this procedure to the `$HOME` path on the host machine in this procedure are represented by the tilde character ("~") to make the instructions more portable. If you would prefer to specify an absolute path, modify the volume paths defined in `upgrade-demo-cluster.sh` and used throughout relevant commands in this document to reflect your environment.
 
@@ -52,23 +52,23 @@ As you follow the steps in this document, you will define several Docker resourc
 docker container stop $(docker container ls -aqf name=os-); \
 	docker container rm $(docker container ls -aqf name=os-); \
 	docker volume rm -f $(docker volume ls -q | egrep 'data-0|repo-0'); \
-	docker network rm smartobserve-dev-net
+	docker network rm mcdesk-dev-net
 ```
 {% include copy.html %}
 
-The command removes container names matching the regular expression `os-*`, data volumes matching `data-0*` and `repo-0*`, and the Docker network named `smartobserve-dev-net`. If you have other Docker resources running on your host, then you should review and modify the command to avoid removing other resources unintentionally. This command does not revert host configuration changes, like memory swapping behavior.
+The command removes container names matching the regular expression `os-*`, data volumes matching `data-0*` and `repo-0*`, and the Docker network named `mcdesk-dev-net`. If you have other Docker resources running on your host, then you should review and modify the command to avoid removing other resources unintentionally. This command does not revert host configuration changes, like memory swapping behavior.
 {: .warning}
 
 After selecting a host, you can begin the lab:
 
 1. Install the appropriate version of [Docker Engine](https://docs.docker.com/engine/install/) for your Linux distribution and system architecture. 
-1. Configure [important system settings]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/index/#important-settings) on your host:
+1. Configure [important system settings]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/index/#important-settings) on your host:
     1. Disable memory paging and swapping on the host to improve performance:
 	   ```bash
 	   sudo swapoff -a
 	   ```
 	   {% include copy.html %}
-	1. Increase the number of memory maps available to SmartObserve. Open the `sysctl` configuration file for editing. This example command uses the [vim](https://www.vim.org/) text editor, but you can use any available text editor:
+	1. Increase the number of memory maps available to MCdesk. Open the `sysctl` configuration file for editing. This example command uses the [vim](https://www.vim.org/) text editor, but you can use any available text editor:
 	   ```bash
 	   sudo vim /etc/sysctl.conf
 	   ```
@@ -89,12 +89,12 @@ After selecting a host, you can begin the lab:
    mkdir ~/deploy && cd ~/deploy
    ```
    {% include copy.html %}
-1. Download `upgrade-demo-cluster.sh` from the SmartObserve Project [documentation-website](https://github.com/igsl-group/documentation-website) repository:
+1. Download `upgrade-demo-cluster.sh` from the MCdesk Project [documentation-website](https://github.com/igsl-group/documentation-website) repository:
    ```bash
-   wget https://raw.githubusercontent.com/smartobserve-project/documentation-website/main/assets/examples/upgrade-demo-cluster.sh
+   wget https://raw.githubusercontent.com/mcdesk-project/documentation-website/main/assets/examples/upgrade-demo-cluster.sh
    ```
    {% include copy.html %}
-1. Run the script without any modifications in order to deploy four containers running SmartObserve and one container running SmartObserve Dashboards, with custom, self-signed TLS certificates and a pre-defined set of internal users:
+1. Run the script without any modifications in order to deploy four containers running MCdesk and one container running MCdesk Dashboards, with custom, self-signed TLS certificates and a pre-defined set of internal users:
    ```bash
    sh upgrade-demo-cluster.sh
    ```
@@ -107,13 +107,13 @@ After selecting a host, you can begin the lab:
    <p class="codeblock-label">Example response</p>
    ```bash
    CONTAINER ID   IMAGE                                           COMMAND                  CREATED          STATUS          PORTS                                                                                                      NAMES
-   6e5218c8397d   smartobserveproject/smartobserve-dashboards:1.3.7   "./smartobserve-dashbo…"   24 seconds ago   Up 22 seconds   0.0.0.0:5601->5601/tcp, :::5601->5601/tcp                                                                  os-dashboards-01
-   cb5188308b21   smartobserveproject/smartobserve:1.3.7              "./smartobserve-docker…"   25 seconds ago   Up 24 seconds   9300/tcp, 9650/tcp, 0.0.0.0:9204->9200/tcp, :::9204->9200/tcp, 0.0.0.0:9604->9600/tcp, :::9604->9600/tcp   os-node-04
-   71b682aa6671   smartobserveproject/smartobserve:1.3.7              "./smartobserve-docker…"   26 seconds ago   Up 25 seconds   9300/tcp, 9650/tcp, 0.0.0.0:9203->9200/tcp, :::9203->9200/tcp, 0.0.0.0:9603->9600/tcp, :::9603->9600/tcp   os-node-03
-   f894054a9378   smartobserveproject/smartobserve:1.3.7              "./smartobserve-docker…"   27 seconds ago   Up 26 seconds   9300/tcp, 9650/tcp, 0.0.0.0:9202->9200/tcp, :::9202->9200/tcp, 0.0.0.0:9602->9600/tcp, :::9602->9600/tcp   os-node-02
-   2e9c91c959cd   smartobserveproject/smartobserve:1.3.7              "./smartobserve-docker…"   28 seconds ago   Up 27 seconds   9300/tcp, 9650/tcp, 0.0.0.0:9201->9200/tcp, :::9201->9200/tcp, 0.0.0.0:9601->9600/tcp, :::9601->9600/tcp   os-node-01
+   6e5218c8397d   mcdeskproject/mcdesk-dashboards:1.3.7   "./mcdesk-dashbo…"   24 seconds ago   Up 22 seconds   0.0.0.0:5601->5601/tcp, :::5601->5601/tcp                                                                  os-dashboards-01
+   cb5188308b21   mcdeskproject/mcdesk:1.3.7              "./mcdesk-docker…"   25 seconds ago   Up 24 seconds   9300/tcp, 9650/tcp, 0.0.0.0:9204->9200/tcp, :::9204->9200/tcp, 0.0.0.0:9604->9600/tcp, :::9604->9600/tcp   os-node-04
+   71b682aa6671   mcdeskproject/mcdesk:1.3.7              "./mcdesk-docker…"   26 seconds ago   Up 25 seconds   9300/tcp, 9650/tcp, 0.0.0.0:9203->9200/tcp, :::9203->9200/tcp, 0.0.0.0:9603->9600/tcp, :::9603->9600/tcp   os-node-03
+   f894054a9378   mcdeskproject/mcdesk:1.3.7              "./mcdesk-docker…"   27 seconds ago   Up 26 seconds   9300/tcp, 9650/tcp, 0.0.0.0:9202->9200/tcp, :::9202->9200/tcp, 0.0.0.0:9602->9600/tcp, :::9602->9600/tcp   os-node-02
+   2e9c91c959cd   mcdeskproject/mcdesk:1.3.7              "./mcdesk-docker…"   28 seconds ago   Up 27 seconds   9300/tcp, 9650/tcp, 0.0.0.0:9201->9200/tcp, :::9201->9200/tcp, 0.0.0.0:9601->9600/tcp, :::9601->9600/tcp   os-node-01
    ```
-1. The amount of time SmartObserve needs to initialize the cluster varies depending on the performance capabilities of the underlying host. You can follow container logs to see what SmartObserve is doing during the bootstrap process:
+1. The amount of time MCdesk needs to initialize the cluster varies depending on the performance capabilities of the underlying host. You can follow container logs to see what MCdesk is doing during the bootstrap process:
    1. Enter the following command to display logs for container `os-node-01` in the terminal window:
       ```bash
       docker logs -f os-node-01
@@ -125,7 +125,7 @@ After selecting a host, you can begin the lab:
       [INFO ][o.o.s.c.ConfigurationRepository] [os-node-01] Node 'os-node-01' initialized
       ```
    1. Press `Ctrl+C` to stop following container logs and return to the command prompt.
-1. Use cURL to query the SmartObserve REST API. In the following command, `os-node-01` is queried by sending the request to host port `9201`, which is mapped to port `9200` on the container:
+1. Use cURL to query the MCdesk REST API. In the following command, `os-node-01` is queried by sending the request to host port `9201`, which is mapped to port `9200` on the container:
    ```bash
    curl -s "https://localhost:9201" -ku admin:<custom-admin-password>
    ```
@@ -134,10 +134,10 @@ After selecting a host, you can begin the lab:
    ```json
    {
        "name" : "os-node-01",
-       "cluster_name" : "smartobserve-dev-cluster",
+       "cluster_name" : "mcdesk-dev-cluster",
        "cluster_uuid" : "g1MMknuDRuuD9IaaNt56KA",
        "version" : {
-           "distribution" : "smartobserve",
+           "distribution" : "mcdesk",
            "number" : "1.3.7",
            "build_type" : "tar",
            "build_hash" : "db18a0d5a08b669fb900c00d81462e221f4438ee",
@@ -147,31 +147,31 @@ After selecting a host, you can begin the lab:
            "minimum_wire_compatibility_version" : "6.8.0",
            "minimum_index_compatibility_version" : "6.0.0-beta1"
        },
-       "tagline" : "The SmartObserve Project: https://magiccreative.io/"
+       "tagline" : "The MCdesk Project: https://magiccreative.io/"
    }
    ```
 
 **Tip**: Use the `-s` option with `curl` to hide the progress meter and error messages.
 {: .tip}
 
-## Adding data and configuring SmartObserve Security
+## Adding data and configuring MCdesk Security
 
-Now that the SmartObserve cluster is running, it's time to add data and configure some SmartObserve Security settings. The data you add and settings you configure will be validated again after the version upgrade is complete.
+Now that the MCdesk cluster is running, it's time to add data and configure some MCdesk Security settings. The data you add and settings you configure will be validated again after the version upgrade is complete.
 
 This section can be broken down into two parts:
 - [Indexing data with the REST API](#indexing-data-with-the-rest-api)
-- [Adding data using SmartObserve Dashboards](#adding-data-using-smartobserve-dashboards)
+- [Adding data using MCdesk Dashboards](#adding-data-using-mcdesk-dashboards)
 
 ### Indexing data with the REST API
 
 1. Download the sample field mappings file:
    ```bash
-   wget https://raw.githubusercontent.com/smartobserve-project/documentation-website/main/assets/examples/ecommerce-field_mappings.json
+   wget https://raw.githubusercontent.com/mcdesk-project/documentation-website/main/assets/examples/ecommerce-field_mappings.json
    ```
    {% include copy.html %}
 1. Next, download the bulk data that you will ingest into this index:
    ```bash
-   wget https://raw.githubusercontent.com/smartobserve-project/documentation-website/main/assets/examples/ecommerce.ndjson
+   wget https://raw.githubusercontent.com/mcdesk-project/documentation-website/main/assets/examples/ecommerce.ndjson
    ```
    {% include copy.html %}
 1. Use the [Create index]({{site.url}}{{site.baseurl}}/api-reference/index-apis/create-index/) API to create an index using the mappings defined in `ecommerce-field_mappings.json`:
@@ -243,12 +243,12 @@ This section can be broken down into two parts:
    }
    ```
 
-### Adding data using SmartObserve Dashboards
+### Adding data using MCdesk Dashboards
 
-1. Open a web browser and navigate to port `5601` on your Docker host (for example, <code>https://<var>HOST_ADDRESS</var>:5601</code>). If SmartObserve Dashboards is running and you have network access to the host from your browser client, then you will be redirected to a login page.
+1. Open a web browser and navigate to port `5601` on your Docker host (for example, <code>https://<var>HOST_ADDRESS</var>:5601</code>). If MCdesk Dashboards is running and you have network access to the host from your browser client, then you will be redirected to a login page.
     1. If the web browser throws an error because the TLS certificates are self-signed, then you might need to bypass certificate checks in your browser. Refer to the browser's documentation for information about bypassing certificate checks. The common name (CN) for each certificate is generated according to the container and node names for intracluster communication, so connecting to the host from a browser will still result in an "invalid CN" warning.
 1. Enter the default username (`admin`) and password (`admin`).
-1. On the SmartObserve Dashboards **Home** page, select **Add sample data**.
+1. On the MCdesk Dashboards **Home** page, select **Add sample data**.
 1. Under **Sample web logs**, select **Add data**.
    1. **Optional**: Select **View data** to review the **[Logs] Web Traffic** dashboard.
 1. Select the **Menu button** to open the **Navigation pane**, then go to **Security > Internal users**.
@@ -272,7 +272,7 @@ In this section you will be:
    ```bash
    curl -H 'Content-Type: application/json' \
       -X PUT "https://localhost:9201/_snapshot/snapshot-repo?pretty" \
-      -d '{"type":"fs","settings":{"location":"/usr/share/smartobserve/snapshots"}}' \
+      -d '{"type":"fs","settings":{"location":"/usr/share/mcdesk/snapshots"}}' \
       -ku admin:<custom-admin-password>
    ```
    {% include copy.html %}
@@ -329,7 +329,7 @@ Snapshots are backups of a cluster’s indexes and state. See [Snapshots]({{site
          "version_id" : 135248527,
          "version" : "1.3.7",
          "indices" : [
-            "smartobserve_dashboards_sample_data_logs",
+            "mcdesk_dashboards_sample_data_logs",
             ".opendistro_security",
             "security-auditlog-2023.02.27",
             ".kibana_1",
@@ -359,15 +359,15 @@ Snapshots are backups of a cluster’s indexes and state. See [Snapshots]({{site
 
 ### Backing up security settings
 
-Cluster administrators can modify SmartObserve Security settings by using any of the following methods:
+Cluster administrators can modify MCdesk Security settings by using any of the following methods:
 
 - Modifying YAML files and running `securityadmin.sh`
 - Making REST API requests using the admin certificate
-- Making changes with SmartObserve Dashboards
+- Making changes with MCdesk Dashboards
 
-Regardless of the method you choose, SmartObserve Security writes your configuration to a special system index called `.opendistro_security`. This system index is preserved through the upgrade process, and it is also saved in the snapshot you created. However, restoring system indexes requires elevated access granted by the `admin` certificate. To learn more, see [System indexes]({{site.url}}{{site.baseurl}}/security/configuration/system-indices/) and [Configuring TLS certificates]({{site.url}}{{site.baseurl}}/security/configuration/tls/).
+Regardless of the method you choose, MCdesk Security writes your configuration to a special system index called `.opendistro_security`. This system index is preserved through the upgrade process, and it is also saved in the snapshot you created. However, restoring system indexes requires elevated access granted by the `admin` certificate. To learn more, see [System indexes]({{site.url}}{{site.baseurl}}/security/configuration/system-indices/) and [Configuring TLS certificates]({{site.url}}{{site.baseurl}}/security/configuration/tls/).
 
-You can also export your SmartObserve Security settings as YAML files by running `securityadmin.sh` with the `-backup` option on any of your SmartObserve nodes. These YAML files can be used to reinitialize the `.opendistro_security` index with your existing configuration. The following steps will guide you through generating these backup files and copying them to your host for storage:
+You can also export your MCdesk Security settings as YAML files by running `securityadmin.sh` with the `-backup` option on any of your MCdesk nodes. These YAML files can be used to reinitialize the `.opendistro_security` index with your existing configuration. The following steps will guide you through generating these backup files and copying them to your host for storage:
 
 1. Open an interactive pseudo-TTY session with `os-node-01`:
    ```bash
@@ -376,18 +376,18 @@ You can also export your SmartObserve Security settings as YAML files by running
    {% include copy.html %}
 1. Create a directory called `backups` and navigate to it:
    ```bash
-   mkdir /usr/share/smartobserve/backups && cd /usr/share/smartobserve/backups
+   mkdir /usr/share/mcdesk/backups && cd /usr/share/mcdesk/backups
    ```
    {% include copy.html %}
-1. Use `securityadmin.sh` to create backups of your SmartObserve Security settings in `/usr/share/smartobserve/backups/`:
+1. Use `securityadmin.sh` to create backups of your MCdesk Security settings in `/usr/share/mcdesk/backups/`:
    ```bash
-   /usr/share/smartobserve/plugins/smartobserve-security/tools/securityadmin.sh \
-      -backup /usr/share/smartobserve/backups \
+   /usr/share/mcdesk/plugins/mcdesk-security/tools/securityadmin.sh \
+      -backup /usr/share/mcdesk/backups \
       -icl \
       -nhnv \
-      -cacert /usr/share/smartobserve/config/root-ca.pem \
-      -cert /usr/share/smartobserve/config/admin.pem \
-      -key /usr/share/smartobserve/config/admin-key.pem
+      -cacert /usr/share/mcdesk/config/root-ca.pem \
+      -cert /usr/share/mcdesk/config/admin.pem \
+      -key /usr/share/mcdesk/config/admin-key.pem
    ```
    {% include copy.html %}
    <p class="codeblock-label">Example response</p>
@@ -395,36 +395,36 @@ You can also export your SmartObserve Security settings as YAML files by running
    Security Admin v7
    Will connect to localhost:9300 ... done
    Connected as CN=A,OU=DOCS,O=OPENSEARCH,L=PORTLAND,ST=OREGON,C=US
-   SmartObserve Version: 1.3.7
-   SmartObserve Security Version: 1.3.7.0
-   Contacting smartobserve cluster 'smartobserve' and wait for YELLOW clusterstate ...
-   Clustername: smartobserve-dev-cluster
+   MCdesk Version: 1.3.7
+   MCdesk Security Version: 1.3.7.0
+   Contacting mcdesk cluster 'mcdesk' and wait for YELLOW clusterstate ...
+   Clustername: mcdesk-dev-cluster
    Clusterstate: GREEN
    Number of nodes: 4
    Number of data nodes: 4
    .opendistro_security index already exists, so we do not need to create one.
-   Will retrieve '/config' into /usr/share/smartobserve/backups/config.yml 
-      SUCC: Configuration for 'config' stored in /usr/share/smartobserve/backups/config.yml
-   Will retrieve '/roles' into /usr/share/smartobserve/backups/roles.yml 
-      SUCC: Configuration for 'roles' stored in /usr/share/smartobserve/backups/roles.yml
-   Will retrieve '/rolesmapping' into /usr/share/smartobserve/backups/roles_mapping.yml 
-      SUCC: Configuration for 'rolesmapping' stored in /usr/share/smartobserve/backups/roles_mapping.yml
-   Will retrieve '/internalusers' into /usr/share/smartobserve/backups/internal_users.yml 
-      SUCC: Configuration for 'internalusers' stored in /usr/share/smartobserve/backups/internal_users.yml
-   Will retrieve '/actiongroups' into /usr/share/smartobserve/backups/action_groups.yml 
-      SUCC: Configuration for 'actiongroups' stored in /usr/share/smartobserve/backups/action_groups.yml
-   Will retrieve '/tenants' into /usr/share/smartobserve/backups/tenants.yml 
-      SUCC: Configuration for 'tenants' stored in /usr/share/smartobserve/backups/tenants.yml
-   Will retrieve '/nodesdn' into /usr/share/smartobserve/backups/nodes_dn.yml 
-      SUCC: Configuration for 'nodesdn' stored in /usr/share/smartobserve/backups/nodes_dn.yml
-   Will retrieve '/whitelist' into /usr/share/smartobserve/backups/whitelist.yml 
-      SUCC: Configuration for 'whitelist' stored in /usr/share/smartobserve/backups/whitelist.yml
-   Will retrieve '/audit' into /usr/share/smartobserve/backups/audit.yml 
-      SUCC: Configuration for 'audit' stored in /usr/share/smartobserve/backups/audit.yml
+   Will retrieve '/config' into /usr/share/mcdesk/backups/config.yml 
+      SUCC: Configuration for 'config' stored in /usr/share/mcdesk/backups/config.yml
+   Will retrieve '/roles' into /usr/share/mcdesk/backups/roles.yml 
+      SUCC: Configuration for 'roles' stored in /usr/share/mcdesk/backups/roles.yml
+   Will retrieve '/rolesmapping' into /usr/share/mcdesk/backups/roles_mapping.yml 
+      SUCC: Configuration for 'rolesmapping' stored in /usr/share/mcdesk/backups/roles_mapping.yml
+   Will retrieve '/internalusers' into /usr/share/mcdesk/backups/internal_users.yml 
+      SUCC: Configuration for 'internalusers' stored in /usr/share/mcdesk/backups/internal_users.yml
+   Will retrieve '/actiongroups' into /usr/share/mcdesk/backups/action_groups.yml 
+      SUCC: Configuration for 'actiongroups' stored in /usr/share/mcdesk/backups/action_groups.yml
+   Will retrieve '/tenants' into /usr/share/mcdesk/backups/tenants.yml 
+      SUCC: Configuration for 'tenants' stored in /usr/share/mcdesk/backups/tenants.yml
+   Will retrieve '/nodesdn' into /usr/share/mcdesk/backups/nodes_dn.yml 
+      SUCC: Configuration for 'nodesdn' stored in /usr/share/mcdesk/backups/nodes_dn.yml
+   Will retrieve '/whitelist' into /usr/share/mcdesk/backups/whitelist.yml 
+      SUCC: Configuration for 'whitelist' stored in /usr/share/mcdesk/backups/whitelist.yml
+   Will retrieve '/audit' into /usr/share/mcdesk/backups/audit.yml 
+      SUCC: Configuration for 'audit' stored in /usr/share/mcdesk/backups/audit.yml
    ```
 1. **Optional**: Create a backup directory for TLS certificates and store copies of the certificates. Repeat this for each node if you use unique TLS certificates:
    ```bash
-   mkdir /usr/share/smartobserve/backups/certs && cp /usr/share/smartobserve/config/*pem /usr/share/smartobserve/backups/certs/
+   mkdir /usr/share/mcdesk/backups/certs && cp /usr/share/mcdesk/config/*pem /usr/share/mcdesk/backups/certs/
    ```
    {% include copy.html %}
 1. Terminate the pseudo-TTY session:
@@ -434,7 +434,7 @@ You can also export your SmartObserve Security settings as YAML files by running
    {% include copy.html %}
 1. Copy the files to your host:
    ```bash
-   docker cp os-node-01:/usr/share/smartobserve/backups ~/deploy/
+   docker cp os-node-01:/usr/share/mcdesk/backups ~/deploy/
    ```
    {% include copy.html %}
 
@@ -442,7 +442,7 @@ You can also export your SmartObserve Security settings as YAML files by running
 
 Now that the cluster is configured and you have made backups of important files and settings, it's time to begin the version upgrade.
 
-Some steps included in this section, like disabling shard replication and flushing the transaction log, will not impact the performance of your cluster. These steps are included as best practices and can significantly improve cluster performance in situations where clients continue interacting with the SmartObserve cluster throughout the upgrade, such as by querying existing data or indexing documents. 
+Some steps included in this section, like disabling shard replication and flushing the transaction log, will not impact the performance of your cluster. These steps are included as best practices and can significantly improve cluster performance in situations where clients continue interacting with the MCdesk cluster throughout the upgrade, such as by querying existing data or indexing documents. 
 {: .note}
 
 1. Disable shard replication to stop the movement of Lucene index segments within your cluster:
@@ -489,24 +489,24 @@ Some steps included in this section, like disabling shard replication and flushi
    docker stop os-node-01 && docker container rm os-node-01
    ```
    {% include copy.html %}
-1. Start a new container named `os-node-01` with the `smartobserveproject/smartobserve:2.5.0` image and using the same mapped volumes as the original container:
+1. Start a new container named `os-node-01` with the `mcdeskproject/mcdesk:2.5.0` image and using the same mapped volumes as the original container:
    ```bash
    docker run -d \
       -p 9201:9200 -p 9601:9600 \
       -e "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" \
       --ulimit nofile=65536:65536 --ulimit memlock=-1:-1 \
-      -v data-01:/usr/share/smartobserve/data \
-      -v repo-01:/usr/share/smartobserve/snapshots \
-      -v ~/deploy/smartobserve-01.yml:/usr/share/smartobserve/config/smartobserve.yml \
-      -v ~/deploy/root-ca.pem:/usr/share/smartobserve/config/root-ca.pem \
-      -v ~/deploy/admin.pem:/usr/share/smartobserve/config/admin.pem \
-      -v ~/deploy/admin-key.pem:/usr/share/smartobserve/config/admin-key.pem \
-      -v ~/deploy/os-node-01.pem:/usr/share/smartobserve/config/os-node-01.pem \
-      -v ~/deploy/os-node-01-key.pem:/usr/share/smartobserve/config/os-node-01-key.pem \
-      --network smartobserve-dev-net \
+      -v data-01:/usr/share/mcdesk/data \
+      -v repo-01:/usr/share/mcdesk/snapshots \
+      -v ~/deploy/mcdesk-01.yml:/usr/share/mcdesk/config/mcdesk.yml \
+      -v ~/deploy/root-ca.pem:/usr/share/mcdesk/config/root-ca.pem \
+      -v ~/deploy/admin.pem:/usr/share/mcdesk/config/admin.pem \
+      -v ~/deploy/admin-key.pem:/usr/share/mcdesk/config/admin-key.pem \
+      -v ~/deploy/os-node-01.pem:/usr/share/mcdesk/config/os-node-01.pem \
+      -v ~/deploy/os-node-01-key.pem:/usr/share/mcdesk/config/os-node-01-key.pem \
+      --network mcdesk-dev-net \
       --ip 172.20.0.11 \
       --name os-node-01 \
-      smartobserveproject/smartobserve:2.5.0
+      mcdeskproject/mcdesk:2.5.0
    ```
    {% include copy.html %}
    <p class="codeblock-label">Example response</p>
@@ -551,8 +551,8 @@ Some steps included in this section, like disabling shard replication and flushi
    security-auditlog-2023.02.27           0 r UNASSIGNED                           
    security-auditlog-2023.02.28           0 p STARTED        6 104.1kb 172.20.0.14 os-node-04
    security-auditlog-2023.02.28           0 r UNASSIGNED                           
-   smartobserve_dashboards_sample_data_logs 0 p STARTED    14074   9.1mb 172.20.0.12 os-node-02
-   smartobserve_dashboards_sample_data_logs 0 r STARTED    14074   8.9mb 172.20.0.13 os-node-03
+   mcdesk_dashboards_sample_data_logs 0 p STARTED    14074   9.1mb 172.20.0.12 os-node-02
+   mcdesk_dashboards_sample_data_logs 0 r STARTED    14074   8.9mb 172.20.0.13 os-node-03
    .kibana_92668751_admin_1               0 r STARTED       33  37.3kb 172.20.0.13 os-node-03
    .kibana_92668751_admin_1               0 p STARTED       33  37.3kb 172.20.0.14 os-node-04
    ```
@@ -561,24 +561,24 @@ Some steps included in this section, like disabling shard replication and flushi
    docker stop os-node-02 && docker container rm os-node-02
    ```
    {% include copy.html %}
-1. Start a new container named `os-node-02` with the `smartobserveproject/smartobserve:2.5.0` image and using the same mapped volumes as the original container:
+1. Start a new container named `os-node-02` with the `mcdeskproject/mcdesk:2.5.0` image and using the same mapped volumes as the original container:
    ```bash
    docker run -d \
       -p 9202:9200 -p 9602:9600 \
       -e "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" \
       --ulimit nofile=65536:65536 --ulimit memlock=-1:-1 \
-      -v data-02:/usr/share/smartobserve/data \
-      -v repo-01:/usr/share/smartobserve/snapshots \
-      -v ~/deploy/smartobserve-02.yml:/usr/share/smartobserve/config/smartobserve.yml \
-      -v ~/deploy/root-ca.pem:/usr/share/smartobserve/config/root-ca.pem \
-      -v ~/deploy/admin.pem:/usr/share/smartobserve/config/admin.pem \
-      -v ~/deploy/admin-key.pem:/usr/share/smartobserve/config/admin-key.pem \
-      -v ~/deploy/os-node-02.pem:/usr/share/smartobserve/config/os-node-02.pem \
-      -v ~/deploy/os-node-02-key.pem:/usr/share/smartobserve/config/os-node-02-key.pem \
-      --network smartobserve-dev-net \
+      -v data-02:/usr/share/mcdesk/data \
+      -v repo-01:/usr/share/mcdesk/snapshots \
+      -v ~/deploy/mcdesk-02.yml:/usr/share/mcdesk/config/mcdesk.yml \
+      -v ~/deploy/root-ca.pem:/usr/share/mcdesk/config/root-ca.pem \
+      -v ~/deploy/admin.pem:/usr/share/mcdesk/config/admin.pem \
+      -v ~/deploy/admin-key.pem:/usr/share/mcdesk/config/admin-key.pem \
+      -v ~/deploy/os-node-02.pem:/usr/share/mcdesk/config/os-node-02.pem \
+      -v ~/deploy/os-node-02-key.pem:/usr/share/mcdesk/config/os-node-02-key.pem \
+      --network mcdesk-dev-net \
       --ip 172.20.0.12 \
       --name os-node-02 \
-      smartobserveproject/smartobserve:2.5.0
+      mcdeskproject/mcdesk:2.5.0
    ```
    {% include copy.html %}
    <p class="codeblock-label">Example response</p>
@@ -590,24 +590,24 @@ Some steps included in this section, like disabling shard replication and flushi
    docker stop os-node-03 && docker container rm os-node-03
    ```
    {% include copy.html %}
-1. Start a new container named `os-node-03` with the `smartobserveproject/smartobserve:2.5.0` image and using the same mapped volumes as the original container:
+1. Start a new container named `os-node-03` with the `mcdeskproject/mcdesk:2.5.0` image and using the same mapped volumes as the original container:
    ```bash
    docker run -d \
       -p 9203:9200 -p 9603:9600 \
       -e "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" \
       --ulimit nofile=65536:65536 --ulimit memlock=-1:-1 \
-      -v data-03:/usr/share/smartobserve/data \
-      -v repo-01:/usr/share/smartobserve/snapshots \
-      -v ~/deploy/smartobserve-03.yml:/usr/share/smartobserve/config/smartobserve.yml \
-      -v ~/deploy/root-ca.pem:/usr/share/smartobserve/config/root-ca.pem \
-      -v ~/deploy/admin.pem:/usr/share/smartobserve/config/admin.pem \
-      -v ~/deploy/admin-key.pem:/usr/share/smartobserve/config/admin-key.pem \
-      -v ~/deploy/os-node-03.pem:/usr/share/smartobserve/config/os-node-03.pem \
-      -v ~/deploy/os-node-03-key.pem:/usr/share/smartobserve/config/os-node-03-key.pem \
-      --network smartobserve-dev-net \
+      -v data-03:/usr/share/mcdesk/data \
+      -v repo-01:/usr/share/mcdesk/snapshots \
+      -v ~/deploy/mcdesk-03.yml:/usr/share/mcdesk/config/mcdesk.yml \
+      -v ~/deploy/root-ca.pem:/usr/share/mcdesk/config/root-ca.pem \
+      -v ~/deploy/admin.pem:/usr/share/mcdesk/config/admin.pem \
+      -v ~/deploy/admin-key.pem:/usr/share/mcdesk/config/admin-key.pem \
+      -v ~/deploy/os-node-03.pem:/usr/share/mcdesk/config/os-node-03.pem \
+      -v ~/deploy/os-node-03-key.pem:/usr/share/mcdesk/config/os-node-03-key.pem \
+      --network mcdesk-dev-net \
       --ip 172.20.0.13 \
       --name os-node-03 \
-      smartobserveproject/smartobserve:2.5.0
+      mcdeskproject/mcdesk:2.5.0
    ```
    {% include copy.html %}
    <p class="codeblock-label">Example response</p>
@@ -619,24 +619,24 @@ Some steps included in this section, like disabling shard replication and flushi
    docker stop os-node-04 && docker container rm os-node-04
    ```
    {% include copy.html %}
-1. Start a new container named `os-node-04` with the `smartobserveproject/smartobserve:2.5.0` image and using the same mapped volumes as the original container:
+1. Start a new container named `os-node-04` with the `mcdeskproject/mcdesk:2.5.0` image and using the same mapped volumes as the original container:
    ```bash
    docker run -d \
       -p 9204:9200 -p 9604:9600 \
       -e "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" \
       --ulimit nofile=65536:65536 --ulimit memlock=-1:-1 \
-      -v data-04:/usr/share/smartobserve/data \
-      -v repo-01:/usr/share/smartobserve/snapshots \
-      -v ~/deploy/smartobserve-04.yml:/usr/share/smartobserve/config/smartobserve.yml \
-      -v ~/deploy/root-ca.pem:/usr/share/smartobserve/config/root-ca.pem \
-      -v ~/deploy/admin.pem:/usr/share/smartobserve/config/admin.pem \
-      -v ~/deploy/admin-key.pem:/usr/share/smartobserve/config/admin-key.pem \
-      -v ~/deploy/os-node-04.pem:/usr/share/smartobserve/config/os-node-04.pem \
-      -v ~/deploy/os-node-04-key.pem:/usr/share/smartobserve/config/os-node-04-key.pem \
-      --network smartobserve-dev-net \
+      -v data-04:/usr/share/mcdesk/data \
+      -v repo-01:/usr/share/mcdesk/snapshots \
+      -v ~/deploy/mcdesk-04.yml:/usr/share/mcdesk/config/mcdesk.yml \
+      -v ~/deploy/root-ca.pem:/usr/share/mcdesk/config/root-ca.pem \
+      -v ~/deploy/admin.pem:/usr/share/mcdesk/config/admin.pem \
+      -v ~/deploy/admin-key.pem:/usr/share/mcdesk/config/admin-key.pem \
+      -v ~/deploy/os-node-04.pem:/usr/share/mcdesk/config/os-node-04.pem \
+      -v ~/deploy/os-node-04-key.pem:/usr/share/mcdesk/config/os-node-04-key.pem \
+      --network mcdesk-dev-net \
       --ip 172.20.0.14 \
       --name os-node-04 \
-      smartobserveproject/smartobserve:2.5.0
+      mcdeskproject/mcdesk:2.5.0
    ```
    {% include copy.html %}
    <p class="codeblock-label">Example response</p>
@@ -657,30 +657,30 @@ Some steps included in this section, like disabling shard replication and flushi
    os-node-04  2.5.0    dimr       -
    os-node-03  2.5.0    dimr       -
    ```
-1. The last component you should upgrade is the SmartObserve Dashboards node. First, stop and remove the old container:
+1. The last component you should upgrade is the MCdesk Dashboards node. First, stop and remove the old container:
    ```bash
    docker stop os-dashboards-01 && docker rm os-dashboards-01
    ```
    {% include copy.html %}
-1. Create a new container running the target version of SmartObserve Dashboards:
+1. Create a new container running the target version of MCdesk Dashboards:
    ```bash
    docker run -d \
       -p 5601:5601 --expose 5601 \
-      -v ~/deploy/smartobserve_dashboards.yml:/usr/share/smartobserve-dashboards/config/smartobserve_dashboards.yml \
-      -v ~/deploy/root-ca.pem:/usr/share/smartobserve-dashboards/config/root-ca.pem \
-      -v ~/deploy/os-dashboards-01.pem:/usr/share/smartobserve-dashboards/config/os-dashboards-01.pem \
-      -v ~/deploy/os-dashboards-01-key.pem:/usr/share/smartobserve-dashboards/config/os-dashboards-01-key.pem \
-      --network smartobserve-dev-net \
+      -v ~/deploy/mcdesk_dashboards.yml:/usr/share/mcdesk-dashboards/config/mcdesk_dashboards.yml \
+      -v ~/deploy/root-ca.pem:/usr/share/mcdesk-dashboards/config/root-ca.pem \
+      -v ~/deploy/os-dashboards-01.pem:/usr/share/mcdesk-dashboards/config/os-dashboards-01.pem \
+      -v ~/deploy/os-dashboards-01-key.pem:/usr/share/mcdesk-dashboards/config/os-dashboards-01-key.pem \
+      --network mcdesk-dev-net \
       --ip 172.20.0.10 \
       --name os-dashboards-01 \
-      smartobserveproject/smartobserve-dashboards:2.5.0
+      mcdeskproject/mcdesk-dashboards:2.5.0
    ```
    {% include copy.html %}
    <p class="codeblock-label">Example response</p>
    ```bash
    310de7a24cf599ca0b39b241db07fa8865592ebe15b6f5fda26ad19d8e1c1e09
    ```
-1. Make sure the SmartObserve Dashboards container started properly. A command like the following can be used to confirm that requests to <code>https://<var>HOST_ADDRESS</var>:5601</code> are redirected (HTTP status code 302) to `/app/login?`:
+1. Make sure the MCdesk Dashboards container started properly. A command like the following can be used to confirm that requests to <code>https://<var>HOST_ADDRESS</var>:5601</code> are redirected (HTTP status code 302) to `/app/login?`:
    ```bash
    curl https://localhost:5601 -kI
    ```
@@ -689,7 +689,7 @@ Some steps included in this section, like disabling shard replication and flushi
    ```bash
    HTTP/1.1 302 Found
    location: /app/login?
-   osd-name: smartobserve-dashboards-dev
+   osd-name: mcdesk-dashboards-dev
    cache-control: private, no-cache, no-store, must-revalidate
    set-cookie: security_authentication=; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Secure; HttpOnly; Path=/
    content-length: 0
@@ -724,7 +724,7 @@ Some steps included in this section, like disabling shard replication and flushi
 
 ## Validating the upgrade
 
-You successfully deployed a secure SmartObserve cluster, indexed data, created a dashboard populated with sample data, created a new internal user, backed up your important files, and upgraded the cluster from version 1.3.7 to 2.5.0. Before you continue exploring and experimenting with SmartObserve and SmartObserve Dashboards, you should validate the outcome of the upgrade.
+You successfully deployed a secure MCdesk cluster, indexed data, created a dashboard populated with sample data, created a new internal user, backed up your important files, and upgraded the cluster from version 1.3.7 to 2.5.0. Before you continue exploring and experimenting with MCdesk and MCdesk Dashboards, you should validate the outcome of the upgrade.
 
 For this cluster, post-upgrade validation steps can include verifying the following:
 
@@ -734,7 +734,7 @@ For this cluster, post-upgrade validation steps can include verifying the follow
 
 ### Verifying the new running version
 
-1. Verify the current running version of your SmartObserve nodes:
+1. Verify the current running version of your MCdesk nodes:
    ```bash
    curl -s "https://localhost:9201/_cat/nodes?v&h=name,version,node.role,master" \
       -ku admin:<custom-admin-password> | column -t
@@ -748,14 +748,14 @@ For this cluster, post-upgrade validation steps can include verifying the follow
    os-node-04  2.5.0    dimr       -
    os-node-03  2.5.0    dimr       -
    ```
-1. Verify the current running version of SmartObserve Dashboards:
-   1. **Option 1**: Verify the SmartObserve Dashboards version from the web interface.
+1. Verify the current running version of MCdesk Dashboards:
+   1. **Option 1**: Verify the MCdesk Dashboards version from the web interface.
       1. Open a web browser and navigate to port `5601` on your Docker host (for example, <code>https://<var>HOST_ADDRESS</var>:5601</code>).
       1. Log in with the default username (`admin`) and default password (`admin`).
       1. Select the **Help button** in the upper-right corner. The version is displayed in a pop-up window.
       1. Select the **Help button** again to close the pop-up window.
-   1. **Option 2**: Verify the SmartObserve Dashboards version by inspecting `manifest.yml`.
-      1. From the command line, open an interactive pseudo-TTY session with the SmartObserve Dashboards container:
+   1. **Option 2**: Verify the MCdesk Dashboards version by inspecting `manifest.yml`.
+      1. From the command line, open an interactive pseudo-TTY session with the MCdesk Dashboards container:
          ```bash
          docker exec -it os-dashboards-01 bash
          ```
@@ -770,7 +770,7 @@ For this cluster, post-upgrade validation steps can include verifying the follow
          ---
          schema-version: '1.1'
          build:
-            name: SmartObserve Dashboards
+            name: MCdesk Dashboards
             version: 2.5.0
          ```
       1. Terminate the pseudo-TTY session:
@@ -789,7 +789,7 @@ For this cluster, post-upgrade validation steps can include verifying the follow
    <p class="codeblock-label">Example response</p>
    ```json
    {
-      "cluster_name" : "smartobserve-dev-cluster",
+      "cluster_name" : "mcdesk-dev-cluster",
       "status" : "green",
       "timed_out" : false,
       "number_of_nodes" : 4,
@@ -825,8 +825,8 @@ For this cluster, post-upgrade validation steps can include verifying the follow
    .kibana_1                              0 r STARTED     3   5.9kb 172.20.0.11 os-node-01
    .kibana_92668751_admin_1               0 p STARTED    33  37.3kb 172.20.0.13 os-node-03
    .kibana_92668751_admin_1               0 r STARTED    33  37.3kb 172.20.0.11 os-node-01
-   smartobserve_dashboards_sample_data_logs 0 p STARTED 14074   9.1mb 172.20.0.12 os-node-02
-   smartobserve_dashboards_sample_data_logs 0 r STARTED 14074   9.1mb 172.20.0.14 os-node-04
+   mcdesk_dashboards_sample_data_logs 0 p STARTED 14074   9.1mb 172.20.0.12 os-node-02
+   mcdesk_dashboards_sample_data_logs 0 r STARTED 14074   9.1mb 172.20.0.14 os-node-04
    security-auditlog-2023.02.28           0 p STARTED     6  26.2kb 172.20.0.11 os-node-01
    security-auditlog-2023.02.28           0 r STARTED     6  26.2kb 172.20.0.14 os-node-04
    .opendistro-reports-definitions        0 p STARTED     0    208b 172.20.0.12 os-node-02
@@ -878,7 +878,7 @@ You need to query the ecommerce index again in order to confirm that the sample 
    ```
 1. Open a web browser and navigate to port `5601` on your Docker host (for example, <code>https://<var>HOST_ADDRESS</var>:5601</code>).
 1. Enter the default username (`admin`) and password (`admin`).
-1. On the SmartObserve Dashboards **Home** page, select the **Menu button** in the upper-left corner of the web interface to open the **Navigation pane**.
+1. On the MCdesk Dashboards **Home** page, select the **Menu button** in the upper-left corner of the web interface to open the **Navigation pane**.
 1. Select **Dashboard**.
 1. Choose **[Logs] Web Traffic** to open the dashboard that was created when you added sample data earlier in the process.
 1. When you are done reviewing the dashboard, select the **Profile** button. Choose **Log out** so you can log in as a different user.
@@ -886,8 +886,8 @@ You need to query the ecommerce index again in order to confirm that the sample 
 
 ## Next steps
 
-Review the following resources to learn more about how SmartObserve works:
+Review the following resources to learn more about how MCdesk works:
 
 - [REST API reference]({{site.url}}{{site.baseurl}}/api-reference/index/)
-- [Quickstart guide for SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/quickstart-dashboards/)
-- [About Security in SmartObserve]({{site.url}}{{site.baseurl}}/security/index/)
+- [Quickstart guide for MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/quickstart-dashboards/)
+- [About Security in MCdesk]({{site.url}}{{site.baseurl}}/security/index/)

@@ -53,7 +53,7 @@ The [built-in tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools
         {
             "name": "ListIndexTool",
             "type": "ListIndexTool",
-            "description": "This tool gets index information from the SmartObserve cluster. It takes 2 optional arguments named `indices` which is a comma-delimited list of one or more indices to get information from (default is an empty list meaning all indices), and `local` which means whether to return information from the local node only instead of the cluster manager node (default is false). The tool returns the indices information, including `health`, `status`, `index`, `uuid`, `pri`, `rep`, `docs.count`, `docs.deleted`, `store.size`, `pri.store. size `, `pri.store.size`, `pri.store`.",
+            "description": "This tool gets index information from the MCdesk cluster. It takes 2 optional arguments named `indices` which is a comma-delimited list of one or more indices to get information from (default is an empty list meaning all indices), and `local` which means whether to return information from the local node only instead of the cluster manager node (default is false). The tool returns the indices information, including `health`, `status`, `index`, `uuid`, `pri`, `rep`, `docs.count`, `docs.deleted`, `store.size`, `pri.store. size `, `pri.store.size`, `pri.store`.",
             "attributes": {
                 "input_schema": {
                     "type": "object",
@@ -63,7 +63,7 @@ The [built-in tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools
                             "items": {
                                 "type": "string"
                             },
-                            "description": "SmartObserve index name list, separated by comma. for example: [\"index1\", \"index2\"], use empty array [] to list all indices in the cluster"
+                            "description": "MCdesk index name list, separated by comma. for example: [\"index1\", \"index2\"], use empty array [] to list all indices in the cluster"
                         }
                     },
                     "additionalProperties": false
@@ -73,7 +73,7 @@ The [built-in tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools
         {
           "name": "SearchIndexTool",
           "type": "SearchIndexTool",
-          "description": "Use this tool to search an index by providing two parameters: 'index' for the index name, and 'query' for the SmartObserve DSL formatted query. Only use this tool when both index name and DSL query is available.",
+          "description": "Use this tool to search an index by providing two parameters: 'index' for the index name, and 'query' for the MCdesk DSL formatted query. Only use this tool when both index name and DSL query is available.",
           "attributes": {
             "input_schema": {
               "type": "object",
@@ -99,7 +99,7 @@ The [built-in tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools
               "properties": {
                 "index": {
                   "type": "array",
-                  "description": "SmartObserve index name list, separated by comma. for example: [\"index1\", \"index2\"]",
+                  "description": "MCdesk index name list, separated by comma. for example: [\"index1\", \"index2\"]",
                   "items": {
                       "type": "string"
                   }
@@ -115,18 +115,18 @@ The [built-in tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools
         {
           "name": "SearchAlertsTool",
           "type": "SearchAlertsTool",
-          "description": "Use this tool to search an index by providing two parameters: 'index' for the index name, and 'query' for the SmartObserve DSL formatted query. Only use this tool when both index name and DSL query is available.",
+          "description": "Use this tool to search an index by providing two parameters: 'index' for the index name, and 'query' for the MCdesk DSL formatted query. Only use this tool when both index name and DSL query is available.",
           "attributes": {
             "input_schema": {
               "type": "object",
               "properties": {
                 "index": {
                   "type": "string",
-                  "description": "SmartObserve index name. for example: index1"
+                  "description": "MCdesk index name. for example: index1"
                 },
                 "query": {
                   "type": "object",
-                  "description": "SmartObserve search index query. You need to get index mapping to write correct search query. It must be a valid SmartObserve query. Valid value:\n{\"query\":{\"match\":{\"population_description\":\"seattle 2023 population\"}},\"size\":2,\"_source\":\"population_description\"}\nInvalid value: \n{\"match\":{\"population_description\":\"seattle 2023 population\"}}\nThe value is invalid because the match not wrapped by \"query\".",
+                  "description": "MCdesk search index query. You need to get index mapping to write correct search query. It must be a valid MCdesk query. Valid value:\n{\"query\":{\"match\":{\"population_description\":\"seattle 2023 population\"}},\"size\":2,\"_source\":\"population_description\"}\nInvalid value: \n{\"match\":{\"population_description\":\"seattle 2023 population\"}}\nThe value is invalid because the match not wrapped by \"query\".",
                   "additionalProperties": false
                 }
               },
@@ -377,7 +377,7 @@ POST /_plugins/_ml/mcp/tools/_register
 
 ## Example response
 
-SmartObserve responds with the node ID and the status of the creation of all tools for each node:
+MCdesk responds with the node ID and the status of the creation of all tools for each node:
 
 ```json
 {

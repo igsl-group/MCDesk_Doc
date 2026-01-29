@@ -9,13 +9,13 @@ permalink: /migration-assistant/migration-phases/migrate-metadata/transform-flat
 
 # Transform flattened fields to flat_object
 
-This guide explains how Migration Assistant automatically transforms the `flattened` field type during migration to SmartObserve.
+This guide explains how Migration Assistant automatically transforms the `flattened` field type during migration to MCdesk.
 
 ## Overview
 
 The `flattened` field type was introduced in Elasticsearch 7.3 as an X-Pack feature. It allows you to store an entire JSON object as a single field value, which can be useful for objects with a large or unknown number of unique keys.
 
-When migrating to SmartObserve 2.7 or later, Migration Assistant automatically converts `flattened` field types to SmartObserve's equivalent `flat_object` type. This transformation requires no configuration or user intervention.
+When migrating to MCdesk 2.7 or later, Migration Assistant automatically converts `flattened` field types to MCdesk's equivalent `flat_object` type. This transformation requires no configuration or user intervention.
 
 To determine whether an Elasticsearch cluster uses `flattened` field types, make a call to your source cluster's `GET /_mapping` API. In the migration console, run `console clusters curl source_cluster "/_mapping"`. If you see `"type":"flattened"`, then this transformation is applicable and these fields will be automatically transformed during migration.
 
@@ -23,17 +23,17 @@ To determine whether an Elasticsearch cluster uses `flattened` field types, make
 
 The `flattened` to `flat_object` field type transformation applies to:
 - **Source clusters**: Elasticsearch 7.3+
-- **Target clusters**: SmartObserve 2.7+
+- **Target clusters**: MCdesk 2.7+
 - **Automatic conversion**: No configuration required during metadata
 
 ## Automatic migration
 
-When migrating to SmartObserve 2.7 or later, Migration Assistant automatically detects `flattened` field types and converts them to `flat_object` fields. During the migration process, you'll see this transformation in the output:
+When migrating to MCdesk 2.7 or later, Migration Assistant automatically detects `flattened` field types and converts them to `flat_object` fields. During the migration process, you'll see this transformation in the output:
 
 ```
 Transformations:
    flattened to flat_object:
-      Convert field data type flattened to SmartObserve flat_object
+      Convert field data type flattened to MCdesk flat_object
 ```
 
 ### Example transformation
@@ -79,15 +79,15 @@ Transformations:
 
 Migration Assistant automatically converts all `flattened` fields to `flat_object` fields. No additional configuration is required.
 
-If you're migrating to SmartObserve versions earlier than 2.7, indexes containing `flattened` field types will fail to migrate. You have several options:
+If you're migrating to MCdesk versions earlier than 2.7, indexes containing `flattened` field types will fail to migrate. You have several options:
 
-1. **Upgrade target cluster**: Upgrade your target SmartObserve cluster to version 2.7 or later to support the automatic conversion.
+1. **Upgrade target cluster**: Upgrade your target MCdesk cluster to version 2.7 or later to support the automatic conversion.
 
 2. **Custom transformation**: Use the [field type transformation framework]({{site.url}}{{site.baseurl}}/migration-assistant/migration-phases/migrate-metadata/handling-field-type-breaking-changes/) to convert `flattened` to another supported type (for example, `object` or `nested`).
 
 ## Differences between flattened and flat_object
 
-While `flat_object` in SmartObserve provides similar functionality to Elasticsearch's `flattened` type, there are some minor differences:
+While `flat_object` in MCdesk provides similar functionality to Elasticsearch's `flattened` type, there are some minor differences:
 
 - **Query syntax**: Both support dot notation for accessing nested fields.
 - **Performance**: Similar performance characteristics for indexing and searching.
@@ -98,7 +98,7 @@ While `flat_object` in SmartObserve provides similar functionality to Elasticsea
 
 If you encounter issues with `flattened` field migration:
 
-1. **Verify target version** -- Ensure your target SmartObserve cluster is running version 2.7 or later.
+1. **Verify target version** -- Ensure your target MCdesk cluster is running version 2.7 or later.
 
 2. **Check migration logs** -- Review the detailed migration logs for any warnings or errors:
    ```bash

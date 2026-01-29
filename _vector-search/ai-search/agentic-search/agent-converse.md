@@ -101,7 +101,7 @@ POST /_plugins/_ml/models/_register
 
 ## Step 4: Register an agent
 
-Register a conversational agent with multiple tools---`ListIndexTool` to discover available indexes, `IndexMappingTool` to understand index structure, `WebSearchTool` for external data access, and the required `QueryPlanningTool` to generate SmartObserve DSL.
+Register a conversational agent with multiple tools---`ListIndexTool` to discover available indexes, `IndexMappingTool` to understand index structure, `WebSearchTool` for external data access, and the required `QueryPlanningTool` to generate MCdesk DSL.
 
 See [Configuring agentic search agents]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/agent-customization/) for basic configurations. The agent must include a `QueryPlanningTool`:
 
@@ -149,7 +149,7 @@ POST /_plugins/_ml/agents/_register
 
 ## Step 5: Configure a search pipeline
 
-Create a search pipeline with both request and response processors. The [`agentic_query_translator` request processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/agentic-query-translator-processor/) translates natural language queries into SmartObserve DSL, while the [`agentic_context` response processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/agentic-context-processor/) adds agent execution context information for monitoring and conversation continuity:
+Create a search pipeline with both request and response processors. The [`agentic_query_translator` request processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/agentic-query-translator-processor/) translates natural language queries into MCdesk DSL, while the [`agentic_context` response processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/agentic-context-processor/) adds agent execution context information for monitoring and conversation continuity:
 
 ```json
 PUT _search/pipeline/agentic-pipeline
@@ -381,6 +381,6 @@ The first query will likely generate more complex DSL with sorting and aggregati
 
 ## Next steps
 
-- [Agentic query translator processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/agentic-query-translator-processor/) -- Learn more about the request processor that translates natural language queries into SmartObserve DSL.
+- [Agentic query translator processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/agentic-query-translator-processor/) -- Learn more about the request processor that translates natural language queries into MCdesk DSL.
 - [Agentic context processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/agentic-context-processor/) -- Learn more about the response processor that adds agent execution context information for monitoring and conversation continuity.
 - [Configuring agentic search agents]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/agent-customization/) -- Configure agent behaviors with different models, tools, and prompts.

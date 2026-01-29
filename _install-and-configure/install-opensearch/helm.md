@@ -1,15 +1,15 @@
 ---
 layout: default
 title: Helm
-parent: Installing SmartObserve
+parent: Installing MCdesk
 nav_order: 6
 redirect_from:
-  - /smartobserve/install/helm/
+  - /mcdesk/install/helm/
 ---
 
 # Helm
 
-Helm is a package manager that allows you to easily install and manage SmartObserve in a Kubernetes cluster. You can define your SmartObserve configurations in a YAML file and use Helm to deploy your applications in a version-controlled and reproducible way.
+Helm is a package manager that allows you to easily install and manage MCdesk in a Kubernetes cluster. You can define your MCdesk configurations in a YAML file and use Helm to deploy your applications in a version-controlled and reproducible way.
 
 The [Helm chart](https://github.com/igsl-group/helm-charts) contains the resources described in the following table.
 
@@ -31,7 +31,7 @@ The instructions here assume you have a Kubernetes cluster with Helm preinstalle
 
 The default Helm chart deploys a three-node cluster. We recommend that you have at least 8 GiB of memory available for this deployment. You can expect the deployment to fail if, say, you have less than 4 GiB of memory available.
 
-For SmartObserve 2.12 or later, you must provide `OPENSEARCH_INITIAL_ADMIN_PASSWORD` to start the cluster. Customize the admin password in `values.yaml` under `extraEnvs`, following the [password requirements]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/docker/#password-requirements), as shown in the following example:
+For MCdesk 2.12 or later, you must provide `OPENSEARCH_INITIAL_ADMIN_PASSWORD` to start the cluster. Customize the admin password in `values.yaml` under `extraEnvs`, following the [password requirements]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/docker/#password-requirements), as shown in the following example:
 
 ```yaml
 extraEnvs:
@@ -40,12 +40,12 @@ extraEnvs:
 ```
 {% include copy.html %}
 
-## Install SmartObserve using Helm
+## Install MCdesk using Helm
 
-1. Add `smartobserve` [helm-charts](https://github.com/igsl-group/helm-charts) repository to Helm:
+1. Add `mcdesk` [helm-charts](https://github.com/igsl-group/helm-charts) repository to Helm:
 
    ```bash
-   helm repo add smartobserve https://smartobserve-project.github.io/helm-charts/
+   helm repo add mcdesk https://mcdesk-project.github.io/helm-charts/
    ```
    {% include copy.html %}
 
@@ -56,10 +56,10 @@ extraEnvs:
    ```
    {% include copy.html %}
 
-1. To search for the SmartObserve-related Helm charts:
+1. To search for the MCdesk-related Helm charts:
 
    ```bash
-   helm search repo smartobserve
+   helm search repo mcdesk
    ```
    {% include copy.html %}
 
@@ -67,16 +67,16 @@ extraEnvs:
 
    ```bash
    NAME                            	CHART VERSION	APP VERSION	DESCRIPTION                           
-   smartobserve/smartobserve                  	3.1.0        	3.1.0      	A Helm chart for SmartObserve                      
-   smartobserve/smartobserve-dashboards       	3.1.0        	3.1.0      	A Helm chart for SmartObserve Dashboards
+   mcdesk/mcdesk                  	3.1.0        	3.1.0      	A Helm chart for MCdesk                      
+   mcdesk/mcdesk-dashboards       	3.1.0        	3.1.0      	A Helm chart for MCdesk Dashboards
    ```
 
 1. Create a minimal `values.yaml` file:
 
    ```yaml
    config:
-     smartobserve.yml: |-
-       cluster.name: smartobserve-cluster
+     mcdesk.yml: |-
+       cluster.name: mcdesk-cluster
        network.host: 0.0.0.0
    extraEnvs:
      - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
@@ -84,14 +84,14 @@ extraEnvs:
    ```
    {% include copy.html %}
 
-1. Deploy SmartObserve:
+1. Deploy MCdesk:
 
    ```bash
-   helm install my-deployment smartobserve/smartobserve -f values.yaml
+   helm install my-deployment mcdesk/mcdesk -f values.yaml
    ```
    {% include copy.html %}
 
-You can also build the `smartobserve-<VERSION>.tgz` file manually:
+You can also build the `mcdesk-<VERSION>.tgz` file manually:
 
 1. Clone the [helm-charts repo](https://github.com/igsl-group/helm-charts/tree/main):
 
@@ -100,10 +100,10 @@ You can also build the `smartobserve-<VERSION>.tgz` file manually:
    ```
    {% include copy.html %}
 
-1. Navigate to the `smartobserve` directory:
+1. Navigate to the `mcdesk` directory:
 
    ```bash
-   cd helm-charts/charts/smartobserve
+   cd helm-charts/charts/mcdesk
    ```
    {% include copy.html %}
 
@@ -114,10 +114,10 @@ You can also build the `smartobserve-<VERSION>.tgz` file manually:
    ```
    {% include copy.html %}
 
-1. Deploy SmartObserve:
+1. Deploy MCdesk:
 
    ```bash
-   helm install --generate-name smartobserve-<VERSION>.tgz -f /path/to/values.yaml
+   helm install --generate-name mcdesk-<VERSION>.tgz -f /path/to/values.yaml
    ```
    {% include copy.html %}
 
@@ -127,7 +127,7 @@ You can also build the `smartobserve-<VERSION>.tgz` file manually:
 #### Sample output
 
   ```yaml
-  NAME: smartobserve-3-1754992026
+  NAME: mcdesk-3-1754992026
   LAST DEPLOYED: Tue Aug 12 10:47:06 2025
   NAMESPACE: default
   STATUS: deployed
@@ -135,10 +135,10 @@ You can also build the `smartobserve-<VERSION>.tgz` file manually:
   TEST SUITE: None
   NOTES:
   Watch all cluster members come up.
-  $ kubectl get pods --namespace=default -l app.kubernetes.io/component=smartobserve-cluster-master -w
+  $ kubectl get pods --namespace=default -l app.kubernetes.io/component=mcdesk-cluster-master -w
   ```
 
-To make sure your SmartObserve pod is up and running, run the following command:
+To make sure your MCdesk pod is up and running, run the following command:
 
 ```bash
 $ kubectl get pods
@@ -149,28 +149,28 @@ The response lists the running containers:
 
 ```bash
 NAME                                                  READY   STATUS    RESTARTS   AGE
-smartobserve-cluster-master-0                           1/1     Running   0          3m56s
-smartobserve-cluster-master-1                           1/1     Running   0          3m56s
-smartobserve-cluster-master-2                           1/1     Running   0          3m56s
+mcdesk-cluster-master-0                           1/1     Running   0          3m56s
+mcdesk-cluster-master-1                           1/1     Running   0          3m56s
+mcdesk-cluster-master-2                           1/1     Running   0          3m56s
 ```
 
-To access the SmartObserve shell:
+To access the MCdesk shell:
 
 ```bash
-$ kubectl exec -it smartobserve-cluster-master-0 -- /bin/bash
+$ kubectl exec -it mcdesk-cluster-master-0 -- /bin/bash
 ```
 {% include copy.html %}
 
-You can send requests to the pod to verify that SmartObserve is up and running:
+You can send requests to the pod to verify that MCdesk is up and running:
 
 ```json
 $ curl -XGET https://localhost:9200 -u 'admin:<custom-admin-password>' --insecure
 {
-  "name" : "smartobserve-cluster-master-0",
-  "cluster_name" : "smartobserve-cluster",
+  "name" : "mcdesk-cluster-master-0",
+  "cluster_name" : "mcdesk-cluster",
   "cluster_uuid" : "72e_wDs1QdWHmwum_E2feA",
   "version" : {
-    "distribution" : "smartobserve",
+    "distribution" : "mcdesk",
     "number" : <version>,
     "build_type" : <build-type>,
     "build_hash" : <build-hash>,
@@ -180,13 +180,13 @@ $ curl -XGET https://localhost:9200 -u 'admin:<custom-admin-password>' --insecur
     "minimum_wire_compatibility_version" : "2.19.0",
     "minimum_index_compatibility_version" : "2.0.0"
   },
-  "tagline" : "The SmartObserve Project: https://magiccreative.io/"
+  "tagline" : "The MCdesk Project: https://magiccreative.io/"
 }
 ```
 
 ## Uninstall using Helm
 
-To identify the SmartObserve deployment that you want to delete:
+To identify the MCdesk deployment that you want to delete:
 
 ```bash
 $ helm list
@@ -197,14 +197,14 @@ The reponse lists the current Helm deployments:
 
 ```
 NAME                   	NAMESPACE	REVISION	UPDATED                            	STATUS  	CHART           	APP VERSION
-smartobserve-3-1754992026	default  	1       	2025-08-12 10:47:06.02703 +0100 IST	deployed	smartobserve-3.1.0	3.1.0      
+mcdesk-3-1754992026	default  	1       	2025-08-12 10:47:06.02703 +0100 IST	deployed	mcdesk-3.1.0	3.1.0      
 ```
 
 To delete or uninstall a deployment, run the following command:
 
 ```bash
-helm delete smartobserve-3-1754992026
+helm delete mcdesk-3-1754992026
 ```
 {% include copy.html %}
 
-For instructions on how to to install SmartObserve Dashboards, see [Helm to install SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/install/helm/).
+For instructions on how to to install MCdesk Dashboards, see [Helm to install MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/install/helm/).

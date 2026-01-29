@@ -11,7 +11,7 @@ Index analyzers are specified at indexing time and are used to analyze [text]({{
 
 ## Determining which index analyzer to use
 
-To determine which analyzer to use for a field when a document is indexed, SmartObserve examines the following parameters in order:
+To determine which analyzer to use for a field when a document is indexed, MCdesk examines the following parameters in order:
 
 1. The `analyzer` mapping parameter of the field
 1. The `analysis.analyzer.default` index setting

@@ -11,7 +11,7 @@ redirect_from:
 
 # JDBC driver
 
-The Java Database Connectivity (JDBC) driver lets you integrate SmartObserve with your favorite business intelligence (BI) applications.
+The Java Database Connectivity (JDBC) driver lets you integrate MCdesk with your favorite business intelligence (BI) applications.
 
 For information about downloading and using the JAR file, see [the SQL repository on GitHub](https://github.com/igsl-group/sql-jdbc).
 

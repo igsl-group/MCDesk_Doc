@@ -10,7 +10,7 @@ redirect_from:
 
 # Metadata fields
 
-SmartObserve provides built-in metadata fields that allow you to access information about the documents in an index. These fields can be used in your queries as needed.
+MCdesk provides built-in metadata fields that allow you to access information about the documents in an index. These fields can be used in your queries as needed.
 
 Metadata field | Description
 :--- | :---
@@ -19,5 +19,5 @@ Metadata field | Description
 `_id` |  The unique identifier assigned to each document. 
 `_index` | The index in which the document is stored.
 `_meta` | Stores custom metadata or additional information specific to the application or use case.
-`_routing` | Allows you to specify a custom value that determines the shard assignment for a document in an SmartObserve cluster.
+`_routing` | Allows you to specify a custom value that determines the shard assignment for a document in an MCdesk cluster.
 `_source` | Contains the original JSON representation of the document data.

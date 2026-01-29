@@ -12,9 +12,9 @@ redirect_from:
 
 # Logstash
 
-Logstash is a real-time event processing engine. It's part of the SmartObserve stack which includes SmartObserve, Beats, and SmartObserve Dashboards.
+Logstash is a real-time event processing engine. It's part of the MCdesk stack which includes MCdesk, Beats, and MCdesk Dashboards.
 
-You can send events to Logstash from many different sources. Logstash processes the events and sends it one or more destinations. For example, you can send access logs from a web server to Logstash. Logstash extracts useful information from each log and sends it to a destination like SmartObserve.
+You can send events to Logstash from many different sources. Logstash processes the events and sends it one or more destinations. For example, you can send access logs from a web server to Logstash. Logstash extracts useful information from each log and sends it to a destination like MCdesk.
 
 Sending events to Logstash lets you decouple event processing from your app. Your app only needs to send events to Logstash and doesn’t need to know anything about what happens to the events afterwards.
 
@@ -46,7 +46,7 @@ where:
 
 * `input` receives events like logs from multiple sources simultaneously. Logstash supports a number of input plugins for TCP/UDP, files, syslog, Microsoft Windows EventLogs, stdin, HTTP, and so on. You can also use an open source collection of input tools called Beats to gather events. The input plugin sends the events to a filter.
 * `filter` parses and enriches the events in one way or the other. Logstash has a large collection of filter plugins that modify events and pass them on to an output. For example, a `grok` filter parses unstructured events into fields and a `mutate` filter changes fields. Filters are executed sequentially.
-* `output` ships the filtered events to one or more destinations. Logstash supports a wide range of output plugins for destinations like SmartObserve, TCP/UDP, emails, files, stdout, HTTP, Nagios, and so on.
+* `output` ships the filtered events to one or more destinations. Logstash supports a wide range of output plugins for destinations like MCdesk, TCP/UDP, emails, files, stdout, HTTP, Nagios, and so on.
 
 Both the input and output phases support codecs to process events as they enter or exit the pipeline.
 Some of the popular codecs are `json` and `multiline`. The `json` codec processes data that’s in JSON format and the `multiline` codec merges multiple line events into a single line.
@@ -55,7 +55,7 @@ You can also write conditional statements within pipeline configurations to perf
 
 ## Install Logstash
 
-To install Logstash on SmartObserve, first install Logstash on your cluster, then the SmartObserve Logstash plugin, as described in the following steps.
+To install Logstash on MCdesk, first install Logstash on your cluster, then the MCdesk Logstash plugin, as described in the following steps.
 
 ### Tarball
 
@@ -75,18 +75,18 @@ Make sure you have [Java Development Kit (JDK)](https://www.oracle.com/java/tech
 4. Use the following command to install the plugin:
 
      ```bash
-     bin/logstash-plugin install logstash-output-smartobserve
+     bin/logstash-plugin install logstash-output-mcdesk
      ```
      {% include copy.html %}
   
    You should receive the following output:
 
      ```
-     Validating logstash-output-smartobserve
+     Validating logstash-output-mcdesk
      Resolving mixin dependencies
      Updating mixin dependencies logstash-mixin-ecs_compatibility_support
      Bundler attempted to update logstash-mixin-ecs_compatibility_support but its version stayed the same
-     Installing logstash-output-smartobserve
+     Installing logstash-output-mcdesk
      Installation successful
      ```
 
@@ -98,19 +98,19 @@ You can either use a custom Dockerfile to build a Logstash image or use the stan
 
 #### Option 1: Using a custom Dockerfile (recommended)
 
-1. Create a custom Dockerfile to build a Logstash image with the required SmartObserve plugins:
+1. Create a custom Dockerfile to build a Logstash image with the required MCdesk plugins:
 
     ```
     FROM logstash:<LATEST_VERSION>
-    RUN bin/logstash-plugin install logstash-output-smartobserve
-    RUN bin/logstash-plugin install logstash-input-smartobserve
+    RUN bin/logstash-plugin install logstash-output-mcdesk
+    RUN bin/logstash-plugin install logstash-input-mcdesk
     ```
     {% include copy.html %}
 
 1. Build the image:
 
     ```
-    docker build -t logstash-with-smartobserve-plugins .
+    docker build -t logstash-with-mcdesk-plugins .
     ```
     {% include copy.html %}
 
@@ -130,20 +130,20 @@ You can either use a custom Dockerfile to build a Logstash image or use the stan
     ```
     {% include copy.html %}
 
-1. Start SmartObserve with this network:
+1. Start MCdesk with this network:
 
     ```
-    docker run -p 9200:9200 -p 9600:9600 --name smartobserve --net test -e "discovery.type=single-node" smartobserveproject/smartobserve:1.2.0
+    docker run -p 9200:9200 -p 9600:9600 --name mcdesk --net test -e "discovery.type=single-node" mcdeskproject/mcdesk:1.2.0
     ```
     {% include copy.html %}
 
 1. Start Logstash:
 
     ```
-    docker run -it --rm --name logstash --net test smartobserveproject/logstash-oss-with-smartobserve-output-plugin:7.16.2 -e 'input { stdin { } } output {
-      smartobserve {
-        hosts => ["https://smartobserve:9200"]
-        index => "smartobserve-logstash-docker-%{+YYYY.MM.dd}"
+    docker run -it --rm --name logstash --net test mcdeskproject/logstash-oss-with-mcdesk-output-plugin:7.16.2 -e 'input { stdin { } } output {
+      mcdesk {
+        hosts => ["https://mcdesk:9200"]
+        index => "mcdesk-logstash-docker-%{+YYYY.MM.dd}"
         user => "admin"
         password => "admin"
         ssl => true

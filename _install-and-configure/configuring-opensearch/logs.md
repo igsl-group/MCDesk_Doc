@@ -1,48 +1,48 @@
 ---
 layout: default
 title: Logs
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 130
 redirect_from:
-  - /smartobserve/logs/
+  - /mcdesk/logs/
   - /monitoring-your-cluster/logs/
 ---
 
 # Logs
 
-The SmartObserve logs include valuable information for monitoring cluster operations and troubleshooting issues. The location of the logs differs based on the installation type:
+The MCdesk logs include valuable information for monitoring cluster operations and troubleshooting issues. The location of the logs differs based on the installation type:
 
-- On Docker, SmartObserve writes most logs to the console and stores the remainder in `smartobserve/logs/`. The tarball installation also uses `smartobserve/logs/`.
-- On most Linux installations, SmartObserve writes logs to `/var/log/smartobserve/`.
+- On Docker, MCdesk writes most logs to the console and stores the remainder in `mcdesk/logs/`. The tarball installation also uses `mcdesk/logs/`.
+- On most Linux installations, MCdesk writes logs to `/var/log/mcdesk/`.
 
-Logs are available as `.log` (plain text) and `.json` files. Permissions for the SmartObserve logs are `-rw-r--r--` by default, meaning that any user account on the node can read them. You can change this behavior _for each log type_ in `log4j2.properties` using the `filePermissions` option. For example, you might add `appender.rolling.filePermissions = rw-r-----` to change permissions for the JSON server log. For details, see the [Log4j 2 documentation](https://logging.apache.org/log4j/2.x/manual/appenders.html#RollingFileAppender).
+Logs are available as `.log` (plain text) and `.json` files. Permissions for the MCdesk logs are `-rw-r--r--` by default, meaning that any user account on the node can read them. You can change this behavior _for each log type_ in `log4j2.properties` using the `filePermissions` option. For example, you might add `appender.rolling.filePermissions = rw-r-----` to change permissions for the JSON server log. For details, see the [Log4j 2 documentation](https://logging.apache.org/log4j/2.x/manual/appenders.html#RollingFileAppender).
 
 
 ## Application logs
 
-For its application logs, SmartObserve uses [Apache Log4j 2](https://logging.apache.org/log4j/2.x/) and its built-in log levels (from least to most severe). The following table describes the logging settings.
+For its application logs, MCdesk uses [Apache Log4j 2](https://logging.apache.org/log4j/2.x/) and its built-in log levels (from least to most severe). The following table describes the logging settings.
 
 | Setting | Data type | Description |
 | :--- | :--- | :--- |
-| `logger.org.smartobserve.discovery` | String | Loggers accept Log4j2’s built-in log levels: `OFF`, `FATAL`, `ERROR`, `WARN`, `INFO`, `DEBUG`, and `TRACE`. Default is `INFO`. |
+| `logger.org.mcdesk.discovery` | String | Loggers accept Log4j2’s built-in log levels: `OFF`, `FATAL`, `ERROR`, `WARN`, `INFO`, `DEBUG`, and `TRACE`. Default is `INFO`. |
 
-Rather than changing the default log level (`logger.level`), you change the log level for individual SmartObserve modules:
+Rather than changing the default log level (`logger.level`), you change the log level for individual MCdesk modules:
 
 ```json
 PUT /_cluster/settings
 {
   "persistent" : {
-    "logger.org.smartobserve.index.reindex" : "DEBUG",
-    "logger.org.smartobserve.indices.recovery": "TRACE"
+    "logger.org.mcdesk.index.reindex" : "DEBUG",
+    "logger.org.mcdesk.indices.recovery": "TRACE"
   }
 }
 ```
 {% include copy-curl.html %}
 
-Common categories can be found in [Common core logging categories](#common-core-logging-categories) and [Plugin logger categories](#plugin-logger-categories); however, the easiest way to identify modules is not in the logs, which abbreviate the path (for example, `o.o.i.r`), but in the [SmartObserve source code](https://github.com/igsl-group/smartobserve/tree/master/server/src/main/java/org/smartobserve).
+Common categories can be found in [Common core logging categories](#common-core-logging-categories) and [Plugin logger categories](#plugin-logger-categories); however, the easiest way to identify modules is not in the logs, which abbreviate the path (for example, `o.o.i.r`), but in the [MCdesk source code](https://github.com/igsl-group/mcdesk/tree/master/server/src/main/java/org/mcdesk).
 {: .tip }
 
-After this sample change, SmartObserve emits much more detailed logs during reindex operations:
+After this sample change, MCdesk emits much more detailed logs during reindex operations:
 
 ```plaintext
 [2019-10-18T16:52:51,184][DEBUG][o.o.i.r.TransportReindexAction] [node1] [1626]: starting
@@ -64,20 +64,20 @@ The DEBUG and TRACE levels are extremely verbose. If you enable either one to tr
 
 There are other ways to change log levels:
 
-1. Add lines to `smartobserve.yml`:
+1. Add lines to `mcdesk.yml`:
 
    ```yml
-   logger.org.smartobserve.index.reindex: debug
+   logger.org.mcdesk.index.reindex: debug
    ```
    {% include copy.html %}
 
-   Modifying `smartobserve.yml` makes the most sense if you want to reuse your logging configuration across multiple clusters or debug startup issues with a single node.
+   Modifying `mcdesk.yml` makes the most sense if you want to reuse your logging configuration across multiple clusters or debug startup issues with a single node.
 
 2. Modify `log4j2.properties`:
 
    ```properties
    # Define a new logger with unique ID of reindex
-   logger.reindex.name = org.smartobserve.index.reindex
+   logger.reindex.name = org.mcdesk.index.reindex
    # Set the log level for that ID
    logger.reindex.level = debug
    ```
@@ -85,16 +85,16 @@ There are other ways to change log levels:
 
    This approach is extremely flexible but requires familiarity with the [Log4j 2 property file syntax](https://logging.apache.org/log4j/2.x/manual/configuration.html#Properties). In general, the other options offer a simpler configuration experience.
 
-   If you examine the default `log4j2.properties` file in the configuration directory, you can see a few SmartObserve-specific variables:
+   If you examine the default `log4j2.properties` file in the configuration directory, you can see a few MCdesk-specific variables:
 
    ```properties
    appender.console.layout.pattern = [%d{ISO8601}][%-5p][%-25c{1.}] [%node_name]%marker %m%n
-   appender.rolling_old.fileName = ${sys:smartobserve.logs.base_path}${sys:file.separator}${sys:smartobserve.logs.cluster_name}.log
+   appender.rolling_old.fileName = ${sys:mcdesk.logs.base_path}${sys:file.separator}${sys:mcdesk.logs.cluster_name}.log
    ```
 
-   - `${sys:smartobserve.logs.base_path}` is the directory for logs (for example, `/var/log/smartobserve/`).
-   - `${sys:smartobserve.logs.cluster_name}` is the name of the cluster.
-   - `${sys:smartobserve.logs.node_name}` is the name of the node.
+   - `${sys:mcdesk.logs.base_path}` is the directory for logs (for example, `/var/log/mcdesk/`).
+   - `${sys:mcdesk.logs.cluster_name}` is the name of the cluster.
+   - `${sys:mcdesk.logs.node_name}` is the name of the node.
    - `[%node_name]` is the name of the node.
 
 ### Common core logging categories
@@ -103,23 +103,23 @@ The following table lists the common core logging categories.
 
 | Logger key prefix             | Description  | 
 | :--------- | :------- 
-| `org.smartobserve.action`       | Transport actions, such as `index`, `bulk`, `get`, or `cluster` actions. Useful when tracing request execution across nodes.        |
-| `org.smartobserve.cluster`      | Cluster state publication, routing, and metadata updates. Turn on for cluster formation, routing, and allocation issues.     |
-| `org.smartobserve.discovery`    | Node discovery and cluster coordination. Helpful during cluster formation or network partition tests. Sub-packages include cloud discovery.   |
-| `org.smartobserve.gateway`      | Gateway, ClusterState, Recoveries and Allocations. Useful for node restarts, shard allocations and shard recovery from on-disk and remote storage.       |
-| `org.smartobserve.http`         | Low-level HTTP layer request handling. Use for issues with HTTP communication and settings.       |
-| `org.smartobserve.index`        | Per-index internals, such as engine, translog, or shard operations. Use for shard/engine behavior debugging.     |
-| `org.smartobserve.indices`      | Cross-index services, such as recovery, storage, or cluster state services. Enable during shard recovery and indexing pressure analysis.   |
-| `org.smartobserve.ingest`       | Ingest pipelines and processors. Turn on when debugging pipeline execution.        |
-| `org.smartobserve.node`         | Node lifecycle and bootstrap. Useful for addressing boot up issues.   |
-| `org.smartobserve.repositories` | Snapshot/restore repository interactions, such as with Amazon Simple Storage Service (Amazon S3), Amazon Elastic File System (Amazon EFS), and others. Use for repository errors and snapshot coordination.    |
-| `org.smartobserve.rest`         | REST handlers and routing to actions. Helpful for REST API handling details.      |
-| `org.smartobserve.script`       | Scripting engine. Use for script compilation and execution debugging.     |
-| `org.smartobserve.search`       | Search phase, such as `query`, `fetch`, or `rewrite`. Turn on for query execution debugging.      |
-| `org.smartobserve.snapshots`    | Snapshot and restore orchestration. Use when diagnosing a snapshot lifecycle.        |
-| `org.smartobserve.threadpool`   | Thread pool execution. Helpful for understanding queuing and pool saturation.     |
-| `org.smartobserve.transport`    | Inter-node transport TCP layer. Use for node-to-node communication issues.         |
-| `org.smartobserve.deprecation`  | Deprecation warnings. Useful during upgrades for finding deprecated APIs and settings.        |
+| `org.mcdesk.action`       | Transport actions, such as `index`, `bulk`, `get`, or `cluster` actions. Useful when tracing request execution across nodes.        |
+| `org.mcdesk.cluster`      | Cluster state publication, routing, and metadata updates. Turn on for cluster formation, routing, and allocation issues.     |
+| `org.mcdesk.discovery`    | Node discovery and cluster coordination. Helpful during cluster formation or network partition tests. Sub-packages include cloud discovery.   |
+| `org.mcdesk.gateway`      | Gateway, ClusterState, Recoveries and Allocations. Useful for node restarts, shard allocations and shard recovery from on-disk and remote storage.       |
+| `org.mcdesk.http`         | Low-level HTTP layer request handling. Use for issues with HTTP communication and settings.       |
+| `org.mcdesk.index`        | Per-index internals, such as engine, translog, or shard operations. Use for shard/engine behavior debugging.     |
+| `org.mcdesk.indices`      | Cross-index services, such as recovery, storage, or cluster state services. Enable during shard recovery and indexing pressure analysis.   |
+| `org.mcdesk.ingest`       | Ingest pipelines and processors. Turn on when debugging pipeline execution.        |
+| `org.mcdesk.node`         | Node lifecycle and bootstrap. Useful for addressing boot up issues.   |
+| `org.mcdesk.repositories` | Snapshot/restore repository interactions, such as with Amazon Simple Storage Service (Amazon S3), Amazon Elastic File System (Amazon EFS), and others. Use for repository errors and snapshot coordination.    |
+| `org.mcdesk.rest`         | REST handlers and routing to actions. Helpful for REST API handling details.      |
+| `org.mcdesk.script`       | Scripting engine. Use for script compilation and execution debugging.     |
+| `org.mcdesk.search`       | Search phase, such as `query`, `fetch`, or `rewrite`. Turn on for query execution debugging.      |
+| `org.mcdesk.snapshots`    | Snapshot and restore orchestration. Use when diagnosing a snapshot lifecycle.        |
+| `org.mcdesk.threadpool`   | Thread pool execution. Helpful for understanding queuing and pool saturation.     |
+| `org.mcdesk.transport`    | Inter-node transport TCP layer. Use for node-to-node communication issues.         |
+| `org.mcdesk.deprecation`  | Deprecation warnings. Useful during upgrades for finding deprecated APIs and settings.        |
 
 
 ### Plugin logger categories
@@ -128,18 +128,18 @@ The following table lists the common plugin logger categories.
 
 | Plugin           | Logger prefix example            | Description           |
 | :--------- | :------- | :------ |
-| Security         | `org.smartobserve.security`        | Used for debugging authentication, authorization, and TLS within the Security plugin.  |
-| k-NN             | `org.smartobserve.knn`             | Used for debugging k-NN index building, search, and memory management.     |
-| ML Commons       | `org.smartobserve.ml`              | Used for model registration, inference, and task runners.  |
-| Alerting         | `org.smartobserve.alerting`        | Used to monitor execution and notifications.     |
-| Index Management | `org.smartobserve.indexmanagement` | Used for Index State Management (ISM) policies, rollups, and transforms.    |
-| Discovery -- Amazon Elastic Compute Cloud (Amazon EC2)  | `org.smartobserve.discovery.ec2`   | Cloud discovery information.       |
+| Security         | `org.mcdesk.security`        | Used for debugging authentication, authorization, and TLS within the Security plugin.  |
+| k-NN             | `org.mcdesk.knn`             | Used for debugging k-NN index building, search, and memory management.     |
+| ML Commons       | `org.mcdesk.ml`              | Used for model registration, inference, and task runners.  |
+| Alerting         | `org.mcdesk.alerting`        | Used to monitor execution and notifications.     |
+| Index Management | `org.mcdesk.indexmanagement` | Used for Index State Management (ISM) policies, rollups, and transforms.    |
+| Discovery -- Amazon Elastic Compute Cloud (Amazon EC2)  | `org.mcdesk.discovery.ec2`   | Cloud discovery information.       |
 
 
 
 ## Search request slow logs
 
-New in version 2.12, SmartObserve offers request-level slow logs for search. These logs rely on thresholds to define what qualifies as "slow." All requests which exceed the threshold are logged.
+New in version 2.12, MCdesk offers request-level slow logs for search. These logs rely on thresholds to define what qualifies as "slow." All requests which exceed the threshold are logged.
 
 Search request slow logs are enabled dynamically through the [Cluster Settings API]({{site.url}}{{site.baseurl}}/api-reference/cluster-api/cluster-settings/). Unlike shard slow logs, search request slow log thresholds are configured for total request took time. By default, logs are disabled (all thresholds are set to `-1`).
 
@@ -157,7 +157,7 @@ PUT /_cluster/settings
 ```
 {% include copy-curl.html %}
 
-A line from `smartobserve_index_search_slowlog.log` might look like this:
+A line from `mcdesk_index_search_slowlog.log` might look like this:
 
 ```plaintext
 [2023-10-30T15:47:42,630][TRACE][c.s.r.slowlog] [runTask-0] took[80.8ms], took_millis[80], phase_took_millis[{expand=0, query=39, fetch=22}], total_hits[4 hits], search_type[QUERY_THEN_FETCH], shards[{total: 10, successful: 10, skipped: 0, failed: 0}], source[{"query":{"match_all":{"boost":1.0}}}], id[]
@@ -168,7 +168,7 @@ Search request slow logs can consume considerable disk space and affect performa
 
 ## Shard slow logs
 
-SmartObserve has two *shard slow logs*, logs that help you identify performance issues: the search slow log and the indexing slow log.
+MCdesk has two *shard slow logs*, logs that help you identify performance issues: the search slow log and the indexing slow log.
 
 These logs rely on thresholds to define what qualifies as a "slow" search or "slow" indexing operation. For example, you might decide that a query is slow if it takes more than 15 seconds to complete. Unlike application logs, which you configure for modules, you configure slow logs for indexes. By default, both logs are disabled (all thresholds are set to `-1`).
 
@@ -238,13 +238,13 @@ PUT <some-index>/_settings
 ```
 {% include copy-curl.html %}
 
-In this example, SmartObserve logs indexing operations that take 15 seconds or longer at the WARN level and operations that take between 10 and 14.*x* seconds at the INFO level. If you set a threshold to 0 seconds, SmartObserve logs all operations, which can be useful for testing whether slow logs are indeed enabled.
+In this example, MCdesk logs indexing operations that take 15 seconds or longer at the WARN level and operations that take between 10 and 14.*x* seconds at the INFO level. If you set a threshold to 0 seconds, MCdesk logs all operations, which can be useful for testing whether slow logs are indeed enabled.
 
 - `reformat` specifies whether to log the document `_source` field as a single line (`true`) or let it span multiple lines (`false`).
 - `source` is the number of characters of the document `_source` field to log.
 - `level` is the minimum log level to include.
 
-A line from `smartobserve_index_indexing_slowlog.log` might look like this:
+A line from `mcdesk_index_indexing_slowlog.log` might look like this:
 
 ```plaintext
 node1 | [2019-10-24T19:48:51,012][WARN][i.i.s.index] [node1] [some-index/i86iF5kyTyy-PS8zrdDeAA] took[3.4ms], took_millis[3], type[_doc], id[1], routing[], source[{"title":"Your Name", "Director":"Makoto Shinkai"}]
@@ -255,7 +255,7 @@ Shard slow logs can consume considerable disk space and affect performance if yo
 
 ## Task logs
 
-SmartObserve can log CPU time and memory utilization for the top N memory-expensive search tasks when task resource consumers are enabled. By default, task resource consumers will log the top 10 search tasks at 60 second intervals. These values can be configured in `smartobserve.yml`.
+MCdesk can log CPU time and memory utilization for the top N memory-expensive search tasks when task resource consumers are enabled. By default, task resource consumers will log the top 10 search tasks at 60 second intervals. These values can be configured in `mcdesk.yml`.
 
 Task logging is enabled dynamically through the [Cluster Settings API]({{site.url}}{{site.baseurl}}/api-reference/cluster-api/cluster-settings/):
 
@@ -272,9 +272,9 @@ PUT _cluster/settings
 Enabling task resource consumers can have an impact on search latency.
 {:.tip}
 
-Once enabled, logs will be written to `logs/smartobserve_task_detailslog.json` and `logs/smartobserve_task_detailslog.log`.
+Once enabled, logs will be written to `logs/mcdesk_task_detailslog.json` and `logs/mcdesk_task_detailslog.log`.
 
-To configure the logging interval and the number of search tasks logged, add the following lines to `smartobserve.yml`:
+To configure the logging interval and the number of search tasks logged, add the following lines to `mcdesk.yml`:
 
 ```yaml
 # Number of expensive search tasks to log
@@ -287,4 +287,4 @@ cluster.task.consumers.top_n.frequency:30s
 
 ## Deprecation logs
 
-Deprecation logs record when clients make deprecated API calls to your cluster. These logs can help you identify and fix issues prior to upgrading to a new major version. By default, SmartObserve logs deprecated API calls at the WARN level, which works well for almost all use cases. If desired, configure `logger.deprecation.level` using `_cluster/settings`, `smartobserve.yml`, or `log4j2.properties`.
+Deprecation logs record when clients make deprecated API calls to your cluster. These logs can help you identify and fix issues prior to upgrading to a new major version. By default, MCdesk logs deprecated API calls at the WARN level, which works well for almost all use cases. If desired, configure `logger.deprecation.level` using `_cluster/settings`, `mcdesk.yml`, or `log4j2.properties`.

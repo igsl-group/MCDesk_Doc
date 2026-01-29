@@ -10,7 +10,7 @@ redirect_from:
 
 # Specialized queries
 
-SmartObserve supports the following specialized queries:
+MCdesk supports the following specialized queries:
 
 - [`agentic`]({{site.url}}{{site.baseurl}}/query-dsl/specialized/agentic/): Uses natural language questions that are automatically planned and executed by an agent with a large language model.
 

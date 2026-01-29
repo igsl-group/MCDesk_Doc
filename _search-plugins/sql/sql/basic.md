@@ -32,7 +32,7 @@ FROM index_name
 ### Fundamentals
 
 Apart from the predefined keywords of SQL, the most basic elements are literal and identifiers.
-A literal is a numeric, string, date or boolean constant. An identifier is an SmartObserve index or field name.
+A literal is a numeric, string, date or boolean constant. An identifier is an MCdesk index or field name.
 With arithmetic operators and SQL functions, use literals and identifiers to build complex expressions.
 
 Rule `expressionAtom`:
@@ -144,7 +144,7 @@ Rule `tableName`:
 
 ![tableName]({{site.url}}{{site.baseurl}}/images/tableName.png)
 
-*Example 1*: Use index aliases to query across indexes. To learn about index aliases, see [Index Alias]({{site.url}}{{site.baseurl}}/smartobserve/index-alias/).
+*Example 1*: Use index aliases to query across indexes. To learn about index aliases, see [Index Alias]({{site.url}}{{site.baseurl}}/mcdesk/index-alias/).
 In this sample query, `acc` is an alias for the `accounts` index:
 
 ```sql
@@ -194,7 +194,7 @@ Specify a condition to filter the results.
 `<=` | Less than or equal to.
 `IN` | Specify multiple `OR` operators.
 `BETWEEN` | Similar to a range query. For more information about range queries, see [Range query]({{site.url}}{{site.baseurl}}/query-dsl/term/range/).
-`LIKE` | Use for full-text search. For more information about full-text queries, see [Full-text queries]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/full-text/index/).
+`LIKE` | Use for full-text search. For more information about full-text queries, see [Full-text queries]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/full-text/index/).
 `IS NULL` | Check if the field value is `NULL`.
 `IS NOT NULL` | Check if the field value is `NOT NULL`.
 
@@ -212,7 +212,7 @@ WHERE account_number = 1
 | :---
 | 1
 
-*Example 2*: SmartObserve allows for flexible schema，so documents in an index may have different fields. Use `IS NULL` or `IS NOT NULL` to retrieve only missing fields or existing fields. SmartObserve does not differentiate between missing fields and fields explicitly set to `NULL`:
+*Example 2*: MCdesk allows for flexible schema，so documents in an index may have different fields. Use `IS NULL` or `IS NOT NULL` to retrieve only missing fields or existing fields. MCdesk does not differentiate between missing fields and fields explicitly set to `NULL`:
 
 ```sql
 SELECT account_number, employer
@@ -317,7 +317,7 @@ ORDER BY account_number DESC
 | 6
 | 1
 
-*Example 2*: Specify if documents with missing fields are to be put at the beginning or at the end of the results. The default behavior of SmartObserve is to return nulls or missing fields at the end. To push them before non-nulls, use the `IS NOT NULL` operator:
+*Example 2*: Specify if documents with missing fields are to be put at the beginning or at the end of the results. The default behavior of MCdesk is to return nulls or missing fields at the end. To push them before non-nulls, use the `IS NOT NULL` operator:
 
 ```sql
 SELECT employer
@@ -336,7 +336,7 @@ ORDER BY employer IS NOT NULL
 
 Specify the maximum number of documents that you want to retrieve. Used to prevent fetching large amounts of data into memory.
 
-*Example 1*: If you pass in a single argument, it's mapped to the `size` parameter in SmartObserve and the `from` parameter is set to 0.
+*Example 1*: If you pass in a single argument, it's mapped to the `size` parameter in MCdesk and the `from` parameter is set to 0.
 
 ```sql
 SELECT account_number
@@ -348,7 +348,7 @@ ORDER BY account_number LIMIT 1
 | :---
 | 1
 
-*Example 2*: If you pass in two arguments, the first is mapped to the `from` parameter and the second to the `size` parameter in SmartObserve. You can use this for simple pagination for small indexes, as it's inefficient for large indexes.
+*Example 2*: If you pass in two arguments, the first is mapped to the `from` parameter and the second to the `size` parameter in MCdesk. You can use this for simple pagination for small indexes, as it's inefficient for large indexes.
 Use `ORDER BY` to ensure the same order between pages:
 
 ```sql

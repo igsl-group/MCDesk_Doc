@@ -6,7 +6,7 @@
  * DOC_VERSION_LATEST will pick `latest`, or in its absence the `current` version.
  *    const DOC_VERSION_LATEST = "2.1";
  */
-const PREFIX = "SmartObserve ";
+const PREFIX = "MCdesk ";
 const tpl = `
     <style>
     :host {

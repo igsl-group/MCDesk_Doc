@@ -33,7 +33,7 @@ The following table lists the available query parameters. All query parameters a
 
 | Parameter | Data type | Description |
 | :--- | :--- | :--- |
-| `clear_status` | Boolean | Determines whether to delete the workflow state (without deprovisioning resources) after deleting the template. SmartObserve deletes the workflow state only if the provisioning status is not `IN_PROGRESS`. Default is `false`. |
+| `clear_status` | Boolean | Determines whether to delete the workflow state (without deprovisioning resources) after deleting the template. MCdesk deletes the workflow state only if the provisioning status is not `IN_PROGRESS`. Default is `false`. |
 
 ## Example request
 

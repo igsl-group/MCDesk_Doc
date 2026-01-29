@@ -11,13 +11,13 @@ redirect_from:
 
 # SQL
 
-SQL in SmartObserve bridges the gap between traditional relational database concepts and the flexibility of SmartObserve's document-oriented data storage. This integration gives you the ability to use your SQL knowledge to query, analyze, and extract insights from your SmartObserve data.
+SQL in MCdesk bridges the gap between traditional relational database concepts and the flexibility of MCdesk's document-oriented data storage. This integration gives you the ability to use your SQL knowledge to query, analyze, and extract insights from your MCdesk data.
 
-## SQL and SmartObserve terminology
+## SQL and MCdesk terminology
 
-Here’s how core SQL concepts map to SmartObserve:
+Here’s how core SQL concepts map to MCdesk:
 
-SQL | SmartObserve
+SQL | MCdesk
 :--- | :---
 Table | Index
 Row | Document
@@ -64,7 +64,7 @@ curl -XPOST https://localhost:9200/_plugins/_sql -u 'admin:<custom-admin-passwor
 ```
 {% include copy.html %}
 
-You can specify the [response format]({{site.url}}{{site.baseurl}}/search-plugins/sql/response-formats/) as JDBC, standard SmartObserve JSON, CSV, or raw. By default, queries return data in JDBC format. The following query sets the format to JSON:
+You can specify the [response format]({{site.url}}{{site.baseurl}}/search-plugins/sql/response-formats/) as JDBC, standard MCdesk JSON, CSV, or raw. By default, queries return data in JDBC format. The following query sets the format to JSON:
 
 ```json
 POST _plugins/_sql?format=json

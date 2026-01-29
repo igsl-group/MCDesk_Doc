@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Trace Analytics plugin for SmartObserve Dashboards
+title: Trace Analytics plugin for MCdesk Dashboards
 parent: Trace Analytics
 nav_order: 50
 redirect_from:
@@ -8,29 +8,29 @@ redirect_from:
   - /monitoring-plugins/trace/ta-dashboards/
 ---
 
-# Trace Analytics plugin for SmartObserve Dashboards
+# Trace Analytics plugin for MCdesk Dashboards
 
 The Trace Analytics plugin offers at-a-glance visibility into application performance based on [OpenTelemetry (OTel)](https://opentelemetry.io/) protocol data that standardizes instrumentation for collecting telemetry data from cloud-native software.
 
 ## Installing the plugin
 
-See [Standalone SmartObserve Dashboards plugin install]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/plugins/) for instructions on how to install the Trace Analytics plugin.
+See [Standalone MCdesk Dashboards plugin install]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/plugins/) for instructions on how to install the Trace Analytics plugin.
 
 ## Setting up the OpenTelemetry Demo
 
-The [OpenTelemetry Demo with SmartObserve](https://github.com/igsl-group/opentelemetry-demo) simulates a distributed application generating real-time telemetry data, providing you with a practical environment in which to explore features available with the Trace Analytics plugin before implementing it in your environment.
+The [OpenTelemetry Demo with MCdesk](https://github.com/igsl-group/opentelemetry-demo) simulates a distributed application generating real-time telemetry data, providing you with a practical environment in which to explore features available with the Trace Analytics plugin before implementing it in your environment.
 
 ### Step 1: Set up the OpenTelemetry Demo
 
-- Clone the [OpenTelemetry Demo with SmartObserve](https://github.com/igsl-group/opentelemetry-demo) repository: `git clone https://github.com/igsl-group/opentelemetry-demo`.
+- Clone the [OpenTelemetry Demo with MCdesk](https://github.com/igsl-group/opentelemetry-demo) repository: `git clone https://github.com/igsl-group/opentelemetry-demo`.
 - Follow the [Getting Started](https://github.com/igsl-group/opentelemetry-demo/tree/main?tab=readme-ov-file#running-this-demo) instructions to deploy the demo application using Docker, which runs multiple microservices generating telemetry data.
 
 ### Step 2: Ingest telemetry data
 
-- Configure the OTel collectors to send telemetry data (traces, metrics, logs) to your SmartObserve cluster, using the [preexisting setup](https://github.com/igsl-group/opentelemetry-demo/tree/main/src/otel-collector).
+- Configure the OTel collectors to send telemetry data (traces, metrics, logs) to your MCdesk cluster, using the [preexisting setup](https://github.com/igsl-group/opentelemetry-demo/tree/main/src/otel-collector).
 - Confirm that [Data Prepper](https://github.com/igsl-group/opentelemetry-demo/tree/main/src/dataprepper) is set up to process the incoming data, handle trace analytics and service map pipelines, submit data to required indexes, and perform preaggregated calculations.
 
-### Step 3: Explore Trace Analytics in SmartObserve Dashboards
+### Step 3: Explore Trace Analytics in MCdesk Dashboards
 
 The **Trace Analytics** application includes two options: **Services** and **Traces**:
 
@@ -161,7 +161,7 @@ Trace analytics with OTel protocol analytics provide comprehensive insights into
 Introduced 3.1  
 {: .label .label-purple }
 
-Trace Analytics in SmartObserve 3.1 includes expanded support for custom index names and cross-cluster indexes, offering greater flexibility and scalability for distributed environments. The following enhancements are now available:
+Trace Analytics in MCdesk 3.1 includes expanded support for custom index names and cross-cluster indexes, offering greater flexibility and scalability for distributed environments. The following enhancements are now available:
 
 - You can configure custom index names for Observability span, service, and log indexes. This allows you to align index naming with your organization's conventions and manage data across multiple environments more effectively. You can also configure correlated log indexes and map their corresponding fields for `timestamp`, `serviceName`, `spanId`, and `traceId`. This feature is particularly useful if your logs do not follow the OpenTelemetry (OTel) format and require custom field mappings. Custom span indexes must follow Data Prepper span index mappings.
 
@@ -201,7 +201,7 @@ Trace Analytics in SmartObserve 3.1 includes expanded support for custom index n
 Introduced 3.2  
 {: .label .label-purple }
 
-SmartObserve provides default limits for service map rendering. You can increase these limits to render large topologies more completely or lower them to improve client-side performance when focusing on smaller views. This is especially important in environments with many services or dense interconnections, for which the default limits may result in incomplete maps.
+MCdesk provides default limits for service map rendering. You can increase these limits to render large topologies more completely or lower them to improve client-side performance when focusing on smaller views. This is especially important in environments with many services or dense interconnections, for which the default limits may result in incomplete maps.
 
 
 ### Service map configuration settings
@@ -211,7 +211,7 @@ Two **Advanced Settings** control the size and complexity of service maps genera
 - `observability:traceAnalyticsServiceMapMaxNodes`: The maximum number of service nodes displayed. Default is 500. 
 - `observability:traceAnalyticsServiceMapMaxEdges`: The maximum number of edges (service-to-service connections) displayed. Default is 1,000.
 
-To configure these settings in SmartObserve Dashboards, follow these steps:
+To configure these settings in MCdesk Dashboards, follow these steps:
 1. From the main menu, select **Management** > **Dashboard Management** > **Advanced Settings**.
 1. In the search box, search for `Observability`. In the **Observability** section, locate the **Trace analytics service map maximum edges** and *Trace analytics service map maximum nodes** settings. Adjust the values according to your environment and performance requirements, then save your changes. Higher values can increase browser memory and CPU usage.
 

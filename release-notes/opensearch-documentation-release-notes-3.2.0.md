@@ -1,6 +1,6 @@
-# SmartObserve Documentation Website 3.2.0 Release Notes
+# MCdesk Documentation Website 3.2.0 Release Notes
 
-The SmartObserve 3.2.0 documentation includes the following additions and updates.
+The MCdesk 3.2.0 documentation includes the following additions and updates.
 
 ## New documentation for 3.2.0
 

@@ -8,7 +8,7 @@ nav_order: 4
 
 # Asynchronous Search settings
 
-The Asynchronous Search plugin adds several settings to the standard SmartObserve cluster settings. They are dynamic, so you can change the default behavior of the plugin without restarting your cluster. To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+The Asynchronous Search plugin adds several settings to the standard MCdesk cluster settings. They are dynamic, so you can change the default behavior of the plugin without restarting your cluster. To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 You can mark the settings as `persistent` or `transient`.
 

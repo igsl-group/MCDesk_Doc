@@ -26,7 +26,7 @@ Parameter | Data type | Description
 
 ## Built-in and custom attributes
 
-You can filter on built‑in attributes or any custom node attribute you define. For example, custom attribute can be defined by adding `node.attr.zone: zone-a` in `smartobserve.yml`. The following built‑in attributes are supported.
+You can filter on built‑in attributes or any custom node attribute you define. For example, custom attribute can be defined by adding `node.attr.zone: zone-a` in `mcdesk.yml`. The following built‑in attributes are supported.
 
 Attribute | Description
 :--- | :---

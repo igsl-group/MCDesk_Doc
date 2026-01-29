@@ -9,12 +9,12 @@ redirect_from:
 
 # Date histogram aggregations
 
-The `date_histogram` aggregation uses [date math]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/#date-math) to generate histograms for time-series data.
+The `date_histogram` aggregation uses [date math]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/#date-math) to generate histograms for time-series data.
 
 For example, you can find how many hits your website gets per month:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

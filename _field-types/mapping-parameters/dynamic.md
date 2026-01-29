@@ -7,7 +7,7 @@ nav_order: 30
 has_children: false
 has_toc: false
 redirect_from:
-  - /smartobserve/dynamic/
+  - /mcdesk/dynamic/
 ---
 
 # Dynamic

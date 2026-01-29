@@ -7,26 +7,26 @@ nav_order: 50
 
 # Vega
 
-[Vega](https://vega.github.io/vega/) and [Vega-Lite](https://vega.github.io/vega-lite/) are open-source, declarative language visualization tools that you can use to create custom data visualizations with your SmartObserve data and [Vega data](https://vega.github.io/vega/docs/data/). These tools are ideal for advanced users comfortable with writing SmartObserve queries directly. Enable the `vis_type_vega` plugin in your `smartobserve_dashboards.yml` file to write your [Vega specifications](https://vega.github.io/vega/docs/specification/) in either JSON or [HJSON](https://hjson.github.io/) format or to specify one or more SmartObserve queries in your Vega specification. By default, the plugin is set to `true`. 
+[Vega](https://vega.github.io/vega/) and [Vega-Lite](https://vega.github.io/vega-lite/) are open-source, declarative language visualization tools that you can use to create custom data visualizations with your MCdesk data and [Vega data](https://vega.github.io/vega/docs/data/). These tools are ideal for advanced users comfortable with writing MCdesk queries directly. Enable the `vis_type_vega` plugin in your `mcdesk_dashboards.yml` file to write your [Vega specifications](https://vega.github.io/vega/docs/specification/) in either JSON or [HJSON](https://hjson.github.io/) format or to specify one or more MCdesk queries in your Vega specification. By default, the plugin is set to `true`. 
 
 ## Creating Vega visualizations from multiple data sources
 Introduced 2.13
 {: .label .label-purple }
 
-Before proceeding, ensure that the following configuration settings are enabled in the `config/smartobserve_dasboards.yaml` file. For configuration details, refer to the `vis_type_vega` [README](https://github.com/igsl-group/SmartObserve-Dashboards/blob/main/src/plugins/vis_type_vega/README.md).
+Before proceeding, ensure that the following configuration settings are enabled in the `config/mcdesk_dasboards.yaml` file. For configuration details, refer to the `vis_type_vega` [README](https://github.com/igsl-group/MCdesk-Dashboards/blob/main/src/plugins/vis_type_vega/README.md).
 
 ```
 data_source.enabled: true
 vis_type_vega.enabled: true
 ```
 
-After you have configured [multiple data sources]({{site.url}}{{site.baseurl}}/dashboards/management/multi-data-sources/) in SmartObserve Dashboards, you can use Vega to query those data sources. The following GIF shows the process of creating Vega visualizations in SmartObserve Dashboards.
+After you have configured [multiple data sources]({{site.url}}{{site.baseurl}}/dashboards/management/multi-data-sources/) in MCdesk Dashboards, you can use Vega to query those data sources. The following GIF shows the process of creating Vega visualizations in MCdesk Dashboards.
 
-![Process of creating Vega visualizations in SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/images/dashboards/configure-vega.gif)
+![Process of creating Vega visualizations in MCdesk Dashboards]({{site.url}}{{site.baseurl}}/images/dashboards/configure-vega.gif)
 
 ### Step 1: Set up and connect data sources
 
-Open SmartObserve Dashboards and follow these steps:
+Open MCdesk Dashboards and follow these steps:
 
 1. Select **Dashboards Management** from the menu on the left.
 2. Select **Data sources** and then select the **Create data source** button.
@@ -35,7 +35,7 @@ Open SmartObserve Dashboards and follow these steps:
 
 The following GIF shows the steps required for setting up and connecting a data source.
 
-![Setting up and connecting data sources with SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/images/dashboards/Add_datasource.gif)
+![Setting up and connecting data sources with MCdesk Dashboards]({{site.url}}{{site.baseurl}}/images/dashboards/Add_datasource.gif)
 
 ### Step 2: Create the visualization
 
@@ -44,7 +44,7 @@ The following GIF shows the steps required for setting up and connecting a data 
 
 ### Step 3: Add the Vega specification
 
-By default, queries use data from the local cluster. You can assign individual `data_source_name` values to each SmartObserve query in your Vega specification. This allows you to query multiple indexes across different data sources in a single visualization.
+By default, queries use data from the local cluster. You can assign individual `data_source_name` values to each MCdesk query in your Vega specification. This allows you to query multiple indexes across different data sources in a single visualization.
 
 1. Verify that the data source you created is specified under `data_source_name`. Alternatively, in your Vega specification, add the `data_source_name` field under the `url` property to target a specific data source by name.
 2. Copy the following Vega specification and then select the **Update** button in the lower-right corner. The visualization should appear. 
@@ -56,7 +56,7 @@ By default, queries use data from the local cluster. You can assign individual `
     url: {
       %context%: true
       %timefield%: @timestamp
-      index: smartobserve_dashboards_sample_data_logs
+      index: mcdesk_dashboards_sample_data_logs
       data_source_name: YOUR_DATA_SOURCE_TITLE
       body: {
         aggs: {
@@ -132,6 +132,6 @@ By default, queries use data from the local cluster. You can assign individual `
 
 ## Additional resources
 
-The following resources provide additional information about Vega visualizations in SmartObserve Dashboards:
+The following resources provide additional information about Vega visualizations in MCdesk Dashboards:
 
-- [Improving ease of use in SmartObserve Dashboards with Vega visualizations](https://magiccreative.io/blog/Improving-Dashboards-usability-with-Vega/)
+- [Improving ease of use in MCdesk Dashboards with Vega visualizations](https://magiccreative.io/blog/Improving-Dashboards-usability-with-Vega/)

@@ -42,7 +42,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -64,7 +64,7 @@ POST /_plugins/_ml/agents/EuJYYo0B9RaBCvhuy1q8/_execute
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with a list of alerting monitors set up on your cluster and the total number of alerting monitors:
+MCdesk responds with a list of alerting monitors set up on your cluster and the total number of alerting monitors:
 
 ```json
 {
@@ -81,7 +81,7 @@ SmartObserve responds with a list of alerting monitors set up on your cluster an
 }
 ```
 
-If no monitors are found, SmartObserve responds with an empty array in the results:
+If no monitors are found, MCdesk responds with an empty array in the results:
 
 ```json
 {

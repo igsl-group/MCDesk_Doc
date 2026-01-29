@@ -4,7 +4,7 @@ title: Point in Time
 parent: Search options
 nav_order: 20
 redirect_from:
-  - /smartobserve/point-in-time/
+  - /mcdesk/point-in-time/
   - /search-plugins/point-in-time/
 ---
 
@@ -16,7 +16,7 @@ Normally, if you run a query on an index multiple times, the same query may retu
 
 ## Paginating search results
 
-Besides the PIT functionality, there are three ways to [paginate search results]({{site.url}}{{site.baseurl}}/smartobserve/search/paginate/) in SmartObserve: using the Scroll API, specifying `from` and `size` parameters for your search, and using the `search_after` functionality. However, all three have limitations:
+Besides the PIT functionality, there are three ways to [paginate search results]({{site.url}}{{site.baseurl}}/mcdesk/search/paginate/) in MCdesk: using the Scroll API, specifying `from` and `size` parameters for your search, and using the `search_after` functionality. However, all three have limitations:
 
 - The Scroll API's search results are frozen at the moment of the request, but they are bound to a particular query. Additionally, scroll can only move forward in the search, so if a request for a page fails, the subsequent request skips that page and returns the following one.
 - If you specify the `from` and `size` parameters for your search, the search results are not frozen in time, so they may be inconsistent because of documents being indexed or deleted. The `from` and `size` feature is not recommended for deep pagination because every page request requires processing of all results and filtering them for the requested page.
@@ -28,7 +28,7 @@ The PIT functionality does not have the limitations of other pagination methods,
 
 PIT search has the same capabilities as regular search, except PIT search acts on an older dataset, while a regular search acts on a live dataset. PIT search is not bound to a query, so you can run different queries on the same dataset, which is frozen in time. 
 
-You can use the [Create PIT API]({{site.url}}{{site.baseurl}}/smartobserve/point-in-time-api#create-a-pit) to create a PIT. When you create a PIT for a set of indexes, SmartObserve locks a set of segments for those indexes, freezing them in time. On a lower level, none of the resources required for this PIT are modified or deleted. If the segments that are part of a PIT are merged, SmartObserve retains a copy of those segments for the period of time specified at PIT creation by the `keep_alive` parameter. 
+You can use the [Create PIT API]({{site.url}}{{site.baseurl}}/mcdesk/point-in-time-api#create-a-pit) to create a PIT. When you create a PIT for a set of indexes, MCdesk locks a set of segments for those indexes, freezing them in time. On a lower level, none of the resources required for this PIT are modified or deleted. If the segments that are part of a PIT are merged, MCdesk retains a copy of those segments for the period of time specified at PIT creation by the `keep_alive` parameter. 
 
 The create PIT operation returns a PIT ID, which you can use to run multiple queries on the frozen dataset. Even though the indexes continue to ingest data and modify or delete documents, the PIT references the data that has not changed since the PIT creation. When your query contains a PIT ID, you don't need to pass the indexes to the search because it will use that PIT. A search with a PIT ID will produce exactly the same result when you run it multiple times.
 
@@ -37,7 +37,7 @@ In case of a cluster or node failure, all PIT data is lost.
 
 ### PIT in SQL
 
-The [SQL plugin]({{site.url}}{{site.baseurl}}/search-plugins/sql/index/) also supports pagination using PIT. When the `plugin.sql.pagination.api` setting is enabled (the default), SQL search queries in SmartObserve automatically use PIT internally. For more information, see [Pagination in SQL]({{site.url}}{{site.baseurl}}/search-plugins/sql/sql-ppl-api/#paginating-results).
+The [SQL plugin]({{site.url}}{{site.baseurl}}/search-plugins/sql/index/) also supports pagination using PIT. When the `plugin.sql.pagination.api` setting is enabled (the default), SQL search queries in MCdesk automatically use PIT internally. For more information, see [Pagination in SQL]({{site.url}}{{site.baseurl}}/search-plugins/sql/sql-ppl-api/#paginating-results).
 
 ## Pagination with PIT and search_after
 

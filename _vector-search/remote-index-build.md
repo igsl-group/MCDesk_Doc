@@ -9,19 +9,19 @@ has_children: false
 Introduced 3.0 
 {: .label .label-purple }
 
-SmartObserve supports building vector indexes using a GPU-accelerated remote index build service. Using GPUs dramatically reduces index build times and decreases costs. For benchmarking results, see [this blog post](https://magiccreative.io/blog/GPU-Accelerated-Vector-Search-SmartObserve-New-Frontier/).
+MCdesk supports building vector indexes using a GPU-accelerated remote index build service. Using GPUs dramatically reduces index build times and decreases costs. For benchmarking results, see [this blog post](https://magiccreative.io/blog/GPU-Accelerated-Vector-Search-MCdesk-New-Frontier/).
 
 ## Supported configurations
 
 The remote index build service supports [Faiss]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#faiss-engine) indexes with the `hnsw` method and the default 32-bit floating-point (`FP32`) vectors.
 
-As of SmartObserve 3.2, the `hnsw` method with [Faiss]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#faiss-engine) supports 16-bit floating-point (`FP16`), byte, and binary vectors.
+As of MCdesk 3.2, the `hnsw` method with [Faiss]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#faiss-engine) supports 16-bit floating-point (`FP16`), byte, and binary vectors.
 With the `hnsw` method and the [Faiss]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#faiss-engine) engine, all compression levels (2×, 8×, 16×, 32×) are supported for remote indexes.
 
 
 ## Prerequisites
 
-Before configuring the remote index build settings, ensure you fulfill the following prerequisites. For more information about updating dynamic settings, see [Dynamic settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/#dynamic-settings).
+Before configuring the remote index build settings, ensure you fulfill the following prerequisites. For more information about updating dynamic settings, see [Dynamic settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/#dynamic-settings).
 
 ### Step 1: Enable the remote index build service
 
@@ -37,7 +37,7 @@ The remote vector index builder for an index is enabled only when both the clust
 
 ### Step 2: Create and register the remote vector repository
 
-The remote vector repository acts as an intermediate object store between the SmartObserve cluster and the remote build service. The cluster uploads vectors and document IDs to the repository. The remote build service retrieves the data, builds the index externally, and uploads the completed result back to the repository.
+The remote vector repository acts as an intermediate object store between the MCdesk cluster and the remote build service. The cluster uploads vectors and document IDs to the repository. The remote build service retrieves the data, builds the index externally, and uploads the completed result back to the repository.
 
 To create and register the repository, follow the steps in [Register repository]({{site.url}}{{site.baseurl}}/tuning-your-cluster/availability-and-recovery/snapshots/snapshot-restore/#register-repository). Then set the `knn.remote_index_build.repository` dynamic setting to the name of the registered repository.
 

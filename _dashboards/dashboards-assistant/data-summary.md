@@ -1,17 +1,17 @@
 ---
 layout: default
 title: Data summary
-parent: SmartObserve Assistant for SmartObserve Dashboards
+parent: MCdesk Assistant for MCdesk Dashboards
 nav_order: 1
 has_children: false
 ---
 
 # Data summary
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
-The SmartObserve Dashboards Assistant data summary feature uses large language models (LLMs) to help you generate summaries for data stored in SmartObserve indexes. This tool provides an efficient way to gain insights from large datasets, making it easier to understand and act on the information contained in your SmartObserve indexes.
+The MCdesk Dashboards Assistant data summary feature uses large language models (LLMs) to help you generate summaries for data stored in MCdesk indexes. This tool provides an efficient way to gain insights from large datasets, making it easier to understand and act on the information contained in your MCdesk indexes.
 
 ## Configuration
 
@@ -19,7 +19,7 @@ To configure the data summary feature, use the following steps.
 
 ### Prerequisite
 
-Before using the data summary feature, enable query enhancements in SmartObserve Dashboards as follows:
+Before using the data summary feature, enable query enhancements in MCdesk Dashboards as follows:
 
 1. On the top menu bar, go to **Management > Dashboards Management**. 
 1. In the left navigation pane, select **Advanced settings**.
@@ -27,7 +27,7 @@ Before using the data summary feature, enable query enhancements in SmartObserve
 
 ### Step 1: Enable the data summary feature
 
-To enable the data summary feature, configure the following `smartobserve_dashboards.yml` setting:
+To enable the data summary feature, configure the following `mcdesk_dashboards.yml` setting:
 
 ```yaml
 queryEnhancements.queryAssist.summary.enabled: true
@@ -117,7 +117,7 @@ POST /_plugins/_flow_framework/workflow?provision=true
           },
           "user_inputs": {
             "parameters": {
-              "prompt": "Human: You are an assistant that helps to summarize the data and provide data insights.\nThe data are queried from SmartObserve index through user's question which was translated into PPL query.\nHere is a sample PPL query: `source=<index> | where <field> = <value>`.\nNow you are given ${parameters.sample_count} sample data out of ${parameters.total_count} total data.\nThe user's question is `${parameters.question}`, the translated PPL query is `${parameters.ppl}` and sample data are:\n```\n${parameters.sample_data}\n```\nCould you help provide a summary of the sample data and provide some useful insights with precise wording and in plain text format, do not use markdown format.\nYou don't need to echo my requirements in response.\n\nAssistant:"
+              "prompt": "Human: You are an assistant that helps to summarize the data and provide data insights.\nThe data are queried from MCdesk index through user's question which was translated into PPL query.\nHere is a sample PPL query: `source=<index> | where <field> = <value>`.\nNow you are given ${parameters.sample_count} sample data out of ${parameters.total_count} total data.\nThe user's question is `${parameters.question}`, the translated PPL query is `${parameters.ppl}` and sample data are:\n```\n${parameters.sample_data}\n```\nCould you help provide a summary of the sample data and provide some useful insights with precise wording and in plain text format, do not use markdown format.\nYou don't need to echo my requirements in response.\n\nAssistant:"
             },
             "name": "MLModelTool",
             "type": "MLModelTool"
@@ -173,11 +173,11 @@ You can verify that the data summary agent was created successfully by calling t
 POST /_plugins/_ml/agents/<DATA_SUMMARY_AGENT_ID>/_execute
 {
   "parameters": {
-	"sample_data":"'[{\"_index\":\"90943e30-9a47-11e8-b64d-95841ca0b247\",\"_source\":{\"referer\":\"http://twitter.com/success/gemini-9a\",\"request\":\"/beats/metricbeat/metricbeat-6.3.2-amd64.deb\",\"agent\":\"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\",\"extension\":\"deb\",\"memory\":null,\"ip\":\"239.67.210.53\",\"index\":\"smartobserve_dashboards_sample_data_logs\",\"message\":\"239.67.210.53 - - [2018-08-30T15:29:01.686Z] \\\"GET /beats/metricbeat/metricbeat-6.3.2-amd64.deb HTTP/1.1\\\" 404 2633 \\\"-\\\" \\\"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\\\"\",\"url\":\"https://artifacts.magiccreative.io/downloads/beats/metricbeat/metricbeat-6.3.2-amd64.deb\",\"tags\":\"success\",\"geo\":{\"srcdest\":\"CN:PL\",\"src\":\"CN\",\"coordinates\":{\"lat\":44.91167028,\"lon\":-108.4455092},\"dest\":\"PL\"},\"utc_time\":\"2024-09-05 15:29:01.686\",\"bytes\":2633,\"machine\":{\"os\":\"win xp\",\"ram\":21474836480},\"response\":\"404\",\"clientip\":\"239.67.210.53\",\"host\":\"artifacts.magiccreative.io\",\"event\":{\"dataset\":\"sample_web_logs\"},\"phpmemory\":null,\"timestamp\":\"2024-09-05 15:29:01.686\"}}]'",
+	"sample_data":"'[{\"_index\":\"90943e30-9a47-11e8-b64d-95841ca0b247\",\"_source\":{\"referer\":\"http://twitter.com/success/gemini-9a\",\"request\":\"/beats/metricbeat/metricbeat-6.3.2-amd64.deb\",\"agent\":\"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\",\"extension\":\"deb\",\"memory\":null,\"ip\":\"239.67.210.53\",\"index\":\"mcdesk_dashboards_sample_data_logs\",\"message\":\"239.67.210.53 - - [2018-08-30T15:29:01.686Z] \\\"GET /beats/metricbeat/metricbeat-6.3.2-amd64.deb HTTP/1.1\\\" 404 2633 \\\"-\\\" \\\"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\\\"\",\"url\":\"https://artifacts.magiccreative.io/downloads/beats/metricbeat/metricbeat-6.3.2-amd64.deb\",\"tags\":\"success\",\"geo\":{\"srcdest\":\"CN:PL\",\"src\":\"CN\",\"coordinates\":{\"lat\":44.91167028,\"lon\":-108.4455092},\"dest\":\"PL\"},\"utc_time\":\"2024-09-05 15:29:01.686\",\"bytes\":2633,\"machine\":{\"os\":\"win xp\",\"ram\":21474836480},\"response\":\"404\",\"clientip\":\"239.67.210.53\",\"host\":\"artifacts.magiccreative.io\",\"event\":{\"dataset\":\"sample_web_logs\"},\"phpmemory\":null,\"timestamp\":\"2024-09-05 15:29:01.686\"}}]'",
 		"sample_count":1,
 		"total_count":383,
 		"question":"Are there any errors in my logs?",
-		"ppl":"source=smartobserve_dashboards_sample_data_logs| where QUERY_STRING(['response'], '4* OR 5*')"}
+		"ppl":"source=mcdesk_dashboards_sample_data_logs| where QUERY_STRING(['response'], '4* OR 5*')"}
 }
 ```
 {% include copy-curl.html %}
@@ -189,11 +189,11 @@ You can generate a data summary by calling the `/api/assistant/data2summary` API
 ```json
 POST /api/assistant/data2summary
 {
-	"sample_data":"'[{\"_index\":\"90943e30-9a47-11e8-b64d-95841ca0b247\",\"_source\":{\"referer\":\"http://twitter.com/success/gemini-9a\",\"request\":\"/beats/metricbeat/metricbeat-6.3.2-amd64.deb\",\"agent\":\"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\",\"extension\":\"deb\",\"memory\":null,\"ip\":\"239.67.210.53\",\"index\":\"smartobserve_dashboards_sample_data_logs\",\"message\":\"239.67.210.53 - - [2018-08-30T15:29:01.686Z] \\\"GET /beats/metricbeat/metricbeat-6.3.2-amd64.deb HTTP/1.1\\\" 404 2633 \\\"-\\\" \\\"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\\\"\",\"url\":\"https://artifacts.magiccreative.io/downloads/beats/metricbeat/metricbeat-6.3.2-amd64.deb\",\"tags\":\"success\",\"geo\":{\"srcdest\":\"CN:PL\",\"src\":\"CN\",\"coordinates\":{\"lat\":44.91167028,\"lon\":-108.4455092},\"dest\":\"PL\"},\"utc_time\":\"2024-09-05 15:29:01.686\",\"bytes\":2633,\"machine\":{\"os\":\"win xp\",\"ram\":21474836480},\"response\":\"404\",\"clientip\":\"239.67.210.53\",\"host\":\"artifacts.magiccreative.io\",\"event\":{\"dataset\":\"sample_web_logs\"},\"phpmemory\":null,\"timestamp\":\"2024-09-05 15:29:01.686\"}}]'",
+	"sample_data":"'[{\"_index\":\"90943e30-9a47-11e8-b64d-95841ca0b247\",\"_source\":{\"referer\":\"http://twitter.com/success/gemini-9a\",\"request\":\"/beats/metricbeat/metricbeat-6.3.2-amd64.deb\",\"agent\":\"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\",\"extension\":\"deb\",\"memory\":null,\"ip\":\"239.67.210.53\",\"index\":\"mcdesk_dashboards_sample_data_logs\",\"message\":\"239.67.210.53 - - [2018-08-30T15:29:01.686Z] \\\"GET /beats/metricbeat/metricbeat-6.3.2-amd64.deb HTTP/1.1\\\" 404 2633 \\\"-\\\" \\\"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\\\"\",\"url\":\"https://artifacts.magiccreative.io/downloads/beats/metricbeat/metricbeat-6.3.2-amd64.deb\",\"tags\":\"success\",\"geo\":{\"srcdest\":\"CN:PL\",\"src\":\"CN\",\"coordinates\":{\"lat\":44.91167028,\"lon\":-108.4455092},\"dest\":\"PL\"},\"utc_time\":\"2024-09-05 15:29:01.686\",\"bytes\":2633,\"machine\":{\"os\":\"win xp\",\"ram\":21474836480},\"response\":\"404\",\"clientip\":\"239.67.210.53\",\"host\":\"artifacts.magiccreative.io\",\"event\":{\"dataset\":\"sample_web_logs\"},\"phpmemory\":null,\"timestamp\":\"2024-09-05 15:29:01.686\"}}]'",
     "sample_count":1,
     "total_count":383,
     "question":"Are there any errors in my logs?",
-    "ppl":"source=smartobserve_dashboards_sample_data_logs| where QUERY_STRING(['response'], '4* OR 5*')"
+    "ppl":"source=mcdesk_dashboards_sample_data_logs| where QUERY_STRING(['response'], '4* OR 5*')"
 }
 ```
 {% include copy-curl.html %}
@@ -208,11 +208,11 @@ Parameter | Required/Optional | Description
 `sample_count` | Optional | The number of entries included in sample_data.
 `total_count` | Optional | The total number of entries in the full query result set.
 
-## Viewing data summaries in SmartObserve Dashboards
+## Viewing data summaries in MCdesk Dashboards
 
-To view alert insights in SmartObserve Dashboards, use the following steps:
+To view alert insights in MCdesk Dashboards, use the following steps:
 
-1. On the top menu bar, go to **SmartObserve Dashboards > Discover**.
+1. On the top menu bar, go to **MCdesk Dashboards > Discover**.
 
 1. From the query language dropdown list, select **PPL**. You will see the generated data summary after the query text, as shown in the following image.
 

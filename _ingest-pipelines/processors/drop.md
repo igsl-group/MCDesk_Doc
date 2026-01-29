@@ -5,14 +5,14 @@ parent: Ingest processors
 nav_order: 70
 ---
 
-This documentation describes using the `drop` processor in SmartObserve ingest pipelines. Consider using the [Data Prepper `drop_events` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/drop-events/), which runs on the SmartObserve cluster, if your use case involves large or complex datasets.
+This documentation describes using the `drop` processor in MCdesk ingest pipelines. Consider using the [Data Prepper `drop_events` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/drop-events/), which runs on the MCdesk cluster, if your use case involves large or complex datasets.
 {: .note}
 
 # Drop processor
 
 The `drop` processor is used to discard documents without indexing them. This can be useful for preventing documents from being indexed based on certain conditions. For example, you might use a `drop` processor to prevent documents that are missing important fields or contain sensitive information from being indexed. 
 
-The `drop` processor does not raise any errors when it discards documents, making it useful for preventing indexing problems without cluttering your SmartObserve logs with error messages.
+The `drop` processor does not raise any errors when it discards documents, making it useful for preventing indexing problems without cluttering your MCdesk logs with error messages.
 
 ## Syntax example
 

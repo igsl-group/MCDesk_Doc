@@ -90,7 +90,7 @@ To ingest a document into the index created in the previous step, send the follo
 ```json
 POST testindex/_doc?pipeline=text-chunking-embedding-ingest-pipeline
 {
-  "passage_text": "This is an example document to be chunked. The document contains a single paragraph, two sentences and 24 tokens by standard tokenizer in SmartObserve."
+  "passage_text": "This is an example document to be chunked. The document contains a single paragraph, two sentences and 24 tokens by standard tokenizer in MCdesk."
 }
 ```
 {% include copy-curl.html %}

@@ -7,7 +7,7 @@ has_children: true
 
 # Improving search performance
 
-SmartObserve offers several ways to improve search performance:
+MCdesk offers several ways to improve search performance:
 
 - Run resource-intensive queries asynchronously with [asynchronous search]({{site.url}}{{site.baseurl}}/search-plugins/async/).
 

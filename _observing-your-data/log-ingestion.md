@@ -8,34 +8,34 @@ redirect_from:
 
 # Log Ingestion
 
-Log ingestion provides a way to transform unstructured log data into structured data and ingest into SmartObserve. Structured log data allows for improved queries and filtering based on the data format when searching logs for an event.
+Log ingestion provides a way to transform unstructured log data into structured data and ingest into MCdesk. Structured log data allows for improved queries and filtering based on the data format when searching logs for an event.
 
 ## Get started with log ingestion
 
-SmartObserve Log Ingestion consists of three components---[Data Prepper]({{site.url}}{{site.baseurl}}/clients/data-prepper/index/), [SmartObserve]({{site.url}}{{site.baseurl}}/quickstart/), and [SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/index/). The Data Prepper repository contains several [sample applications](https://github.com/igsl-group/data-prepper/tree/main/examples) that you can use to get started.
+MCdesk Log Ingestion consists of three components---[Data Prepper]({{site.url}}{{site.baseurl}}/clients/data-prepper/index/), [MCdesk]({{site.url}}{{site.baseurl}}/quickstart/), and [MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/index/). The Data Prepper repository contains several [sample applications](https://github.com/igsl-group/data-prepper/tree/main/examples) that you can use to get started.
 
 ### Basic flow of data
 
-![Log data flow diagram from a distributed application to SmartObserve]({{site.url}}{{site.baseurl}}/images/la.png)
+![Log data flow diagram from a distributed application to MCdesk]({{site.url}}{{site.baseurl}}/images/la.png)
 
 1. Log Ingestion relies on you adding log collection to your application's environment to gather and send log data.
 
    (In the [example](#example) below, [FluentBit](https://docs.fluentbit.io/manual/) is used as a log collector that collects log data from a file and sends the log data to Data Prepper).
 
-2. [Data Prepper]({{site.url}}{{site.baseurl}}/clients/data-prepper/index/) receives the log data, transforms the data into a structure format, and indexes it on an SmartObserve cluster.
+2. [Data Prepper]({{site.url}}{{site.baseurl}}/clients/data-prepper/index/) receives the log data, transforms the data into a structure format, and indexes it on an MCdesk cluster.
 
-3. The data can then be explored through SmartObserve search queries or the **Discover** page in SmartObserve Dashboards.
+3. The data can then be explored through MCdesk search queries or the **Discover** page in MCdesk Dashboards.
 
 ### Example
 
-This example mimics the writing of log entries to a log file that are then processed by Data Prepper and stored in SmartObserve.
+This example mimics the writing of log entries to a log file that are then processed by Data Prepper and stored in MCdesk.
 
 Download or clone the [Data Prepper repository](https://github.com/igsl-group/data-prepper). Then navigate to `examples/log-ingestion/` and open `docker-compose.yml` in a text editor. This file contains a container for:
 
 - [Fluent Bit](https://docs.fluentbit.io/manual/) (`fluent-bit`)
 - Data Prepper (`data-prepper`)
-- A single-node SmartObserve cluster (`smartobserve`)
-- SmartObserve Dashboards (`smartobserve-dashboards`).
+- A single-node MCdesk cluster (`mcdesk`)
+- MCdesk Dashboards (`mcdesk-dashboards`).
 
 Close the file and run `docker compose up --build` to start the containers.
 
@@ -58,9 +58,9 @@ Data Prepper will process the log and index it:
 2021-12-02T15:35:44,499 [log-pipeline-processor-worker-1-thread-1] INFO  com.amazon.dataprepper.pipeline.ProcessWorker -  log-pipeline Worker: Processing 1 records from buffer
 ```
 
-This should result in a single document being written to the SmartObserve cluster in the `apache-logs` index as defined in the `log_pipeline.yaml` file.
+This should result in a single document being written to the MCdesk cluster in the `apache-logs` index as defined in the `log_pipeline.yaml` file.
 
-Run the following command to see one of the raw documents in the SmartObserve cluster:
+Run the following command to see one of the raw documents in the MCdesk cluster:
 
 ```bash
 curl -X GET -u 'admin:<custom-admin-password>' -k 'https://localhost:9200/apache_logs/_search?pretty&size=1'
@@ -92,4 +92,4 @@ The response should show the parsed log data:
     ]
 ```
 
-The same data can be viewed in SmartObserve Dashboards by visiting the **Discover** page and searching the `apache_logs` index. Remember, you must create the index in SmartObserve Dashboards if this is your first time searching for the index.
+The same data can be viewed in MCdesk Dashboards by visiting the **Discover** page and searching the `apache_logs` index. Remember, you must create the index in MCdesk Dashboards if this is your first time searching for the index.

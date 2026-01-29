@@ -3,7 +3,7 @@ layout: default
 title: run
 nav_order: 65
 parent: Command reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 redirect_from:
   - /benchmark/commands/run/
 ---
@@ -12,17 +12,17 @@ redirect_from:
 # run
 <!-- vale on -->
 
-Whether you're using the included [SmartObserve Benchmark workloads](https://github.com/igsl-group/smartobserve-benchmark-workloads) or a [custom workload]({{site.url}}{{site.baseurl}}/benchmark/creating-custom-workloads/), use the `run` command to gather data about the performance of your SmartObserve cluster according to the selected workload.
+Whether you're using the included [MCdesk Benchmark workloads](https://github.com/igsl-group/mcdesk-benchmark-workloads) or a [custom workload]({{site.url}}{{site.baseurl}}/benchmark/creating-custom-workloads/), use the `run` command to gather data about the performance of your MCdesk cluster according to the selected workload.
 
 ## Usage
 
 The following example runs a test using the `geonames` workload in test mode:
 
 ```
-smartobserve-benchmark run --workload=geonames --test-mode
+mcdesk-benchmark run --workload=geonames --test-mode
 ```
 
-After the test runs, SmartObserve Benchmark responds with a summary of the benchmark metrics:
+After the test runs, MCdesk Benchmark responds with a summary of the benchmark metrics:
 
 ```
 ------------------------------------------------------
@@ -102,18 +102,18 @@ The following options shape how each test runs and how results appear:
 
 ### Distributions
 
-The following options set which version of SmartObserve and the SmartObserve plugins the benchmark test uses:
+The following options set which version of MCdesk and the MCdesk plugins the benchmark test uses:
 
-- `--distribution-version`: Downloads the specified SmartObserve distribution based on version number. For a list of released SmartObserve versions, see [Version history]({{site.url}}{{site.latesturl}}/version-history/).
-- `--distribution-repository`: Defines the repository from where the SmartObserve distribution should be downloaded. Default is `release`.
+- `--distribution-version`: Downloads the specified MCdesk distribution based on version number. For a list of released MCdesk versions, see [Version history]({{site.url}}{{site.latesturl}}/version-history/).
+- `--distribution-repository`: Defines the repository from where the MCdesk distribution should be downloaded. Default is `release`.
 - `--revision`: Defines the current source code revision to use for running a benchmark test. Default is `current`.
-   - `current`: Uses the source tree's current revision based on your SmartObserve distribution.
+   - `current`: Uses the source tree's current revision based on your MCdesk distribution.
    - `latest`: Fetches the latest revision from the main branch of the source tree.
    - You can also use a timestamp or commit ID from the source tree. When using a timestamp, specify `@ts`, where "ts" is a valid ISO 8601 timestamp, for example, `@2013-07-27T10:37:00Z`.
--  `--smartobserve-plugins`: Defines which [SmartObserve plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/) to install. By default, no plugins are installed.
+-  `--mcdesk-plugins`: Defines which [MCdesk plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/) to install. By default, no plugins are installed.
 - `--plugin-params:` Defines a comma-separated list of key:value pairs that are injected verbatim into all plugins as variables.
 - `--runtime-jdk`: The major version of JDK to use.
-- `--client-options`: Defines a comma-separated list of clients to use. All options are passed to the SmartObserve Python client. Default is `timeout:60`.
+- `--client-options`: Defines a comma-separated list of clients to use. All options are passed to the MCdesk Python client. Default is `timeout:60`.
 
 ### Cluster
 
@@ -127,16 +127,16 @@ The following option relates to the target cluster of the benchmark.
 The following options help users who want to use multiple hosts to generate load to the benchmark cluster:
 
 - `--worker-ips`: Defines a comma-separated list of hosts that coordinate loads. Default is `localhost`.
-- `--enable-worker-coordinator-profiling`: Enables an analysis of the performance of SmartObserve Benchmark's worker coordinator. Default is `false`.
+- `--enable-worker-coordinator-profiling`: Enables an analysis of the performance of MCdesk Benchmark's worker coordinator. Default is `false`.
 
 ### Provisioning
 
-The following options help customize how SmartObserve Benchmark provisions SmartObserve and workloads:
+The following options help customize how MCdesk Benchmark provisions MCdesk and workloads:
 
-- `--cluster-config-repository`: Defines the repository from which SmartObserve Benchmark loads `cluster-configs` and `cluster-config-instances`.
-- `--cluster-config-path`: Defines the path to the `--cluster-config-instance` and any SmartObserve plugin configurations to use.
-- `--cluster-config-revision`: Defines a specific Git revision in the `cluster-config` that SmartObserve Benchmark should use.
-- `--cluster-config-instance`: Defines the `--cluster-config-instance` to use. You can see possible configuration instances using the command `smartobserve-benchmark list cluster-config-instances`.
+- `--cluster-config-repository`: Defines the repository from which MCdesk Benchmark loads `cluster-configs` and `cluster-config-instances`.
+- `--cluster-config-path`: Defines the path to the `--cluster-config-instance` and any MCdesk plugin configurations to use.
+- `--cluster-config-revision`: Defines a specific Git revision in the `cluster-config` that MCdesk Benchmark should use.
+- `--cluster-config-instance`: Defines the `--cluster-config-instance` to use. You can see possible configuration instances using the command `mcdesk-benchmark list cluster-config-instances`.
 - `--cluster-config-instance-params`: A comma-separated list of key-value pairs injected verbatim as variables for the `cluster-config-instance`.
 
 
@@ -144,40 +144,40 @@ The following options help customize how SmartObserve Benchmark provisions Smart
 
 The following options determine which workload is used to run the test:
 
-- `--workload-repository`: Defines the repository from which SmartObserve Benchmark loads workloads.
+- `--workload-repository`: Defines the repository from which MCdesk Benchmark loads workloads.
 - `--workload-path`: Defines the path to a downloaded or custom workload.
-- `--workload-revision`: Defines a specific revision from the workload source tree that SmartObserve Benchmark should use.
-- `--workload`: Defines the workload to use based on the workload's name. You can find a list of preloaded workloads using `smartobserve-benchmark list workloads`.
+- `--workload-revision`: Defines a specific revision from the workload source tree that MCdesk Benchmark should use.
+- `--workload`: Defines the workload to use based on the workload's name. You can find a list of preloaded workloads using `mcdesk-benchmark list workloads`.
 
 ### Test procedures
 
 The following options define what test procedures the test uses and which operations are contained inside the procedure:
 
 - `--test-execution-id`: Defines a unique ID for this test run.
-Defines the test procedures to use with each workload. You can find a list of test procedures that the workload supports by specifying the workload in the `info` command, for example, `smartobserve-benchmark info --workload=<workload_name>`. To look up information on a specific test procedure, use the command `smartobserve-benchmark info --workload=<workload_name> --test-procedure=<test-procedure>`.
+Defines the test procedures to use with each workload. You can find a list of test procedures that the workload supports by specifying the workload in the `info` command, for example, `mcdesk-benchmark info --workload=<workload_name>`. To look up information on a specific test procedure, use the command `mcdesk-benchmark info --workload=<workload_name> --test-procedure=<test-procedure>`.
 - `--include-tasks`: Defines a comma-separated list of test procedure tasks to run. By default, all tasks listed in a test procedure array are run.
 - `--exclude-tasks`: Defines a comma-separated list of test procedure tasks not to run.
 - `--enable-assertions`: Enables assertion checks for tasks. Default is `false`.
 
 ### Pipelines
 
-The `--pipeline` option selects a pipeline to run. You can find a list of pipelines supported by SmartObserve Benchmark by running `smartobserve-benchmark list pipelines`.
+The `--pipeline` option selects a pipeline to run. You can find a list of pipelines supported by MCdesk Benchmark by running `mcdesk-benchmark list pipelines`.
 
 
 ### Telemetry
 
-The following options enable telemetry devices on SmartObserve Benchmark:
+The following options enable telemetry devices on MCdesk Benchmark:
 
-- `--telemetry`: Enables the provided telemetry devices when the devices are provided using a comma-separated list. You can find a list of possible telemetry devices by using `smartobserve-benchmark list telemetry`.
+- `--telemetry`: Enables the provided telemetry devices when the devices are provided using a comma-separated list. You can find a list of possible telemetry devices by using `mcdesk-benchmark list telemetry`.
 - `--telemetry-params`: Defines a comma-separated list of key-value pairs that are injected verbatim into the telemetry devices as parameters.
 
 
 ### Errors
 
-The following options set how SmartObserve Benchmark handles errors when running tests:
+The following options set how MCdesk Benchmark handles errors when running tests:
 
-- `--on-error`: Controls how SmartObserve Benchmark responds to errors. Default is `continue`.
+- `--on-error`: Controls how MCdesk Benchmark responds to errors. Default is `continue`.
   - `continue`: Continues to run the test despite the error.
   - `abort`: Aborts the test when an error occurs.
 - `--preserve-install`: Keeps the Benchmark candidate and its index. Default is `false`.
-- `--kill-running-processes`: When set to `true`, stops any SmartObserve Benchmark processes currently running and allows SmartObserve Benchmark to continue to run. Default is `false`.
+- `--kill-running-processes`: When set to `true`, stops any MCdesk Benchmark processes currently running and allows MCdesk Benchmark to continue to run. Default is `false`.

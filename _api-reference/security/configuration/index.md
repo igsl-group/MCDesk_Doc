@@ -12,11 +12,11 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-The Configuration APIs provide programmatic access for managing, validating, and upgrading Security plugin configuration components. These APIs help ensure that your security settings remain compatible and effective as your SmartObserve cluster evolves.
+The Configuration APIs provide programmatic access for managing, validating, and upgrading Security plugin configuration components. These APIs help ensure that your security settings remain compatible and effective as your MCdesk cluster evolves.
 
 Security configurations may require updates in the following scenarios:
 
-- Upgrading to a new version of SmartObserve or the Security plugin
+- Upgrading to a new version of MCdesk or the Security plugin
 - Enabling new features that require updated settings
 - Migrating configurations between environments
 - Troubleshooting security issues
@@ -32,7 +32,7 @@ Use the Configuration APIs to perform the following actions:
 
 ## Available APIs
 
-- [Upgrade Check API]({{site.url}}{{site.baseurl}}/api-reference/security/configuration/upgrade-check/): Checks your current configuration for compatibility with your SmartObserve version and identifies components that need to be upgraded.
+- [Upgrade Check API]({{site.url}}{{site.baseurl}}/api-reference/security/configuration/upgrade-check/): Checks your current configuration for compatibility with your MCdesk version and identifies components that need to be upgraded.
 
 - [Upgrade Perform API]({{site.url}}{{site.baseurl}}/api-reference/security/configuration/upgrade-perform/): Applies updates to the security configuration, based on the results of the Upgrade Check API.
 
@@ -44,14 +44,14 @@ Use the Configuration APIs to perform the following actions:
 
 ## `authc`
 
-When configuring authentication domains (`authc`), you define how SmartObserve extracts user information and backend roles from the authentication response. This is especially important when integrating with external systems such as SAML, OIDC, or custom authentication backends.
+When configuring authentication domains (`authc`), you define how MCdesk extracts user information and backend roles from the authentication response. This is especially important when integrating with external systems such as SAML, OIDC, or custom authentication backends.
 
 To support role mapping, use the following configuration keys:
 
 - `subject_key`: Specifies where to find the user identifier in the authentication response
 - `roles_key`: Indicates where to find the backend roles in the authentication response
 
-SmartObserve uses the extracted backend roles in role mappings to assign roles to users.
+MCdesk uses the extracted backend roles in role mappings to assign roles to users.
 
 The following example shows how to configure an authentication domain to extract the username from `"preferred_username"` and backend roles from `"groups"` in a JWT token:
 
@@ -97,7 +97,7 @@ You can then use the extracted backend roles in role mappings. The following con
 
 ## `authz`
 
-The `authz` section handles authorization by retrieving backend roles from external sources such as LDAP. This allows SmartObserve to authenticate users through one method (for example, basic authentication or SAML) and authorize them based on role information stored in a separate directory.
+The `authz` section handles authorization by retrieving backend roles from external sources such as LDAP. This allows MCdesk to authenticate users through one method (for example, basic authentication or SAML) and authorize them based on role information stored in a separate directory.
 
 A typical `authz` configuration includes the following elements:
 
@@ -134,7 +134,7 @@ The following example connects to an LDAP directory, uses the `rolesearch` filte
 {% include copy.html %}
 
 
-The following example shows how to map an LDAP group to an SmartObserve role. If a user belongs to the LDAP group `cn=analysts,ou=groups,dc=example,dc=com`, the backend role `analysts` is extracted and mapped to the `data_access_role`:
+The following example shows how to map an LDAP group to an MCdesk role. If a user belongs to the LDAP group `cn=analysts,ou=groups,dc=example,dc=com`, the backend role `analysts` is extracted and mapped to the `data_access_role`:
 
 ```json
 {
@@ -153,7 +153,7 @@ These APIs manage the following configuration components:
 - **Roles**: Permissions for actions users can perform
 - **Role mappings**: Mappings for users or backend roles with specific roles
 - **Action groups**: Collections of permissions used to simplify role definitions
-- **Internal users**: User credentials stored directly in SmartObserve
+- **Internal users**: User credentials stored directly in MCdesk
 - **Tenants**: Isolated workspaces that support multi-tenancy
 - **Security configuration**: Global security settings
 

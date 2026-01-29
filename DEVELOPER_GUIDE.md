@@ -12,7 +12,7 @@
   
 ## Introduction
 
-The `.md` documents in this repository are rendered into HTML pages using [Jekyll](https://jekyllrb.com/). These HTML pages are hosted on [magiccreative.io](https://smartobserve-doc.hopto.org/latest/).
+The `.md` documents in this repository are rendered into HTML pages using [Jekyll](https://jekyllrb.com/). These HTML pages are hosted on [magiccreative.io](https://mcdesk-doc.hopto.org/latest/).
 
 ## Starting the Jekyll server locally
 
@@ -25,7 +25,7 @@ You can run the Jekyll server locally to view the rendered HTML pages using the 
 
 ## Using the `spec-insert` Jekyll plugin
 
-The `spec-insert` Jekyll plugin is used to insert API components into Markdown files. The plugin downloads the [latest SmartObserve specification](https://github.com/igsl-group/smartobserve-api-specification) and renders the API components from the spec. This aims to reduce the manual effort required to keep the documentation up to date.
+The `spec-insert` Jekyll plugin is used to insert API components into Markdown files. The plugin downloads the [latest MCdesk specification](https://github.com/igsl-group/mcdesk-api-specification) and renders the API components from the spec. This aims to reduce the manual effort required to keep the documentation up to date.
 
 To use this plugin, make sure that you have installed Ruby 3.4.5 or later and the required gems by running `bundle install`.
 
@@ -63,7 +63,7 @@ bundle exec jekyll spec-insert -F
 
 Depending on the text editor you are using, you may need to manually reload the file from disk to see the changes applied by the plugin if the editor does not automatically reload the file periodically.
 
-The plugin will pull the newest SmartObserve API spec from its [repository](https://github.com/igsl-group/smartobserve-api-specification) if the spec file does not exist locally or if it is older than 24 hours. To tell the plugin to always pull the newest spec, you can add the `--refresh-spec` (or `-R`) flag to the command:
+The plugin will pull the newest MCdesk API spec from its [repository](https://github.com/igsl-group/mcdesk-api-specification) if the spec file does not exist locally or if it is older than 24 hours. To tell the plugin to always pull the newest spec, you can add the `--refresh-spec` (or `-R`) flag to the command:
 
 ```shell
 bundle exec jekyll spec-insert --refresh-spec
@@ -85,14 +85,14 @@ The `spec-insert` plugin is run as part of the CI/CD pipeline to ensure that the
 ## Spec insert components
 All spec insert components accept the following arguments:
 
-- `api` (String; required): The name of the API to render the component from. This is equivalent to the `x-operation-group` field in the SmartObserve OpenAPI Spec.
+- `api` (String; required): The name of the API to render the component from. This is equivalent to the `x-operation-group` field in the MCdesk OpenAPI Spec.
 - `component` (String; required): The name of the component to render, such as `query_parameters`, `path_parameters`, or `endpoints`.
 - `omit_header` (Boolean; Default is `false`): If set to `true`, the markdown header of the component will not be rendered.
 
 ### Example_Code
 
 - `api` should not be placed for the `component: example_code` tag. `rest` is mapped to the correct API by regex mapping.
-- `rest` (String; required): The HTTP request line (`HTTP method` + `endpoint path`) that is regex mapped to the `smartobserve-openapi.yaml`.
+- `rest` (String; required): The HTTP request line (`HTTP method` + `endpoint path`) that is regex mapped to the `mcdesk-openapi.yaml`.
 
 The following tags are included to help with additional needs:
 
@@ -161,7 +161,7 @@ component: endpoints
 
 ### Path parameters
 
-To insert a path parameters table of the `indices.create` API, use the following snippet. Use the `x-operation-group` field from SmartObserve OpenAPI Spec for the `api` value:
+To insert a path parameters table of the `indices.create` API, use the following snippet. Use the `x-operation-group` field from MCdesk OpenAPI Spec for the `api` value:
 
 ```markdown
 <!-- spec_insert_start

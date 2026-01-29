@@ -10,7 +10,7 @@ redirect_from:
 
 # Joining queries
 
-SmartObserve is a distributed system in which data is spread across multiple nodes. Thus, running a SQL-like JOIN operation in SmartObserve is resource intensive. As an alternative, SmartObserve provides the following queries that perform join operations and are optimized for scaling across multiple nodes:
+MCdesk is a distributed system in which data is spread across multiple nodes. Thus, running a SQL-like JOIN operation in MCdesk is resource intensive. As an alternative, MCdesk provides the following queries that perform join operations and are optimized for scaling across multiple nodes:
 
 
 - Queries for searching [nested]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/nested/) fields:

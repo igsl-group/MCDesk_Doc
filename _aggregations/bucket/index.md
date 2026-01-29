@@ -5,7 +5,7 @@ has_children: true
 has_toc: false
 nav_order: 3
 redirect_from:
-  - /smartobserve/bucket-agg/
+  - /mcdesk/bucket-agg/
   - /query-dsl/aggregations/bucket-agg/
   - /query-dsl/aggregations/bucket/
   - /aggregations/bucket-agg/
@@ -20,7 +20,7 @@ You can use bucket aggregations to implement faceted navigation (usually placed 
 
 ## Supported bucket aggregations
 
-SmartObserve supports the following bucket aggregations:
+MCdesk supports the following bucket aggregations:
 
 - [Adjacency matrix]({{site.url}}{{site.baseurl}}/aggregations/bucket/adjacency-matrix/)
 - [Auto-interval date histogram]({{site.url}}{{site.baseurl}}/aggregations/bucket/auto-interval-date-histogram/)

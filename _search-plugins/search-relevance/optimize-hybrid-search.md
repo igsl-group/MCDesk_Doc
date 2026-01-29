@@ -9,7 +9,7 @@ has_children: false
 
 # Optimizing hybrid search
 
-A key challenge of using hybrid search in SmartObserve is combining results from lexical and vector-based search effectively. SmartObserve provides different techniques and various parameters you can experiment with to find the best setup for your application. What works best, however, depends heavily on your data, user behavior, and application domain—there is no one-size-fits-all solution.
+A key challenge of using hybrid search in MCdesk is combining results from lexical and vector-based search effectively. MCdesk provides different techniques and various parameters you can experiment with to find the best setup for your application. What works best, however, depends heavily on your data, user behavior, and application domain—there is no one-size-fits-all solution.
 
 Search Relevance Workbench helps you systematically find the ideal set of parameters for your needs.
 
@@ -40,7 +40,7 @@ PUT _plugins/_search_relevance/search_configurations
 ```
 {% include copy-curl.html %}
 
-The model ID specified in the `query` must be a valid model ID for a model deployed in SmartObserve. The target index must contain the field used for neural search embeddings (in this example, `title_embedding`).
+The model ID specified in the `query` must be a valid model ID for a model deployed in MCdesk. The target index must contain the field used for neural search embeddings (in this example, `title_embedding`).
 
 For an end-to-end example, see the [`search-relevance` repository](https://github.com/igsl-group/search-relevance).
 
@@ -89,7 +89,7 @@ Every query in the query set is executed for all different parameter combination
 
 ## Evaluating the results
 
-The results for each evaluation are stored. You can view the results in SmartObserve Dashboards by selecting the corresponding experiment in the overview of past experiments, as shown in the following image.
+The results for each evaluation are stored. You can view the results in MCdesk Dashboards by selecting the corresponding experiment in the overview of past experiments, as shown in the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/search-relevance-workbench/experiment_overview_hybrid_search_optimization.png" alt="Compare search results"/>{: .img-fluid }
 

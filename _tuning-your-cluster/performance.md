@@ -9,11 +9,11 @@ has_children: false
 
 The following configurations demonstrated an improvement in throughput of around 60% when
 running an indexing-only workload as compared to the out-of-the-box experience. The workload did not
-incorporate search or other scenarios. Only the SmartObserve server process was run on the machines,
+incorporate search or other scenarios. Only the MCdesk server process was run on the machines,
 with the benchmark clients hosted on a different node.
 
 The execution environment was comprised of Intel EC2 instances (r7iz.2xlarge) in the AWS Cloud, and the
-workload used was the StackOverflow dataset available as part of SmartObserve Benchmark.
+workload used was the StackOverflow dataset available as part of MCdesk Benchmark.
 
 ## Java heap size
 
@@ -22,7 +22,7 @@ size shows better indexing performance on EC2 instances.
 
 ## Flush translog threshold
 
-The default value for `flush_threshold_size` is 512 MB. This means that the translog is flushed when it reaches 512 MB. The weight of the indexing load determines the frequency of the translog. When you increase `index.translog.flush_threshold_size`, the node performs the translog operation less frequently. Because flushes are resource-intensive operations, reducing the frequency of translogs improves indexing performance. By increasing the flush threshold size, the SmartObserve cluster also creates fewer large segments instead of multiple small segments. Large segments merge less often, and more threads are used for indexing instead of merging.
+The default value for `flush_threshold_size` is 512 MB. This means that the translog is flushed when it reaches 512 MB. The weight of the indexing load determines the frequency of the translog. When you increase `index.translog.flush_threshold_size`, the node performs the translog operation less frequently. Because flushes are resource-intensive operations, reducing the frequency of translogs improves indexing performance. By increasing the flush threshold size, the MCdesk cluster also creates fewer large segments instead of multiple small segments. Large segments merge less often, and more threads are used for indexing instead of merging.
 
 For pure indexing workloads, consider increasing the `flush_threshold_size` to 25% of the Java heap size, for example, to improve indexing performance.
 
@@ -77,10 +77,10 @@ It's a best practice to increase the `index.translog.flush_threshold_size` only 
 
 ## Index refresh interval
 
-By default, SmartObserve refreshes indexes every second. SmartObserve only refreshes indexes that have
+By default, MCdesk refreshes indexes every second. MCdesk only refreshes indexes that have
 received at least one search request in the last 30 seconds.
 
-When you increase the refresh interval, the data node makes fewer API calls. To prevent [429 errors](https://repost.aws/knowledge-center/smartobserve-resolve-429-error), it's a best practice to increase the refresh interval.
+When you increase the refresh interval, the data node makes fewer API calls. To prevent [429 errors](https://repost.aws/knowledge-center/mcdesk-resolve-429-error), it's a best practice to increase the refresh interval.
 
 If your application can tolerate increasing the amount of time between when a document is indexed and when it
 becomes visible, you can increase the `index.refresh_interval` to a larger value, for example, `30s`, or even disable it in a
@@ -106,7 +106,7 @@ To ensure that the shards are distributed evenly across the data nodes of the in
 
 Number of shards for index = k * (Number of data nodes), where k is the number of shards per node
 
-For example, if there are 24 shards in the index, and there are 8 data nodes, then SmartObserve assigns 3 shards to each node. 
+For example, if there are 24 shards in the index, and there are 8 data nodes, then MCdesk assigns 3 shards to each node. 
 
 ## Setting replica count to zero
 
@@ -121,11 +121,11 @@ Start with a bulk request size of 5 MiB to 15 MiB. Then slowly increase the requ
 
 ## Use an instance type that has SSD instance store volumes (such as I3)
 
-I3 instances provide fast and local memory express (NVMe) storage. I3 instances deliver better ingestion performance than instances that use General Purpose SSD (gp2) Amazon Elastic Block Store (Amazon EBS) volumes. For more information, see [Petabyte scale for Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/petabyte-scale.html).
+I3 instances provide fast and local memory express (NVMe) storage. I3 instances deliver better ingestion performance than instances that use General Purpose SSD (gp2) Amazon Elastic Block Store (Amazon EBS) volumes. For more information, see [Petabyte scale for Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/petabyte-scale.html).
 
 ## Reduce response size
 
-To reduce the size of the SmartObserve response, use the `filter_path` parameter to exclude unnecessary fields. Be sure that you don't filter out any fields that are required for identifying or retrying failed requests. These fields can vary by client.
+To reduce the size of the MCdesk response, use the `filter_path` parameter to exclude unnecessary fields. Be sure that you don't filter out any fields that are required for identifying or retrying failed requests. These fields can vary by client.
 
 In the following example, the `index-name`, `type-name`, and `took` fields are excluded from the response:
 
@@ -140,4 +140,4 @@ POST /_bulk?pretty&filter_path=-took,-items.index._index,-items.index._type
 
 ## Compression codecs
 
-In SmartObserve 2.9 and later, there are two new codecs for compression: `zstd` and `zstd_no_dict`. You can optionally specify a compression level for these in the `index.codec.compression_level` setting with values in the [1, 6] range. [Benchmark]({{site.url}}{{site.baseurl}}/im-plugin/index-codecs/#benchmarking) data shows that `zstd` provides a 7% better write throughput and `zstd_no_dict` provides a 14% better throughput, along with a 30% improvement in storage compared with the `default` codec. For more information about compression, see [Index codecs]({{site.url}}{{site.baseurl}}/im-plugin/index-codecs/).
+In MCdesk 2.9 and later, there are two new codecs for compression: `zstd` and `zstd_no_dict`. You can optionally specify a compression level for these in the `index.codec.compression_level` setting with values in the [1, 6] range. [Benchmark]({{site.url}}{{site.baseurl}}/im-plugin/index-codecs/#benchmarking) data shows that `zstd` provides a 7% better write throughput and `zstd_no_dict` provides a 14% better throughput, along with a 30% improvement in storage compared with the `default` codec. For more information about compression, see [Index codecs]({{site.url}}{{site.baseurl}}/im-plugin/index-codecs/).

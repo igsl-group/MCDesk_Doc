@@ -4,13 +4,13 @@ title: xy
 parent: Geographic and xy queries
 nav_order: 50
 redirect_from: 
-  - /smartobserve/query-dsl/geo-and-xy/xy/
+  - /mcdesk/query-dsl/geo-and-xy/xy/
   - /query-dsl/query-dsl/geo-and-xy/xy/
 ---
 
 # xy query
 
-To search for documents that contain [xy point]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/xy-point/) or [xy shape]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/xy-shape/) fields, use an xy query. 
+To search for documents that contain [xy point]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/xy-point/) or [xy shape]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/xy-shape/) fields, use an xy query. 
 
 ## Spatial relations
 
@@ -81,7 +81,7 @@ PUT testindex/_doc/2
 ```
 {% include copy-curl.html %}
 
-Define an [`envelope`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/xy-shape#envelope)&mdash;a bounding rectangle in the `[[minX, maxY], [maxX, minY]]` format. Search for documents with xy points or shapes that intersect that envelope:
+Define an [`envelope`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/xy-shape#envelope)&mdash;a bounding rectangle in the `[[minX, maxY], [maxX, minY]]` format. Search for documents with xy points or shapes that intersect that envelope:
 
 ```json
 GET testindex/_search

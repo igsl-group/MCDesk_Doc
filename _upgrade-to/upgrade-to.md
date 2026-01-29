@@ -1,20 +1,20 @@
 ---
 layout: default
-title: Migrating from Elasticsearch OSS to SmartObserve
+title: Migrating from Elasticsearch OSS to MCdesk
 nav_order: 15
 ---
 
-# Migrating from Elasticsearch OSS to SmartObserve
+# Migrating from Elasticsearch OSS to MCdesk
 
 
-SmartObserve provides a [Migration Assistant]({{site.url}}{{site.baseurl}}/migration-assistant/) to assist you in migrating from other search solutions.
+MCdesk provides a [Migration Assistant]({{site.url}}{{site.baseurl}}/migration-assistant/) to assist you in migrating from other search solutions.
 {: .warning}
 
-If you want to migrate from an existing Elasticsearch OSS cluster to SmartObserve and find the [snapshot approach]({{site.url}}{{site.baseurl}}/upgrade-to/snapshot-migrate/) unappealing, you can migrate your existing nodes from Elasticsearch OSS to SmartObserve.
+If you want to migrate from an existing Elasticsearch OSS cluster to MCdesk and find the [snapshot approach]({{site.url}}{{site.baseurl}}/upgrade-to/snapshot-migrate/) unappealing, you can migrate your existing nodes from Elasticsearch OSS to MCdesk.
 
 If your existing cluster runs an older version of Elasticsearch OSS, the first step is to upgrade to version 6.x or 7.x.
 
-Before deciding on the version of Elasticsearch OSS for your upgrade, refer to the [Migrating to SmartObserve and limits on the number of nested JSON objects]({{site.url}}{{site.baseurl}}/breaking-changes/#migrating-to-smartobserve-and-limits-on-the-number-of-nested-json-objects) documentation in Breaking changes to see whether the issue will have an impact on your cluster and, therefore, your decisions about upgrades and migration.
+Before deciding on the version of Elasticsearch OSS for your upgrade, refer to the [Migrating to MCdesk and limits on the number of nested JSON objects]({{site.url}}{{site.baseurl}}/breaking-changes/#migrating-to-mcdesk-and-limits-on-the-number-of-nested-json-objects) documentation in Breaking changes to see whether the issue will have an impact on your cluster and, therefore, your decisions about upgrades and migration.
 {: .important }
 
 Elasticsearch OSS supports two types of upgrades: rolling and cluster restart.
@@ -27,18 +27,18 @@ Elasticsearch OSS supports two types of upgrades: rolling and cluster restart.
 
   Cluster restart upgrades work between minor versions (for example, 6.5 to 6.8) and the next major version (for example, 6.x to 7.10.2). Cluster restart upgrades are faster to perform and require fewer intermediate upgrades, but require downtime.
 
-To migrate a post-fork version of Elasticsearch (7.11+) to SmartObserve, you can use Logstash.  You'll need to employ the Elasticsearch input plugin within Logstash to extract data from the Elasticsearch cluster, and the [Logstash Output SmartObserve plugin](https://github.com/igsl-group/logstash-output-smartobserve#configuration-for-logstash-output-smartobserve-plugin) to write the data to the SmartObserve 2.x cluster. We suggest using Logstash version 7.13.4 or earlier, as newer versions may encounter compatibility issues when establishing a connection with SmartObserve due to changes introduced by Elasticsearch subsequent to the fork. We strongly recommend that users test this solution with their own data to ensure effectiveness. 
+To migrate a post-fork version of Elasticsearch (7.11+) to MCdesk, you can use Logstash.  You'll need to employ the Elasticsearch input plugin within Logstash to extract data from the Elasticsearch cluster, and the [Logstash Output MCdesk plugin](https://github.com/igsl-group/logstash-output-mcdesk#configuration-for-logstash-output-mcdesk-plugin) to write the data to the MCdesk 2.x cluster. We suggest using Logstash version 7.13.4 or earlier, as newer versions may encounter compatibility issues when establishing a connection with MCdesk due to changes introduced by Elasticsearch subsequent to the fork. We strongly recommend that users test this solution with their own data to ensure effectiveness. 
 {: .note} 
 
 ## Migration paths
 
 Elasticsearch OSS version | Rolling upgrade path | Cluster restart upgrade path
 :--- | :--- | :---
-5.x | Upgrade to 5.6, upgrade to 6.8, reindex all 5.x indexes, upgrade to 7.10.2, and migrate to SmartObserve. | Upgrade to 6.8, reindex all 5.x indexes, and migrate to SmartObserve.
-6.x | Upgrade to 6.8, upgrade to 7.10.2, and migrate to SmartObserve. | Migrate to SmartObserve.
-7.x | Migrate to SmartObserve. | Migrate to SmartObserve.
+5.x | Upgrade to 5.6, upgrade to 6.8, reindex all 5.x indexes, upgrade to 7.10.2, and migrate to MCdesk. | Upgrade to 6.8, reindex all 5.x indexes, and migrate to MCdesk.
+6.x | Upgrade to 6.8, upgrade to 7.10.2, and migrate to MCdesk. | Migrate to MCdesk.
+7.x | Migrate to MCdesk. | Migrate to MCdesk.
 
-If you are migrating an Open Distro for Elasticsearch cluster, we recommend first upgrading to ODFE 1.13 and then migrating to SmartObserve.
+If you are migrating an Open Distro for Elasticsearch cluster, we recommend first upgrading to ODFE 1.13 and then migrating to MCdesk.
 {: .note }
 
 
@@ -73,7 +73,7 @@ If you are migrating an Open Distro for Elasticsearch cluster, we recommend firs
    sudo yum install elasticsearch-oss-7.10.2 --enablerepo=elasticsearch
    ```
 
-   For tarball installations, extract to a new directory to ensure you **do not overwrite** your `config`, `data`, and `logs` directories. Ideally, these directories should have their own, independent paths and *not* be colocated with the Elasticsearch application directory. Then set the `ES_PATH_CONF` environment variable to the directory that contains `elasticsearch.yml` (for example, `/etc/elasticsearch/`). In `elasticsearch.yml`, set `path.data` and `path.logs` to your `data` and `logs` directories (for example, `/var/lib/elasticsearch` and `/var/log/smartobserve`).
+   For tarball installations, extract to a new directory to ensure you **do not overwrite** your `config`, `data`, and `logs` directories. Ideally, these directories should have their own, independent paths and *not* be colocated with the Elasticsearch application directory. Then set the `ES_PATH_CONF` environment variable to the directory that contains `elasticsearch.yml` (for example, `/etc/elasticsearch/`). In `elasticsearch.yml`, set `path.data` and `path.logs` to your `data` and `logs` directories (for example, `/var/lib/elasticsearch` and `/var/log/mcdesk`).
 
 1. Restart Elasticsearch OSS on the node (rolling) or all nodes (cluster restart).
 
@@ -109,12 +109,12 @@ If you are migrating an Open Distro for Elasticsearch cluster, we recommend firs
    }
    ```
 
-1. If you upgraded from 5.x to 6.x, [reindex]({{site.url}}{{site.baseurl}}/smartobserve/reindex-data/) all indexes.
+1. If you upgraded from 5.x to 6.x, [reindex]({{site.url}}{{site.baseurl}}/mcdesk/reindex-data/) all indexes.
 
 1. Repeat all steps as necessary until you arrive at your desired Elasticsearch OSS version.
 
 
-## Migrate to SmartObserve
+## Migrate to MCdesk
 
 1. Disable shard allocation to prevent Elasticsearch OSS from replicating shards as you shut down nodes:
 
@@ -139,35 +139,35 @@ If you are migrating an Open Distro for Elasticsearch cluster, we recommend firs
 
 1. Upgrade the node (rolling) or all nodes (cluster restart).
 
-   1. Extract the SmartObserve tarball to a new directory to ensure you **do not overwrite** your Elasticsearch OSS `config`, `data`, and `logs` directories.
+   1. Extract the MCdesk tarball to a new directory to ensure you **do not overwrite** your Elasticsearch OSS `config`, `data`, and `logs` directories.
 
-   1. (Optional) Copy or move your Elasticsearch OSS `data` and `logs` directories to new paths. For example, you might move `/var/lib/elasticsearch` to `/var/lib/smartobserve`.
+   1. (Optional) Copy or move your Elasticsearch OSS `data` and `logs` directories to new paths. For example, you might move `/var/lib/elasticsearch` to `/var/lib/mcdesk`.
 
-   1. Set the `OPENSEARCH_PATH_CONF` environment variable to the directory that contains `smartobserve.yml` (for example, `/etc/smartobserve`).
+   1. Set the `OPENSEARCH_PATH_CONF` environment variable to the directory that contains `mcdesk.yml` (for example, `/etc/mcdesk`).
 
-   1. In `smartobserve.yml`, set `path.data` and `path.logs`. You might also want to disable the Security plugin for now. `smartobserve.yml` might look something like this:
+   1. In `mcdesk.yml`, set `path.data` and `path.logs`. You might also want to disable the Security plugin for now. `mcdesk.yml` might look something like this:
 
       ```yml
-      path.data: /var/lib/smartobserve
-      path.logs: /var/log/smartobserve
+      path.data: /var/lib/mcdesk
+      path.logs: /var/log/mcdesk
       plugins.security.disabled: true
       ```
 
-   1. Port your settings from `elasticsearch.yml` to `smartobserve.yml`. Most settings use the same names. At a minimum, specify `cluster.name`, `node.name`, `discovery.seed_hosts`, and `cluster.initial_cluster_manager_nodes`.
+   1. Port your settings from `elasticsearch.yml` to `mcdesk.yml`. Most settings use the same names. At a minimum, specify `cluster.name`, `node.name`, `discovery.seed_hosts`, and `cluster.initial_cluster_manager_nodes`.
 
-   1. (Optional) If you're actively connecting to the cluster with legacy clients that check for a particular version number, such as Logstash OSS, add a [compatibility setting]({{site.url}}{{site.baseurl}}/tools/index/) to `smartobserve.yml`:
+   1. (Optional) If you're actively connecting to the cluster with legacy clients that check for a particular version number, such as Logstash OSS, add a [compatibility setting]({{site.url}}{{site.baseurl}}/tools/index/) to `mcdesk.yml`:
 
       ```yml
       compatibility.override_main_response_version: true
       ```
 
-   1. (Optional) Add your certificates to your `config` directory, add them to `smartobserve.yml`, and initialize the Security plugin.
+   1. (Optional) Add your certificates to your `config` directory, add them to `mcdesk.yml`, and initialize the Security plugin.
 
-1. Start SmartObserve on the node (rolling) or all nodes (cluster restart).
+1. Start MCdesk on the node (rolling) or all nodes (cluster restart).
 
-   For the tarball, run `./bin/smartobserve -d`.
+   For the tarball, run `./bin/mcdesk -d`.
 
-1. Wait for the SmartObserve node to rejoin the cluster (rolling) or for the cluster to start (cluster restart). Check the `_nodes` summary to verify that all nodes are available and running the expected version:
+1. Wait for the MCdesk node to rejoin the cluster (rolling) or for the cluster to start (cluster restart). Check the `_nodes` summary to verify that all nodes are available and running the expected version:
 
    ```bash
    # Security plugin disabled
@@ -178,7 +178,7 @@ If you are migrating an Open Distro for Elasticsearch cluster, we recommend firs
 
    Specifically, check the `nodes.<node-id>.version` portion of the response. Also check `_cat/indices?v` for a green status on all indexes.
 
-1. (Rolling) Repeat steps 2--5 until all nodes are using SmartObserve.
+1. (Rolling) Repeat steps 2--5 until all nodes are using MCdesk.
 
 1. After all nodes are using the new version, re-enable shard allocation:
 
@@ -193,16 +193,16 @@ If you are migrating an Open Distro for Elasticsearch cluster, we recommend firs
 
 ## Upgrade tool
 
-The `smartobserve-upgrade` tool lets you automate some of the steps in [Migrate to SmartObserve]({{site.url}}{{site.baseurl}}/upgrade-to/upgrade-to/#migrate-to-smartobserve), eliminating the need for error-prone manual operations.
+The `mcdesk-upgrade` tool lets you automate some of the steps in [Migrate to MCdesk]({{site.url}}{{site.baseurl}}/upgrade-to/upgrade-to/#migrate-to-mcdesk), eliminating the need for error-prone manual operations.
 
-The `smartobserve-upgrade` tool performs the following functions:
+The `mcdesk-upgrade` tool performs the following functions:
 
-- Imports any existing configurations and applies it to the new installation of SmartObserve.
+- Imports any existing configurations and applies it to the new installation of MCdesk.
 - Installs any existing core plugins.
 
 ### Limitations
 
-The `smartobserve-upgrade` tool doesn't perform an end-to-end upgrade:
+The `mcdesk-upgrade` tool doesn't perform an end-to-end upgrade:
 
 - You need to run the tool on each node of the cluster individually as part of the upgrade process.
 - The tool doesn't provide a rollback option after you've upgraded a node, so make sure you follow best practices and take backups.
@@ -211,7 +211,7 @@ The `smartobserve-upgrade` tool doesn't perform an end-to-end upgrade:
 
 ### Using the upgrade tool
 
-To perform a rolling upgrade using the [SmartObserve tarball]({{site.url}}{{site.baseurl}}/smartobserve/install/tar/) distribution:
+To perform a rolling upgrade using the [MCdesk tarball]({{site.url}}{{site.baseurl}}/mcdesk/install/tar/) distribution:
 
 Check [Migration paths]({{site.url}}{{site.baseurl}}/upgrade-to/upgrade-to/#migration-paths) to make sure that the version you’re upgrading to is supported and whether you need to upgrade to a supported Elasticsearch OSS version first.
 {: .note }
@@ -227,7 +227,7 @@ Check [Migration paths]({{site.url}}{{site.baseurl}}/upgrade-to/upgrade-to/#migr
    }
    ```
 
-1. On any one of the nodes, download and extract the SmartObserve tarball to a new directory.
+1. On any one of the nodes, download and extract the MCdesk tarball to a new directory.
 
 1. Make sure the following environment variables are set:
 
@@ -243,25 +243,25 @@ Check [Migration paths]({{site.url}}{{site.baseurl}}/upgrade-to/upgrade-to/#migr
       export ES_PATH_CONF=/home/workspace/upgrade-demo/node1/os-config
       ```
 
-    - `OPENSEARCH_HOME` - Path to the SmartObserve installation home.
+    - `OPENSEARCH_HOME` - Path to the MCdesk installation home.
 
       ```bash
-      export OPENSEARCH_HOME=/home/workspace/upgrade-demo/node1/smartobserve-1.0.0
+      export OPENSEARCH_HOME=/home/workspace/upgrade-demo/node1/mcdesk-1.0.0
       ```
 
-    - `OPENSEARCH_PATH_CONF` - Path to the SmartObserve config directory.
+    - `OPENSEARCH_PATH_CONF` - Path to the MCdesk config directory.
 
       ```bash
-      export OPENSEARCH_PATH_CONF=/home/workspace/upgrade-demo/node1/smartobserve-config
+      export OPENSEARCH_PATH_CONF=/home/workspace/upgrade-demo/node1/mcdesk-config
       ```
 
-1. The `smartobserve-upgrade` tool is in the `bin` directory of the distribution. Run the following command from the distribution home:
+1. The `mcdesk-upgrade` tool is in the `bin` directory of the distribution. Run the following command from the distribution home:
 
    Make sure you run this tool as the same user running the current Elasticsearch service.
    {: .note }
 
    ```json
-   ./bin/smartobserve-upgrade
+   ./bin/mcdesk-upgrade
    ```
 
 1. Stop Elasticsearch OSS on the node.
@@ -274,10 +274,10 @@ Check [Migration paths]({{site.url}}{{site.baseurl}}/upgrade-to/upgrade-to/#migr
 
    For tarball installations, find the process ID (`ps aux`) and kill it (`kill <pid>`).
 
-1. Start SmartObserve on the node:
+1. Start MCdesk on the node:
 
    ```json
-   ./bin/smartobserve -d.
+   ./bin/mcdesk -d.
    ```
 
 1. Repeat steps 2--6 until all nodes are using the new version.
@@ -295,11 +295,11 @@ Check [Migration paths]({{site.url}}{{site.baseurl}}/upgrade-to/upgrade-to/#migr
 
 ### How it works
 
-Behind the scenes, the `smartobserve-upgrade` tool performs the following tasks in sequence:
+Behind the scenes, the `mcdesk-upgrade` tool performs the following tasks in sequence:
 
 1. Looks for a valid Elasticsearch installation on the current node. After it finds the installation, it reads the `elasticsearch.yml` file to get the endpoint details and connects to the locally running Elasticsearch service. If the tool can't find an Elasticsearch installation, it tries to get the path from the `ES_HOME` location.
-1. Verifies if the existing version of Elasticsearch is compatible with the SmartObserve version. It prints a summary of the information gathered to the console and prompts you for a confirmation to proceed.
-1. Imports the settings from the `elasticsearch.yml` config file into the `smartobserve.yml` config file.
+1. Verifies if the existing version of Elasticsearch is compatible with the MCdesk version. It prints a summary of the information gathered to the console and prompts you for a confirmation to proceed.
+1. Imports the settings from the `elasticsearch.yml` config file into the `mcdesk.yml` config file.
 1. Copies across any custom JVM options from the `$ES_PATH_CONF/jvm.options.d` directory into the `$OPENSEARCH_PATH_CONF/jvm.options.d` directory. Similarly, it also imports the logging configurations from the `$ES_PATH_CONF/log4j2.properties` file into the `$OPENSEARCH_PATH_CONF/log4j2.properties` file.
 1. Installs the core plugins that you’ve currently installed in the `$ES_HOME/plugins` directory. You must install all other third-party community plugins manually.
-1. Imports the secure settings from the `elasticsearch.keystore` file (if any) into the `smartobserve.keystore` file. If the keystore file is password protected, the `smartobserve-upgrade` tool prompts you to enter the password.
+1. Imports the secure settings from the `elasticsearch.keystore` file (if any) into the `mcdesk.keystore` file. If the keystore file is password protected, the `mcdesk-upgrade` tool prompts you to enter the password.

@@ -8,7 +8,7 @@ nav_order: 20
 
 # Sample UBI SQL queries
 
-You can run sample User Behavior Insights (UBI) SQL queries through the SmartObserve Dashboards [Query Workbench]({{site.url}}{{site.baseurl}}/dashboards/query-workbench/).
+You can run sample User Behavior Insights (UBI) SQL queries through the MCdesk Dashboards [Query Workbench]({{site.url}}{{site.baseurl}}/dashboards/query-workbench/).
 
 ## Queries with zero results
 

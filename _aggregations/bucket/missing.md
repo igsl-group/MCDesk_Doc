@@ -14,7 +14,7 @@ If you have documents in your index that don’t contain the aggregating field a
 The following example adds any missing values to a bucket named "N/A":
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {
@@ -33,7 +33,7 @@ GET smartobserve_dashboards_sample_data_logs/_search
 Because the default value for the `min_doc_count` parameter is 1, the `missing` parameter doesn't return any buckets in its response. Set `min_doc_count` parameter to 0 to see the "N/A" bucket in the response:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

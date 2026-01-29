@@ -15,13 +15,13 @@ To improve search performance, you must keep the number of segments under contro
 
 Having one segment per shard provides optimal performance with respect to search latency. You can configure an index to have multiple shards in order to avoid very large shards and achieve more parallelism.
 
-You can control the number of segments by choosing a larger refresh interval or during indexing by asking SmartObserve to slow down segment creation by disabling the refresh interval.
+You can control the number of segments by choosing a larger refresh interval or during indexing by asking MCdesk to slow down segment creation by disabling the refresh interval.
 
 ## Warm up the index
 
 Native library indexes are constructed during indexing, but they're loaded into memory during the first search. In Lucene, each segment is searched sequentially (so, for k-NN, each segment returns up to k nearest neighbors of the query point). The top `size` results, ranked by score, are returned from all segment-level results within a shard (a higher score indicates a better result).
 
-Once a native library index is loaded (native library indexes are loaded outside of the SmartObserve JVM), SmartObserve caches them in memory. Initial queries are expensive and complete in a few seconds, while subsequent queries are faster and complete in milliseconds (assuming that the k-NN circuit breaker isn't triggered).
+Once a native library index is loaded (native library indexes are loaded outside of the MCdesk JVM), MCdesk caches them in memory. Initial queries are expensive and complete in a few seconds, while subsequent queries are faster and complete in milliseconds (assuming that the k-NN circuit breaker isn't triggered).
 
 Starting with version 3.1, you can use [memory-optimized search]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/memory-optimized-search/), which enables the engine to load only the necessary bytes during search instead of loading the entire index outside the JVM. With this mode enabled, the Warm-up API loads only the required data into memory and opens read streams to the underlying indexes. Thus, the Warm-up API helps ensure that searches after warm-up run faster, even with memory-optimized search enabled.
 

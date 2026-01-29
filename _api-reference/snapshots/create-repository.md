@@ -17,7 +17,7 @@ There are two types of snapshot repositories:
 
 * Amazon Simple Storage Service (Amazon S3) bucket (`s3`): For instructions on creating an `s3` repository, see [Register repository Amazon S3]({{site.url}}{{site.baseurl}}/tuning-your-cluster/availability-and-recovery/snapshots/snapshot-restore/#amazon-s3).
 
-For instructions on creating a repository, see [Register repository]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/snapshot-restore#register-repository).
+For instructions on creating a repository, see [Register repository]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/snapshot-restore#register-repository).
 
 ## Endpoints
 
@@ -94,7 +94,7 @@ Request field | Description
 For the `base_path` parameter, do not enter the `s3://` prefix when entering your S3 bucket details. Only the name of the bucket is required.
 {: .note}
 
-The `server_side_encryption` setting is removed as of SmartObserve 3.1.0. S3 applies server-side encryption as the base level of encryption for all S3 buckets. Because this cannot be disabled, this value repository setting had no effect. For more information, see [Protecting data with server-side encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html).
+The `server_side_encryption` setting is removed as of MCdesk 3.1.0. S3 applies server-side encryption as the base level of encryption for all S3 buckets. Because this cannot be disabled, this value repository setting had no effect. For more information, see [Protecting data with server-side encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html).
 {: .note}
 
 ## Example requests
@@ -147,11 +147,11 @@ response = client.snapshot.create_repository(
 ### `s3`
 
 
-The following request registers a new S3 repository called `my-smartobserve-repo` in an existing bucket called `my-open-search-bucket`. By default, all snapshots are stored in the `my/snapshot/directory`:
+The following request registers a new S3 repository called `my-mcdesk-repo` in an existing bucket called `my-open-search-bucket`. By default, all snapshots are stored in the `my/snapshot/directory`:
 
 <!-- spec_insert_start
 component: example_code
-rest: PUT /_snapshot/my-smartobserve-repo
+rest: PUT /_snapshot/my-mcdesk-repo
 body: |
 {
   "type": "s3",
@@ -162,7 +162,7 @@ body: |
 }
 -->
 {% capture step1_rest %}
-PUT /_snapshot/my-smartobserve-repo
+PUT /_snapshot/my-mcdesk-repo
 {
   "type": "s3",
   "settings": {
@@ -176,7 +176,7 @@ PUT /_snapshot/my-smartobserve-repo
 
 
 response = client.snapshot.create_repository(
-  repository = "my-smartobserve-repo",
+  repository = "my-mcdesk-repo",
   body =   {
     "type": "s3",
     "settings": {
@@ -194,11 +194,11 @@ response = client.snapshot.create_repository(
 <!-- spec_insert_end -->
 
 
-The following request registers a new S3 repository called `my-smartobserve-repo` in an existing bucket called `my-open-search-bucket`. By default, all snapshots are stored in the `my/snapshot/directory`. Additionally, this repository is configured to use [SSE-KMS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#encryption-context), and the expected bucket owner AWS account ID is `123456789000`.
+The following request registers a new S3 repository called `my-mcdesk-repo` in an existing bucket called `my-open-search-bucket`. By default, all snapshots are stored in the `my/snapshot/directory`. Additionally, this repository is configured to use [SSE-KMS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#encryption-context), and the expected bucket owner AWS account ID is `123456789000`.
 
 <!-- spec_insert_start
 component: example_code
-rest: PUT /_snapshot/my-smartobserve-repo
+rest: PUT /_snapshot/my-mcdesk-repo
 body: |
 {
   "type": "s3",
@@ -213,7 +213,7 @@ body: |
 }
 -->
 {% capture step1_rest %}
-PUT /_snapshot/my-smartobserve-repo
+PUT /_snapshot/my-mcdesk-repo
 {
   "type": "s3",
   "settings": {
@@ -231,7 +231,7 @@ PUT /_snapshot/my-smartobserve-repo
 
 
 response = client.snapshot.create_repository(
-  repository = "my-smartobserve-repo",
+  repository = "my-mcdesk-repo",
   body = '''
 {
   "type": "s3",

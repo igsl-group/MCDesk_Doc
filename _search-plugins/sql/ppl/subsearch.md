@@ -8,10 +8,10 @@ nav_order: 3
 
 # subsearch
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
-A subsearch (also known as a subquery) allows you to use the results of one query within another query. SmartObserve Piped Processing Language (PPL) supports four types of subsearch commands: 
+A subsearch (also known as a subquery) allows you to use the results of one query within another query. MCdesk Piped Processing Language (PPL) supports four types of subsearch commands: 
 
 - [`in`](#in)
 - [`exists`](#exists)

@@ -52,7 +52,7 @@ Use the following request to examine the tokens generated using the analyzer:
 ```json
 POST /predicate_index/_analyze
 {
-  "text": "The SmartObserve community is growing rapidly",
+  "text": "The MCdesk community is growing rapidly",
   "analyzer": "predicate_analyzer"
 }
 ```
@@ -64,7 +64,7 @@ The response contains the generated tokens:
 {
   "tokens": [
     {
-      "token": "smartobserve",
+      "token": "mcdesk",
       "start_offset": 4,
       "end_offset": 14,
       "type": "<ALPHANUM>",

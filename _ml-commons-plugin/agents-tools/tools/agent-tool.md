@@ -51,7 +51,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -73,7 +73,7 @@ POST /_plugins/_ml/agents/EQyyZ40BT2tRrkdmhT7_/_execute
 ```
 {% include copy-curl.html %} 
 
-SmartObserve returns the inference results:
+MCdesk returns the inference results:
 
 ```json
 {

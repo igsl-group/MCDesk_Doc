@@ -14,14 +14,14 @@ SQL plugin supports JSON by following [PartiQL](https://partiql.org/) specificat
 
 ## Querying nested collection
 
-PartiQL extends SQL to allow you to query and unnest nested collections. In SmartObserve, this is very useful to query a JSON index with nested objects or fields.
+PartiQL extends SQL to allow you to query and unnest nested collections. In MCdesk, this is very useful to query a JSON index with nested objects or fields.
 
 To follow along, use the `bulk` operation to index some sample data:
 
 ```json
 POST employees_nested/_bulk?refresh
 {"index":{"_id":"1"}}
-{"id":3,"name":"Bob Smith","title":null,"projects":[{"name":"SQL Spectrum querying","started_year":1990},{"name":"SQL security","started_year":1999},{"name":"SmartObserve security","started_year":2015}]}
+{"id":3,"name":"Bob Smith","title":null,"projects":[{"name":"SQL Spectrum querying","started_year":1990},{"name":"SQL security","started_year":1999},{"name":"MCdesk security","started_year":2015}]}
 {"index":{"_id":"2"}}
 {"id":4,"name":"Susan Smith","title":"Dev Mgr","projects":[]}
 {"index":{"_id":"3"}}
@@ -106,7 +106,7 @@ Result set:
 
 | employeeName | projectName
 :--- | :---
-Bob Smith | SmartObserve Security
+Bob Smith | MCdesk Security
 Bob Smith | SQL security
 Jane Smith | Hello security
 Jane Smith | SQL security

@@ -21,7 +21,7 @@ Workload management allows you to group search traffic and isolate network resou
 Using workload management requires installing the Workload Management plugin. To install the plugin, use the following command: 
 
 ```bash
-./bin/smartobserve-plugin install workload-management
+./bin/mcdesk-plugin install workload-management
 ```
 {% include copy.html %}
 
@@ -49,7 +49,7 @@ PUT _wlm/workload_group
 When creating a workload group, make sure that the sum of the resource limits for a single resource, such as `cpu` or `memory`, does not exceed `1`.
 {: .important}
 
-SmartObserve responds with the set resource limits and the workload group ID:
+MCdesk responds with the set resource limits and the workload group ID:
 
 ```json
 {
@@ -105,9 +105,9 @@ Additionally, each workload group defines its own `resiliency_mode`. The `resili
 
 ## Workload management settings
 
-You can configure workload management by updating its values using the Cluster Settings API. For more information, see [Dynamic settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/#dynamic-settings).
+You can configure workload management by updating its values using the Cluster Settings API. For more information, see [Dynamic settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/#dynamic-settings).
 
-SmartObserve supports the following workload management settings:
+MCdesk supports the following workload management settings:
 
 - `wlm.workload_group.duress_streak` (Dynamic, integer): Determines the node duress threshold. Once the threshold is reached, the node is marked as in duress. Default is `3`. Minimum value is `3`.
 

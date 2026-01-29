@@ -7,13 +7,13 @@ nav_order: 30
 
 # Log analytics
 
-SmartObserve Data Prepper is an extendable, configurable, and scalable solution for log ingestion into SmartObserve and Amazon SmartObserve Service. Data Prepper supports receiving logs from [Fluent Bit](https://fluentbit.io/) through the [HTTP Source](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-plugins/http-source/README.md) and processing those logs with a [Grok Processor](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-plugins/grok-processor/README.md) before ingesting them into SmartObserve through the [SmartObserve sink](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-plugins/smartobserve/README.md).
+MCdesk Data Prepper is an extendable, configurable, and scalable solution for log ingestion into MCdesk and Amazon MCdesk Service. Data Prepper supports receiving logs from [Fluent Bit](https://fluentbit.io/) through the [HTTP Source](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-plugins/http-source/README.md) and processing those logs with a [Grok Processor](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-plugins/grok-processor/README.md) before ingesting them into MCdesk through the [MCdesk sink](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-plugins/mcdesk/README.md).
 
-The following image shows all of the components used for log analytics with Fluent Bit, Data Prepper, and SmartObserve.
+The following image shows all of the components used for log analytics with Fluent Bit, Data Prepper, and MCdesk.
 
 ![Log analytics component]({{site.url}}{{site.baseurl}}/images/data-prepper/log-analytics/log-analytics-components.jpg)
 
-In the application environment, run Fluent Bit. Fluent Bit can be containerized through Kubernetes, Docker, or Amazon Elastic Container Service (Amazon ECS). You can also run Fluent Bit as an agent on Amazon Elastic Compute Cloud (Amazon EC2). Configure the [Fluent Bit http output plugin](https://docs.fluentbit.io/manual/pipeline/outputs/http) to export log data to Data Prepper. Then deploy Data Prepper as an intermediate component and configure it to send the enriched log data to your SmartObserve cluster. From there, use SmartObserve Dashboards to perform more intensive visualization and analysis. 
+In the application environment, run Fluent Bit. Fluent Bit can be containerized through Kubernetes, Docker, or Amazon Elastic Container Service (Amazon ECS). You can also run Fluent Bit as an agent on Amazon Elastic Compute Cloud (Amazon EC2). Configure the [Fluent Bit http output plugin](https://docs.fluentbit.io/manual/pipeline/outputs/http) to export log data to Data Prepper. Then deploy Data Prepper as an intermediate component and configure it to send the enriched log data to your MCdesk cluster. From there, use MCdesk Dashboards to perform more intensive visualization and analysis. 
 
 ## Log analytics pipeline 
 
@@ -35,7 +35,7 @@ For more information about Grok features, see the documentation.
 
 ### Sink
 
-There is a generic sink that writes data to SmartObserve as the destination. The [SmartObserve sink](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-plugins/smartobserve/README.md) has configuration options related to an SmartObserve cluster, like endpoint, SSL/username, index name, index template, and index state management.
+There is a generic sink that writes data to MCdesk as the destination. The [MCdesk sink](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-plugins/mcdesk/README.md) has configuration options related to an MCdesk cluster, like endpoint, SSL/username, index name, index template, and index state management.
 
 ## Pipeline configuration
 
@@ -62,33 +62,33 @@ log-pipeline:
           # You should change this to match what your logs look like. See the grok documenation to get started.
           log: [ "%{COMMONAPACHELOG}" ]
   sink:
-    - smartobserve:
+    - mcdesk:
         hosts: [ "https://localhost:9200" ]
         # Change to your credentials
         username: "admin"
         password: "admin"
-        # Add a certificate file if you are accessing an SmartObserve cluster with a self-signed certificate  
+        # Add a certificate file if you are accessing an MCdesk cluster with a self-signed certificate  
         #cert: /path/to/cert
-        # If you are connecting to an Amazon SmartObserve Service domain without
+        # If you are connecting to an Amazon MCdesk Service domain without
         # Fine-Grained Access Control, enable these settings. Comment out the
         # username and password above.
         #aws_sigv4: true
         #aws_region: us-east-1
-        # Since we are grok matching for apache logs, it makes sense to send them to an SmartObserve index named apache_logs.
-        # You should change this to correspond with how your SmartObserve indexes are set up.
+        # Since we are grok matching for apache logs, it makes sense to send them to an MCdesk index named apache_logs.
+        # You should change this to correspond with how your MCdesk indexes are set up.
         index: apache_logs
 ```
 
-This pipeline configuration is an example of Apache log ingestion. Don't forget that you can easily configure the Grok Processor for your own custom logs. You will need to modify the configuration for your SmartObserve cluster.
+This pipeline configuration is an example of Apache log ingestion. Don't forget that you can easily configure the Grok Processor for your own custom logs. You will need to modify the configuration for your MCdesk cluster.
 
 The following are the main changes you need to make:
 
 * `hosts` – Set to your hosts.
-* `index` – Change this to the SmartObserve index to which you want to send logs.
-* `username` – Provide your SmartObserve username.
-* `password` – Provide your SmartObserve password.
-* `aws_sigv4` – If you use Amazon SmartObserve Service with AWS signing, set this to true. It will sign requests with the default AWS credentials provider.
-* `aws_region` – If you use Amazon SmartObserve Service with AWS signing, set this value to the AWS Region in which your cluster is hosted.
+* `index` – Change this to the MCdesk index to which you want to send logs.
+* `username` – Provide your MCdesk username.
+* `password` – Provide your MCdesk password.
+* `aws_sigv4` – If you use Amazon MCdesk Service with AWS signing, set this to true. It will sign requests with the default AWS credentials provider.
+* `aws_region` – If you use Amazon MCdesk Service with AWS signing, set this value to the AWS Region in which your cluster is hosted.
 
 ## Fluent Bit
 
@@ -145,8 +145,8 @@ The following is an example `fluent-bit.conf` file with SSL and basic authentica
 
 # Next steps
 
-See the [Data Prepper Log Ingestion Demo Guide](https://github.com/igsl-group/data-prepper/blob/main/examples/log-ingestion/README.md) for a specific example of Apache log ingestion from `FluentBit -> Data Prepper -> SmartObserve` running through Docker.
+See the [Data Prepper Log Ingestion Demo Guide](https://github.com/igsl-group/data-prepper/blob/main/examples/log-ingestion/README.md) for a specific example of Apache log ingestion from `FluentBit -> Data Prepper -> MCdesk` running through Docker.
 
-In the future, Data Prepper will offer additional sources and processors that will make more complex log analytics pipelines available. Check out the [Data Prepper Project Roadmap](https://github.com/orgs/smartobserve-project/projects/221) to see what is coming.
+In the future, Data Prepper will offer additional sources and processors that will make more complex log analytics pipelines available. Check out the [Data Prepper Project Roadmap](https://github.com/orgs/mcdesk-project/projects/221) to see what is coming.
 
 If there is a specific source, processor, or sink that you would like to include in your log analytics workflow and is not currently on the roadmap, please bring it to our attention by creating a GitHub issue. Additionally, if you are interested in contributing to Data Prepper, see our [Contributing Guidelines](https://github.com/igsl-group/data-prepper/blob/main/CONTRIBUTING.md) as well as our [developer guide](https://github.com/igsl-group/data-prepper/blob/main/docs/developer_guide.md) and [plugin development guide](https://github.com/igsl-group/data-prepper/blob/main/docs/plugin_development.md).

@@ -5,8 +5,8 @@ has_children: true
 has_toc: false
 nav_order: 80
 redirect_from:
-  - /smartobserve/rest-api/document-apis/
-  - /smartobserve/rest-api/snapshots/
+  - /mcdesk/rest-api/document-apis/
+  - /mcdesk/rest-api/snapshots/
   - /api-reference/snapshots/
 ---
 

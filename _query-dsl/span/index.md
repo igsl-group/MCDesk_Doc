@@ -5,7 +5,7 @@ has_children: true
 has_toc: false
 nav_order: 60
 redirect_from: 
-  - /smartobserve/query-dsl/span-query/
+  - /mcdesk/query-dsl/span-query/
   - /query-dsl/query-dsl/span-query/
   - /query-dsl/span-query/
   - /query-dsl/span/

@@ -8,7 +8,7 @@ nav_order: 40
 
 # AWS Lambda processor
 
-The [AWS Lambda](https://aws.amazon.com/lambda/) integration allows you to use serverless computing capabilities within your SmartObserve Data Prepper pipelines for flexible event processing and data routing.
+The [AWS Lambda](https://aws.amazon.com/lambda/) integration allows you to use serverless computing capabilities within your MCdesk Data Prepper pipelines for flexible event processing and data routing.
 
 ## AWS Lambda processor configuration
 

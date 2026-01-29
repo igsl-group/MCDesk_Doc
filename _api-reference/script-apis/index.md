@@ -5,7 +5,7 @@ has_children: true
 has_toc: false
 nav_order: 70
 redirect_from:
-  - /smartobserve/rest-api/script-apis/
+  - /mcdesk/rest-api/script-apis/
   - /api-reference/script-apis/
 ---
 
@@ -13,11 +13,11 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-The script APIs allow you to work with both stored and inline scripts in SmartObserve. The default scripting language is Painless.
+The script APIs allow you to work with both stored and inline scripts in MCdesk. The default scripting language is Painless.
 
 ## Types of scripts
 
-SmartObserve supports two types of scripts:
+MCdesk supports two types of scripts:
 
 - **Inline scripts**: Scripts defined directly within API requests. They are compiled each time they are executed.
 - **Stored scripts**: Precompiled scripts saved in the cluster state that can be reused across multiple requests. They reduce compilation time and enhance search speed.
@@ -25,7 +25,7 @@ SmartObserve supports two types of scripts:
 
 ## Script API operations
 
-SmartObserve supports the following script API operations.
+MCdesk supports the following script API operations.
 
 ### Inline script operations
 

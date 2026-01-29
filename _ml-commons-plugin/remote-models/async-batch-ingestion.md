@@ -11,15 +11,15 @@ grand_parent: Integrating ML models
 **Deprecated 3.0**
 {: .label .label-red }
 
-This feature is deprecated. For similar functionality, use [SmartObserve Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/). If you'd like to see this feature reinstated, [create an issue](https://github.com/igsl-group/ml-commons/issues) in the ML Commons repository.
+This feature is deprecated. For similar functionality, use [MCdesk Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/). If you'd like to see this feature reinstated, [create an issue](https://github.com/igsl-group/ml-commons/issues) in the ML Commons repository.
 {: .warning}
 
 
-[Batch ingestion]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/batch-ingestion/) configures an ingest pipeline, which processes documents one by one. For each document, batch ingestion calls an externally hosted model to generate text embeddings from the document text and then ingests the document, including text and embeddings, into an SmartObserve index.
+[Batch ingestion]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/batch-ingestion/) configures an ingest pipeline, which processes documents one by one. For each document, batch ingestion calls an externally hosted model to generate text embeddings from the document text and then ingests the document, including text and embeddings, into an MCdesk index.
 
-An alternative to this real-time process, _asynchronous_ batch ingestion, ingests both documents and their embeddings generated outside of SmartObserve and stored on a remote file server, such as Amazon Simple Storage Service (Amazon S3) or OpenAI. Asynchronous ingestion returns a task ID and runs asynchronously to ingest data offline into your k-NN cluster for neural search. You can use asynchronous batch ingestion together with the [Batch Predict API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/batch-predict/) to perform inference asynchronously. The batch predict operation takes an input file containing documents and calls an externally hosted model to generate embeddings for those documents in an output file. You can then use asynchronous batch ingestion to ingest both the input file containing documents and the output file containing their embeddings into an SmartObserve index.
+An alternative to this real-time process, _asynchronous_ batch ingestion, ingests both documents and their embeddings generated outside of MCdesk and stored on a remote file server, such as Amazon Simple Storage Service (Amazon S3) or OpenAI. Asynchronous ingestion returns a task ID and runs asynchronously to ingest data offline into your k-NN cluster for neural search. You can use asynchronous batch ingestion together with the [Batch Predict API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/batch-predict/) to perform inference asynchronously. The batch predict operation takes an input file containing documents and calls an externally hosted model to generate embeddings for those documents in an output file. You can then use asynchronous batch ingestion to ingest both the input file containing documents and the output file containing their embeddings into an MCdesk index.
 
-As of SmartObserve 2.17, the Asynchronous Batch Ingestion API is supported by Amazon SageMaker, Amazon Bedrock, and OpenAI.
+As of MCdesk 2.17, the Asynchronous Batch Ingestion API is supported by Amazon SageMaker, Amazon Bedrock, and OpenAI.
 {: .note}
 
 ## Prerequisites
@@ -89,7 +89,7 @@ PUT /my-nlp-index
 
 When using an S3 file as the source for asynchronous batch ingestion, you must map the fields in the source file to fields in the index in order to indicate into which index each piece of data is ingested. If no JSON path is provided for a field, that field will be set to `null` in the k-NN index.
 
-In the `field_map`, indicate the location of the data for each field in the source file. You can also specify fields to be ingested directly into your index without making any changes to the source file by adding their JSON paths to the `ingest_fields` array. For example, in the following asynchronous batch ingestion request, the element with the JSON path `$.id` from the source file is ingested directly into the `id` field of your index. To ingest this data from the Amazon S3 file, send the following request to your SmartObserve endpoint:
+In the `field_map`, indicate the location of the data for each field in the source file. You can also specify fields to be ingested directly into your index without making any changes to the source file by adding their JSON paths to the `ingest_fields` array. For example, in the following asynchronous batch ingestion request, the element with the JSON path `$.id` from the source file is ingested directly into the `id` field of your index. To ingest this data from the Amazon S3 file, send the following request to your MCdesk endpoint:
 
 ```json
 POST /_plugins/_ml/_batch_ingestion

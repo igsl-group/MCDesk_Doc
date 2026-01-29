@@ -10,7 +10,7 @@ nav_order: 140
 The `analysis-phonenumber` plugin provides analyzers and tokenizers for parsing phone numbers. A dedicated analyzer is required because parsing phone numbers is a non-trivial task (even though it might seem trivial at first glance). For common misconceptions regarding phone number parsing, see [Falsehoods programmers believe about phone numbers](https://github.com/google/libphonenumber/blob/master/FALSEHOODS.md).
 
 
-SmartObserve supports the following phone number analyzers:
+MCdesk supports the following phone number analyzers:
 
 * [`phone`](#the-phone-analyzer): An [index analyzer]({{site.url}}{{site.baseurl}}/analyzers/index-analyzers/) to use at indexing time.
 * [`phone-search`](#the-phone-search-analyzer): A [search analyzer]({{site.url}}{{site.baseurl}}/analyzers/search-analyzers/) to use at search time.
@@ -25,7 +25,7 @@ The phone number analyzers are not meant to find phone numbers in larger texts. 
 Before you can use the phone number analyzers, you must install the `analysis-phonenumber` plugin by running the following command:
 
 ```sh
-./bin/smartobserve-plugin install analysis-phonenumber
+./bin/mcdesk-plugin install analysis-phonenumber
 ```
 
 ## Specifying a default region

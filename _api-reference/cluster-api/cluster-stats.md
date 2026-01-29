@@ -6,7 +6,7 @@ parent: Cluster APIs
 has_children: false
 redirect_from:
   - /api-reference/cluster-stats/
-  - /smartobserve/rest-api/cluster-stats/
+  - /mcdesk/rest-api/cluster-stats/
 ---
 
 # Cluster Stats API
@@ -31,12 +31,12 @@ All parameters are optional.
 
 Parameter | Type | Description
 :--- | :--- | :---
-&lt;node-filters&gt; | List | A comma-separated list of [node filters]({{site.url}}{{site.baseurl}}/api-reference/nodes-apis/index/#node-filters) that SmartObserve uses to filter results.
+&lt;node-filters&gt; | List | A comma-separated list of [node filters]({{site.url}}{{site.baseurl}}/api-reference/nodes-apis/index/#node-filters) that MCdesk uses to filter results.
 metric | String | A comma-separated list of [metric groups](#metric-groups), for example, `jvm,fs`. Default is all metric groups.
 index_metric | String | A comma-separated list of [index metric groups](#index-metric-groups), for example, `docs,store`. Default is all index metrics.
 
 
-Although the term `master` was deprecated in favor of `cluster_manager` subsequent to SmartObserve 2.0, the `master` field was retained for backward compatibility. If you have a node that has either a `master` role or a `cluster_manager` role, the `count` increases for both fields by 1. For an example node count increase, see the [example response](#example-response).
+Although the term `master` was deprecated in favor of `cluster_manager` subsequent to MCdesk 2.0, the `master` field was retained for backward compatibility. If you have a node that has either a `master` role or a `cluster_manager` role, the `count` increases for both fields by 1. For an example node count increase, see the [example response](#example-response).
 {: .note }
 
 ### Metric groups
@@ -50,10 +50,10 @@ Metric | Description
 `process` | Statistics about processes, including open file descriptors and CPU usage.
 `jvm` | Statistics about the JVM, including heap usage and threads.
 `fs` | Statistics about file system usage.
-`plugins` | Statistics about SmartObserve plugins integrated with the nodes.
+`plugins` | Statistics about MCdesk plugins integrated with the nodes.
 `network_types` | A list of the transport and HTTP networks connected to the nodes.
 `discovery_type` | The method used by the nodes to find other nodes in the cluster.
-`packaging_types` | Information about each node's SmartObserve distribution.
+`packaging_types` | Information about each node's MCdesk distribution.
 `ingest` | Statistics about ingest pipelines.
 
 ### Index metric groups
@@ -142,7 +142,7 @@ response = client.cluster.stats(
         "successful": 1,
         "failed": 0
     },
-    "cluster_name": "smartobserve-cluster",
+    "cluster_name": "mcdesk-cluster",
     "cluster_uuid": "QravFieJS_SlZJyBMcDMqQ",
     "timestamp": 1644607845054,
     "status": "yellow",
@@ -409,107 +409,107 @@ response = client.cluster.stats(
         },
         "plugins": [
             {
-                "name": "smartobserve-index-management",
+                "name": "mcdesk-index-management",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "SmartObserve Index Management Plugin",
-                "classname": "org.smartobserve.indexmanagement.IndexManagementPlugin",
+                "description": "MCdesk Index Management Plugin",
+                "classname": "org.mcdesk.indexmanagement.IndexManagementPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [
-                    "smartobserve-job-scheduler"
+                    "mcdesk-job-scheduler"
                 ],
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-security",
+                "name": "mcdesk-security",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "Provide access control related features for SmartObserve 1.0.0",
-                "classname": "org.smartobserve.security.SmartObserveSecurityPlugin",
-                "custom_foldername": "smartobserve-security",
+                "description": "Provide access control related features for MCdesk 1.0.0",
+                "classname": "org.mcdesk.security.MCdeskSecurityPlugin",
+                "custom_foldername": "mcdesk-security",
                 "extended_plugins": [],
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-cross-cluster-replication",
+                "name": "mcdesk-cross-cluster-replication",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "SmartObserve Cross Cluster Replication Plugin",
-                "classname": "org.smartobserve.replication.ReplicationPlugin",
+                "description": "MCdesk Cross Cluster Replication Plugin",
+                "classname": "org.mcdesk.replication.ReplicationPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [],
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-job-scheduler",
+                "name": "mcdesk-job-scheduler",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "SmartObserve Job Scheduler plugin",
-                "classname": "org.smartobserve.jobscheduler.JobSchedulerPlugin",
+                "description": "MCdesk Job Scheduler plugin",
+                "classname": "org.mcdesk.jobscheduler.JobSchedulerPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [],
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-anomaly-detection",
+                "name": "mcdesk-anomaly-detection",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "SmartObserve anomaly detector plugin",
-                "classname": "org.smartobserve.ad.AnomalyDetectorPlugin",
+                "description": "MCdesk anomaly detector plugin",
+                "classname": "org.mcdesk.ad.AnomalyDetectorPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [
                     "lang-painless",
-                    "smartobserve-job-scheduler"
+                    "mcdesk-job-scheduler"
                 ],
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-performance-analyzer",
+                "name": "mcdesk-performance-analyzer",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "SmartObserve Performance Analyzer Plugin",
-                "classname": "org.smartobserve.performanceanalyzer.PerformanceAnalyzerPlugin",
+                "description": "MCdesk Performance Analyzer Plugin",
+                "classname": "org.mcdesk.performanceanalyzer.PerformanceAnalyzerPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [],
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-reports-scheduler",
+                "name": "mcdesk-reports-scheduler",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
                 "description": "Scheduler for Dashboards Reports Plugin",
-                "classname": "org.smartobserve.reportsscheduler.ReportsSchedulerPlugin",
+                "classname": "org.mcdesk.reportsscheduler.ReportsSchedulerPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [
-                    "smartobserve-job-scheduler"
+                    "mcdesk-job-scheduler"
                 ],
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-asynchronous-search",
+                "name": "mcdesk-asynchronous-search",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
                 "description": "Provides support for asynchronous search",
-                "classname": "org.smartobserve.search.asynchronous.plugin.AsynchronousSearchPlugin",
+                "classname": "org.mcdesk.search.asynchronous.plugin.AsynchronousSearchPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [],
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-knn",
+                "name": "mcdesk-knn",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "SmartObserve k-NN plugin",
-                "classname": "org.smartobserve.knn.plugin.KNNPlugin",
+                "description": "MCdesk k-NN plugin",
+                "classname": "org.mcdesk.knn.plugin.KNNPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [
                     "lang-painless"
@@ -517,12 +517,12 @@ response = client.cluster.stats(
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-alerting",
+                "name": "mcdesk-alerting",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "Amazon SmartObserve alerting plugin",
-                "classname": "org.smartobserve.alerting.AlertingPlugin",
+                "description": "Amazon MCdesk alerting plugin",
+                "classname": "org.mcdesk.alerting.AlertingPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [
                     "lang-painless"
@@ -530,23 +530,23 @@ response = client.cluster.stats(
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-observability",
+                "name": "mcdesk-observability",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "SmartObserve Plugin for SmartObserve Dashboards Observability",
-                "classname": "org.smartobserve.observability.ObservabilityPlugin",
+                "description": "MCdesk Plugin for MCdesk Dashboards Observability",
+                "classname": "org.mcdesk.observability.ObservabilityPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [],
                 "has_native_controller": false
             },
             {
-                "name": "smartobserve-sql",
+                "name": "mcdesk-sql",
                 "version": "1.2.4.0",
-                "smartobserve_version": "1.2.4",
+                "mcdesk_version": "1.2.4",
                 "java_version": "1.8",
-                "description": "SmartObserve SQL",
-                "classname": "org.smartobserve.sql.plugin.SQLPlugin",
+                "description": "MCdesk SQL",
+                "classname": "org.mcdesk.sql.plugin.SQLPlugin",
                 "custom_foldername": "",
                 "extended_plugins": [],
                 "has_native_controller": false
@@ -554,10 +554,10 @@ response = client.cluster.stats(
         ],
         "network_types": {
             "transport_types": {
-                "org.smartobserve.security.ssl.http.netty.SecuritySSLNettyTransport": 1
+                "org.mcdesk.security.ssl.http.netty.SecuritySSLNettyTransport": 1
             },
             "http_types": {
-                "org.smartobserve.security.http.SecurityHttpServerTransport": 1
+                "org.mcdesk.security.http.SecurityHttpServerTransport": 1
             }
         },
         "discovery_types": {
@@ -599,14 +599,14 @@ Field | Description
 `indices.analysis` | Information about analyzers used in the cluster.
 `nodes` | Statistics about the nodes in the cluster.
 `nodes.count` | The number of nodes returned by the request.
-`nodes.versions` | The SmartObserve version number for each node.
+`nodes.versions` | The MCdesk version number for each node.
 `nodes.os` | Information about the operating systems used by the nodes.
 `nodes.process` | A list of processes used by each node.
 `nodes.jvm` | Statistics about the JVMs in use.
 `nodes.fs` | Information about the node's file storage.
-`nodes.plugins` | A list of the SmartObserve plugins integrated with the nodes.
+`nodes.plugins` | A list of the MCdesk plugins integrated with the nodes.
 `nodes.network_types` | A list of the transport and HTTP networks connected to the nodes.
 `nodes.discovery_type` | A list of methods used by the nodes to find other nodes in the cluster.
-`nodes.packaging_types` | Information about each node's SmartObserve distribution.
+`nodes.packaging_types` | Information about each node's MCdesk distribution.
 `nodes.ingest` | Information about the node's ingest pipelines/nodes, if there are any.
 `total_time_spent` | The total amount of download and upload time spent across all shards in the cluster when downloading or uploading from the remote store.

@@ -11,11 +11,11 @@ grand_parent: Supported field types
 **Introduced 1.0**
 {: .label .label-purple }
 
-The `date_nanos` field type is similar to the [`date`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/) field type in that it holds a date. However, `date` stores the date in millisecond resolution, while `date_nanos` stores the date in nanosecond resolution. Dates are stored as `long` values that correspond to nanoseconds since the epoch. Therefore, the range of supported dates is approximately 1970--2262.
+The `date_nanos` field type is similar to the [`date`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/) field type in that it holds a date. However, `date` stores the date in millisecond resolution, while `date_nanos` stores the date in nanosecond resolution. Dates are stored as `long` values that correspond to nanoseconds since the epoch. Therefore, the range of supported dates is approximately 1970--2262.
 
 Queries on `date_nanos` fields are converted to range queries on the field value's `long` representation. Then the stored fields and aggregation results are converted to a string using the format set on the field. 
 
-The `date_nanos` field supports all [formats]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date#formats) and [parameters]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date#parameters) that `date` supports. You can use multiple formats separated by `||`.
+The `date_nanos` field supports all [formats]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date#formats) and [parameters]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date#parameters) that `date` supports. You can use multiple formats separated by `||`.
 {: .note}
 
 For `date_nanos` fields, you can use the `strict_date_optional_time_nanos` format to preserve nanosecond resolution. If you don't specify the format when mapping a field as `date_nanos`, the default format is `strict_date_optional_time||epoch_millis` that lets you pass values in either `strict_date_optional_time` or `epoch_millis` format. The `strict_date_optional_time` format supports dates in nanosecond resolution, but the `epoch_millis` format supports dates in millisecond resolution only.

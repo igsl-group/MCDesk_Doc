@@ -12,24 +12,24 @@ redirect_from:
 On **Windows**, use **securityadmin.bat** in place of **securityadmin.sh**. For more information, see [Windows usage](#windows-usage).
 {: .note}
 
-The Security plugin stores its configuration—including users, roles, permissions, and backend settings—in a [system index]({{site.url}}{{site.baseurl}}/security/configuration/system-indices) on the SmartObserve cluster. Storing these settings in an index lets you change settings without restarting the cluster and eliminates the need to edit configuration files on every individual node. This is accomplished by running the `securityadmin.sh` script.
+The Security plugin stores its configuration—including users, roles, permissions, and backend settings—in a [system index]({{site.url}}{{site.baseurl}}/security/configuration/system-indices) on the MCdesk cluster. Storing these settings in an index lets you change settings without restarting the cluster and eliminates the need to edit configuration files on every individual node. This is accomplished by running the `securityadmin.sh` script.
 
-The first job of the script is to initialize the `.opendistro_security` index. This loads your initial configuration into the index using the configuration files in `/config/smartobserve-security`. After the `.opendistro_security` index is initialized, you can use SmartObserve Dashboards or the REST API to manage your users, roles, and permissions.
+The first job of the script is to initialize the `.opendistro_security` index. This loads your initial configuration into the index using the configuration files in `/config/mcdesk-security`. After the `.opendistro_security` index is initialized, you can use MCdesk Dashboards or the REST API to manage your users, roles, and permissions.
 
-The script can be found at `/plugins/smartobserve-security/tools/securityadmin.sh`. This is a relative path showing where the `securityadmin.sh` script is located. The absolute path depends on the directory where you've installed SmartObserve. For example, if you use Docker to install SmartObserve, the path will resemble the following: `/usr/share/smartobserve/plugins/smartobserve-security/tools/securityadmin.sh`.
+The script can be found at `/plugins/mcdesk-security/tools/securityadmin.sh`. This is a relative path showing where the `securityadmin.sh` script is located. The absolute path depends on the directory where you've installed MCdesk. For example, if you use Docker to install MCdesk, the path will resemble the following: `/usr/share/mcdesk/plugins/mcdesk-security/tools/securityadmin.sh`.
 
-The `securityadmin.sh` script requires SSL/TLS HTTP to be enabled for your SmartObserve cluster. Set `plugins.security.ssl.http.enabled: true` in your `smartobserve.yml` file before proceeding. If your cluster does not use SSL/TLS on the HTTP layer but requires `securityadmin.sh`, enable SSL/TLS on a single node, such as the`ingest` node, and then run `securityadmin.sh` on that node. Enable this setting by configuring the [REST layer TLS]({{site.url}}{{site.baseurl}}/security/configuration/tls/#rest-layer-tls) settings on only one node. Restarting SmartObserve on that node is necessary following  any change to the `smartobserve.yml` file.
+The `securityadmin.sh` script requires SSL/TLS HTTP to be enabled for your MCdesk cluster. Set `plugins.security.ssl.http.enabled: true` in your `mcdesk.yml` file before proceeding. If your cluster does not use SSL/TLS on the HTTP layer but requires `securityadmin.sh`, enable SSL/TLS on a single node, such as the`ingest` node, and then run `securityadmin.sh` on that node. Enable this setting by configuring the [REST layer TLS]({{site.url}}{{site.baseurl}}/security/configuration/tls/#rest-layer-tls) settings on only one node. Restarting MCdesk on that node is necessary following  any change to the `mcdesk.yml` file.
 {: .note}
 
 ## A word of caution
 
-If you make changes to the configuration files in `config/smartobserve-security`, SmartObserve does _not_ automatically apply these changes. Instead, you must run `securityadmin.sh` to load the updated files into the index. The `securityadmin.sh` file can be found in `<OPENSEARCH_HOME>/plugins/smartobserve-security/tools/securityadmin.[sh|bat]`.
+If you make changes to the configuration files in `config/mcdesk-security`, MCdesk does _not_ automatically apply these changes. Instead, you must run `securityadmin.sh` to load the updated files into the index. The `securityadmin.sh` file can be found in `<OPENSEARCH_HOME>/plugins/mcdesk-security/tools/securityadmin.[sh|bat]`.
 
 Running `securityadmin.sh` **overwrites** one or more portions of the `.opendistro_security` index. Run it with extreme care to avoid losing your existing resources. Consider the following example:
 
 1. You initialize the `.opendistro_security` index.
 1. You create ten users using the REST API.
-1. You decide to create a new [reserved user]({{site.url}}{{site.baseurl}}/security/access-control/api/#reserved-and-hidden-resources) using `internal_users.yml`, found in `<OPENSEARCH_HOME>/config/smartobserve-security/` directory.
+1. You decide to create a new [reserved user]({{site.url}}{{site.baseurl}}/security/access-control/api/#reserved-and-hidden-resources) using `internal_users.yml`, found in `<OPENSEARCH_HOME>/config/mcdesk-security/` directory.
 1. You run `securityadmin.sh` again to load the new reserved user into the index.
 1. You lose all ten users that you created using the REST API.
 
@@ -47,7 +47,7 @@ To avoid this situation, back up your current configuration before making change
 If you use the `-f` argument rather than `-cd`, you can load a single YAML file into the index rather than the entire directory of YAML files. For example, if you create ten new roles, you can safely load `internal_users.yml` into the index without losing your roles; only the internal users get overwritten.
 
 ```bash
-./securityadmin.sh -f ../../../config/smartobserve-security/internal_users.yml \
+./securityadmin.sh -f ../../../config/mcdesk-security/internal_users.yml \
   -t internalusers \
   -icl \
   -nhnv \
@@ -59,7 +59,7 @@ If you use the `-f` argument rather than `-cd`, you can load a single YAML file 
 To resolve all environment variables before applying the security configurations, use the `-rev` parameter.
 
 ```bash
-./securityadmin.sh -cd ../../../config/smartobserve-security/ \
+./securityadmin.sh -cd ../../../config/mcdesk-security/ \
  -rev \
  -cacert ../../../root-ca.pem \
  -cert ../../../kirk.pem \
@@ -74,7 +74,7 @@ password: ${env.LDAP_PASSWORD}
 
 ## Configure the admin certificate
 
-In order to use `securityadmin.sh`, you must add the distinguished names (DNs) of all admin certificates to `smartobserve.yml`. If you use the demo certificates, for example, `smartobserve.yml` might contain the following lines for the `kirk` certificate:
+In order to use `securityadmin.sh`, you must add the distinguished names (DNs) of all admin certificates to `mcdesk.yml`. If you use the demo certificates, for example, `mcdesk.yml` might contain the following lines for the `kirk` certificate:
 
 ```yml
 plugins.security.authcz.admin_dn:
@@ -87,19 +87,19 @@ You can't use node certificates as admin certificates. The two must be separate.
 
 ## Basic usage
 
-The `securityadmin.sh` tool can be run from any machine that has access to the HTTP port of your SmartObserve cluster (the default port is 9200). You can change the Security plugin configuration without having to access your nodes through SSH.
+The `securityadmin.sh` tool can be run from any machine that has access to the HTTP port of your MCdesk cluster (the default port is 9200). You can change the Security plugin configuration without having to access your nodes through SSH.
 
 
-Each node also includes the tool at `plugins/smartobserve-security/tools/securityadmin.sh`. You might need to make the script executable before running it:
+Each node also includes the tool at `plugins/mcdesk-security/tools/securityadmin.sh`. You might need to make the script executable before running it:
 
 ```bash
-chmod +x plugins/smartobserve-security/tools/securityadmin.sh
+chmod +x plugins/mcdesk-security/tools/securityadmin.sh
 ```
 
 To print all available command line options, run the script with no arguments:
 
 ```bash
-./plugins/smartobserve-security/tools/securityadmin.sh
+./plugins/mcdesk-security/tools/securityadmin.sh
 ```
 
 ## Using `securityadmin` with PEM files
@@ -107,7 +107,7 @@ To print all available command line options, run the script with no arguments:
 To load your initial configuration (all YAML files), you might use the following command:
 
 ```bash
-./securityadmin.sh -cd ../../../config/smartobserve-security/ -icl -nhnv \
+./securityadmin.sh -cd ../../../config/mcdesk-security/ -icl -nhnv \
   -cacert ../../../config/root-ca.pem \
   -cert ../../../config/kirk.pem \
   -key ../../../config/kirk-key.pem
@@ -132,7 +132,7 @@ Name | Description
 JKS format keystore files are compatible with `securityadmin.sh`, as shown in the following example setting:
 
 ```bash
-./securityadmin.sh -cd ../../../config/smartobserve-security -icl -nhnv
+./securityadmin.sh -cd ../../../config/mcdesk-security -icl -nhnv
   -ts <path/to/truststore> -tspass <truststore password>
   -ks <path/to/keystore> -kspass <keystore password>
 ```
@@ -155,32 +155,32 @@ The certificate authority (CA) that signs the `admin` certificate can differ fro
 
 ## Sample commands
 
-Apply all YAML files in `config/smartobserve-security/` using PEM certificates:
+Apply all YAML files in `config/mcdesk-security/` using PEM certificates:
 
 ```bash
-/usr/share/smartobserve/plugins/smartobserve-security/tools/securityadmin.sh \
-  -cacert /etc/smartobserve/root-ca.pem \
-  -cert /etc/smartobserve/kirk.pem \
-  -key /etc/smartobserve/kirk-key.pem \
-  -cd /usr/share/smartobserve/config/smartobserve-security/
+/usr/share/mcdesk/plugins/mcdesk-security/tools/securityadmin.sh \
+  -cacert /etc/mcdesk/root-ca.pem \
+  -cert /etc/mcdesk/kirk.pem \
+  -key /etc/mcdesk/kirk-key.pem \
+  -cd /usr/share/mcdesk/config/mcdesk-security/
 ```
 
 Apply a single YAML file (`config.yml`) using PEM certificates:
 
 ```bash
 ./securityadmin.sh \
-  -f ../../../config/smartobserve-security/config.yml \
-  -icl -nhnv -cert /etc/smartobserve/kirk.pem \
-  -cacert /etc/smartobserve/root-ca.pem \
-  -key /etc/smartobserve/kirk-key.pem \
+  -f ../../../config/mcdesk-security/config.yml \
+  -icl -nhnv -cert /etc/mcdesk/kirk.pem \
+  -cacert /etc/mcdesk/root-ca.pem \
+  -key /etc/mcdesk/kirk-key.pem \
   -t config
 ```
 
-Apply all YAML files in `config/smartobserve-security/` with keystore and truststore files:
+Apply all YAML files in `config/mcdesk-security/` with keystore and truststore files:
 
 ```bash
 ./securityadmin.sh \
-  -cd /usr/share/smartobserve/config/smartobserve-security/ \
+  -cd /usr/share/mcdesk/config/mcdesk-security/ \
   -ks /path/to/keystore.jks \
   -kspass changeit \
   -ts /path/to/truststore.jks \
@@ -190,17 +190,17 @@ Apply all YAML files in `config/smartobserve-security/` with keystore and trusts
 ```
 
 
-### SmartObserve settings
+### MCdesk settings
 
-If you run a default SmartObserve installation, which listens on port 9200 and uses `smartobserve` as a cluster name, you can omit the following settings altogether. Otherwise, specify your SmartObserve settings by using the following switches.
+If you run a default MCdesk installation, which listens on port 9200 and uses `mcdesk` as a cluster name, you can omit the following settings altogether. Otherwise, specify your MCdesk settings by using the following switches.
 
 Name | Description
 :--- | :---
-`-h` | SmartObserve hostname. Default is `localhost`.
-`-p` | SmartObserve port. Default is 9200
-`-cn` | Cluster name. Default is `smartobserve`.
+`-h` | MCdesk hostname. Default is `localhost`.
+`-p` | MCdesk port. Default is 9200
+`-cn` | Cluster name. Default is `mcdesk`.
 `-icl` | Ignore cluster name.
-`-sniff` | Sniff cluster nodes. Sniffing detects available nodes using the SmartObserve `_cluster/state` API.
+`-sniff` | Sniff cluster nodes. Sniffing detects available nodes using the MCdesk `_cluster/state` API.
 `-arc,--accept-red-cluster` | Execute `securityadmin.sh` even if the cluster state is red. Default is `false`, which means the script will not execute on a red cluster.
 
 
@@ -228,13 +228,13 @@ Name | Description
 To upload all configuration files in a directory, use this:
 
 ```bash
-./securityadmin.sh -cd ../../../config/smartobserve-security -ts ... -tspass ... -ks ... -kspass ...
+./securityadmin.sh -cd ../../../config/mcdesk-security -ts ... -tspass ... -ks ... -kspass ...
 ```
 
 If you want to push a single configuration file, use this:
 
 ```bash
-./securityadmin.sh -f ../../../config/smartobserve-security/internal_users.yml -t internalusers  \
+./securityadmin.sh -f ../../../config/mcdesk-security/internal_users.yml -t internalusers  \
     -ts ... -tspass ... -ks ... -kspass ...
 ```
 
@@ -283,16 +283,16 @@ To upload the dumped files to another cluster:
 ./securityadmin.sh -h production.example.com -p 9301 -cd /etc/backup/ -ts ... -tspass ... -ks ... -kspass ...
 ```
 
-To migrate configuration YAML files from the Open Distro for Elasticsearch 0.x.x format to the SmartObserve 1.x.x format:
+To migrate configuration YAML files from the Open Distro for Elasticsearch 0.x.x format to the MCdesk 1.x.x format:
 
 ```bash
-./securityadmin.sh -migrate ../../../config/smartobserve-security -ts ... -tspass ... -ks ... -kspass ...
+./securityadmin.sh -migrate ../../../config/mcdesk-security -ts ... -tspass ... -ks ... -kspass ...
 ```
 
 Name | Description
 :--- | :---
 `-backup` | Retrieve the current Security plugin configuration from a running cluster and dump it to the working directory.
-`-migrate` | Migrate configuration YAML files from Open Distro for Elasticsearch 0.x.x to SmartObserve 1.x.x.
+`-migrate` | Migrate configuration YAML files from Open Distro for Elasticsearch 0.x.x to MCdesk 1.x.x.
 
 
 ### Other options
@@ -304,21 +304,21 @@ Name | Description
 `-w` | Displays information about the used admin certificate.
 `-rl` | By default, the Security plugin caches authenticated users, along with their roles and permissions, for one hour. This option reloads the current Security plugin configuration stored in your cluster, invalidating any cached users, roles, and permissions.
 `-i` | The Security plugin index name. Default is `.opendistro_security`.
-`-er` | Set explicit number of replicas or auto-expand expression for the `smartobserve_security` index.
+`-er` | Set explicit number of replicas or auto-expand expression for the `mcdesk_security` index.
 `-era` | Enable replica auto-expand.
 `-dra` | Disable replica auto-expand.
 `-us` | Update the replica settings.
 
 ## Windows usage
 
-On Windows, the equivalent of `securityadmin.sh` is the `securityadmin.bat` script located in the `\path\to\smartobserve-{{site.smartobserve_version}}\plugins\smartobserve-security\tools\` directory.
+On Windows, the equivalent of `securityadmin.sh` is the `securityadmin.bat` script located in the `\path\to\mcdesk-{{site.mcdesk_version}}\plugins\mcdesk-security\tools\` directory.
 
 When running the example commands in the preceding sections, use the **command prompt** or **Powershell**. Open the command prompt by entering `cmd` or Powershell by entering `powershell` in the search box next to **Start** on the taskbar. 
 
 For example, to print all available command line options, run the script with no arguments:
 
 ```bat
-.\plugins\smartobserve-security\tools\securityadmin.bat
+.\plugins\mcdesk-security\tools\securityadmin.bat
 ```
 
 When entering a multiline command, use the caret (`^`) character to escape the next character in the command line.
@@ -326,7 +326,7 @@ When entering a multiline command, use the caret (`^`) character to escape the n
 For example, to load your initial configuration (all YAML files), use the following command:
 
 ```bat
-.\securityadmin.bat -cd ..\..\..\config\smartobserve-security\ -icl -nhnv ^
+.\securityadmin.bat -cd ..\..\..\config\mcdesk-security\ -icl -nhnv ^
   -cacert ..\..\..\config\root-ca.pem ^
   -cert ..\..\..\config\kirk.pem ^
   -key ..\..\..\config\kirk-key.pem

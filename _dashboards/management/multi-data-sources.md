@@ -7,15 +7,15 @@ redirect_from:
   - /dashboards/discover/multi-data-sources/
 ---
 
-# Configuring and using multiple data sources in SmartObserve Dashboards
+# Configuring and using multiple data sources in MCdesk Dashboards
 
-You can ingest, process, and analyze data from multiple data sources in SmartObserve Dashboards. You configure the data sources under **Dashboards Management** > **Data sources**. This interface is shown in the following image.
+You can ingest, process, and analyze data from multiple data sources in MCdesk Dashboards. You configure the data sources under **Dashboards Management** > **Data sources**. This interface is shown in the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/dashboards/data_sources_management.png" alt="Dashboards Management data sources main screen" width="700">
 
 ## Getting started
 
-The following tutorial guides you through configuring and using multiple data sources in SmartObserve Dashboards.
+The following tutorial guides you through configuring and using multiple data sources in MCdesk Dashboards.
 
 The following features are not supported when using multiple data sources: timeline visualization types.
 {: .note}
@@ -24,10 +24,10 @@ The following features are not supported when using multiple data sources: timel
 
 To use multiple data sources, you must enable the `data_source.enabled` setting. It is disabled by default. To enable multiple data sources:
 
-1. Open your local copy of the SmartObserve Dashboards configuration file, `smartobserve_dashboards.yml`. If you don't have a copy, [`smartobserve_dashboards.yml`](https://github.com/igsl-group/SmartObserve-Dashboards/blob/main/config/smartobserve_dashboards.yml) is available on GitHub.
+1. Open your local copy of the MCdesk Dashboards configuration file, `mcdesk_dashboards.yml`. If you don't have a copy, [`mcdesk_dashboards.yml`](https://github.com/igsl-group/MCdesk-Dashboards/blob/main/config/mcdesk_dashboards.yml) is available on GitHub.
 2. Set `data_source.enabled:` to `true` and save the YAML file.
-3. Restart the SmartObserve Dashboards container.
-4. Verify that the configuration settings were configured properly by connecting to SmartObserve Dashboards and viewing the **Dashboards Management** navigation menu. **Data sources** appears in the sidebar. You'll see a view similar to the following image.
+3. Restart the MCdesk Dashboards container.
+4. Verify that the configuration settings were configured properly by connecting to MCdesk Dashboards and viewing the **Dashboards Management** navigation menu. **Data sources** appears in the sidebar. You'll see a view similar to the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/dashboards/data_sources_management.png" alt="Data sources in sidebar within Dashboards Management" width="700">
 
@@ -37,7 +37,7 @@ A data source connection specifies the parameters needed to connect to a data so
 
 To create a new data source connection:
 
-1. From the SmartObserve Dashboards main menu, select **Dashboards Management** > **Data sources** > **Create data source connection**.
+1. From the MCdesk Dashboards main menu, select **Dashboards Management** > **Data sources** > **Create data source connection**.
 
 2. Add the required information to each field to configure the **Connection Details** and **Authentication Method**.
 
@@ -47,7 +47,7 @@ To create a new data source connection:
         - **No authentication**: No authentication is used to connect to the data source.
         - **Username & Password**: A basic username and password are used to connect to the data source.
         - **AWS SigV4**: An AWS Signature Version 4 authenticating request is used to connect to the data source. AWS Signature Version 4 requires an access key and a secret key.
-            - For AWS Signature Version 4 authentication, first specify the **Region**. Next, select the SmartObserve service from the **Service Name** list. The options are **Amazon SmartObserve Service** and **Amazon SmartObserve Serverless**. Last, enter the **Access Key** and **Secret Key** for authorization.
+            - For AWS Signature Version 4 authentication, first specify the **Region**. Next, select the MCdesk service from the **Service Name** list. The options are **Amazon MCdesk Service** and **Amazon MCdesk Serverless**. Last, enter the **Access Key** and **Secret Key** for authorization.
 
       For information about available AWS Regions for AWS accounts, see [Available Regions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions). For more information about AWS Signature Version 4 authentication requests, see [Authenticating Requests (AWS Signature Version 4)](https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html).
       {: .note}
@@ -83,9 +83,9 @@ Watch the following 10-second video to see it in action.
 
 To select a data source through the Dev Tools console, follow these steps:
 
-1. Locate your copy of `smartobserve_dashboards.yml` and open it in the editor of your choice.
+1. Locate your copy of `mcdesk_dashboards.yml` and open it in the editor of your choice.
 2. Set `data_source.enabled` to `true`.
-3. Connect to SmartObserve Dashboards and select **Dev Tools** in the menu.
+3. Connect to MCdesk Dashboards and select **Dev Tools** in the menu.
 4. Enter the following query in the editor pane of the **Console** and then select the play button:
 
     ```json
@@ -108,9 +108,9 @@ To upload saved objects from connected data sources to a dashboard with multiple
 
 Follow these steps to import saved objects from a connected data source:
 
-1. Locate your `smartobserve_dashboards.yml` file and open it in your preferred text editor.
+1. Locate your `mcdesk_dashboards.yml` file and open it in your preferred text editor.
 2. Set `data_source.enabled` to `true`.
-3. Connect to SmartObserve Dashboards and go to **Dashboards Management** > **Saved objects**.
+3. Connect to MCdesk Dashboards and go to **Dashboards Management** > **Saved objects**.
 4. Select **Import** > **Select file** and upload the file acquired from the connected data source.
 5. Choose the appropriate **Data source** from the dropdown menu, set your **Conflict management** option, and then select the **Import** button.
 
@@ -120,11 +120,11 @@ Follow these steps to import saved objects from a connected data source:
 Introduced 2.13
 {: .label .label-purple }
 
-A feature flag in your `smartobserve_dashboards.yml` file allows you to show or hide authentication methods within the `data_source` plugin. The following setting hides the authentication method for `AWSSigV4`.
+A feature flag in your `mcdesk_dashboards.yml` file allows you to show or hide authentication methods within the `data_source` plugin. The following setting hides the authentication method for `AWSSigV4`.
 
 ````
-# Set enabled to false to hide the authentication method from multiple data source in SmartObserve Dashboards.
-# If this setting is commented out, then all three options will be available in SmartObserve Dashboards.
+# Set enabled to false to hide the authentication method from multiple data source in MCdesk Dashboards.
+# If this setting is commented out, then all three options will be available in MCdesk Dashboards.
 # The default value will be considered as true.
 data_source.authTypes:
    NoAuthentication:
@@ -143,7 +143,7 @@ The following demo shows this process.
 Introduced 2.13
 {: .label .label-purple }
 
-A feature flag in your `smartobserve_dashboards.yml` file allows you to hide the local cluster option within the `data_source` plugin. This option hides the local cluster from the data source dropdown menu and index creation page, which is ideal for environments with or without a local SmartObserve cluster. The following example setting, shown in a 20-second demo, hides the local cluster:
+A feature flag in your `mcdesk_dashboards.yml` file allows you to hide the local cluster option within the `data_source` plugin. This option hides the local cluster from the data source dropdown menu and index creation page, which is ideal for environments with or without a local MCdesk cluster. The following example setting, shown in a 20-second demo, hides the local cluster:
 
 ````
 # hide local cluster in the data source dropdown and index pattern creation page.
@@ -182,7 +182,7 @@ To perform operations on a specific index within a data source, select the indiv
 
 When you set `data_source.enabled:true`, you can create or view detectors associated with a data source: 
 
-1. Navigate to **SmartObserve Plugins** > **Anomaly Detection** under the main menu.
+1. Navigate to **MCdesk Plugins** > **Anomaly Detection** under the main menu.
 2. Select the database icon on the upper-right menu bar to view a list of connected data sources.
 3. Select a data source to view a list of associated detectors. If the selected data source does not have detectors, then the **Create detector** button appears under the upper-right menu bar. See [Creating anomaly detectors]({{site.url}}{{site.baseurl}}/observing-your-data/ad/dashboards-anomaly-detection/#creating-anomaly-detectors) for instructions on creating detectors through the interface.
 
@@ -218,7 +218,7 @@ The following GIF illustrates these steps.
 
 When you set `data_source.enabled:true`, you can view all available data sources, including the ones currently used as layers, in a map:
 
-1. Navigate to **SmartObserve Plugins** > **Maps** under the main menu.
+1. Navigate to **MCdesk Plugins** > **Maps** under the main menu.
 2. From the dropdown menu, select the appropriate data source to edit or create an associated map layer:
   - Edit a map layer by selecting one from the **Layers** dropdown menu. In the pop-up window, view the settings and edit them as needed.
   - Add a new layer by selecting the **Add layer** button from the dropdown menu and then selecting **Documents** in the pop-up window. Another pop-up window appears on the right. Enter the required information on the **Data** tab. Note that the data source name is prefixed to the index pattern name. The **Style** and **Settings** tabs include optional information.
@@ -234,7 +234,7 @@ The following GIF illustrates these steps.
 
 When you set `data_source.enabled:true`, you can view and manage machine learning models from different connected data sources: 
 
-1. Navigate to **SmartObserve Plugins** > **Machine Learning** under the main menu. 
+1. Navigate to **MCdesk Plugins** > **Machine Learning** under the main menu. 
 2. Select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/database-icon.png" class="inline-icon" alt="database icon"/>{:/} icon and choose a data source from the dropdown menu. A list of models associated with the selected data source is displayed.
 3. Select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/inspect-icon.png" class="inline-icon" alt="inspect icon"/>{:/} icon to the right of a listed model to view the model's configuration details for the selected data source.
 
@@ -260,7 +260,7 @@ The following GIF illustrates these steps.
 
 When you set `data_source.enabled:true`, you can compare search results across indexes from different data sources: 
 
-1. Navigate to **SmartObserve Plugins** > **Search Relevance** under the main menu.
+1. Navigate to **MCdesk Plugins** > **Search Relevance** under the main menu.
 2. Select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/database-icon.png" class="inline-icon" alt="database icon"/>{:/} icon and choose a data source from the dropdown menu. A list of available data sources is displayed.
 3. Under both **Query 1** and **Query 2**, select a data source and an index.
 4. Select the **Search** button to run the queries. The query results are displayed in their respective results panels. 
@@ -275,7 +275,7 @@ Introduced 2.15
 
 When you set `data_source.enabled:true`, you can view and manage security analytics resources, such as detection rules, across multiple connected data sources:
 
-1. Navigate to **SmartObserve Plugins** > **Security analytics** under the main menu.
+1. Navigate to **MCdesk Plugins** > **Security analytics** under the main menu.
 2. Select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/database-icon.png" class="inline-icon" alt="database icon"/>{:/} icon and choose a data source from the dropdown menu.
 3. Select **Dectectors** > **Detection rules** from the navigation menu on the left. A list of detection rules is displayed.
 4. Select a rule to open a pop-up window containing more information about that rule.
@@ -284,7 +284,7 @@ The following GIF illustrates these steps.
 
 <img src="{{site.url}}{{site.baseurl}}/images/dashboards/mds_sa_detection_rules_view.gif" alt="Multiple data sources in Security analytics list page"/>
 
-1. Navigate to **SmartObserve Plugins** > **Security analytics** under the main menu.
+1. Navigate to **MCdesk Plugins** > **Security analytics** under the main menu.
 2. Select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/database-icon.png" class="inline-icon" alt="database icon"/>{:/} icon and choose a data source from the dropdown menu.
 3. Select **Dectectors** > **Detection rules** from the navigation menu on the left.
 4. Select the **Create detection rule** button on the upper right and then enter the required configuration details in the **Create detection rule** window. 
@@ -300,7 +300,7 @@ Introduced 2.15
 
 When you set `data_source.enabled:true`, you can you can view and manage alerting monitors across multiple connected data sources: 
 
-1. Navigate to **SmartObserve Plugins** > **Alerting** under the main menu.
+1. Navigate to **MCdesk Plugins** > **Alerting** under the main menu.
 2. Select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/database-icon.png" class="inline-icon" alt="database icon"/>{:/} icon and choose a data source from the dropdown menu. A list of associated monitors is displayed.
 3. Select a monitor to view its details.
 
@@ -342,5 +342,5 @@ After configuring multiple data sources, you can analyze the data from each sour
 
 - [Index patterns]({{site.url}}{{site.baseurl}}/dashboards/management/index-patterns/) 
 - [Index Management]({{site.url}}{{site.baseurl}}/dashboards/im-dashboards/index/)
-- [Connecting SmartObserve and Amazon S3 through SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/management/S3-data-source/)
-- [SmartObserve Integrations]({{site.url}}{{site.baseurl}}/integrations/index/)
+- [Connecting MCdesk and Amazon S3 through MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/management/S3-data-source/)
+- [MCdesk Integrations]({{site.url}}{{site.baseurl}}/integrations/index/)

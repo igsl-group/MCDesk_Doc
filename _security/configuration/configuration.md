@@ -11,7 +11,7 @@ redirect_from:
 
 One of the first steps when setting up the Security plugin is deciding which authentication backend to use. The role played by the backend in authentication is covered in [steps 2 and 3 of the authentication flow]({{site.url}}{{site.baseurl}}/security/authentication-backends/authc-index/#authentication-flow). The plugin has an internal user database, but many people prefer to use an existing authentication backend, such as an LDAP server, or some combination of the two.
 
-The primary file used to configure the authentication and authorization backend is `/usr/share/smartobserve/config/smartobserve-security/config.yml`. This file defines how the Security plugin retrieves user credentials, how the plugin verifies the credentials, and how the plugin fetches additional roles when the backend selected for authentication and authorization supports this feature. This topic provides a basic overview of the configuration file and its requirements for setting up security. For information about configuring a specific backend, see [Authentication backends]({{site.url}}{{site.baseurl}}/security/authentication-backends/authc-index/).
+The primary file used to configure the authentication and authorization backend is `/usr/share/mcdesk/config/mcdesk-security/config.yml`. This file defines how the Security plugin retrieves user credentials, how the plugin verifies the credentials, and how the plugin fetches additional roles when the backend selected for authentication and authorization supports this feature. This topic provides a basic overview of the configuration file and its requirements for setting up security. For information about configuring a specific backend, see [Authentication backends]({{site.url}}{{site.baseurl}}/security/authentication-backends/authc-index/).
 
 The `config.yml` file includes three main parts:
 
@@ -149,7 +149,7 @@ The following table shows the possible values for the `type` setting under `auth
 
 ## Backend configuration examples
 
-The default `config/smartobserve-security/config.yml` file included in your SmartObserve distribution contains many configuration examples. Use these examples as a starting point and customize them to your needs. 
+The default `config/mcdesk-security/config.yml` file included in your MCdesk distribution contains many configuration examples. Use these examples as a starting point and customize them to your needs. 
 
 
 ## Next steps

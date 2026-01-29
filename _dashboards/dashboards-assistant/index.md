@@ -1,6 +1,6 @@
 ---
 layout: default
-title: SmartObserve Assistant for SmartObserve Dashboards
+title: MCdesk Assistant for MCdesk Dashboards
 nav_order: 3
 has_children: true
 has_toc: false
@@ -8,18 +8,18 @@ redirect_from:
   - /dashboards/dashboards-assistant/
 ---
 
-Note that machine learning models are probabilistic and that some may perform better than others, so the SmartObserve Assistant may occasionally produce inaccurate information. We recommend evaluating outputs for accuracy as appropriate to your use case, including reviewing the output or combining it with other verification factors.
+Note that machine learning models are probabilistic and that some may perform better than others, so the MCdesk Assistant may occasionally produce inaccurate information. We recommend evaluating outputs for accuracy as appropriate to your use case, including reviewing the output or combining it with other verification factors.
 {: .important}
 
-# SmartObserve Assistant for SmartObserve Dashboards
+# MCdesk Assistant for MCdesk Dashboards
 **Introduced 2.13**
 {: .label .label-purple }
 
-The SmartObserve Assistant toolkit helps you create AI-powered assistants for SmartObserve Dashboards without requiring you to have specialized query tools or skills.
+The MCdesk Assistant toolkit helps you create AI-powered assistants for MCdesk Dashboards without requiring you to have specialized query tools or skills.
 
-## Enabling SmartObserve Assistant
+## Enabling MCdesk Assistant
 
-To enable **SmartObserve Assistant** in SmartObserve Dashboards, locate your copy of the `smartobserve_dashboards.yml` file and set the following option:
+To enable **MCdesk Assistant** in MCdesk Dashboards, locate your copy of the `mcdesk_dashboards.yml` file and set the following option:
 
 ```yaml
 assistant.chat.enabled: true
@@ -39,26 +39,26 @@ PUT .plugins-ml-config/_doc/os_chat
 ```
 {% include copy-curl.html %}
 
-For more information about configuring the root agent, see the [Build your own chatbot tutorial]({{site.url}}{{site.baseurl}}/ml-commons-plugin/tutorials/build-chatbot/#step-5-configure-a-root-chatbot-agent-in-smartobserve-dashboards).
+For more information about configuring the root agent, see the [Build your own chatbot tutorial]({{site.url}}{{site.baseurl}}/ml-commons-plugin/tutorials/build-chatbot/#step-5-configure-a-root-chatbot-agent-in-mcdesk-dashboards).
 
 This example shows a system index. In security-enabled domains, only super admins have permission to execute this code. For information about making super admin calls, see the [System indexes]({{site.url}}{{site.baseurl}}/security/configuration/system-indices/) guide. For access permission, contact your IT administrator.
 {: .warning}
 
-Next, restart the SmartObserve Dashboards server. Following a successful restart, **SmartObserve Assistant** appears in the SmartObserve Dashboards interface. 
+Next, restart the MCdesk Dashboards server. Following a successful restart, **MCdesk Assistant** appears in the MCdesk Dashboards interface. 
 
 A screenshot of the interface is shown in the following image.
 
-<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-full-frame.png" alt="SmartObserve Assistant interface">
+<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-full-frame.png" alt="MCdesk Assistant interface">
 
-## Configuring SmartObserve Assistant
+## Configuring MCdesk Assistant
 
-You can use the SmartObserve Dashboards interface to configure SmartObserve Assistant. Go to the [Getting started guide](https://github.com/igsl-group/dashboards-assistant/blob/main/GETTING_STARTED_GUIDE.md) for step-by-step instructions. For the chatbot template, go to the [Flow Framework plugin](https://github.com/igsl-group/flow-framework) documentation. You can modify this template to use your own model and customize the chatbot tools. 
+You can use the MCdesk Dashboards interface to configure MCdesk Assistant. Go to the [Getting started guide](https://github.com/igsl-group/dashboards-assistant/blob/main/GETTING_STARTED_GUIDE.md) for step-by-step instructions. For the chatbot template, go to the [Flow Framework plugin](https://github.com/igsl-group/flow-framework) documentation. You can modify this template to use your own model and customize the chatbot tools. 
 
-For information about configuring SmartObserve Assistant through the REST API, see [SmartObserve Assistant Toolkit]({{site.url}}{{site.baseurl}}/ml-commons-plugin/smartobserve-assistant/).
+For information about configuring MCdesk Assistant through the REST API, see [MCdesk Assistant Toolkit]({{site.url}}{{site.baseurl}}/ml-commons-plugin/mcdesk-assistant/).
 
-## Using SmartObserve Assistant in SmartObserve Dashboards
+## Using MCdesk Assistant in MCdesk Dashboards
 
-The following tutorials guide you through using SmartObserve Assistant in SmartObserve Dashboards. SmartObserve Assistant can be viewed in full frame or in the sidebar. The default view is in the right sidebar. To view the assistant in the left sidebar or in full frame, select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/frame-icon.png" class="inline-icon" alt="frame icon"/>{:/} icon in the toolbar and choose the preferred option. 
+The following tutorials guide you through using MCdesk Assistant in MCdesk Dashboards. MCdesk Assistant can be viewed in full frame or in the sidebar. The default view is in the right sidebar. To view the assistant in the left sidebar or in full frame, select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/frame-icon.png" class="inline-icon" alt="frame icon"/>{:/} icon in the toolbar and choose the preferred option. 
 
 ### Start a conversation
 
@@ -66,19 +66,19 @@ Start a conversation by entering a prompt in the **Ask a question** search box o
 
 The following screenshot shows an example prompt and response.
 
-<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-QandA.png" alt="Prompt and response using SmartObserve Assistant in SmartObserve Dashboards">
+<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-QandA.png" alt="Prompt and response using MCdesk Assistant in MCdesk Dashboards">
 
 ### Regenerate a response
 
 Beneath the response, select the regenerate icon to generate an alternative answer to your original question. The new answer will replace the previous one, appearing in both the interface and the chat history. A regenerated example is shown in the following image.
 
-<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-regenerate.png" alt="Regenerated response">
+<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-regenerate.png" alt="Regenerated response">
 
 ### Suggested prompts
 
-SmartObserve Assistant suggests prompts to help you get started, build upon your existing prompts, or explore other queries you may not have considered, among other reasons. Select a suggested prompt listed beneath the response field. A screenshot is shown in the following image.
+MCdesk Assistant suggests prompts to help you get started, build upon your existing prompts, or explore other queries you may not have considered, among other reasons. Select a suggested prompt listed beneath the response field. A screenshot is shown in the following image.
 
-<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-suggestions.png" alt="Suggested prompts">
+<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-suggestions.png" alt="Suggested prompts">
 
 ### Rate a response
 
@@ -88,27 +88,27 @@ To rate a response, select the thumbs up or thumbs down icon. A screenshot of th
 
 Learn how a response is generated by selecting the **How was this generated?** option. This option is included within the available suggestions to help you understand which tools were involved in creating the response. If multiple tools were involved, each step will display the tool name and its input and output. This feature can be useful for troubleshooting. A screenshot is shown in the following image. 
 
-<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-how-generated.png" alt="Response generation details">
+<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-how-generated.png" alt="Response generation details">
 
 ### Resume previous conversations
 
 To view a previous conversation, select the clock icon to open the conversation history panel and display the chat history. The conversation history can also be searched by conversation name. A screenshot is shown in the following image.
 
-<img width="400" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-conversation-history.png" alt="Conversation history">
+<img width="400" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-conversation-history.png" alt="Conversation history">
 
 #### Edit and delete previous conversations
 
 Select the pencil icon to edit a conversation name and rename it. Select the **Confirm name** button to save the new name. A screenshot is shown in the following image.
 
-<img width="300" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-edit-convo.png" alt="Editing a conversation name">
+<img width="300" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-edit-convo.png" alt="Editing a conversation name">
 
 Select the trash can icon to delete a conversation. Once the confirmation dialog appears, select **Delete conversation**. The conversation is now deleted from your chat history. A screenshot is shown in the following image.
 
-<img width="300" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-delete-convo.png" alt="Deleting a conversation">
+<img width="300" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-delete-convo.png" alt="Deleting a conversation">
 
 ### Share a conversation through Notebooks
 
-You can use [Notebooks]({{site.url}}{{site.baseurl}}/observing-your-data/notebooks/) to save your conversations. To use this option, select **Save to notebook** from the dropdown menu to the right of **SmartObserve Assistant**. Enter a name for the notebook, then select **Save**. A pop-up message in the lower-right corner confirms the conversation has been saved. 
+You can use [Notebooks]({{site.url}}{{site.baseurl}}/observing-your-data/notebooks/) to save your conversations. To use this option, select **Save to notebook** from the dropdown menu to the right of **MCdesk Assistant**. Enter a name for the notebook, then select **Save**. A pop-up message in the lower-right corner confirms the conversation has been saved. 
 
 All conversations (prompts and responses/questions and answers) between you and the large language model (LLM) will be saved to this notebook.
 
@@ -116,17 +116,17 @@ To open the saved notebook or view a list of other notebooks, select **Observabi
 
 A screenshot of the Notebooks interface with a list of saved conversations is shown in the following image.
 
-<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-notebooks.png" alt="Notebooks interface with saved SmartObserve Assistant conversations">
+<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-notebooks.png" alt="Notebooks interface with saved MCdesk Assistant conversations">
 
 The following screenshot shows a saved conversation, along with actions you can take for the saved conversation.
 
-<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/smartobserve-assistant-save-notebook.png" alt="Notebooks interface with saved SmartObserve Assistant conversations">
+<img width="700" src="{{site.url}}{{site.baseurl}}/images/dashboards/mcdesk-assistant-save-notebook.png" alt="Notebooks interface with saved MCdesk Assistant conversations">
 
 ## Enabling Dashboards Assistant experimental features
 **Introduced 2.16**
 {: .label .label-purple }
 
-To enable experimental assistant features, such as text to visualization, locate your copy of the `smartobserve_dashboards.yml` file and set the following option:
+To enable experimental assistant features, such as text to visualization, locate your copy of the `mcdesk_dashboards.yml` file and set the following option:
 
 ```yaml
 assistant.next.enabled: true
@@ -144,6 +144,6 @@ For information about additional Dashboards Assistant capabilities, see the foll
 
 ## Related articles
 
-- [Getting started guide for SmartObserve Assistant in SmartObserve Dashboards](https://github.com/igsl-group/dashboards-assistant/blob/main/GETTING_STARTED_GUIDE.md)
-- [SmartObserve Assistant configuration through the REST API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/smartobserve-assistant/)
+- [Getting started guide for MCdesk Assistant in MCdesk Dashboards](https://github.com/igsl-group/dashboards-assistant/blob/main/GETTING_STARTED_GUIDE.md)
+- [MCdesk Assistant configuration through the REST API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/mcdesk-assistant/)
 - [Build your own chatbot]({{site.url}}{{site.baseurl}}/ml-commons-plugin/tutorials/build-chatbot/)

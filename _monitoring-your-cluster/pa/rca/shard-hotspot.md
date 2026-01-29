@@ -17,7 +17,7 @@ Shards may become hot because of the nature of your workload. When you use a `_r
 
 The hot shard identification RCA compares the CPU utilization and heap allocation rates against their threshold values. If the usage for either metric is greater than the threshold, the shard is considered to be _hot_.
 
-For more information about the hot shard identification RCA implementation, see [Hot Shard RCA](https://github.com/igsl-group/performance-analyzer-rca/blob/main/src/main/java/org/smartobserve/performanceanalyzer/rca/store/rca/hotshard/docs/README.md).
+For more information about the hot shard identification RCA implementation, see [Hot Shard RCA](https://github.com/igsl-group/performance-analyzer-rca/blob/main/src/main/java/org/mcdesk/performanceanalyzer/rca/store/rca/hotshard/docs/README.md).
 
 #### Example request
 

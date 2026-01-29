@@ -11,11 +11,11 @@ nav_order: 80
 **Deprecated 3.0**
 {: .label .label-red }
 
-This feature is deprecated. For similar functionality, use [SmartObserve Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/). If you'd like to see this feature reinstated, [create an issue](https://github.com/igsl-group/ml-commons/issues) in the ML Commons repository.
+This feature is deprecated. For similar functionality, use [MCdesk Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/). If you'd like to see this feature reinstated, [create an issue](https://github.com/igsl-group/ml-commons/issues) in the ML Commons repository.
 {: .warning}
 
 
-Use the Asynchronous Batch Ingestion API to ingest data into your SmartObserve cluster from your files on remote file servers, such as Amazon Simple Storage Service (Amazon S3) or OpenAI. For detailed configuration steps, see [Asynchronous batch ingestion]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/async-batch-ingestion/).
+Use the Asynchronous Batch Ingestion API to ingest data into your MCdesk cluster from your files on remote file servers, such as Amazon Simple Storage Service (Amazon S3) or OpenAI. For detailed configuration steps, see [Asynchronous batch ingestion]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/async-batch-ingestion/).
 
 ## Endpoints
 
@@ -30,8 +30,8 @@ The following table lists the available request fields.
 Field | Data type | Required/Optional | Description
 :---  | :--- | :--- 
 `index_name`| String | Required | The index name. 
-`field_map` | Object | Required | Maps fields from the source file to specific fields in an SmartObserve index for ingestion. 
-`ingest_fields` | Array | Optional | Lists fields from the source file that should be ingested directly into the SmartObserve index without any additional mapping. 
+`field_map` | Object | Required | Maps fields from the source file to specific fields in an MCdesk index for ingestion. 
+`ingest_fields` | Array | Optional | Lists fields from the source file that should be ingested directly into the MCdesk index without any additional mapping. 
 `credential` | Object | Required | Contains the authentication information for accessing external data sources, such as Amazon S3 or OpenAI.
 `data_source` | Object | Required | Specifies the type and location of the external file(s) from which the data is ingested.
 `data_source.type` | String | Required | Specifies the type of the external data source. Valid values are `s3` and `openAI`.

@@ -6,7 +6,7 @@ nav_order: 50
 
 # Workflow template security
 
-In SmartObserve, automated workflow configurations are provided by the Flow Framework plugin. You can use the Security plugin together with the Flow Framework plugin to limit non-admin users to specific actions. For example, you might want some users to only be able to create, update, or delete workflows, while others may only be able to view workflows.
+In MCdesk, automated workflow configurations are provided by the Flow Framework plugin. You can use the Security plugin together with the Flow Framework plugin to limit non-admin users to specific actions. For example, you might want some users to only be able to create, update, or delete workflows, while others may only be able to view workflows.
 
 All Flow Framework indexes are protected as system indexes. Only a superadmin user or an admin user with a TLS certificate can access system indexes. For more information, see [System indexes]({{site.url}}{{site.baseurl}}/security/configuration/system-indices/).
 
@@ -18,7 +18,7 @@ As an admin user, you can use the Security plugin to assign specific permissions
 
 The Security plugin has two built-in roles that cover most Flow Framework use cases: `flow_framework_full_access` and `flow_framework_read_access`. For descriptions of each, see [Predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles#predefined-roles).
 
-If these roles don't meet your needs, you can assign users individual Flow Framework [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/smartobserve/flow_framework/workflow/search` permission lets you search workflows.
+If these roles don't meet your needs, you can assign users individual Flow Framework [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/mcdesk/flow_framework/workflow/search` permission lets you search workflows.
 
 ### Fine-grained access control
 
@@ -42,7 +42,7 @@ PUT _cluster/settings
 ```
 {% include copy-curl.html %}
 
-Now when users view workflow resources in SmartObserve Dashboards (or make REST API calls), they only see workflows created by users who share at least one backend role.
+Now when users view workflow resources in MCdesk Dashboards (or make REST API calls), they only see workflows created by users who share at least one backend role.
 
 For example, consider two users: `alice` and `bob`.
 

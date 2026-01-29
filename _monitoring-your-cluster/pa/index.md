@@ -13,12 +13,12 @@ redirect_from:
 
 Performance Analyzer is a plugin that contains an agent and REST API that allow you to query numerous cluster performance metrics, including aggregations of those metrics. 
 
-The Performance Analyzer plugin is installed by default in SmartObserve versions 2.0 and later. If you want to use SmartObserve 2.0 or later with Performance Analyzer disabled, see [Disable Performance Analyzer](#disable-performance-analyzer).
+The Performance Analyzer plugin is installed by default in MCdesk versions 2.0 and later. If you want to use MCdesk 2.0 or later with Performance Analyzer disabled, see [Disable Performance Analyzer](#disable-performance-analyzer).
 {: .note }
 
 ## Prerequisites
 
-Before using Performance Analyzer with SmartObserve, review the following prerequisites.
+Before using Performance Analyzer with MCdesk, review the following prerequisites.
 
 ### Storage
 
@@ -43,7 +43,7 @@ mount -o remount /dev/shm
 Performance Analyzer supports encryption in transit for requests. It currently does *not* support client or server authentication for requests. To enable encryption in transit, edit `performance-analyzer.properties` in your `$OPENSEARCH_HOME` directory:
 
 ```properties
-vi $OPENSEARCH_HOME/config/smartobserve-performance-analyzer/performance-analyzer.properties
+vi $OPENSEARCH_HOME/config/mcdesk-performance-analyzer/performance-analyzer.properties
 ```
 
 Change the following lines to configure encryption in transit. Note that `certificate-file-path` must be a certificate for the server and not a root certificate authority (CA).
@@ -59,14 +59,14 @@ private-key-file-path = specify_path
 
 ## Install Performance Analyzer 
 
-The Performance Analyzer plugin is included in the installations for [Docker]({{site.url}}{{site.baseurl}}/smartobserve/install/docker/) and [tarball]({{site.url}}{{site.baseurl}}/smartobserve/install/tar/), but you can also install the plugin manually. 
+The Performance Analyzer plugin is included in the installations for [Docker]({{site.url}}{{site.baseurl}}/mcdesk/install/docker/) and [tarball]({{site.url}}{{site.baseurl}}/mcdesk/install/tar/), but you can also install the plugin manually. 
 
-To install the Performance Analyzer plugin manually, download the plugin from [Maven](https://central.sonatype.com/namespace/org.smartobserve.plugin) and install it using the standard [plugin installation]({{site.url}}{{site.baseurl}}/smartobserve/install/plugins/) process. Performance Analyzer runs on each node in a cluster.
+To install the Performance Analyzer plugin manually, download the plugin from [Maven](https://central.sonatype.com/namespace/org.mcdesk.plugin) and install it using the standard [plugin installation]({{site.url}}{{site.baseurl}}/mcdesk/install/plugins/) process. Performance Analyzer runs on each node in a cluster.
 
 To start the Performance Analyzer root cause analysis (RCA) agent on a tarball installation, run the following command:
       
 ````bash
-OPENSEARCH_HOME=~/smartobserve-2.2.1 OPENSEARCH_JAVA_HOME=~/smartobserve-2.2.1/jdk OPENSEARCH_PATH_CONF=~/smartobserve-2.2.1/bin ./performance-analyzer-agent-cli
+OPENSEARCH_HOME=~/mcdesk-2.2.1 OPENSEARCH_JAVA_HOME=~/mcdesk-2.2.1/jdk OPENSEARCH_PATH_CONF=~/mcdesk-2.2.1/bin ./performance-analyzer-agent-cli
 ````
 
 The following command enables the Performance Analyzer plugin. 
@@ -77,7 +77,7 @@ curl -XPOST localhost:9200/_plugins/_performanceanalyzer/cluster/config -H 'Cont
 
 ## Disable Performance Analyzer
 
-If you prefer to save memory and run your local instance of SmartObserve with the Performance Analyzer plugin disabled, perform the following steps:
+If you prefer to save memory and run your local instance of MCdesk with the Performance Analyzer plugin disabled, perform the following steps:
 
 1. Before disabling Performance Analyzer, stop any currently running RCA agent action by using the following command:
 
@@ -100,15 +100,15 @@ If you prefer to save memory and run your local instance of SmartObserve with th
 4. Uninstall the Performance Analyzer plugin by running the following command:
 
   ```bash
-  bin/smartobserve-plugin remove smartobserve-performance-analyzer
+  bin/mcdesk-plugin remove mcdesk-performance-analyzer
   ```
 
 ## Configure Performance Analyzer 
 
-To configure the Performance Analyzer plugin, edit the `performance-analyzer.properties` configuration file in the `config/smartobserve-performance-analyzer/` directory. Make sure to uncomment the line `#webservice-bind-host` and set it to `0.0.0.0`. You can reference the following example configuration.
+To configure the Performance Analyzer plugin, edit the `performance-analyzer.properties` configuration file in the `config/mcdesk-performance-analyzer/` directory. Make sure to uncomment the line `#webservice-bind-host` and set it to `0.0.0.0`. You can reference the following example configuration.
 
 ````bash
-# ======================== SmartObserve Performance Analyzer plugin config =========================
+# ======================== MCdesk Performance Analyzer plugin config =========================
 
 # NOTE: this is an example for Linux. Please modify the config accordingly if you are using it under other OS.
 
@@ -149,24 +149,24 @@ agent-stats-metadata = agent-stats-metadata
 To start the Performance Analyzer RCA agent, run the following command:
 
 ````bash
-OPENSEARCH_HOME=~/smartobserve-2.2.1 OPENSEARCH_JAVA_HOME=~/smartobserve-2.2.1/jdk OPENSEARCH_PATH_CONF=~/smartobserve-2.2.1/bin ./performance-analyzer-agent-cli
+OPENSEARCH_HOME=~/mcdesk-2.2.1 OPENSEARCH_JAVA_HOME=~/mcdesk-2.2.1/jdk OPENSEARCH_PATH_CONF=~/mcdesk-2.2.1/bin ./performance-analyzer-agent-cli
 ````
 
 
 ## Enable Performance Analyzer for RPM/YUM installations
 
-If you installed SmartObserve from an RPM distribution, you can start and stop Performance Analyzer with `systemctl`:
+If you installed MCdesk from an RPM distribution, you can start and stop Performance Analyzer with `systemctl`:
 
 ```bash
-# Start SmartObserve Performance Analyzer
-sudo systemctl start smartobserve-performance-analyzer.service
-# Stop SmartObserve Performance Analyzer
-sudo systemctl stop smartobserve-performance-analyzer.service
+# Start MCdesk Performance Analyzer
+sudo systemctl start mcdesk-performance-analyzer.service
+# Stop MCdesk Performance Analyzer
+sudo systemctl stop mcdesk-performance-analyzer.service
 ```
 
 ## Example API query and response
 
-The following is an example Performance Analyzer API query. The query pulls performance metrics related to your SmartObserve cluster:
+The following is an example Performance Analyzer API query. The query pulls performance metrics related to your MCdesk cluster:
   
 ````bash
 GET localhost:9600/_plugins/_performanceanalyzer/metrics/units

@@ -1,43 +1,43 @@
 ---
 layout: default
-title: Managing ML models in SmartObserve Dashboards
+title: Managing ML models in MCdesk Dashboards
 parent: Integrating ML models
 nav_order: 120
 redirect_from:
   - /ml-commons-plugin/ml-dashbaord/
 ---
 
-# Managing ML models in SmartObserve Dashboards
+# Managing ML models in MCdesk Dashboards
 **Introduced 2.9**
 {: .label .label-purple }
 
-Administrators of machine learning (ML) clusters can use SmartObserve Dashboards to manage and check the status of ML models running inside a cluster. This can help ML developers provision nodes to ensure their models run efficiently.
+Administrators of machine learning (ML) clusters can use MCdesk Dashboards to manage and check the status of ML models running inside a cluster. This can help ML developers provision nodes to ensure their models run efficiently.
 
-You can register and deploy models using the API only. For more information, see [Using ML models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/model-serving-framework/).
+You can register and deploy models using the API only. For more information, see [Using ML models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/model-serving-framework/).
 
 ## Enabling ML in Dashboards
 
-In SmartObserve 2.6, ML functionality is disabled by default. To enable it, you need to edit the configuration in `smartobserve_dashboards.yml` and then restart your cluster.
+In MCdesk 2.6, ML functionality is disabled by default. To enable it, you need to edit the configuration in `mcdesk_dashboards.yml` and then restart your cluster.
 
 To enable the feature:
 
-1. In your SmartObserve cluster, navigate to your Dashboards home directory; for example, in Docker, `/usr/share/smartobserve-dashboards`.
-2. Open your local copy of the Dashboards configuration file `smartobserve_dashboards.yml`. If you don't have a copy, get one from GitHub: [`smartobserve_dashboards.yml`](https://github.com/igsl-group/SmartObserve-Dashboards/blob/main/config/smartobserve_dashboards.yml).
-3. Add the setting `ml_commons_dashboards.enabled:`  to `smartobserve_dashboards.yml`. Then, set it to  `ml_commons_dashboards.enabled: true` and save the configuration file.
+1. In your MCdesk cluster, navigate to your Dashboards home directory; for example, in Docker, `/usr/share/mcdesk-dashboards`.
+2. Open your local copy of the Dashboards configuration file `mcdesk_dashboards.yml`. If you don't have a copy, get one from GitHub: [`mcdesk_dashboards.yml`](https://github.com/igsl-group/MCdesk-Dashboards/blob/main/config/mcdesk_dashboards.yml).
+3. Add the setting `ml_commons_dashboards.enabled:`  to `mcdesk_dashboards.yml`. Then, set it to  `ml_commons_dashboards.enabled: true` and save the configuration file.
 4. Restart the Dashboards container.
-5. Verify that the feature configuration settings were created and configured properly by launching SmartObserve Dashboards. The Machine Learning section should appear under **SmartObserve plugins**.
+5. Verify that the feature configuration settings were created and configured properly by launching MCdesk Dashboards. The Machine Learning section should appear under **MCdesk plugins**.
 
 ## Accessing ML functionality in Dashboards
 
-To access ML functionality in SmartObserve Dashboards,select **SmartObserve plugins** > **Machine Learning**. 
+To access ML functionality in MCdesk Dashboards,select **MCdesk plugins** > **Machine Learning**. 
 
-<img src="{{site.url}}{{site.baseurl}}/images/ml/ml-dashboard/ml-dashboard.png" alt="Machine Learning section in SmartObserve dashboards">
+<img src="{{site.url}}{{site.baseurl}}/images/ml/ml-dashboard/ml-dashboard.png" alt="Machine Learning section in MCdesk dashboards">
 
 In the Machine Learning section, you now have access to the **Deployed models** dashboard.
 
 ## Deployed models dashboard
 
-The deployed models dashboard gives admins the ability to check the status of any models stored inside your SmartObserve cluster. 
+The deployed models dashboard gives admins the ability to check the status of any models stored inside your MCdesk cluster. 
 
 <img src="{{site.url}}{{site.baseurl}}/images/ml/ml-dashboard/deployed-models.png" alt="The deployed models view.">
 
@@ -51,7 +51,7 @@ The dashboard includes the following information about the model:
 - **Model ID**: The model ID.
 - **Action**: What actions you can take with the model.
 
-As of SmartObserve 2.6, the only action available is **View Status Details**, shown in the following image. 
+As of MCdesk 2.6, the only action available is **View Status Details**, shown in the following image. 
 
 <img src="{{site.url}}{{site.baseurl}}/images/ml/ml-dashboard/view-status-details.png" alt="You can view status details under actions.">
 
@@ -68,4 +68,4 @@ A list of nodes gives you a view of each node the model is running on, including
 
 ## Next steps
 
-For more information about how to manage ML models in SmartObserve, see [Using ML models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/model-serving-framework/).
+For more information about how to manage ML models in MCdesk, see [Using ML models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/model-serving-framework/).

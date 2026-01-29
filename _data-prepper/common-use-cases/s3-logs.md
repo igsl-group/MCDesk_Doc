@@ -7,7 +7,7 @@ nav_order: 40
 
 # S3 logs
 
-SmartObserve Data Prepper allows you to load logs from [Amazon Simple Storage Service](https://aws.amazon.com/s3/) (Amazon S3), including traditional logs, JSON documents, and CSV logs.
+MCdesk Data Prepper allows you to load logs from [Amazon Simple Storage Service](https://aws.amazon.com/s3/) (Amazon S3), including traditional logs, JSON documents, and CSV logs.
 
 ## Architecture
 
@@ -25,7 +25,7 @@ The component data flow is as follows:
 2. S3 creates an S3 event notification in the SQS queue.
 3. Data Prepper polls Amazon SQS for messages and then receives a message.
 4. Data Prepper downloads the content from the S3 object.
-5. Data Prepper sends a document to SmartObserve for the content in the S3 object.
+5. Data Prepper sends a document to MCdesk for the content in the S3 object.
 
 ## Pipeline overview
 
@@ -150,12 +150,12 @@ s3-log-pipeline:
          # This shows using an STS role, but you can also use your system's default permissions.
          sts_role_arn: "arn:aws:iam::<123456789012>:role/<DATA-PREPPER-ROLE>"
    processor:
-     # You can configure a grok pattern to enrich your documents in SmartObserve.
+     # You can configure a grok pattern to enrich your documents in MCdesk.
      #- grok:
      #    match:
      #      message: [ "%{COMMONAPACHELOG}" ]
    sink:
-     - smartobserve:
+     - mcdesk:
          hosts: [ "https://localhost:9200" ]
          # Change to your credentials
          username: "admin"

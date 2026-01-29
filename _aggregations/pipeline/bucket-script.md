@@ -47,7 +47,7 @@ The mapped variables can be accessed from the `params` context. For example:
 
 ## Enabling inline scripting
 
-Use the `script` parameter to add your script. The script can be inline, in a file, or in an index. To enable inline scripting, the `smartobserve.yml` file in the `config` folder must contain the following:
+Use the `script` parameter to add your script. The script can be inline, in a file, or in an index. To enable inline scripting, the `mcdesk.yml` file in the `config` folder must contain the following:
 
 ```yml
 script.inline: on
@@ -55,10 +55,10 @@ script.inline: on
 
 ## Example
 
-The following example creates a date histogram with a one-month interval from the SmartObserve Dashboards e-commerce sample data. The `total_sales` subaggregation sums the taxed price of all items sold for each month. The `vendor_count` aggregation counts the total number of unique vendors for each month. Finally, the `avg_vendor_spend` aggregation uses an inline script to calculate the average amount spent per vendor each month:
+The following example creates a date histogram with a one-month interval from the MCdesk Dashboards e-commerce sample data. The `total_sales` subaggregation sums the taxed price of all items sold for each month. The `vendor_count` aggregation counts the total number of unique vendors for each month. Finally, the `avg_vendor_spend` aggregation uses an inline script to calculate the average amount spent per vendor each month:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {

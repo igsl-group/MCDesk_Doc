@@ -24,10 +24,10 @@ The `serial_diff` aggregation takes the following parameters.
 
 ## Example
 
-The following example creates a date histogram with a one-month interval from the SmartObserve Dashboards logs sample data. The `sum` subaggregation calculates the sum of all bytes for each month. Finally, the `serial_diff` aggregation calculates month-to-month difference in total bytes from these sums:
+The following example creates a date histogram with a one-month interval from the MCdesk Dashboards logs sample data. The `sum` subaggregation calculates the sum of all bytes for each month. Finally, the `serial_diff` aggregation calculates month-to-month difference in total bytes from these sums:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
    "size": 0,
    "aggs": {
@@ -125,7 +125,7 @@ This visualization helps you quickly spot spikes, drops, or trends in data volum
 Use a larger `lag` value to compare each bucket with one that occurred further in the past. The following example computes differences in weekly byte data with a lag of 4 (meaning each bucket is compared to the one from 4 weeks earlier). This has the effect of removing any variation with a period of 4 weeks:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
    "size": 0,
    "aggs": {

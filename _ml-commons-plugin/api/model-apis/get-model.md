@@ -59,7 +59,7 @@ GET /_plugins/_ml/models/N8AE1osB0jLkkocYjz7D
 
 ## Valid model states
 
-When a model is registered, deployed, or undeployed in SmartObserve, it transitions through various model states that reflect its availability. These states help you track the model's readiness for use, loading status, or failure conditions.
+When a model is registered, deployed, or undeployed in MCdesk, it transitions through various model states that reflect its availability. These states help you track the model's readiness for use, loading status, or failure conditions.
 
 The following table lists all valid model states.
 

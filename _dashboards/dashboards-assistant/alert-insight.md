@@ -1,17 +1,17 @@
 ---
 layout: default
 title: Alert insights
-parent: SmartObserve Assistant for SmartObserve Dashboards
+parent: MCdesk Assistant for MCdesk Dashboards
 nav_order: 1
 has_children: false
 ---
 
 # Alert insights
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress the feature or if you want to leave feedback, join the discussion in the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress the feature or if you want to leave feedback, join the discussion in the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
-The SmartObserve Dashboards Assistant alert insights help generate alert summaries and provide log patterns based on the logs that triggered the alert.
+The MCdesk Dashboards Assistant alert insights help generate alert summaries and provide log patterns based on the logs that triggered the alert.
 
 ## Configuring alert insights
 
@@ -19,11 +19,11 @@ To configure alert insights, use the following steps.
 
 ### Prerequisite
 
-Before using alert insights, you must have the `alerting` and `alerting-dashboards` plugins installed on your cluster. By default, these plugins are installed as part of standard SmartObserve distributions. For more information, see [Installing plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
+Before using alert insights, you must have the `alerting` and `alerting-dashboards` plugins installed on your cluster. By default, these plugins are installed as part of standard MCdesk distributions. For more information, see [Installing plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
 
 ### Step 1: Enable alert insights
 
-To enable alert insights, configure the following `smartobserve_dashboards.yml` setting:
+To enable alert insights, configure the following `mcdesk_dashboards.yml` setting:
 
 ```yaml
 assistant.alertInsight.enabled: true
@@ -113,7 +113,7 @@ POST /_plugins/_flow_framework/workflow?provision=true
           },
           "user_inputs": {
             "parameters": {
-              "prompt": "You are an SmartObserve Alert Assistant to help summarize the alerts.\n Here is the detail of alert: ${parameters.context};\n The question is: ${parameters.question}."
+              "prompt": "You are an MCdesk Alert Assistant to help summarize the alerts.\n Here is the detail of alert: ${parameters.context};\n The question is: ${parameters.question}."
             },
             "name": "MLModelTool",
             "type": "MLModelTool"
@@ -149,7 +149,7 @@ For this example, use the templates to create the following agents:
     - A basic alert summary agent, see [flow template](https://github.com/igsl-group/flow-framework/blob/2.x/sample-templates/alert-summary-agent-claude-tested.json)
     - An agent for an alert summary that includes log patterns, see [flow template](https://github.com/igsl-group/flow-framework/blob/2.x/sample-templates/alert-summary-log-pattern-agent.json)
 
-    These agents require different prompts. The prompt for the log patterns summary must include a placeholder `${parameters.topNLogPatternData}` and additional instructions to guide the LLM on using this information effectively. Note that log patterns are available only for query monitors created using SmartObserve Dashboards.
+    These agents require different prompts. The prompt for the log patterns summary must include a placeholder `${parameters.topNLogPatternData}` and additional instructions to guide the LLM on using this information effectively. Note that log patterns are available only for query monitors created using MCdesk Dashboards.
 
 ### Step 3: Create the root agents
 
@@ -194,7 +194,7 @@ POST /.plugins-ml-config/_doc/os_insight
 ```
 {% include copy-curl.html %}
 
-The created `os_insight` agent provides alert insights related to SmartObserve cluster metrics. For insights about alerts unrelated to SmartObserve cluster metrics, you need to register an agent with [this template](https://github.com/igsl-group/flow-framework/blob/2.x/sample-templates/create-knowledge-base-alert-agent.json) and change the agent name to `KB_For_Alert_Insight`.
+The created `os_insight` agent provides alert insights related to MCdesk cluster metrics. For insights about alerts unrelated to MCdesk cluster metrics, you need to register an agent with [this template](https://github.com/igsl-group/flow-framework/blob/2.x/sample-templates/create-knowledge-base-alert-agent.json) and change the agent name to `KB_For_Alert_Insight`.
 {: .note}
 
 This example demonstrates a system index. In security-enabled domains, only superadmins have permissions to execute this code. For information about making superadmin calls, see [System indexes]({{site.url}}{{site.baseurl}}/security/configuration/system-indices/). For access permissions, contact your system administrator.
@@ -300,13 +300,13 @@ Parameter | Required/Optional | Description
 `summary` | Required | The result returned by the alert summary agent.
 
 
-## Viewing alert insights in SmartObserve Dashboards
+## Viewing alert insights in MCdesk Dashboards
 
-Before viewing alert insights, you must configure alerts in SmartObserve Dashboards. For more information, see [Alerting]({{site.url}}{{site.baseurl}}/observing-your-data/alerting/index/).
+Before viewing alert insights, you must configure alerts in MCdesk Dashboards. For more information, see [Alerting]({{site.url}}{{site.baseurl}}/observing-your-data/alerting/index/).
 
-To view alert insights in SmartObserve Dashboards, use the following steps:
+To view alert insights in MCdesk Dashboards, use the following steps:
 
-1. On the top menu bar, go to **SmartObserve Plugins > Alerting**. All alerts are displayed.
+1. On the top menu bar, go to **MCdesk Plugins > Alerting**. All alerts are displayed.
 
 1. Hover over the alerts for your desired monitor. If you configured alert insights, you will see a sparkle icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/dashboards-assistant/sparkle-icon.png" class="inline-icon" alt="sparkle icon"/>{:/}) next to the alerts in the **Alerts** column, as shown in the following image.
     

@@ -3,14 +3,14 @@ layout: default
 title: Common REST parameters
 nav_order: 93
 redirect_from:
-  - /smartobserve/common-parameters/
+  - /mcdesk/common-parameters/
 ---
 
 # Common REST parameters 
 **Introduced 1.0**
 {: .label .label-purple }
 
-SmartObserve supports the following parameters for all REST operations:
+MCdesk supports the following parameters for all REST operations:
 
 ## Human-readable output
 
@@ -93,7 +93,7 @@ GET _search?filter_path=<field_name>.*,-<field_name>
 
 ## Units
 
-SmartObserve APIs support the following units.
+MCdesk APIs support the following units.
 
 ### Time units
 
@@ -127,7 +127,7 @@ Nautical miles | `NM`, `nmi`, or `nauticalmiles`
 
 ## `X-Opaque-Id` header
 
-You can specify an opaque identifier for any request using the `X-Opaque-Id` header. This identifier is used to track tasks and deduplicate deprecation warnings in server-side logs. This identifier is used to differentiate between callers sending requests to your SmartObserve cluster. Do not specify a unique value per request.
+You can specify an opaque identifier for any request using the `X-Opaque-Id` header. This identifier is used to track tasks and deduplicate deprecation warnings in server-side logs. This identifier is used to differentiate between callers sending requests to your MCdesk cluster. Do not specify a unique value per request.
 
 #### Example request
 

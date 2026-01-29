@@ -54,7 +54,7 @@ Note the model inference endpoint; you'll use it to create a connector in the ne
 
 To create a connector for the model, send the following request. 
 
-If you are using self-managed SmartObserve, supply your AWS credentials:
+If you are using self-managed MCdesk, supply your AWS credentials:
 
 ```json
 POST /_plugins/_ml/connectors/_create
@@ -89,7 +89,7 @@ POST /_plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %}
 
-If you are using Amazon SmartObserve service, you can provide an AWS Identity and Access Management (IAM) role Amazon Resource Name (ARN) that allows access to the SageMaker model inference endpoint:
+If you are using Amazon MCdesk service, you can provide an AWS Identity and Access Management (IAM) role Amazon Resource Name (ARN) that allows access to the SageMaker model inference endpoint:
 
 ```json
 POST /_plugins/_ml/connectors/_create
@@ -122,7 +122,7 @@ POST /_plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %}
 
-For more information, see the [AWS documentation](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/ml-amazon-connector.html), [this tutorial]({{site.url}}{{site.baseurl}}/vector-search/tutorials/semantic-search/semantic-search-sagemaker/), and [the AIConnectorHelper notebook](https://github.com/igsl-group/ml-commons/blob/2.x/docs/tutorials/aws/AIConnectorHelper.ipynb).
+For more information, see the [AWS documentation](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/ml-amazon-connector.html), [this tutorial]({{site.url}}{{site.baseurl}}/vector-search/tutorials/semantic-search/semantic-search-sagemaker/), and [the AIConnectorHelper notebook](https://github.com/igsl-group/ml-commons/blob/2.x/docs/tutorials/aws/AIConnectorHelper.ipynb).
 
 Use the connector ID from the response to register and deploy the model:
 
@@ -258,7 +258,7 @@ PUT /_search/pipeline/rerank_pipeline_sagemaker
     "response_processors": [
         {
             "rerank": {
-                "ml_smartobserve": {
+                "ml_mcdesk": {
                     "model_id": "your_model_id_created_in_step1"
                 },
                 "context": {

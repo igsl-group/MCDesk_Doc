@@ -7,7 +7,7 @@ nav_order: 5
 
 # Expression syntax  
 
-Expressions provide flexibility in manipulating, filtering, and routing data. The following sections provide information about expression syntax in SmartObserve Data Prepper.
+Expressions provide flexibility in manipulating, filtering, and routing data. The following sections provide information about expression syntax in MCdesk Data Prepper.
 
 ## Key terms
 

@@ -7,7 +7,7 @@ nav_exclude: true
 has_toc: false
 permalink: /analyzers/
 redirect_from: 
-  - /smartobserve/query-dsl/text-analyzers/
+  - /mcdesk/query-dsl/text-analyzers/
   - /query-dsl/analyzers/text-analyzers/
   - /analyzers/text-analyzers/
   - /analyzers/index/
@@ -15,7 +15,7 @@ redirect_from:
 
 # Text analysis
 
-When you are searching documents using a full-text search, you want to receive all relevant results. If you're looking for "walk", you're interested in results that contain any form of the word, like "Walk", "walked", or "walking". To facilitate full-text search, SmartObserve uses text analysis.
+When you are searching documents using a full-text search, you want to receive all relevant results. If you're looking for "walk", you're interested in results that contain any form of the word, like "Walk", "walked", or "walking". To facilitate full-text search, MCdesk uses text analysis.
 
 The objective of text analysis is to split the unstructured free text content of the source document into a sequence of terms, which are then stored in an inverted index. Subsequently, when a similar text analysis is applied to a user's query, the resulting sequence of terms facilitates the matching of relevant source documents.
 
@@ -32,7 +32,7 @@ Although the terms ***token*** and ***term*** may sound similar and are occasion
 
 ## Analyzers
 
-In SmartObserve, the abstraction that encompasses text analysis is referred to as an _analyzer_. Each analyzer contains the following sequentially applied components:
+In MCdesk, the abstraction that encompasses text analysis is referred to as an _analyzer_. Each analyzer contains the following sequentially applied components:
 
 1. **Character filters**: First, a character filter receives the original text as a stream of characters and adds, removes, or modifies characters in the text. For example, a character filter can strip HTML characters from a string so that the text `<p><b>Actions</b> speak louder than <em>words</em></p>` becomes `\nActions speak louder than words\n`. The output of a character filter is a stream of characters.
 
@@ -55,26 +55,26 @@ If needed, you can combine tokenizers, token filters, and character filters to c
 
 ## Text analysis at indexing time and query time
 
-SmartObserve performs text analysis on text fields when you index a document and when you send a search request. Depending on the time of text analysis, the analyzers used for it are classified as follows:
+MCdesk performs text analysis on text fields when you index a document and when you send a search request. Depending on the time of text analysis, the analyzers used for it are classified as follows:
 
-- An _index analyzer_ performs analysis at indexing time: When you are indexing a [text]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/text/) field, SmartObserve analyzes it before indexing it. For more information about ways to specify index analyzers, see [Index analyzers]({{site.url}}{{site.baseurl}}/analyzers/index-analyzers/).
+- An _index analyzer_ performs analysis at indexing time: When you are indexing a [text]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/text/) field, MCdesk analyzes it before indexing it. For more information about ways to specify index analyzers, see [Index analyzers]({{site.url}}{{site.baseurl}}/analyzers/index-analyzers/).
 
-- A _search analyzer_ performs analysis at query time: SmartObserve analyzes the query string when you run a full-text query on a text field. For more information about ways to specify search analyzers, see [Search analyzers]({{site.url}}{{site.baseurl}}/analyzers/search-analyzers/).
+- A _search analyzer_ performs analysis at query time: MCdesk analyzes the query string when you run a full-text query on a text field. For more information about ways to specify search analyzers, see [Search analyzers]({{site.url}}{{site.baseurl}}/analyzers/search-analyzers/).
 
 In most cases, you should use the same analyzer at both indexing and search time because the text field and the query string will be analyzed in the same way and the resulting tokens will match as expected.
 {: .tip}
 
 ### Example
 
-When you index a document that has a text field with the text `Actions speak louder than words`, SmartObserve analyzes the text and produces the following list of tokens: 
+When you index a document that has a text field with the text `Actions speak louder than words`, MCdesk analyzes the text and produces the following list of tokens: 
 
 Text field tokens = [`action`, `speak`, `loud`, `than`, `word`]
 
-When you search for documents that match the query `speaking loudly`, SmartObserve analyzes the query string and produces the following list of tokens:
+When you search for documents that match the query `speaking loudly`, MCdesk analyzes the query string and produces the following list of tokens:
 
 Query string tokens = [`speak`, `loud`]
 
-Then SmartObserve compares each token in the query string against the list of text field tokens and finds that both lists contain the tokens `speak` and `loud`, so SmartObserve returns this document as part of the search results that match the query.
+Then MCdesk compares each token in the query string against the list of text field tokens and finds that both lists contain the tokens `speak` and `loud`, so MCdesk returns this document as part of the search results that match the query.
 
 ## Testing an analyzer
 
@@ -86,7 +86,7 @@ Specify the analyzer and the text to be analyzed in the request:
 GET /_analyze
 {
   "analyzer" : "standard",
-  "text" : "Let’s contribute to SmartObserve!"
+  "text" : "Let’s contribute to MCdesk!"
 }
 ```
 {% include copy-curl.html %}
@@ -122,7 +122,7 @@ The response contains each token and its start and end offsets that correspond t
       "position": 2
     },
     {
-      "token": "smartobserve",
+      "token": "mcdesk",
       "start_offset": 20,
       "end_offset": 30,
       "type": "<ALPHANUM>",

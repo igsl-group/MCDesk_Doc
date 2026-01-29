@@ -4,7 +4,7 @@ title: Alias
 parent: Index APIs
 nav_order: 5
 redirect_from: 
- - /smartobserve/rest-api/alias/
+ - /mcdesk/rest-api/alias/
  - /api-reference/alias/
 ---
 
@@ -47,7 +47,7 @@ aliases | Array | Array of alias names. | Yes if you don't supply an `alias` fie
 filter | Object | A filter to use with the alias, so the alias points to a filtered part of the index. | No
 is_hidden | Boolean | Specifies whether the alias should be hidden from results that include wildcard expressions | No
 must_exist | Boolean | Specifies whether the alias to remove must exist. | No
-is_write_index | Boolean | Specifies whether the index should be a write index. An alias can only have one write index at a time. If a write request is submitted to a alias that links to multiple indexes, SmartObserve executes the request only on the write index. | No
+is_write_index | Boolean | Specifies whether the index should be a write index. An alias can only have one write index at a time. If a write request is submitted to a alias that links to multiple indexes, MCdesk executes the request only on the write index. | No
 routing | String | Used to assign a custom value to a shard for specific operations. | No
 index_routing | String | Assigns a custom value to a shard only for index operations. | No
 search_routing | String | Assigns a custom value to a shard only for search operations. | No
@@ -132,4 +132,4 @@ response = client.indices.update_aliases(
 }
 ```
 
-For more alias API operations, see [Index aliases]({{site.url}}{{site.baseurl}}/smartobserve/index-alias/).
+For more alias API operations, see [Index aliases]({{site.url}}{{site.baseurl}}/mcdesk/index-alias/).

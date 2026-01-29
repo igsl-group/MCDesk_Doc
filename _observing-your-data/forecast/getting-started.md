@@ -8,7 +8,7 @@ has_children: false
 
 # Getting started with forecasting
 
-You can define and configure forecasters in SmartObserve Dashboards by selecting **Forecasting** from the navigation panel.
+You can define and configure forecasters in MCdesk Dashboards by selecting **Forecasting** from the navigation panel.
 
 ## Step 1: Define a forecaster
 
@@ -41,7 +41,7 @@ A **forecaster** represents a single forecasting task. You can create multiple f
 5. In the **Indicator (metric)** section, add a metric for the forecaster. Each forecaster supports one metric for optimal accuracy. Choose one of the following options:
 
    - Select a predefined aggregation: `average()`, `count()`, `sum()`, `min()`, or `max()`.  
-   - To use a custom aggregation, choose **Custom expression** under **Forecast based on** and define your own [query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/index/) expression. For example, the following query forecasts the number of unique accounts with a specific account type:
+   - To use a custom aggregation, choose **Custom expression** under **Forecast based on** and define your own [query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/index/) expression. For example, the following query forecasts the number of unique accounts with a specific account type:
 
    ```json
    {
@@ -98,7 +98,7 @@ For more information, see the blog post [Improving Anomaly Detection: One Millio
 
 ## Step 2: Add model parameters
 
-The **Suggest parameters** button in SmartObserve Dashboards initiates a review of recent history to recommend sensible defaults. You can override these defaults by adjusting the following parameters:
+The **Suggest parameters** button in MCdesk Dashboards initiates a review of recent history to recommend sensible defaults. You can override these defaults by adjusting the following parameters:
 
 * **Forecasting interval** – Specifies the aggregation bucket (for example, 10 minutes). Longer intervals smooth out noise and reduce compute costs, but they delay detection. Shorter intervals detect changes sooner but increase resource usage and can introduce noise. Choose the shortest interval that still produces a stable signal.
 * **Window delay** – Tells the forecaster how much of a delay to expect between event occurrence and ingestion. This delay adjusts the forecasting interval backward to ensure complete data coverage. For example, if the forecasting interval is 10 minutes and ingestion is delayed by 1 minute, setting the window delay to 1 minute ensures that the forecaster evaluates data from 1:49 to 1:59 rather than 1:50 to 2:00.
@@ -125,11 +125,11 @@ If you provide a custom value, it overrides this calculation.
 
 ### Determining storage amounts
 
-By default, forecast results are stored in the `smartobserve-forecast-results` index alias. You can:
+By default, forecast results are stored in the `mcdesk-forecast-results` index alias. You can:
 
 * Build dashboards and visualizations.
 * Connect the results to the Alerting plugin.
-* Query the results as with any other SmartObserve index.
+* Query the results as with any other MCdesk index.
 
 To manage storage, the plugin applies a rollover policy:
 
@@ -145,16 +145,16 @@ You can customize this behavior using the following settings.
 
 ### Specifying a custom result index
 
-You can store forecast results in a custom index by selecting **Custom index** and providing an alias name, such as `abc`. The plugin creates an alias like `smartobserve-forecast-result-abc` that points to the backing index (for example, `smartobserve-forecast-result-abc-history-2024.06.12-000002`).
+You can store forecast results in a custom index by selecting **Custom index** and providing an alias name, such as `abc`. The plugin creates an alias like `mcdesk-forecast-result-abc` that points to the backing index (for example, `mcdesk-forecast-result-abc-history-2024.06.12-000002`).
 
-To manage permissions, use hyphenated namespaces. For example, assign `smartobserve-forecast-result-financial-us-*` to roles for the `financial` department's `us` group.
+To manage permissions, use hyphenated namespaces. For example, assign `mcdesk-forecast-result-financial-us-*` to roles for the `financial` department's `us` group.
 {: .note } If the Security plugin is enabled, ensure appropriate [permissions are configured]({{site.url}}{{site.baseurl}}/observing-your-data/forecast/security/#custom-result-index-permissions).
 
 ### Flattening nested fields
 
 If your custom result index's documents include nested fields, enable the **Flattened custom result index** to simplify aggregation and visualization.
 
-This creates a separate index prefixed with the custom index and forecaster name (for example, `smartobserve-forecast-result-abc-flattened-test`) and attaches an ingest pipeline using a [Painless script](https://github.com/igsl-group/anomaly-detection/blob/main/src/main/resources/scripts/flatten-custom-result-index-painless.txt) to flatten nested data.
+This creates a separate index prefixed with the custom index and forecaster name (for example, `mcdesk-forecast-result-abc-flattened-test`) and attaches an ingest pipeline using a [Painless script](https://github.com/igsl-group/anomaly-detection/blob/main/src/main/resources/scripts/flatten-custom-result-index-painless.txt) to flatten nested data.
 
 If you later disable this option, the associated ingest pipeline is removed.
 

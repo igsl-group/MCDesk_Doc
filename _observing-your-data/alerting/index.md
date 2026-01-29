@@ -13,17 +13,17 @@ redirect_from:
 
 To create an alert, do the following: 
 
-- Configure a _monitor_, which is a job that runs on a defined schedule and queries SmartObserve indexes. Required.
+- Configure a _monitor_, which is a job that runs on a defined schedule and queries MCdesk indexes. Required.
 - Configure one or more _triggers_, which define the conditions that generate events. Optional.
 - Configure _actions_, which is what happens after an alert is triggered. Optional.
 
 ## Key terms
 
-The following table lists alerting terminology commonly used in SmartObserve and throughout the Alerting documentation.
+The following table lists alerting terminology commonly used in MCdesk and throughout the Alerting documentation.
 
 Term | Definition
 :--- | :---
-Monitor | Job that runs on a defined schedule and queries SmartObserve indexes. The results of these queries are then used as input for one or more triggers.
+Monitor | Job that runs on a defined schedule and queries MCdesk indexes. The results of these queries are then used as input for one or more triggers.
 Trigger | Conditions that, if met, generate alerts. See [Triggers]({{site.url}}{{site.baseurl}}/observing-your-data/alerting/triggers/).
 Alert | Event associated with a trigger. When an alert is created, the trigger performs actions, including sending notifications.
 Action | Specific task that is performed when an alert is triggered. See [Actions]({{site.url}}{{site.baseurl}}/observing-your-data/alerting/actions/).
@@ -45,7 +45,7 @@ Deleted | The monitor or trigger associated with this alert was deleted while th
 
 You can follow these basic steps to create an alert monitor:
 
-1. In the **SmartObserve Plugins** main menu, choose **Alerting**.
+1. In the **MCdesk Plugins** main menu, choose **Alerting**.
 1. Choose **Create monitor**. See [Monitors]({{site.url}}{{site.baseurl}}/observing-your-data/alerting/monitors/) for more information about the monitor types.
 1. Enter the **Monitor details**, including monitor type, method, and schedule.  
 1. Select a data source from the dropdown list.

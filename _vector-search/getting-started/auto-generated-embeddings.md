@@ -7,16 +7,16 @@ nav_order: 30
 
 # Generating embeddings automatically
 
-You can generate embeddings dynamically during ingestion within SmartObserve. This method provides a simplified workflow by converting data to vectors automatically.
+You can generate embeddings dynamically during ingestion within MCdesk. This method provides a simplified workflow by converting data to vectors automatically.
 
-SmartObserve can automatically generate embeddings from your text data using two approaches:
+MCdesk can automatically generate embeddings from your text data using two approaches:
 
 - [**Manual setup**](#manual-setup) (Recommended for custom configurations): Configure each component individually for full control over the implementation.
 - [**Automated workflow**](#using-automated-workflows) (Recommended for quick setup): Use defaults and workflows for quick implementation with minimal configuration.
 
 ## Prerequisites
 
-For this simple setup, you'll use an SmartObserve-provided machine learning (ML) model and a cluster with no dedicated ML nodes. To ensure that this basic local setup works, send the following request to update ML-related cluster settings:
+For this simple setup, you'll use an MCdesk-provided machine learning (ML) model and a cluster with no dedicated ML nodes. To ensure that this basic local setup works, send the following request to update ML-related cluster settings:
 
 ```json
 PUT _cluster/settings
@@ -35,13 +35,13 @@ Generating embeddings automatically requires configuring a language model that w
 
 When selecting a model, you have the following options:
 
-- Use a pretrained model provided by SmartObserve. For more information, see [SmartObserve-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
+- Use a pretrained model provided by MCdesk. For more information, see [MCdesk-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
 
-- Upload your own model to SmartObserve. For more information, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
+- Upload your own model to MCdesk. For more information, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
 
 - Connect to a foundation model hosted on an external platform. For more information, see [Connecting to remote models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/).
 
-In this example, you'll use the [DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert) model from Hugging Face, which is one of the [pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sentence-transformers) available in SmartObserve. For more information, see [Integrating ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/).
+In this example, you'll use the [DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert) model from Hugging Face, which is one of the [pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sentence-transformers) available in MCdesk. For more information, see [Integrating ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/).
 
 Take note of the dimensionality of the model because you'll need it when you set up a vector index.
 {: .important}
@@ -64,7 +64,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 ```
 {% include copy-curl.html %}
 
-Registering a model is an asynchronous task. SmartObserve returns a task ID for this task:
+Registering a model is an asynchronous task. MCdesk returns a task ID for this task:
 
 ```json
 {
@@ -276,7 +276,7 @@ POST /_plugins/_flow_framework/workflow?use_case=semantic_search&provision=true
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with a workflow ID for the created workflow:
+MCdesk responds with a workflow ID for the created workflow:
 
 ```json
 {

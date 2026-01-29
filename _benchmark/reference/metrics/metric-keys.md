@@ -3,21 +3,21 @@ layout: default
 title: Metric keys
 nav_order: 35
 parent: Metrics reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 redirect_from:
   - /benchmark/metrics/metric-keys/
 ---
 
 # Metric keys
 
-Metric keys are the metrics that SmartObserve Benchmark stores, based on the configuration in the [metrics record]({{site.url}}{{site.baseurl}}/benchmark/metrics/metric-records/). SmartObserve Benchmark stores the following metrics:
+Metric keys are the metrics that MCdesk Benchmark stores, based on the configuration in the [metrics record]({{site.url}}{{site.baseurl}}/benchmark/metrics/metric-records/). MCdesk Benchmark stores the following metrics:
 
 
-- `latency`: The time period between submitting a request and receiving the complete response. This also includes wait time, such as the time the request spends waiting until it is ready to be serviced by SmartObserve Benchmark.
+- `latency`: The time period between submitting a request and receiving the complete response. This also includes wait time, such as the time the request spends waiting until it is ready to be serviced by MCdesk Benchmark.
 - `service_time`: The time period between sending a request and receiving the corresponding response. This metric is similar to latency but does not include wait time. 
-- `processing_time`: The time period between starting to process a request and receiving the complete response. Contrary to service time, this metric also includes the SmartObserve Benchmark client-side processing overhead. Large differences between service time and processing time indicate a high overhead in the client and can thus point to a potential client-side bottleneck, which requires investigation.
-- `throughput`: The number of operations that SmartObserve Benchmark can perform within a certain time period, usually per second. See the [workload reference]({{site.url}}{{site.baseurl}}/benchmark/workloads/index/) for definitions of operation types.
-- `disk_io_write_bytes`: The number of bytes written to disk during the benchmark. On Linux, this metric corresponds to only the bytes that have been written by SmartObserve Benchmark. On Mac OS, it includes the number of bytes written by all processes.
+- `processing_time`: The time period between starting to process a request and receiving the complete response. Contrary to service time, this metric also includes the MCdesk Benchmark client-side processing overhead. Large differences between service time and processing time indicate a high overhead in the client and can thus point to a potential client-side bottleneck, which requires investigation.
+- `throughput`: The number of operations that MCdesk Benchmark can perform within a certain time period, usually per second. See the [workload reference]({{site.url}}{{site.baseurl}}/benchmark/workloads/index/) for definitions of operation types.
+- `disk_io_write_bytes`: The number of bytes written to disk during the benchmark. On Linux, this metric corresponds to only the bytes that have been written by MCdesk Benchmark. On Mac OS, it includes the number of bytes written by all processes.
 - `disk_io_read_bytes`: The number of bytes read from disk during the benchmark. On MacOS, this includes the number of bytes written by all processes.
 - `node_startup_time`: The amount of time, in seconds, from the start of the process until the node is running.
 - `node_total_young_gen_gc_time`: The total runtime of the young-generation garbage collector across the whole cluster, as reported by the Nodes Stats API.

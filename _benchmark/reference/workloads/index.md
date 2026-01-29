@@ -2,14 +2,14 @@
 layout: default
 title: Workload reference
 nav_order: 60
-parent: SmartObserve Benchmark Reference
+parent: MCdesk Benchmark Reference
 has_children: true
 redirect_from:
   - /benchmark/workloads/index/
   - /benchmark/reference/workloads/
 ---
 
-# SmartObserve Benchmark workload reference
+# MCdesk Benchmark workload reference
 
 A workload is a specification of one or more benchmarking scenarios. A workload typically includes the following:
 
@@ -27,11 +27,11 @@ If you want to try certain workloads before creating your own, use the following
 
 ### Running unthrottled
 
-In the following example, SmartObserve Benchmark runs an unthrottled bulk index operation for 1 hour against the `movies` index:
+In the following example, MCdesk Benchmark runs an unthrottled bulk index operation for 1 hour against the `movies` index:
 
 ```json
 {
-  "description": "Tutorial benchmark for SmartObserve Benchmark",
+  "description": "Tutorial benchmark for MCdesk Benchmark",
   "indices": [
     {
       "name": "movies",
@@ -67,7 +67,7 @@ The following workload runs a benchmark with a single task: a `match_all` query.
 
 ```json
 {
-  "description": "Tutorial benchmark for SmartObserve Benchmark",
+  "description": "Tutorial benchmark for MCdesk Benchmark",
   "indices": [
     {
       "name": "movies",
@@ -109,5 +109,5 @@ The following workload runs a benchmark with a single task: a `match_all` query.
 
 ## Next steps
 
-- For more information about configuring SmartObserve Benchmark, see [Configuring SmartObserve Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/). 
-- For a list of prepackaged workloads for SmartObserve Benchmark, see the [smartobserve-benchmark-workloads](https://github.com/igsl-group/smartobserve-benchmark-workloads) repository. 
+- For more information about configuring MCdesk Benchmark, see [Configuring MCdesk Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/). 
+- For a list of prepackaged workloads for MCdesk Benchmark, see the [mcdesk-benchmark-workloads](https://github.com/igsl-group/mcdesk-benchmark-workloads) repository. 

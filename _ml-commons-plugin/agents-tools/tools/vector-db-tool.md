@@ -14,13 +14,13 @@ grand_parent: Agents and tools
 {: .label .label-purple }
 <!-- vale on -->
 
-The `VectorDBTool` performs dense vector retrieval. For more information about SmartObserve vector database capabilities, see [neural search]({{site.url}}{{site.baseurl}}/search-plugins/neural-search/).
+The `VectorDBTool` performs dense vector retrieval. For more information about MCdesk vector database capabilities, see [neural search]({{site.url}}{{site.baseurl}}/search-plugins/neural-search/).
 
 ## Step 1: Register and deploy a sparse encoding model
 
-SmartObserve supports several pretrained models. You can use one of those models, use your own custom model, or create a connector for an externally hosted model. For a list of supported pretrained models, see [SmartObserve-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/). For more information about custom models, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/). For information about integrating an externally hosted model, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/). 
+MCdesk supports several pretrained models. You can use one of those models, use your own custom model, or create a connector for an externally hosted model. For a list of supported pretrained models, see [MCdesk-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/). For more information about custom models, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/). For information about integrating an externally hosted model, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/). 
 
-In this example, you'll use the `huggingface/sentence-transformers/all-MiniLM-L12-v2` pretrained model for both ingestion and search. To register and deploy the model to SmartObserve, send the following request:
+In this example, you'll use the `huggingface/sentence-transformers/all-MiniLM-L12-v2` pretrained model for both ingestion and search. To register and deploy the model to MCdesk, send the following request:
 
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
@@ -32,7 +32,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with a task ID for the model registration and deployment task:
+MCdesk responds with a task ID for the model registration and deployment task:
 
 ```json
 {
@@ -48,7 +48,7 @@ GET _plugins/_ml/tasks/M_9KY40Bk4MTqirc5lP8
 ```
 {% include copy-curl.html %} 
 
-Once the model is registered and deployed, the task `state` changes to `COMPLETED` and SmartObserve returns a model ID for the model:
+Once the model is registered and deployed, the task `state` changes to `COMPLETED` and MCdesk returns a model ID for the model:
 
 ```json
 {
@@ -161,7 +161,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -171,7 +171,7 @@ SmartObserve responds with an agent ID:
 
 ## Step 4: Run the agent
 
-Before you run the agent, make sure that you add the sample SmartObserve Dashboards `Sample web logs` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
+Before you run the agent, make sure that you add the sample MCdesk Dashboards `Sample web logs` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
 
 Then, run the agent by sending the following request:
 
@@ -185,7 +185,7 @@ POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 ```
 {% include copy-curl.html %} 
 
-SmartObserve performs vector search and returns the relevant documents:
+MCdesk performs vector search and returns the relevant documents:
 
 ```json
 {

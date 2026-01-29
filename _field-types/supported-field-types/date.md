@@ -6,7 +6,7 @@ has_children: false
 parent: Date field types
 grand_parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/date/
+  - /mcdesk/supported-field-types/date/
   - /field-types/date/
 ---
 
@@ -14,13 +14,13 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-A date in SmartObserve can be represented as one of the following:
+A date in MCdesk can be represented as one of the following:
 
 - A long value that corresponds to milliseconds since the epoch. Dates are stored in this form internally.
 - A formatted string.
 - An integer value that corresponds to seconds since the epoch.
 
-To represent date ranges, there is a date [range field type]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/range/).
+To represent date ranges, there is a date [range field type]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/range/).
 {: .note }
 
 ## Example
@@ -55,17 +55,17 @@ Parameter | Description
 `index` | A Boolean value that specifies whether the field should be searchable. Default is `true`.
 `locale` | A region- and language-specific way of representing the date. Default is [`ROOT`](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#ROOT) (a region- and language-neutral locale).
 `meta` | Accepts metadata for this field.
-[`null_value`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/index#null-value) | A value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
-`skip_list` | A Boolean value that specifies whether to enable skip list indexing for doc values. When enabled, SmartObserve creates indexed doc values that can improve performance for `range` queries by allowing the query engine to skip irrelevant document ranges. Skip list indexing is automatically enabled for the `@timestamp` field and fields used for index sorting. For all other fields, the default is `false`.
+[`null_value`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/index#null-value) | A value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
+`skip_list` | A Boolean value that specifies whether to enable skip list indexing for doc values. When enabled, MCdesk creates indexed doc values that can improve performance for `range` queries by allowing the query engine to skip irrelevant document ranges. Skip list indexing is automatically enabled for the `@timestamp` field and fields used for index sorting. For all other fields, the default is `false`.
 `store` | A Boolean value that specifies whether the field value should be stored and can be retrieved separately from the _source field. Default is `false`. 
 
 ## Formats
 
-SmartObserve has built-in date formats, but you can also create your own custom formats. You can specify multiple date formats, separated by `||`.
+MCdesk has built-in date formats, but you can also create your own custom formats. You can specify multiple date formats, separated by `||`.
 
 ## Default format
 
-As of SmartObserve 2.12, you can to choose to use an experimental default date format, `strict_date_time_no_millis||strict_date_optional_time||epoch_millis`. To use the experimental default, set the `smartobserve.experimental.optimization.datetime_formatter_caching.enabled` feature flag to `true`. For more information about enabling and disabling feature flags, see [Enabling experimental features]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/experimental/).
+As of MCdesk 2.12, you can to choose to use an experimental default date format, `strict_date_time_no_millis||strict_date_optional_time||epoch_millis`. To use the experimental default, set the `mcdesk.experimental.optimization.datetime_formatter_caching.enabled` feature flag to `true`. For more information about enabling and disabling feature flags, see [Enabling experimental features]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/experimental/).
 
 ## Built-in formats
 
@@ -233,8 +233,8 @@ The date field type supports using date math to specify durations in queries. Fo
 
 A date math expression contains a fixed date, optionally followed by one or more mathematical expressions. The fixed date may be either `now` (current date and time in milliseconds since the epoch) or a string ending with `||` that specifies a date (for example, `2022-05-18||`). The date must be in the [default format](#default-format) (which is `strict_date_time_no_millis||strict_date_optional_time||epoch_millis` by default).
 
-If you specify multiple date formats in the field mapping, SmartObserve uses the first format to convert the milliseconds since the epoch value to a string. <br>
-If a field mapping for a field contains no format, SmartObserve uses the `strict_date_optional_time` format to convert the epoch value to a string.
+If you specify multiple date formats in the field mapping, MCdesk uses the first format to convert the milliseconds since the epoch value to a string. <br>
+If a field mapping for a field contains no format, MCdesk uses the `strict_date_optional_time` format to convert the epoch value to a string.
 {: .note}
 
 Date math supports the following mathematical operators.

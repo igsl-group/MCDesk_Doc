@@ -11,9 +11,9 @@ redirect_from:
 
 # RAG using DeepSeek-R1 on Amazon Bedrock
 
-This tutorial shows you how to implement retrieval-augmented generation (RAG) using [Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/) and the [DeepSeek-R1 model](https://huggingface.co/deepseek-ai/DeepSeek-R1).
+This tutorial shows you how to implement retrieval-augmented generation (RAG) using [Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/) and the [DeepSeek-R1 model](https://huggingface.co/deepseek-ai/DeepSeek-R1).
 
-If you are using self-managed SmartObserve instead of Amazon SmartObserve Service, create a connector to the DeepSeek-R1 model using [the blueprint](https://github.com/igsl-group/ml-commons/blob/main/docs/remote_inference_blueprints/deepseek_connector_chat_blueprint.md). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/). Then go directly to [Step 4](#step-4-create-and-test-the-model).
+If you are using self-managed MCdesk instead of Amazon MCdesk Service, create a connector to the DeepSeek-R1 model using [the blueprint](https://github.com/igsl-group/ml-commons/blob/main/docs/remote_inference_blueprints/deepseek_connector_chat_blueprint.md). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/). Then go directly to [Step 4](#step-4-create-and-test-the-model).
 
 Replace the placeholders beginning with the prefix `your_` with your own values.
 {: .note}
@@ -29,9 +29,9 @@ When configuring Amazon settings, only change the values mentioned in this tutor
 
 Deploy DeepSeek-R1 on Amazon Bedrock. For more information, see [Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html). Note the Amazon Bedrock DeepSeek-R1 model Amazon Resource Name (ARN); you'll use it in the following steps.
 
-### Create an SmartObserve cluster
+### Create an MCdesk cluster
 
-Go to the [Amazon SmartObserve Service console](https://console.aws.amazon.com/aos/home) and create an SmartObserve domain.
+Go to the [Amazon MCdesk Service console](https://console.aws.amazon.com/aos/home) and create an MCdesk domain.
 
 Note the domain ARN and URL; you'll use them in the following steps.
 
@@ -79,9 +79,9 @@ Go to the IAM console, create a new IAM role named `my_invoke_bedrock_deepseek_m
 
 Note the role ARN; you'll use it in the following steps.
 
-## Step 2: Configure an IAM role in Amazon SmartObserve Service
+## Step 2: Configure an IAM role in Amazon MCdesk Service
 
-Follow these steps to configure an IAM role in Amazon SmartObserve Service.
+Follow these steps to configure an IAM role in Amazon MCdesk Service.
 
 ### Step 2.1: Create an IAM role for signing connector requests
 
@@ -123,7 +123,7 @@ You'll use the `your_iam_user_arn` IAM user to assume the role in Step 3.
     {
       "Effect": "Allow",
       "Action": "es:ESHttpPost",
-      "Resource": "your_smartobserve_domain_arn"
+      "Resource": "your_mcdesk_domain_arn"
     }
   ]
 }
@@ -136,14 +136,14 @@ Note this role ARN; you'll use it in the following steps.
 
 Follow these steps to map a backend role:
 
-1. Log in to SmartObserve Dashboards and select **Security** on the top menu.
+1. Log in to MCdesk Dashboards and select **Security** on the top menu.
 2. Select **Roles**, and then select the **ml_full_access** role. 
 3. On the **ml_full_access** role details page, select **Mapped users**, and then select **Manage mapping**. 
 4. Enter the IAM role ARN created in Step 2.1 in the **Backend roles** field, as shown in the following image.
     ![Mapping a backend role]({{site.url}}{{site.baseurl}}/images/vector-search-tutorials/mapping_iam_role_arn.png)
 5. Select **Map**. 
 
-The IAM role is now successfully configured in your SmartObserve cluster.
+The IAM role is now successfully configured in your MCdesk cluster.
 
 ## Step 3: Create a connector
 
@@ -156,8 +156,8 @@ import boto3
 import requests 
 from requests_aws4auth import AWS4Auth
 
-host = 'your_amazon_smartobserve_domain_endpoint'
-region = 'your_amazon_smartobserve_domain_region'
+host = 'your_amazon_mcdesk_domain_endpoint'
+region = 'your_amazon_mcdesk_domain_region'
 service = 'es'
 
 assume_role_response = boto3.Session().client('sts').assume_role(
@@ -217,7 +217,7 @@ Note the connector ID; you'll use it in the next step.
 
 ## Step 4: Create and test the model
 
-Log in to SmartObserve Dashboards, open the DevTools console, and run the following requests to create and test the DeepSeek-R1 model.
+Log in to MCdesk Dashboards, open the DevTools console, and run the following requests to create and test the DeepSeek-R1 model.
 
 1. Create a model group:
 

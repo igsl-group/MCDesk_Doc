@@ -12,7 +12,7 @@ Redirect_from:
 
 Aggregate functions operate on subsets defined by the `GROUP BY` clause. In the absence of a `GROUP BY` clause, aggregate functions operate on all elements of the result set. You can use aggregate functions in the `GROUP BY`, `SELECT`, and `HAVING` clauses.
 
-SmartObserve supports the following aggregate functions.
+MCdesk supports the following aggregate functions.
 
 Function | Description
 :--- | :---
@@ -27,7 +27,7 @@ Function | Description
 `STDDEV_POP` | Returns the population standard deviation of the results. Returns 0 when there is only one row of results.
 `STDDEV_SAMP` | Returns the sample standard deviation of the results. Returns null when there is only one row of results.
 
-The examples below reference an `employees` table. You can try out the examples by indexing the following documents into SmartObserve using the bulk index operation:
+The examples below reference an `employees` table. You can try out the examples by indexing the following documents into MCdesk using the bulk index operation:
 
 ```json
 PUT employees/_bulk?refresh

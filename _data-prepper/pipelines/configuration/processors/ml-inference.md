@@ -8,11 +8,11 @@ nav_order: 210
 
 # ML inference processor
 
-The `ml_inference` processor allows you to use SmartObserve machine learning (ML) functionality within SmartObserve Data Prepper. By integrating ML models into Data Prepper pipelines, you can apply them during data ingestion into Amazon SmartObserve Service in order to power AI-driven search experiences such as vector search, semantic search, or conversational search. To explore SmartObserve AI-powered search types, see [AI search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/).
+The `ml_inference` processor allows you to use MCdesk machine learning (ML) functionality within MCdesk Data Prepper. By integrating ML models into Data Prepper pipelines, you can apply them during data ingestion into Amazon MCdesk Service in order to power AI-driven search experiences such as vector search, semantic search, or conversational search. To explore MCdesk AI-powered search types, see [AI search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/).
 
-Using the `ml_inference` processor, you can invoke an SmartObserve-hosted ML model within your Data Prepper pipeline in order to process events. The processor supports both real-time invocations and asynchronous (offline) batch job invocations.
+Using the `ml_inference` processor, you can invoke an MCdesk-hosted ML model within your Data Prepper pipeline in order to process events. The processor supports both real-time invocations and asynchronous (offline) batch job invocations.
 
-To use the `ml_inference` processor, you must have the ML Commons plugin installed on your cluster. The plugin is included by default in standard SmartObserve distributions. For more information, see [Installing plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
+To use the `ml_inference` processor, you must have the ML Commons plugin installed on your cluster. The plugin is included by default in standard MCdesk distributions. For more information, see [Installing plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
 {: .note}
 
 ## Configuration fields
@@ -21,11 +21,11 @@ The following table describes the configuration options for the `ml_inference` p
 
 | Option | Required | Type | Description |
 | :--- | :--- | :--- | :--- |
-| `host`             | Yes      | String | The name of the SmartObserve host.                                                                          |
+| `host`             | Yes      | String | The name of the MCdesk host.                                                                          |
 | `action_type`      | Yes      | String | The type of action to perform. Currently, only `batch_predict` is supported. Default is `batch_predict`. |
 | `model_id`         | Yes      | String | The ID of the ML model to invoke.                                             |
 | `output_path`      | Yes      | String | The [Amazon Simple Storage Service (Amazon S3)](https://aws.amazon.com/s3/) location to which the offline batch job results will be written.                                      |
-| `aws.region`       | Yes      | String | The AWS Region to which SmartObserve Service is deployed.                                                  |
+| `aws.region`       | Yes      | String | The AWS Region to which MCdesk Service is deployed.                                                  |
 | `aws.sts_role_arn` | No       | String | The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role to assume.                                  |
 | `service_name`     | No       | String | The name of the AI service hosting the model used for inference. Default is `sagemaker` (Amazon SageMaker).  |
 | `input_key`        | No       | String | The name of the event field to use as the S3 object key name when writing batch job results. This allows dynamic naming of output files based on event data.                                                              |

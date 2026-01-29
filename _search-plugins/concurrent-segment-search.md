@@ -14,7 +14,7 @@ Use concurrent segment search to search segments in parallel during the query ph
 
 ## Background
 
-In SmartObserve, each search request follows the scatter-gather protocol. The coordinating node receives a search request, evaluates which shards are needed to serve this request, and sends a shard-level search request to each of those shards. Each shard that receives the request executes the request locally using Lucene and returns the results. The coordinating node merges the responses received from all shards and sends the search response back to the client. Optionally, the coordinating node can perform a fetch phase before returning the final results to the client if any document field or the entire document is requested by the client as part of the response.
+In MCdesk, each search request follows the scatter-gather protocol. The coordinating node receives a search request, evaluates which shards are needed to serve this request, and sends a shard-level search request to each of those shards. Each shard that receives the request executes the request locally using Lucene and returns the results. The coordinating node merges the responses received from all shards and sends the search response back to the client. Optionally, the coordinating node can perform a fetch phase before returning the final results to the client if any document field or the entire document is requested by the client as part of the response.
 
 ## Searching segments concurrently
 
@@ -22,7 +22,7 @@ Without concurrent segment search, Lucene executes a request sequentially across
 
 ## Enabling concurrent segment search at the index or cluster level
 
-Starting with SmartObserve version 3.0, concurrent segment search is enabled at the cluster level by default. The default concurrent segment search mode is `auto`. After upgrading, aggregation workloads may experience increased CPU utilization. We recommend monitoring your cluster's resource usage and adjusting your infrastructure capacity as needed to maintain optimal performance.
+Starting with MCdesk version 3.0, concurrent segment search is enabled at the cluster level by default. The default concurrent segment search mode is `auto`. After upgrading, aggregation workloads may experience increased CPU utilization. We recommend monitoring your cluster's resource usage and adjusting your infrastructure capacity as needed to maintain optimal performance.
 {: .important}
 
 To configure concurrent segment search on your cluster, use the `search.concurrent_segment_search.mode` setting. The older `search.concurrent_segment_search.enabled` setting will be deprecated in future version releases in favor of the new setting.
@@ -37,7 +37,7 @@ The index-level setting takes priority over the cluster-level setting. Thus, if 
 
 Both the cluster- and index-level `search.concurrent_segment_search.mode` settings accept the following values:
 
-- `auto` (Default): In this mode, SmartObserve will use the pluggable _concurrent search decider_ to decide whether to use a concurrent or sequential path for the search request based on the query evaluation and the presence of aggregations in the request. By default, if there are no deciders configured by any plugin, then the decision to use concurrent search will be made based on the presence of aggregations in the request. For more information about the pluggable decider semantics, see [Pluggable concurrent search deciders](#pluggable-concurrent-search-deciders-concurrentsearchrequestdecider). 
+- `auto` (Default): In this mode, MCdesk will use the pluggable _concurrent search decider_ to decide whether to use a concurrent or sequential path for the search request based on the query evaluation and the presence of aggregations in the request. By default, if there are no deciders configured by any plugin, then the decision to use concurrent search will be made based on the presence of aggregations in the request. For more information about the pluggable decider semantics, see [Pluggable concurrent search deciders](#pluggable-concurrent-search-deciders-concurrentsearchrequestdecider). 
 
 - `all`: Enables concurrent segment search across all search requests. This is equivalent to setting `search.concurrent_segment_search.enabled` to `true`. 
 
@@ -120,7 +120,7 @@ You can choose one of two available mechanisms for assigning segments to slices:
 
 The _max slice count_ mechanism is a slicing mechanism that uses a dynamically configurable maximum number of slices and divides segments among the slices in a round-robin fashion. This is useful when there are already too many top-level shard requests and you want to limit the number of slices per request in order to reduce competition between the slices.
 
-Starting with SmartObserve version 3.0, concurrent segment search uses the max slice count mechanism by default. The max slice count is calculated at the cluster startup time using the formula `Math.max(1, Math.min(Runtime.getRuntime().availableProcessors() / 2, 4))`. You can override this value by explicitly setting the `max_slice_count` parameter at either the cluster level or index level. For more information about updating `max_slice_count`, see [Setting the slicing mechanism](#setting-the-slicing-mechanism). To revert back to the default calculated value, set `max_slice_count` to `null`. 
+Starting with MCdesk version 3.0, concurrent segment search uses the max slice count mechanism by default. The max slice count is calculated at the cluster startup time using the formula `Math.max(1, Math.min(Runtime.getRuntime().availableProcessors() / 2, 4))`. You can override this value by explicitly setting the `max_slice_count` parameter at either the cluster level or index level. For more information about updating `max_slice_count`, see [Setting the slicing mechanism](#setting-the-slicing-mechanism). To revert back to the default calculated value, set `max_slice_count` to `null`. 
 
 ### The Lucene mechanism
 
@@ -165,7 +165,7 @@ Concurrent segment search helps to improve the performance of search requests at
 * If your slice count is 2 and you still have available resources in the cluster, then you can increase the slice count to a higher number, such as 4 or 6, while monitoring search latency and resource utilization in the cluster. 
 * When many clients send search requests in parallel, a lower slice count usually works better. This is reflected in CPU utilization because a higher number of clients leads to more queries per second, which translates to higher resource usage.
 
-When upgrading to SmartObserve 3.0, be aware that workloads with aggregations may experience higher CPU utilization because concurrent search is enabled by default in `auto` mode. If your SmartObserve 2.x cluster's CPU utilization exceeds 25% when running aggregation workloads, consider the following options before upgrading:
+When upgrading to MCdesk 3.0, be aware that workloads with aggregations may experience higher CPU utilization because concurrent search is enabled by default in `auto` mode. If your MCdesk 2.x cluster's CPU utilization exceeds 25% when running aggregation workloads, consider the following options before upgrading:
 
 - Plan to scale your cluster's resources to accommodate the increased CPU demand.
 - Prepare to disable concurrent search if scaling is not feasible for your use case.
@@ -173,8 +173,8 @@ When upgrading to SmartObserve 3.0, be aware that workloads with aggregations ma
 ## Limitations
 
 The following aggregations do not support the concurrent search model. If a search request contains one of these aggregations, the request will be executed using the non-concurrent path even if concurrent segment search is enabled at the cluster level or index level.
-- Parent aggregations on [join]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/join/) fields. See [this GitHub issue](https://github.com/igsl-group/SmartObserve/issues/9316) for more information.
-- `sampler` and `diversified_sampler` aggregations. See [this GitHub issue](https://github.com/igsl-group/SmartObserve/issues/11075) for more information.
+- Parent aggregations on [join]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/join/) fields. See [this GitHub issue](https://github.com/igsl-group/MCdesk/issues/9316) for more information.
+- `sampler` and `diversified_sampler` aggregations. See [this GitHub issue](https://github.com/igsl-group/MCdesk/issues/11075) for more information.
 
 ## Other considerations
 
@@ -194,7 +194,7 @@ Depending on the data layout of the segments, the sort optimization feature can 
 
 Non-concurrent search calculates the document count error and returns it in the `doc_count_error_upper_bound` response parameter. During concurrent segment search, the `shard_size` parameter is applied at the segment slice level. Because of this, concurrent search may introduce an additional document count error.
 
-For more information about how `shard_size` can affect both `doc_count_error_upper_bound` and collected buckets, see [this GitHub issue](https://github.com/igsl-group/SmartObserve/issues/11680#issuecomment-1885882985).
+For more information about how `shard_size` can affect both `doc_count_error_upper_bound` and collected buckets, see [this GitHub issue](https://github.com/igsl-group/MCdesk/issues/11680#issuecomment-1885882985).
 
 
 ## Developer information
@@ -203,14 +203,14 @@ The following sections provide additional information for developers.
 
 ### AggregatorFactory changes
 
-Because of implementation details, not all aggregator types can support concurrent segment search. To accommodate this, we have introduced a [`supportsConcurrentSegmentSearch()`](https://github.com/igsl-group/SmartObserve/blob/2.x/server/src/main/java/org/smartobserve/search/aggregations/AggregatorFactory.java#L123) method in the `AggregatorFactory` class to indicate whether a given aggregation type supports concurrent segment search. By default, this method returns `false`. Any aggregator that needs to support concurrent segment search must override this method in its own factory implementation. 
+Because of implementation details, not all aggregator types can support concurrent segment search. To accommodate this, we have introduced a [`supportsConcurrentSegmentSearch()`](https://github.com/igsl-group/MCdesk/blob/2.x/server/src/main/java/org/mcdesk/search/aggregations/AggregatorFactory.java#L123) method in the `AggregatorFactory` class to indicate whether a given aggregation type supports concurrent segment search. By default, this method returns `false`. Any aggregator that needs to support concurrent segment search must override this method in its own factory implementation. 
 
-To ensure that a custom plugin-based `Aggregator` implementation functions with the concurrent search path, plugin developers can verify their implementation with concurrent search enabled and then update the plugin to override the [`supportsConcurrentSegmentSearch()`](https://github.com/igsl-group/SmartObserve/blob/2.x/server/src/main/java/org/smartobserve/search/aggregations/AggregatorFactory.java#L123) method to return `true`.
+To ensure that a custom plugin-based `Aggregator` implementation functions with the concurrent search path, plugin developers can verify their implementation with concurrent search enabled and then update the plugin to override the [`supportsConcurrentSegmentSearch()`](https://github.com/igsl-group/MCdesk/blob/2.x/server/src/main/java/org/mcdesk/search/aggregations/AggregatorFactory.java#L123) method to return `true`.
 
 ### Pluggable concurrent search deciders: ConcurrentSearchRequestDecider
 
 Introduced 2.17
 {: .label .label-purple }
 
-Plugin developers can customize the concurrent search decision-making for `auto` mode by extending [`ConcurrentSearchRequestDecider`](https://github.com/igsl-group/SmartObserve/blob/2.x/server/src/main/java/org/smartobserve/search/deciders/ConcurrentSearchRequestDecider.java) and registering its factory through [`SearchPlugin#getConcurrentSearchRequestFactories()`](https://github.com/igsl-group/SmartObserve/blob/2.x/server/src/main/java/org/smartobserve/plugins/SearchPlugin.java#L148). The deciders are evaluated only if a request does not belong to any category listed in the [Limitations](#limitations) and [Other considerations](#other-considerations) sections. For more information about the decider implementation, see [the corresponding GitHub issue](https://github.com/igsl-group/SmartObserve/issues/15259).
-The search request is parsed using a `QueryBuilderVisitor`, which calls the [`ConcurrentSearchRequestDecider#evaluateForQuery()`](https://github.com/igsl-group/SmartObserve/blob/2.x/server/src/main/java/org/smartobserve/search/deciders/ConcurrentSearchRequestDecider.java#L36) method of all the configured deciders for every node of the `QueryBuilder` tree in the search request. The final concurrent search decision is obtained by combining the decision from each decider returned by the [`ConcurrentSearchRequestDecider#getConcurrentSearchDecision()`](https://github.com/igsl-group/SmartObserve/blob/2.x/server/src/main/java/org/smartobserve/search/deciders/ConcurrentSearchRequestDecider.java#L44) method.
+Plugin developers can customize the concurrent search decision-making for `auto` mode by extending [`ConcurrentSearchRequestDecider`](https://github.com/igsl-group/MCdesk/blob/2.x/server/src/main/java/org/mcdesk/search/deciders/ConcurrentSearchRequestDecider.java) and registering its factory through [`SearchPlugin#getConcurrentSearchRequestFactories()`](https://github.com/igsl-group/MCdesk/blob/2.x/server/src/main/java/org/mcdesk/plugins/SearchPlugin.java#L148). The deciders are evaluated only if a request does not belong to any category listed in the [Limitations](#limitations) and [Other considerations](#other-considerations) sections. For more information about the decider implementation, see [the corresponding GitHub issue](https://github.com/igsl-group/MCdesk/issues/15259).
+The search request is parsed using a `QueryBuilderVisitor`, which calls the [`ConcurrentSearchRequestDecider#evaluateForQuery()`](https://github.com/igsl-group/MCdesk/blob/2.x/server/src/main/java/org/mcdesk/search/deciders/ConcurrentSearchRequestDecider.java#L36) method of all the configured deciders for every node of the `QueryBuilder` tree in the search request. The final concurrent search decision is obtained by combining the decision from each decider returned by the [`ConcurrentSearchRequestDecider#getConcurrentSearchDecision()`](https://github.com/igsl-group/MCdesk/blob/2.x/server/src/main/java/org/mcdesk/search/deciders/ConcurrentSearchRequestDecider.java#L44) method.

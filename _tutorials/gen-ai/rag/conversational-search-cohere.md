@@ -72,7 +72,7 @@ POST _plugins/_ml/connectors/_create
             "url": "https://api.cohere.ai/v1/chat",
             "headers": {
                 "Authorization": "Bearer ${credential.cohere_key}",
-                "Request-Source": "unspecified:smartobserve"
+                "Request-Source": "unspecified:mcdesk"
             },
             "request_body": "{ \"message\": \"${parameters.inputs}\", \"model\": \"${parameters.model}\" }",
             "post_process_function": "\n    String escape(def input) { \n      if (input.contains(\"\\\\\")) {\n        input = input.replace(\"\\\\\", \"\\\\\\\\\");\n      }\n      if (input.contains(\"\\\"\")) {\n        input = input.replace(\"\\\"\", \"\\\\\\\"\");\n      }\n      if (input.contains('\r')) {\n        input = input = input.replace('\r', '\\\\r');\n      }\n      if (input.contains(\"\\\\t\")) {\n        input = input.replace(\"\\\\t\", \"\\\\\\\\\\\\t\");\n      }\n      if (input.contains('\n')) {\n        input = input.replace('\n', '\\\\n');\n      }\n      if (input.contains('\b')) {\n        input = input.replace('\b', '\\\\b');\n      }\n      if (input.contains('\f')) {\n        input = input.replace('\f', '\\\\f');\n      }\n      return input;\n    }\n    def name = 'response';\n    def result = params.text;\n    def json = '{ \"name\": \"' + name + '\",' +\n          '\"dataAsMap\": { \"completion\":  \"' + escape(result) +\n          '\"}}';\n    return json;\n   \n    "
@@ -82,7 +82,7 @@ POST _plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %}
 
-Starting in SmartObserve 2.12, you can use the default `escape` function directly in the `post_process_function`:
+Starting in MCdesk 2.12, you can use the default `escape` function directly in the `post_process_function`:
 
 ```json
 "post_process_function": "    \n    def name = 'response';\n    def result = params.text;\n    def json = '{ \"name\": \"' + name + '\",' +\n                 '\"dataAsMap\": { \"completion\":  \"' + escape(result) +\n               '\"}}';\n    return json;"

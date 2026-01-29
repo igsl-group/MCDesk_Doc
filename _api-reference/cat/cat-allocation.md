@@ -3,7 +3,7 @@ layout: default
 title: CAT allocation
 parent: CAT APIs
 redirect_from:
-- /smartobserve/rest-api/cat/cat-allocation/
+- /mcdesk/rest-api/cat/cat-allocation/
 nav_order: 5
 has_children: false
 ---

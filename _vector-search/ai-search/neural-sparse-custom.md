@@ -29,9 +29,9 @@ You must configure a sparse encoding model for ingestion when using both the bi-
 
 Choose the search mode and the appropriate model/tokenizer combination:
 
-- **Bi-encoder**: Use the `amazon/neural-sparse/smartobserve-neural-sparse-encoding-v2-distill` model during both ingestion and search. 
+- **Bi-encoder**: Use the `amazon/neural-sparse/mcdesk-neural-sparse-encoding-v2-distill` model during both ingestion and search. 
 
-- **Doc-only with a custom tokenizer**: Use the `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-distill` model during ingestion and the `amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1` tokenizer during search.
+- **Doc-only with a custom tokenizer**: Use the `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-distill` model during ingestion and the `amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1` tokenizer during search.
 
 The following tables provide a search relevance comparison for all available combinations of the two search modes so that you can choose the best combination for your use case.
 
@@ -39,19 +39,19 @@ The following tables provide a search relevance comparison for all available com
 
 | Mode      | Ingestion model                                               | Search model                                                  | Avg. search relevance on BEIR | Model parameters |
 |-----------|---------------------------------------------------------------|---------------------------------------------------------------|------------------------------|------------------|
-| Doc-only  | `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v1` | `amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1`    | 0.49                         | 133M             |
-| Doc-only  | `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v2-distill` | `amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1`    | 0.504                         | 67M             |
-| Doc-only  | `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v2-mini` | `amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1`    | 0.497                         | 23M             |
-| Doc-only  | `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-distill` | `amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1`    | 0.517                         | 67M             |
-| Doc-only  | `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-gte` | `amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1`    | 0.546                         | 133M             |
-| Bi-encoder| `amazon/neural-sparse/smartobserve-neural-sparse-encoding-v1`     | `amazon/neural-sparse/smartobserve-neural-sparse-encoding-v1`     | 0.524                        | 133M             |
-| Bi-encoder| `amazon/neural-sparse/smartobserve-neural-sparse-encoding-v2-distill`     | `amazon/neural-sparse/smartobserve-neural-sparse-encoding-v2-distill`     | 0.528                        | 67M             |
+| Doc-only  | `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v1` | `amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1`    | 0.49                         | 133M             |
+| Doc-only  | `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v2-distill` | `amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1`    | 0.504                         | 67M             |
+| Doc-only  | `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v2-mini` | `amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1`    | 0.497                         | 23M             |
+| Doc-only  | `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-distill` | `amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1`    | 0.517                         | 67M             |
+| Doc-only  | `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-gte` | `amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1`    | 0.546                         | 133M             |
+| Bi-encoder| `amazon/neural-sparse/mcdesk-neural-sparse-encoding-v1`     | `amazon/neural-sparse/mcdesk-neural-sparse-encoding-v1`     | 0.524                        | 133M             |
+| Bi-encoder| `amazon/neural-sparse/mcdesk-neural-sparse-encoding-v2-distill`     | `amazon/neural-sparse/mcdesk-neural-sparse-encoding-v2-distill`     | 0.528                        | 67M             |
 
 #### Multilingual models
 
 | Mode      | Ingestion model                                               | Search model                                                  | Avg. search relevance on MIRACL | Model parameters |
 |-----------|---------------------------------------------------------------|---------------------------------------------------------------|------------------------------|------------------|
-| Doc-only  | `amazon/neural-sparse/smartobserve-neural-sparse-encoding-multilingual-v1` | `amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-multilingual-v1`    | 0.629                         | 168M             |
+| Doc-only  | `amazon/neural-sparse/mcdesk-neural-sparse-encoding-multilingual-v1` | `amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-multilingual-v1`    | 0.629                         | 168M             |
 
 ### Step 1(b): Register the model/tokenizer
 
@@ -59,21 +59,21 @@ For both modes, register the sparse encoding model. For the doc-only mode with a
 
 #### Bi-encoder mode
 
-When using bi-encoder mode, you only need to register the `amazon/neural-sparse/smartobserve-neural-sparse-encoding-v2-distill` model.
+When using bi-encoder mode, you only need to register the `amazon/neural-sparse/mcdesk-neural-sparse-encoding-v2-distill` model.
 
 Register the sparse encoding model:
 
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
 {
-  "name": "amazon/neural-sparse/smartobserve-neural-sparse-encoding-v2-distill",
+  "name": "amazon/neural-sparse/mcdesk-neural-sparse-encoding-v2-distill",
   "version": "1.0.0",
   "model_format": "TORCH_SCRIPT"
 }
 ```
 {% include copy-curl.html %}
 
-Registering a model is an asynchronous task. SmartObserve returns a task ID for every model you register:
+Registering a model is an asynchronous task. MCdesk returns a task ID for every model you register:
 
 ```json
 {
@@ -110,14 +110,14 @@ Note the `model_id` of the model you've created; you'll need it for the followin
 
 #### Doc-only mode with a custom tokenizer
 
-When using the doc-only mode with a custom tokenizer, you need to register the `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-distill` model, which you'll use at ingestion time, and the `amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1` tokenizer, which you'll use at search time.
+When using the doc-only mode with a custom tokenizer, you need to register the `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-distill` model, which you'll use at ingestion time, and the `amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1` tokenizer, which you'll use at search time.
 
 Register the sparse encoding model:
 
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
 {
-  "name": "amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-distill",
+  "name": "amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-distill",
   "version": "1.0.0",
   "model_format": "TORCH_SCRIPT"
 }
@@ -129,7 +129,7 @@ Register the tokenizer:
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
 {
-  "name": "amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1",
+  "name": "amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1",
   "version": "1.0.1",
   "model_format": "TORCH_SCRIPT"
 }
@@ -258,7 +258,7 @@ Before the document is ingested into the index, the ingest pipeline runs the `sp
 
 ## Step 3: Search the data
 
-To perform a neural sparse search on your index, use the `neural_sparse` query clause in [Query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/index/) queries. 
+To perform a neural sparse search on your index, use the `neural_sparse` query clause in [Query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/index/) queries. 
 
 The following example request uses a `neural_sparse` query to search for relevant documents using a raw text query. Provide the model ID for bi-encoder mode or the tokenizer ID for doc-only mode with a custom tokenizer:
 

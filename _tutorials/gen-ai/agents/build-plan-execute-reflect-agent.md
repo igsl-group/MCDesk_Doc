@@ -11,14 +11,14 @@ nav_order: 20
 This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, see the associated [GitHub issue](https://github.com/igsl-group/ml-commons/issues/3745).    
 {: .warning}
 
-This tutorial describes how to build and use a _plan-execute-reflect_ agent. This agent can be used to solve complex problems that benefit from multi-step execution and reasoning. In this example, you will ask the agent to analyze flight data in your SmartObserve index. For more information about this agent, see [Plan-execute-reflect agents]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/plan-execute-reflect/).
+This tutorial describes how to build and use a _plan-execute-reflect_ agent. This agent can be used to solve complex problems that benefit from multi-step execution and reasoning. In this example, you will ask the agent to analyze flight data in your MCdesk index. For more information about this agent, see [Plan-execute-reflect agents]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/plan-execute-reflect/).
 
 Replace the placeholders beginning with the prefix `your_` with your own values.
 {: .note}
 
 ## Prerequisite
 
-Log in to the SmartObserve Dashboards home page, select **Add sample data**, and add the **Sample Flight data**. 
+Log in to the MCdesk Dashboards home page, select **Add sample data**, and add the **Sample Flight data**. 
 
 ## Step 1: Prepare an LLM
 
@@ -107,7 +107,7 @@ Create a `plan_execute_and_reflect` agent configured with the following informat
 - Meta information: `name`, `type`, `description`.
 - LLM information: The agent uses an LLM to reason, devise a plan for completing the task, execute the steps in the plan using appropriate tools, and reflect on the intermediate results in order to optimize the plan.
 - Tools: A tool is a function that can be executed by the agent. Each tool can define its own `name`, `description`, `parameters` and `attributes`.
-- Memory: Stores chat messages. SmartObserve currently only supports one memory type: `conversation_index`.
+- Memory: Stores chat messages. MCdesk currently only supports one memory type: `conversation_index`.
 
 For more information about all request fields, see [Register Agent API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agent-apis/register-agent/#request-body-fields).
 
@@ -163,7 +163,7 @@ tools: [{
                     "items": {
                         "type": "string"
                     },
-                    "description": "SmartObserve index name list, separated by comma. for example: [\"index1\", \"index2\"], use empty array [] to list all indices in the cluster"
+                    "description": "MCdesk index name list, separated by comma. for example: [\"index1\", \"index2\"], use empty array [] to list all indices in the cluster"
                 }
             },
         },
@@ -250,12 +250,12 @@ Once the task is completed, it returns a response from the agent:
               "response": """# Comprehensive Analysis Report: Flights from Beijing to Seattle
 
 ## Executive Summary
-After analyzing the SmartObserve sample flight dataset, I found that there are 0 direct flights from Beijing to Seattle in the dataset.
+After analyzing the MCdesk sample flight dataset, I found that there are 0 direct flights from Beijing to Seattle in the dataset.
 
 ## Analysis Process
 
 ### Step 1: Identify Available Data Sources
-I began by examining the indices available in the SmartObserve cluster to locate flight-related data. This search revealed one relevant index: `smartobserve_dashboards_sample_data_flights`, which contains 13,059 flight records with comprehensive information including origin and destination cities, flight numbers, carriers, and other flight details.
+I began by examining the indices available in the MCdesk cluster to locate flight-related data. This search revealed one relevant index: `mcdesk_dashboards_sample_data_flights`, which contains 13,059 flight records with comprehensive information including origin and destination cities, flight numbers, carriers, and other flight details.
 
 ### Step 2: Data Schema Analysis
 I analyzed the index structure and confirmed it contains the necessary fields for this investigation, including:
@@ -282,7 +282,7 @@ This confirmed that both cities are represented in the data, but no flights conn
 - The dataset contains 0 flights from Beijing to Seattle
 
 ## Conclusion
-Based on a comprehensive search of the SmartObserve flight sample dataset, there are 0 flights from Beijing to Seattle in this dataset. While both cities appear in the dataset with connections to other locations, this specific route is not represented in the sample data."""
+Based on a comprehensive search of the MCdesk flight sample dataset, there are 0 flights from Beijing to Seattle in this dataset. While both cities appear in the dataset with connections to other locations, this specific route is not represented in the sample data."""
             }
           }
         ]

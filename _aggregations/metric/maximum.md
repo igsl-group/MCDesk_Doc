@@ -25,10 +25,10 @@ The `max` aggregation takes the following parameters.
 
 ## Example
 
-This following example request finds the most expensive item---the item with the maximum value of the `base_unit_price`---in the SmartObserve Dashboards e-commerce sample data:
+This following example request finds the most expensive item---the item with the maximum value of the `base_unit_price`---in the MCdesk Dashboards e-commerce sample data:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {

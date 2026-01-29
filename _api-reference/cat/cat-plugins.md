@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 50
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-plugins/
+- /mcdesk/rest-api/cat/cat-plugins/
 ---
 
 # CAT Plugins API

@@ -8,9 +8,9 @@ parent: Understanding workloads
 
 # Choosing a workload
 
-The [smartobserve-benchmark-workloads](https://github.com/igsl-group/smartobserve-benchmark-workloads) repository contains a list of workloads that you can use to run your benchmarks. Using a workload similar to your cluster's use cases can save you time and effort when assessing your cluster's performance. 
+The [mcdesk-benchmark-workloads](https://github.com/igsl-group/mcdesk-benchmark-workloads) repository contains a list of workloads that you can use to run your benchmarks. Using a workload similar to your cluster's use cases can save you time and effort when assessing your cluster's performance. 
 
-For example, say you're a system architect at a rideshare company. As a rideshare company, you collect and store data based on trip times, locations, and other data related to each rideshare. Instead of building a custom workload and using your own data, which requires additional time, effort, and cost, you can use the [nyc_taxis](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/nyc_taxis) workload to benchmark your cluster because the data inside the workload is similar to the data that you collect. 
+For example, say you're a system architect at a rideshare company. As a rideshare company, you collect and store data based on trip times, locations, and other data related to each rideshare. Instead of building a custom workload and using your own data, which requires additional time, effort, and cost, you can use the [nyc_taxis](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/nyc_taxis) workload to benchmark your cluster because the data inside the workload is similar to the data that you collect. 
 
 ## Criteria for choosing a workload
 
@@ -22,7 +22,7 @@ Consider the following criteria when deciding which workload would work best for
 
 ## General search use cases: `nyc_taxis`
 
-For benchmarking clusters built for general search use cases, start with the [nyc_taxis](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/nyc_taxis) workload. It contains the following:
+For benchmarking clusters built for general search use cases, start with the [nyc_taxis](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/nyc_taxis) workload. It contains the following:
 
 - **Data type**: Ride data from yellow taxis in New York City in 2015.
 - **Cluster requirements**: Suitable for small- to medium-sized clusters.
@@ -36,7 +36,7 @@ This workload tests the following queries and search functions:
 
 ## Vector data: `vectorsearch`
 
-The [`vectorsearch`](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/vectorsearch) workload is designed to benchmark vector search capabilities, including performance and accuracy. It contains the following:
+The [`vectorsearch`](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/vectorsearch) workload is designed to benchmark vector search capabilities, including performance and accuracy. It contains the following:
 
 - **Data type**: High-dimensional vector data, often representing embeddings of text or images.
 - **Cluster requirements**: Requires a cluster with [vector search capabilities]({{site.url}}{{site.baseurl}}/vector-search/) enabled.
@@ -49,7 +49,7 @@ This workload tests the following queries and search functions:
 
 ## Comprehensive search solutions: `big5`
 
-The [big5](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/big5) workload is a comprehensive benchmark suite for testing various aspects of search engine performance, including overall search engine performance across multiple use cases. It contains the following:
+The [big5](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/big5) workload is a comprehensive benchmark suite for testing various aspects of search engine performance, including overall search engine performance across multiple use cases. It contains the following:
 
 - **Data type**: A mix of different data types, including text, numeric, and structured data.
 - **Cluster requirements**: Suitable for medium to large clusters because it's designed to stress test various components.
@@ -64,7 +64,7 @@ This workload tests the following queries and search functions:
 
 ## Percolator queries: `percolator`
 
-The [percolator](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/percolator) workload is designed to test the performance of the `percolator` query type. It contains the following:
+The [percolator](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/percolator) workload is designed to test the performance of the `percolator` query type. It contains the following:
 
 - **Data type**: A set of stored queries and documents to be matched against those queries.
 - **Cluster requirements**: Suitable for clusters that make heavy use of the [percolator]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/percolator/) feature.
@@ -77,7 +77,7 @@ This workload tests the following queries and search functions:
 
 ## Log data: `http_logs`
 
-For benchmarking clusters built for indexing and search using log data, use the [http_logs](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/http_logs) workload. It contains the following:
+For benchmarking clusters built for indexing and search using log data, use the [http_logs](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/http_logs) workload. It contains the following:
 
 - **Data type**: HTTP access logs from the 1998 World Cup website.
 - **Cluster requirements**: Suitable for clusters optimized for time-series data and log analytics.

@@ -103,7 +103,7 @@ POST /_plugins/_ml/agents/_register
         "model_id": "your-model-id",
         "parameters": {
             "max_iteration": 50,
-            "system_prompt": "You are a sophisticated research assistant with access to SmartObserve indices and a persistent scratchpad for note-taking.\n\nYour Research Workflow:\n1. Check Scratchpad: Before starting a new research task, check your scratchpad to see if you have any relevant information already saved\n2. Create Research Plan: Create a structured research plan\n3. Write to Scratchpad: Save the research plan and any important information to your scratchpad\n4. Use Search: Gather information using SmartObserve search queries\n5. Update Scratchpad: After each search, update your scratchpad with new findings\n6. Iterate: Repeat searching and updating until you have comprehensive information\n7. Complete Task: Provide a thorough response based on your accumulated research\n\nRemember: Your scratchpad is temporary memory for this execution session only. Use it to organize your thoughts and findings during this task.",
+            "system_prompt": "You are a sophisticated research assistant with access to MCdesk indices and a persistent scratchpad for note-taking.\n\nYour Research Workflow:\n1. Check Scratchpad: Before starting a new research task, check your scratchpad to see if you have any relevant information already saved\n2. Create Research Plan: Create a structured research plan\n3. Write to Scratchpad: Save the research plan and any important information to your scratchpad\n4. Use Search: Gather information using MCdesk search queries\n5. Update Scratchpad: After each search, update your scratchpad with new findings\n6. Iterate: Repeat searching and updating until you have comprehensive information\n7. Complete Task: Provide a thorough response based on your accumulated research\n\nRemember: Your scratchpad is temporary memory for this execution session only. Use it to organize your thoughts and findings during this task.",
             "prompt": "${parameters.question}"
         }
     },
@@ -206,7 +206,7 @@ You can use the Tools API directly to execute both scratchpad tools and test the
 POST /_plugins/_ml/tools/_execute/ReadFromScratchPadTool
 {
   "parameters": {
-    "persistent_notes": "You are a helpful researcher to conduct searches in SmartObserve cluster. Before making the search, please remember to use the listIndexTool to figure out what are the available indices first. When using listIndexTool, remember the index name has to be in an array format. Please write down important notes after tool used."
+    "persistent_notes": "You are a helpful researcher to conduct searches in MCdesk cluster. Before making the search, please remember to use the listIndexTool to figure out what are the available indices first. When using listIndexTool, remember the index name has to be in an array format. Please write down important notes after tool used."
   }
 }
 ```
@@ -222,7 +222,7 @@ When provided `persistent_notes`, the tool attempts to show the persistent notes
         {
           "name": "response",
           "result": """Notes from scratchpad:
-- You are a helpful researcher to conduct searches in SmartObserve cluster. Before making the search, please remember to use the listIndexTool to figure out what are the available indices first. When using listIndexTool, remember the index name has to be in an array format. Please write down important notes after tool used."""
+- You are a helpful researcher to conduct searches in MCdesk cluster. Before making the search, please remember to use the listIndexTool to figure out what are the available indices first. When using listIndexTool, remember the index name has to be in an array format. Please write down important notes after tool used."""
         }
       ]
     }
@@ -267,7 +267,7 @@ You can use the Tools API directly to execute the `WriteToScratchPadTool` and te
 POST /_plugins/_ml/tools/_execute/WriteToScratchPadTool
 {
   "parameters": {
-    "notes": "Research Plan for SmartObserve History and ML Evolution:\\n\\n1. SmartObserve version history, major releases after v2.0\\n2. For each major release:\\n    a. Key architectural upgrades\\n    b. New machine learning capabilities, especially ML Commons Agent framework \\n    c. Descriptions of major Agent tools added\\n    d. GitHub issue IDs tied to Agent framework features\\n3. Look for official SmartObserve documentation, release notes, blogs\\n4. Search code repositories for more technical details on ML changes\\n"
+    "notes": "Research Plan for MCdesk History and ML Evolution:\\n\\n1. MCdesk version history, major releases after v2.0\\n2. For each major release:\\n    a. Key architectural upgrades\\n    b. New machine learning capabilities, especially ML Commons Agent framework \\n    c. Descriptions of major Agent tools added\\n    d. GitHub issue IDs tied to Agent framework features\\n3. Look for official MCdesk documentation, release notes, blogs\\n4. Search code repositories for more technical details on ML changes\\n"
   }
 }
 ```
@@ -282,7 +282,7 @@ The following is the example response from the tool output:
       "output": [
         {
           "name": "response",
-          "result": "Wrote to scratchpad: Research Plan for SmartObserve History and ML Evolution:\\n\\n1. SmartObserve version history, major releases after v2.0\\n2. For each major release:\\n    a. Key architectural upgrades\\n    b. New machine learning capabilities, especially ML Commons Agent framework \\n    c. Descriptions of major Agent tools added\\n    d. GitHub issue IDs tied to Agent framework features\\n3. Look for official SmartObserve documentation, release notes, blogs\\n4. Search code repositories for more technical details on ML changes\\n"
+          "result": "Wrote to scratchpad: Research Plan for MCdesk History and ML Evolution:\\n\\n1. MCdesk version history, major releases after v2.0\\n2. For each major release:\\n    a. Key architectural upgrades\\n    b. New machine learning capabilities, especially ML Commons Agent framework \\n    c. Descriptions of major Agent tools added\\n    d. GitHub issue IDs tied to Agent framework features\\n3. Look for official MCdesk documentation, release notes, blogs\\n4. Search code repositories for more technical details on ML changes\\n"
         }
       ]
     }
@@ -296,7 +296,7 @@ You can set the `return_history` parameter to `true` to get the full scratchpad 
 POST /_plugins/_ml/tools/_execute/WriteToScratchPadTool
 {
   "parameters": {
-    "notes": "Research Plan for SmartObserve History and ML Evolution:\\n\\n1. SmartObserve version history, major releases after v2.0\\n2. For each major release:\\n    a. Key architectural upgrades\\n    b. New machine learning capabilities, especially ML Commons Agent framework \\n    c. Descriptions of major Agent tools added\\n    d. GitHub issue IDs tied to Agent framework features\\n3. Look for official SmartObserve documentation, release notes, blogs\\n4. Search code repositories for more technical details on ML changes\\n",
+    "notes": "Research Plan for MCdesk History and ML Evolution:\\n\\n1. MCdesk version history, major releases after v2.0\\n2. For each major release:\\n    a. Key architectural upgrades\\n    b. New machine learning capabilities, especially ML Commons Agent framework \\n    c. Descriptions of major Agent tools added\\n    d. GitHub issue IDs tied to Agent framework features\\n3. Look for official MCdesk documentation, release notes, blogs\\n4. Search code repositories for more technical details on ML changes\\n",
     "return_history": true
   }
 }
@@ -313,7 +313,7 @@ The response contains the full scratchpad content:
         {
           "name": "response",
           "result": """Scratchpad updated. Full content:
-- Research Plan for SmartObserve History and ML Evolution:\n\n1. SmartObserve version history, major releases after v2.0\n2. For each major release:\n    a. Key architectural upgrades\n    b. New machine learning capabilities, especially ML Commons Agent framework \n    c. Descriptions of major Agent tools added\n    d. GitHub issue IDs tied to Agent framework features\n3. Look for official SmartObserve documentation, release notes, blogs\n4. Search code repositories for more technical details on ML changes\n"""
+- Research Plan for MCdesk History and ML Evolution:\n\n1. MCdesk version history, major releases after v2.0\n2. For each major release:\n    a. Key architectural upgrades\n    b. New machine learning capabilities, especially ML Commons Agent framework \n    c. Descriptions of major Agent tools added\n    d. GitHub issue IDs tied to Agent framework features\n3. Look for official MCdesk documentation, release notes, blogs\n4. Search code repositories for more technical details on ML changes\n"""
         }
       ]
     }

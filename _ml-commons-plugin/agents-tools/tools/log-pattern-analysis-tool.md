@@ -55,7 +55,7 @@ POST /_plugins/_ml/agents/_register
 
 No parameters are required to register the tool. The tool uses dynamic parameter validation at execution time. 
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -88,7 +88,7 @@ POST /_plugins/_ml/agents/OQutgJYBAc35E4_KvI1q/_execute
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns exceptional trace sequences that differ significantly from baseline patterns:
+MCdesk returns exceptional trace sequences that differ significantly from baseline patterns:
 
 ```json
 {
@@ -113,7 +113,7 @@ To perform a pattern comparison analysis, provide a `baseTimeRangeStart` and `ba
 POST /_plugins/_ml/agents/OQutgJYBAc35E4_KvI1q/_execute
 {
   "parameters": {
-    "index": "smartobserve_dashboards_sample_data_logs",
+    "index": "mcdesk_dashboards_sample_data_logs",
     "timeField": "@timestamp",
     "logFieldName": "message",
     "baseTimeRangeStart": "2018-07-22 00:00:00",
@@ -125,7 +125,7 @@ POST /_plugins/_ml/agents/OQutgJYBAc35E4_KvI1q/_execute
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns patterns with significant frequency changes between time periods:
+MCdesk returns patterns with significant frequency changes between time periods:
 
 ```json
 {
@@ -160,7 +160,7 @@ POST /_plugins/_ml/agents/OQutgJYBAc35E4_KvI1q/_execute
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns error patterns with sample logs:
+MCdesk returns error patterns with sample logs:
 
 ```json
 {
@@ -183,7 +183,7 @@ The following table lists the available tool parameters for running the agent.
 
 | Parameter | Type | Required/Optional | Description |
 |:----------|:-----|:------------------|:------------|
-| `index` | String | Required | The name of the SmartObserve index containing log data (for example, `ss4o_logs-otel-2025.06.24`). |
+| `index` | String | Required | The name of the MCdesk index containing log data (for example, `ss4o_logs-otel-2025.06.24`). |
 | `timeField` | String | Required | A date/time field in the index mapping used for time-based filtering. |
 | `logFieldName` | String | Required | The field containing raw log messages to analyze (for example, `body`, `message`, or `log`). |
 | `traceFieldName` | String | Optional | The field containing a trace ID or correlation ID to enable sequence analysis (for example, `traceId` or `correlationId`). Required for the log sequence analysis mode. |

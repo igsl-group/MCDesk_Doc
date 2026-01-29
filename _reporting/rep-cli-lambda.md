@@ -23,7 +23,7 @@ To use the Reporting CLI with AWS Lambda, you need to do the following prelimina
 
 ## Step 1: Create a container image with a Dockerfile
 
-You need to assemble the container image by running a Dockerfile. When you run the Dockerfile, it downloads the SmartObserve artifact required to use the Reporting CLI. To learn more about Dockerfiles, see [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
+You need to assemble the container image by running a Dockerfile. When you run the Dockerfile, it downloads the MCdesk artifact required to use the Reporting CLI. To learn more about Dockerfiles, see [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
 
 Copy the following sample configurations into a Dockerfile:
 
@@ -54,7 +54,7 @@ RUN apt-get update && \
 
 # Copy function code
 WORKDIR ${FUNCTION_DIR}
-RUN npm install @smartobserve-project/reporting-cli && npm install aws-lambda-ric
+RUN npm install @mcdesk-project/reporting-cli && npm install aws-lambda-ric
 
 # Build Stage 2: Copy Build Stage 1 files in to Stage 2. Install chrome, then remove chrome to keep the dependencies.
 FROM node:lts-slim
@@ -80,21 +80,21 @@ RUN apt-get update \
 ENTRYPOINT ["/usr/local/bin/npx", "aws-lambda-ric"]
 
 ENV HOME="/tmp"
-CMD [ "/function/node_modules/@smartobserve-project/reporting-cli/src/index.handler" ]
+CMD [ "/function/node_modules/@mcdesk-project/reporting-cli/src/index.handler" ]
 
 ```
 
 Next, run the following build command within the same directory that contains the Dockerfile:
 
 ```
-docker build -t smartobserve-reporting-cli .
+docker build -t mcdesk-reporting-cli .
 ```
 
 ## Step 2: Create a private repository with Amazon ECR
 
 You need to follow the instructions to create an image repository, see [Getting started with Amazon ECR using the AWS Management Console](https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-console.html).
 
-Give your repository the name `smartobserve-reporting-cli`.
+Give your repository the name `mcdesk-reporting-cli`.
 
 In addition to the Amazon ECR instructions, you need to make several adjustments for the Reporting CLI to function properly as described in the following steps in this procedure.
 
@@ -104,7 +104,7 @@ You need to get several commands from the AWS ECR Console to run within the Dock
 
 1. After you create your repository, select it from **Private repositories**.
 1. Choose **view push commands**.
-1. Copy and run each command shown in **Push commands for smartobserve-reporting-cli** sequentially in the Dockerfile directory.
+1. Copy and run each command shown in **Push commands for mcdesk-reporting-cli** sequentially in the Dockerfile directory.
 
 For more details about Docker push commands, see [Pushing a Docker image](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html) in the Amazon ECR user guide.
 
@@ -114,7 +114,7 @@ Now that you have a container image created for the Reporting CLI, you need to c
 
 1. Open the AWS Lambda console and choose [Functions](https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions).
 1. Choose **Create function**, then choose **Container image** and fill in a name for the function.
-1. In **Container image URI**, choose **Browse images** and select `smartobserve-reporting-cli` for the image repository.
+1. In **Container image URI**, choose **Browse images** and select `mcdesk-reporting-cli` for the image repository.
 1. In **Images** select the image, and choose **Select image**.
 1. In **Architecture**, choose **x86_64**.
 1. Choose **Create function**.

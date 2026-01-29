@@ -16,7 +16,7 @@ grand_parent: Agents and tools
 
 The `LogPatternTool` analyzes log data retrieved using [query domain-specific language (DSL)]({{site.url}}{{site.baseurl}}/query-dsl/) or [Piped Processing Language (PPL)]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/) queries to extract and identify recurring structural patterns across log messages. After grouping similar logs based on their shared templates, it returns the most common patterns. Each pattern includes representative sample logs and the total count of log entries that match the pattern in your dataset.
 
-SmartObserve determines whether you're using a DSL or PPL query based on the presence of the `input` or `ppl` parameter in the request:
+MCdesk determines whether you're using a DSL or PPL query based on the presence of the `input` or `ppl` parameter in the request:
 
 - If the `input` parameter (a DSL query JSON as a string) is present, the tool interprets the request as a DSL query.
 
@@ -53,7 +53,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -70,13 +70,13 @@ POST /_plugins/_ml/agents/OQutgJYBAc35E4_KvI1q/_execute
 {
   "parameters": {
     "input": "{\"query\":{\"bool\":{\"filter\":[{\"range\":{\"bytes\":{\"from\":10,\"to\":null,\"include_lower\":true,\"include_upper\":true,\"boost\":1}}}],\"adjust_pure_negative\":true,\"boost\":1}}}",
-    "index": "smartobserve_dashboards_sample_data_logs"
+    "index": "mcdesk_dashboards_sample_data_logs"
   }
 }
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns a JSON response containing the most common log patterns found in your data, up to the specified limit. Each identified pattern is represented as a JSON object with three key components: the pattern template, a set of representative sample logs that match the pattern, and a count indicating how often the pattern appears in your dataset. The structure follows the format `{"pattern": "...", "sample logs": [...], "total count": N}`, as illustrated in the following example response:
+MCdesk returns a JSON response containing the most common log patterns found in your data, up to the specified limit. Each identified pattern is represented as a JSON object with three key components: the pattern template, a set of representative sample logs that match the pattern, and a count indicating how often the pattern appears in your dataset. The structure follows the format `{"pattern": "...", "sample logs": [...], "total count": N}`, as illustrated in the following example response:
 
 ```json
 {
@@ -85,7 +85,7 @@ SmartObserve returns a JSON response containing the most common log patterns fou
       "output": [
         {
           "name": "response",
-          "result":"""[{"pattern":"<*IP*> - - [<*DATETIME*>] "GET <*> HTTP/<*><*>\" 200 <*> \"-\" \"Mozilla/<*><*> (<*>; Linux <*>_<*>; rv:<*><*><*>) Gecko/<*> Firefox/<*><*><*>\"","sample logs":["223.87.60.27 - - [2018-07-22T00:39:02.912Z] \"GET /smartobserve/smartobserve-1.0.0.deb_1 HTTP/1.1\" 200 6219 \"-\" \"Mozilla/5.0 (X11; Linux x86_64; rv:6.0a1) Gecko/20110421 Firefox/6.0a1\""],"total count":367},{"pattern":"<*IP*> - - [<*DATETIME*>] \"GET <*> HTTP/<*><*>\" 200 <*> \"-\" \"Mozilla/<*><*> (<*>; Linux <*>) AppleWebKit/<*><*> (KHTML like Gecko) Chrome<*IP*> Safari/<*><*>\"","sample logs":["216.9.22.134 - - [2018-07-22T05:27:11.939Z] \"GET /beats/metricbeat_1 HTTP/1.1\" 200 3629 \"-\" \"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.50 Safari/534.24\""],"total count":311},{"pattern":"<*IP*> - - [<*DATETIME*>] \"GET <*> HTTP/<*><*>\" 200 <*> \"-\" \"Mozilla/<*><*> (compatible; MSIE 6<*>; Windows NT 5<*>; <*>; .NET CLR 1<*><*>)\"","sample logs":["99.74.118.237 - - [2018-07-22T03:34:43.399Z] \"GET /beats/metricbeat/metricbeat-6.3.2-amd64.deb_1 HTTP/1.1\" 200 14113 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\""],"total count":269}]"""
+          "result":"""[{"pattern":"<*IP*> - - [<*DATETIME*>] "GET <*> HTTP/<*><*>\" 200 <*> \"-\" \"Mozilla/<*><*> (<*>; Linux <*>_<*>; rv:<*><*><*>) Gecko/<*> Firefox/<*><*><*>\"","sample logs":["223.87.60.27 - - [2018-07-22T00:39:02.912Z] \"GET /mcdesk/mcdesk-1.0.0.deb_1 HTTP/1.1\" 200 6219 \"-\" \"Mozilla/5.0 (X11; Linux x86_64; rv:6.0a1) Gecko/20110421 Firefox/6.0a1\""],"total count":367},{"pattern":"<*IP*> - - [<*DATETIME*>] \"GET <*> HTTP/<*><*>\" 200 <*> \"-\" \"Mozilla/<*><*> (<*>; Linux <*>) AppleWebKit/<*><*> (KHTML like Gecko) Chrome<*IP*> Safari/<*><*>\"","sample logs":["216.9.22.134 - - [2018-07-22T05:27:11.939Z] \"GET /beats/metricbeat_1 HTTP/1.1\" 200 3629 \"-\" \"Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.50 Safari/534.24\""],"total count":311},{"pattern":"<*IP*> - - [<*DATETIME*>] \"GET <*> HTTP/<*><*>\" 200 <*> \"-\" \"Mozilla/<*><*> (compatible; MSIE 6<*>; Windows NT 5<*>; <*>; .NET CLR 1<*><*>)\"","sample logs":["99.74.118.237 - - [2018-07-22T03:34:43.399Z] \"GET /beats/metricbeat/metricbeat-6.3.2-amd64.deb_1 HTTP/1.1\" 200 14113 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)\""],"total count":269}]"""
         }
       ]
     }

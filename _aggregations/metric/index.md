@@ -5,7 +5,7 @@ has_children: true
 has_toc: false
 nav_order: 2
 redirect_from:
-  - /smartobserve/metric-agg/
+  - /mcdesk/metric-agg/
   - /query-dsl/aggregations/metric-agg/
   - /aggregations/metric-agg/
   - /query-dsl/aggregations/metric/
@@ -30,7 +30,7 @@ Multi-value metric aggregations return more than one metric. These include `stat
 
 ## Supported metric aggregations
 
-SmartObserve supports the following metric aggregations:
+MCdesk supports the following metric aggregations:
 
 - [Average]({{site.url}}{{site.baseurl}}/aggregations/metric/average/)
 - [Cardinality]({{site.url}}{{site.baseurl}}/aggregations/metric/cardinality/)

@@ -8,40 +8,40 @@ nav_order: 130
 Introduced 1.2
 {: .label .label-purple }
 
-By default, SmartObserve Dashboards uses the SmartObserve logo, but if you want to use custom branding elements such as the favicon or main Dashboards logo, you can do so by editing `smartobserve_dashboards.yml` or by including a custom `smartobserve_dashboards.yml` file when you start your SmartObserve cluster.
+By default, MCdesk Dashboards uses the MCdesk logo, but if you want to use custom branding elements such as the favicon or main Dashboards logo, you can do so by editing `mcdesk_dashboards.yml` or by including a custom `mcdesk_dashboards.yml` file when you start your MCdesk cluster.
 
-For example, if you're using Docker to start your SmartObserve cluster, include the following lines in the `smartobserve-dashboards` section of your `docker-compose.yml` file:
+For example, if you're using Docker to start your MCdesk cluster, include the following lines in the `mcdesk-dashboards` section of your `docker-compose.yml` file:
 
 ```
 volumes:
-  - ./smartobserve_dashboards.yml:/usr/share/smartobserve-dashboards/config/smartobserve_dashboards.yml
+  - ./mcdesk_dashboards.yml:/usr/share/mcdesk-dashboards/config/mcdesk_dashboards.yml
 ```
 
-Doing so replaces the Docker image's default `smartobserve_dashboards.yml` with your custom `smartobserve_dashboards.yml` file, so be sure to include your desired settings as well. For example, if you want to configure TLS for SmartObserve Dashboards, see [Configure TLS for SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/install/tls).
+Doing so replaces the Docker image's default `mcdesk_dashboards.yml` with your custom `mcdesk_dashboards.yml` file, so be sure to include your desired settings as well. For example, if you want to configure TLS for MCdesk Dashboards, see [Configure TLS for MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/install/tls).
 
-Re-launch SmartObserve Dashboards, and SmartObserve Dashboards now uses your custom elements.
+Re-launch MCdesk Dashboards, and MCdesk Dashboards now uses your custom elements.
 
 ## Branding elements
 
-The following elements in SmartObserve Dashboards are customizable:
+The following elements in MCdesk Dashboards are customizable:
 
-![SmartObserve customizable branding elements]({{site.url}}{{site.baseurl}}/images/dashboards-branding-labels.png)
+![MCdesk customizable branding elements]({{site.url}}{{site.baseurl}}/images/dashboards-branding-labels.png)
 
 Setting | Corresponding branding element
 :--- | :---
 logo | Header logo. See #1 in the image.
-mark | SmartObserve Dashboards mark. See #2 in the image.
-loadingLogo | Loading logo used when SmartObserve Dashboards is starting. See #3 in the image.
+mark | MCdesk Dashboards mark. See #2 in the image.
+loadingLogo | Loading logo used when MCdesk Dashboards is starting. See #3 in the image.
 faviconUrl | Website icon. Loads next to the application title. See #4 in the image.
 applicationTitle | The application's title. See #5 in the image.
 
 To consolidate navigation controls and reduce the space the header takes up on the page, see [Condensed header](#condensed-header).
 {: .note}
 
-To start using your own branding elements in SmartObserve Dashboards, first uncomment this section of `smartobserve_dashboards.yml`:
+To start using your own branding elements in MCdesk Dashboards, first uncomment this section of `mcdesk_dashboards.yml`:
 
 ```yml
-# smartobserveDashboards.branding:
+# mcdeskDashboards.branding:
   # logo:
     # defaultUrl: ""
     # darkModeUrl: ""
@@ -75,7 +75,7 @@ logo:
 applicationTitle: "My custom application"
 ```
 
-We recommend linking to images that are hosted on a web server, but if you really want to use locally hosted images, save your images inside `assets`, and then configure `smartobserve_dashboards.yml` to use the correct paths. You can access locally stored images through the `ui/assets` folder.
+We recommend linking to images that are hosted on a web server, but if you really want to use locally hosted images, save your images inside `assets`, and then configure `mcdesk_dashboards.yml` to use the correct paths. You can access locally stored images through the `ui/assets` folder.
 
 The following example assumes the default port of 5601 that Dashboards uses and demonstrates how to link to locally stored images.
 
@@ -97,10 +97,10 @@ applicationTitle: "My custom application"
 
 The condensed header view reduces the footprint of the header and frees up space on the page by combining navigational elements into a single header bar.
 
-The current default view remains close in appearance to the two-bar header offered in the previous version of Dashboards, with minor differences. To specify the condensed header, add the configuration property `useExpandedHeader` to the `smartobserve_dashboards.yml` file and set the value to `false`, as the following example illustrates.
+The current default view remains close in appearance to the two-bar header offered in the previous version of Dashboards, with minor differences. To specify the condensed header, add the configuration property `useExpandedHeader` to the `mcdesk_dashboards.yml` file and set the value to `false`, as the following example illustrates.
 
  ```yml
-# smartobserveDashboards.branding:
+# mcdeskDashboards.branding:
   # logo:
     defaultUrl: "https://example.com/sample.svg"
     darkModeUrl: "https://example.com/dark-mode-sample.svg"
@@ -124,7 +124,7 @@ The condensed view header appears as in the example below.
 
 Header element | Description
 :--- | :---
-SmartObserve logo | See #1. Functions as the home button.
+MCdesk logo | See #1. Functions as the home button.
 Header bar | See #2. A single header bar used for all navigation controls.
 
 The default view remains close to the traditional view, with minor changes.
@@ -147,26 +147,26 @@ You can continue using the top header bar in the default view for custom navigat
 
 ## Sample configuration
 
-The following configuration enables the Security plugin and SSL within SmartObserve Dashboards and uses custom branding elements to replace the SmartObserve logo and application title.
+The following configuration enables the Security plugin and SSL within MCdesk Dashboards and uses custom branding elements to replace the MCdesk logo and application title.
 
 ```yml
 server.host: "0"
-smartobserve.hosts: ["https://localhost:9200"]
-smartobserve.ssl.verificationMode: none
-smartobserve.username: "kibanaserver"
-smartobserve.password: "kibanaserver"
-smartobserve.requestHeadersAllowlist: [ authorization,securitytenant ]
+mcdesk.hosts: ["https://localhost:9200"]
+mcdesk.ssl.verificationMode: none
+mcdesk.username: "kibanaserver"
+mcdesk.password: "kibanaserver"
+mcdesk.requestHeadersAllowlist: [ authorization,securitytenant ]
 #server.ssl.enabled: true
 #server.ssl.certificate: /path/to/your/server/certificate
 #server.ssl.key: /path/to/your/server/key
 
-smartobserve_security.multitenancy.enabled: true
-smartobserve_security.multitenancy.tenants.preferred: ["Private", "Global"]
-smartobserve_security.readonly_mode.roles: ["kibana_read_only"]
-# Use this setting if you are running smartobserve-dashboards without https
-smartobserve_security.cookie.secure: false
+mcdesk_security.multitenancy.enabled: true
+mcdesk_security.multitenancy.tenants.preferred: ["Private", "Global"]
+mcdesk_security.readonly_mode.roles: ["kibana_read_only"]
+# Use this setting if you are running mcdesk-dashboards without https
+mcdesk_security.cookie.secure: false
 
-smartobserveDashboards.branding:
+mcdeskDashboards.branding:
   logo:
     defaultUrl: "https://example.com/sample.svg"
     darkModeUrl: "https://example.com/dark-mode-sample.svg"

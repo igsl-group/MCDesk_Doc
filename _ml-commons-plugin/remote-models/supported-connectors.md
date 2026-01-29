@@ -11,14 +11,14 @@ redirect_from:
 
 # Supported connectors
 
-SmartObserve provides two types of connector blueprints: 
+MCdesk provides two types of connector blueprints: 
 
-- **Standard blueprints (recommended for SmartObserve 2.14+)**:
+- **Standard blueprints (recommended for MCdesk 2.14+)**:
 
   - Designed for connectors that pass input directly to the model and return its raw output without requiring additional transformations.
   - Use a registered model without any pre-processing or post-processing functions.
   - Compatible with machine learning (ML) inference processors: [ingest processors]({{site.url}}{{site.baseurl}}/api-reference/ingest-apis/processors/ml-inference/), [search request processors]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/ml-inference-search-request/), and [search response processors]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/ml-inference-search-response/).
-  - Ideal for new implementations in SmartObserve 2.14 and later.
+  - Ideal for new implementations in MCdesk 2.14 and later.
 
 - **Legacy blueprints**:
 
@@ -27,7 +27,7 @@ SmartObserve provides two types of connector blueprints:
   - Recommended for existing implementations.
   - Compatible with [neural search]({{site.url}}{{site.baseurl}}/neural-search-plugin/index/) queries.
 
-The following table provides a comprehensive list of connector blueprints available in SmartObserve. Each blueprint link offers an example request for creating the connector, including all necessary parameters, and a sample Predict API request.
+The following table provides a comprehensive list of connector blueprints available in MCdesk. Each blueprint link offers an example request for creating the connector, including all necessary parameters, and a sample Predict API request.
 
 | Platform                                                                                                     | Model                                                                                                                                                                   | Legacy blueprint                                                                                                                                                             | Standard blueprint                                                                                                                                                                                       |
 |:-------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

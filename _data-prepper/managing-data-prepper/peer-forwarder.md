@@ -2,12 +2,12 @@
 layout: default
 title: Peer forwarder
 nav_order: 12
-parent: Managing SmartObserve Data Prepper
+parent: Managing MCdesk Data Prepper
 ---
 
 # Peer forwarder
 
-Peer forwarder is an HTTP service that performs peer forwarding of an `event` between SmartObserve Data Prepper nodes for aggregation. This HTTP service uses a hash-ring approach to aggregate events and determine which Data Prepper node it should handle on a given trace before rerouting it to that node. Currently, peer forwarder is supported by the `aggregate`, `service_map`, and `otel_traces` [processors]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/processors/).
+Peer forwarder is an HTTP service that performs peer forwarding of an `event` between MCdesk Data Prepper nodes for aggregation. This HTTP service uses a hash-ring approach to aggregate events and determine which Data Prepper node it should handle on a given trace before rerouting it to that node. Currently, peer forwarder is supported by the `aggregate`, `service_map`, and `otel_traces` [processors]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/processors/).
 
 Peer Forwarder groups events based on the identification keys provided by the supported processors. For `service_map` and `otel_traces`, the identification key is `traceId` by default and cannot be configured. The `aggregate` processor is configured using the `identification_keys` configuration option. From here, you can specify which keys to use for Peer Forwarder. See [Aggregate Processor page](https://github.com/igsl-group/data-prepper/tree/main/data-prepper-plugins/aggregate-processor#identification_keys) for more information about identification keys.
 

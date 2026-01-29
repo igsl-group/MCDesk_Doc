@@ -9,7 +9,7 @@ has_toc: false
 
 # Coerce
 
-The `coerce` mapping parameter controls whether SmartObserve attempts to normalize and convert values to match the field's data type during indexing.
+The `coerce` mapping parameter controls whether MCdesk attempts to normalize and convert values to match the field's data type during indexing.
 
 Data is not always consistent. Depending on how it's produced, a number might be rendered as a true JSON number like 10, but it might also be rendered as a string like "10". Similarly, a number that should be an integer might be rendered as a floating point like 10.0 or even as a string like "10.0".
 

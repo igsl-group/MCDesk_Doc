@@ -17,7 +17,7 @@ If you are registering the first version of a model without first registering th
 
 Once a model group is created, provide its `model_group_id` to register a new model version to the model group. In this case, the model name does not need to be unique.
 
-If you're using [pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models#supported-pretrained-models) provided by SmartObserve, we recommend that you first register a model group with a unique name for these models. Then register the pretrained models as versions to that model group. This ensures that every model group has a globally unique model group name.
+If you're using [pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models#supported-pretrained-models) provided by MCdesk, we recommend that you first register a model group with a unique name for these models. Then register the pretrained models as versions to that model group. This ensures that every model group has a globally unique model group name.
 {: .tip}
 
 For information about user access for this API, see [Model access control considerations]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/index/#model-access-control-considerations).
@@ -38,9 +38,9 @@ The following table lists the available query parameters. All query parameters a
 | :--- | :--- | :--- |
 | `deploy` | Boolean | Whether to deploy the model after registering it. The deploy operation is performed by calling the [Deploy Model API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/deploy-model/). Default is `false`. |
 
-## Register an SmartObserve-provided pretrained model
+## Register an MCdesk-provided pretrained model
 
-SmartObserve provides several pretrained models. For more information, see [SmartObserve-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
+MCdesk provides several pretrained models. For more information, see [MCdesk-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
 
 ### Register a pretrained text embedding model
 
@@ -58,7 +58,7 @@ Field | Data type | Required/Optional | Description
 `description` | String | Optional| The model description. |
 `model_group_id` | String | Optional | The ID of the model group to which to register the model.
 
-## Example request: SmartObserve-provided text embedding model
+## Example request: MCdesk-provided text embedding model
 
 ```json
 POST /_plugins/_ml/models/_register
@@ -90,12 +90,12 @@ Field | Data type | Required/Optional | Description
 `description` | String | Optional| The model description. |
 `model_group_id` | String | Optional | The ID of the model group to which to register this model.
 
-## Example request: SmartObserve-provided sparse encoding model
+## Example request: MCdesk-provided sparse encoding model
 
 ```json
 POST /_plugins/_ml/models/_register
 {
-    "name": "amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-distill",
+    "name": "amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-distill",
     "version": "1.0.0",
     "model_group_id": "Z1eQf4oB5Vm0Tdw8EIP2",
     "model_format": "TORCH_SCRIPT"
@@ -105,7 +105,7 @@ POST /_plugins/_ml/models/_register
 
 ## Register a custom model 
 
-To use a custom model locally within the SmartObserve cluster, you need to provide a URL and a config object for that model. For more information, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
+To use a custom model locally within the MCdesk cluster, you need to provide a URL and a config object for that model. For more information, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
 
 ### Request body fields
 
@@ -132,9 +132,9 @@ Field | Data type | Required/Optional | Description
 | :--- | :--- | :--- 
 | `model_type` | String | The model type, such as `bert`. For a Hugging Face model, the model type is specified in `config.json`. For an example, see the [`all-MiniLM-L6-v2` Hugging Face model `config.json`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/main/config.json#L15). Required. |
 | `embedding_dimension` | Integer | The dimension of the model-generated dense vector. For a Hugging Face model, the dimension is specified in the model card. For example, in the [`all-MiniLM-L6-v2` Hugging Face model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2), the statement `384 dimensional dense vector space` specifies 384 as the embedding dimension. Required. |
-| `framework_type` | String  | The framework the model is using. Currently, SmartObserve supports `sentence_transformers` and `huggingface_transformers` frameworks. The `sentence_transformers` model outputs text embeddings directly, so ML Commons does not perform any post processing. For `huggingface_transformers`, ML Commons performs post processing by applying mean pooling to get text embeddings. See the example [`all-MiniLM-L6-v2` Hugging Face model](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) for more details. Required. |
+| `framework_type` | String  | The framework the model is using. Currently, MCdesk supports `sentence_transformers` and `huggingface_transformers` frameworks. The `sentence_transformers` model outputs text embeddings directly, so ML Commons does not perform any post processing. For `huggingface_transformers`, ML Commons performs post processing by applying mean pooling to get text embeddings. See the example [`all-MiniLM-L6-v2` Hugging Face model](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) for more details. Required. |
 | `all_config` | String | This field is used for reference purposes. You can specify all model configurations in this field. For example, if you are using a Hugging Face model, you can minify the `config.json` file to one line and save its contents in the `all_config` field. Once the model is uploaded, you can use the get model API operation to get all model configurations stored in this field. Optional. |
-| `additional_config` | Object | Additional model configurations. Contains the `space_type`, which specifies the distance metric for k-NN search. For SmartObserve-provided pretrained models, this value is automatically set to the corresponding metric (for example, `l2` for `huggingface/sentence-transformers/all-distilroberta-v1`). For custom models, specify your preferred space type. Optional. See [Space types]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-spaces/#distance-calculation). |
+| `additional_config` | Object | Additional model configurations. Contains the `space_type`, which specifies the distance metric for k-NN search. For MCdesk-provided pretrained models, this value is automatically set to the corresponding metric (for example, `l2` for `huggingface/sentence-transformers/all-distilroberta-v1`). For custom models, specify your preferred space type. Optional. See [Space types]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-spaces/#distance-calculation). |
 
 You can further customize a pretrained sentence transformer model's post-processing logic with the following optional fields in the `model_config` object.
 
@@ -244,7 +244,7 @@ POST /_plugins/_ml/models/_register
 
 ## Example response
 
-SmartObserve responds with the `task_id`, task `status`, and `model_id`:
+MCdesk responds with the `task_id`, task `status`, and `model_id`:
 
 ```json
 {
@@ -347,7 +347,7 @@ For a complete example, see [Validating input/output using a guardrail model]({{
 
 ## Example response
 
-SmartObserve responds with the `task_id`, task `status`, and `model_id`:
+MCdesk responds with the `task_id`, task `status`, and `model_id`:
 
 ```json
 {
@@ -450,7 +450,7 @@ POST /_plugins/_ml/models/_register
 
 ## Example response
 
-SmartObserve responds with the `task_id`, task `status`, and `model_id`:
+MCdesk responds with the `task_id`, task `status`, and `model_id`:
 
 ```json
 {

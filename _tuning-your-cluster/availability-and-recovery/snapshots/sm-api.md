@@ -6,12 +6,12 @@ nav_order: 30
 has_children: false
 grand_parent: Availability and recovery
 redirect_from: 
-  - /smartobserve/snapshots/sm-api/
+  - /mcdesk/snapshots/sm-api/
 ---
 
 # Snapshot Management API
 
-Use the Snapshot Management (SM) API to automate [taking snapshots]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/snapshot-restore#take-snapshots). 
+Use the Snapshot Management (SM) API to automate [taking snapshots]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/snapshot-restore#take-snapshots). 
 
 ---
 
@@ -182,7 +182,7 @@ Parameter | Type | Description
 `description` | String | The description of the SM policy. Optional.
 `enabled` | Boolean | Should this SM policy be enabled at creation? Optional.
 `snapshot_config` | Object | The configuration options for snapshot creation. Required.
-`snapshot_config.date_format` | String | Snapshot names have the format `<policy_name>-<date>-<random number>`. `date_format` specifies the format for the date in the snapshot name. Supports all date formats supported by SmartObserve. Optional. Default is "yyyy-MM-dd'T'HH:mm:ss".
+`snapshot_config.date_format` | String | Snapshot names have the format `<policy_name>-<date>-<random number>`. `date_format` specifies the format for the date in the snapshot name. Supports all date formats supported by MCdesk. Optional. Default is "yyyy-MM-dd'T'HH:mm:ss".
 `snapshot_config.date_format_timezone` | String | Snapshot names have the format `<policy_name>-<date>-<random number>`. `date_format_timezone` specifies the time zone for the date in the snapshot name. Optional. Default is `UTC`.
 `snapshot_config.indices` | String | The names of the indexes in the snapshot. Multiple index names are separated by `,`. Supports wildcards (`*`). Optional. Default is `*` (all indexes).
 `snapshot_config.repository` | String | The repository in which to store snapshots. Required.
@@ -190,7 +190,7 @@ Parameter | Type | Description
 `snapshot_config.include_global_state` | Boolean | Do you want to include cluster state? Optional. Default is `true` because of [Security plugin considerations]({{site.url}}{{site.baseurl}}/tuning-your-cluster/availability-and-recovery/snapshots/snapshot-restore#security-considerations).
 `snapshot_config.partial` | Boolean | Do you want to allow partial snapshots? Optional. Default is `false`.
 `snapshot_config.metadata` | Object | Metadata in the form of key/value pairs. Optional.
-`creation` | Object | Configuration for snapshot creation. Optional in SmartObserve 3.3 and later. **Important**: Do not leave this unset until all nodes are upgraded to SmartObserve 3.3 or later.
+`creation` | Object | Configuration for snapshot creation. Optional in MCdesk 3.3 and later. **Important**: Do not leave this unset until all nodes are upgraded to MCdesk 3.3 or later.
 `creation.schedule` | String | The cron schedule used to create snapshots. Required.
 `creation.time_limit` | String | Sets the maximum time to wait for snapshot creation to finish. If time_limit is longer than the scheduled time interval for taking snapshots, no scheduled snapshots are taken until time_limit elapses. For example, if time_limit is set to 35 minutes and snapshots are taken every 30 minutes starting at midnight, the snapshots at 00:00 and 01:00 are taken, but the snapshot at 00:30 is skipped. Optional. 
 `deletion` | Object | Configuration for snapshot deletion. Optional. Default is to retain all snapshots.

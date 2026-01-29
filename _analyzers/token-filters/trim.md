@@ -57,7 +57,7 @@ Use the following request to examine the tokens generated using the analyzer:
 GET /my_pattern_trim_index/_analyze
 {
   "analyzer": "my_pattern_trim_analyzer",
-  "text": " SmartObserve ,  is ,   powerful  "
+  "text": " MCdesk ,  is ,   powerful  "
 }
 ```
 {% include copy-curl.html %}
@@ -68,7 +68,7 @@ The response contains the generated tokens:
 {
   "tokens": [
     {
-      "token": "smartobserve",
+      "token": "mcdesk",
       "start_offset": 0,
       "end_offset": 12,
       "type": "word",

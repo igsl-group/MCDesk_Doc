@@ -28,12 +28,12 @@ The basic syntax is:
 
 ## Shard size property
 
-The `shard_size` property tells SmartObserve how many documents (at most) to collect from each shard.
+The `shard_size` property tells MCdesk how many documents (at most) to collect from each shard.
 
 The following example limits the number of documents collected on each shard to 1,000 and then buckets the documents by a `terms` aggregation:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

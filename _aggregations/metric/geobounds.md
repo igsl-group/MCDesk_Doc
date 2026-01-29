@@ -25,7 +25,7 @@ The `geo_bounds` aggregation takes the following parameters.
 The following example returns the `geo_bounds` for the `geoip.location` of every order in the e-commerce sample data (each `geoip.location` is a geopoint):
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -212,5 +212,5 @@ Note that the new resulting geobound encompasses a larger area to avoid overlapp
 }
 ```
 
-SmartObserve supports geoshape aggregation through the API but not in SmartObserve Dashboards visualizations.
+MCdesk supports geoshape aggregation through the API but not in MCdesk Dashboards visualizations.
 {: .note}

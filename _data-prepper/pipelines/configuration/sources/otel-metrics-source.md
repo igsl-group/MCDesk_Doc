@@ -23,7 +23,7 @@ proto_reflection_service | No | Boolean | Enables a reflection service for Proto
 unframed_requests | No | Boolean | Enables requests not framed using the gRPC wire protocol.
 thread_count | No | Integer | The number of threads to keep in the `ScheduledThreadPool`. Default value is `200`.
 max_connection_count | No | Integer | The maximum allowed number of open connections. Default value is `500`.
-| `output_format` | String | Specifies the output format of the generated events. Valid values are `otel` or `smartobserve`. Default is `smartobserve`. |
+| `output_format` | String | Specifies the output format of the generated events. Valid values are `otel` or `mcdesk`. Default is `mcdesk`. |
 max_request_length | No | ByteCount | The maximum number of bytes allowed in the payload of a single gRPC or HTTP request. Default value is `10mb`.
 ssl | No | Boolean | Enables connections to the OpenTelemetry source port over TLS/SSL. Default value is `true`.
 sslKeyCertChainFile | Conditionally | String | File-system path or Amazon Simple Storage Service (Amazon S3) path to the security certificate (for example, `"config/demo-data-prepper.crt"` or `"s3://my-secrets-bucket/demo-data-prepper.crt"`). Required if `ssl` is set to `true`.

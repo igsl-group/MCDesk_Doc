@@ -492,7 +492,7 @@ POST /_plugins/_security_analytics/detectors/_search
     "max_score" : 3.671739,
     "hits" : [
       {
-        "_index" : ".smartobserve-sap-detectors-config",
+        "_index" : ".mcdesk-sap-detectors-config",
         "_id" : "x-dwFIYBT6_n8WeuQjo4",
         "_version" : 1,
         "_seq_no" : 76,
@@ -577,12 +577,12 @@ Detector data sources:
           "bucket_monitor_id_rule_id" : {
             "-1" : "xOdwFIYBT6_n8WeuQToa"
           },
-          "rule_topic_index" : ".smartobserve-sap-windows-detectors-queries",
-          "alert_index" : ".smartobserve-sap-windows-alerts",
-          "alert_history_index" : ".smartobserve-sap-windows-alerts-history",
-          "alert_history_index_pattern" : "<.smartobserve-sap-windows-alerts-history-{now/d}-1>",
-          "findings_index" : ".smartobserve-sap-windows-findings",
-          "findings_index_pattern" : "<.smartobserve-sap-windows-findings-{now/d}-1>"
+          "rule_topic_index" : ".mcdesk-sap-windows-detectors-queries",
+          "alert_index" : ".mcdesk-sap-windows-alerts",
+          "alert_history_index" : ".mcdesk-sap-windows-alerts-history",
+          "alert_history_index_pattern" : "<.mcdesk-sap-windows-alerts-history-{now/d}-1>",
+          "findings_index" : ".mcdesk-sap-windows-findings",
+          "findings_index_pattern" : "<.mcdesk-sap-windows-findings-{now/d}-1>"
         }
       }
     ]

@@ -11,9 +11,9 @@ redirect_from:
   - /ml-commons-plugin/tutorials/index/
 cards:
   - heading: "Searching data 101"
-    description: "Learn the fundamentals of search and explore SmartObserve query languages and types" 
+    description: "Learn the fundamentals of search and explore MCdesk query languages and types" 
     link: "/getting-started/search-data/" 
-  - heading: "SmartObserve Dashboards"
+  - heading: "MCdesk Dashboards"
     description: "Start visualizing your data with interactive dashboards and powerful analytics tools"
     link: "/dashboards/quickstart/"
   - heading: "Vector search"
@@ -32,7 +32,7 @@ cards:
 
 # Tutorials
 
-Follow our step-by-step tutorials to learn how to use SmartObserve features.
+Follow our step-by-step tutorials to learn how to use MCdesk features.
 
 {% include cards.html cards=page.cards %}
 

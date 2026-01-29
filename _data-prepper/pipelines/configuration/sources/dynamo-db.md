@@ -44,7 +44,7 @@ The following tables describe the configuration options for the `dynamodb` sourc
 Option | Required | Type | Description
 :--- | :--- | :--- | :---
 `aws` | Yes | AWS | The AWS configuration. See [aws](#aws) for more information.
-`acknowledgments` | No | Boolean  | When `true`, enables `s3` sources to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines#end-to-end-acknowledgments) when events are received by SmartObserve sinks.
+`acknowledgments` | No | Boolean  | When `true`, enables `s3` sources to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines#end-to-end-acknowledgments) when events are received by MCdesk sinks.
 `shared_acknowledgement_timeout` | No | Duration | The amount of time that elapses before the data read from a DynamoDB stream expires when used with acknowledgements. Default is 10 minutes.
 `s3_data_file_acknowledgment_timeout` | No | Duration | The amount of time that elapses before the data read from a DynamoDB export expires when used with acknowledgments. Default is 5 minutes.
 `tables` | Yes | List | The configuration for the DynamoDB table. See [tables](#tables) for more information.
@@ -98,8 +98,8 @@ The following metadata will be added to each event that is processed by the `dyn
 * `partition_key`: The partition key of the DynamoDB item.
 * `sort_key`: The sort key of the DynamoDB item. This will be null if the table does not contain a sort key.
 * `dynamodb_timestamp`: The timestamp of the DynamoDB item. This will be the export time for export items and the DynamoDB stream event time for stream items. This timestamp is used by sinks to emit an `EndtoEndLatency` metric for DynamoDB stream events that tracks the latency between a change occurring in the DynamoDB table and that change being applied to the sink.
-* `document_version`: Uses the `dynamodb_timestamp` to modify break ties between stream items that are received in the same second. Recommend for use with the `smartobserve` sink's `document_version` setting.
-* `smartobserve_action`: A default value for mapping DynamoDB event actions to SmartObserve actions. This action will be `index` for export items, and `INSERT` or `MODIFY` for stream events, and `REMOVE` stream events when the SmartObserve action is `delete`.
+* `document_version`: Uses the `dynamodb_timestamp` to modify break ties between stream items that are received in the same second. Recommend for use with the `mcdesk` sink's `document_version` setting.
+* `mcdesk_action`: A default value for mapping DynamoDB event actions to MCdesk actions. This action will be `index` for export items, and `INSERT` or `MODIFY` for stream events, and `REMOVE` stream events when the MCdesk action is `delete`.
 * `dynamodb_event_name`: The exact event type for the item. Will be `null` for export items and either `INSERT`, `MODIFY`, or `REMOVE` for stream events.
 * `table_name`: The name of the DynamoDB table that an event came from.
 

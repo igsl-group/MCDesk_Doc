@@ -14,14 +14,14 @@ redirect_from:
 This page contains a list of common issues and workarounds.
 
 
-## SmartObserve Dashboards fails to start
+## MCdesk Dashboards fails to start
 
-If you encounter the error `FATAL  Error: Request Timeout after 30000ms` during startup, try running SmartObserve Dashboards on a more powerful machine. We recommend four CPU cores and 8 GB of RAM.
+If you encounter the error `FATAL  Error: Request Timeout after 30000ms` during startup, try running MCdesk Dashboards on a more powerful machine. We recommend four CPU cores and 8 GB of RAM.
 
 
-## Requests to SmartObserve Dashboards fail with "Request must contain a osd-xsrf header"
+## Requests to MCdesk Dashboards fail with "Request must contain a osd-xsrf header"
 
-If you run legacy Kibana OSS scripts against SmartObserve Dashboards---for example, curl commands that import saved objects from a file---they might fail with the following error:
+If you run legacy Kibana OSS scripts against MCdesk Dashboards---for example, curl commands that import saved objects from a file---they might fail with the following error:
 
 ```json
 {"status": 400, "body": "Request must contain a osd-xsrf header."}
@@ -34,9 +34,9 @@ curl -XPOST -u 'admin:<custom-admin-password>' 'https://DASHBOARDS_ENDPOINT/api/
 ```
 
 
-## Multi-tenancy issues in SmartObserve Dashboards
+## Multi-tenancy issues in MCdesk Dashboards
 
-If you're testing multiple users in SmartObserve Dashboards and encounter unexpected changes in tenant, use Google Chrome in an Incognito window or Firefox in a Private window.
+If you're testing multiple users in MCdesk Dashboards and encounter unexpected changes in tenant, use Google Chrome in an Incognito window or Firefox in a Private window.
 
 
 ## Expired certificates
@@ -44,7 +44,7 @@ If you're testing multiple users in SmartObserve Dashboards and encounter unexpe
 If your certificates have expired, you might receive the following error or something similar:
 
 ```
-ERROR org.smartobserve.security.ssl.transport.SecuritySSLNettyTransport - Exception during establishing a SSL connection: javax.net.ssl.SSLHandshakeException: PKIX path validation failed: java.security.cert.CertPathValidatorException: validity check failed
+ERROR org.mcdesk.security.ssl.transport.SecuritySSLNettyTransport - Exception during establishing a SSL connection: javax.net.ssl.SSLHandshakeException: PKIX path validation failed: java.security.cert.CertPathValidatorException: validity check failed
 Caused by: java.security.cert.CertificateExpiredException: NotAfter: Thu Sep 16 11:27:55 PDT 2021
 ```
 
@@ -57,7 +57,7 @@ openssl x509 -enddate -noout -in <certificate>
 
 ## Encryption at rest
 
-The operating system for each SmartObserve node handles encryption of data at rest. To enable encryption at rest in most Linux distributions, use the `cryptsetup` command:
+The operating system for each MCdesk node handles encryption of data at rest. To enable encryption at rest in most Linux distributions, use the `cryptsetup` command:
 
 ```bash
 cryptsetup luksFormat --key-file <key> <partition>
@@ -68,7 +68,7 @@ For full documentation about the command, see [cryptsetup(8) — Linux manual pa
 {% comment %}
 ## Beats
 
-If you encounter compatibility issues when attempting to connect Beats to SmartObserve, make sure you're using the Apache 2.0 distribution of Beats, not the default distribution, which uses a proprietary license.
+If you encounter compatibility issues when attempting to connect Beats to MCdesk, make sure you're using the Apache 2.0 distribution of Beats, not the default distribution, which uses a proprietary license.
 
 Try this minimal output configuration for using Beats with the Security plugin:
 
@@ -84,7 +84,7 @@ output.elasticsearch:
   ssl.key: "/full/path/to/client-key.pem"
 ```
 
-Even if you use the OSS version, Beats might check for a proprietary plugin on the SmartObserve server and throw an error during startup. To disable the check, try adding these settings:
+Even if you use the OSS version, Beats might check for a proprietary plugin on the MCdesk server and throw an error during startup. To disable the check, try adding these settings:
 
 ```yml
 setup.ilm.enabled: false
@@ -94,7 +94,7 @@ setup.ilm.check_exists: false
 
 ## Logstash
 
-If you have trouble connecting Logstash to SmartObserve, try this minimal output configuration, which works with the Security plugin:
+If you have trouble connecting Logstash to MCdesk, try this minimal output configuration, which works with the Security plugin:
 
 ```conf
 output {

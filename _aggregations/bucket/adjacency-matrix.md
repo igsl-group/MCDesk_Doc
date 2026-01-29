@@ -16,7 +16,7 @@ Use the `adjacency_matrix` aggregation to discover how concepts are related by v
 For example, in the sample eCommerce dataset, to analyze how the different manufacturing companies are related:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -97,4 +97,4 @@ GET smartobserve_dashboards_sample_data_ecommerce/_search
 - `grpB`: Products manufactured by Elitelligence.
 - `590`: Number of products that are manufactured by both.
 
-You can use SmartObserve Dashboards to represent this data with a network graph.
+You can use MCdesk Dashboards to represent this data with a network graph.

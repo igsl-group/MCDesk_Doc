@@ -10,7 +10,7 @@ has_toc: false
 
 # Index prefixes
 
-The `index_prefixes` mapping parameter instructs the engine to generate additional index entries for the beginning segments of terms in a text field. When enabled, it builds a prefix index based on configurable minimum and maximum character lengths. This can significantly improve the performance of [prefix queries]({{site.url}}{{site.baseurl}}/query-dsl/term/prefix/), such as [autocomplete]({{site.url}}{{site.baseurl}}/smartobserve/search/autocomplete/) or [search as you type]({{site.url}}{{site.baseurl}}/smartobserve/search/autocomplete/#search-as-you-type), by allowing these queries to quickly match the pre-indexed term prefixes.
+The `index_prefixes` mapping parameter instructs the engine to generate additional index entries for the beginning segments of terms in a text field. When enabled, it builds a prefix index based on configurable minimum and maximum character lengths. This can significantly improve the performance of [prefix queries]({{site.url}}{{site.baseurl}}/query-dsl/term/prefix/), such as [autocomplete]({{site.url}}{{site.baseurl}}/mcdesk/search/autocomplete/) or [search as you type]({{site.url}}{{site.baseurl}}/mcdesk/search/autocomplete/#search-as-you-type), by allowing these queries to quickly match the pre-indexed term prefixes.
 
 By default, prefix indexing is not performed, maintaining minimal index size and fast indexing operations. However, if your application benefits from rapid prefix matching, enabling this parameter can provide a marked improvement in query efficiency.
 

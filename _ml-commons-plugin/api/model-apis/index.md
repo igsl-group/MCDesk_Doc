@@ -37,7 +37,7 @@ The ML Commons Train API lets you train ML algorithms synchronously and asynchro
 
 To train tasks through the API, three inputs are required: 
 
-- Algorithm name: Must be a [FunctionName](https://github.com/igsl-group/ml-commons/blob/1.3/common/src/main/java/org/smartobserve/ml/common/parameter/FunctionName.java). This determines what algorithm the ML model runs. To add a new function, see [How To Add a New Function](https://github.com/igsl-group/ml-commons/blob/main/docs/how-to-add-new-function.md).
+- Algorithm name: Must be a [FunctionName](https://github.com/igsl-group/ml-commons/blob/1.3/common/src/main/java/org/mcdesk/ml/common/parameter/FunctionName.java). This determines what algorithm the ML model runs. To add a new function, see [How To Add a New Function](https://github.com/igsl-group/ml-commons/blob/main/docs/how-to-add-new-function.md).
 - Model hyperparameters: Adjust these parameters to improve model accuracy.  
 - Input data: The data that trains the ML model or applies it to predictions. You can input data in two ways: query against your index or use a data frame.
 

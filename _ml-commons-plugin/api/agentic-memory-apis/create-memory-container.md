@@ -24,13 +24,13 @@ Once a memory container is created, provide its `memory_container_id` to other A
 
 ## Prerequisites
 
-If you want to use one of the model types to process memories, register the models in SmartObserve.
+If you want to use one of the model types to process memories, register the models in MCdesk.
 
 ### Embedding model
 
-Register either a local or externally hosted embedding model. SmartObserve supports text embedding and sparse encoding models. 
+Register either a local or externally hosted embedding model. MCdesk supports text embedding and sparse encoding models. 
 
-For more information about using models locally, see [Using ML models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For a list of supported models, see [SmartObserve-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#supported-pretrained-models).
+For more information about using models locally, see [Using ML models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For a list of supported models, see [MCdesk-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#supported-pretrained-models).
 
 
 For more information about using externally hosted models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/). For example, to register an externally hosted Amazon Titan Embeddings model, send the following request:
@@ -161,13 +161,13 @@ Field | Data type | Required/Optional | Description
 `disable_history`  | Boolean | Optional | If disabled, no history will be persisted. Default is `false`, so history will be persisted by default.
 `disable_session`  | Boolean | Optional | If disabled, no session will be persisted. Default is `true`, so the session will not be persisted by default.
 `max_infer_size`   | int     | Optional | Controls the top k number of similar existing memories retrieved during memory consolidation to make ADD/UPDATE/DELETE decisions.
-`index_settings`   | Object | Optional | Custom SmartObserve index settings for the memory storage indexes that will be created for this container. Each memory type (`sessions`, `working`, `long_term`, and `history`) uses its own index. See [Index settings](#index-settings).
+`index_settings`   | Object | Optional | Custom MCdesk index settings for the memory storage indexes that will be created for this container. Each memory type (`sessions`, `working`, `long_term`, and `history`) uses its own index. See [Index settings](#index-settings).
 `strategies` | Array | Optional | An array of [memory processing strategies]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agentic-memory/#memory-processing-strategies). See [The `strategies` array](#the-strategies-array).
 `parameters` | Object | Optional | Global parameters for the memory container. See [The `parameters` object](#the-parameters-object).
 
 ### Index settings
 
-You can customize the SmartObserve index settings for the storage indexes that will be created to store memory data. Each memory type uses a dedicated index, and you can configure settings like the number of shards and replicas for performance optimization.
+You can customize the MCdesk index settings for the storage indexes that will be created to store memory data. Each memory type uses a dedicated index, and you can configure settings like the number of shards and replicas for performance optimization.
 
 The following example shows you how to specify custom index settings in the `configuration` object:
 

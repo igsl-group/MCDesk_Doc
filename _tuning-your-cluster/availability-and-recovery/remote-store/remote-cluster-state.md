@@ -35,7 +35,7 @@ If you require data durability, you must enable remote-backed data storage as de
 
 Remote cluster state settings can be enabled while bootstrapping the cluster. After the remote cluster state is enabled, it can be disabled by updating the settings and performing a rolling restart of all the nodes.
 
-To enable the remote cluster state for a given cluster, add the following cluster-level and repository settings to the cluster's `smartobserve.yml` file:
+To enable the remote cluster state for a given cluster, add the following cluster-level and repository settings to the cluster's `mcdesk.yml` file:
 
 ```yml
 # Enable Remote cluster state cluster setting
@@ -69,7 +69,7 @@ The remote cluster state functionality has the following limitations:
 
 The cluster manager node processes updates to the cluster state. It then publishes the updated cluster state through the local transport layer to all of the follower nodes. With the `remote_store.publication` feature enabled, the cluster state is backed up to the remote store during every state update. The follower nodes can then fetch the state from the remote store directly, which reduces the overhead on the cluster manager node for publication. 
 
-To enable this feature, configure the following setting in `smartobserve.yml`:
+To enable this feature, configure the following setting in `mcdesk.yml`:
 
 ```yml
 # Enable Remote cluster state publication

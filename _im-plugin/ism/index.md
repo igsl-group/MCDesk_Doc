@@ -23,7 +23,7 @@ To use the ISM plugin, your user role needs to be mapped to the `all_access` rol
 
 ## Get started with ISM
 
-To get started, choose **Index Management** in SmartObserve Dashboards.
+To get started, choose **Index Management** in MCdesk Dashboards.
 
 ### Step 1: Set up policies
 

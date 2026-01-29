@@ -36,7 +36,7 @@ The default doc-only mode with an analyzer works as follows:
 
 2. At search time:
    - The query text is analyzed using a built-in DL model analyzer (which uses a corresponding built-in ML model tokenizer).
-   - The token weights are obtained from a precomputed lookup table that's built into SmartObserve.
+   - The token weights are obtained from a precomputed lookup table that's built into MCdesk.
    - The tokenization matches what the sparse encoding model expects because they both use the same tokenization scheme.
 
 Thus, you must choose and apply an ML model at ingestion time, but you only need to specify an analyzer (not a model) at search time.
@@ -47,18 +47,18 @@ The following table lists all available models for use in doc-only mode. Each mo
 
 | Model                                                                    | Analyzer        | BEIR relevance | MIRACL relevance | Model parameters |
 | ------------------------------------------------------------------------ | --------------- | -------------- | ---------------- | ---------------- |
-| `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v1`          | `bert-uncased`  | 0.490          | N/A              | 133M             |
-| `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v2-distill`  | `bert-uncased`  | 0.504          | N/A              | 67M              |
-| `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v2-mini`     | `bert-uncased`  | 0.497          | N/A              | 23M              |
-| `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-distill`  | `bert-uncased`  | 0.517          | N/A              | 67M              |
-| `amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-gte`       | `bert-uncased`  | 0.546          | N/A              | 133M             |
-| `amazon/neural-sparse/smartobserve-neural-sparse-encoding-multilingual-v1` | `mbert-uncased` | 0.500          | 0.629            | 168M             |
+| `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v1`          | `bert-uncased`  | 0.490          | N/A              | 133M             |
+| `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v2-distill`  | `bert-uncased`  | 0.504          | N/A              | 67M              |
+| `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v2-mini`     | `bert-uncased`  | 0.497          | N/A              | 23M              |
+| `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-distill`  | `bert-uncased`  | 0.517          | N/A              | 67M              |
+| `amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-gte`       | `bert-uncased`  | 0.546          | N/A              | 133M             |
+| `amazon/neural-sparse/mcdesk-neural-sparse-encoding-multilingual-v1` | `mbert-uncased` | 0.500          | 0.629            | 168M             |
 
 ## Example: Using the default doc-only mode with an analyzer
 
-This example uses the recommended **doc-only** mode with a **DL model analyzer**. In this mode, SmartObserve applies a sparse encoding model at ingestion time and a compatible DL model analyzer at search time. For examples of other modes, see [Using custom configurations for neural sparse search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-custom/). 
+This example uses the recommended **doc-only** mode with a **DL model analyzer**. In this mode, MCdesk applies a sparse encoding model at ingestion time and a compatible DL model analyzer at search time. For examples of other modes, see [Using custom configurations for neural sparse search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-custom/). 
 
-For this example, you'll use neural sparse search with SmartObserve's built-in machine learning (ML) model hosting and ingest pipelines. Because the transformation of text to embeddings is performed within SmartObserve, you'll use text when ingesting and searching documents. 
+For this example, you'll use neural sparse search with MCdesk's built-in machine learning (ML) model hosting and ingest pipelines. Because the transformation of text to embeddings is performed within MCdesk, you'll use text when ingesting and searching documents. 
 
 ### Prerequisites
 
@@ -66,19 +66,19 @@ Before you start, complete the [prerequisites]({{site.url}}{{site.baseurl}}/sear
 
 ### Step 1: Configure a sparse encoding model for ingestion
 
-To use doc-only mode, first [choose a sparse encoding model](#sparse-encoding-modelanalyzer-compatibility) to be used at ingestion time. Then, register and deploy the model. For example, to register and deploy the `smartobserve-neural-sparse-encoding-doc-v3-distill` model, use the following request:
+To use doc-only mode, first [choose a sparse encoding model](#sparse-encoding-modelanalyzer-compatibility) to be used at ingestion time. Then, register and deploy the model. For example, to register and deploy the `mcdesk-neural-sparse-encoding-doc-v3-distill` model, use the following request:
 
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
 {
-  "name": "amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-distill",
+  "name": "amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-distill",
   "version": "1.0.0",
   "model_format": "TORCH_SCRIPT"
 }
 ```
 {% include copy-curl.html %}
 
-Registering a model is an asynchronous task. SmartObserve returns a task ID for every model you register:
+Registering a model is an asynchronous task. MCdesk returns a task ID for every model you register:
 
 ```json
 {
@@ -230,7 +230,7 @@ Before the document is ingested into the index, the ingest pipeline runs the `sp
 
 ### Step 5: Search the data
 
-To perform a neural sparse search on your index, use the `neural_sparse` query clause in [Query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/index/) queries. 
+To perform a neural sparse search on your index, use the `neural_sparse` query clause in [Query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/index/) queries. 
 
 The following example request uses a `neural_sparse` query to search for relevant documents using a raw text query. Specify the `analyzer` compatible with the model you chose (see [Sparse encoding model/analyzer compatibility](#sparse-encoding-modelanalyzer-compatibility)):
 
@@ -370,7 +370,7 @@ In bi-encoder mode, register and deploy a bi-encoder model to use at both ingest
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
 {
-  "name": "amazon/neural-sparse/smartobserve-neural-sparse-encoding-v2-distill",
+  "name": "amazon/neural-sparse/mcdesk-neural-sparse-encoding-v2-distill",
   "version": "1.0.0",
   "model_format": "TORCH_SCRIPT"
 }
@@ -403,7 +403,7 @@ You can use doc-only mode with a custom tokenizer. To deploy a tokenizer, send t
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
 {
-  "name": "amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1",
+  "name": "amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1",
   "version": "1.0.1",
   "model_format": "TORCH_SCRIPT"
 }
@@ -543,7 +543,7 @@ PUT /my-nlp-index/_doc/2
 ```
 {% include copy-curl.html %}
 
-Before a document is ingested into the index, SmartObserve automatically chunks the text and generates sparse vector embeddings for each chunk. To verify that the embedding is generated properly, you can run a search request to retrieve the document:
+Before a document is ingested into the index, MCdesk automatically chunks the text and generates sparse vector embeddings for each chunk. To verify that the embedding is generated properly, you can run a search request to retrieve the document:
 
 ```json
 GET /my-nlp-index/_doc/1
@@ -567,7 +567,7 @@ GET /my-nlp-index/_doc/1
             }
          ],
          "model": {
-            "name": "amazon/neural-sparse/smartobserve-neural-sparse-encoding-doc-v3-distill",
+            "name": "amazon/neural-sparse/mcdesk-neural-sparse-encoding-doc-v3-distill",
             "id": "_kPwYJcBmp4cG9LrUQsE",
             "type": "SPARSE_ENCODING"
          }
@@ -580,9 +580,9 @@ GET /my-nlp-index/_doc/1
 
 ## Step 3: Search the data
 
-To search the embeddings of the semantic field, use the `neural` query clause in [Query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/index/) queries.
+To search the embeddings of the semantic field, use the `neural` query clause in [Query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/index/) queries.
 
-The following example uses a `neural` query to search for relevant documents using text input. You only need to specify the `semantic` field name---SmartObserve automatically rewrites the query and applies it to the underlying embedding field, appropriately handling any nested objects. There's no need to provide the `model_id` in the query because SmartObserve retrieves it from the `semantic` field's configuration in the index mapping:
+The following example uses a `neural` query to search for relevant documents using text input. You only need to specify the `semantic` field name---MCdesk automatically rewrites the query and applies it to the underlying embedding field, appropriately handling any nested objects. There's no need to provide the `model_id` in the query because MCdesk retrieves it from the `semantic` field's configuration in the index mapping:
 
 ```json
 GET my-nlp-index/_search
@@ -667,7 +667,7 @@ GET my-nlp-index/_search
 ```
 {% include copy-curl.html %}
 
-To simplify the query further, you can define the `semantic_field_search_analyzer` in the `semantic` field configuration. This allows you to omit the analyzer from the query itself because SmartObserve automatically applies the configured analyzer during search.
+To simplify the query further, you can define the `semantic_field_search_analyzer` in the `semantic` field configuration. This allows you to omit the analyzer from the query itself because MCdesk automatically applies the configured analyzer during search.
 
 ## Accelerating neural sparse search
 
@@ -684,7 +684,7 @@ This section contains information about resolving common issues encountered whil
 
 When using connectors to call a remote service such as Amazon SageMaker, ingestion and search calls sometimes fail because of remote connector throttling exceptions. 
 
-For SmartObserve versions earlier than 2.15, a throttling exception will be returned as an error from the remote service:
+For MCdesk versions earlier than 2.15, a throttling exception will be returned as an error from the remote service:
 
 ```json
 {

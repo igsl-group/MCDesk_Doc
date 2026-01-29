@@ -12,7 +12,7 @@ redirect_from:
 
 # Language analyzers
 
-SmartObserve supports the following language analyzers:
+MCdesk supports the following language analyzers:
 `arabic`, `armenian`, `basque`, `bengali`, `brazilian`, `bulgarian`, `catalan`, `czech`, `danish`, `dutch`, `english`, `estonian`, `finnish`, `french`, `galician`, `german`, `greek`, `hindi`, `hungarian`, `indonesian`, `irish`, `italian`, `latvian`, `lithuanian`, `norwegian`, `persian`, `portuguese`, `romanian`, `russian`, `sorani`, `spanish`, `swedish`, `thai`, and `turkish`.
 
 To use an analyzer when you map an index, specify the value in your query. For example, to map your index with the French language analyzer, specify the `french` value in the analyzer field:
@@ -78,7 +78,7 @@ PUT my-index
 
 ## Stem exclusion
 
-You can apply stem exclusion to any language analyzer by providing a list of lowercase words that should be excluded from stemming. Internally, SmartObserve uses the `keyword_marker` token filter to mark these words as keywords, ensuring that they are not stemmed.
+You can apply stem exclusion to any language analyzer by providing a list of lowercase words that should be excluded from stemming. Internally, MCdesk uses the `keyword_marker` token filter to mark these words as keywords, ensuring that they are not stemmed.
 
 ## Stem exclusion example
 
@@ -114,7 +114,7 @@ PUT index_with_keyword_marker_analyzer
       "filter": {
         "protected_keywords_filter": {
           "type": "keyword_marker",
-          "keywords": ["Apple", "SmartObserve"]
+          "keywords": ["Apple", "MCdesk"]
         }
       },
       "analyzer": {

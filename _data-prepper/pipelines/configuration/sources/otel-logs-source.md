@@ -30,7 +30,7 @@ You can configure the `otel_logs_source` source with the following options.
 | thread_count  | Integer | The number of threads to keep in the `ScheduledThreadPool`. Default value is `500`. |
 | max_connection_count | Integer | The maximum number of open connections allowed. Default value is `500`. |
 | compression | String | The compression type applied to the client request payload. Valid values are `none` or `gzip`. Use `gzip` to apply GZip decompression to the incoming request. Default is `none` (no compression). |
-| output_format | String | Specifies the output format of the generated events. Valid values are `otel` or `smartobserve`. Default is `smartobserve`. |
+| output_format | String | Specifies the output format of the generated events. Valid values are `otel` or `mcdesk`. Default is `mcdesk`. |
 
 ### SSL
 

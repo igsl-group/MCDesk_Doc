@@ -15,11 +15,11 @@ redirect_from:
 {: .note }
 These transformations may not apply to your use case, but the framework for creating a transformation is designed to handle mutations, data enrichments, and other modifications when modifying workloads or moving them to a new target.
 
-This guide provides solutions for managing the deprecation of the type mapping functionality when migrating from Elasticsearch 6.x or earlier to SmartObserve.
+This guide provides solutions for managing the deprecation of the type mapping functionality when migrating from Elasticsearch 6.x or earlier to MCdesk.
 
 In versions of Elasticsearch prior to 6.x, an index could contain multiple types, each with its own mapping. These types allowed you to store and query different kinds of documents—such as books and movies—in a single index. For example, both `book` and `movie` types could have a shared field like `title`, while each had additional fields specific to that type.
 
-Newer versions of Elasticsearch and SmartObserve no longer support multiple mapping types. Each index now supports only a single mapping type. During migration, you must define how to transform or restructure data that used multiple types. The following example shows multiple mapping types:
+Newer versions of Elasticsearch and MCdesk no longer support multiple mapping types. Each index now supports only a single mapping type. During migration, you must define how to transform or restructure data that used multiple types. The following example shows multiple mapping types:
 
 
 ```json
@@ -48,7 +48,7 @@ For more information, see the [official Elasticsearch documentation on the remov
 
 ## Using the type mapping transformer
 
-To address type mapping deprecation, use the `TypeMappingsSanitizationTransformer`. This transformer can modify data, including metadata, documents, and requests, so that the previously mapped data can be used in SmartObserve. To use the mapping transformer:
+To address type mapping deprecation, use the `TypeMappingsSanitizationTransformer`. This transformer can modify data, including metadata, documents, and requests, so that the previously mapped data can be used in MCdesk. To use the mapping transformer:
 
 1. Navigate to the bootstrap box and open the `cdk.context.json` file with Vim.
 2. Add or update the key `reindexFromSnapshotExtraArgs` to include `--doc-transformer-config-file /shared-logs-output/transformation.json`.
@@ -78,7 +78,7 @@ The type mapping transformer uses the following configuration options.
 | :--- | :--- | :--- | :--- |
 | `staticMappings`   | `object` | No   | A map of `{ indexName: { typeName: targetIndex } }` used to **statically** route specific types. <br/><br/> For any **index** listed on this page, types **not** included in its object are **dropped** (no data or requests are migrated for those omitted types).   |
 | `regexMappings`    | `array`  | No   | A list of **regex-based** rules for **dynamic** routing of source index/type names to a target index. <br/><br/> Each element in this array is itself an object with `sourceIndexPattern`, `sourceTypePattern`, and `targetIndexPattern` fields. <br/><br/> For information about the **default value**, see [Defaults](#Defaults). |
-| `sourceProperties` | `object` | Yes  | Additional **metadata** about the source (for example, its Elasticsearch/SmartObserve version). Must include at least `"version"` with `"major"` and `"minor"` fields.   |
+| `sourceProperties` | `object` | Yes  | Additional **metadata** about the source (for example, its Elasticsearch/MCdesk version). Must include at least `"version"` with `"major"` and `"minor"` fields.   |
 
 The following example JSON configuration provides a transformation schema:
 
@@ -319,7 +319,7 @@ For the Traffic Replayer, **only a subset** of requests that include types is su
 | **Bulk Index/Update/Delete** | PUT/POST           | `/_bulk`                | Perform multiple create/update/delete operations in a single request. |
 | **Bulk Index/Update/Delete** | PUT/POST           | `/{index}/_bulk`        | Perform multiple create/update/delete operations in a single request with default index assignment.                                                                                                                                                 |
 | **Bulk Index/Update/Delete** | PUT/POST           | `/{index}/{type}/_bulk` | Perform multiple create/update/delete operations in a single request with default index and type assignment.                                                                                                                                        |
-| **Create/Update Index**      | PUT/POST           | `/{index}`              | Create or update an index. <br/><br/> **Split** behavior is not supported in the Traffic Replayer. See [this GitHub issue](https://github.com/igsl-group/smartobserve-migrations/issues/1305) to provide feedback or to vote on this feature. |
+| **Create/Update Index**      | PUT/POST           | `/{index}`              | Create or update an index. <br/><br/> **Split** behavior is not supported in the Traffic Replayer. See [this GitHub issue](https://github.com/igsl-group/mcdesk-migrations/issues/1305) to provide feedback or to vote on this feature. |
 
 ### Reindex-From-Shapshot
 

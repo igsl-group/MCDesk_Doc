@@ -1,6 +1,6 @@
 # Formatting Guide
 
-This guide provides an overview of the formatted elements commonly used in the SmartObserve documentation. 
+This guide provides an overview of the formatted elements commonly used in the MCdesk documentation. 
 
 * * *
 
@@ -106,8 +106,8 @@ For a callout with multiple paragraphs or lists, use `>`:
 >   ****PREREQUISITE****
 >
 >   To use a custom vector map with GeoJSON, install these two required plugins:
->   * SmartObserve Dashboards Maps [`dashboards-maps`](https://github.com/igsl-group/dashboards-maps_) front-end plugin
->   * SmartObserve [`geospatial`](https://github.com/igsl-group/geospatial_) backend plugin
+>   * MCdesk Dashboards Maps [`dashboards-maps`](https://github.com/igsl-group/dashboards-maps_) front-end plugin
+>   * MCdesk [`geospatial`](https://github.com/igsl-group/geospatial_) backend plugin
 {: .note}
 
 ```
@@ -122,7 +122,7 @@ tutorial_cards:
     description: "Learn how to implement semantic and hybrid search"
     link: "/vector-search/tutorials/neural-search-tutorial/"
     list:
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Anthropic Claude" 
       - "<b>Deployment:</b> Amazon Bedrock"  
 ```
@@ -180,7 +180,7 @@ There are two ways to format code blocks:
     {% endcapture %}
 
     {% capture step1_python %}
-    from smartobservepy import SmartObserve
+    from mcdeskpy import MCdesk
 
     client.indices.create(
         index="hotels-index",
@@ -267,7 +267,7 @@ There is one candidate generator available---`direct_generator`.
 A horizontal rule is used to separate text sections. Use three asterisks separated by spaces for a horizontal rule:
 
 ```
-## Why use SmartObserve?
+## Why use MCdesk?
 
 * * *
 ```
@@ -305,7 +305,7 @@ Image borders are automatic; do not manually add a border to an image.
 Always **separate an image from the text with a blank line**:
 
 ```
-To send a query to SmartObserve, select the query by placing the cursor anywhere in the query text. Then choose the triangle on the top right of the request or press `Ctrl/Cmd+Enter`:
+To send a query to MCdesk, select the query by placing the cursor anywhere in the query text. Then choose the triangle on the top right of the request or press `Ctrl/Cmd+Enter`:
 
 <img src="{{site.url}}{{site.baseurl}}/images/dev-tools/dev-tools-send.png" alt="Send request">
 ```
@@ -375,7 +375,7 @@ For more information, see [the `minimum_should_match` parameter](#the-minimum_sh
 **Internal links** are links to another document or image within the documentation website. Because the documentation website is versioned, do not hard code the version number in the link. Use the relative path, where `{{site.url}}{{site.baseurl}}` refers to the main directory, instead:
 
 ```
-If you need to use a field for exact-value search, map it as a [`keyword`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/keyword/).
+If you need to use a field for exact-value search, map it as a [`keyword`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/keyword/).
 ```
 
 ### GitHub links
@@ -383,7 +383,7 @@ If you need to use a field for exact-value search, map it as a [`keyword`]({{sit
 When linking to a GitHub issue or PR, refer to the issue or PR number in the following format:
 
 ```
-For more details, see issue [#1940](https://github.com/igsl-group/smartobserve/issues/1940).
+For more details, see issue [#1940](https://github.com/igsl-group/mcdesk/issues/1940).
 ```
 
 ## Lists
@@ -455,17 +455,17 @@ If you need to position an image or a code snippet within a list, use tabs to si
 1. Run the demo batch script.
    There are two ways of running the batch script:
    1. Run the batch script using the Windows UI:
-      1. Navigate to the top directory of your SmartObserve installation and open the `smartobserve-{{site.smartobserve_version}}` folder.
-      1. Run the batch script by double-clicking the `smartobserve-windows-install.bat` file. This opens a command prompt with an SmartObserve instance running.
+      1. Navigate to the top directory of your MCdesk installation and open the `mcdesk-{{site.mcdesk_version}}` folder.
+      1. Run the batch script by double-clicking the `mcdesk-windows-install.bat` file. This opens a command prompt with an MCdesk instance running.
    1. Run the batch script from Command prompt or Powershell:
       1. Open Command Prompt by entering `cmd`, or Powershell by entering `powershell`, in the search box next to ****Start**** on the taskbar. 
-      1. Change to the top directory of your SmartObserve installation.
+      1. Change to the top directory of your MCdesk installation.
          ```bat
-         cd \path\to\smartobserve-{{site.smartobserve_version}}
+         cd \path\to\mcdesk-{{site.mcdesk_version}}
          ```
       1. Run the batch script.
          ```bat
-         .\smartobserve-windows-install.bat
+         .\mcdesk-windows-install.bat
          ```
 ```
 
@@ -508,9 +508,9 @@ To insert steps, specify them in the front matter as follows. Steps are automati
 
 ```yaml
 steps:
-  - heading: "Create an SmartObserve index"
-    description: "Create an SmartObserve index to store your embeddings."
-    link: "/vector-search/creating-vector-index/#storing-raw-vectors-or-embeddings-generated-outside-of-smartobserve"
+  - heading: "Create an MCdesk index"
+    description: "Create an MCdesk index to store your embeddings."
+    link: "/vector-search/creating-vector-index/#storing-raw-vectors-or-embeddings-generated-outside-of-mcdesk"
   - heading: "Ingest embeddings"
     description: "Ingest your embeddings into the index."
     link: "/vector-search/ingesting-data/#raw-vector-ingestion"

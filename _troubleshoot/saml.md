@@ -6,7 +6,7 @@ nav_order: 20
 
 # SAML troubleshooting
 
-This page includes troubleshooting steps for using SAML for SmartObserve Dashboards authentication.
+This page includes troubleshooting steps for using SAML for MCdesk Dashboards authentication.
 
 
 ---
@@ -31,15 +31,15 @@ saml:
     config:
       ...
       sp:
-        entity_id: smartobserve-dashboards-saml
+        entity_id: mcdesk-dashboards-saml
 ```
 
 
 ## Check the SAML assertion consumer service URL
 
-After a successful login, your IdP sends a SAML response using HTTP POST to the SmartObserve Dashboards "assertion consumer service URL" (ACS).
+After a successful login, your IdP sends a SAML response using HTTP POST to the MCdesk Dashboards "assertion consumer service URL" (ACS).
 
-The endpoint the SmartObserve Dashboards Security plugin provides is:
+The endpoint the MCdesk Dashboards Security plugin provides is:
 
 ```
 /_opendistro/_security/saml/acs
@@ -47,7 +47,7 @@ The endpoint the SmartObserve Dashboards Security plugin provides is:
 
 Make sure that you have configured this endpoint correctly in your IdP. Some IdPs also require you to add all endpoints to the allow list that they send requests to. Ensure that the ACS endpoint is listed.
 
-SmartObserve Dashboards also requires you to add this endpoint to the allow list. Make sure you have the following entry in `smartobserve_dashboards.yml`:
+MCdesk Dashboards also requires you to add this endpoint to the allow list. Make sure you have the following entry in `mcdesk_dashboards.yml`:
 
 ```
 server.xsrf.allowlist: [/_opendistro/_security/saml/acs]
@@ -89,9 +89,9 @@ logger.token.name = com.amazon.dlic.auth.http.saml.Token
 logger.token.level = debug
 ```
 
-This setting prints the SAML response to the SmartObserve log file so that you can inspect and debug it. Setting this logger to `debug` generates many statements, so we don't recommend using it in production.
+This setting prints the SAML response to the MCdesk log file so that you can inspect and debug it. Setting this logger to `debug` generates many statements, so we don't recommend using it in production.
 
-Another way of inspecting the SAML response is to monitor network traffic while logging in to SmartObserve Dashboards. The IdP uses HTTP POST requests to send Base64-encoded SAML responses to:
+Another way of inspecting the SAML response is to monitor network traffic while logging in to MCdesk Dashboards. The IdP uses HTTP POST requests to send Base64-encoded SAML responses to:
 
 ```
 /_opendistro/_security/saml/acs
@@ -135,4 +135,4 @@ saml:
 
 The Security plugin trades the SAML response for a more lightweight JSON web token. The username and backend roles in the JWT are ultimately mapped to roles in the Security plugin. If there is a problem with the mapping, you can enable the token debug mode using the same setting as [Inspect the SAML response](#inspect-the-saml-response).
 
-This setting prints the JWT to the SmartObserve log file so that you can inspect and debug it using a tool like [JWT.io](https://jwt.io/).
+This setting prints the JWT to the MCdesk log file so that you can inspect and debug it using a tool like [JWT.io](https://jwt.io/).

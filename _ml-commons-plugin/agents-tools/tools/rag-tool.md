@@ -16,7 +16,7 @@ grand_parent: Agents and tools
 
 The `RAGTool` performs retrieval-augmented generation (RAG). For more information about RAG, see [Conversational search]({{site.url}}{{site.baseurl}}/search-plugins/conversational-search/).
 
-RAG calls a large language model (LLM) and supplements its knowledge by providing relevant SmartObserve documents along with the user question. To retrieve relevant documents from an SmartObserve index, you'll need a text embedding model that facilitates vector search.
+RAG calls a large language model (LLM) and supplements its knowledge by providing relevant MCdesk documents along with the user question. To retrieve relevant documents from an MCdesk index, you'll need a text embedding model that facilitates vector search.
 
 The RAG tool supports the following search methods:
 
@@ -65,7 +65,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -77,7 +77,7 @@ To create a conversational agent containing a `RAGTool`, see [Conversational age
 
 ## Step 2: Run the agent
 
-Before you run the agent, make sure that you add the sample SmartObserve Dashboards `Sample web logs` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
+Before you run the agent, make sure that you add the sample MCdesk Dashboards `Sample web logs` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
 
 Then, run the agent by sending the following request:
 
@@ -91,7 +91,7 @@ POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 ```
 {% include copy-curl.html %} 
 
-SmartObserve performs vector search and returns the relevant documents:
+MCdesk performs vector search and returns the relevant documents:
 
 ```json
 {

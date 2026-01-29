@@ -9,9 +9,9 @@ redirect_from:
 
 # Migrating from Logstash
 
-You can run SmartObserve Data Prepper with a Logstash configuration.
+You can run MCdesk Data Prepper with a Logstash configuration.
 
-As mentioned in [Getting started with SmartObserve Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/getting-started/), you'll need to configure Data Prepper with a pipeline using a `pipelines.yaml` file.
+As mentioned in [Getting started with MCdesk Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/getting-started/), you'll need to configure Data Prepper with a pipeline using a `pipelines.yaml` file.
 
 Alternatively, if you have a Logstash configuration `logstash.conf` to configure Data Prepper instead of `pipelines.yaml`.
 
@@ -29,12 +29,12 @@ As of the Data Prepper 1.2 release, the following plugins from the Logstash conf
 
 ## Running Data Prepper with a Logstash configuration
 
-1. To install Data Prepper's Docker image, see Installing Data Prepper in [Getting Started with SmartObserve Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/getting-started#1-installing-data-prepper).
+1. To install Data Prepper's Docker image, see Installing Data Prepper in [Getting Started with MCdesk Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/getting-started#1-installing-data-prepper).
 
 2. Run the Docker image installed in Step 1 by supplying your `logstash.conf` configuration.
 
 ```
-docker run --name data-prepper -p 4900:4900 -v ${PWD}/logstash.conf:/usr/share/data-prepper/pipelines.conf smartobserveproject/data-prepper:latest pipelines.conf
+docker run --name data-prepper -p 4900:4900 -v ${PWD}/logstash.conf:/usr/share/data-prepper/pipelines.conf mcdeskproject/data-prepper:latest pipelines.conf
 ```
 
 The `logstash.conf` file is converted to `logstash.yaml` by mapping the plugins and attributes in the Logstash configuration to the corresponding plugins and attributes in Data Prepper.
@@ -44,5 +44,5 @@ You can find the converted `logstash.yaml` file in the same directory where you 
 The following output in your terminal indicates that Data Prepper is running correctly:
 
 ```
-INFO  org.smartobserve.dataprepper.pipeline.ProcessWorker - log-pipeline Worker: No records received from buffer
+INFO  org.mcdesk.dataprepper.pipeline.ProcessWorker - log-pipeline Worker: No records received from buffer
 ```

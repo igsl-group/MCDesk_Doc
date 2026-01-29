@@ -13,7 +13,7 @@ The `date_range` aggregation is conceptually the same as the `range` aggregation
 For example, you can get all documents from the last 10 days. To make the date more readable, include the format with a `format` parameter:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

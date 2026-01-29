@@ -7,7 +7,7 @@ nav_order: 35
 
 # Log enrichment
 
-You can perform different types of log enrichment with SmartObserve Data Prepper, including:
+You can perform different types of log enrichment with MCdesk Data Prepper, including:
 
 - Filtering.
 - Extracting key-value pairs from strings.
@@ -31,7 +31,7 @@ log-pipeline:
     - drop_events:
         drop_when: "/response < 400"
   sink:
-    - smartobserve:
+    - mcdesk:
         ...
         index: failure_logs
 ```

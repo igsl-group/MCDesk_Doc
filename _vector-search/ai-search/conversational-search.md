@@ -24,9 +24,9 @@ Conversation history consists of a simple CRUD-like API comprising two resources
 
 ## RAG
 
-RAG retrieves data from the index and history and sends all the information as context to the LLM. The LLM then supplements its static knowledge base with the dynamically retrieved data. In SmartObserve, RAG is implemented through a search pipeline containing a [retrieval-augmented generation processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/rag-processor/). The processor intercepts SmartObserve query results, retrieves previous messages in the conversation from the conversation memory, and sends a prompt to the LLM. After the processor receives a response from the LLM, it saves the response in conversation memory and returns both the original SmartObserve query results and the LLM response. 
+RAG retrieves data from the index and history and sends all the information as context to the LLM. The LLM then supplements its static knowledge base with the dynamically retrieved data. In MCdesk, RAG is implemented through a search pipeline containing a [retrieval-augmented generation processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/rag-processor/). The processor intercepts MCdesk query results, retrieves previous messages in the conversation from the conversation memory, and sends a prompt to the LLM. After the processor receives a response from the LLM, it saves the response in conversation memory and returns both the original MCdesk query results and the LLM response. 
 
-As of SmartObserve 2.11, the RAG technique has only been tested with OpenAI models and the Anthropic Claude model on Amazon Bedrock.
+As of MCdesk 2.11, the RAG technique has only been tested with OpenAI models and the Anthropic Claude model on Amazon Bedrock.
 {: .warning}
 
 When the Security plugin is enabled, all memories exist in a `private` security mode. Only the user who created a memory can interact with that memory. No user can see another user's memory.
@@ -56,7 +56,7 @@ There are two ways to configure conversational search:
 
 ## Automated workflow
 
-SmartObserve provides a [workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates#conversational-search-using-an-llm) that automatically creates a connector for the LLM, registers and deploys the LLM, and configures a search pipeline. You must provide the API key for the configured LLM when creating a workflow. Review the conversational search workflow template [defaults](https://github.com/igsl-group/flow-framework/blob/main/src/main/resources/defaults/conversational-search-defaults.json) to determine whether you need to update any of the parameters. For example, if the model endpoint is different from the default (`https://api.cohere.ai/v1/chat`), specify the endpoint of your model in the `create_connector.actions.url` parameter. To create the default conversational search workflow, send the following request:
+MCdesk provides a [workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates#conversational-search-using-an-llm) that automatically creates a connector for the LLM, registers and deploys the LLM, and configures a search pipeline. You must provide the API key for the configured LLM when creating a workflow. Review the conversational search workflow template [defaults](https://github.com/igsl-group/flow-framework/blob/main/src/main/resources/defaults/conversational-search-defaults.json) to determine whether you need to update any of the parameters. For example, if the model endpoint is different from the default (`https://api.cohere.ai/v1/chat`), specify the endpoint of your model in the `create_connector.actions.url` parameter. To create the default conversational search workflow, send the following request:
 
 ```json
 POST /_plugins/_flow_framework/workflow?use_case=conversational_search_with_llm_deploy&provision=true
@@ -66,7 +66,7 @@ POST /_plugins/_flow_framework/workflow?use_case=conversational_search_with_llm_
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with a workflow ID for the created workflow:
+MCdesk responds with a workflow ID for the created workflow:
 
 ```json
 {
@@ -134,7 +134,7 @@ POST /_plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with a connector ID for the connector:
+MCdesk responds with a connector ID for the connector:
 
 ```json
 {
@@ -147,7 +147,7 @@ For example requests that connect to other services and models, see [Connector b
 
 ### Step 2: Register and deploy the model
 
-Register the LLM for which you created a connector in the previous step. To register the model with SmartObserve, provide the `connector_id` returned in the previous step:
+Register the LLM for which you created a connector in the previous step. To register the model with MCdesk, provide the `connector_id` returned in the previous step:
 
 ```json
 POST /_plugins/_ml/models/_register
@@ -160,7 +160,7 @@ POST /_plugins/_ml/models/_register
 ``` 
 {% include copy-curl.html %}
 
-SmartObserve returns a task ID for the register task and a model ID for the registered model:
+MCdesk returns a task ID for the register task and a model ID for the registered model:
 
 ```json
 {
@@ -201,7 +201,7 @@ POST /_plugins/_ml/models/gnDIbI0BfUsSoeNT_jAw/_deploy
 ```
 {% include copy-curl.html %}
 
-SmartObserve acknowledges that the model is deployed:
+MCdesk acknowledges that the model is deployed:
 
 ```json
 {
@@ -274,7 +274,7 @@ POST _bulk
 
 RAG is a technique that retrieves documents from an index, passes them through a seq2seq model, such as an LLM, and then supplements the static LLM information with the dynamically retrieved data in context.
 
-As of SmartObserve 2.12, the RAG technique has only been tested with OpenAI models, the Anthropic Claude model on Amazon Bedrock, and Cohere Command models. 
+As of MCdesk 2.12, the RAG technique has only been tested with OpenAI models, the Anthropic Claude model on Amazon Bedrock, and Cohere Command models. 
 {: .warning}
 
 Configuring the Cohere Command model to enable RAG requires using a post-processing function to transform the model output. For more information, see the [Cohere RAG Tutorial](https://github.com/igsl-group/ml-commons/blob/2.x/docs/tutorials/conversational_search/conversational_search_with_Cohere_Command.md).
@@ -291,7 +291,7 @@ POST /_plugins/_ml/memory/
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with a memory ID for the newly created memory:
+MCdesk responds with a memory ID for the newly created memory:
 
 ```json
 {
@@ -304,7 +304,7 @@ You'll use the `memory_id` to add messages to the memory.
 
 ### Step 6: Use the pipeline for RAG
 
-To use the RAG pipeline, send a query to SmartObserve and provide additional parameters in the `ext.generative_qa_parameters` object. 
+To use the RAG pipeline, send a query to MCdesk and provide additional parameters in the `ext.generative_qa_parameters` object. 
 
 The `generative_qa_parameters` object supports the following parameters.
 
@@ -317,10 +317,10 @@ Parameter | Required | Description
 `message_size` | No | The number of messages sent to the LLM. Similarly to the number of search results, this affects the total number of tokens received by the LLM. When not set, the pipeline uses the default message size of `10`.
 `timeout` | No | The number of seconds that the pipeline waits for the remote model using a connector to respond. Default is `30`.
 
-If your LLM includes a set token limit, set the `size` field in your SmartObserve query to limit the number of documents used in the search response. Otherwise, the RAG pipeline will send every document in the search results to the LLM.
+If your LLM includes a set token limit, set the `size` field in your MCdesk query to limit the number of documents used in the search response. Otherwise, the RAG pipeline will send every document in the search results to the LLM.
 {: .note}
 
-If you ask an LLM a question about the present, it cannot provide an answer because it was trained on data from a few years ago. However, if you add current information as context, the LLM is able to generate a response. For example, you can ask the LLM about the population of the New York City metro area in 2023. You'll construct a query that includes an SmartObserve match query and an LLM query. Provide the `memory_id` so that the message is stored in the appropriate memory object:
+If you ask an LLM a question about the present, it cannot provide an answer because it was trained on data from a few years ago. However, if you add current information as context, the LLM is able to generate a response. For example, you can ask the LLM about the population of the New York City metro area in 2023. You'll construct a query that includes an MCdesk match query and an LLM query. Provide the `memory_id` so that the message is stored in the appropriate memory object:
 
 ```json
 GET /my_rag_test_data/_search

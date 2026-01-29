@@ -28,7 +28,7 @@ The following example demonstrates using a template query with an [`ml_inference
 
 ### Prerequisite
 
-Before using an `ml_inference` search request processor, you must configure an ML model. For more information about local models, see [Using ML models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For more information about externally hosted models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/). 
+Before using an `ml_inference` search request processor, you must configure an ML model. For more information about local models, see [Using ML models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For more information about externally hosted models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/). 
 
 Once you configure a model, you can test the model by sending a Predict API request:
 

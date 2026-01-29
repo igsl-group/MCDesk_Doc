@@ -3,7 +3,7 @@ layout: default
 title: Reindex data
 nav_order: 30
 redirect_from:
-  - /smartobserve/reindex-data/
+  - /mcdesk/reindex-data/
 ---
 
 # Reindex data
@@ -121,7 +121,7 @@ POST _reindex
 }
 ```
 
-For a list of all query operations, see [Full-text queries]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/full-text/index).
+For a list of all query operations, see [Full-text queries]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/full-text/index).
 
 ## Combine one or more indexes
 
@@ -168,7 +168,7 @@ POST _reindex
 ## Transform documents during reindexing
 
 You can transform your data during the reindexing process using the `script` option.
-We recommend Painless for scripting in SmartObserve.
+We recommend Painless for scripting in MCdesk.
 
 This command runs the source index through a Painless script that increments a `number` field inside an `account` object before copying it to the destination index:
 

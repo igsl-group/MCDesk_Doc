@@ -1,31 +1,31 @@
 ---
 layout: default
-title: SmartObserve keystore
+title: MCdesk keystore
 parent: Configuration
 nav_order: 50
 ---
 
-# SmartObserve keystore
+# MCdesk keystore
 
-`smartobserve-keystore` is a utility script used to manage an SmartObserve keystore. An SmartObserve keystore provides a secure method of storing sensitive information, such as passwords and keys, used in an SmartObserve cluster. The script allows you to securely create, list, add, and remove settings. It is included in the SmartObserve distribution. 
+`mcdesk-keystore` is a utility script used to manage an MCdesk keystore. An MCdesk keystore provides a secure method of storing sensitive information, such as passwords and keys, used in an MCdesk cluster. The script allows you to securely create, list, add, and remove settings. It is included in the MCdesk distribution. 
 
 This keystore is separate from the keystore and truststore used to store TLS certificates in JKS or PKCS12/PFX format in order to secure the transport and HTTP layers. For information about those keystores, refer to [Keystore and truststore files]({{site.url}}{{site.baseurl}}/security/configuration/tls/#keystore-and-truststore-files).
 {: .note} 
 
 ## Usage
 
-In order to use the `smartobserve-keystore` script, you must have access to the file system containing the SmartObserve installation and the ability to execute SmartObserve scripts.
+In order to use the `mcdesk-keystore` script, you must have access to the file system containing the MCdesk installation and the ability to execute MCdesk scripts.
 
-To use `smartobserve-keystore`, open a terminal and use the following command syntax:
+To use `mcdesk-keystore`, open a terminal and use the following command syntax:
 
 ```
-smartobserve-keystore [command] [options]
+mcdesk-keystore [command] [options]
 ```
 {% include copy.html %}
 
 ## Commands
 
-The `smartobserve-keystore` script supports the following the commands: 
+The `mcdesk-keystore` script supports the following the commands: 
 
 - `create`: Initializes a new keystore. If a keystore already exists, this command will overwrite the existing keystore.
 - `list`: Lists all settings in the keystore.
@@ -35,7 +35,7 @@ The `smartobserve-keystore` script supports the following the commands:
 - `upgrade <setting-name>`: Upgrades an existing setting in the keystore.
 - `passwd`: Sets a password for the keystore.
 - `has-passwd`: Prints whether the keystore is password protected.
-- `help`: Displays help information about all `smartobserve-keystore` commands.
+- `help`: Displays help information about all `mcdesk-keystore` commands.
 
 ## Options
 
@@ -48,14 +48,14 @@ You can append each command with the following options:
 
 ## Examples
 
-The following examples provide the basic syntax for common `smartobserve-keystore` commands:
+The following examples provide the basic syntax for common `mcdesk-keystore` commands:
 
 ### Creating a new keystore
 
 The following command creates a new keystore:
 
 ```bash
-./bin/smartobserve-keystore create
+./bin/mcdesk-keystore create
 ```
 {% include copy.html %}
 
@@ -64,7 +64,7 @@ If a keystore already exists, the script will ask whether you would like to over
 The script responds with a confirmation that the keystore was created:
    
 ```bash
-Created smartobserve keystore in $OPENSEARCH_HOME/config/smartobserve.keystore
+Created mcdesk keystore in $OPENSEARCH_HOME/config/mcdesk.keystore
 ```
 
 ### Create a new password-protected keystore
@@ -72,7 +72,7 @@ Created smartobserve keystore in $OPENSEARCH_HOME/config/smartobserve.keystore
 To create a new password-protected keystore, run the following command:
 
 ```bash
-./bin/smartobserve-keystore create -p
+./bin/mcdesk-keystore create -p
 ```
 {% include copy.html %}
 
@@ -83,7 +83,7 @@ If a keystore already exists, the script will ask whether you would like to over
 The following command sets a new keystore password:
 
 ```bash
-./bin/smartobserve-keystore passwd
+./bin/mcdesk-keystore passwd
 ```
 {% include copy.html %}
 
@@ -94,10 +94,10 @@ If a keystore password already exists, the script will ask for the current keyst
 The script responds with a confirmation that the keystore password was set successfully:
    
 ```bash
-SmartObserve keystore password changed successfully.
+MCdesk keystore password changed successfully.
 ```
 
-When starting SmartObserve you will be prompted to enter the keystore password. Alternatively, you can set the environment variable KEYSTORE_PASSWORD to avoid being prompted for password on startup.
+When starting MCdesk you will be prompted to enter the keystore password. Alternatively, you can set the environment variable KEYSTORE_PASSWORD to avoid being prompted for password on startup.
 {: .note}
 
 ### Listing settings in the keystore
@@ -105,7 +105,7 @@ When starting SmartObserve you will be prompted to enter the keystore password. 
 The following commands list all setting currently in the keystore:
    
 ```bash
-./bin/smartobserve-keystore list
+./bin/mcdesk-keystore list
 ```
 {% include copy.html %}
 
@@ -121,7 +121,7 @@ plugins.security.ssl.http.pemkey_password_secure
 The following command adds a new keystore setting:
 
 ```bash
-./bin/smartobserve-keystore add plugins.security.ssl.http.pemkey_password_secure
+./bin/mcdesk-keystore add plugins.security.ssl.http.pemkey_password_secure
 ```
 {% include copy.html %}
 
@@ -132,15 +132,15 @@ After this command, you will be prompted to enter the secret key securely.
 The following command removes a keystore setting:
 
 ```bash
-./bin/smartobserve-keystore remove plugins.security.ssl.http.pemkey_password_secure
+./bin/mcdesk-keystore remove plugins.security.ssl.http.pemkey_password_secure
 ```
 {% include copy.html %}
 
-No response exists for this command. To confirm that the setting was deleted, use `smartobserve-keystore list`.
+No response exists for this command. To confirm that the setting was deleted, use `mcdesk-keystore list`.
 
-For a complete list of secure settings that can be configured using `smartobserve-keystore`, refer to [(Advanced) Using encrypted password settings for SSL]({{site.url}}{{site.baseurl}}/security/configuration/tls/#advanced-using-encrypted-password-settings-for-ssl).
+For a complete list of secure settings that can be configured using `mcdesk-keystore`, refer to [(Advanced) Using encrypted password settings for SSL]({{site.url}}{{site.baseurl}}/security/configuration/tls/#advanced-using-encrypted-password-settings-for-ssl).
 {: .note}
 
-## Keystore entries as SmartObserve settings
+## Keystore entries as MCdesk settings
 
-After a setting has been added to a keystore, it is implicitly added to the SmartObserve configuration as if it were another entry in `smartobserve.yml`. To modify a keystore entry use `./bin/smartobserve-keystore upgrade <setting>`. To remove an entry, use `./bin/smartobserve-keystore remove <setting>`.
+After a setting has been added to a keystore, it is implicitly added to the MCdesk configuration as if it were another entry in `mcdesk.yml`. To modify a keystore entry use `./bin/mcdesk-keystore upgrade <setting>`. To remove an entry, use `./bin/mcdesk-keystore remove <setting>`.

@@ -18,13 +18,13 @@ Typically, judgments are categorized into two types---implicit and explicit:
 Search Relevance Workbench supports all types of judgments:
 
 * Generating implicit judgments based on data that adheres to the User Behavior Insights (UBI) schema specification.
-* Using LLMs to generate judgments by connecting SmartObserve to an API or an internally or externally hosted model.
+* Using LLMs to generate judgments by connecting MCdesk to an API or an internally or externally hosted model.
 * Importing externally created judgments.
 
 ## Explicit judgments
 
 Search Relevance Workbench offers two ways to integrate explicit judgments:
-* Importing judgments that were collected using a process outside of SmartObserve
+* Importing judgments that were collected using a process outside of MCdesk
 * AI-assisted judgments that use LLMs
 
 ### Importing judgments

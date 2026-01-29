@@ -3,25 +3,25 @@ layout: default
 title: Installing
 nav_order: 5
 grand_parent: User guide
-parent: Install and configure SmartObserve Benchmark
+parent: Install and configure MCdesk Benchmark
 redirect_from:
   - /benchmark/installing-benchmark/
   - /benchmark/user-guide/installing-benchmark/
 ---
 
-# Installing SmartObserve Benchmark
+# Installing MCdesk Benchmark
 
-You can install SmartObserve Benchmark directly on a host running Linux or macOS, or you can run SmartObserve Benchmark in a Docker container on any compatible host. This page provides general considerations for your SmartObserve Benchmark host as well as instructions for installing SmartObserve Benchmark.
+You can install MCdesk Benchmark directly on a host running Linux or macOS, or you can run MCdesk Benchmark in a Docker container on any compatible host. This page provides general considerations for your MCdesk Benchmark host as well as instructions for installing MCdesk Benchmark.
 
 
 ## Choosing appropriate hardware
 
-SmartObserve Benchmark can be used to provision SmartObserve nodes for testing. If you intend to use SmartObserve Benchmark to provision nodes in your environment, then install SmartObserve Benchmark directly on each host in the cluster. Additionally, you must configure each host in the cluster for SmartObserve. See [Installing SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/index/) for guidance on important host settings.
+MCdesk Benchmark can be used to provision MCdesk nodes for testing. If you intend to use MCdesk Benchmark to provision nodes in your environment, then install MCdesk Benchmark directly on each host in the cluster. Additionally, you must configure each host in the cluster for MCdesk. See [Installing MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/index/) for guidance on important host settings.
 
-Remember that SmartObserve Benchmark cannot be used to provision SmartObserve nodes when you run SmartObserve Benchmark in a Docker container. If you want to use SmartObserve Benchmark to provision nodes, or if you want to distribute the benchmark workload with the SmartObserve Benchmark daemon, then you must install SmartObserve Benchmark directly on each host using Python and pip.
+Remember that MCdesk Benchmark cannot be used to provision MCdesk nodes when you run MCdesk Benchmark in a Docker container. If you want to use MCdesk Benchmark to provision nodes, or if you want to distribute the benchmark workload with the MCdesk Benchmark daemon, then you must install MCdesk Benchmark directly on each host using Python and pip.
 {: .important}
 
-When you select a host, you should also think about which workloads you want to run. To see a list of default benchmark workloads, visit the [smartobserve-benchmark-workloads](https://github.com/igsl-group/smartobserve-benchmark-workloads) repository on GitHub. As a general rule, make sure that the SmartObserve Benchmark host has enough free storage space to store the compressed data and the fully decompressed data corpus once SmartObserve Benchmark is installed.
+When you select a host, you should also think about which workloads you want to run. To see a list of default benchmark workloads, visit the [mcdesk-benchmark-workloads](https://github.com/igsl-group/mcdesk-benchmark-workloads) repository on GitHub. As a general rule, make sure that the MCdesk Benchmark host has enough free storage space to store the compressed data and the fully decompressed data corpus once MCdesk Benchmark is installed.
 
 If you want to benchmark with a default workload, then use the following table to determine the approximate minimum amount of required free space needed by adding the compressed size with the uncompressed size.
 
@@ -40,21 +40,21 @@ If you want to benchmark with a default workload, then use the following table t
 | pmc | 574,199 | 5.5 GB | 21.7 GB |
 | so | 36,062,278 | 8.9 GB | 33.1 GB |
 
-Your SmartObserve Benchmark host should use solid-state drives (SSDs) for storage because they perform read and write operations significantly faster than traditional spinning-disk hard drives. Spinning-disk hard drives can introduce performance bottlenecks, which can make benchmark results unreliable and inconsistent.
+Your MCdesk Benchmark host should use solid-state drives (SSDs) for storage because they perform read and write operations significantly faster than traditional spinning-disk hard drives. Spinning-disk hard drives can introduce performance bottlenecks, which can make benchmark results unreliable and inconsistent.
 {: .tip}
 
 ## Installing on Linux and macOS
 
-If you want to run SmartObserve Benchmark in a Docker container, see [Installing with Docker](#installing-with-docker). The SmartObserve Benchmark Docker image includes all of the required software, so there are no additional steps required.
+If you want to run MCdesk Benchmark in a Docker container, see [Installing with Docker](#installing-with-docker). The MCdesk Benchmark Docker image includes all of the required software, so there are no additional steps required.
 {: .important}
 
-To install SmartObserve Benchmark directly on a UNIX host, such as Linux or macOS, make sure you have **Python 3.8 or later** installed.
+To install MCdesk Benchmark directly on a UNIX host, such as Linux or macOS, make sure you have **Python 3.8 or later** installed.
 
 If you need help installing Python, refer to the official [Python Setup and Usage](https://docs.python.org/3/using/index.html) documentation.
 
 ### Checking software dependencies
 
-Before you begin installing SmartObserve Benchmark, check the following software dependencies.
+Before you begin installing MCdesk Benchmark, check the following software dependencies.
 
 Use [pyenv](https://github.com/pyenv/pyenv) to manage multiple versions of Python on your host. This is especially useful if your "system" version of Python is earlier than version 3.8.
 {: .tip}
@@ -73,7 +73,7 @@ Use [pyenv](https://github.com/pyenv/pyenv) to manage multiple versions of Pytho
   ```
   {% include copy.html %}
 
-- _Optional_: Check that your installed version of `git` is **Git 1.9 or later** using the following command. `git` is not required for SmartObserve Benchmark installation, but it is required in order to fetch benchmark workload resources from a repository when you want to perform tests. See the official Git [documentation](https://git-scm.com/doc) for help installing Git.
+- _Optional_: Check that your installed version of `git` is **Git 1.9 or later** using the following command. `git` is not required for MCdesk Benchmark installation, but it is required in order to fetch benchmark workload resources from a repository when you want to perform tests. See the official Git [documentation](https://git-scm.com/doc) for help installing Git.
 
   ```bash
   git --version
@@ -82,95 +82,95 @@ Use [pyenv](https://github.com/pyenv/pyenv) to manage multiple versions of Pytho
 
 ### Completing the installation
 
-After the required software is installed, you can install SmartObserve Benchmark using the following command:
+After the required software is installed, you can install MCdesk Benchmark using the following command:
 
 ```bash
-pip install smartobserve-benchmark
+pip install mcdesk-benchmark
 ```
 {% include copy.html %}
 
 After the installation completes, you can use the following command to display help information:
 
 ```bash
-smartobserve-benchmark -h
+mcdesk-benchmark -h
 ```
 {% include copy.html %}
 
 
-Now that SmartObserve Benchmark is installed on your host, you can learn about [Configuring SmartObserve Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/).
+Now that MCdesk Benchmark is installed on your host, you can learn about [Configuring MCdesk Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/).
 
 ## Installing with Docker
 
-You can find the official Docker images for SmartObserve Benchmark on [Docker Hub](https://hub.docker.com/r/smartobserveproject/smartobserve-benchmark) or on the [Amazon ECR Public Gallery](https://gallery.ecr.aws/smartobserveproject/smartobserve-benchmark).
+You can find the official Docker images for MCdesk Benchmark on [Docker Hub](https://hub.docker.com/r/mcdeskproject/mcdesk-benchmark) or on the [Amazon ECR Public Gallery](https://gallery.ecr.aws/mcdeskproject/mcdesk-benchmark).
 
 
 ### Docker limitations
 
-Some SmartObserve Benchmark functionality is unavailable when you run SmartObserve Benchmark in a Docker container. Specifically, the following restrictions apply:
+Some MCdesk Benchmark functionality is unavailable when you run MCdesk Benchmark in a Docker container. Specifically, the following restrictions apply:
 
-- SmartObserve Benchmark cannot distribute load from multiple hosts, such as load worker coordinator hosts.
-- SmartObserve Benchmark cannot provision SmartObserve nodes and can only run tests on previously existing clusters. You can only invoke SmartObserve Benchmark commands using the `benchmark-only` pipeline.
+- MCdesk Benchmark cannot distribute load from multiple hosts, such as load worker coordinator hosts.
+- MCdesk Benchmark cannot provision MCdesk nodes and can only run tests on previously existing clusters. You can only invoke MCdesk Benchmark commands using the `benchmark-only` pipeline.
 
 ### Pulling the Docker images
 
 To pull the image from Docker Hub, run the following command:
 
 ```bash
-docker pull smartobserveproject/smartobserve-benchmark:latest
+docker pull mcdeskproject/mcdesk-benchmark:latest
 ```
 {% include copy.html %}
 
 To pull the image from Amazon Elastic Container Registry (Amazon ECR):
 
 ```bash
-docker pull public.ecr.aws/smartobserveproject/smartobserve-benchmark:latest
+docker pull public.ecr.aws/mcdeskproject/mcdesk-benchmark:latest
 ```
 {% include copy.html %}
 
-### Running SmartObserve Benchmark with Docker
+### Running MCdesk Benchmark with Docker
 
-To run SmartObserve Benchmark, use `docker run` to launch a container. SmartObserve Benchmark subcommands are passed as arguments when you start the container. SmartObserve Benchmark then processes the command and stops the container after the requested operation completes.
+To run MCdesk Benchmark, use `docker run` to launch a container. MCdesk Benchmark subcommands are passed as arguments when you start the container. MCdesk Benchmark then processes the command and stops the container after the requested operation completes.
 
-For example, the following command prints the help text for SmartObserve Benchmark to the command line and then stops the container:
+For example, the following command prints the help text for MCdesk Benchmark to the command line and then stops the container:
 
 ```bash
-docker run smartobserveproject/smartobserve-benchmark -h
+docker run mcdeskproject/mcdesk-benchmark -h
 ```
 {% include copy.html %}
 
 ### Establishing volume persistence in a Docker container
 
-To ensure that your benchmark data and logs persist after your Docker container stops, you must mount a local directory as a volume when running SmartObserve Benchmark in Docker.
+To ensure that your benchmark data and logs persist after your Docker container stops, you must mount a local directory as a volume when running MCdesk Benchmark in Docker.
 
 Use the `-v` option to specify a local directory to mount and a directory in the container where the volume is attached.
 
-The following example mounts a volume from the user's home directory to the SmartObserve Benchmark container's default benchmark data path at `/smartobserve-benchmark/.benchmark` and then runs a test benchmark using the `geonames` workload:
+The following example mounts a volume from the user's home directory to the MCdesk Benchmark container's default benchmark data path at `/mcdesk-benchmark/.benchmark` and then runs a test benchmark using the `geonames` workload:
 
 ```bash
-docker run -v $HOME/benchmarks:/smartobserve-benchmark/.benchmark smartobserveproject/smartobserve-benchmark run --target-hosts https://198.51.100.25:9200 --pipeline benchmark-only --workload geonames --client-options basic_auth_user:admin,basic_auth_password:admin,verify_certs:false --test-mode
+docker run -v $HOME/benchmarks:/mcdesk-benchmark/.benchmark mcdeskproject/mcdesk-benchmark run --target-hosts https://198.51.100.25:9200 --pipeline benchmark-only --workload geonames --client-options basic_auth_user:admin,basic_auth_password:admin,verify_certs:false --test-mode
 ```
 {% include copy.html %}
 
-By default, the SmartObserve Benchmark container runs as the `benchmark` user with a home directory of `/smartobserve-benchmark`, so `$HOME/.benchmark` resolves to `/smartobserve-benchmark/.benchmark`.
+By default, the MCdesk Benchmark container runs as the `benchmark` user with a home directory of `/mcdesk-benchmark`, so `$HOME/.benchmark` resolves to `/mcdesk-benchmark/.benchmark`.
 {: .note}
 
-#### Running SmartObserve Benchmark as the root user
+#### Running MCdesk Benchmark as the root user
 
 If you run the container as the `root` user, then the effective home directory becomes `/root`, and the benchmark path becomes `/root/.benchmark`. In this case, specify the volume mount accordingly:
 
 ```bash
-docker run -v $HOME/benchmarks:/root/.benchmark smartobserveproject/smartobserve-benchmark run --target-hosts https://198.51.100.25:9200 --pipeline benchmark-only --workload geonames --client-options basic_auth_user:admin,basic_auth_password:admin,verify_certs:false --test-mode
+docker run -v $HOME/benchmarks:/root/.benchmark mcdeskproject/mcdesk-benchmark run --target-hosts https://198.51.100.25:9200 --pipeline benchmark-only --workload geonames --client-options basic_auth_user:admin,basic_auth_password:admin,verify_certs:false --test-mode
 ```
 {% include copy.html %}
 
-To learn more about the files and subdirectories located in `/smartobserve-benchmark/.benchmark`, see [Configuring SmartObserve Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/).
+To learn more about the files and subdirectories located in `/mcdesk-benchmark/.benchmark`, see [Configuring MCdesk Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/).
 
-## Provisioning an SmartObserve cluster with a test
+## Provisioning an MCdesk cluster with a test
 
-SmartObserve Benchmark is compatible with JDK versions 17, 16, 15, 14, 13, 12, 11, and 8.
+MCdesk Benchmark is compatible with JDK versions 17, 16, 15, 14, 13, 12, 11, and 8.
 {: .note}
 
-If you installed SmartObserve with PyPi, you can also provision a new SmartObserve cluster by specifying a `distribution-version` in the `run` command.
+If you installed MCdesk with PyPi, you can also provision a new MCdesk cluster by specifying a `distribution-version` in the `run` command.
 
 If you plan on having Benchmark provision a cluster, you'll need to inform Benchmark of the location of the `JAVA_HOME` path for the Benchmark cluster. To set the `JAVA_HOME` path and provision a cluster:
 
@@ -178,15 +178,15 @@ If you plan on having Benchmark provision a cluster, you'll need to inform Bench
 
 2. Set your corresponding JDK version environment variable by entering the path from the previous step. Enter `export JAVA17_HOME=<Java Path>`.
 
-3. Run the `run` command and indicate the distribution version of SmartObserve you want to use:
+3. Run the `run` command and indicate the distribution version of MCdesk you want to use:
 
   ```bash
-  smartobserve-benchmark run --distribution-version=2.3.0 --workload=geonames --test-mode
+  mcdesk-benchmark run --distribution-version=2.3.0 --workload=geonames --test-mode
   ```
 
 ## Directory structure
 
-After running SmartObserve Benchmark for the first time, you can search through all related files, including configuration files, in the `~/.benchmark` directory. The directory includes the following file tree:
+After running MCdesk Benchmark for the first time, you can search through all related files, including configuration files, in the `~/.benchmark` directory. The directory includes the following file tree:
 
 ```
 # ~/.benchmark Tree
@@ -196,8 +196,8 @@ After running SmartObserve Benchmark for the first time, you can search through 
 │   ├── data
 │   │   └── geonames
 │   ├── distributions
-│   │   ├── smartobserve-1.0.0-linux-x64.tar.gz
-│   │   └── smartobserve-2.3.0-linux-x64.tar.gz
+│   │   ├── mcdesk-1.0.0-linux-x64.tar.gz
+│   │   └── mcdesk-2.3.0-linux-x64.tar.gz
 │   ├── test-runs
 │   │   ├── 0279b13b-1e54-49c7-b1a7-cde0b303a797
 │   │   └── 0279c542-a856-4e88-9cc8-04306378cd38
@@ -209,16 +209,16 @@ After running SmartObserve Benchmark for the first time, you can search through 
 │   └── benchmark.log
 ```
 
-* `benchmark.ini`: Contains any adjustable configurations for tests. For information about how to configure SmartObserve Benchmark, see [Configuring SmartObserve Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/).
-* `data`: Contains all the data corpora and documents related to SmartObserve Benchmark's [official workloads](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/geonames).
-* `distributions`: Contains all the SmartObserve distributions downloaded from [SmartObserve.org](http://magiccreative.io/) and used to provision clusters.
-* `test-runs`: Contains every test `execution_id` from previous runs of SmartObserve Benchmark.
+* `benchmark.ini`: Contains any adjustable configurations for tests. For information about how to configure MCdesk Benchmark, see [Configuring MCdesk Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/).
+* `data`: Contains all the data corpora and documents related to MCdesk Benchmark's [official workloads](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/geonames).
+* `distributions`: Contains all the MCdesk distributions downloaded from [MCdesk.org](http://magiccreative.io/) and used to provision clusters.
+* `test-runs`: Contains every test `execution_id` from previous runs of MCdesk Benchmark.
 * `workloads`: Contains all files related to workloads, except for the data corpora.
-* `logging.json`: Contains all of the configuration options related to how logging is performed within SmartObserve Benchmark.
-* `logs`: Contains all the logs from SmartObserve Benchmark runs. This can be helpful when you've encountered errors during runs.
+* `logging.json`: Contains all of the configuration options related to how logging is performed within MCdesk Benchmark.
+* `logs`: Contains all the logs from MCdesk Benchmark runs. This can be helpful when you've encountered errors during runs.
 
 
 ## Next steps
 
-- [Configuring SmartObserve Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/)
+- [Configuring MCdesk Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/)
 - [Creating custom workloads]({{site.url}}{{site.baseurl}}/benchmark/creating-custom-workloads/)

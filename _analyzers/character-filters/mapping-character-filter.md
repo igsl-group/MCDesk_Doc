@@ -61,7 +61,7 @@ You can use either of the following parameters to configure the key-value map.
 | Parameter       | Required/Optional | Data type | Description    |
 |:---|:---|:---|:---|
 | `mappings`       | Optional          | Array      | An array of key-value pairs in the format `key => value`. Each key found in the input text will be replaced with its corresponding value. |
-| `mappings_path`  | Optional          | String     | The path to a UTF-8 encoded file containing key-value mappings. Each mapping should appear on a new line in the format `key => value`. The path can be absolute or relative to the SmartObserve configuration directory. |
+| `mappings_path`  | Optional          | String     | The path to a UTF-8 encoded file containing key-value mappings. Each mapping should appear on a new line in the format `key => value`. The path can be absolute or relative to the MCdesk configuration directory. |
 
 ### Using a custom mapping character filter
 

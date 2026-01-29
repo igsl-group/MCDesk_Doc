@@ -9,7 +9,7 @@ has_children: false
 
 # Comparing single queries
 
-With Compare Search Results in SmartObserve Dashboards, you can compare results from two queries side by side to determine whether one query produces better results than the other. Using this tool, you can evaluate search quality by experimenting with queries.
+With Compare Search Results in MCdesk Dashboards, you can compare results from two queries side by side to determine whether one query produces better results than the other. Using this tool, you can evaluate search quality by experimenting with queries.
 
 For example, you can see how results change when you apply one of the following query changes:
 
@@ -19,24 +19,24 @@ For example, you can see how results change when you apply one of the following 
 
 ## Prerequisites
 
-Before you get started, you must index data in SmartObserve. To learn how to create a new index, see [Index data]({{site.url}}{{site.baseurl}}/smartobserve/index-data/).
+Before you get started, you must index data in MCdesk. To learn how to create a new index, see [Index data]({{site.url}}{{site.baseurl}}/mcdesk/index-data/).
 
-Alternatively, you can add sample data in SmartObserve Dashboards using the following steps:
+Alternatively, you can add sample data in MCdesk Dashboards using the following steps:
 
-1. On the top menu bar, go to **SmartObserve Dashboards > Overview**.
+1. On the top menu bar, go to **MCdesk Dashboards > Overview**.
 1. Select **View app directory**.
 1. Select **Add sample data**.
 1. Choose one of the built-in datasets and select **Add data**.
 
-## Using Compare Search Results in SmartObserve Dashboards
+## Using Compare Search Results in MCdesk Dashboards
 
-To compare search results in SmartObserve Dashboards, perform the following steps.
+To compare search results in MCdesk Dashboards, perform the following steps.
 
-**Step 1:** On the top menu bar, go to **SmartObserve Plugins > Search Relevance**.
+**Step 1:** On the top menu bar, go to **MCdesk Plugins > Search Relevance**.
 
 **Step 2:** Enter the search text in the search bar.
 
-**Step 3:** Select an index for **Query 1** and enter a query (request body only) in [SmartObserve Query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/). The `GET` HTTP method and the `_search` endpoint are implicit. Use the `%SearchText%` variable to refer to the text in the search bar.
+**Step 3:** Select an index for **Query 1** and enter a query (request body only) in [MCdesk Query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/). The `GET` HTTP method and the `_search` endpoint are implicit. Use the `%SearchText%` variable to refer to the text in the search bar.
 
 The following is an example query:
 
@@ -76,7 +76,7 @@ If a result in Result 1 appears in Result 2, the `Up` and `Down` indicators belo
 
 ## Changing the number of results
 
-By default, SmartObserve returns the top 10 results. To change the number of returned results to a different value, specify the `size` parameter in the query:
+By default, MCdesk returns the top 10 results. To change the number of returned results to a different value, specify the `size` parameter in the query:
 
 ```json
 {
@@ -96,7 +96,7 @@ Setting `size` to a high value (for example, larger than 250 documents) may degr
 You cannot save a given comparison for future use, so Compare Search Results is not suitable for systematic testing.
 {: .note}
 
-## Comparing SmartObserve search results using Search Relevance Workbench
+## Comparing MCdesk search results using Search Relevance Workbench
 
 [Search Relevance Workbench]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/using-search-relevance-workbench/) provides richer visualization options for examining the difference between two queries.
 
@@ -117,26 +117,26 @@ Lastly, Search Relevance Workbench allows you to choose among different visualiz
 * **Ranking change color coding 2**: All unique documents are gray, and common results are green to focus on ranking changes.
 * **Venn diagram color coding**: All unique documents are purple, and common results are blue as in the Venn diagram at the top of the two result lists.
 
-## Comparing SmartObserve search results with reranked results
+## Comparing MCdesk search results with reranked results
 
-One use case for Compare Search Results is the comparison of raw SmartObserve results with the same results processed by a reranking application. SmartObserve currently integrates with the following two rerankers:
+One use case for Compare Search Results is the comparison of raw MCdesk results with the same results processed by a reranking application. MCdesk currently integrates with the following two rerankers:
 
-- [Amazon Kendra Intelligent Ranking for SmartObserve](#reranking-results-with-amazon-kendra-intelligent-ranking-for-smartobserve)
+- [Amazon Kendra Intelligent Ranking for MCdesk](#reranking-results-with-amazon-kendra-intelligent-ranking-for-mcdesk)
 - [Amazon Personalize Search Ranking](#personalizing-search-results-with-amazon-personalize-search-ranking)
 
-### Reranking results with Amazon Kendra Intelligent Ranking for SmartObserve
+### Reranking results with Amazon Kendra Intelligent Ranking for MCdesk
 
-An example of a reranker is **Amazon Kendra Intelligent Ranking for SmartObserve**, contributed by the Amazon Kendra team. This plugin takes search results from SmartObserve and applies Amazon Kendra’s semantic relevance rankings calculated using vector embeddings and other semantic search techniques. For many applications, this provides better result rankings.
+An example of a reranker is **Amazon Kendra Intelligent Ranking for MCdesk**, contributed by the Amazon Kendra team. This plugin takes search results from MCdesk and applies Amazon Kendra’s semantic relevance rankings calculated using vector embeddings and other semantic search techniques. For many applications, this provides better result rankings.
 
-To try Amazon Kendra Intelligent Ranking, you must first set up the Amazon Kendra service. To get started, see [Amazon Kendra](https://aws.amazon.com/kendra/). For detailed information, including plugin setup instructions, see [Amazon Kendra Intelligent Ranking for self-managed SmartObserve](https://docs.aws.amazon.com/kendra/latest/dg/smartobserve-rerank.html).
+To try Amazon Kendra Intelligent Ranking, you must first set up the Amazon Kendra service. To get started, see [Amazon Kendra](https://aws.amazon.com/kendra/). For detailed information, including plugin setup instructions, see [Amazon Kendra Intelligent Ranking for self-managed MCdesk](https://docs.aws.amazon.com/kendra/latest/dg/mcdesk-rerank.html).
 
-### Comparing search results with reranked results in SmartObserve Dashboards
+### Comparing search results with reranked results in MCdesk Dashboards
 
-To compare search results with reranked results in SmartObserve Dashboards, enter a query in **Query 1** and enter the same query using a reranker in **Query 2**. Then compare the SmartObserve results with the reranked results.
+To compare search results with reranked results in MCdesk Dashboards, enter a query in **Query 1** and enter the same query using a reranker in **Query 2**. Then compare the MCdesk results with the reranked results.
 
 The following example demonstrates searching for the text "snacking nuts" in the `abo` index. The documents in the index contain snack descriptions in the `bullet_point` array.
 
-<img src="{{site.url}}{{site.baseurl}}/images/kendra_query.png" alt="SmartObserve Intelligent Ranking query"/>{: .img-fluid }
+<img src="{{site.url}}{{site.baseurl}}/images/kendra_query.png" alt="MCdesk Intelligent Ranking query"/>{: .img-fluid }
 
 1. Enter `snacking nuts` in the search bar.
 1. Enter the following query, which searches the `bullet_point` field for the search text "snacking nuts", in **Query 1**:
@@ -182,6 +182,6 @@ The following example demonstrates searching for the text "snacking nuts" in the
 
 ### Personalizing search results with Amazon Personalize Search Ranking
 
-Another example of a reranker is **Amazon Personalize Search Ranking**, contributed by the Amazon Personalize team. Amazon Personalize uses machine learning (ML) techniques to generate custom recommendations for your users. The plugin takes SmartObserve search results and applies a [search pipeline]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/index/) to rerank them according to their Amazon Personalize ranking. The Amazon Personalize rankings are based on the user's past behavior and metadata about the search items and the user. This workflow improves the search experience for your users by personalizing their search results.
+Another example of a reranker is **Amazon Personalize Search Ranking**, contributed by the Amazon Personalize team. Amazon Personalize uses machine learning (ML) techniques to generate custom recommendations for your users. The plugin takes MCdesk search results and applies a [search pipeline]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/index/) to rerank them according to their Amazon Personalize ranking. The Amazon Personalize rankings are based on the user's past behavior and metadata about the search items and the user. This workflow improves the search experience for your users by personalizing their search results.
 
-To try Amazon Personalize Search Ranking, you must first set up Amazon Personalize. To get started, see [Amazon Personalize](https://docs.aws.amazon.com/personalize/latest/dg/setup.html). For detailed information, including plugin setup instructions, see [Personalizing search results from SmartObserve](https://docs.aws.amazon.com/personalize/latest/dg/personalize-smartobserve.html).
+To try Amazon Personalize Search Ranking, you must first set up Amazon Personalize. To get started, see [Amazon Personalize](https://docs.aws.amazon.com/personalize/latest/dg/setup.html). For detailed information, including plugin setup instructions, see [Personalizing search results from MCdesk](https://docs.aws.amazon.com/personalize/latest/dg/personalize-mcdesk.html).

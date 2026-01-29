@@ -9,8 +9,8 @@ redirect_from:
 
 # Anomaly Detection settings
 
-The Anomaly Detection plugin adds several settings to the standard SmartObserve cluster settings.
-The settings are dynamic, so you can change the default behavior of the plugin without restarting your cluster. To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+The Anomaly Detection plugin adds several settings to the standard MCdesk cluster settings.
+The settings are dynamic, so you can change the default behavior of the plugin without restarting your cluster. To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 You can mark settings as `persistent` or `transient`.
 
@@ -48,6 +48,6 @@ plugins.anomaly_detection.delete_anomaly_result_when_delete_detector | False | W
 plugins.anomaly_detection.dedicated_cache_size | 10 | If the real-time analysis of a high cardinality detector starts successfully, the anomaly detection plugin guarantees keeping 10 (dynamically adjustable via this setting) entities' models in memory per node. If the number of entities exceeds this limit, the plugin puts the extra entities' models in a memory space shared by all detectors. The actual number of entities varies based on the memory that you've available and the frequencies of the entities. If you'd like the plugin to guarantee keeping more entities' models in memory and if you're cluster has sufficient memory, you can increase this setting value.
 plugins.anomaly_detection.max_concurrent_preview | 2 | The maximum number of concurrent previews. You can use this setting to limit resource usage.
 plugins.anomaly_detection.model_max_size_percent | 0.1 | The upper bound of the memory percentage for a model.
-plugins.anomaly_detection.door_keeper_in_cache.enabled | False | When set to `true`, SmartObserve places a bloom filter in front of an inactive entity cache to filter out items that are not likely to appear more than once.
+plugins.anomaly_detection.door_keeper_in_cache.enabled | False | When set to `true`, MCdesk places a bloom filter in front of an inactive entity cache to filter out items that are not likely to appear more than once.
 plugins.anomaly_detection.hcad_cold_start_interpolation.enabled | False | When set to true, enables interpolation for high-cardinality anomaly detection (HCAD) during the initial cold start period.
 plugins.anomaly_detection.jvm_heap_usage_threshold | 95 | Specifies the JVM memory usage threshold, as a percentage, at which anomaly detectors will be disabled. The default value is 95%, meaning that detectors will be disabled when JVM heap usage reaches 95%.

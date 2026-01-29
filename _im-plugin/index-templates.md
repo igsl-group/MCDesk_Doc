@@ -3,7 +3,7 @@ layout: default
 title: Index templates
 nav_order: 2
 redirect_from:
-  - /smartobserve/index-templates/
+  - /mcdesk/index-templates/
 ---
 
 # Index templates
@@ -131,7 +131,7 @@ HEAD _index_template/<name>
 
 ### Configure multiple templates
 
-You can create multiple index templates for your indexes. If the index name matches more than one template, SmartObserve takes the mappings and settings from the template with the highest priority and applies it to the index.
+You can create multiple index templates for your indexes. If the index name matches more than one template, MCdesk takes the mappings and settings from the template with the highest priority and applies it to the index.
 
 For example, say you have the following two templates that both match the `logs-2020-01-02` index and there’s a conflict in the `number_of_shards` field:
 
@@ -236,7 +236,7 @@ PUT _component_template/component_template_2
 
 When creating index templates, you need to include the component templates in a `composed_of` list.
 
-SmartObserve applies the component templates in the order in which you specify them within the index template. The settings, mappings, and aliases that you specify inside the index template are applied last.
+MCdesk applies the component templates in the order in which you specify them within the index template. The settings, mappings, and aliases that you specify inside the index template are applied last.
 
 ```json
 PUT _index_template/daily_logs

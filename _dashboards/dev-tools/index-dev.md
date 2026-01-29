@@ -9,11 +9,11 @@ redirect_from:
 
 # Running queries in the Dev Tools console
 
-You can use the SmartObserve Dev Tools console to send queries to SmartObserve. 
+You can use the MCdesk Dev Tools console to send queries to MCdesk. 
 
 ## Navigating to the console
 
-To open the console, select **Dev Tools** on the main SmartObserve Dashboards page:
+To open the console, select **Dev Tools** on the main MCdesk Dashboards page:
 
 <img src="{{site.url}}{{site.baseurl}}/images/dev-tools/dev-tools-main.png" alt="Dev Tools console from main page">{: .img-fluid }
 
@@ -30,7 +30,7 @@ Write your queries in the editor pane on the left side of the console:
 You can collapse and expand parts of your query by selecting the small triangles next to the line numbers.
 {: .tip}
 
-To learn more about writing queries in SmartObserve domain-specific language (DSL), see [Query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/).
+To learn more about writing queries in MCdesk domain-specific language (DSL), see [Query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/).
 
 You can import or export queries by selecting **Import** or **Export** from the top menu. 
 
@@ -40,15 +40,15 @@ Use `#` at the beginning of a line to write single-line comments.
 
 ### Autocomplete
 
-SmartObserve provides autocomplete suggestions for fields, indexes and their aliases, and templates. To configure autocomplete preferences, update them in [Console Settings](#updating-the-console-settings).
+MCdesk provides autocomplete suggestions for fields, indexes and their aliases, and templates. To configure autocomplete preferences, update them in [Console Settings](#updating-the-console-settings).
 
 ## Sending the request 
 
-To send a query to SmartObserve, select the query by placing the cursor anywhere in the query text. Then choose the play icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/dev-tools/play-icon.png" class="inline-icon" alt="play icon"/>{:/}) on the upper right of the request or press `Ctrl/Cmd+Enter`:
+To send a query to MCdesk, select the query by placing the cursor anywhere in the query text. Then choose the play icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/dev-tools/play-icon.png" class="inline-icon" alt="play icon"/>{:/}) on the upper right of the request or press `Ctrl/Cmd+Enter`:
 
 <img src="{{site.url}}{{site.baseurl}}/images/dev-tools/dev-tools-send.png" alt="Send request">
 
-SmartObserve displays the response in the response pane on the right side of the console:
+MCdesk displays the response in the response pane on the right side of the console:
 
 <img src="{{site.url}}{{site.baseurl}}/images/dev-tools/dev-tools-response.png" alt="Response pane">{: .img-fluid }
 
@@ -118,7 +118,7 @@ If a response contains the `\n`, `\t`, `\`, or `"` special characters, the conso
 
 ## Viewing documentation
 
-To view the SmartObserve documentation, select the wrench icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/dev-tools/wrench-icon.png" class="inline-icon" alt="wrench icon"/>{:/}) and choose **Open documentation**.
+To view the MCdesk documentation, select the wrench icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/dev-tools/wrench-icon.png" class="inline-icon" alt="wrench icon"/>{:/}) and choose **Open documentation**.
 
 ## Auto indenting
 
@@ -131,7 +131,7 @@ Auto indenting a well-formatted query puts the request body on a single line. Th
 
 ## Viewing your request history
 
-You can view up to the 500 most recent requests that SmartObserve ran successfully. To view request history, select **History** from the top menu. If you select the request you want to view from the left pane, the query is shown in the right pane. 
+You can view up to the 500 most recent requests that MCdesk ran successfully. To view request history, select **History** from the top menu. If you select the request you want to view from the left pane, the query is shown in the right pane. 
 
 To copy the query into the editor pane, select the query text and then select **Apply**. 
 

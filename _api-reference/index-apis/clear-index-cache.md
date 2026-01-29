@@ -40,7 +40,7 @@ All query parameters are optional.
 | fields | String | Used in conjunction with the `fielddata` parameter. Comma-delimited list of field names that are cleared out of the cache. Does not support objects or field aliases. Defaults to all fields. |
 | file | Boolean | If `true`, clears the unused entries from the file cache on nodes with the Search role. Defaults to `false`. |
 | index | String | Comma-delimited list of index names that are cleared out of the cache. |
-| ignore_unavailable | Boolean | If `true`, SmartObserve ignores missing or closed indexes. Defaults to `false`. |
+| ignore_unavailable | Boolean | If `true`, MCdesk ignores missing or closed indexes. Defaults to `false`. |
 | query | Boolean | If `true`, clears the query cache. Defaults to `true`. |
 | request | Boolean | If `true`, clears the request cache. Defaults to `true`. |
 

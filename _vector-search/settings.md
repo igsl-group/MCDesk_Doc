@@ -8,30 +8,30 @@ redirect_from:
 
 # Vector search settings
 
-SmartObserve supports the following vector search settings. To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+MCdesk supports the following vector search settings. To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 ## Cluster settings
 
-The following table lists all available cluster-level vector search settings. For more information about cluster settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/#updating-cluster-settings-using-the-api) and [Updating cluster settings using the API]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/#updating-cluster-settings-using-the-api).
+The following table lists all available cluster-level vector search settings. For more information about cluster settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/#updating-cluster-settings-using-the-api) and [Updating cluster settings using the API]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/#updating-cluster-settings-using-the-api).
 
 Setting | Static/Dynamic | Default | Description
 :--- | :--- | :--- | :---
-`knn.algo_param.index_thread_qty` | Dynamic |  `1` for systems with fewer than 32 CPU cores, `4` for systems with 32 or more cores | The number of threads used for native library and Lucene library (for SmartObserve version 2.19 and later) index creation. Keeping this value low reduces the CPU impact of the k-NN plugin but also reduces indexing performance.
+`knn.algo_param.index_thread_qty` | Dynamic |  `1` for systems with fewer than 32 CPU cores, `4` for systems with 32 or more cores | The number of threads used for native library and Lucene library (for MCdesk version 2.19 and later) index creation. Keeping this value low reduces the CPU impact of the k-NN plugin but also reduces indexing performance.
 `knn.cache.item.expiry.enabled` | Dynamic | `false` | Whether to remove native library indexes from memory that have not been accessed in a specified period of time.
 `knn.cache.item.expiry.minutes` | Dynamic | `3h` | If enabled, the amount of idle time before a native library index is removed from memory.
 `knn.circuit_breaker.unset.percentage` | Dynamic | `75` | The native memory usage threshold for the circuit breaker. Memory usage must be lower than this percentage of `knn.memory.circuit_breaker.limit` in order for `knn.circuit_breaker.triggered` to remain `false`.
 `knn.circuit_breaker.triggered` | Dynamic | `false` | `true` when memory usage exceeds the `knn.circuit_breaker.unset.percentage` value.
-`knn.memory.circuit_breaker.limit` | Dynamic | `50%` | The native memory limit for native library indexes. At the default value, if a machine has 100 GB of memory and the JVM uses 32 GB, then the k-NN plugin uses 50% of the remaining 68 GB (34 GB). If memory usage exceeds this value, then the plugin removes the native library indexes used least recently. <br><br> To configure this limit at the node level, add `node.attr.knn_cb_tier: "<tier-name>"` in `smartobserve.yml` and set `knn.memory.circuit_breaker.limit.<tier-name>` in the cluster settings. For example, define a node tier as `node.attr.knn_cb_tier: "integ"` and set `knn.memory.circuit_breaker.limit.integ: "80%"`. Nodes use their tier's circuit breaker limit if configured, defaulting to the cluster-wide setting if no node-specific value is set.
+`knn.memory.circuit_breaker.limit` | Dynamic | `50%` | The native memory limit for native library indexes. At the default value, if a machine has 100 GB of memory and the JVM uses 32 GB, then the k-NN plugin uses 50% of the remaining 68 GB (34 GB). If memory usage exceeds this value, then the plugin removes the native library indexes used least recently. <br><br> To configure this limit at the node level, add `node.attr.knn_cb_tier: "<tier-name>"` in `mcdesk.yml` and set `knn.memory.circuit_breaker.limit.<tier-name>` in the cluster settings. For example, define a node tier as `node.attr.knn_cb_tier: "integ"` and set `knn.memory.circuit_breaker.limit.integ: "80%"`. Nodes use their tier's circuit breaker limit if configured, defaulting to the cluster-wide setting if no node-specific value is set.
 `knn.memory.circuit_breaker.enabled` | Dynamic | `true` | Whether to enable the k-NN memory circuit breaker.
-`knn.model.index.number_of_shards`| Dynamic | `1` | The number of shards to use for the model system index, which is the SmartObserve index that stores the models used for approximate nearest neighbor (ANN) search.
+`knn.model.index.number_of_shards`| Dynamic | `1` | The number of shards to use for the model system index, which is the MCdesk index that stores the models used for approximate nearest neighbor (ANN) search.
 `knn.model.index.number_of_replicas`| Dynamic | `1` | The number of replica shards to use for the model system index. Generally, in a multi-node cluster, this value should be at least 1 in order to increase stability.
 `knn.model.cache.size.limit` | Dynamic | `10%` |  The model cache limit cannot exceed 25% of the JVM heap.
-`knn.faiss.avx2.disabled` | Static | `false` | A static setting that specifies whether to disable the SIMD-based `libsmartobserveknn_faiss_avx2.so` library and load the non-optimized `libsmartobserveknn_faiss.so` library for the Faiss engine on machines with x64 architecture. For more information, see [Single Instruction Multiple Data (SIMD) optimization]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#simd-optimization).
-`knn.faiss.avx512_spr.disabled` | Static | `false` | A static setting that specifies whether to disable the SIMD-based `libsmartobserveknn_faiss_avx512_spr.so` library and load either the `libsmartobserveknn_faiss_avx512.so` , `libsmartobserveknn_faiss_avx2.so`, or the non-optimized `libsmartobserveknn_faiss.so` library for the Faiss engine on machines with x64 architecture. For more information, see [SIMD optimization for the Faiss engine]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#simd-optimization).
+`knn.faiss.avx2.disabled` | Static | `false` | A static setting that specifies whether to disable the SIMD-based `libmcdeskknn_faiss_avx2.so` library and load the non-optimized `libmcdeskknn_faiss.so` library for the Faiss engine on machines with x64 architecture. For more information, see [Single Instruction Multiple Data (SIMD) optimization]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#simd-optimization).
+`knn.faiss.avx512_spr.disabled` | Static | `false` | A static setting that specifies whether to disable the SIMD-based `libmcdeskknn_faiss_avx512_spr.so` library and load either the `libmcdeskknn_faiss_avx512.so` , `libmcdeskknn_faiss_avx2.so`, or the non-optimized `libmcdeskknn_faiss.so` library for the Faiss engine on machines with x64 architecture. For more information, see [SIMD optimization for the Faiss engine]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#simd-optimization).
 
 ## Index settings
 
-The following table lists all available index-level k-NN settings. For information about updating these settings, see [Index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/#index-level-index-settings).
+The following table lists all available index-level k-NN settings. For information about updating these settings, see [Index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/#index-level-index-settings).
 
 Several parameters defined in the settings are currently in the deprecation process. Those parameters should be set in the mapping instead of in the index settings. Parameters set in the mapping will override the parameters set in the index settings. Setting the parameters in the mapping allows an index to have multiple `knn_vector` fields with different parameters.
 
@@ -44,7 +44,7 @@ Setting | Static/Dynamic | Default | Description
 `index.knn.derived_source.enabled` | Static | `true` | Prevents vectors from being stored in `_source`, reducing disk usage for vector indexes.
 `index.knn.memory_optimized_search` | Dynamic | `false` | Enables memory-optimized search on an index.
 
-An index created in SmartObserve version 2.11 or earlier will still use the previous `ef_construction` and `ef_search` values (`512`).
+An index created in MCdesk version 2.11 or earlier will still use the previous `ef_construction` and `ef_search` values (`512`).
 {: .note}
 
 ## Remote index build settings
@@ -89,11 +89,11 @@ The following index settings are advanced settings whose default values are set 
 
 ### Remote build authentication
 
-The remote build service username and password are secure settings that must be set in the [SmartObserve keystore]({{site.url}}{{site.baseurl}}/security/configuration/smartobserve-keystore/) as follows:
+The remote build service username and password are secure settings that must be set in the [MCdesk keystore]({{site.url}}{{site.baseurl}}/security/configuration/mcdesk-keystore/) as follows:
 
 ```bash
-./bin/smartobserve-keystore add knn.remote_index_build.service.username
-./bin/smartobserve-keystore add knn.remote_index_build.service.password
+./bin/mcdesk-keystore add knn.remote_index_build.service.username
+./bin/mcdesk-keystore add knn.remote_index_build.service.password
 ```
 {% include copy.html %}
 

@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 70
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-tasks/
+- /mcdesk/rest-api/cat/cat-tasks/
 ---
 
 # CAT Tasks API

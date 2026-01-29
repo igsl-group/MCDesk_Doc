@@ -37,7 +37,7 @@ POST /_plugins/_flow_framework/workflow/8xL8bowB8y25Tqfenm50/_deprovision
 
 ### Example response
 
-If deprovisioning is successful, SmartObserve responds with the same `workflow_id` that was used in the request: 
+If deprovisioning is successful, MCdesk responds with the same `workflow_id` that was used in the request: 
 
 ```json
 {
@@ -45,7 +45,7 @@ If deprovisioning is successful, SmartObserve responds with the same `workflow_i
 }
 ```
 
-If deprovisioning did not completely remove all resources, SmartObserve responds with a `202 (ACCEPTED)` status and identifies the resources that were not deprovisioned:
+If deprovisioning did not completely remove all resources, MCdesk responds with a `202 (ACCEPTED)` status and identifies the resources that were not deprovisioned:
 
 ```json
 {
@@ -56,7 +56,7 @@ If deprovisioning did not completely remove all resources, SmartObserve responds
 In some cases, the failure happens because of another dependent resource that took some time to be removed. In this case, you can attempt to send the same request again.
 {: .tip}
 
-If deprovisioning required the `allow_delete` parameter, then SmartObserve responds with a `403 (FORBIDDEN)` status and identifies the resources that were not deprovisioned:
+If deprovisioning required the `allow_delete` parameter, then MCdesk responds with a `403 (FORBIDDEN)` status and identifies the resources that were not deprovisioned:
 
 ```json
 {

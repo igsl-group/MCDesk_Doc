@@ -9,9 +9,9 @@ parent: Supported field types
 
 # Date field types
 
-Date field types contain a date value that can be formatted using different date formats. The following table lists all date field types that SmartObserve supports. 
+Date field types contain a date value that can be formatted using different date formats. The following table lists all date field types that MCdesk supports. 
 
 Field data type | Description
 :--- | :---  
-[`date`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/) | A date stored in millisecond resolution.
+[`date`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/) | A date stored in millisecond resolution.
 [`date_nanos`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/date-nanos/) | A date stored in nanosecond resolution.

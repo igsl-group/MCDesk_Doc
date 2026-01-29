@@ -31,18 +31,18 @@ inside_cards:
 
 # Vector quantization
 
-By default, SmartObserve supports the indexing and querying of vectors of type `float`, where each dimension of the vector occupies 4 bytes of memory. For use cases that require ingestion on a large scale, keeping `float` vectors can be expensive because SmartObserve needs to construct, load, save, and search graphs (for the native `faiss` and `nmslib` [deprecated] engines). To reduce the memory footprint, you can use vector quantization.
+By default, MCdesk supports the indexing and querying of vectors of type `float`, where each dimension of the vector occupies 4 bytes of memory. For use cases that require ingestion on a large scale, keeping `float` vectors can be expensive because MCdesk needs to construct, load, save, and search graphs (for the native `faiss` and `nmslib` [deprecated] engines). To reduce the memory footprint, you can use vector quantization.
 
-SmartObserve supports many varieties of quantization. In general, the level of quantization will provide a trade-off between the accuracy of the nearest neighbor search and the size of the memory footprint consumed by the vector search. 
+MCdesk supports many varieties of quantization. In general, the level of quantization will provide a trade-off between the accuracy of the nearest neighbor search and the size of the memory footprint consumed by the vector search. 
 
-## Quantize vectors outside of SmartObserve
+## Quantize vectors outside of MCdesk
 
-Quantize vectors outside of SmartObserve before ingesting them into an SmartObserve index.
+Quantize vectors outside of MCdesk before ingesting them into an MCdesk index.
 
 {% include cards.html cards=page.outside_cards %}
 
-## Quantize vectors within SmartObserve
+## Quantize vectors within MCdesk
 
-Use SmartObserve built-in quantization to quantize vectors.
+Use MCdesk built-in quantization to quantize vectors.
 
 {% include cards.html cards=page.inside_cards %}

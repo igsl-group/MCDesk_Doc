@@ -22,14 +22,14 @@ The Security plugin REST API lets you programmatically create and manage users, 
 
 ## Access control for the API
 
-Just like SmartObserve permissions, you control access to the Security plugin REST API using roles. Specify roles in `smartobserve.yml`:
+Just like MCdesk permissions, you control access to the Security plugin REST API using roles. Specify roles in `mcdesk.yml`:
 
 ```yml
 plugins.security.restapi.roles_enabled: ["<role>", ...]
 ```
 {% include copy.html %}
 
-If you're working with APIs that manage `Distinguished names` or `Certificates` that require super admin access, enable the REST API admin configuration in your `smartobserve.yml` file as shown in the following setting example:
+If you're working with APIs that manage `Distinguished names` or `Certificates` that require super admin access, enable the REST API admin configuration in your `mcdesk.yml` file as shown in the following setting example:
 
 ```yml
 plugins.security.restapi.admin.enabled: true
@@ -88,7 +88,7 @@ plugins.security.restapi.endpoints_disabled.test-role.INTERNALUSERS: ["PUT", "PO
 ```
 {% include copy.html %}
 
-To use the PUT and PATCH methods for the [configuration APIs](#configuration), add the following line to `smartobserve.yml`:
+To use the PUT and PATCH methods for the [configuration APIs](#configuration), add the following line to `mcdesk.yml`:
 
 ```yml
 plugins.security.unsupported.restapi.allow_securityconfig_modification: true
@@ -98,7 +98,7 @@ plugins.security.unsupported.restapi.allow_securityconfig_modification: true
 
 ## Reserved and hidden resources
 
-You can mark users, role, role mappings, and action groups as reserved. Resources that have this flag set to true can't be changed using the REST API or SmartObserve Dashboards.
+You can mark users, role, role mappings, and action groups as reserved. Resources that have this flag set to true can't be changed using the REST API or MCdesk Dashboards.
 
 To mark a resource as reserved, add the following flag:
 
@@ -108,7 +108,7 @@ kibana_user:
 ```
 {% include copy.html %}
 
-Likewise, you can mark users, role, role mappings, and action groups as hidden. Resources that have this flag set to true are not returned by the REST API and not visible in SmartObserve Dashboards:
+Likewise, you can mark users, role, role mappings, and action groups as hidden. Resources that have this flag set to true are not returned by the REST API and not visible in MCdesk Dashboards:
 
 ```yml
 kibana_user:
@@ -118,7 +118,7 @@ kibana_user:
 
 Hidden resources are automatically reserved.
 
-To add or remove these flags, modify `config/smartobserve-security/internal_users.yml` and run `plugins/smartobserve-security/tools/securityadmin.sh`.
+To add or remove these flags, modify `config/mcdesk-security/internal_users.yml` and run `plugins/mcdesk-security/tools/securityadmin.sh`.
 
 
 ---
@@ -762,11 +762,11 @@ PUT _plugins/_security/api/roles/<role>
 }
 ```
 
->Due to word boundaries associated with Unicode special characters, the Unicode standard analyzer cannot index a [text field type]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/text/) value as a whole value when it includes one of these special characters. As a result, a text field value that includes a special character is parsed by the standard analyzer as multiple values separated by the special character, effectively tokenizing the different elements on either side of it.
+>Due to word boundaries associated with Unicode special characters, the Unicode standard analyzer cannot index a [text field type]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/text/) value as a whole value when it includes one of these special characters. As a result, a text field value that includes a special character is parsed by the standard analyzer as multiple values separated by the special character, effectively tokenizing the different elements on either side of it.
 >
 >For example, since the values in the fields ```"user.id": "User-1"``` and ```"user.id": "User-2"``` contain the hyphen/minus sign, this special character will prevent the analyzer from distinguishing between the two different users for `user.id` and interpret them as one and the same. This can lead to unintentional filtering of documents and potentially compromise control over their access.
 >
->To avoid this circumstance, you can use a custom analyzer or map the field as `keyword`, which performs an exact-match search. See [Keyword field type]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/keyword/) for the latter option.
+>To avoid this circumstance, you can use a custom analyzer or map the field as `keyword`, which performs an exact-match search. See [Keyword field type]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/keyword/) for the latter option.
 >
 >For a list of characters that should be avoided when field type is `text`, see [Word Boundaries](https://unicode.org/reports/tr29/#Word_Boundaries).
 {: .warning}
@@ -948,10 +948,10 @@ The `hosts` parameter maps requests originating from specific IP addresses or ho
 * To match by hostname (for example, `"myserver.example.com"`), you must set the cluster-level configuration parameter:
 
   ```yaml
-  smartobserve_security.host_resolver_mode: ip-hostname
+  mcdesk_security.host_resolver_mode: ip-hostname
   ```
 
-  This enables reverse DNS lookups to resolve hostnames. For more information, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+  This enables reverse DNS lookups to resolve hostnames. For more information, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 Using `"*"` in `hosts` matches all client IPs and hostnames, meaning this role will be applied to every request, regardless of user. This can unintentionally overgrant access if used alongside `users: ["someuser"]`. Avoid setting `hosts: ["*"]` unless you're intentionally granting the role to all client IPs.
 {: .warning}
@@ -1332,10 +1332,10 @@ PUT _plugins/_security/api/securityconfig/config
     "disable_rest_auth": false,
     "disable_intertransport_auth": false,
     "respect_request_indices_options": false,
-    "smartobserve-dashboards": {
+    "mcdesk-dashboards": {
       "multitenancy_enabled": true,
       "server_username": "kibanaserver",
-      "index": ".smartobserve-dashboards"
+      "index": ".mcdesk-dashboards"
     },
     "http": {
       "anonymous_auth_enabled": false
@@ -1383,7 +1383,7 @@ Introduced 1.0
 
 Updates the existing configuration using the REST API. This operation can easily break your existing configuration, so we recommend using `securityadmin.sh` instead, which is far safer. See [Access control for the API](#access-control-for-the-api) for how to enable this operation.
 
-Before you can execute the operation, you must first add the following line to `smartobserve.yml`:
+Before you can execute the operation, you must first add the following line to `mcdesk.yml`:
 
 ```yml
 plugins.security.unsupported.restapi.allow_securityconfig_modification: true
@@ -1416,9 +1416,9 @@ PATCH _plugins/_security/api/securityconfig
 Introduced 2.14
 {: .label .label-purple }
 
-Checks the current configuration bundled with the host's Security plugin and compares it to the version of the SmartObserve Security plugin the user downloaded. Then, the API responds indicating whether or not an upgrade can be performed and what resources can be updated.
+Checks the current configuration bundled with the host's Security plugin and compares it to the version of the MCdesk Security plugin the user downloaded. Then, the API responds indicating whether or not an upgrade can be performed and what resources can be updated.
 
-With each new SmartObserve version, there are changes to the default security configuration. This endpoint helps cluster operators determine whether the cluster is missing defaults or has stale definitions of defaults.
+With each new MCdesk version, there are changes to the default security configuration. This endpoint helps cluster operators determine whether the cluster is missing defaults or has stale definitions of defaults.
 {: .note}
 
 #### Request
@@ -1456,7 +1456,7 @@ Introduced 2.14
 
 Adds and updates resources on a host's existing security configuration from the configuration bundled with the latest version of the Security plugin.
 
-These bundled configuration files can be found in the `<OPENSEARCH_HOME>/security/config` directory. Default configuration files are updated when SmartObserve is upgraded, whereas the cluster configuration is only updated by the cluster operators. This endpoint helps cluster operator upgrade missing defaults and stale default definitions. 
+These bundled configuration files can be found in the `<OPENSEARCH_HOME>/security/config` directory. Default configuration files are updated when MCdesk is upgraded, whereas the cluster configuration is only updated by the cluster operators. This endpoint helps cluster operator upgrade missing defaults and stale default definitions. 
 
 
 #### Request
@@ -1502,7 +1502,7 @@ POST _plugins/_security/api/_upgrade_perform
 
 These REST APIs let a super admin (or a user with sufficient permissions to access this API) add, retrieve, update, or delete any distinguished names from an allow list to enable communication between clusters and/or nodes.
 
-Before you can use the REST API to configure the allow list, you must first add the following line to `smartobserve.yml`:
+Before you can use the REST API to configure the allow list, you must first add the following line to `mcdesk.yml`:
 
 ```yml
 plugins.security.nodes_dn_dynamic_config_enabled: true
@@ -1708,7 +1708,7 @@ PUT /_plugins/_security/api/ssl/transport/reloadcerts
 ##### Example request
 
 ```bash
-curl -X PUT "https://your-smartobserve-cluster/_plugins/_security/api/ssl/transport/reloadcerts"
+curl -X PUT "https://your-mcdesk-cluster/_plugins/_security/api/ssl/transport/reloadcerts"
 ```
 {% include copy-curl.html %}
 
@@ -1744,7 +1744,7 @@ PUT /_plugins/_security/api/ssl/http/reloadcerts
 ##### Example request
 
 ```
-curl -X PUT "https://your-smartobserve-cluster/_plugins/_security/api/ssl/http/reloadcerts"
+curl -X PUT "https://your-mcdesk-cluster/_plugins/_security/api/ssl/http/reloadcerts"
 ```
 {% include copy-curl.html %}
 
@@ -1833,9 +1833,9 @@ The following API is available for audit logging in the Security plugin.
 
 This API allows you to enable or disable audit logging, define the configuration for audit logging and compliance, and make updates to settings.
 
-For details on using audit logging to track access to SmartObserve clusters, as well as information on further configurations, see [Audit logs]({{site.url}}{{site.baseurl}}/security/audit-logs/index/).
+For details on using audit logging to track access to MCdesk clusters, as well as information on further configurations, see [Audit logs]({{site.url}}{{site.baseurl}}/security/audit-logs/index/).
 
-You can do an initial configuration of audit logging in the `audit.yml` file, found in the `smartobserve-project/security/config` directory. Thereafter, you can use the REST API or Dashboards for further changes to the configuration.
+You can do an initial configuration of audit logging in the `audit.yml` file, found in the `mcdesk-project/security/config` directory. Thereafter, you can use the REST API or Dashboards for further changes to the configuration.
 {: note.}
 
 #### Request body fields
@@ -1943,7 +1943,7 @@ curl -X PATCH -k -i --cert <admin_cert file name> --key <admin_cert_key file nam
 ```
 {% include copy.html %}
 
-SmartObserve Dashboards Dev Tools do not currently support the PATCH method. You can use [curl](https://curl.se/), [Postman](https://www.postman.com/), or another alternative process to update the configuration using this method. To follow the GitHub issue for support of the PATCH method in Dashboards, see [issue #2343](https://github.com/igsl-group/SmartObserve-Dashboards/issues/2343).
+MCdesk Dashboards Dev Tools do not currently support the PATCH method. You can use [curl](https://curl.se/), [Postman](https://www.postman.com/), or another alternative process to update the configuration using this method. To follow the GitHub issue for support of the PATCH method in Dashboards, see [issue #2343](https://github.com/igsl-group/MCdesk-Dashboards/issues/2343).
 {: .note}
 
 #### Example response

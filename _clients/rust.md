@@ -6,17 +6,17 @@ nav_order: 100
 
 # Rust client
 
-The SmartObserve Rust client lets you connect your Rust application with the data in your SmartObserve cluster. For the client's complete API documentation and additional examples, see the [SmartObserve docs.rs documentation](https://docs.rs/smartobserve/).
+The MCdesk Rust client lets you connect your Rust application with the data in your MCdesk cluster. For the client's complete API documentation and additional examples, see the [MCdesk docs.rs documentation](https://docs.rs/mcdesk/).
 
-This getting started guide illustrates how to connect to SmartObserve, index documents, and run queries. For the client source code, see the [smartobserve-rs repo](https://github.com/igsl-group/smartobserve-rs).
+This getting started guide illustrates how to connect to MCdesk, index documents, and run queries. For the client source code, see the [mcdesk-rs repo](https://github.com/igsl-group/mcdesk-rs).
 
 ## Setup
 
-If you're starting a new project, add the `smartobserve` crate to Cargo.toml:
+If you're starting a new project, add the `mcdesk` crate to Cargo.toml:
 
 ```rust
 [dependencies]
-smartobserve = "1.0.0"
+mcdesk = "1.0.0"
 ```
 {% include copy.html %}
 
@@ -40,40 +40,40 @@ See the [Sample program](#sample-program) section for the complete Cargo.toml fi
 To use the Rust client API, import the modules, structs, and enums you need:
 
 ```rust
-use smartobserve::SmartObserve;
+use mcdesk::MCdesk;
 ```
 {% include copy.html %}
 
-## Connecting to SmartObserve
+## Connecting to MCdesk
 
-To connect to the default SmartObserve host, create a default client object that connects to SmartObserve at the address `http://localhost:9200`:
+To connect to the default MCdesk host, create a default client object that connects to MCdesk at the address `http://localhost:9200`:
 
 ```rust
-let client = SmartObserve::default();
+let client = MCdesk::default();
 ```
 {% include copy.html %}
 
-To connect to an SmartObserve host that is running at a different address, create a client with the specified address:
+To connect to an MCdesk host that is running at a different address, create a client with the specified address:
 
 ```rust
 let transport = Transport::single_node("http://localhost:9200")?;
-let client = SmartObserve::new(transport);
+let client = MCdesk::new(transport);
 ```
 {% include copy.html %}
 
-Alternatively, you can customize the URL and use a connection pool by creating a `TransportBuilder` struct and passing it to `SmartObserve::new` to create a new instance of the client: 
+Alternatively, you can customize the URL and use a connection pool by creating a `TransportBuilder` struct and passing it to `MCdesk::new` to create a new instance of the client: 
 
 ```rust
 let url = Url::parse("http://localhost:9200")?;
 let conn_pool = SingleNodeConnectionPool::new(url);
 let transport = TransportBuilder::new(conn_pool).disable_proxy().build()?;
-let client = SmartObserve::new(transport);
+let client = MCdesk::new(transport);
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Service
+## Connecting to Amazon MCdesk Service
 
-The following example illustrates connecting to Amazon SmartObserve Service:
+The following example illustrates connecting to Amazon MCdesk Service:
 
 ```rust
 let url = Url::parse("https://...");
@@ -85,13 +85,13 @@ let transport = TransportBuilder::new(conn_pool)
     .auth(aws_config.clone().try_into()?)
     .service_name(service_name)
     .build()?;
-let client = SmartObserve::new(transport);
+let client = MCdesk::new(transport);
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Serverless
+## Connecting to Amazon MCdesk Serverless
 
-The following example illustrates connecting to Amazon SmartObserve Serverless Service:
+The following example illustrates connecting to Amazon MCdesk Serverless Service:
 
 ```rust
 let url = Url::parse("https://...");
@@ -103,14 +103,14 @@ let transport = TransportBuilder::new(conn_pool)
     .auth(aws_config.clone().try_into()?)
     .service_name(service_name)
     .build()?;
-let client = SmartObserve::new(transport);
+let client = MCdesk::new(transport);
 ```
 {% include copy.html %}
 
 
 ## Creating an index
 
-To create an SmartObserve index, use the `create` function of the `smartobserve::indices::Indices` struct. You can use the following code to construct a JSON object with custom mappings:
+To create an MCdesk index, use the `create` function of the `mcdesk::indices::Indices` struct. You can use the following code to construct a JSON object with custom mappings:
 
 ```rust
 let response = client
@@ -130,7 +130,7 @@ let response = client
 
 ## Indexing a document
 
-You can index a document into SmartObserve using the client's `index` function:
+You can index a document into MCdesk using the client's `index` function:
 
 ```rust
 let response = client
@@ -226,7 +226,7 @@ let response = client
 
 ## Deleting an index
 
-You can delete an index using the `delete` function of the `smartobserve::indices::Indices` struct:
+You can delete an index using the `delete` function of the `mcdesk::indices::Indices` struct:
 
 ```rust
 let response = client
@@ -250,7 +250,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-smartobserve = "1.0.0"
+mcdesk = "1.0.0"
 tokio = { version = "*", features = ["full"] }
 serde = "~1"
 serde_json = "~1"
@@ -260,13 +260,13 @@ serde_json = "~1"
 The following sample program creates a client, adds an index with non-default mappings, inserts a document, performs bulk operations, searches for the document, deletes the document, and then deletes the index:
 
 ```rust
-use smartobserve::{DeleteParts, SmartObserve, IndexParts, http::request::JsonBody, BulkParts, SearchParts};
-use smartobserve::{indices::{IndicesDeleteParts, IndicesCreateParts}};
+use mcdesk::{DeleteParts, MCdesk, IndexParts, http::request::JsonBody, BulkParts, SearchParts};
+use mcdesk::{indices::{IndicesDeleteParts, IndicesCreateParts}};
 use serde_json::{json, Value};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let client = SmartObserve::default();
+    let client = MCdesk::default();
 
     // Create an index
     let mut response = client

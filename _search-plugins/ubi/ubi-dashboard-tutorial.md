@@ -9,7 +9,7 @@ nav_order: 25
 
 # UBI dashboard tutorial
 
-Whether you've been collecting user events and queries for a while or [you've uploaded some sample events](https://github.com/o19s/chorus-SmartObserve-edition/blob/main/katas/003_import_preexisting_event_data.md), you're now ready to visualize the data collected through User Behavior Insights (UBI) in a dashboard in SmartObserve.
+Whether you've been collecting user events and queries for a while or [you've uploaded some sample events](https://github.com/o19s/chorus-MCdesk-edition/blob/main/katas/003_import_preexisting_event_data.md), you're now ready to visualize the data collected through User Behavior Insights (UBI) in a dashboard in MCdesk.
 
 > This tutorial is a nice way to learn how to make custom dashboards.
 
@@ -21,23 +21,23 @@ To quickly view a dashboard without completing the full tutorial, do the followi
 1. In the **Select file** panel, choose **Import**.
 1. Select the UBI dashboard file that you downloaded and select the **Import** button.
 
-## 1. Start SmartObserve Dashboards
+## 1. Start MCdesk Dashboards
 
-Start SmartObserve Dashboards. For example, go to `http://{server}:5601/app/home#/`. For more information, see [SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/). The following image shows the home page.
+Start MCdesk Dashboards. For example, go to `http://{server}:5601/app/home#/`. For more information, see [MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/). The following image shows the home page.
 ![Dashboard Home]({{site.url}}{{site.baseurl}}/images/ubi/home.png)
 
 ## 2. Create an index pattern
 
-In SmartObserve Management, navigate to **Dashboards Management > Index patterns** or navigate using a URL, such as `http://{server}:5601/app/management/SmartObserve-dashboards/indexPatterns`.
+In MCdesk Management, navigate to **Dashboards Management > Index patterns** or navigate using a URL, such as `http://{server}:5601/app/management/MCdesk-dashboards/indexPatterns`.
 
-SmartObserve Dashboards accesses your indexes using index patterns. To visualize your users' online search behavior, you must create an index pattern in order to access the indexes that UBI creates. For more information, see [Index patterns]({{site.url}}{{site.baseurl}}/dashboards/management/index-patterns/).
+MCdesk Dashboards accesses your indexes using index patterns. To visualize your users' online search behavior, you must create an index pattern in order to access the indexes that UBI creates. For more information, see [Index patterns]({{site.url}}{{site.baseurl}}/dashboards/management/index-patterns/).
 
-After you select **Create index pattern**, a list of indexes in your SmartObserve instance is displayed. The UBI stores may be hidden by default, so make sure to select **Include system and hidden indexes**, as shown in the following image.
+After you select **Create index pattern**, a list of indexes in your MCdesk instance is displayed. The UBI stores may be hidden by default, so make sure to select **Include system and hidden indexes**, as shown in the following image.
 ![Index Patterns]({{site.url}}{{site.baseurl}}/images/ubi/index_pattern2.png)
 
 You can group indexes into the same data source for your dashboard using wildcards. For this tutorial you'll combine the query and event stores into the `ubi_*` pattern.
 
-SmartObserve Dashboards prompts you to filter on any `date` field in your schema so that you can look at things like trending queries over the last 15 minutes. However, for your first dashboard, select **I don't want to use the time filter**, as shown in the following image.
+MCdesk Dashboards prompts you to filter on any `date` field in your schema so that you can look at things like trending queries over the last 15 minutes. However, for your first dashboard, select **I don't want to use the time filter**, as shown in the following image.
 <img src="{{site.url}}{{site.baseurl}}/images/ubi/index_pattern3.png" alt="Index Patterns" width="400"/>
 
 
@@ -45,7 +45,7 @@ After selecting **Create index pattern**, you're ready to start building a dashb
 
 ## 3. Create a new dashboard
 
-To create a new dashboard, on the top menu, select **SmartObserve Dashboards > Dashboards** and then **Create > Dashboard** > **Create new**.
+To create a new dashboard, on the top menu, select **MCdesk Dashboards > Dashboards** and then **Create > Dashboard** > **Create new**.
 If you haven't previously created a dashboard, you are presented with the option to create a new dashboard. Otherwise, previously created dashboards are displayed.
 
 
@@ -60,7 +60,7 @@ Save the visualization so that it's added to your new dashboard. Now that you ha
 
 Now you'll add a word cloud for trending searches by creating a new visualization, similarly to the previous step.  
 
-In the **New Visualization** window, select **Tag Cloud**, and then select the index pattern you created in Step 2. Choose the tag cloud visualization of the terms in the `message` field where the JavaScript client logs the raw search text. Note: The true query, as processed by SmartObserve with filters, boosting, and so on, resides in the `ubi_queries` index. However, you'll view the `message` field of the `ubi_events` index, where the JavaScript client captures the text that the user actually typed.
+In the **New Visualization** window, select **Tag Cloud**, and then select the index pattern you created in Step 2. Choose the tag cloud visualization of the terms in the `message` field where the JavaScript client logs the raw search text. Note: The true query, as processed by MCdesk with filters, boosting, and so on, resides in the `ubi_queries` index. However, you'll view the `message` field of the `ubi_events` index, where the JavaScript client captures the text that the user actually typed.
 
 The following image shows the tag cloud visualization on the `message` field.
 ![Word Cloud]({{site.url}}{{site.baseurl}}/images/ubi/tag_cloud1.png)

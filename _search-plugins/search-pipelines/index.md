@@ -10,9 +10,9 @@ redirect_from:
 
 # Search pipelines
 
-You can use _search pipelines_ to build new or reuse existing result rerankers, query rewriters, and other components that operate on queries or results. Search pipelines make it easier for you to process search queries and search results within SmartObserve. Moving some of your application functionality into an SmartObserve search pipeline reduces the overall complexity of your application. As part of a search pipeline, you specify a list of search processors that perform modular tasks. You can then easily add or reorder these processors to customize search results for your application. 
+You can use _search pipelines_ to build new or reuse existing result rerankers, query rewriters, and other components that operate on queries or results. Search pipelines make it easier for you to process search queries and search results within MCdesk. Moving some of your application functionality into an MCdesk search pipeline reduces the overall complexity of your application. As part of a search pipeline, you specify a list of search processors that perform modular tasks. You can then easily add or reorder these processors to customize search results for your application. 
 
-When defined, a search pipeline is an ordered list of search processors that is integrated into SmartObserve. The pipeline shown in the following diagram intercepts a query, performs processing on the query, sends it to SmartObserve, intercepts the results, performs processing on the results, and returns them to the calling application.
+When defined, a search pipeline is an ordered list of search processors that is integrated into MCdesk. The pipeline shown in the following diagram intercepts a query, performs processing on the query, sends it to MCdesk, intercepts the results, performs processing on the results, and returns them to the calling application.
 
 ![Search processor diagram]({{site.url}}{{site.baseurl}}/images/search-pipelines.png)
 
@@ -77,7 +77,7 @@ To learn about retrieving details for an existing search pipeline, see [Retrievi
 Search processors can be created manually or automatically:
 
 - [User-defined processors]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/search-processors): Processors configured manually in search pipelines, like in the preceding [example](#example).
-- [System-generated processors]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/system-generated-search-processors/): Processors automatically created by SmartObserve based on search request parameters.
+- [System-generated processors]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/system-generated-search-processors/): Processors automatically created by MCdesk based on search request parameters.
 
 ## Search pipeline metrics
 

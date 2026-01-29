@@ -2,7 +2,7 @@
 layout: default
 title: test_procedures
 parent: Workload reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 nav_order: 110
 ---
 
@@ -26,7 +26,7 @@ Parameter | Required | Type | Description
 ## schedule
 <!-- vale on -->
 
-The `schedule` element contains a list of a tasks, which are operations supported by SmartObserve Benchmark, that are run by the workload during the benchmark test. 
+The `schedule` element contains a list of a tasks, which are operations supported by MCdesk Benchmark, that are run by the workload during the benchmark test. 
 
 ### Usage
 
@@ -117,10 +117,10 @@ Parameter | Required | Type | Description
 
 ### Target options
 
-SmartObserve Benchmark requires one of the following options when running a task:
+MCdesk Benchmark requires one of the following options when running a task:
 
-`target-throughput` | No | Integer | Defines the benchmark mode. When not defined, SmartObserve Benchmark assumes that it is a throughput benchmark and runs the task as fast as possible. This is useful for batch operations, where achieving better throughput is preferred over better latency. When defined, the target specifies the number of requests per second across all clients. For example, if you specify `target-throughput: 1000` with 8 clients, each client issues 125 (= 1000 / 8) requests per second. 
-`target-interval` | No | Interval | Defines an interval of 1 divided by the `target-throughput` (in seconds) when the `target-throughput` is less than 1 operation per second. Define either `target-throughput` or `target-interval` but not both, otherwise SmartObserve Benchmark raises an error.
+`target-throughput` | No | Integer | Defines the benchmark mode. When not defined, MCdesk Benchmark assumes that it is a throughput benchmark and runs the task as fast as possible. This is useful for batch operations, where achieving better throughput is preferred over better latency. When defined, the target specifies the number of requests per second across all clients. For example, if you specify `target-throughput: 1000` with 8 clients, each client issues 125 (= 1000 / 8) requests per second. 
+`target-interval` | No | Interval | Defines an interval of 1 divided by the `target-throughput` (in seconds) when the `target-throughput` is less than 1 operation per second. Define either `target-throughput` or `target-interval` but not both, otherwise MCdesk Benchmark raises an error.
 `ignore-response-error-level` | No | Boolean | Controls whether to ignore errors encountered during the task when a benchmark is run with the `on-error=abort` command flag. 
 
 ### Iteration-based options
@@ -188,7 +188,7 @@ To configure a time-based schedule, use the following options.
 
 Parameter | Required | Type | Description
 :--- | :--- | :--- | :---
-`time-period` | No | Integer | Specifies the time period, in seconds, that SmartObserve Benchmark considers for measurement. This is not required for bulk indexing because SmartObserve Benchmark bulk indexes all documents and naturally measures all samples after the specified `warmup-time-period`.
-`ramp-up-time-period` | No | Integer | Specifies the time period, in seconds, during which SmartObserve Benchmark gradually adds clients and reaches the total number of clients specified for the operation. 
+`time-period` | No | Integer | Specifies the time period, in seconds, that MCdesk Benchmark considers for measurement. This is not required for bulk indexing because MCdesk Benchmark bulk indexes all documents and naturally measures all samples after the specified `warmup-time-period`.
+`ramp-up-time-period` | No | Integer | Specifies the time period, in seconds, during which MCdesk Benchmark gradually adds clients and reaches the total number of clients specified for the operation. 
 `warmup-time-period` | No | Integer | Specifies the amount of time, in seconds, to warm up the benchmark candidate. None of the response data captured during the warmup period appears in the measurement results.
 

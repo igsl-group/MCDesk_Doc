@@ -17,7 +17,7 @@ If you use the Security plugin alongside alerting, you might want to limit certa
 
 The Security plugin has three built-in roles that cover most alerting use cases: `alerting_read_access`, `alerting_ack_alerts`, and `alerting_full_access`. For descriptions of each, see [Predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles#predefined-roles).
 
-If these roles don't meet your needs, mix and match individual alerting [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/smartobserve/alerting/destination/delete` permission lets you delete destinations.
+If these roles don't meet your needs, mix and match individual alerting [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/mcdesk/alerting/destination/delete` permission lets you delete destinations.
 
 
 ## How monitors access data
@@ -48,7 +48,7 @@ To reduce the chances of unintended users viewing metadata that could describe a
 
 ## (Advanced) Limit access by backend role
 
-Out of the box, the alerting plugin has no concept of ownership. For example, if you have the `cluster:admin/smartobserve/alerting/monitor/write` permission, you can edit *all* monitors, regardless of whether you created them. If a small number of trusted users manage your monitors and destinations, this lack of ownership generally isn't a problem. A larger organization might need to segment access by backend role.
+Out of the box, the alerting plugin has no concept of ownership. For example, if you have the `cluster:admin/mcdesk/alerting/monitor/write` permission, you can edit *all* monitors, regardless of whether you created them. If a small number of trusted users manage your monitors and destinations, this lack of ownership generally isn't a problem. A larger organization might need to segment access by backend role.
 
 First, make sure that your users have the appropriate [backend roles]({{site.url}}{{site.baseurl}}/security/access-control/index/). Backend roles usually come from an [LDAP server]({{site.url}}{{site.baseurl}}/security/configuration/ldap/) or [SAML provider]({{site.url}}{{site.baseurl}}/security/configuration/saml/). However, if you use the internal user database, you can use the REST API to add them manually with a create user operation. To add a backend role to a create user request, follow the [Create user]({{site.url}}{{site.baseurl}}/security/access-control/api#create-user) instructions in the Security plugin API documentation.
 
@@ -63,7 +63,7 @@ PUT _cluster/settings
 }
 ```
 
-Now when users view alerting resources in SmartObserve Dashboards (or make REST API calls), they only see monitors and destinations that are created by users who share *at least one* backend role. For example, consider three users who all have full access to alerting: `jdoe`, `jroe`, and `psantos`.
+Now when users view alerting resources in MCdesk Dashboards (or make REST API calls), they only see monitors and destinations that are created by users who share *at least one* backend role. For example, consider three users who all have full access to alerting: `jdoe`, `jroe`, and `psantos`.
 
 `jdoe` and `jroe` are on the same team at work and both have the `analyst` backend role. `psantos` has the `human-resources` backend role.
 

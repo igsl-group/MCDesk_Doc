@@ -10,11 +10,11 @@ redirect_from:
 
 # Getting started with Trace Analytics
 
-SmartObserve Trace Analytics consists of two components---Data Prepper and the Trace Analytics SmartObserve Dashboards plugin. The Data Prepper repository contains several [sample applications](https://github.com/igsl-group/data-prepper/tree/main/examples) that you can use to get started.
+MCdesk Trace Analytics consists of two components---Data Prepper and the Trace Analytics MCdesk Dashboards plugin. The Data Prepper repository contains several [sample applications](https://github.com/igsl-group/data-prepper/tree/main/examples) that you can use to get started.
 
 ## Basic flow of data
 
-![Data flow diagram from a distributed application to SmartObserve]({{site.url}}{{site.baseurl}}/images/ta.svg)
+![Data flow diagram from a distributed application to MCdesk]({{site.url}}{{site.baseurl}}/images/ta.svg)
 
 1. Trace Analytics relies on you adding instrumentation to your application and generating trace data. The [OpenTelemetry documentation](https://opentelemetry.io/docs/) contains example applications for many programming languages that can help you get started, including Java, Python, Go, and JavaScript.
 
@@ -22,9 +22,9 @@ SmartObserve Trace Analytics consists of two components---Data Prepper and the T
 
 1. The [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/getting-started/) receives data from the application and formats it into OpenTelemetry data.
 
-1. [Data Prepper]({{site.url}}{{site.baseurl}}/clients/data-prepper/index/) processes the OpenTelemetry data, transforms it for use in SmartObserve, and indexes it on an SmartObserve cluster.
+1. [Data Prepper]({{site.url}}{{site.baseurl}}/clients/data-prepper/index/) processes the OpenTelemetry data, transforms it for use in MCdesk, and indexes it on an MCdesk cluster.
 
-1. The [Trace Analytics SmartObserve Dashboards plugin]({{site.url}}{{site.baseurl}}/observing-your-data/trace/ta-dashboards/) displays the data in near real-time as a series of charts and tables, with an emphasis on service architecture, latency, error rate, and throughput.
+1. The [Trace Analytics MCdesk Dashboards plugin]({{site.url}}{{site.baseurl}}/observing-your-data/trace/ta-dashboards/) displays the data in near real-time as a series of charts and tables, with an emphasis on service architecture, latency, error rate, and throughput.
 
 ## Jaeger HotROD
 
@@ -35,8 +35,8 @@ Download or clone the [Data Prepper repository](https://github.com/igsl-group/da
 - A distributed application (`jaeger-hot-rod`) with the Jaeger agent (`jaeger-agent`)
 - The [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/getting-started/) (`otel-collector`)
 - Data Prepper (`data-prepper`)
-- A single-node SmartObserve cluster (`smartobserve`)
-- SmartObserve Dashboards (`smartobserve-dashboards`).
+- A single-node MCdesk cluster (`mcdesk`)
+- MCdesk Dashboards (`mcdesk-dashboards`).
 
 Close the file and run `docker compose up --build`. After the containers start, navigate to `http://localhost:8080` in a web browser.
 
@@ -66,14 +66,14 @@ data-prepper  | 1031918 [service-map-pipeline-process-worker-2-thread-1] INFO  c
 data-prepper  | 1031923 [entry-pipeline-process-worker-1-thread-1] INFO  com.amazon.dataprepper.pipeline.ProcessWorker  –  entry-pipeline Worker: Processing 1 records from buffer
 ```
 
-Finally, you can see the SmartObserve node responding to the indexing request.
+Finally, you can see the MCdesk node responding to the indexing request.
 
 ```
 node-0.example.com  | [2020-11-19T16:29:55,064][INFO ][o.e.c.m.MetadataMappingService] [9fb4fb37a516] [otel-v1-apm-span-000001/NGYbmVD9RmmqnxjfTzBQsQ] update_mapping [_doc]
 node-0.example.com  | [2020-11-19T16:29:55,267][INFO ][o.e.c.m.MetadataMappingService] [9fb4fb37a516] [otel-v1-apm-span-000001/NGYbmVD9RmmqnxjfTzBQsQ] update_mapping [_doc]
 ```
 
-In a new terminal window, run the following command to see one of the raw documents in the SmartObserve cluster:
+In a new terminal window, run the following command to see one of the raw documents in the MCdesk cluster:
 
 ```bash
 curl -X GET -u 'admin:<custom-admin-password>' -k 'https://localhost:9200/otel-v1-apm-span-000001/_search?pretty&size=1'
@@ -81,4 +81,4 @@ curl -X GET -u 'admin:<custom-admin-password>' -k 'https://localhost:9200/otel-v
 
 Navigate to `http://localhost:5601` in a web browser and choose **Trace Analytics**. You can see the results of your single click in the Jaeger HotROD web interface: the number of traces per API and HTTP method, latency trends, a color-coded map of the service architecture, and a list of trace IDs that you can use to drill down on individual operations.
 
-If you don't see your trace, adjust the timeframe in SmartObserve Dashboards. For more information on using the plugin, see [SmartObserve Dashboards plugin]({{site.url}}{{site.baseurl}}/observing-your-data/trace/ta-dashboards/).
+If you don't see your trace, adjust the timeframe in MCdesk Dashboards. For more information on using the plugin, see [MCdesk Dashboards plugin]({{site.url}}{{site.baseurl}}/observing-your-data/trace/ta-dashboards/).

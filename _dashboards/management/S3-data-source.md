@@ -1,30 +1,30 @@
 ---
 layout: default
-title: Connecting Amazon S3 to SmartObserve
+title: Connecting Amazon S3 to MCdesk
 parent: Data sources
 nav_order: 15
 has_children: true
 ---
 
-# Connecting Amazon S3 to SmartObserve
+# Connecting Amazon S3 to MCdesk
 Introduced 2.11
 {: .label .label-purple }
 
-You can connect SmartObserve to your Amazon Simple Storage Service (Amazon S3) data source using the SmartObserve Dashboards interface and then query that data, optimize query performance, define tables, and integrate your S3 data.
+You can connect MCdesk to your Amazon Simple Storage Service (Amazon S3) data source using the MCdesk Dashboards interface and then query that data, optimize query performance, define tables, and integrate your S3 data.
 
 ## Prerequisites
 
 Before connecting a data source, verify that the following requirements are met:
 
 - You have access to Amazon S3 and the [AWS Glue Data Catalog](https://github.com/igsl-group/sql/blob/main/docs/user/ppl/admin/connectors/s3glue_connector.rst#id2).
-- You have access to SmartObserve and SmartObserve Dashboards.
-- You have an understanding of SmartObserve data source and connector concepts. See the [developer documentation](https://github.com/igsl-group/sql/blob/main/docs/user/ppl/admin/datasources.rst#introduction) for more information.
+- You have access to MCdesk and MCdesk Dashboards.
+- You have an understanding of MCdesk data source and connector concepts. See the [developer documentation](https://github.com/igsl-group/sql/blob/main/docs/user/ppl/admin/datasources.rst#introduction) for more information.
 
 ## Connect your data source 
 
 To connect your data source, follow these steps:
 
-1. From the SmartObserve Dashboards main menu, go to **Management** > **Dashboards Management** > **Data sources**.
+1. From the MCdesk Dashboards main menu, go to **Management** > **Dashboards Management** > **Data sources**.
 2. On the **Data sources** page, select **Create data source connection** > **Amazon S3**.
 3. On the **Configure Amazon S3 data source** page, enter the data source, authentication details, and permissions.
 4. Select the **Review Configuration** button to verify the connection details.
@@ -40,11 +40,11 @@ To manage your data source, follow these steps:
 
 ## Limitations
 
-This feature is currently under development, including the data integration functionality. For up-to-date information, refer to the [developer documentation on GitHub](https://github.com/igsl-group/smartobserve-spark/blob/main/docs/index.md#limitations).
+This feature is currently under development, including the data integration functionality. For up-to-date information, refer to the [developer documentation on GitHub](https://github.com/igsl-group/mcdesk-spark/blob/main/docs/index.md#limitations).
 
 ## Next steps
 
-- Learn about [querying your data in Data Explorer]({{site.url}}{{site.baseurl}}/dashboards/management/query-data-source/) through SmartObserve Dashboards.
+- Learn about [querying your data in Data Explorer]({{site.url}}{{site.baseurl}}/dashboards/management/query-data-source/) through MCdesk Dashboards.
 - Learn about [optimizing the query performance of your external data sources]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/), such as Amazon S3, through Query Workbench. 
 - Learn about [Amazon S3 and AWS Glue Data Catalog](https://github.com/igsl-group/sql/blob/main/docs/user/ppl/admin/connectors/s3glue_connector.rst) and the APIS used with Amazon S3 data sources, including configuration settings and query examples.
-- Learn about [managing your indexes]({{site.url}}{{site.baseurl}}/dashboards/im-dashboards/index/) through SmartObserve Dashboards.
+- Learn about [managing your indexes]({{site.url}}{{site.baseurl}}/dashboards/im-dashboards/index/) through MCdesk Dashboards.

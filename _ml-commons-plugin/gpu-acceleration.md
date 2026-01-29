@@ -1,7 +1,7 @@
 ---
 layout: default
 title: GPU acceleration
-parent: Using ML models within SmartObserve
+parent: Using ML models within MCdesk
 grand_parent: Integrating ML models
 nav_order: 150
 ---
@@ -9,7 +9,7 @@ nav_order: 150
 
 # GPU acceleration 
 
-When running a natural language processing (NLP) model in your SmartObserve cluster with a machine learning (ML) node, you can achieve better performance on the ML node using graphics processing unit (GPU) acceleration. GPUs can work in tandem with the CPU of your cluster to speed up the model upload and training. 
+When running a natural language processing (NLP) model in your MCdesk cluster with a machine learning (ML) node, you can achieve better performance on the ML node using graphics processing unit (GPU) acceleration. GPUs can work in tandem with the CPU of your cluster to speed up the model upload and training. 
 
 ## Supported GPUs
 
@@ -67,30 +67,30 @@ else
 fi
 ```
 
-If you run SmartObserve natively (without Docker) using the packaged version of SmartObserve, `systemd` may block SmartObserve from accessing your GPU. To accelerate models, you need a working [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) installation and access to the NVIDIA device under `/dev`.
+If you run MCdesk natively (without Docker) using the packaged version of MCdesk, `systemd` may block MCdesk from accessing your GPU. To accelerate models, you need a working [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) installation and access to the NVIDIA device under `/dev`.
 
-To allow SmartObserve to use the GPU, update the `systemd` service by adding the following configuration:
+To allow MCdesk to use the GPU, update the `systemd` service by adding the following configuration:
 
 ```ini
-systemctl edit smartobserve.service
+systemctl edit mcdesk.service
 
 [Service]
 DevicePolicy=auto
 ``` 
 
 
-After verifying that `nvidia-uvm` exists under `/dev`, you can start SmartObserve inside your cluster. 
+After verifying that `nvidia-uvm` exists under `/dev`, you can start MCdesk inside your cluster. 
 
 ### Preparing AWS Inferentia ML node
 
-Depending on the Linux operating system running on AWS Inferentia, you can use the following commands and scripts to provision an ML node and run SmartObserve inside your cluster. 
+Depending on the Linux operating system running on AWS Inferentia, you can use the following commands and scripts to provision an ML node and run MCdesk inside your cluster. 
 
-To start, [download and install SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/index/) on your cluster.
+To start, [download and install MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/index/) on your cluster.
 
-Then export SmartObserve and set up your environment variables. This example exports SmartObserve into the directory `smartobserve-2.5.0`, so `OPENSEARCH_HOME` = `smartobserve-2.5.0`:
+Then export MCdesk and set up your environment variables. This example exports MCdesk into the directory `mcdesk-2.5.0`, so `OPENSEARCH_HOME` = `mcdesk-2.5.0`:
 
 ```
-echo "export OPENSEARCH_HOME=~/smartobserve-2.5.0" | tee -a ~/.bash_profile
+echo "export OPENSEARCH_HOME=~/mcdesk-2.5.0" | tee -a ~/.bash_profile
 echo "export PYTORCH_VERSION=1.12.1" | tee -a ~/.bash_profile
 source ~/.bash_profile
 ```
@@ -100,7 +100,7 @@ Next, create a shell script file called `prepare_torch_neuron.sh`. You can copy 
 - [Ubuntu 20.04](#ubuntu-2004)
 - [Amazon Linux 2](#amazon-linux-2)
 
-After you've run the scripts, exit your current terminal and open a new terminal to start SmartObserve.
+After you've run the scripts, exit your current terminal and open a new terminal to start MCdesk.
 
 GPU acceleration has only been tested on Ubuntu 20.04 and Amazon Linux 2. However, you can use other Linux operating systems.
 {: .note}
@@ -160,7 +160,7 @@ pip install torch-neuron torchvision
 # If you need to trace neuron model, install the transformers for tracing the Huggingface model.
 # pip install transformers
 
-# Copy torch neuron lib to SmartObserve
+# Copy torch neuron lib to MCdesk
 PYTORCH_NEURON_LIB_PATH=~/pytorch_venv/lib/python3.7/site-packages/torch_neuron/lib/
 mkdir -p $OPENSEARCH_HOME/lib/torch_neuron; cp -r $PYTORCH_NEURON_LIB_PATH/ $OPENSEARCH_HOME/lib/torch_neuron
 export PYTORCH_EXTRA_LIBRARY_PATH=$OPENSEARCH_HOME/lib/torch_neuron/lib/libtorchneuron.so
@@ -222,7 +222,7 @@ pip install torch-neuron torchvision
 # If you need to run the trace neuron model, install transformers for tracing Huggingface model.
 # pip install transformers
 
-# Copy torch neuron lib to SmartObserve
+# Copy torch neuron lib to MCdesk
 PYTORCH_NEURON_LIB_PATH=~/pytorch_venv/lib/python3.7/site-packages/torch_neuron/lib/
 mkdir -p $OPENSEARCH_HOME/lib/torch_neuron; cp -r $PYTORCH_NEURON_LIB_PATH/ $OPENSEARCH_HOME/lib/torch_neuron
 export PYTORCH_EXTRA_LIBRARY_PATH=$OPENSEARCH_HOME/lib/torch_neuron/lib/libtorchneuron.so
@@ -235,9 +235,9 @@ echo "$(whoami) - nofile 65535" | sudo tee -a /etc/security/limits.conf
 sudo sysctl -w vm.max_map_count=262144
 ```
 
-When the script completes running, open a new terminal for the settings to take effect. Then, start SmartObserve.
+When the script completes running, open a new terminal for the settings to take effect. Then, start MCdesk.
 
-SmartObserve should now be running inside your GPU-accelerated cluster. However, if any errors occur during provisioning, you can install the GPU accelerator drivers manually.
+MCdesk should now be running inside your GPU-accelerated cluster. However, if any errors occur during provisioning, you can install the GPU accelerator drivers manually.
 
 #### Prepare ML node manually
 
@@ -245,10 +245,10 @@ If the previous two scripts do not provision your GPU-accelerated node properly,
 
 1. Deploy an AWS accelerator instance based on your chosen Linux operating system. For instructions, see [Deploy on AWS accelerator instance](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/frameworks/torch/torch-neuron/setup/pytorch-install.html#deploy-on-aws-ml-accelerator-instance).
 
-2. Copy the Neuron library into SmartObserve. The following command uses a directory named `smartobserve-2.5.0`:
+2. Copy the Neuron library into MCdesk. The following command uses a directory named `mcdesk-2.5.0`:
 
    ```
-   OPENSEARCH_HOME=~/smartobserve-2.5.0
+   OPENSEARCH_HOME=~/mcdesk-2.5.0
    ```
 
 3. Set the `PYTORCH_EXTRA_LIBRARY_PATH` path. In this example, we create a `pytorch` virtual environment in the OPENSEARCH_HOME folder:
@@ -285,14 +285,14 @@ If the previous two scripts do not provision your GPU-accelerated node properly,
    echo "-Xss2m" | sudo tee -a $OPENSEARCH_HOME/config/jvm.options
    ```
 
-6. Start SmartObserve. 
+6. Start MCdesk. 
 
 ## Troubleshooting
 
-Due to the amount of data required to work with ML models, you might encounter the following `max file descriptors` or `vm.max_map_count` errors when trying to run SmartObserve in a your cluster: 
+Due to the amount of data required to work with ML models, you might encounter the following `max file descriptors` or `vm.max_map_count` errors when trying to run MCdesk in a your cluster: 
 
 ```
-[1]: max file descriptors [8192] for smartobserve process is too low, increase to at least [65535]
+[1]: max file descriptors [8192] for mcdesk process is too low, increase to at least [65535]
 [2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
 ```
 

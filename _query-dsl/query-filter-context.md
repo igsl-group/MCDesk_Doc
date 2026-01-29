@@ -3,7 +3,7 @@ layout: default
 title: Query and filter context
 nav_order: 5
 redirect_from:
-  - /smartobserve/query-dsl/query-filter-context/
+  - /mcdesk/query-dsl/query-filter-context/
   - /query-dsl/query-dsl/query-filter-context/
 ---
 
@@ -13,7 +13,7 @@ Queries consist of query clauses, which can be run in a [_filter context_](#filt
 
 ## Relevance score
 
-A _relevance score_ measures how well a document matches a query. It is a positive floating-point number that SmartObserve records in the `_score` metadata field for each document:
+A _relevance score_ measures how well a document matches a query. It is a positive floating-point number that MCdesk records in the `_score` metadata field for each document:
 
 ```json
 "hits" : [
@@ -46,7 +46,7 @@ A query clause in a filter context asks the question "_Does_ the document match 
 - Is the student's `honors` status set to `true`?
 - Is the student's `graduation_year` in the 2020--2022 range?
 
-With a filter context, SmartObserve returns matching documents without calculating a relevance score. Thus, you should use a filter context for fields with exact values. 
+With a filter context, MCdesk returns matching documents without calculating a relevance score. Thus, you should use a filter context for fields with exact values. 
 
 To run a query clause in a filter context, pass it to a `filter` parameter. For example, the following Boolean query searches for students who graduated with honors in 2020--2022:
 
@@ -64,7 +64,7 @@ GET students/_search
 }
 ```
 
-To improve performance, SmartObserve caches frequently used filters.
+To improve performance, MCdesk caches frequently used filters.
 
 ## Query context
 
@@ -73,7 +73,7 @@ A query clause in a query context asks the question "_How well_ does the documen
 - Find documents that contain the word `dream`, including its various forms (`dreaming` or `dreams`) and synonyms (`contemplate`).
 - Find documents that match the words `long live king`.
 
-With a query context, every matching document contains a relevance score in the `_score` field, which you can use to [sort]({{site.url}}{{site.baseurl}}/smartobserve/search/sort) documents by relevance. 
+With a query context, every matching document contains a relevance score in the `_score` field, which you can use to [sort]({{site.url}}{{site.baseurl}}/mcdesk/search/sort) documents by relevance. 
 
 To run a query clause in a query context, pass it to a `query` parameter. For example, the following query searches for documents that match the words `long live king` in the `shakespeare` index:
 

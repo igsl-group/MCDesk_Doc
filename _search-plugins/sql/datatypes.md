@@ -7,9 +7,9 @@ nav_order: 7
 
 # Data types
 
-The following table shows the data types supported by the SQL plugin and how each one maps to SQL and SmartObserve data types:
+The following table shows the data types supported by the SQL plugin and how each one maps to SQL and MCdesk data types:
 
-| SmartObserve SQL Type | SmartObserve Type | SQL Type
+| MCdesk SQL Type | MCdesk Type | SQL Type
 :--- | :--- | :---
 boolean |	boolean |	BOOLEAN
 byte |	byte |	TINYINT
@@ -29,13 +29,13 @@ binary | binary | VARBINARY
 object | struct | STRUCT
 nested | array | STRUCT
 
-In addition to this list, the SQL plugin also supports the `datetime` type, though it doesn't have a corresponding mapping with SmartObserve or SQL.
+In addition to this list, the SQL plugin also supports the `datetime` type, though it doesn't have a corresponding mapping with MCdesk or SQL.
 To use a function without a corresponding mapping, you must explicitly convert the data type to one that does.
 
 
 ## Date and time types
 
-The date and time types represent a time period: `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`, and `INTERVAL`. By default, the SmartObserve DSL uses the `date` type as the only date-time related type that contains all information of an absolute time point.
+The date and time types represent a time period: `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`, and `INTERVAL`. By default, the MCdesk DSL uses the `date` type as the only date-time related type that contains all information of an absolute time point.
 
 To integrate with SQL, each type other than the `timestamp` type holds part of the time period information. To use date-time functions, see [datetime]({{site.url}}{{site.baseurl}}/search-plugins/sql/functions#date-and-time). Some functions might have restrictions for the input argument type.
 

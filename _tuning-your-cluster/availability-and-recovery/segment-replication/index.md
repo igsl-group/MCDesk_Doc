@@ -6,8 +6,8 @@ has_children: true
 parent: Availability and recovery
 datatable: true
 redirect_from:
-  - /smartobserve/segment-replication/
-  - /smartobserve/segment-replication/index/
+  - /mcdesk/segment-replication/
+  - /mcdesk/segment-replication/index/
   - /tuning-your-cluster/segment-replication/
   - /tuning-your-cluster/availability-and-recovery/segment-replication/
 ---
@@ -28,11 +28,11 @@ Segment replication can be applied in a variety of scenarios, including:
 
 - High write loads without high search requirements and with longer refresh times.
 - When experiencing very high loads, you want to add new nodes but don't want to index all data immediately.
-- SmartObserve cluster deployments with low replica counts, such as those used for log analytics.
+- MCdesk cluster deployments with low replica counts, such as those used for log analytics.
 
 ## Remote-backed storage
 
-As of SmartObserve 2.10, you can use two methods for segment replication:
+As of MCdesk 2.10, you can use two methods for segment replication:
 
 - **Remote-backed storage**, a persistent storage solution: The primary shard sends segment files to the remote-backed storage, and the replica shards source the copy from the same store. For more information about using remote-backed storage, see [Remote-backed storage]({{site.url}}{{site.baseurl}}/tuning-your-cluster/availability-and-recovery/remote-store/index/).
 - Node-to-node communication: The primary shard sends segment files directly to the replica shards using node-to-node communication.
@@ -79,7 +79,7 @@ PUT /_cluster/settings
 
 ### Setting the replication type for a cluster
 
-You can set the default replication type for newly created cluster indexes in the `smartobserve.yml` file as follows:
+You can set the default replication type for newly created cluster indexes in the `mcdesk.yml` file as follows:
 
 ```yaml
 cluster.indices.replication.strategy: 'SEGMENT'
@@ -91,7 +91,7 @@ cluster.indices.replication.strategy: 'SEGMENT'
 
 If enabled, the `cluster.index.restrict.replication.type` setting requires newly created indexes to have a replication type specified in the `cluster.indices.replication.strategy` cluster setting. Requests that specify a different replication type are rejected. If `cluster.index restrict.replication.type` is disabled, you can choose a replication type on a per-index basis by specifying it in the `index.replication.type` setting. 
 
-You can define the `cluster.index.restrict.replication.type` setting in the `smartobserve.yml` file as follows:
+You can define the `cluster.index.restrict.replication.type` setting in the `mcdesk.yml` file as follows:
 
 ```yaml
 cluster.index.restrict.replication.type: true
@@ -118,18 +118,18 @@ PUT /my-index1
 
 When using segment replication, consider the following:
 
-1. Enabling segment replication for an existing index requires [reindexing](https://github.com/igsl-group/SmartObserve/issues/3685).
-1. [Cross-cluster replication](https://github.com/igsl-group/SmartObserve/issues/4090) does not currently use segment replication to copy between clusters.
+1. Enabling segment replication for an existing index requires [reindexing](https://github.com/igsl-group/MCdesk/issues/3685).
+1. [Cross-cluster replication](https://github.com/igsl-group/MCdesk/issues/4090) does not currently use segment replication to copy between clusters.
 1. Segment replication leads to increased network congestion on primary shards using node-to-node replication because replica shards fetch updates from the primary shard. With remote-backed storage, the primary shard can upload segments to, and the replicas can fetch updates from, the remote-backed storage. This helps offload responsibilities from the primary shard to the remote-backed storage.
 1. Read-after-write guarantees: Segment replication does not currently support setting the refresh policy to `wait_for` or `true`. If you set the `refresh` query parameter to `wait_for` or `true` and then ingest documents, you'll get a response only after the primary node has refreshed and made those documents searchable. Replica shards will respond only after having written to their local translog. If real-time reads are needed, consider using the [`get`]({{site.url}}{{site.baseurl}}/api-reference/document-apis/get-documents/) or [`mget`]({{site.url}}{{site.baseurl}}/api-reference/document-apis/multi-get/) API operations. 
-1. As of SmartObserve 2.10, system indexes support segment replication. 
-1. Get, MultiGet, TermVector, and MultiTermVector requests serve strong reads by routing requests to the primary shards. Routing more requests to the primary shards may degrade performance as compared to distributing requests across primary and replica shards. To improve performance in read-heavy clusters, we recommend setting the `realtime` parameter in these requests to `false`. For more information, see [Issue #8700](https://github.com/igsl-group/SmartObserve/issues/8700).
+1. As of MCdesk 2.10, system indexes support segment replication. 
+1. Get, MultiGet, TermVector, and MultiTermVector requests serve strong reads by routing requests to the primary shards. Routing more requests to the primary shards may degrade performance as compared to distributing requests across primary and replica shards. To improve performance in read-heavy clusters, we recommend setting the `realtime` parameter in these requests to `false`. For more information, see [Issue #8700](https://github.com/igsl-group/MCdesk/issues/8700).
 
 ## Benchmarks
 
 During initial benchmarks, segment replication users reported 40% higher throughput than when using document replication with the same cluster setup.
 
-The following benchmarks were collected with [SmartObserve-benchmark]({{site.url}}{{site.baseurl}}/benchmark/index/) using the [`stackoverflow`](https://www.kaggle.com/datasets/stackoverflow/stackoverflow) and [`nyc_taxi`](https://github.com/topics/nyc-taxi-dataset) datasets.  
+The following benchmarks were collected with [MCdesk-benchmark]({{site.url}}{{site.baseurl}}/benchmark/index/) using the [`stackoverflow`](https://www.kaggle.com/datasets/stackoverflow/stackoverflow) and [`nyc_taxi`](https://github.com/topics/nyc-taxi-dataset) datasets.  
 
 The benchmarks demonstrate the effect of the following configurations on segment replication:
 
@@ -407,5 +407,5 @@ The benchmarking results show a non-zero error rate as the number of replicas in
 
 ## Next steps
 
-1. Track [future enhancements to segment replication](https://github.com/orgs/smartobserve-project/projects/99).
+1. Track [future enhancements to segment replication](https://github.com/orgs/mcdesk-project/projects/99).
 1. Read [this blog post about segment replication](https://magiccreative.io/blog/segment-replication/).

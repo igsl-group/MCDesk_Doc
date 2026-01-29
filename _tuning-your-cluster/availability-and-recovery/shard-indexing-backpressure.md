@@ -5,7 +5,7 @@ nav_order: 62
 has_children: true
 parent: Availability and recovery
 redirect_from: 
-  - /smartobserve/shard-indexing-backpressure/
+  - /mcdesk/shard-indexing-backpressure/
 ---
 
 # Shard indexing backpressure

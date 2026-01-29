@@ -9,10 +9,10 @@ redirect_from:
 
 # ML inference processor
 
-The `ml_inference` processor is used to invoke machine learning (ML) models registered in the [SmartObserve ML Commons plugin]({{site.url}}{{site.baseurl}}/ml-commons-plugin/). The model outputs are added as new fields to the ingested documents.
+The `ml_inference` processor is used to invoke machine learning (ML) models registered in the [MCdesk ML Commons plugin]({{site.url}}{{site.baseurl}}/ml-commons-plugin/). The model outputs are added as new fields to the ingested documents.
 
 **PREREQUISITE**<br>
-Before using the `ml_inference` processor, you must have either a local ML model hosted on your SmartObserve cluster or an externally hosted model connected to your SmartObserve cluster through the ML Commons plugin. For more information about local models, see [Using ML models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For more information about externally hosted models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/). 
+Before using the `ml_inference` processor, you must have either a local ML model hosted on your MCdesk cluster or an externally hosted model connected to your MCdesk cluster through the ML Commons plugin. For more information about local models, see [Using ML models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For more information about externally hosted models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/). 
 {: .note}
 
 ## Syntax
@@ -200,7 +200,7 @@ The following example configures an `ml_inference` processor with a local model.
 
 **Step 1: Create a pipeline**
 
-The following example creates an ingest pipeline for the `huggingface/sentence-transformers/all-distilroberta-v1` local model. The model is a sentence transformer [pretrained model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sentence-transformers) hosted in your SmartObserve cluster. 
+The following example creates an ingest pipeline for the `huggingface/sentence-transformers/all-distilroberta-v1` local model. The model is a sentence transformer [pretrained model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#sentence-transformers) hosted in your MCdesk cluster. 
 
 If you invoke the model using the Predict API, then the request looks like this:
 

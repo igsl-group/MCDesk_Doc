@@ -31,7 +31,7 @@ PUT logs/_doc/0
 ```
 {% include copy-curl.html %}
 
-SmartObserve merges all sub-properties of the entity relations that looks something like this:
+MCdesk merges all sub-properties of the entity relations that looks something like this:
 
 ```json
 {

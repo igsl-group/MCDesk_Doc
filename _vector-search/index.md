@@ -14,12 +14,12 @@ tutorial_cards:
     description: "Build powerful similarity search applications using your existing vectors or embeddings"
     link: "/vector-search/getting-started/"
   - heading: "Generate embeddings automatically"
-    description: "Streamline your vector search using SmartObserve's built-in embedding generation"
+    description: "Streamline your vector search using MCdesk's built-in embedding generation"
     link: "/vector-search/getting-started/auto-generated-embeddings/"
 demo_cards:
   - heading: "Explore AI search and RAG demos"
     description: "Try interactive Hugging Face demos showcasing AI search, multimodal RAG, and agentic RAG"
-    link: "https://huggingface.co/spaces/smartobserve-project/SmartObserve-AI"
+    link: "https://huggingface.co/spaces/mcdesk-project/MCdesk-AI"
 more_cards:
   - heading: "AI search"
     description: "Discover AI search, from <b>semantic</b>, <b>hybrid</b>, and <b>multimodal</b> search to <b>RAG</b>"
@@ -53,11 +53,11 @@ items:
 
 # Vector search
 
-SmartObserve [vector search]({{site.url}}{{site.baseurl}}/vector-search/getting-started/vector-search-basics/) provides a complete vector database solution for building efficient AI applications. Store and search vector embeddings alongside your existing data, making it easy to implement semantic search, retrieval-augmented generation (RAG), recommendation systems, and other AI-powered applications.
+MCdesk [vector search]({{site.url}}{{site.baseurl}}/vector-search/getting-started/vector-search-basics/) provides a complete vector database solution for building efficient AI applications. Store and search vector embeddings alongside your existing data, making it easy to implement semantic search, retrieval-augmented generation (RAG), recommendation systems, and other AI-powered applications.
 
 ## Overview
 
-Watch this video to learn about key vector search features in SmartObserve and discover how to use SmartObserve as a vector database through a step-by-step demo.
+Watch this video to learn about key vector search features in MCdesk and discover how to use MCdesk as a vector database through a step-by-step demo.
 
 {% include youtube-player.html id='oX0HMAztP8E' %}
 
@@ -79,7 +79,7 @@ wget https://amazon-pqa.s3.amazonaws.com/amazon_pqa_headsets.json
 ```
 {% include copy.html %}
 
-Prepare data for bulk indexing into SmartObserve:
+Prepare data for bulk indexing into MCdesk:
 
 ```bash
 head -n 5000 amazon_pqa_headsets.json |  awk '{ print "{\"index\":{\"_index\":\"neural_search_pqa\"}}"; print;}'  > neural_search_amazon_pqa_headsets.json
@@ -101,7 +101,7 @@ PUT /_cluster/settings
 ### Step 1: Register and deploy a model
 {:.no_toc} 
 
-Register and deploy an ML model provided by SmartObserve:
+Register and deploy an ML model provided by MCdesk:
 
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
@@ -113,7 +113,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 ```
 {% include copy-curl.html %}
 
-Registering a model is an asynchronous task. SmartObserve returns a task ID for this task. Check the status of the task by using the Tasks API:
+Registering a model is an asynchronous task. MCdesk returns a task ID for this task. Check the status of the task by using the Tasks API:
 
 ```json
 GET /_plugins/_ml/tasks/<task_id>
@@ -1141,7 +1141,7 @@ DELETE /neural_search_pqa
 
 ## Getting started
 
-You can bring your own vectors or let SmartObserve generate embeddings automatically from your data. See [Preparing vectors]({{site.url}}{{site.baseurl}}/vector-search/getting-started/vector-search-options/).
+You can bring your own vectors or let MCdesk generate embeddings automatically from your data. See [Preparing vectors]({{site.url}}{{site.baseurl}}/vector-search/getting-started/vector-search-options/).
 {: .info }
 
 {% include cards.html cards=page.tutorial_cards %}

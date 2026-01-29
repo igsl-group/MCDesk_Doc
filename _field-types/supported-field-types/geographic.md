@@ -6,15 +6,15 @@ has_children: true
 has_toc: false
 parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/geographic/
+  - /mcdesk/supported-field-types/geographic/
   - /field-types/geographic/
 ---
 
 # Geographic field types
 
-Geographic fields contain values that represent points or shapes on a map. The following table lists all geographic field types that SmartObserve supports.
+Geographic fields contain values that represent points or shapes on a map. The following table lists all geographic field types that MCdesk supports.
 
 Field data type | Description
 :--- | :---  
-[`geo_point`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point/) | A geographic point specified by latitude and longitude. 
-[`geo_shape`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-shape/) | A geographic shape, such as a polygon or a collection of geographic points. 
+[`geo_point`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point/) | A geographic point specified by latitude and longitude. 
+[`geo_shape`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-shape/) | A geographic shape, such as a polygon or a collection of geographic points. 

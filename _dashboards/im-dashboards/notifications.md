@@ -20,7 +20,7 @@ In the **Notification settings** interface, you can configure the default notifi
 - Clone
 - Force merge
 
-To get started, from the SmartObserve Dashboards main menu, select **SmartObserve Plugins** > **Index Management**. Under **Index Management**, select **Notification settings**. 
+To get started, from the MCdesk Dashboards main menu, select **MCdesk Plugins** > **Index Management**. Under **Index Management**, select **Notification settings**. 
 
 You can choose to be notified when the operation has completed or failed. Additionally, you can select the notification channels for this notification, as shown in the following image.
 
@@ -33,7 +33,7 @@ If you don't have permission to view notification settings, you cannot view the 
 
 You can view default notification settings when you perform an indexing operation as well as set up additional notifications. For example, if you want to configure an additional notification for a reindex operation, perform the following steps:
 
-1. Select **SmartObserve Plugins** > **Index Management**.
+1. Select **MCdesk Plugins** > **Index Management**.
 
 1. In the **Index Management** interface, select **Indices**.
 
@@ -54,7 +54,7 @@ You can view default notification settings when you perform an indexing operatio
 
 1. Select a channel from the **Notification channels** dropdown list. If you want to configure a new notification channel, select **Manage channels**.
     
-    To configure a new notification channel, confirm that the `dashboards-notification` plugin is enabled in SmartObserve Dashboards. 
+    To configure a new notification channel, confirm that the `dashboards-notification` plugin is enabled in MCdesk Dashboards. 
     {: .note}
     
 1. Select the **Reindex** button.

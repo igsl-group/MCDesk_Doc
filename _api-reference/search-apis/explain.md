@@ -4,7 +4,7 @@ title: Explain
 parent: Search APIs
 nav_order: 40
 redirect_from: 
- - /smartobserve/rest-api/explain/
+ - /mcdesk/rest-api/explain/
  - /api-reference/explain/
 ---
 
@@ -14,7 +14,7 @@ redirect_from:
 
 If you want to know why a specific document ranks higher (or lower) in a given query, you can use the Explain API to produce an explanation of how the relevance score (`_score`) was calculated for every result.
 
-SmartObserve uses a probabilistic ranking framework called [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) to calculate relevance scores. Okapi BM25 is based on the original [TF/IDF](https://lucene.apache.org/core/{{site.lucene_version}}/core/org/apache/lucene/search/package-summary.html#scoring) framework used by Apache Lucene.
+MCdesk uses a probabilistic ranking framework called [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) to calculate relevance scores. Okapi BM25 is based on the original [TF/IDF](https://lucene.apache.org/core/{{site.lucene_version}}/core/org/apache/lucene/search/package-summary.html#scoring) framework used by Apache Lucene.
 
 Using the Explain API is expensive in terms of both resources and time. For production clusters, we recommend using it sparingly for the purpose of troubleshooting.
 {: .warning }
@@ -44,8 +44,8 @@ Parameter | Type | Description | Required
 `analyze_wildcard` | Boolean | Whether to analyze wildcard and prefix queries in the `q` string. Only valid when `q` is used. Default is `false`. | No
 `default_operator` | String | The default Boolean operator (`AND` or `OR`) for the `q` query string. Only valid when `q` is used. Default is `OR`.  | No
 `df` | String | The default field to search if no field is specified in the `q` string. Only valid when `q` is used. | No
-`lenient` | Boolean | Specifies whether SmartObserve should ignore format-based query failures (for example, querying a text field for an integer). Default is `false`. | No
-`preference` | String | Specifies a preference of which shard to retrieve results from. Available options are `_local`, which tells the operation to retrieve results from a locally allocated shard replica, and a custom string value assigned to a specific shard replica. By default, SmartObserve executes the explain operation on random shards. | No
+`lenient` | Boolean | Specifies whether MCdesk should ignore format-based query failures (for example, querying a text field for an integer). Default is `false`. | No
+`preference` | String | Specifies a preference of which shard to retrieve results from. Available options are `_local`, which tells the operation to retrieve results from a locally allocated shard replica, and a custom string value assigned to a specific shard replica. By default, MCdesk executes the explain operation on random shards. | No
 `q` | String | A query string in [Lucene syntax]({{site.url}}{{site.baseurl}}/query-dsl/full-text/query-string/#query-string-syntax). When used, you can configure query behavior using the `analyzer`, `analyze_wildcard`, `default_operator`, `df`, and `stored_fields` parameters. | No
 `stored_fields` | String | A comma-separated list of stored fields to return. If omitted, only `_source` is returned. | No
 `routing` | String | Value used to route the operation to a specific shard. | No
@@ -59,7 +59,7 @@ To see the explain output for all results, set the `explain` flag to `true` eith
 
 <!-- spec_insert_start
 component: example_code
-rest: POST /smartobserve_dashboards_sample_data_ecommerce/_search?explain=true
+rest: POST /mcdesk_dashboards_sample_data_ecommerce/_search?explain=true
 body: |
 {
   "query": {
@@ -70,7 +70,7 @@ body: |
 }
 -->
 {% capture step1_rest %}
-POST /smartobserve_dashboards_sample_data_ecommerce/_search?explain=true
+POST /mcdesk_dashboards_sample_data_ecommerce/_search?explain=true
 {
   "query": {
     "match": {
@@ -84,7 +84,7 @@ POST /smartobserve_dashboards_sample_data_ecommerce/_search?explain=true
 
 
 response = client.search(
-  index = "smartobserve_dashboards_sample_data_ecommerce",
+  index = "mcdesk_dashboards_sample_data_ecommerce",
   params = { "explain": "true" },
   body =   {
     "query": {
@@ -106,7 +106,7 @@ More often, you want the output for a single document. In that case, specify the
 
 <!-- spec_insert_start
 component: example_code
-rest: POST /smartobserve_dashboards_sample_data_ecommerce/_explain/EVz1Q3sBgg5eWQP6RSte
+rest: POST /mcdesk_dashboards_sample_data_ecommerce/_explain/EVz1Q3sBgg5eWQP6RSte
 body: |
 {
   "query": {
@@ -117,7 +117,7 @@ body: |
 }
 -->
 {% capture step1_rest %}
-POST /smartobserve_dashboards_sample_data_ecommerce/_explain/EVz1Q3sBgg5eWQP6RSte
+POST /mcdesk_dashboards_sample_data_ecommerce/_explain/EVz1Q3sBgg5eWQP6RSte
 {
   "query": {
     "match": {
@@ -132,7 +132,7 @@ POST /smartobserve_dashboards_sample_data_ecommerce/_explain/EVz1Q3sBgg5eWQP6RSt
 
 response = client.explain(
   id = "EVz1Q3sBgg5eWQP6RSte",
-  index = "smartobserve_dashboards_sample_data_ecommerce",
+  index = "mcdesk_dashboards_sample_data_ecommerce",
   body =   {
     "query": {
       "match": {
@@ -231,7 +231,7 @@ Field | Description
 `explanation` | The `explanation` object has three properties: `value`, `description`, and `details`. The `value` shows the result of the calculation, the `description` explains what type of calculation is performed, and the `details` shows any subcalculations performed.
 Term frequency (`tf`) | How many times the term appears in a field for a given document. The more times the term occurs the higher is the relevance score.
 Inverse document frequency (`idf`) | How often the term appears within the index (across all the documents). The more often the term appears the lower is the relevance score.
-Field normalization factor (`fieldNorm`) | The length of the field. SmartObserve assigns a higher relevance score to a term appearing in a relatively short field.
+Field normalization factor (`fieldNorm`) | The length of the field. MCdesk assigns a higher relevance score to a term appearing in a relatively short field.
 
 The `tf`, `idf`, and `fieldNorm` values are calculated and stored at index time when a document is added or updated. The values might have some (typically small) inaccuracies as it’s based on summing the samples returned from each shard.
 

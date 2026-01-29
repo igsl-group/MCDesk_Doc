@@ -1,6 +1,6 @@
-# SmartObserve Documentation Website 2.19.0 Release Notes
+# MCdesk Documentation Website 2.19.0 Release Notes
 
-The SmartObserve 2.19.0 documentation includes the following additions and updates.
+The MCdesk 2.19.0 documentation includes the following additions and updates.
 
 ## New documentation for 2.19.0
 
@@ -22,7 +22,7 @@ The SmartObserve 2.19.0 documentation includes the following additions and updat
 - Mark nmslib references for vector search as deprecated [#9107](https://github.com/igsl-group/documentation-website/pull/9107)
 - Add in-place SSL certs hot reload documentation [#9103](https://github.com/igsl-group/documentation-website/pull/9103)
 - Add binary Lucene vector updates for 2.19 [#9102](https://github.com/igsl-group/documentation-website/pull/9102)
-- Add SmartObserve Flow OSD plugin [#9101](https://github.com/igsl-group/documentation-website/pull/9101)
+- Add MCdesk Flow OSD plugin [#9101](https://github.com/igsl-group/documentation-website/pull/9101)
 - Update hot reload documentation to show how DN validation can be skipped [#9079](https://github.com/igsl-group/documentation-website/pull/9079)
 - Update k-NN Cosine formula [#9078](https://github.com/igsl-group/documentation-website/pull/9078)
 = Update Ada Grad as the default optimiser. [#9061](https://github.com/igsl-group/documentation-website/pull/9061)

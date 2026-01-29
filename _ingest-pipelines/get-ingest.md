@@ -3,7 +3,7 @@ layout: default
 title: Get pipeline
 nav_order: 12
 redirect_from:
-  - /smartobserve/rest-api/ingest-apis/get-ingest/
+  - /mcdesk/rest-api/ingest-apis/get-ingest/
   - /api-reference/ingest-apis/get-ingest/
 ---
 

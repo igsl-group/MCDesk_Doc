@@ -7,7 +7,7 @@ require_relative 'spec_hash'
 module Utils
   REPO_ROOT = File.expand_path('../..', __dir__)
   SPEC_INSERT_DIR = File.join(REPO_ROOT, 'spec-insert')
-  SPEC_FILE = File.join(SPEC_INSERT_DIR, 'smartobserve-openapi.yaml')
+  SPEC_FILE = File.join(SPEC_INSERT_DIR, 'mcdesk-openapi.yaml')
   COMPONENTS = {
     'endpoints' => 'Endpoints',
     'query_parameters' => 'Query Parameters',
@@ -37,10 +37,10 @@ module Utils
 
   def self.download_spec(forced: false, logger: nil)
     return if !forced && File.exist?(SPEC_FILE) && (File.mtime(SPEC_FILE) > 1.day.ago)
-    logger&.info 'Downloading SmartObserve API specification...'
+    logger&.info 'Downloading MCdesk API specification...'
     system 'curl -L -X GET ' \
-           'https://github.com/igsl-group/smartobserve-api-specification' \
-           '/releases/download/main-latest/smartobserve-openapi.yaml ' \
+           'https://github.com/igsl-group/mcdesk-api-specification' \
+           '/releases/download/main-latest/mcdesk-openapi.yaml ' \
            "-o #{SPEC_FILE}"
   end
 

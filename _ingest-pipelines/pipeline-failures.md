@@ -34,7 +34,7 @@ PUT _ingest/pipeline/my-pipeline/
 ```
 {% include copy-curl.html %}
 
-You can specify the `on_failure` parameter to run immediately after a processor fails. If you have specified `on_failure`, SmartObserve will run the other processors in the pipeline even if the `on_failure` configuration is empty: 
+You can specify the `on_failure` parameter to run immediately after a processor fails. If you have specified `on_failure`, MCdesk will run the other processors in the pipeline even if the `on_failure` configuration is empty: 
 
 ```json
 PUT _ingest/pipeline/my-pipeline/
@@ -61,7 +61,7 @@ PUT _ingest/pipeline/my-pipeline/
 ```
 {% include copy-curl.html %}
 
-If the processor fails, SmartObserve logs the failure and continues to run all remaining processors in the search pipeline. To check whether there were any failures, you can use [ingest pipeline metrics]({{site.url}}{{site.baseurl}}/api-reference/ingest-apis/pipeline-failures/#ingest-pipeline-metrics).
+If the processor fails, MCdesk logs the failure and continues to run all remaining processors in the search pipeline. To check whether there were any failures, you can use [ingest pipeline metrics]({{site.url}}{{site.baseurl}}/api-reference/ingest-apis/pipeline-failures/#ingest-pipeline-metrics).
 {: tip}
 
 ## Ingest pipeline metrics
@@ -132,5 +132,5 @@ The response contains statistics for all ingest pipelines, for example:
 }
 ```
 
-**Troubleshooting ingest pipeline failures:** The first thing you should do is check the logs to see whether there are any errors or warnings that can help you identify the cause of the failure. SmartObserve logs contain information about the ingest pipeline that failed, including the processor that failed and the reason for the failure.
+**Troubleshooting ingest pipeline failures:** The first thing you should do is check the logs to see whether there are any errors or warnings that can help you identify the cause of the failure. MCdesk logs contain information about the ingest pipeline that failed, including the processor that failed and the reason for the failure.
 {: .tip}

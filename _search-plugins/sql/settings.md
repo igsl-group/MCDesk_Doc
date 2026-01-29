@@ -9,7 +9,7 @@ redirect_from:
 
 # SQL settings
 
-The SQL plugin adds a few settings to the standard SmartObserve cluster settings. Most are dynamic, so you can change the default behavior of the plugin without restarting your cluster. To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+The SQL plugin adds a few settings to the standard MCdesk cluster settings. Most are dynamic, so you can change the default behavior of the plugin without restarting your cluster. To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 It is possible to independently disable processing of `PPL` or `SQL` queries.
 
@@ -74,17 +74,17 @@ Setting | Default | Description
 :--- | :--- | :---
 `plugins.sql.enabled` | True | Change to `false` to disable the `SQL` support in the plugin.
 `plugins.ppl.enabled` | True | Change to `false` to disable the `PPL` support in the plugin.
-`plugins.sql.slowlog` | 2 seconds | Configures the time limit (in seconds) for slow queries. The plugin logs slow queries as `Slow query: elapsed=xxx (ms)` in `smartobserve.log`.
+`plugins.sql.slowlog` | 2 seconds | Configures the time limit (in seconds) for slow queries. The plugin logs slow queries as `Slow query: elapsed=xxx (ms)` in `mcdesk.log`.
 `plugins.sql.cursor.keep_alive` | 1 minute | Configures how long the cursor context is kept open. Cursor contexts are resource-intensive, so we recommend a low value.
 `plugins.query.memory_limit` | 85% | Configures the heap memory usage limit for the circuit breaker of the query engine.
-`plugins.query.size_limit` | 200 | Sets the default size of index that the query engine fetches from SmartObserve.
+`plugins.query.size_limit` | 200 | Sets the default size of index that the query engine fetches from MCdesk.
 `plugins.query.datasources.enabled` | true | Change to `false` to disable support for data sources in the plugin.
 `plugins.query.field_type_tolerance` | true | If `false`, then an array is reduced to the first non-array value at any nesting level. For example, `[[1, 2], [3, 4]]` will be reduced to `1`. If `true`, then the array is preserved. Default is `true`.
 `plugins.calcite.enabled` | false | Set to `true` to enable experimental features that use the Apache Calcite query engine, including advanced SQL and PPL capabilities such as subsearches, joins, and lookup operations.
 
 ## Spark connector settings
 
-The SQL plugin supports [Apache Spark](https://spark.apache.org/) as an augmented compute source. When data sources are defined as tables in Apache Spark, SmartObserve can consume those tables. This allows you to run SQL queries against external sources inside SmartObserve Dashboard's [Discover]({{site.url}}{{site.baseurl}}/dashboards/discover/index-discover/) and observability logs. 
+The SQL plugin supports [Apache Spark](https://spark.apache.org/) as an augmented compute source. When data sources are defined as tables in Apache Spark, MCdesk can consume those tables. This allows you to run SQL queries against external sources inside MCdesk Dashboard's [Discover]({{site.url}}{{site.baseurl}}/dashboards/discover/index-discover/) and observability logs. 
 
 To get started, enable the following settings to add Spark as a data source and enable the correct permissions.
 
@@ -98,14 +98,14 @@ Setting | Description
 `spark.datasource.flint.port` | The port number for Spark. Default is `9200`.
 `spark.datasource.flint.scheme` | The data scheme used in your Spark queries. Valid values are `http` and `https`.
 `spark.datasource.flint.auth` | The authorization required to access the Spark data source. Valid values are `false` and `sigv4`.
-`spark.datasource.flint.region` | The AWS Region in which your SmartObserve cluster is located. Only use when `auth` is set to `sigv4`. Default value is `us-west-2``.
+`spark.datasource.flint.region` | The AWS Region in which your MCdesk cluster is located. Only use when `auth` is set to `sigv4`. Default value is `us-west-2``.
 `spark.datasource.flint.write.id_name` | The name of the index to which the Spark connector writes.
 `spark.datasource.flint.ignore.id_column` | Excludes the `id` column when exporting data in a query. Default is `true`.
 `spark.datasource.flint.write.batch_size` | Sets the batch size when writing to a Spark-connected index. Default is `1000`.
-`spark.datasource.flint.write.refresh_policy` | Sets the refresh policy for the Spark connection upon failure for the connector to write data to SmartObserve. Either no refresh (`false`), an immediate refresh (`true`), or a set time to wait, `wait_for: X`. Default value is `false`.
+`spark.datasource.flint.write.refresh_policy` | Sets the refresh policy for the Spark connection upon failure for the connector to write data to MCdesk. Either no refresh (`false`), an immediate refresh (`true`), or a set time to wait, `wait_for: X`. Default value is `false`.
 `spark.datasource.flint.read.scroll_size` | Sets the number of results returned by queries run using Spark. Default is `100`.
-`spark.flint.optimizer.enabled` | Enables SmartObserve to be optimized for Spark connection. Default is `true`.
-`spark.flint.index.hybridscan.enabled` | Enables SmartObserve to scan for write data on non-partitioned devices from the data source. Default is `false`.
+`spark.flint.optimizer.enabled` | Enables MCdesk to be optimized for Spark connection. Default is `true`.
+`spark.flint.index.hybridscan.enabled` | Enables MCdesk to scan for write data on non-partitioned devices from the data source. Default is `false`.
 
 Once configured, you can test your Spark connection using the following API call:
 

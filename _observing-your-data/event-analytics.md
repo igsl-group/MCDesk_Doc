@@ -8,38 +8,38 @@ redirect_from:
 
 # Event analytics
 
-Event analytics in SmartObserve Observability allow you to create data visualizations using [Piped Processing Language]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/) (PPL) queries.
+Event analytics in MCdesk Observability allow you to create data visualizations using [Piped Processing Language]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/) (PPL) queries.
 
 ## Getting started with event analytics
 
-To get started, choose **Observability** in SmartObserve Dashboards and then choose **Logs**. If you want to start exploring without adding your own data, choose **Add samples**. Dashboards adds sample visualizations you can interact with. You can also try out preconfigured analytics in [SmartObserve Playground](https://playground.magiccreative.io/app/observability-logs#/).
+To get started, choose **Observability** in MCdesk Dashboards and then choose **Logs**. If you want to start exploring without adding your own data, choose **Add samples**. Dashboards adds sample visualizations you can interact with. You can also try out preconfigured analytics in [MCdesk Playground](https://playground.magiccreative.io/app/observability-logs#/).
 
 ## Building a query
 
-To generate custom visualizations, you must first specify a PPL query. SmartObserve Dashboards then automatically creates a visualization based on your query results.
+To generate custom visualizations, you must first specify a PPL query. MCdesk Dashboards then automatically creates a visualization based on your query results.
 
 For example, the following PPL query returns a count of how many host addresses are currently in your data.
 
 ```
-source = smartobserve_dashboards_sample_data_logs | fields host | stats count()
+source = mcdesk_dashboards_sample_data_logs | fields host | stats count()
 ```
 
 By default, Dashboards shows results from the last 15 minutes of your data. To see data from a different time frame, use the date and time selector to choose the desired settings.
 
 For more information about building PPL queries, see [Piped Processing Language]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/).
 
-### SmartObserve Dashboards Query Assistant
+### MCdesk Dashboards Query Assistant
 
-Note that machine learning models are probabilistic and that some may perform better than others, so the SmartObserve Assistant may occasionally produce inaccurate information. We recommend evaluating outputs for accuracy as appropriate to your use case, including reviewing the output or combining it with other verification factors.
+Note that machine learning models are probabilistic and that some may perform better than others, so the MCdesk Assistant may occasionally produce inaccurate information. We recommend evaluating outputs for accuracy as appropriate to your use case, including reviewing the output or combining it with other verification factors.
 {: .important}
 
-To simplify query building, the **SmartObserve Assistant** toolkit offers an assistant that converts natural language queries into PPL. A screenshot is shown in the following image. 
+To simplify query building, the **MCdesk Assistant** toolkit offers an assistant that converts natural language queries into PPL. A screenshot is shown in the following image. 
 
-![Sample SmartObserve Query Assist screen view]({{site.url}}{{site.baseurl}}/images/log-explorer-query-assist.png)
+![Sample MCdesk Query Assist screen view]({{site.url}}{{site.baseurl}}/images/log-explorer-query-assist.png)
 
 #### Enabling Query Assistant
 
-By default, **Query Assistant** is enabled in SmartObserve Dashboards. To enable summarization of responses, locate your copy of the `smartobserve_dashboards.yml` file and set the following option:
+By default, **Query Assistant** is enabled in MCdesk Dashboards. To enable summarization of responses, locate your copy of the `mcdesk_dashboards.yml` file and set the following option:
 
 ```yaml
 observability.summarize.enabled: true
@@ -47,11 +47,11 @@ observability.summarize.response_summary_agent_name: "Response summary agent"
 observability.summarize.error_summary_agent_name: "Error summary agent"
 ```
 
-To disable Query Assistant, add `observability.query_assist.enabled: false` to your `smartobserve_dashboards.yml`. 
+To disable Query Assistant, add `observability.query_assist.enabled: false` to your `mcdesk_dashboards.yml`. 
 
 #### Setting up Query Assistant
 
-To set up **Query Assistant**, follow the steps in the [Getting started guide](https://github.com/igsl-group/dashboards-assistant/blob/main/GETTING_STARTED_GUIDE.md) on GitHub. This guide provides step-by-step setup instructions for **SmartObserve Assistant** and **Query Assistant**. To set up **Query Assistant** only, use the `query-assist-agent` template included in the guide.
+To set up **Query Assistant**, follow the steps in the [Getting started guide](https://github.com/igsl-group/dashboards-assistant/blob/main/GETTING_STARTED_GUIDE.md) on GitHub. This guide provides step-by-step setup instructions for **MCdesk Assistant** and **Query Assistant**. To set up **Query Assistant** only, use the `query-assist-agent` template included in the guide.
 
 ## Saving a visualization
 
@@ -59,13 +59,13 @@ After Dashboards generates a visualization, save it if you want to revisit it or
 
 ## Creating event analytics visualizations and adding them to dashboards
 
-This feature is available in SmartObserve Dashboards 2.7 and later. It works with new visualizations that use PPL to query data from SmartObserve or federated data sources such as Prometheus.
+This feature is available in MCdesk Dashboards 2.7 and later. It works with new visualizations that use PPL to query data from MCdesk or federated data sources such as Prometheus.
 {: .note}
 
 To create a PPL visualization, follow these steps:
 
 1. On the main menu, choose **Visualize** > **PPL**.
-2. From the **Observability** > **Logs** > **Explorer** window, enter the index source in the **PPL query** field, for example, `source = smartobserve_dashboards_sample_data_flights | stats count() by DestCountry`. You must enter the query using PPL syntax. 
+2. From the **Observability** > **Logs** > **Explorer** window, enter the index source in the **PPL query** field, for example, `source = mcdesk_dashboards_sample_data_flights | stats count() by DestCountry`. You must enter the query using PPL syntax. 
 3. Set the time filter, for example, **This week**, and then select **Refresh**.
 4. Choose the visualization type, for example, **Pie**, from the sidebar dropdown menu to the right.  
 5. Select **Save** and enter a name for the visualization.
@@ -108,14 +108,14 @@ If you need more information about a log event, you can select **View surroundin
 
 ### Livestreaming logs
 
-If you prefer real-time monitoring, you can set up an interval at which event analytics content will be automatically refreshed. With Live Tail, you can stream logs directly to SmartObserve Observability event analytics using the specified PPL query while leveraging robust features like filters. This can enhance your debugging process and enables seamless real-time monitoring of logs without the need to manually refresh content.
+If you prefer real-time monitoring, you can set up an interval at which event analytics content will be automatically refreshed. With Live Tail, you can stream logs directly to MCdesk Observability event analytics using the specified PPL query while leveraging robust features like filters. This can enhance your debugging process and enables seamless real-time monitoring of logs without the need to manually refresh content.
 
-With Live Tail, you can select intervals and seamlessly switch between them to control the frequency of live log streaming. This functionality is similar to the `tail -f` CLI command, as it retrieves only the most recent live logs, potentially eliminating a significant portion of live logs. Live Tail displays the total number of live logs received by SmartObserve during the live stream, offering insight into incoming traffic patterns. The following demo shows this feature in action. 
+With Live Tail, you can select intervals and seamlessly switch between them to control the frequency of live log streaming. This functionality is similar to the `tail -f` CLI command, as it retrieves only the most recent live logs, potentially eliminating a significant portion of live logs. Live Tail displays the total number of live logs received by MCdesk during the live stream, offering insight into incoming traffic patterns. The following demo shows this feature in action. 
 
 ![Live Tail]({{site.url}}{{site.baseurl}}/images/live_tail.gif)
 
 ## Related articles
 
-- [Demonstrating the SmartObserve Assistant toolkit](https://www.youtube.com/watch?v=VTiJtGI2Sr4&t=152s)
-- [Getting started guide for SmartObserve Assistant in SmartObserve Dashboards](https://github.com/igsl-group/dashboards-assistant/blob/main/GETTING_STARTED_GUIDE.md)
-- SmartObserve Assistant configuration through the REST API
+- [Demonstrating the MCdesk Assistant toolkit](https://www.youtube.com/watch?v=VTiJtGI2Sr4&t=152s)
+- [Getting started guide for MCdesk Assistant in MCdesk Dashboards](https://github.com/igsl-group/dashboards-assistant/blob/main/GETTING_STARTED_GUIDE.md)
+- MCdesk Assistant configuration through the REST API

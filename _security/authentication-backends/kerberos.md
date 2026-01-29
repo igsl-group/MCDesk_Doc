@@ -9,15 +9,15 @@ nav_order: 75
 
 Kerberos is a robust and secure method for user authentication that prevents passwords from being sent over the internet by issuing "tickets" for secure identity verification.
 
-In order to use Kerberos authentication, you must set the following settings in `smartobserve.yml` and `config.yml`.
+In order to use Kerberos authentication, you must set the following settings in `mcdesk.yml` and `config.yml`.
 
-## SmartObserve node configuration
+## MCdesk node configuration
 
-In `smartobserve.yml`, define the following settings:
+In `mcdesk.yml`, define the following settings:
 
 ```yml
 plugins.security.kerberos.krb5_filepath: 'krb5.conf'
-plugins.security.kerberos.acceptor_keytab_filepath: 'smartobserve_keytab.tab'
+plugins.security.kerberos.acceptor_keytab_filepath: 'mcdesk_keytab.tab'
 plugins.security.kerberos.acceptor_principal: 'HTTP/localhost'
 ```
 
@@ -27,7 +27,7 @@ Name | Description
 `acceptor_keytab_filepath` | The path to the `keytab` file, which contains the principal that the Security plugin uses to issue requests through Kerberos.
 `acceptor_principal` | The principal that the Security plugin uses to issue requests through Kerberos. This value must be present in the `keytab` file.
 
-Because of security restrictions, the `keytab` and `krb5.conf` files must be placed in the `config` directory or its subdirectory, and their paths in `smartobserve.yml` must be relative, not absolute.
+Because of security restrictions, the `keytab` and `krb5.conf` files must be placed in the `config` directory or its subdirectory, and their paths in `mcdesk.yml` must be relative, not absolute.
 {: .note }
 
 ## Cluster security configuration

@@ -28,7 +28,7 @@ The following sections describe the steps in detail. For the complete workflow t
 
 ## Workflow graph
 
-The workflow described in the previous section is organized into a [template](#complete-yaml-workflow-template). Note that you can order the steps in several ways. In the example template, the `ml_model_tool` step is specified right before the `root_agent` step, but you can specify it at any point after the `deploy_model_3` step and before the `root_agent` step. The following diagram shows the directed acyclic graph (DAG) that SmartObserve creates for all of the steps in the order specified in the template.
+The workflow described in the previous section is organized into a [template](#complete-yaml-workflow-template). Note that you can order the steps in several ways. In the example template, the `ml_model_tool` step is specified right before the `root_agent` step, but you can specify it at any point after the `deploy_model_3` step and before the `root_agent` step. The following diagram shows the directed acyclic graph (DAG) that MCdesk creates for all of the steps in the order specified in the template.
 
 ![Example workflow steps graph]({{site.url}}{{site.baseurl}}/images/automatic-workflow-dag.png){:style="width: 100%; max-width: 600px;" class="img-centered"}
 
@@ -62,13 +62,13 @@ nodes:
       url: https://${parameters.endpoint}/v1/chat/completions
 ```
 
-When you create a connector, SmartObserve returns a `connector_id`, which you need in order to register the model. 
+When you create a connector, MCdesk returns a `connector_id`, which you need in order to register the model. 
 
 <!-- vale off -->
 ### register_model_2
 <!-- vale on -->
 
-When registering a model, the `previous_node_inputs` field tells SmartObserve to obtain the required `connector_id` from the output of the `create_connector_1` step. Other inputs required by the [Register Model API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/) are included in the `user_inputs` field:
+When registering a model, the `previous_node_inputs` field tells MCdesk to obtain the required `connector_id` from the output of the `create_connector_1` step. Other inputs required by the [Register Model API]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/) are included in the `user_inputs` field:
 
 ```yaml
 - id: register_model_2
@@ -101,7 +101,7 @@ When using the Deploy Model API directly, a task ID is returned, requiring use o
 
 ### Ordering steps
 
-To order these steps in a sequence, you must connect them by an edge in the graph. When a `previous_node_input` field is present in a step, SmartObserve automatically creates a node with `source` and `dest` fields for this step. The output of the `source` is required as input for the `dest`. For example, the `register_model_2` step requires the `connector_id` from the `create_connector_1` step. Similarly, the `deploy_model_3` step requires the `model_id` from the `register_model_2` step. Thus, SmartObserve creates the first two edges in the graph as follows in order to match the output with the required input and raise errors if the required input is missing:
+To order these steps in a sequence, you must connect them by an edge in the graph. When a `previous_node_input` field is present in a step, MCdesk automatically creates a node with `source` and `dest` fields for this step. The output of the `source` is required as input for the `dest`. For example, the `register_model_2` step requires the `connector_id` from the `create_connector_1` step. Similarly, the `deploy_model_3` step requires the `model_id` from the `register_model_2` step. Thus, MCdesk creates the first two edges in the graph as follows in order to match the output with the required input and raise errors if the required input is missing:
 
 ```yaml
 edges:
@@ -161,7 +161,7 @@ To use the `list_index_tool` in the agent configuration, specify it as one of th
     app_type: chatbot
 ```
 
-SmartObserve will automatically create the following edges so that the agent can retrieve the fields from the previous node: 
+MCdesk will automatically create the following edges so that the agent can retrieve the fields from the previous node: 
 
 ```yaml
 - source: list_index_tool
@@ -189,7 +189,7 @@ You can use an agent as a tool for another agent. Registering an agent produces 
       max_iteration: 5
 ```
 
-SmartObserve automatically creates an edge connection because this step specifies the `previous_node_input`:
+MCdesk automatically creates an edge connection because this step specifies the `previous_node_input`:
 
 ```yaml
 - source: sub_agent
@@ -217,7 +217,7 @@ A tool may reference an ML model. This example gets the required `model_id` from
       response_filter: choices[0].message.content
 ```
 
-SmartObserve automatically creates an edge in order to use the `previous_node_input`:
+MCdesk automatically creates an edge in order to use the `previous_node_input`:
 
 ```yaml
 - source: deploy-model-3
@@ -252,7 +252,7 @@ A conversational chat application will communicate with a single root agent that
     app_type: chatbot
 ```
 
-SmartObserve automatically creates edges for the `previous_node_input` sources:
+MCdesk automatically creates edges for the `previous_node_input` sources:
 
 ```yaml
 - source: deploy-model-3
@@ -263,7 +263,7 @@ SmartObserve automatically creates edges for the `previous_node_input` sources:
   dest: root_agent
 ```
 
-For the complete DAG that SmartObserve creates for this workflow, see the [workflow graph](#workflow-graph).
+For the complete DAG that MCdesk creates for this workflow, see the [workflow graph](#workflow-graph).
 
 ## Complete YAML workflow template
 

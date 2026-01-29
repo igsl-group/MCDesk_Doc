@@ -11,7 +11,7 @@ You can perform efficient k-NN filtering with the `lucene` or `faiss` engines.
 
 ## Lucene k-NN filter implementation
 
-SmartObserve version 2.2 introduced support for running k-NN searches with the Lucene engine using HNSW graphs. Starting with version 2.4, which is based on Lucene version 9.4, you can use Lucene filters for k-NN searches.
+MCdesk version 2.2 introduced support for running k-NN searches with the Lucene engine using HNSW graphs. Starting with version 2.4, which is based on Lucene version 9.4, you can use Lucene filters for k-NN searches.
 
 When you specify a Lucene filter for a k-NN search, the Lucene algorithm decides whether to perform an exact k-NN search with pre-filtering or an approximate search with modified post-filtering. The algorithm uses the following variables:
 
@@ -217,7 +217,7 @@ For more ways to construct a filter, see [Constructing a filter](#constructing-a
 
 ## Faiss k-NN filter implementation 
 
-For k-NN searches, you can use `faiss` filters with an HNSW algorithm (SmartObserve version 2.9 and later) or IVF algorithm (SmartObserve version 2.10 and later).
+For k-NN searches, you can use `faiss` filters with an HNSW algorithm (MCdesk version 2.9 and later) or IVF algorithm (MCdesk version 2.10 and later).
 
 When you specify a Faiss filter for a k-NN search, the Faiss algorithm decides whether to perform an exact k-NN search with pre-filtering or an approximate search with modified post-filtering. The algorithm uses the following variables:
 

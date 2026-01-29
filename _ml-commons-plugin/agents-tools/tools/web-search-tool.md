@@ -46,7 +46,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -62,13 +62,13 @@ Then, run the agent by sending the following request (DuckDuckGo doesn't require
 POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 {
   "parameters": {
-    "question": "How to create a index pattern in SmartObserve?"
+    "question": "How to create a index pattern in MCdesk?"
   }
 }
 ```
 {% include copy-curl.html %} 
 
-SmartObserve returns the web search results:
+MCdesk returns the web search results:
 
 ```json
 {
@@ -79,7 +79,7 @@ SmartObserve returns the web search results:
           "name": "response",
           "result": """
             {
-                "next_page": "https://html.duckduckgo.com/html?q=how+to+create+index+pattern+in+SmartObserve&ia=web&dc=11",
+                "next_page": "https://html.duckduckgo.com/html?q=how+to+create+index+pattern+in+MCdesk&ia=web&dc=11",
                 "items": [
                   {
                     "url": "http://someurl",
@@ -134,7 +134,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -152,13 +152,13 @@ Then, run the agent by sending the following request:
 POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 {
   "parameters": {
-    "question": "How to create a index pattern in SmartObserve?"
+    "question": "How to create a index pattern in MCdesk?"
   }
 }
 ```
 {% include copy-curl.html %} 
 
-SmartObserve returns the web search results:
+MCdesk returns the web search results:
 
 ```json
 {
@@ -169,7 +169,7 @@ SmartObserve returns the web search results:
           "name": "response",
           "result": """
             {
-                "next_page": "https://customsearch.googleapis.com/customsearch/v1?q=how+to+create+index+pattern+in+SmartObserve&start=10",
+                "next_page": "https://customsearch.googleapis.com/customsearch/v1?q=how+to+create+index+pattern+in+MCdesk&start=10",
                 "items": [
                   {
                     "url": "http://someurl",
@@ -235,7 +235,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -253,13 +253,13 @@ Then, run the agent by sending the following request:
 POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 {
   "parameters": {
-    "question": "How to create a index pattern in SmartObserve?"
+    "question": "How to create a index pattern in MCdesk?"
   }
 }
 ```
 {% include copy-curl.html %} 
 
-SmartObserve returns the web search results:
+MCdesk returns the web search results:
 
 ```json
 {
@@ -270,7 +270,7 @@ SmartObserve returns the web search results:
           "name": "response",
           "result": """
             {
-                "next_page": "{your_custom_endpoint}?q=how+to+create+index+pattern+in+SmartObserve&offset=10&limit=10",
+                "next_page": "{your_custom_endpoint}?q=how+to+create+index+pattern+in+MCdesk&offset=10&limit=10",
                 "items": [
                   {
                     "url": "http://someurl",

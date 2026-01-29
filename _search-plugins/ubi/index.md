@@ -26,9 +26,9 @@ In principle, queries sent to the server and results returned by the server can 
 UBI includes the following elements:
 * A machine-readable [schema](https://github.com/o19s/ubi) that facilitates interoperability of the UBI specification.
 * [ubi.js](https://github.com/igsl-group/user-behavior-insights/tree/main/ubi-javascript-collector/ubi.js): An (optional) client-side JavaScript library for capturing searches and events.
-* An (optional) SmartObserve [plugin](https://github.com/igsl-group/user-behavior-insights) that streamlines the recording of query data.
+* An (optional) MCdesk [plugin](https://github.com/igsl-group/user-behavior-insights) that streamlines the recording of query data.
 
-Advanced features in SmartObserve, such as the [Search Relevance Workbench]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/using-search-relevance-workbench/) and the [Hybrid Search Optimizer]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/optimize-hybrid-search/), build on the data collected according to the UBI specification.
+Advanced features in MCdesk, such as the [Search Relevance Workbench]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/using-search-relevance-workbench/) and the [Hybrid Search Optimizer]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/optimize-hybrid-search/), build on the data collected according to the UBI specification.
 
 <!-- vale off -->
 
@@ -37,13 +37,13 @@ Advanced features in SmartObserve, such as the [Search Relevance Workbench]({{si
     <td>
       <h2>Tutorials</h2>
       <ul>    
-        <li><a href="{{site.url}}{{site.baseurl}}/search-plugins/ubi/ubi-aws-managed-services-tutorial/">Learn to use AWS SmartObserve Ingestion</a> pipelines for gathering UBI query and event data.</li>        
+        <li><a href="{{site.url}}{{site.baseurl}}/search-plugins/ubi/ubi-aws-managed-services-tutorial/">Learn to use AWS MCdesk Ingestion</a> pipelines for gathering UBI query and event data.</li>        
         <li><a href="{{site.url}}{{site.baseurl}}/search-plugins/ubi/ubi-dashboard-tutorial/">Learn to create custom dashboards</a> for visualizing UBI data.</li>    
-        <li> Based on <a href="https://github.com/o19s/chorus-smartobserve-edition">Chorus for SmartObserve</a> demo:
+        <li> Based on <a href="https://github.com/o19s/chorus-mcdesk-edition">Chorus for MCdesk</a> demo:
           <ul>
-            <li><a href="https://github.com/o19s/chorus-smartobserve-edition/blob/main/katas/002_derive_interaction_data.md">Derive Interaction Data from User Clicks.</a></li>
-            <li><a href="https://github.com/o19s/chorus-smartobserve-edition/blob/main/katas/006_protecting_sensitive_information.md">Protecting sensistive information when using UBI.</a></li>
-            <li><a href="https://github.com/o19s/chorus-smartobserve-edition/blob/main/katas/007_configure_AB_with_TDI.md">Configuring an AB test with Team Draft Interleaving</a></li>    
+            <li><a href="https://github.com/o19s/chorus-mcdesk-edition/blob/main/katas/002_derive_interaction_data.md">Derive Interaction Data from User Clicks.</a></li>
+            <li><a href="https://github.com/o19s/chorus-mcdesk-edition/blob/main/katas/006_protecting_sensitive_information.md">Protecting sensistive information when using UBI.</a></li>
+            <li><a href="https://github.com/o19s/chorus-mcdesk-edition/blob/main/katas/007_configure_AB_with_TDI.md">Configuring an AB test with Team Draft Interleaving</a></li>    
           </ul>
         </li>
       </ul>
@@ -51,9 +51,9 @@ Advanced features in SmartObserve, such as the [Search Relevance Workbench]({{si
     <td>
       <h2>How To Guides</h2>
       <ul>        
-        <li>How to <a href="https://github.com/igsl-group/user-behavior-insights?tab=readme-ov-file#user-quick-start">install and use the UBI plugin</a> in SmartObserve.</li>          
+        <li>How to <a href="https://github.com/igsl-group/user-behavior-insights?tab=readme-ov-file#user-quick-start">install and use the UBI plugin</a> in MCdesk.</li>          
         <li>How to use <a href="{{site.url}}{{site.baseurl}}/search-plugins/ubi/ubi-javascript-collector/">ubi.js</a>, a client-side JavaScript library for capturing events.</li>
-        <li>How to <a href="{{site.url}}{{site.baseurl}}/search-plugins/ubi/dsl-queries/">write queries for UBI data using SmartObserve query DSL.</a></li>
+        <li>How to <a href="{{site.url}}{{site.baseurl}}/search-plugins/ubi/dsl-queries/">write queries for UBI data using MCdesk query DSL.</a></li>
         <li>How to <a href="{{site.url}}{{site.baseurl}}/search-plugins/ubi/sql-queries/">write analytic queries for UBI data using SQL.</a></li>          
       </ul>
     </td>
@@ -71,8 +71,8 @@ Advanced features in SmartObserve, such as the [Search Relevance Workbench]({{si
     <td>
         <h2>Reference</h2>
         <ul>
-            <li><a href="https://github.com/igsl-group/user-behavior-insights">UBI Plugin for SmartObserve</a></li>
-              <li><a href="{{site.url}}{{site.baseurl}}/search-plugins/ubi/schemas/">UBI Schema in SmartObserve</a></li>
+            <li><a href="https://github.com/igsl-group/user-behavior-insights">UBI Plugin for MCdesk</a></li>
+              <li><a href="{{site.url}}{{site.baseurl}}/search-plugins/ubi/schemas/">UBI Schema in MCdesk</a></li>
             <li>Repository for the <a href="https://github.com/o19s/ubi">UBI Schema</a>.</li>                
             <li><a href="https://o19s.github.io/ubi/docs/html/1.3.0/query.request.schema.html">Query Tracking Specification</a></li>
             <li><a href="https://o19s.github.io/ubi/docs/html/1.3.0/event.schema.html">Event Tracking Specification</a></li>                

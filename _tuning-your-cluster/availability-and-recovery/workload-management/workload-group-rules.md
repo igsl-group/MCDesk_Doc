@@ -10,7 +10,7 @@ redirect_from:
 
 # Workload group rules
 
-Workload group rules allow you to automatically assign workload group IDs to incoming queries. When a query matches the attributes specified in a rule, SmartObserve tags the query with the corresponding workload group ID. This eliminates the need for clients to manually include the workload group ID in each request. For more information about auto-tagging requests, see [Rule-based auto-tagging]({{site.url}}{{site.baseurl}}/tuning-your-cluster/availability-and-recovery/rule-based-autotagging/autotagging/).
+Workload group rules allow you to automatically assign workload group IDs to incoming queries. When a query matches the attributes specified in a rule, MCdesk tags the query with the corresponding workload group ID. This eliminates the need for clients to manually include the workload group ID in each request. For more information about auto-tagging requests, see [Rule-based auto-tagging]({{site.url}}{{site.baseurl}}/tuning-your-cluster/availability-and-recovery/rule-based-autotagging/autotagging/).
 
 ## Creating a rule
 
@@ -119,7 +119,7 @@ GET /_rules/workload_group?index_pattern=log*,event*&principal.username=admin
 ```
 {% include copy-curl.html %}
 
-If the response contains more results than can fit on a single page, SmartObserve paginates the results and includes a `search_after` value in the response:
+If the response contains more results than can fit on a single page, MCdesk paginates the results and includes a `search_after` value in the response:
 
 ```json
 {

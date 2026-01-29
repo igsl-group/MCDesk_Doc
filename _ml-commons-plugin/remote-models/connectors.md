@@ -16,18 +16,18 @@ redirect_from:
 
 Connectors facilitate access to models hosted on third-party machine learning (ML) platforms. 
 
-SmartObserve provides connectors for several platforms, for example:
+MCdesk provides connectors for several platforms, for example:
 
-- [Amazon SageMaker](https://aws.amazon.com/sagemaker/) allows you to host and manage the lifecycle of text embedding models, powering semantic search queries in SmartObserve. When connected, Amazon SageMaker hosts your models and SmartObserve is used to query inferences. This benefits Amazon SageMaker users who value its functionality, such as model monitoring, serverless hosting, and workflow automation for continuous training and deployment.
-- [OpenAI ChatGPT](https://platform.openai.com/docs/introduction) enables you to invoke an OpenAI chat model from inside an SmartObserve cluster.
-- [Cohere](https://cohere.com/) allows you to use data from SmartObserve to power the Cohere large language models.
-- [Amazon Bedrock](https://aws.amazon.com/bedrock/) supports models like [Bedrock Titan Embeddings](https://aws.amazon.com/bedrock/titan/), which can drive semantic search and retrieval-augmented generation in SmartObserve.
+- [Amazon SageMaker](https://aws.amazon.com/sagemaker/) allows you to host and manage the lifecycle of text embedding models, powering semantic search queries in MCdesk. When connected, Amazon SageMaker hosts your models and MCdesk is used to query inferences. This benefits Amazon SageMaker users who value its functionality, such as model monitoring, serverless hosting, and workflow automation for continuous training and deployment.
+- [OpenAI ChatGPT](https://platform.openai.com/docs/introduction) enables you to invoke an OpenAI chat model from inside an MCdesk cluster.
+- [Cohere](https://cohere.com/) allows you to use data from MCdesk to power the Cohere large language models.
+- [Amazon Bedrock](https://aws.amazon.com/bedrock/) supports models like [Bedrock Titan Embeddings](https://aws.amazon.com/bedrock/titan/), which can drive semantic search and retrieval-augmented generation in MCdesk.
 
 ## Connector blueprints
 
 A _connector blueprint_ defines the set of parameters (the request body) you need to provide when sending an API request to create a specific connector. Connector blueprints may differ based on the platform and the model that you are accessing.
 
-SmartObserve provides connector blueprints for several ML platforms and models. For a full list of connector blueprints provided by SmartObserve, see [Supported connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/supported-connectors/). 
+MCdesk provides connector blueprints for several ML platforms and models. For a full list of connector blueprints provided by MCdesk, see [Supported connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/supported-connectors/). 
 
 As an ML developer, you can also create connector blueprints for other platforms and models. Data scientists and administrators can then use the blueprint to create connectors. They are only required to enter their `credential` settings, such as `openAI_key`, for the service to which they are connecting. For information about creating connector blueprints, including descriptions of all parameters, see [Connector blueprints]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/blueprints/).
 
@@ -36,11 +36,11 @@ As an ML developer, you can also create connector blueprints for other platforms
 
 You can provision connectors in two ways:
 
-1. [Create a standalone connector](#creating-a-standalone-connector): A standalone connector can be reused and shared by multiple models but requires access to both the model and connector in SmartObserve and the third-party platform, such as OpenAI or Amazon SageMaker, that the connector is accessing. Standalone connectors are saved in a connector index.
+1. [Create a standalone connector](#creating-a-standalone-connector): A standalone connector can be reused and shared by multiple models but requires access to both the model and connector in MCdesk and the third-party platform, such as OpenAI or Amazon SageMaker, that the connector is accessing. Standalone connectors are saved in a connector index.
 
 2. [Create a connector for a specific externally hosted model](#creating-a-connector-for-a-specific-model): Alternatively, you can create a connector that can only be used with the model for which it was created. To access such a connector, you only need access to the model itself because the connection is established inside the model. These connectors are saved in the model index.
 
-If using Python, you can create connectors using the [smartobserve-py-ml](https://github.com/igsl-group/smartobserve-py-ml) client CLI. The CLI automates many configuration steps, making setup faster and reducing the chance of errors. For more information about using the CLI, see the [CLI documentation](https://smartobserve-project.github.io/smartobserve-py-ml/cli/index.html#).
+If using Python, you can create connectors using the [mcdesk-py-ml](https://github.com/igsl-group/mcdesk-py-ml) client CLI. The CLI automates many configuration steps, making setup faster and reducing the chance of errors. For more information about using the CLI, see the [CLI documentation](https://mcdesk-project.github.io/mcdesk-py-ml/cli/index.html#).
 {: .tip}
 
 ## Creating a standalone connector
@@ -226,7 +226,7 @@ POST /_plugins/_ml/connectors/_create
       "url": "https://api.cohere.ai/v1/embed",
       "headers": {
         "Authorization": "Bearer ${credential.cohere_key}",
-        "Request-Source": "unspecified:smartobserve"
+        "Request-Source": "unspecified:mcdesk"
       },
       "request_body": "{ \"texts\": ${parameters.texts}, \"truncate\": \"${parameters.truncate}\", \"model\": \"${parameters.model}\", \"input_type\": \"${parameters.input_type}\" }",
       "pre_process_function": "connector.pre_process.cohere.embedding",
@@ -311,6 +311,6 @@ PUT /_plugins/_ml/connectors/<connector_id>
 
 ## Next steps
 
-- For a full list of connector blueprints provided by SmartObserve, see [Supported connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/supported-connectors/).
+- For a full list of connector blueprints provided by MCdesk, see [Supported connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/supported-connectors/).
 - To learn more about connecting to external models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/).
 - To learn more about model access control and model groups, see [Model access control]({{site.url}}{{site.baseurl}}/ml-commons-plugin/model-access-control/).

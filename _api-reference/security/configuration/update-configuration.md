@@ -52,7 +52,7 @@ The request body is **required**. It is a JSON object with the following fields.
 | `hosts_resolver_mode` | String | Determines how hostname resolution is performed for security operations. |
 | `http` | Object | The HTTP-specific security configurations. |
 | `on_behalf_of` | Object | Configures a temporary access token for the duration of a user's session (advanced). |
-| `kibana` | Object | The configuration for SmartObserve Dashboards integration. |
+| `kibana` | Object | The configuration for MCdesk Dashboards integration. |
 | `respect_request_indices_options` | Boolean | When `true`, respects index options specified in requests. |
 
 
@@ -73,10 +73,10 @@ body: |
     "disable_rest_auth": false,
     "disable_intertransport_auth": false,
     "respect_request_indices_options": false,
-    "smartobserve-dashboards": {
+    "mcdesk-dashboards": {
       "multitenancy_enabled": true,
       "server_username": "kibanaserver",
-      "index": ".smartobserve-dashboards"
+      "index": ".mcdesk-dashboards"
     },
     "http": {
       "anonymous_auth_enabled": false
@@ -114,10 +114,10 @@ PUT /_plugins/_security/api/securityconfig/config
     "disable_rest_auth": false,
     "disable_intertransport_auth": false,
     "respect_request_indices_options": false,
-    "smartobserve-dashboards": {
+    "mcdesk-dashboards": {
       "multitenancy_enabled": true,
       "server_username": "kibanaserver",
-      "index": ".smartobserve-dashboards"
+      "index": ".mcdesk-dashboards"
     },
     "http": {
       "anonymous_auth_enabled": false
@@ -158,10 +158,10 @@ response = client.security.update_configuration(
       "disable_rest_auth": false,
       "disable_intertransport_auth": false,
       "respect_request_indices_options": false,
-      "smartobserve-dashboards": {
+      "mcdesk-dashboards": {
         "multitenancy_enabled": true,
         "server_username": "kibanaserver",
-        "index": ".smartobserve-dashboards"
+        "index": ".mcdesk-dashboards"
       },
       "http": {
         "anonymous_auth_enabled": false

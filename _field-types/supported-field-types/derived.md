@@ -29,10 +29,10 @@ Despite the potential performance impact of query-time computations, the flexibi
 Currently, derived fields have the following limitations:
 
 - **Scoring and sorting**: Not yet supported.
-- **Aggregations**: Starting with SmartObserve 2.17, derived fields support most aggregation types. The following aggregations are not supported: geographic (geodistance, geohash grid, geohex grid, geotile grid, geobounds, geocentroid), significant terms, significant text, and scripted metric.
-- **Dashboard support**: These fields are not displayed in the list of available fields in SmartObserve Dashboards. However, you can still use them for filtering if you know the derived field name.
+- **Aggregations**: Starting with MCdesk 2.17, derived fields support most aggregation types. The following aggregations are not supported: geographic (geodistance, geohash grid, geohex grid, geotile grid, geobounds, geocentroid), significant terms, significant text, and scripted metric.
+- **Dashboard support**: These fields are not displayed in the list of available fields in MCdesk Dashboards. However, you can still use them for filtering if you know the derived field name.
 - **Chained derived fields**: One derived field cannot be used to define another derived field.
-- **Join field type**: Derived fields are not supported for the [join field type]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/join/).
+- **Join field type**: Derived fields are not supported for the [join field type]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/join/).
 
 We are planning to address these limitations in future versions.
 
@@ -419,7 +419,7 @@ You can retrieve derived fields using the `fields` parameter in the search reque
 
 ### Highlighting
 
-Derived fields of type `text` support highlighting using the [unified highlighter]({{site.url}}{{site.baseurl}}/smartobserve/search/highlight#the-unified-highlighter). For example, the following request specifies to highlight the derived `url` field:
+Derived fields of type `text` support highlighting using the [unified highlighter]({{site.url}}{{site.baseurl}}/mcdesk/search/highlight#the-unified-highlighter). For example, the following request specifies to highlight the derived `url` field:
 
 ```json
 POST /logs/_search
@@ -543,7 +543,7 @@ The response specifies highlighting in the `url` field:
 
 ## Aggregations
 
-Starting with SmartObserve 2.17, derived fields support most aggregation types. 
+Starting with MCdesk 2.17, derived fields support most aggregation types. 
 
 Geographic, significant terms, significant text, and scripted metric aggregations are not supported.
 {: .note}
@@ -665,7 +665,7 @@ POST /logs/_search
 ```
 {% include copy-curl.html %}
 
-SmartObserve automatically adds a filter on the `request` field to your query:
+MCdesk automatically adds a filter on the `request` field to your query:
 
 ```json
 "#request:GET #DerivedFieldQuery (Query: [ method:GET])"
@@ -901,7 +901,7 @@ The response adds highlighting to the `derived_request_object.request` field:
 
 ### Inferred subfield type 
 
-Type inference is based on the same logic as [Dynamic mapping]({{site.url}}{{site.baseurl}}/smartobserve/mappings#dynamic-mapping). Instead of inferring the subfield type from the first document, a random sample of documents is used to infer the type. If the subfield isn't found in any documents from the random sample, type inference fails and logs a warning. For subfields that seldom occur in documents, consider defining the explicit field type. Using dynamic type inference for such subfields may result in a query returning no results, like for a missing field. 
+Type inference is based on the same logic as [Dynamic mapping]({{site.url}}{{site.baseurl}}/mcdesk/mappings#dynamic-mapping). Instead of inferring the subfield type from the first document, a random sample of documents is used to infer the type. If the subfield isn't found in any documents from the random sample, type inference fails and logs a warning. For subfields that seldom occur in documents, consider defining the explicit field type. Using dynamic type inference for such subfields may result in a query returning no results, like for a missing field. 
 
 ### Explicit subfield type
 

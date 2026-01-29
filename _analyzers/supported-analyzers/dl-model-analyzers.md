@@ -7,9 +7,9 @@ nav_order: 130
 
 # DL model analyzers
 
-Deep learning (DL) model analyzers are designed to work with [neural sparse search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-search/). They implement the same tokenization rules used by machine learning (ML) models, ensuring compatibility with neural sparse search. While traditional SmartObserve analyzers use standard rule-based tokenization (like white space or word boundaries), DL model analyzers use tokenization rules that match specific ML models (like BERT's WordPiece tokenization scheme). This consistent tokenization between indexed documents and search queries is essential for neural sparse search to work correctly.
+Deep learning (DL) model analyzers are designed to work with [neural sparse search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-search/). They implement the same tokenization rules used by machine learning (ML) models, ensuring compatibility with neural sparse search. While traditional MCdesk analyzers use standard rule-based tokenization (like white space or word boundaries), DL model analyzers use tokenization rules that match specific ML models (like BERT's WordPiece tokenization scheme). This consistent tokenization between indexed documents and search queries is essential for neural sparse search to work correctly.
 
-SmartObserve supports the following DL model analyzers:
+MCdesk supports the following DL model analyzers:
 
 * [`bert-uncased`](#the-bert-uncased-analyzer): An analyzer based on the [google-bert/bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased) model tokenizer.
 * [`mbert-uncased`](#the-mbert-uncased-analyzer): A multilingual analyzer based on the [google-bert/bert-base-multilingual-uncased](https://huggingface.co/google-bert/bert-base-multilingual-uncased) model tokenizer.
@@ -31,7 +31,7 @@ To analyze text with the `bert-uncased` analyzer, specify it in the `analyzer` f
 POST /_analyze
 {
   "analyzer": "bert-uncased",
-  "text": "It's fun to contribute to SmartObserve!"
+  "text": "It's fun to contribute to MCdesk!"
 }
 ```
 {% include copy-curl.html %}
@@ -46,7 +46,7 @@ To analyze multilingual text, specify the `mbert-uncased` analyzer in the reques
 POST /_analyze
 {
   "analyzer": "mbert-uncased",
-  "text": "It's fun to contribute to SmartObserve!"
+  "text": "It's fun to contribute to MCdesk!"
 }
 ```
 {% include copy-curl.html %}

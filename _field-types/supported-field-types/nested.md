@@ -6,7 +6,7 @@ has_children: false
 parent: Object field types
 grand_parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/nested/
+  - /mcdesk/supported-field-types/nested/
   - /field-types/nested/
 ---
 
@@ -14,7 +14,7 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-A nested field type is a special type of [object field type]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/object/). 
+A nested field type is a special type of [object field type]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/object/). 
 
 Any object field can take an array of objects. Each of the objects in the array is dynamically mapped as an object field type and stored in flattened form. This means that the objects in the array are broken down into individual fields, and values for each field across all objects are stored together. It is sometimes necessary to use the nested type to preserve a nested object as a whole so that you can perform a search on it.
 
@@ -310,7 +310,7 @@ The following table lists the parameters accepted by object field types. All par
 
 Parameter | Description 
 :--- | :--- 
-[`dynamic`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/object#the-dynamic-parameter) | Specifies whether new fields can be dynamically added to the object. Valid values are `true`, `false`, `strict`, `strict_allow_templates`, and `false_allow_templates`. Default is `true`.
+[`dynamic`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/object#the-dynamic-parameter) | Specifies whether new fields can be dynamically added to the object. Valid values are `true`, `false`, `strict`, `strict_allow_templates`, and `false_allow_templates`. Default is `true`.
 `include_in_parent` | A Boolean value that specifies whether all fields in the child nested object should also be added to the parent document in flattened form. Default is `false`.
 `include_in_root` | A Boolean value that specifies whether all fields in the child nested object should also be added to the root document in flattened form. Default is `false`.
 `properties` | Fields of this object, which can be of any supported type. New properties can be dynamically added to this object if `dynamic` is set to `true`.

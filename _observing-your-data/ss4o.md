@@ -10,7 +10,7 @@ redirect_from:
 Introduced 2.6
 {: .label .label-purple }
 
-[Observability]({{site.url}}{{site.baseurl}}/observing-your-data/index/) is a collection of plugins and applications that let you visualize data-driven events by using Piped Processing Language (PPL) to explore and query data stored in SmartObserve. [Simple Schema for Observability](https://github.com/igsl-group/smartobserve-catalog/tree/main/docs/schema/observability), which uses the schema convention `ss4o`, is a standardization for conforming to a common and unified observability schema. With the schema in place, Observability tools can ingest, automatically extract, and aggregate data and create custom dashboards, making it easier to understand the system at a higher level.
+[Observability]({{site.url}}{{site.baseurl}}/observing-your-data/index/) is a collection of plugins and applications that let you visualize data-driven events by using Piped Processing Language (PPL) to explore and query data stored in MCdesk. [Simple Schema for Observability](https://github.com/igsl-group/mcdesk-catalog/tree/main/docs/schema/observability), which uses the schema convention `ss4o`, is a standardization for conforming to a common and unified observability schema. With the schema in place, Observability tools can ingest, automatically extract, and aggregate data and create custom dashboards, making it easier to understand the system at a higher level.
 
 The Simple Schema for Observability is inspired by both [OpenTelemetry](https://opentelemetry.io/docs/) and the Elastic Common Schema (ECS) and uses Amazon Elastic Container Service ([Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_cwe_events.html)) event logs and OpenTelemetry (OTel) metadata.
 
@@ -35,4 +35,4 @@ Schema definitions for traces and metrics are defined and supported by the Obser
 - The index structure (mapping).
 - The [index naming conventions](https://github.com/igsl-group/observability/issues/1405).
 - A JSON schema for enforcement and validation of the structure.
-- The [integration](https://github.com/igsl-group/SmartObserve-Dashboards/issues/3412) feature for adding preconfigured dashboards and assets.
+- The [integration](https://github.com/igsl-group/MCdesk-Dashboards/issues/3412) feature for adding preconfigured dashboards and assets.

@@ -7,7 +7,7 @@ nav_order: 10
 
 # Index patterns
 
-Index patterns are essential for accessing SmartObserve data. An _index pattern_ references one or more indexes, data streams, or index aliases. For example, an index pattern can point you to your log data from yesterday or all indexes that contain that data. 
+Index patterns are essential for accessing MCdesk data. An _index pattern_ references one or more indexes, data streams, or index aliases. For example, an index pattern can point you to your log data from yesterday or all indexes that contain that data. 
 
 If you store data in multiple indexes, creating an index pattern enables your visualizations to retrieve data from all indexes that match the index pattern. You need to create index patterns to define how data is retrieved and fields are formatted so that you can query, search, and display data. 
 
@@ -21,7 +21,7 @@ To create or modify index patterns, you must have create, manage, and delete per
 
 ## Prerequisites
 
-Before you can create an index pattern, your data must be indexed. To learn about indexing your data in SmartObserve, see [Managing indexes]({{site.url}}{{site.baseurl}}/im-plugin/index/). 
+Before you can create an index pattern, your data must be indexed. To learn about indexing your data in MCdesk, see [Managing indexes]({{site.url}}{{site.baseurl}}/im-plugin/index/). 
 
 ## Best practices
 
@@ -37,7 +37,7 @@ If you added sample data, you have index patterns that you can use to analyze th
 
 ### Step 1: Define the index pattern
 
-1. Go to SmartObserve Dashboards, and select **Management** > **Dashboards Management** > **Index patterns**.
+1. Go to MCdesk Dashboards, and select **Management** > **Dashboards Management** > **Index patterns**.
 2. Select **Create index pattern**.
 3. From the **Create index pattern** window, define the index pattern by entering a name for your index pattern in the **Index pattern name** field. Dashboards automatically adds a wildcard, `*`, once you start typing. Using a wildcard is helpful for matching an index pattern to multiple sources or indexes. A dropdown list displaying all the indexes that match your index pattern appears when you start typing. 
 4. Select **Next step**.
@@ -48,7 +48,7 @@ An example of step 1 is shown in the following image. Note that the index patter
 
 ### Step 2: Configure the settings
 
-1. Select `@timestamp` from the dropdown menu to specify the time field for SmartObserve to use when filtering documents based on time. Selecting this time filter determines which field the time filter is applied to. It can be the timestamp of a request or any relevant timestamp field. If you don't want to use a time filter, select that option from the dropdown menu. If you select this option, SmartObserve returns all of the data in the indexes that match the pattern.
+1. Select `@timestamp` from the dropdown menu to specify the time field for MCdesk to use when filtering documents based on time. Selecting this time filter determines which field the time filter is applied to. It can be the timestamp of a request or any relevant timestamp field. If you don't want to use a time filter, select that option from the dropdown menu. If you select this option, MCdesk returns all of the data in the indexes that match the pattern.
 
 2. Select **Create index pattern.** An example is shown in the following image.
 

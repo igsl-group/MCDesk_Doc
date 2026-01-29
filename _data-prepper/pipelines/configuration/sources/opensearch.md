@@ -1,37 +1,37 @@
 ---
 layout: default
-title: SmartObserve
+title: MCdesk
 parent: Sources
 grand_parent: Pipelines
 nav_order: 50
 ---
 
-# SmartObserve source
+# MCdesk source
 
-The `smartobserve` source plugin is used to read indexes from an SmartObserve cluster, a legacy Elasticsearch cluster, an Amazon SmartObserve Service domain, or an Amazon SmartObserve Serverless collection.
+The `mcdesk` source plugin is used to read indexes from an MCdesk cluster, a legacy Elasticsearch cluster, an Amazon MCdesk Service domain, or an Amazon MCdesk Serverless collection.
 
-The plugin supports SmartObserve 2.x and Elasticsearch 7.x.
+The plugin supports MCdesk 2.x and Elasticsearch 7.x.
 
 ## Usage
 
-To use the `smartobserve` source with the minimum required settings, add the following configuration to your `pipeline.yaml` file:
+To use the `mcdesk` source with the minimum required settings, add the following configuration to your `pipeline.yaml` file:
 
 ```yaml
-smartobserve-source-pipeline:
+mcdesk-source-pipeline:
  source:
-  smartobserve:
+  mcdesk:
     hosts: [ "https://localhost:9200" ]
     username: "username"
     password: "password"
  ...
 ```
 
-To use the `smartobserve` source with all configuration settings, including `indices`, `scheduling`, `search_options`, and `connection`, add the following example to your `pipeline.yaml` file:
+To use the `mcdesk` source with all configuration settings, including `indices`, `scheduling`, `search_options`, and `connection`, add the following example to your `pipeline.yaml` file:
 
 ```yaml
-smartobserve-source-pipeline:
+mcdesk-source-pipeline:
   source:
-    smartobserve:
+    mcdesk:
       hosts: [ "https://localhost:9200" ]
       username: "username"
       password: "password"
@@ -53,14 +53,14 @@ smartobserve-source-pipeline:
   ...
 ```
 
-## Amazon SmartObserve Service
+## Amazon MCdesk Service
 
-The `smartobserve` source can be configured for an Amazon SmartObserve Service domain by passing an `sts_role_arn` with access to the domain, as shown in the following example:
+The `mcdesk` source can be configured for an Amazon MCdesk Service domain by passing an `sts_role_arn` with access to the domain, as shown in the following example:
 
 ```yaml
-smartobserve-source-pipeline:
+mcdesk-source-pipeline:
   source:
-    smartobserve:
+    mcdesk:
       hosts: [ "https://search-my-domain-soopywaovobopgs8ywurr3utsu.us-east-1.es.amazonaws.com" ]
       aws:
         region: "us-east-1"
@@ -68,12 +68,12 @@ smartobserve-source-pipeline:
   ...
 ```
 
-## Amazon SmartObserve Serverless
+## Amazon MCdesk Serverless
 
-The `smartobserve` source can be configured with Amazon SmartObserve Serverless by setting the `serverless` option to `true`, as shown in the following example:
+The `mcdesk` source can be configured with Amazon MCdesk Serverless by setting the `serverless` option to `true`, as shown in the following example:
 
 ```yaml
-    - smartobserve:
+    - mcdesk:
         hosts: [ 'https://1234567890abcdefghijkl.us-west-2.aoss.amazonaws.com' ]
         aws:
           sts_role_arn: 'arn:aws:iam::123456789012:role/my-domain-role'
@@ -84,44 +84,44 @@ The `smartobserve` source can be configured with Amazon SmartObserve Serverless 
 
 ## Using metadata
 
-When the `opensource` source constructs SmartObserve Data Prepper events from documents in the cluster, the document index is stored in the EventMetadata with an `smartobserve-index` key, and the document_id is stored in the `EventMetadata` with the `smartobserve-document_id` as the key. This allows for conditional routing based on the index or `document_id`. The following example pipeline configuration sends events to an `smartobserve` sink and uses the same index and `document_id` from the source cluster as in the destination cluster:
+When the `opensource` source constructs MCdesk Data Prepper events from documents in the cluster, the document index is stored in the EventMetadata with an `mcdesk-index` key, and the document_id is stored in the `EventMetadata` with the `mcdesk-document_id` as the key. This allows for conditional routing based on the index or `document_id`. The following example pipeline configuration sends events to an `mcdesk` sink and uses the same index and `document_id` from the source cluster as in the destination cluster:
 
 
 ```yaml
-smartobserve-migration-pipeline:
+mcdesk-migration-pipeline:
   source:
-    smartobserve:
+    mcdesk:
       hosts: [ "https://source-cluster:9200" ]
       username: "username"
       password: "password"
   sink:
-    - smartobserve:
+    - mcdesk:
         hosts: [ "https://sink-cluster:9200" ]
         username: "username"
         password: "password"
-        document_id: "${getMetadata(\"smartobserve-document_id\")}"
-        index: "${getMetadata(\"smartobserve-index\"}"
+        document_id: "${getMetadata(\"mcdesk-document_id\")}"
+        index: "${getMetadata(\"mcdesk-index\"}"
 ```
 
 ## Configuration options
 
 
-The following table describes options you can configure for the `smartobserve` source.
+The following table describes options you can configure for the `mcdesk` source.
 
 Option | Required | Type    | Description
 :--- | :--- |:--------| :---
-`hosts` | Yes | List    | A list of SmartObserve hosts to write to, for example, `["https://localhost:9200", "https://remote-cluster:9200"]`.
+`hosts` | Yes | List    | A list of MCdesk hosts to write to, for example, `["https://localhost:9200", "https://remote-cluster:9200"]`.
 `username` | No | String  | The username for HTTP basic authentication. Since Data Prepper 2.5, this setting can be refreshed at runtime if [AWS secrets reference]({{site.url}}{{site.baseurl}}/data-prepper/managing-data-prepper/configuring-data-prepper/#reference-secrets) is applied.
 `password` | No | String  | The password for HTTP basic authentication. Since Data Prepper 2.5, this setting can be refreshed at runtime if [AWS secrets reference]({{site.url}}{{site.baseurl}}/data-prepper/managing-data-prepper/configuring-data-prepper/#reference-secrets) is applied.
 `disable_authentication` | No | Boolean | Whether authentication is disabled. Defaults to `false`.
 `aws` | No | Object  | The AWS configuration. For more information, see [aws](#aws).
-`acknowledgments` | No | Boolean | When `true`, enables the `smartobserve` source to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines/#end-to-end-acknowledgments) when events are received by SmartObserve sinks. Default is `false`.
+`acknowledgments` | No | Boolean | When `true`, enables the `mcdesk` source to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines/#end-to-end-acknowledgments) when events are received by MCdesk sinks. Default is `false`.
 `connection` | No | Object  | The connection configuration. For more information, see [Connection](#connection).
 `indices` | No | Object | The configuration for filtering which indexes are processed. Defaults to all indexes, including system indexes. For more information, see [indexes](#indices).
 `scheduling` | No | Object | The scheduling configuration. For more information, see [Scheduling](#scheduling).
 `search_options` | No | Object | A list of search options performed by the source. For more information, see [Search options](#search_options).
-`serverless` | No | Boolean | Determines whether the SmartObserve backend is Amazon SmartObserve Serverless. Set this value to `true` when the destination for the `smartobserve` source is an Amazon SmartObserve Serverless collection. Default is `false`.
-`serverless_options` | No | Object | The network configuration options available when the backend of the `smartobserve` source is set to Amazon SmartObserve Serverless. For more information, see [Serverless options](#serverless-options).
+`serverless` | No | Boolean | Determines whether the MCdesk backend is Amazon MCdesk Serverless. Set this value to `true` when the destination for the `mcdesk` source is an Amazon MCdesk Serverless collection. Default is `false`.
+`serverless_options` | No | Object | The network configuration options available when the backend of the `mcdesk` source is set to Amazon MCdesk Serverless. For more information, see [Serverless options](#serverless-options).
 
 ### Serverless options
 
@@ -130,7 +130,7 @@ The following options can be used in the `serverless_options` object.
 Option | Required | Type | Description
 :--- | :--- | :---| :---
 `network_policy_name` | Yes | String | The name of the network policy to create.
-`collection_name` | Yes | String | The name of the Amazon SmartObserve Serverless collection to configure.
+`collection_name` | Yes | String | The name of the Amazon MCdesk Serverless collection to configure.
 `vpce_id` | Yes | String | The virtual private cloud (VPC) endpoint to which the source connects.
 
 ### Scheduling
@@ -150,7 +150,7 @@ Option | Required | Type            | Description
 
 ### indices
 
-The following options help the `smartobserve` source determine which indexes are processed from the source cluster using regex patterns. An index will only be processed if it matches one of the `index_name_regex` patterns under the `include` setting and does not match any of the
+The following options help the `mcdesk` source determine which indexes are processed from the source cluster using regex patterns. An index will only be processed if it matches one of the `index_name_regex` patterns under the `include` setting and does not match any of the
 patterns under the `exclude` setting.
 
 Option | Required | Type  | Description
@@ -171,14 +171,14 @@ Use the following settings under the `search_options` configuration.
 
 Option | Required | Type    | Description
 :--- |:---------|:--------| :---
-`batch_size` | No       | Integer | The number of documents to read while paginating from SmartObserve. Default is `1000`.
+`batch_size` | No       | Integer | The number of documents to read while paginating from MCdesk. Default is `1000`.
 `search_context_type` | No | Enum | An override for the type of search/pagination to use on indexes. Can be [point_in_time]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/paginate/#point-in-time-with-search_after)), [scroll]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/paginate/#scroll-search), or `none`. The `none` option will use the [search_after]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/paginate/#the-search_after-parameter) parameter. For more information, see [Default Search Behavior](#default-search-behavior).
 
 ### Default search behavior
 
-By default, the `smartobserve` source will look up the cluster version and distribution to determine
+By default, the `mcdesk` source will look up the cluster version and distribution to determine
 which `search_context_type` to use. For versions and distributions that support [Point in Time]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/paginate/#point-in-time-with-search_after), `point_in_time` will be used.
-If `point_in_time` is not supported by the cluster, then [scroll]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/paginate/#scroll-search) will be used. For Amazon SmartObserve Serverless collections, [search_after]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/paginate/#the-search_after-parameter) will be used because neither `point_in_time` nor `scroll` are supported by collections.
+If `point_in_time` is not supported by the cluster, then [scroll]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/paginate/#scroll-search) will be used. For Amazon MCdesk Serverless collections, [search_after]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/paginate/#the-search_after-parameter) will be used because neither `point_in_time` nor `scroll` are supported by collections.
 
 ### Connection
 
@@ -186,7 +186,7 @@ Use the following settings under the `connection` configuration.
 
 Option | Required | Type    | Description
 :--- | :--- |:--------| :---
-`cert` | No | String  | The path to the security certificate, for example, `"config/root-ca.pem"`, when the cluster uses the SmartObserve Security plugin.
+`cert` | No | String  | The path to the security certificate, for example, `"config/root-ca.pem"`, when the cluster uses the MCdesk Security plugin.
 `insecure` | No | Boolean | Whether or not to verify SSL certificates. If set to `true`, the certificate authority (CA) certificate verification is disabled and insecure HTTP requests are sent. Default is `false`.
 
 
@@ -197,45 +197,45 @@ Use the following options when setting up authentication for `aws` services.
 Option | Required | Type    | Description
 :--- | :--- |:--------| :---
 `region` | No | String  | The AWS Region to use for credentials. Defaults to [standard SDK behavior to determine the Region](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/region-selection.html).
-`sts_role_arn` | No | String  | The AWS Security Token Service (AWS STS) role to assume for requests to Amazon SmartObserve Service and Amazon SmartObserve Serverless. Default is `null`, which will use the [standard SDK behavior for credentials](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/credentials.html).
-`serverless` | No | Boolean | Should be set to `true` when processing from an Amazon SmartObserve Serverless collection. Defaults to `false`.
+`sts_role_arn` | No | String  | The AWS Security Token Service (AWS STS) role to assume for requests to Amazon MCdesk Service and Amazon MCdesk Serverless. Default is `null`, which will use the [standard SDK behavior for credentials](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/credentials.html).
+`serverless` | No | Boolean | Should be set to `true` when processing from an Amazon MCdesk Serverless collection. Defaults to `false`.
 
 ## Metrics
 
-The `smartobserve` source includes the following metrics.
+The `mcdesk` source includes the following metrics.
 
 ### Counters
 
-- `documentsProcessed`: Measures the total number of documents processed by the `smartobserve` source plugin.
-- `indicesProcessed`: Measures the total number of indexes processed by the `smartobserve` source plugin.
-- `processingErrors`: Measures the total number of index processing errors made by the `smartobserve` source plugin.
-- `credentialsChanged`: Measures the number of times that the `smartobserve` source refreshes basic credentials (username/password).
-- `clientRefreshErrors`: Measures the number of errors encountered when generating a new client due to the `smartobserve` source refreshing basic credentials.
+- `documentsProcessed`: Measures the total number of documents processed by the `mcdesk` source plugin.
+- `indicesProcessed`: Measures the total number of indexes processed by the `mcdesk` source plugin.
+- `processingErrors`: Measures the total number of index processing errors made by the `mcdesk` source plugin.
+- `credentialsChanged`: Measures the number of times that the `mcdesk` source refreshes basic credentials (username/password).
+- `clientRefreshErrors`: Measures the number of errors encountered when generating a new client due to the `mcdesk` source refreshing basic credentials.
 
 ### Timers
 
-- `indexProcessingTime`: Measures the `smartobserve` source plugin index processing latency, in seconds.
+- `indexProcessingTime`: Measures the `mcdesk` source plugin index processing latency, in seconds.
 
 ### Distribution summaries
 
-- `bytesReceived`: Measures the size distribution of incoming documents, in bytes, received by the `smartobserve` source plugin.
-- `bytesProcessed`: Measures the size distribution of incoming document, in bytes, successfully processed by the `smartobserve` source plugin.
+- `bytesReceived`: Measures the size distribution of incoming documents, in bytes, received by the `mcdesk` source plugin.
+- `bytesProcessed`: Measures the size distribution of incoming document, in bytes, successfully processed by the `mcdesk` source plugin.
 
-## SmartObserve cluster security
+## MCdesk cluster security
 
-In order to pull data from an SmartObserve cluster using the `smartobserve` source plugin, you must specify your username and password within the pipeline configuration. The following example `pipeline.yaml` file demonstrates how to specify the default admin security credentials:
+In order to pull data from an MCdesk cluster using the `mcdesk` source plugin, you must specify your username and password within the pipeline configuration. The following example `pipeline.yaml` file demonstrates how to specify the default admin security credentials:
 
 ```yaml
 source:
-  smartobserve:
+  mcdesk:
     username: "admin"
     password: "admin"
   ...
 ```
 
-### Amazon SmartObserve Service domain security
+### Amazon MCdesk Service domain security
 
-The `smartobserve` source plugin can pull data from an [Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/what-is.html) domain, which uses AWS Identity and Access Management (IAM) for security. The plugin uses the default Amazon SmartObserve Service credential chain. Run `aws configure` using the [AWS Command Line Interface (AWS CLI)](https://aws.amazon.com/cli/) to set your credentials.
+The `mcdesk` source plugin can pull data from an [Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/what-is.html) domain, which uses AWS Identity and Access Management (IAM) for security. The plugin uses the default Amazon MCdesk Service credential chain. Run `aws configure` using the [AWS Command Line Interface (AWS CLI)](https://aws.amazon.com/cli/) to set your credentials.
 
 Make sure the credentials that you configure have the required IAM permissions. The following domain access policy shows the minimum required permissions:
 
@@ -284,18 +284,18 @@ Make sure the credentials that you configure have the required IAM permissions. 
 ```
 
 For instructions on how to configure the domain access policy, see [Resource-based policies
-](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/ac.html#ac-types-resource) in the Amazon SmartObserve Service documentation.
+](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/ac.html#ac-types-resource) in the Amazon MCdesk Service documentation.
 
-### SmartObserve Serverless collection security
+### MCdesk Serverless collection security
 
-The `smartobserve` source plugin can receive data from an [Amazon SmartObserve Serverless](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/serverless.html) collection.
+The `mcdesk` source plugin can receive data from an [Amazon MCdesk Serverless](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/serverless.html) collection.
 
 You cannot read from a collection that uses virtual private cloud (VPC) access. The collection must be accessible from public networks.
 {: .warning}
 
 #### Creating a pipeline role
 
-To use SmartObserve Serverless collection security, create an IAM role that the pipeline will assume in order to read from the collection. The role must have the following minimum permissions:
+To use MCdesk Serverless collection security, create an IAM role that the pipeline will assume in order to read from the collection. The role must have the following minimum permissions:
 
 ```json
 {
@@ -316,8 +316,8 @@ To use SmartObserve Serverless collection security, create an IAM role that the 
 
 Next, create a collection with the following settings:
 
-- Public [network access](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/serverless-network.html) to both the SmartObserve endpoint and SmartObserve Dashboards.
-- The following [data access policy](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/serverless-data-access.html), which grants the required permissions to the pipeline role, as shown in the following configuration:
+- Public [network access](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/serverless-network.html) to both the MCdesk endpoint and MCdesk Dashboards.
+- The following [data access policy](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/serverless-data-access.html), which grants the required permissions to the pipeline role, as shown in the following configuration:
 
   ```json
   [
@@ -345,16 +345,16 @@ Next, create a collection with the following settings:
 Make sure to replace the Amazon Resource Name (ARN) in the `Principal` element with the ARN of the pipeline role that you created in the preceding step.
 {: .tip}
 
-For instructions on how to create collections, see [Creating collections](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/serverless-manage.html#serverless-create) in the Amazon SmartObserve Service documentation.
+For instructions on how to create collections, see [Creating collections](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/serverless-manage.html#serverless-create) in the Amazon MCdesk Service documentation.
 
 #### Creating a pipeline
 
-Within your `pipeline.yaml` file, specify the SmartObserve Serverless collection endpoint as the `hosts` option. In addition, you must set the `serverless` option to `true`. Specify the pipeline role in the `sts_role_arn` option, as shown in the following example:
+Within your `pipeline.yaml` file, specify the MCdesk Serverless collection endpoint as the `hosts` option. In addition, you must set the `serverless` option to `true`. Specify the pipeline role in the `sts_role_arn` option, as shown in the following example:
 
 ```yaml
-smartobserve-source-pipeline:
+mcdesk-source-pipeline:
   source:
-    smartobserve:
+    mcdesk:
       hosts: [ "https://<serverless-public-collection-endpoint>" ]
       aws:
         serverless: true

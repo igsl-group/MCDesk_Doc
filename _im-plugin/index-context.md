@@ -3,19 +3,19 @@ layout: default
 title: Index context
 nav_order: 20
 redirect_from:
-  - /smartobserve/index-context/
+  - /mcdesk/index-context/
 ---
 
 # Index context
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
-Index context declares the use case for an index. Using the context information, SmartObserve applies a predetermined set of settings and mappings, which provides the following benefits:
+Index context declares the use case for an index. Using the context information, MCdesk applies a predetermined set of settings and mappings, which provides the following benefits:
 
 - Optimized performance
 - Settings tuned to your specific use case
-- Accurate mappings and aliases based on [SmartObserve Integrations]({{site.url}}{{site.baseurl}}/integrations/)
+- Accurate mappings and aliases based on [MCdesk Integrations]({{site.url}}{{site.baseurl}}/integrations/)
 
 The settings and metadata configuration that are applied using component templates are automatically loaded when your cluster starts. Component templates that start with `@abc_template@` or Application-Based Configuration (ABC) templates can only be used through a `context` object declaration, in order to prevent configuration issues.
 {: .warning}
@@ -25,11 +25,11 @@ The settings and metadata configuration that are applied using component templat
 
 To install the index context feature:
 
-1. Install the `smartobserve-system-templates` plugin on all nodes in your cluster using one of the [installation methods]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/#install).
+1. Install the `mcdesk-system-templates` plugin on all nodes in your cluster using one of the [installation methods]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/#install).
 
-2. Set the feature flag `smartobserve.experimental.feature.application_templates.enabled` to `true`. For more information about enabling and disabling feature flags, see [Enabling experimental features]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/experimental/).
+2. Set the feature flag `mcdesk.experimental.feature.application_templates.enabled` to `true`. For more information about enabling and disabling feature flags, see [Enabling experimental features]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/experimental/).
 
-3. Set the `cluster.application_templates.enabled` setting to `true`. For instructions on how to configure SmartObserve, see [configuring settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/#static-settings).
+3. Set the `cluster.application_templates.enabled` setting to `true`. For instructions on how to configure MCdesk, see [configuring settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/#static-settings).
 
 ## Using the `context` setting
 
@@ -159,7 +159,7 @@ If there is any conflict between any settings, mappings, or aliases directly dec
 
 ## Available context templates
 
-The following templates are available to be used through the `context` parameter as of SmartObserve 2.17:
+The following templates are available to be used through the `context` parameter as of MCdesk 2.17:
 
 - `logs`
 - `metrics`
@@ -170,6 +170,6 @@ The following templates are available to be used through the `context` parameter
 - `apache-web-logs`
 - `k8s-logs`
 
-For more information about these templates, see the [SmartObserve system templates repository](https://github.com/igsl-group/smartobserve-system-templates/tree/main/src/main/resources/org/smartobserve/system/applicationtemplates/v1).
+For more information about these templates, see the [MCdesk system templates repository](https://github.com/igsl-group/mcdesk-system-templates/tree/main/src/main/resources/org/mcdesk/system/applicationtemplates/v1).
 
 To view the current version of these templates on your cluster, use `GET /_component_template`.

@@ -65,7 +65,7 @@ Next, populate the data with three departments and three employees. The parent-c
 | `Engineering` | `Carl Carter` |
 | `HR` | none |
 
-The `routing` parameter ensures that both parent and child documents are stored on the same shard, which is required in order for parent-child relationships to function correctly in SmartObserve:
+The `routing` parameter ensures that both parent and child documents are stored on the same shard, which is required in order for parent-child relationships to function correctly in MCdesk:
 
 ```json
 POST _bulk?routing=1

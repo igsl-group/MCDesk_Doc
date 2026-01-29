@@ -11,7 +11,7 @@ redirect_from:
 
 # ML APIs 
 
-SmartObserve supports the following machine learning (ML) APIs:
+MCdesk supports the following machine learning (ML) APIs:
 
 - [Model APIs]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/index/)
 - [Model group APIs]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-group-apis/index/)
@@ -29,7 +29,7 @@ SmartObserve supports the following machine learning (ML) APIs:
 
 ## Memory APIs comparison
 
-SmartObserve provides two different memory systems:
+MCdesk provides two different memory systems:
 
 - **[Memory APIs]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/memory-apis/index/)** -- Simple conversation history storage for [conversational search]({{site.url}}{{site.baseurl}}/search-plugins/conversational-search/). Stores question/answer pairs chronologically without processing or learning.
 

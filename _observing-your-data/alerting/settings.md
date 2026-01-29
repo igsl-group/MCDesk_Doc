@@ -18,7 +18,7 @@ Index | Purpose
 :--- | :---
 `.opendistro-alerting-alerts` | Stores ongoing alerts.
 `.opendistro-alerting-alert-history-<date>` | Stores a history of completed alerts.
-`.opendistro-alerting-config` | Stores monitors, triggers, and destinations. [Take a snapshot]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/snapshot-restore) of this index to back up your alerting configuration.
+`.opendistro-alerting-config` | Stores monitors, triggers, and destinations. [Take a snapshot]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/snapshot-restore) of this index to back up your alerting configuration.
 `.opendistro-alerting-alert-history-write` (alias) | Provides a consistent URI for the `.opendistro-alerting-alert-history-<date>` index.
 
 All alerting indexes are hidden by default. For a summary, make the following request:
@@ -32,14 +32,14 @@ GET _cat/indices?expand_wildcards=open,hidden
 
 We don't recommend changing these settings; the defaults should work well for most use cases.
 
-All settings are available using the SmartObserve `_cluster/settings` API. None require a restart, and all can be marked `persistent` or `transient`. To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+All settings are available using the MCdesk `_cluster/settings` API. None require a restart, and all can be marked `persistent` or `transient`. To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 Setting | Default | Description
 :--- | :--- | :---
 `plugins.scheduled_jobs.enabled` | true | Whether the alerting plugin is enabled or not. If disabled, all monitors immediately stop running.
 `plugins.alerting.index_timeout` | 60s | The timeout for creating monitors and destinations using the REST APIs.
 `plugins.alerting.request_timeout` | 10s | The timeout for miscellaneous requests from the plugin.
-`plugins.alerting.action_throttle_max_value` | 24h | The maximum amount of time you can set for action throttling. By default, this value displays as 1440 minutes in SmartObserve Dashboards.
+`plugins.alerting.action_throttle_max_value` | 24h | The maximum amount of time you can set for action throttling. By default, this value displays as 1440 minutes in MCdesk Dashboards.
 `plugins.alerting.input_timeout` | 30s | How long the monitor can take to issue the search request.
 `plugins.alerting.bulk_timeout` | 120s | How long the monitor can write alerts to the alert index.
 `plugins.alerting.alert_backoff_count` | 3 | The number of retries for writing alerts before the operation fails.
@@ -61,9 +61,9 @@ Setting | Default | Description
 `plugins.scheduled_jobs.sweeper.retry_count` | 3 | The total number of times the sweeper should retry before throwing an error.
 `plugins.scheduled_jobs.request_timeout` | 10s | The timeout for the request that sweeps shards for jobs.
 `plugins.alerting.comments_enabled` | `false` | Enables or disables comments for the Alerting plugin.
-`plugins.alerting.comments_history_max_docs` | 1000 | The maximum number of comments to store in the `.smartobserve-alerting-comments-history-<date>` index before creating a new index.
-`plugins.alerting.comments_history_max_age` | 30d | The oldest document to store in an `.smartobserve-alerting-comments-history-<date>` index before creating a new one. If the number of comments in the specified time period does not exceed `comments_history_max_docs`, then 1 index is created per period (for example, 1 every 30 days).
-`plugins.alerting.comments_history_rollover_period` | 12h | How often to determine whether the `.smartobserve-alerting-comments-history-write` alias should roll over to a new index and delete old comment history indexes.
+`plugins.alerting.comments_history_max_docs` | 1000 | The maximum number of comments to store in the `.mcdesk-alerting-comments-history-<date>` index before creating a new index.
+`plugins.alerting.comments_history_max_age` | 30d | The oldest document to store in an `.mcdesk-alerting-comments-history-<date>` index before creating a new one. If the number of comments in the specified time period does not exceed `comments_history_max_docs`, then 1 index is created per period (for example, 1 every 30 days).
+`plugins.alerting.comments_history_rollover_period` | 12h | How often to determine whether the `.mcdesk-alerting-comments-history-write` alias should roll over to a new index and delete old comment history indexes.
 `plugins.alerting.comments_history_retention_period` | 60d | The amount of time to keep comment history indexes before automatic deletion.
 `plugins.alerting.max_comment_character_length` | 2000 | The maximum character length of a comment.
 `plugins.alerting.max_comments_per_alert` | 500 | The maximum number of comments that can be posted on an alert.

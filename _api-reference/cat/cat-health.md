@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 20
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-health/
+- /mcdesk/rest-api/cat/cat-health/
 ---
 
 # CAT Health API

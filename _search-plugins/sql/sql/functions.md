@@ -120,7 +120,7 @@ You can specify the following options in any order:
 
 ### Example of using `query_string` in SQL and PPL queries:
 
-The following is a sample REST API search request in SmartObserve DSL.
+The following is a sample REST API search request in MCdesk DSL.
 
 ```json
 GET accounts/_search

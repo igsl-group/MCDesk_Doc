@@ -6,7 +6,7 @@ nav_order: 2
 grand_parent: Availability and recovery
 has_children: false
 redirect_from: 
-  - /smartobserve/stats-api/
+  - /mcdesk/stats-api/
 ---
 
 # Stats API

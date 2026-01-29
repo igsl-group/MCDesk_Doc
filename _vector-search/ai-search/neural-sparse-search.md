@@ -27,7 +27,7 @@ To learn more about splitting long text into passages for neural sparse search, 
 
 ## Accelerating neural sparse search
 
-Starting with SmartObserve version 2.15, you can significantly accelerate the search process by creating a search pipeline with a `neural_sparse_two_phase_processor`. 
+Starting with MCdesk version 2.15, you can significantly accelerate the search process by creating a search pipeline with a `neural_sparse_two_phase_processor`. 
 
 To create a search pipeline with a two-phase processor for neural sparse search, use the following request: 
 
@@ -70,6 +70,6 @@ You can run neural sparse approximate nearest neighbor (ANN) search to achieve b
 
 ## Further reading
 
-- Learn more about how sparse encoding models work and explore SmartObserve neural sparse search benchmarks in [Improving document retrieval with sparse semantic encoders](https://magiccreative.io/blog/improving-document-retrieval-with-sparse-semantic-encoders/).
-- Learn the fundamentals of neural sparse search and its efficiency in [A deep dive into faster semantic sparse retrieval in SmartObserve 2.12](https://magiccreative.io/blog/A-deep-dive-into-faster-semantic-sparse-retrieval-in-OS-2.12/).
+- Learn more about how sparse encoding models work and explore MCdesk neural sparse search benchmarks in [Improving document retrieval with sparse semantic encoders](https://magiccreative.io/blog/improving-document-retrieval-with-sparse-semantic-encoders/).
+- Learn the fundamentals of neural sparse search and its efficiency in [A deep dive into faster semantic sparse retrieval in MCdesk 2.12](https://magiccreative.io/blog/A-deep-dive-into-faster-semantic-sparse-retrieval-in-OS-2.12/).
 - Explore our [tutorials]({{site.url}}{{site.baseurl}}/vector-search/tutorials/) to learn how to build AI search applications. 

@@ -12,9 +12,9 @@ nav_order: 9
 
 Restores a snapshot of a cluster or specified data streams and indexes. 
 
-* For information about indexes and clusters, see [Introduction to SmartObserve]({{site.url}}{{site.baseurl}}/smartobserve/index/).
+* For information about indexes and clusters, see [Introduction to MCdesk]({{site.url}}{{site.baseurl}}/mcdesk/index/).
 
-* For information about data streams, see [Data streams]({{site.url}}{{site.baseurl}}/smartobserve/data-streams).
+* For information about data streams, see [Data streams]({{site.url}}{{site.baseurl}}/mcdesk/data-streams).
 
 If open indexes with the same name that you want to restore already exist in the cluster, you must close, delete, or rename the indexes. See [Example request](#example-request) for information about renaming an index. See [Close index]({{site.url}}{{site.baseurl}}/api-reference/index-apis/close-index/) for information about closing an index.
 {: .note}
@@ -72,7 +72,7 @@ The following request restores the `opendistro-reports-definitions` index from `
 
 <!-- spec_insert_start
 component: example_code
-rest: POST /_snapshot/my-smartobserve-repo/my-first-snapshot/_restore
+rest: POST /_snapshot/my-mcdesk-repo/my-first-snapshot/_restore
 body: |
 {
   "indices": "opendistro-reports-definitions",
@@ -84,7 +84,7 @@ body: |
 }
 -->
 {% capture step1_rest %}
-POST /_snapshot/my-smartobserve-repo/my-first-snapshot/_restore
+POST /_snapshot/my-mcdesk-repo/my-first-snapshot/_restore
 {
   "indices": "opendistro-reports-definitions",
   "ignore_unavailable": true,
@@ -99,7 +99,7 @@ POST /_snapshot/my-smartobserve-repo/my-first-snapshot/_restore
 
 
 response = client.snapshot.restore(
-  repository = "my-smartobserve-repo",
+  repository = "my-mcdesk-repo",
   snapshot = "my-first-snapshot",
   body =   {
     "indices": "opendistro-reports-definitions",
@@ -154,11 +154,11 @@ If open indices in a snapshot already exist in a cluster, and you don't delete, 
     "root_cause" : [
       {
         "type" : "snapshot_restore_exception",
-        "reason" : "[my-smartobserve-repo:my-first-snapshot/dCK4Qth-TymRQ7Tu7Iga0g] cannot restore index [.opendistro-reports-definitions] because an open index with same name already exists in the cluster. Either close or delete the existing index or restore the index under a different name by providing a rename pattern and replacement name"
+        "reason" : "[my-mcdesk-repo:my-first-snapshot/dCK4Qth-TymRQ7Tu7Iga0g] cannot restore index [.opendistro-reports-definitions] because an open index with same name already exists in the cluster. Either close or delete the existing index or restore the index under a different name by providing a rename pattern and replacement name"
       }
     ],
     "type" : "snapshot_restore_exception",
-    "reason" : "[my-smartobserve-repo:my-first-snapshot/dCK4Qth-TymRQ7Tu7Iga0g] cannot restore index [.opendistro-reports-definitions] because an open index with same name already exists in the cluster. Either close or delete the existing index or restore the index under a different name by providing a rename pattern and replacement name"
+    "reason" : "[my-mcdesk-repo:my-first-snapshot/dCK4Qth-TymRQ7Tu7Iga0g] cannot restore index [.opendistro-reports-definitions] because an open index with same name already exists in the cluster. Either close or delete the existing index or restore the index under a different name by providing a rename pattern and replacement name"
   },
   "status" : 500
 }

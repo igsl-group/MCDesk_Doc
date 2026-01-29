@@ -7,13 +7,13 @@ nav_order: 40
 
 # Advanced settings
 
-Use the **Advanced settings** page to modify settings that govern SmartObserve Dashboards behavior. These settings can be used to customize the look and feel of the application, change the behavior of certain features, and more. A view of the interface is shown in the following image.
+Use the **Advanced settings** page to modify settings that govern MCdesk Dashboards behavior. These settings can be used to customize the look and feel of the application, change the behavior of certain features, and more. A view of the interface is shown in the following image.
 
-<img src="{{site.url}}{{site.baseurl}}/images/dashboards/advanced-settings.png" alt="Advanced settings interface in SmartObserve 2.14" width="700"/>
+<img src="{{site.url}}{{site.baseurl}}/images/dashboards/advanced-settings.png" alt="Advanced settings interface in MCdesk 2.14" width="700"/>
 
 To access **Advanced settings**, go to **Dashboards Management** and select **Advanced settings**. The page is divided into the following sections: [General](#general-settings), [Appearance](#appearance-settings), [Discover](#discover-settings), [Notifications](#notifications-settings), [Search](#search-settings), [Timeline](#timeline-settings), and [Visualization](#visualization-settings). Each section contains a set of its respective settings. You can modify these settings by editing their fields. Once you've made the changes, select **Save** to apply them.
 
-{::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/alert-icon.png" class="inline-icon" alt="alert icon"/>{:/} **Note**<br>Certain settings require you to modify [the `smartobserve_dashboards.yml` file](https://github.com/igsl-group/SmartObserve-Dashboards/blob/main/config/smartobserve_dashboards.yml) and restart SmartObserve Dashboards.
+{::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/alert-icon.png" class="inline-icon" alt="alert icon"/>{:/} **Note**<br>Certain settings require you to modify [the `mcdesk_dashboards.yml` file](https://github.com/igsl-group/MCdesk-Dashboards/blob/main/config/mcdesk_dashboards.yml) and restart MCdesk Dashboards.
 {: .note}
 
 ## Required permissions
@@ -35,10 +35,10 @@ Setting | Description
 `dateFormat`  | Defines the format for displaying dates. Default is `MMM D, YYYY @ HH:mm:ss.SSS`.  |
 `dateFormat:dow`  | Defines the day on which to start the week. Default is `Sunday`.  |
 `dateFormat:scaled`  | Defines the format for timestamps. The timestamp format changes depending on the amount of time between measurements (hour, minutes, seconds, and milliseconds). The keys are time periods in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format: `YYYY-MM-DD`.   |
-`dateFormat:tz`  | Defines the time zone for SmartObserve Dashboards. Default is the time zone detected by your browser.  |
+`dateFormat:tz`  | Defines the time zone for MCdesk Dashboards. Default is the time zone detected by your browser.  |
 `dateNanosFormat`  | Defines the format for representing dates with nanoseconds. Default is `MMM D, YYYY @ HH:mm:ss.SSSSSSSSS`.  |
-`defaultIndex`  | Defines the default index for all indexes in an SmartObserve cluster. If no indexes are added, `defaultIndex` is set to `null`. However, if one or more indexes are added, `defaultIndex` is assigned the value of the first index in the list. Default is `null`.  |
-`defaultRoute`  | Defines the gateway point. Use this setting to change the landing page for SmartObserve Dashboards. The setting must be a relative URL. Default is `/app/home`. |
+`defaultIndex`  | Defines the default index for all indexes in an MCdesk cluster. If no indexes are added, `defaultIndex` is set to `null`. However, if one or more indexes are added, `defaultIndex` is assigned the value of the first index in the list. Default is `null`.  |
+`defaultRoute`  | Defines the gateway point. Use this setting to change the landing page for MCdesk Dashboards. The setting must be a relative URL. Default is `/app/home`. |
 `fields:popularLimit` | Defines the number of N fields to be displayed. Default is `10`.  |
 `filterEditor:suggestValues` | Defines whether the filter editor suggests field values. Default is `Off`.  |
 `filters:pinnedByDefault`  | Defines whether filters are automatically pinned. To keep a filter visible across all applications, you can select the filter and then the **Pin across all apps** option. Default is `Off.`  |
@@ -60,7 +60,7 @@ Setting | Description
 `reporting:useOcr`  | Enables or disables optical character recognition (OCR) on PDF reports. The `reporting:useFOR` and `reporting:useOcr` options are visible only after installing the reporting plugin. Default is `Off`.  |
 `savedObjects:listingLimit`  | Defines the number of objects to fetch when viewing a listing page. Default is `1000`.  |
 `savedObjects:perPage`  | Defines the number of objects to display on each page of the load dialog. Default is `20`.  |
-`search:queryLanguage`  | Defines the query language for SmartObserve Dashboards. Default is `DQL`.  |
+`search:queryLanguage`  | Defines the query language for MCdesk Dashboards. Default is `DQL`.  |
 `shortDots:enable`  | Enables or disables the shortening of long fields. Default is `Off`.  |
 `sort:options`  | Defines the options for the sort parameter. Default is `boolean`.  |
 `state:storeInSessionStorage`  | Enables or disables URL session storage. Default is `Off`.  |
@@ -77,8 +77,8 @@ Setting | Description
 :--- | :---
 `accessibility:disableAnimations`  | Enables or disables animations. Default is `Off`.  |
 `pageNavigation`  | Defines the navigation pane style. Default is `Modern`.  |
-`theme:darkMode` | Enables or disables dark mode. Default is `Off`. Dark mode is available only in SmartObserve Dashboards versions 2.10 and later. |
-`theme:version`  | Defines the theme to use for the current and subsequent versions of SmartObserve Dashboards. Default is `v7`.  |
+`theme:darkMode` | Enables or disables dark mode. Default is `Off`. Dark mode is available only in MCdesk Dashboards versions 2.10 and later. |
+`theme:version`  | Defines the theme to use for the current and subsequent versions of MCdesk Dashboards. Default is `v7`.  |
 
 ## Discover settings
 
@@ -119,7 +119,7 @@ Setting | Description
 `courier:batchSearches`  | Enables or disables how dashboard panels load. When disabled, panels load individually, and search requests end when the user navigates away or updates the query. When enabled, all panels load together when all data is loaded, and searches do not end. Default is `Off`.  |
 `courier:customRequestPreference`  | Specifies whether to use the [request preference]({{site.url}}{{site.baseurl}}/api-reference/popular-api/) with the `custom` setting. Default is `_local`.  |
 `courier:ignoreFilterIfFieldNotInIndex`  | Enables or disables support for dashboards that contain visualizations using different indexes. When disabled, all filters are applied to all visualizations. When enabled, visualization filters are ignored if the visualization's index does not contain the field being filtered. Default is `Off`.  |
-`courier:maxConcurrentShardRequests`  | Defines the maximum number of concurrent shard requests that SmartObserve Dashboards can initiate for `_msearch` requests. Set to `0` to disable the setting and to use the default value set by SmartObserve. Default is `0`.  |
+`courier:maxConcurrentShardRequests`  | Defines the maximum number of concurrent shard requests that MCdesk Dashboards can initiate for `_msearch` requests. Set to `0` to disable the setting and to use the default value set by MCdesk. Default is `0`.  |
 `courier:setRequestPreference`  | Defines which shards handle your search requests. Options include **Session ID**, **Custom**, and **None**. **Session ID** restricts operations so that all search requests run on the same shard and reuses shard caches across requests, which can improve performance. **Custom** is used to define your own preference. Use `courier:customRequestPreference` to customize your preference value. **None** means that no preference is set. This option can provide better performance because requests can be spread across all shard copies. However, results might be inconsistent because different shards might be in different refresh states. Default is `Session ID`.  |
 `search:includeFrozen`  | Specifies whether to include frozen indexes in search results. If enabled, frozen indexes are included in search results. Searching through frozen indexes can increase the search time. Default is `Off`.  |
 
@@ -129,13 +129,13 @@ The following table describes the **Timeline** settings.
 
 Setting | Description
 :--- | :--- 
-`timeline:es.default_index`  | Defines the default SmartObserve index to be searched with the `.smartobserve()` function. If not set, then the `.smartobserve()` function will search all indexes. Default is `_all`.  | 
-`timeline:es.timefield`  | Defines the default timestamp field when using the `.smartobserve()` function. If not set, then the `.smartobserve()` function is used in the `@timestmap` field. Default is `@timestmap`.  |
+`timeline:es.default_index`  | Defines the default MCdesk index to be searched with the `.mcdesk()` function. If not set, then the `.mcdesk()` function will search all indexes. Default is `_all`.  | 
+`timeline:es.timefield`  | Defines the default timestamp field when using the `.mcdesk()` function. If not set, then the `.mcdesk()` function is used in the `@timestmap` field. Default is `@timestmap`.  |
 `timeline:graphite.url`  | (Experimental) Defines the graphite host URL.  |
 `timeline:max_buckets`   | Defines the maximum number of buckets that a single data source can return. Default is `2000`.  |
 `timeline:min_interval`  | Defines the minimum interval to calculate when using the `auto` interval. Default is `1ms`.  |
 `timeline:quandl.key`  | (Experimental) Defines your unique identifier (API key) that allows you to access Quandl's data.  |
-`timeline:target_buckets`  | Defines the number of buckets that SmartObserve Dashboards attempts to use when calculating automatic intervals in visualizations. Default is `200`.  |
+`timeline:target_buckets`  | Defines the number of buckets that MCdesk Dashboards attempts to use when calculating automatic intervals in visualizations. Default is `200`.  |
 
 ## Visualization settings
 

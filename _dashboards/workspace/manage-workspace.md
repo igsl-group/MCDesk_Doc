@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Manage workspaces
-parent: Workspace for SmartObserve Dashboards
+parent: Workspace for MCdesk Dashboards
 nav_order: 2
 ---
 
@@ -13,7 +13,7 @@ You can access and modify the workspace details, including name, description, us
 
 To access and modify your workspace details, follow these steps: 
 
-1. Open SmartObserve Dashboards and navigate to **My Workspaces**.
+1. Open MCdesk Dashboards and navigate to **My Workspaces**.
 2. Choose the desired workspace  and then select the **Edit** button to make changes
 3. Select the **Save** button to confirm changes or the **Discard changes** button to cancel modifications.
 
@@ -22,8 +22,8 @@ To access and modify your workspace details, follow these steps:
 The following permissions apply when changing workspaces:
 
 1. **Without the Security plugin:** All users can edit and update the workspace.
-2. **With the Security plugin installed and `savedObjects.permission.enabled: false` in the `config/smartobserve_dashboards.yml` file:** All users can edit and update workspaces.
-3. **With the Security plugin and `savedObjects.permission.enabled: true` in the `config/smartobserve_dashboards.yml`:** Only the [workspace owner]({{site.url}}{{site.baseurl}}/dashboards/workspace/workspace-acl/#defining-workspace-collaborators) and the [workspace admins]({{site.url}}{{site.baseurl}}/dashboards/workspace/workspace-acl/#configuring-dashboard-administrators) can edit and update workspaces.
+2. **With the Security plugin installed and `savedObjects.permission.enabled: false` in the `config/mcdesk_dashboards.yml` file:** All users can edit and update workspaces.
+3. **With the Security plugin and `savedObjects.permission.enabled: true` in the `config/mcdesk_dashboards.yml`:** Only the [workspace owner]({{site.url}}{{site.baseurl}}/dashboards/workspace/workspace-acl/#defining-workspace-collaborators) and the [workspace admins]({{site.url}}{{site.baseurl}}/dashboards/workspace/workspace-acl/#configuring-dashboard-administrators) can edit and update workspaces.
 
 ## Workspace update restrictions 
 
@@ -43,14 +43,14 @@ The **Workspace details** page features the following buttons in the upper-right
 
 1. **Delete** ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/dashboards/trash-can-icon.png" class="inline-icon" alt="trash can icon"/>{:/} icon)
     - **Without the Security plugin installed:** All users can delete the workspace.
-    - **With the Security plugins installed and `savedObjects.permission.enabled: false` in the `config/smartobserve_dashboards.yml` file:** All users can delete the workspace.
-    - **With the Security plugin installed and `savedObjects.permission.enabled: true` in the `config/smartobserve_dashboards.yml` file:** Only the admin can delete the workspace.
+    - **With the Security plugins installed and `savedObjects.permission.enabled: false` in the `config/mcdesk_dashboards.yml` file:** All users can delete the workspace.
+    - **With the Security plugin installed and `savedObjects.permission.enabled: true` in the `config/mcdesk_dashboards.yml` file:** Only the admin can delete the workspace.
 2. **Set as default workspace:** Sets the current workspace as the default login destination.
 3. **Workspace overview:** Opens the **Overview** page in a new tab.
 
 ## Adding assets to the workspace
 
-Access the **Sample data** in the navigation menu on the left. Select the appropriate dataset to install it in your cluster and SmartObserve Dashboards.
+Access the **Sample data** in the navigation menu on the left. Select the appropriate dataset to install it in your cluster and MCdesk Dashboards.
 
 ## Copying assets between workspaces
 
@@ -68,27 +68,27 @@ After selecting a copy option, choose the target workspace from the dropdown men
 Upon selecting the **Copy** button, a side panel appears showing successful and failed asset transfers. Asset copy destinations depend on the following security configurations:
  
 1. **Without the Security plugin:** All workspaces are accessible.
-2. **With the Security plugin and `savedObjects.permission.enabled: false` in the `config/smartobserve_dashboards.yml` file:** All workspaces are accessible.
-3. **With the Security plugin and `savedObjects.permission.enabled: true` in the `config/smartobserve_dashboards.yml` file:** Only workspaces for which the user has read and write or admin permissions are accessible.
+2. **With the Security plugin and `savedObjects.permission.enabled: false` in the `config/mcdesk_dashboards.yml` file:** All workspaces are accessible.
+3. **With the Security plugin and `savedObjects.permission.enabled: true` in the `config/mcdesk_dashboards.yml` file:** Only workspaces for which the user has read and write or admin permissions are accessible.
 
 ## Associating data sources
 
-On the data source management page, you can access a comprehensive list of associated SmartObserve connections, monitor direct query connections relevant to your current workspace, and establish new data source associations as needed.
+On the data source management page, you can access a comprehensive list of associated MCdesk connections, monitor direct query connections relevant to your current workspace, and establish new data source associations as needed.
 
-### Managing SmartObserve connections
+### Managing MCdesk connections
 
-The SmartObserve connections tab displays all associated connections for the current workspace. Follow these steps to manage your connections:
+The MCdesk connections tab displays all associated connections for the current workspace. Follow these steps to manage your connections:
 
-1. Access a comprehensive list of associated SmartObserve connections on the connections tab.
+1. Access a comprehensive list of associated MCdesk connections on the connections tab.
 2. Use the **Remove association** button to unlink connections as needed.
-3. Add new data sources by selecting the **SmartObserve data sources** button and subsequent modal.
-4. Select from unassociated SmartObserve connections to expand your workspace's capabilities.
+3. Add new data sources by selecting the **MCdesk data sources** button and subsequent modal.
+4. Select from unassociated MCdesk connections to expand your workspace's capabilities.
 
 ### Adding direct query connections
 
 The **Direct query connections** tab displays a list of all direct query connections associated with your current workspace. To add more direct query connections to your workspace, select the **Direct query data sources** button. A modal window opens.
 
-The association modal displays a list of SmartObserve connections that contain direct query connections and have not yet been associated with your current workspace. When you associate an SmartObserve connection with your current workspace, all direct query connections within that SmartObserve connection are automatically associated as well.
+The association modal displays a list of MCdesk connections that contain direct query connections and have not yet been associated with your current workspace. When you associate an MCdesk connection with your current workspace, all direct query connections within that MCdesk connection are automatically associated as well.
 
 ## Deleting your workspace
 
@@ -110,7 +110,7 @@ The workspaces list page serves as your central hub for workspace management, di
 - Filter: Sort workspaces by use case.
 - At a glance: View each workspace's name, use case, description, last update time, and associated data sources.
 
-Each workspace entry includes an **Actions** column with the following functional buttons. These tools streamline your workspace management, allowing for efficient organization and customization of your SmartObserve Dashboards environment:
+Each workspace entry includes an **Actions** column with the following functional buttons. These tools streamline your workspace management, allowing for efficient organization and customization of your MCdesk Dashboards environment:
 
 1. Copy ID: One-click copying of the workspace ID.
 2. Edit: Direct access to the workspace's detailed configuration page.

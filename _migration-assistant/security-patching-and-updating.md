@@ -2,7 +2,7 @@
 layout: default
 title: Security patching & updating
 nav_order: 30
-parent: Migration Assistant for SmartObserve
+parent: Migration Assistant for MCdesk
 permalink: /migration-assistant/security-patching-and-updating/
 ---
 
@@ -68,7 +68,7 @@ Rebuild the Docker images used by Migration Assistant:
 Redeploy Migration Assistant to replace existing container images with the freshly built versions:
 
 ```shell
-cd deployment/cdk/smartobserve-service-migration
+cd deployment/cdk/mcdesk-service-migration
 ./deploy.sh <contextId>
 ```
 {% include copy.html %}

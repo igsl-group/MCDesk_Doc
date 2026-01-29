@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Configuring Log4j
-parent: Managing SmartObserve Data Prepper
+parent: Managing MCdesk Data Prepper
 nav_order: 20
 ---
 
 # Configuring Log4j
 
-You can configure logging using Log4j in SmartObserve Data Prepper. 
+You can configure logging using Log4j in MCdesk Data Prepper. 
 
 ## Logging 
 

@@ -7,11 +7,11 @@ parent: Metadata fields
 
 # Routing
 
-SmartObserve uses a hashing algorithm to route documents to specific shards in an index. By default, the document's `_id` field is used as the routing value, but you can also specify a custom routing value for each document.
+MCdesk uses a hashing algorithm to route documents to specific shards in an index. By default, the document's `_id` field is used as the routing value, but you can also specify a custom routing value for each document.
 
 ## Default routing
 
-The following is the default SmartObserve routing formula. The `_routing` value is the document's `_id`. 
+The following is the default MCdesk routing formula. The `_routing` value is the document's `_id`. 
 
 ```json
 shard_num = hash(_routing) % num_primary_shards
@@ -56,7 +56,7 @@ GET sample-index1/_search
 
 ## Required routing
 
-You can make custom routing required for all CRUD operations on an index, as shown in the following example request. If you try to index a document without providing a routing value, SmartObserve will throw an exception.
+You can make custom routing required for all CRUD operations on an index, as shown in the following example request. If you try to index a document without providing a routing value, MCdesk will throw an exception.
 
 ```json
 PUT sample-index2

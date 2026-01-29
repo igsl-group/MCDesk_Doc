@@ -5,7 +5,7 @@ parent: Supported field types
 nav_order: 12
 has_children: false
 redirect_from:
-  - /smartobserve/supported-field-types/binary/
+  - /mcdesk/supported-field-types/binary/
   - /field-types/binary/
 ---
 

@@ -8,7 +8,7 @@ parent: Understanding workloads
 
 # Common operations
 
-[Test procedures]({{site.url}}{{site.baseurl}}/benchmark/user-guide/understanding-workloads/anatomy-of-a-workload#_operations-and-_test-procedures) use a variety of operations, found inside the `operations` directory of a workload. This page details the most common operations found inside SmartObserve Benchmark workloads.
+[Test procedures]({{site.url}}{{site.baseurl}}/benchmark/user-guide/understanding-workloads/anatomy-of-a-workload#_operations-and-_test-procedures) use a variety of operations, found inside the `operations` directory of a workload. This page details the most common operations found inside MCdesk Benchmark workloads.
 
 - [Common operations](#common-operations)
   - [bulk](#bulk)
@@ -120,7 +120,7 @@ The following example deletes all `logs_*` indexes:
 ## cluster-health
 <!-- vale on -->
 
-The `cluster-health` operation runs the [Cluster Health API](api-reference/cluster-api/cluster-health/), which checks the cluster health status and returns the expected status according to the parameters set for `request-params`. If an unexpected cluster health status is returned, the operation reports a failure. You can use the `--on-error` option in the SmartObserve Benchmark `run` command to control how SmartObserve Benchmark behaves when the health check fails.
+The `cluster-health` operation runs the [Cluster Health API](api-reference/cluster-api/cluster-health/), which checks the cluster health status and returns the expected status according to the parameters set for `request-params`. If an unexpected cluster health status is returned, the operation reports a failure. You can use the `--on-error` option in the MCdesk Benchmark `run` command to control how MCdesk Benchmark behaves when the health check fails.
 
 The following example creates a `cluster-health` operation that checks for a `green` health status on any `log-*` indexes:
 
@@ -160,7 +160,7 @@ The following example refreshes all `logs-*` indexes:
 ## search
 <!-- vale on -->
 
-The `search` operation runs the [Search API](/api-reference/search/), which you can use to run queries in SmartObserve Benchmark indexes.
+The `search` operation runs the [Search API](/api-reference/search/), which you can use to run queries in MCdesk Benchmark indexes.
 
 The following example runs a `match_all` query inside the `search` operation:
 

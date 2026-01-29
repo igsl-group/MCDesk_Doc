@@ -12,7 +12,7 @@ redirect_from:
 
 Field-level security lets you control which document fields a user can see. Just like [document-level security]({{site.url}}{{site.baseurl}}/security/access-control/document-level-security/), you control access by index within a role.
 
-The easiest way to get started with document- and field-level security is open SmartObserve Dashboards and choose **Security**. Then choose **Roles**, create a new role, and review the **Index permissions** section.
+The easiest way to get started with document- and field-level security is open MCdesk Dashboards and choose **Security**. Then choose **Roles**, create a new role, and review the **Index permissions** section.
 
 ---
 
@@ -64,15 +64,15 @@ If you exclude fields, users see everything *but* those fields when they retriev
 
 You can achieve the same outcomes using inclusion or exclusion, so choose whichever makes sense for your use case. Mixing the two doesn't make sense and is not supported.
 
-You can specify field-level security settings using SmartObserve Dashboards, `roles.yml`, and the REST API.
+You can specify field-level security settings using MCdesk Dashboards, `roles.yml`, and the REST API.
 
 - To exclude fields in `roles.yml` or the REST API, add `~` before the field name.
 - Field names support wildcards (`*`).
 
-  Wildcards are especially useful for excluding *subfields*. For example, if you index a document that has a string (e.g. `{"title": "Thor"}`), SmartObserve creates a `title` field of type `text`, but it also creates a `title.keyword` subfield of type `keyword`. In this example, to prevent unauthorized access to data in the `title` field, you must also exclude the `title.keyword` subfield. Use `title*` to match all fields that begin with `title`.
+  Wildcards are especially useful for excluding *subfields*. For example, if you index a document that has a string (e.g. `{"title": "Thor"}`), MCdesk creates a `title` field of type `text`, but it also creates a `title.keyword` subfield of type `keyword`. In this example, to prevent unauthorized access to data in the `title` field, you must also exclude the `title.keyword` subfield. Use `title*` to match all fields that begin with `title`.
 
 
-### SmartObserve Dashboards
+### MCdesk Dashboards
 
 1. Choose a role and **Add index permission**.
 1. Choose an index pattern.
@@ -121,4 +121,4 @@ For example, in the `movies` index, if you include `actors`, `title`, and `year`
 
 ## Interaction with document-level security
 
-[Document-level security]({{site.url}}{{site.baseurl}}/security/access-control/document-level-security/) relies on SmartObserve queries, which means that all fields in the query must be visible in order for it to work properly. If you use field-level security in conjunction with document-level security, make sure you don't restrict access to the fields that document-level security uses.
+[Document-level security]({{site.url}}{{site.baseurl}}/security/access-control/document-level-security/) relies on MCdesk queries, which means that all fields in the query must be visible in order for it to work properly. If you use field-level security in conjunction with document-level security, make sure you don't restrict access to the fields that document-level security uses.

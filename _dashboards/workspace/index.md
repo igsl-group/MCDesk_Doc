@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Getting started with workspaces
-parent: Workspace for SmartObserve Dashboards
+parent: Workspace for MCdesk Dashboards
 nav_order: 0
 redirect_from:
   - /dashboards/workspace/
@@ -11,15 +11,15 @@ redirect_from:
 Introduced 2.18
 {: .label .label-purple }
 
-SmartObserve Dashboards 2.18 introduces an enhanced home page that provides a comprehensive view of all your workspaces.
+MCdesk Dashboards 2.18 introduces an enhanced home page that provides a comprehensive view of all your workspaces.
 
 The new home page includes the following features: 
 
-1. A **Create workspace** button for [SmartObserve Dashboard admins]({{site.url}}{{site.baseurl}}/dashboards/workspace/workspace-acl/#configuring-dashboard-administrators) to navigate to the [create workspace]({{site.url}}{{site.baseurl}}/dashboards/workspace/create-workspace) page.
+1. A **Create workspace** button for [MCdesk Dashboard admins]({{site.url}}{{site.baseurl}}/dashboards/workspace/workspace-acl/#configuring-dashboard-administrators) to navigate to the [create workspace]({{site.url}}{{site.baseurl}}/dashboards/workspace/create-workspace) page.
 2. Workspace access time information and a link to the workspace overview page.
 3. A use case information icon that displays information about the workspace's purpose.
 4. A **View all workspaces** button that navigates to the [workspace management]({{site.url}}{{site.baseurl}}/dashboards/workspace/manage-workspace/#navigating-the-workspaces-list) page.
-5. Links to the latest SmartObserve documentation through the **Learn more from documentation** button and to [SmartObserve Playground](https://playground.magiccreative.io/app/home#/) through the **Explore live demo environment at playground.magiccreative.io** button.
+5. Links to the latest MCdesk documentation through the **Learn more from documentation** button and to [MCdesk Playground](https://playground.magiccreative.io/app/home#/) through the **Explore live demo environment at playground.magiccreative.io** button.
 
 The navigation logic ensures a seamless user experience by directing you to the appropriate page based on your workspace access level:
 

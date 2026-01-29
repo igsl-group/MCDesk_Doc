@@ -5,14 +5,14 @@ nav_order: 50
 parent: Cluster APIs
 redirect_from:
   - /api-reference/cluster-settings/
-  - /smartobserve/rest-api/cluster-settings/
+  - /mcdesk/rest-api/cluster-settings/
 ---
 
 # Cluster Settings API
 **Introduced 1.0**
 {: .label .label-purple }
 
-The cluster settings operation lets you check the current settings for your cluster, review default settings, and change settings. When you update a setting using the API, SmartObserve applies it to all nodes in the cluster.
+The cluster settings operation lets you check the current settings for your cluster, review default settings, and change settings. When you update a setting using the API, MCdesk applies it to all nodes in the cluster.
 
 ## Endpoints
 
@@ -39,7 +39,7 @@ The GET operation has no request body fields. All cluster setting field paramete
 Not all cluster settings can be updated using the cluster settings API. You will receive the error message `"setting [cluster.some.setting], not dynamically updateable"` when trying to configure these settings through the API.
 {: .note }
 
-For a listing of all cluster settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+For a listing of all cluster settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 
 ## Example requests
@@ -114,7 +114,7 @@ response = client.cluster.put_settings(
     python=step1_python %}
 <!-- spec_insert_end -->
 
-For more information about transient settings, persistent settings, and precedence, see [SmartObserve configuration]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/).
+For more information about transient settings, persistent settings, and precedence, see [MCdesk configuration]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/).
 
 ## Example response
 

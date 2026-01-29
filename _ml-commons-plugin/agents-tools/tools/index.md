@@ -15,7 +15,7 @@ redirect_from:
 **Introduced 2.13**
 {: .label .label-purple }
 
-A _tool_ performs a set of specific tasks. The following table lists all tools that SmartObserve supports.
+A _tool_ performs a set of specific tasks. The following table lists all tools that MCdesk supports.
 
 Specify a tool by providing its `type`, `parameters`, and, optionally, a `description`. For example, you can specify an `AgentTool` as follows:
 
@@ -40,13 +40,13 @@ You can also run tools directly without creating an agent using the [Execute Too
 |[`CreateAnomalyDetectorTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/create-anomaly-detector/)	| Enables an LLM to suggest required parameters for creating an anomaly detector. |
 |[`DataDistributionTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/data-distribution-tool/)	| Analyzes data distribution patterns within datasets and compares distributions between different time periods. |
 |[`IndexMappingTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/index-mapping-tool/)	|Retrieves index mapping and setting information for an index. |
-|[`ListIndexTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/list-index-tool/)	|Retrieves index information for the SmartObserve cluster. Introduced in SmartObserve version 3.0 as a replacement for the `CatIndexTool`. |
+|[`ListIndexTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/list-index-tool/)	|Retrieves index information for the MCdesk cluster. Introduced in MCdesk version 3.0 as a replacement for the `CatIndexTool`. |
 |[`LogPatternAnalysisTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/log-pattern-analysis-tool/)	|Performs advanced log analysis by detecting exceptional log patterns and sequences through comparative analysis. |
 |[`LogPatternTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/log-pattern-tool/)	|Analyzes log data to extract and identify recurring structural patterns across log messages. |
 |[`MLModelTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/ml-model-tool/)	|Runs machine learning models.	|
 |[`NeuralSparseSearchTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/neural-sparse-tool/)	| Performs sparse vector retrieval. |
 |[`PPLTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/ppl-tool/)	|Translates natural language into a Piped Processing Language (PPL) query.	|
-|[`QueryPlanningTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/query-planning-tool/)	|Creates and executes an SmartObserve DSL query based on a user's natural language question.	|
+|[`QueryPlanningTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/query-planning-tool/)	|Creates and executes an MCdesk DSL query based on a user's natural language question.	|
 |[`RAGTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/rag-tool/)	|Uses neural search or neural sparse search to retrieve documents and integrates a large language model to summarize the answers. |
 |[`ReadFromScratchPadTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/scratchpad-tools/)	|Reads notes and information from an agent's temporary scratchpad memory during execution. |
 |[`SearchAlertsTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/search-alerts-tool/)	|Searches for alerts.	|
@@ -55,10 +55,10 @@ You can also run tools directly without creating an agent using the [Execute Too
 |[`SearchIndexTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/search-index-tool/)	|Searches an index using a query written in query domain-specific language (DSL). |
 |[`SearchMonitorsTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/search-monitors-tool/)	| Searches for alerting monitors.	|
 |[`VectorDBTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/vector-db-tool/)	|Performs dense vector retrieval.	|
-|[`VisualizationTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/visualization-tool/)	|Finds visualizations in SmartObserve Dashboards.	|
+|[`VisualizationTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/visualization-tool/)	|Finds visualizations in MCdesk Dashboards.	|
 |[`WebSearchTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/web-search-tool/)	|Answers a user's question using a web search.	|
 |[`WriteToScratchPadTool`]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/scratchpad-tools/)	|Writes notes and information to an agent's temporary scratchpad memory during execution. |
 
 ## Developer information
 
-The agents and tools framework offers flexibility and extensibility. See the [tools library](https://github.com/igsl-group/skills/tree/main/src/main/java/org/smartobserve/agent/tools) for SmartObserve-provided tools. Implement the [**Tool** interface](https://github.com/igsl-group/ml-commons/blob/2.x/spi/src/main/java/org/smartobserve/ml/common/spi/tools/Tool.java) to build custom tools for different use cases.
+The agents and tools framework offers flexibility and extensibility. See the [tools library](https://github.com/igsl-group/skills/tree/main/src/main/java/org/mcdesk/agent/tools) for MCdesk-provided tools. Implement the [**Tool** interface](https://github.com/igsl-group/ml-commons/blob/2.x/spi/src/main/java/org/mcdesk/ml/common/spi/tools/Tool.java) to build custom tools for different use cases.

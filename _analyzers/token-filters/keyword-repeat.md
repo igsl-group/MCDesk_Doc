@@ -120,7 +120,7 @@ The response includes detailed information, such as tokenization, filtering, and
     "tokenizer": {
       "name": "standard",
       "tokens": [
-        {"token": "SmartObserve","start_offset": 0,"end_offset": 10,"type": "<ALPHANUM>","position": 0},
+        {"token": "MCdesk","start_offset": 0,"end_offset": 10,"type": "<ALPHANUM>","position": 0},
         {"token": "helped","start_offset": 11,"end_offset": 17,"type": "<ALPHANUM>","position": 1},
         {"token": "many","start_offset": 18,"end_offset": 22,"type": "<ALPHANUM>","position": 2},
         {"token": "employers","start_offset": 23,"end_offset": 32,"type": "<ALPHANUM>","position": 3}
@@ -130,7 +130,7 @@ The response includes detailed information, such as tokenization, filtering, and
       {
         "name": "lowercase",
         "tokens": [
-          {"token": "smartobserve","start_offset": 0,"end_offset": 10,"type": "<ALPHANUM>","position": 0},
+          {"token": "mcdesk","start_offset": 0,"end_offset": 10,"type": "<ALPHANUM>","position": 0},
           {"token": "helped","start_offset": 11,"end_offset": 17,"type": "<ALPHANUM>","position": 1},
           {"token": "many","start_offset": 18,"end_offset": 22,"type": "<ALPHANUM>","position": 2},
           {"token": "employers","start_offset": 23,"end_offset": 32,"type": "<ALPHANUM>","position": 3}
@@ -139,7 +139,7 @@ The response includes detailed information, such as tokenization, filtering, and
       {
         "name": "keyword_marker_filter",
         "tokens": [
-          {"token": "smartobserve","start_offset": 0,"end_offset": 10,"type": "<ALPHANUM>","position": 0,"keyword": true},
+          {"token": "mcdesk","start_offset": 0,"end_offset": 10,"type": "<ALPHANUM>","position": 0,"keyword": true},
           {"token": "helped","start_offset": 11,"end_offset": 17,"type": "<ALPHANUM>","position": 1,"keyword": false},
           {"token": "many","start_offset": 18,"end_offset": 22,"type": "<ALPHANUM>","position": 2,"keyword": false},
           {"token": "employers","start_offset": 23,"end_offset": 32,"type": "<ALPHANUM>","position": 3,"keyword": false}
@@ -148,7 +148,7 @@ The response includes detailed information, such as tokenization, filtering, and
       {
         "name": "kstem_filter",
         "tokens": [
-          {"token": "smartobserve","start_offset": 0,"end_offset": 10,"type": "<ALPHANUM>","position": 0,"keyword": true},
+          {"token": "mcdesk","start_offset": 0,"end_offset": 10,"type": "<ALPHANUM>","position": 0,"keyword": true},
           {"token": "help","start_offset": 11,"end_offset": 17,"type": "<ALPHANUM>","position": 1,"keyword": false},
           {"token": "many","start_offset": 18,"end_offset": 22,"type": "<ALPHANUM>","position": 2,"keyword": false},
           {"token": "employer","start_offset": 23,"end_offset": 32,"type": "<ALPHANUM>","position": 3,"keyword": false}

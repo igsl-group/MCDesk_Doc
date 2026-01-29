@@ -19,7 +19,7 @@ Using agentic memory, you can build AI agents that can do the following:
 - Track agent execution traces for debugging and analysis
 - Organize information across different users, sessions, or agent instances
 
-Currently, agentic memory is designed for integration with external agent frameworks like LangChain and LangGraph. SmartObserve's internal [agents]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/) cannot interact with agentic memory.
+Currently, agentic memory is designed for integration with external agent frameworks like LangChain and LangGraph. MCdesk's internal [agents]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/) cannot interact with agentic memory.
 {: .note}
 
 ## Memory containers
@@ -125,7 +125,7 @@ POST /_plugins/_ml/memory_containers/<container_id>/memories
 
 ## Inference mode
 
-You can control how SmartObserve processes memories using the `infer` parameter:
+You can control how MCdesk processes memories using the `infer` parameter:
 
 - `false` (default) -- Stores raw messages and data in `working` memory without LLM processing.
 - `true` -- Uses the configured LLM to extract key information and knowledge from the content.

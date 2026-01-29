@@ -6,9 +6,9 @@ nav_order: 25
 
 # Index sorting
 
-SmartObserve allows you to configure how documents are organized within each segment at index creation time. By default, Lucene applies no sorting to documents. The `index.sort.*` settings specify how documents are organized within each segment.
+MCdesk allows you to configure how documents are organized within each segment at index creation time. By default, Lucene applies no sorting to documents. The `index.sort.*` settings specify how documents are organized within each segment.
 
-The sorting behavior is controlled by the `index.sort.field`, `index.sort.order`, `index.sort.mode`, and `index.sort.missing` settings. For more information, see [Static index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings#index-sort-settings).
+The sorting behavior is controlled by the `index.sort.field`, `index.sort.order`, `index.sort.mode`, and `index.sort.missing` settings. For more information, see [Static index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings#index-sort-settings).
 
 Index sorting can only be configured during index creation and cannot be modified afterward. This feature impacts indexing performance because documents must be sorted during flush and merge operations. We recommend testing the performance impact of sorting before implementing it in production.
 {: .note}
@@ -76,7 +76,7 @@ PUT /sample-index
 
 ## Search optimization with early termination
 
-When your index sort configuration matches your search sort criteria, SmartObserve can optimize query performance by limiting the number of documents examined per segment. This optimization is particularly effective for retrieving top-ranked results.
+When your index sort configuration matches your search sort criteria, MCdesk can optimize query performance by limiting the number of documents examined per segment. This optimization is particularly effective for retrieving top-ranked results.
 
 Consider an index sorted by timestamp in descending order:
 
@@ -115,7 +115,7 @@ GET /events/_search
 ```
 {% include copy-curl.html %}
 
-SmartObserve recognizes that the segment documents are already sorted and only examines the first 10 documents per segment while still collecting remaining documents for total count and aggregations.
+MCdesk recognizes that the segment documents are already sorted and only examines the first 10 documents per segment while still collecting remaining documents for total count and aggregations.
 
 If you don't need the total hit count, disable hit tracking for maximum performance:
 
@@ -131,7 +131,7 @@ GET /events/_search
 ```
 {% include copy-curl.html %}
 
-This allows SmartObserve to terminate collection after finding the required number of documents per segment.
+This allows MCdesk to terminate collection after finding the required number of documents per segment.
 
 Aggregations process all matching documents regardless of the `track_total_hits` setting.
 {: .note}

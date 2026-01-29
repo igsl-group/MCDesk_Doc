@@ -9,7 +9,7 @@ has_math: true
 
 # Randomizing queries
 
-By default, SmartObserve Benchmark runs identical queries for multiple benchmark iterations. However, running the same queries repeatedly isn't ideal in every test scenario. For example, simulating real-world caching with many iterations of the same query results in one cache miss followed by many hits. SmartObserve Benchmark lets you randomize queries in a configurable way. 
+By default, MCdesk Benchmark runs identical queries for multiple benchmark iterations. However, running the same queries repeatedly isn't ideal in every test scenario. For example, simulating real-world caching with many iterations of the same query results in one cache miss followed by many hits. MCdesk Benchmark lets you randomize queries in a configurable way. 
 
 For example, changing `"gte"` and `"lt"` in the following `nyc_taxis` operation creates distinct queries, resulting in unique cache entries:
 
@@ -30,17 +30,17 @@ For example, changing `"gte"` and `"lt"` in the following `nyc_taxis` operation 
 }
 ```
 
-You can't completely randomize the values because the cache would not get any hits. To get cache hits, the cache must sometimes encounter the same values. To account for the same values while randomizing, SmartObserve Benchmark generates a number $$N$$ of value pairs for each randomized operation at the beginning of the benchmark. SmartObserve Benchmark stores these values in a saved list where each pair is assigned an index from $$1$$ to $$N$$.
+You can't completely randomize the values because the cache would not get any hits. To get cache hits, the cache must sometimes encounter the same values. To account for the same values while randomizing, MCdesk Benchmark generates a number $$N$$ of value pairs for each randomized operation at the beginning of the benchmark. MCdesk Benchmark stores these values in a saved list where each pair is assigned an index from $$1$$ to $$N$$.
 
-Every time SmartObserve sends a query, SmartObserve Benchmark decides whether to use a pair of values from this saved list in the query. It does this a configurable fraction of the time, called _repeat frequency_ (`rf`). If SmartObserve has encountered the value pair before, this might cause a cache hit. For example, if `rf` = 0.7, the cache hit ratio could be up to 70%. This ratio could cause a hit, depending on the benchmark's duration and cache size. 
+Every time MCdesk sends a query, MCdesk Benchmark decides whether to use a pair of values from this saved list in the query. It does this a configurable fraction of the time, called _repeat frequency_ (`rf`). If MCdesk has encountered the value pair before, this might cause a cache hit. For example, if `rf` = 0.7, the cache hit ratio could be up to 70%. This ratio could cause a hit, depending on the benchmark's duration and cache size. 
 
-SmartObserve Benchmark selects saved value pairs using the Zipf probability distribution, where the probability of selecting pair $$i$$ is proportional to $$1 \over i^\alpha$$. In this formula, $$i$$ represents the index of the saved value pair, and $$\alpha$$ controls how concentrated the distribution is. This distribution reflects usage patterns observed in real caches. Pairs with lower $$i$$ values (closer to $$1$$) are selected more frequently, while pairs with higher $$i$$ values (closer to $$N$$) are selected less often.
+MCdesk Benchmark selects saved value pairs using the Zipf probability distribution, where the probability of selecting pair $$i$$ is proportional to $$1 \over i^\alpha$$. In this formula, $$i$$ represents the index of the saved value pair, and $$\alpha$$ controls how concentrated the distribution is. This distribution reflects usage patterns observed in real caches. Pairs with lower $$i$$ values (closer to $$1$$) are selected more frequently, while pairs with higher $$i$$ values (closer to $$N$$) are selected less often.
 
-The other $$1 -$$ `rf` fraction of the time, a new random pair of values is generated. Because SmartObserve Benchmark has not encountered these value pairs before, the pairs should miss the cache.
+The other $$1 -$$ `rf` fraction of the time, a new random pair of values is generated. Because MCdesk Benchmark has not encountered these value pairs before, the pairs should miss the cache.
 
 ## Usage
 
-To use this feature in a workload, you must make some changes to `workload.py` and supply some CLI flags when running SmartObserve Benchmark.
+To use this feature in a workload, you must make some changes to `workload.py` and supply some CLI flags when running MCdesk Benchmark.
 
 ### Modifying `workload.py`
 
@@ -72,7 +72,7 @@ This function may already contain code. Retain it if so. If `workload.py` does n
 
 #### Randomizing non-range queries
 
-By default, SmartObserve Benchmark assumes that the query to be randomized is a `"range"` query with values `"gte"`/`"gt"`, `"lte"`/`"lt"`, and, optionally, `"format"`. If this isn't the case, you can configure it to use a different query type name and different values. 
+By default, MCdesk Benchmark assumes that the query to be randomized is a `"range"` query with values `"gte"`/`"gt"`, `"lte"`/`"lt"`, and, optionally, `"format"`. If this isn't the case, you can configure it to use a different query type name and different values. 
 
 For example, to randomize the following workload operation: 
 
@@ -107,7 +107,7 @@ The second argument, `"geo_bounding_box"`, is the query type name.
 
 The third argument is a list of lists: `[[“top_left”], [“bottom_right”]]`. The outer list's entries specify parameters for randomization because there might be different versions of the same name that represent roughly the same parameters, for example, `"gte"` or `"gt"`. Here, there's only one option for each parameter name. At least one version of each parameter's name must be present in the original query in order for it to be randomized.
 
-The last argument is a list of optional parameters. If an optional parameter is present in the random standard value source, SmartObserve Benchmark inserts the parameter into the randomized version of the query. If it's not in the source, it's ignored. There are no optional parameters in the following example, but the typical use case would be `"format"` in a range query.
+The last argument is a list of optional parameters. If an optional parameter is present in the random standard value source, MCdesk Benchmark inserts the parameter into the randomized version of the query. If it's not in the source, it's ignored. There are no optional parameters in the following example, but the typical use case would be `"format"` in a range query.
 
 If there is no registration, the default registration is used: `registry.register_query_randomization_info(<operation_name>, “range”, [[“gte”, “gt”], [“lte”, “lt”]], [“format”])`.
 

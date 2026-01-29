@@ -6,9 +6,9 @@ has_children: false
 parent: .NET clients
 ---
 
-# More advanced features of the high-level .NET client (SmartObserve.Client)
+# More advanced features of the high-level .NET client (MCdesk.Client)
 
-The following example illustrates more advanced features of SmartObserve.Client. For a simple example, see the [Getting started guide]({{site.url}}{{site.baseurl}}/clients/OSC-dot-net/). This example uses the following Student class.
+The following example illustrates more advanced features of MCdesk.Client. For a simple example, see the [Getting started guide]({{site.url}}{{site.baseurl}}/clients/OSC-dot-net/). This example uses the following Student class.
 
 ```cs
 public class Student
@@ -24,9 +24,9 @@ public class Student
 
 ## Mappings
 
-SmartObserve uses dynamic mapping to infer field types of the documents that are indexed. However, to have more control over the schema of your document, you can pass an explicit mapping to SmartObserve. You can define data types for some or all fields of your document in this mapping. 
+MCdesk uses dynamic mapping to infer field types of the documents that are indexed. However, to have more control over the schema of your document, you can pass an explicit mapping to MCdesk. You can define data types for some or all fields of your document in this mapping. 
 
-Similarly, SmartObserve.Client uses auto mapping to infer field data types based on the types of the class's properties. To use auto mapping, create a `students` index using the AutoMap's default constructor:
+Similarly, MCdesk.Client uses auto mapping to infer field data types based on the types of the class's properties. To use auto mapping, create a `students` index using the AutoMap's default constructor:
 
 ```cs
 var createResponse = await osClient.Indices.CreateAsync("students",
@@ -52,7 +52,7 @@ PUT students
 }
 ```
 
-In SmartObserve.Client, you can use fluid lambda syntax to mark these fields as keywords:
+In MCdesk.Client, you can use fluid lambda syntax to mark these fields as keywords:
 
 ```cs
 var createResponse = await osClient.Indices.CreateAsync(index,
@@ -87,7 +87,7 @@ PUT students
 }
 ```
 
-In SmartObserve.Client, the equivalent of the above query is the following:
+In MCdesk.Client, the equivalent of the above query is the following:
 
 ```cs
 var createResponse = await osClient.Indices.CreateAsync(index,
@@ -122,7 +122,7 @@ var bulkAll = osClient.BulkAll(ReadData(), r => r
 
 ## Searching with Boolean query
 
-SmartObserve.Client exposes full SmartObserve query capability. In addition to simple searches that use the match query, you can create a more complex Boolean query to search for students who graduated in 2022 and sort them by last name. In the example below, search is limited to 10 documents, and the scroll API is used to control the pagination of results.
+MCdesk.Client exposes full MCdesk query capability. In addition to simple searches that use the match query, you can create a more complex Boolean query to search for students who graduated in 2022 and sort them by last name. In the example below, search is limited to 10 documents, and the scroll API is used to control the pagination of results.
 
 ```cs
 var gradResponse = await osClient.SearchAsync<Student>(s => s
@@ -138,13 +138,13 @@ var gradResponse = await osClient.SearchAsync<Student>(s => s
 ```
 {% include copy.html %}
 
-The response contains the Documents property with matching documents from SmartObserve. The data is in the form of deserialized JSON objects of Student type, so you can access their properties in a strongly typed fashion. All serialization and deserialization is handled by SmartObserve.Client.
+The response contains the Documents property with matching documents from MCdesk. The data is in the form of deserialized JSON objects of Student type, so you can access their properties in a strongly typed fashion. All serialization and deserialization is handled by MCdesk.Client.
 
 ## Aggregations
 
-SmartObserve.Client includes the full SmartObserve query functionality, including aggregations. In addition to grouping search results into buckets (for example, grouping students by GPA ranges), you can calculate metrics like sum or average. The following query calculates the average GPA of all students in the index. 
+MCdesk.Client includes the full MCdesk query functionality, including aggregations. In addition to grouping search results into buckets (for example, grouping students by GPA ranges), you can calculate metrics like sum or average. The following query calculates the average GPA of all students in the index. 
 
-Setting Size to 0 means SmartObserve will only return the aggregation, not the actual documents.
+Setting Size to 0 means MCdesk will only return the aggregation, not the actual documents.
 {: .tip}
 
 ```cs
@@ -159,10 +159,10 @@ var aggResponse = await osClient.SearchAsync<Student>(s => s
 
 ## Sample program for creating an index and indexing data
 
-The following program creates an index, reads a stream of student records from a comma-separated file and indexes this data into SmartObserve.
+The following program creates an index, reads a stream of student records from a comma-separated file and indexes this data into MCdesk.
 
 ```cs
-using SmartObserve.Client;
+using MCdesk.Client;
 
 namespace NetClientProgram;
 
@@ -170,7 +170,7 @@ internal class Program
 {
     private const string index = "students";
 
-    public static ISmartObserveClient osClient = new SmartObserveClient();
+    public static IMCdeskClient osClient = new MCdeskClient();
 
     public static async Task Main(string[] args)
     {
@@ -193,7 +193,7 @@ internal class Program
                 throw new Exception("Create response is invalid.");
             }
 
-            // Take a stream of data and send it to SmartObserve
+            // Take a stream of data and send it to MCdesk
             var bulkAll = osClient.BulkAll(ReadData(), r => r
             .Index(index)
             .BackOffRetries(2)
@@ -229,7 +229,7 @@ internal class Program
 The following program searches students by name and graduation date and calculates the average GPA.
 
 ```cs
-using SmartObserve.Client;
+using MCdesk.Client;
 
 namespace NetClientProgram;
 
@@ -237,7 +237,7 @@ internal class Program
 {
     private const string index = "students";
 
-    public static ISmartObserveClient osClient = new SmartObserveClient();
+    public static IMCdeskClient osClient = new MCdeskClient();
 
     public static async Task Main(string[] args)
     {

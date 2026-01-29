@@ -9,7 +9,7 @@ nav_order: 20
 **Introduced 3.0**
 {: .label .label-purple }
 
-Use the Live Queries API to retrieve currently running search queries across the cluster or on specific nodes. Monitoring live queries using Query Insights allows you to get real-time visibility into the search queries that are currently executing within your SmartObserve cluster. This is useful for identifying and debugging queries that might be running for an unexpectedly long time or consuming significant resources at the moment.
+Use the Live Queries API to retrieve currently running search queries across the cluster or on specific nodes. Monitoring live queries using Query Insights allows you to get real-time visibility into the search queries that are currently executing within your MCdesk cluster. This is useful for identifying and debugging queries that might be running for an unexpectedly long time or consuming significant resources at the moment.
 
 The API returns a list of currently executing search queries, sorted by a specified metric (defaulting to `latency`) in descending order. The response includes the details for each live query, such as the query source, search type, involved indexes, node ID, start time, latency, and resource usage (on the coordinator node) so far.
 

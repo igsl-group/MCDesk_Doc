@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Search settings
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 70
 ---
 
 # Search settings
 
-SmartObserve supports the following search settings:
+MCdesk supports the following search settings:
 
 - `search.max_buckets` (Dynamic, integer): The maximum number of aggregation buckets allowed in a single response. Default is `65535`. 
 
@@ -21,9 +21,9 @@ SmartObserve supports the following search settings:
 
 - `search.default_search_timeout` (Dynamic, time unit): A cluster-level setting that specifies the maximum amount of time that a search request can run before the request is canceled at the shard-level. If the `timeout` interval is specified in the search request, that interval takes precedence over the configured setting. Default is `-1`.
 
-- `search.default_keep_alive` (Dynamic, time unit): Specifies the default keep alive value for scroll and Point in Time (PIT) searches. Because a request may land on a shard multiple times (for example, during the query and fetch phases), SmartObserve opens a _request context_ that exists for the full duration of the request to ensure consistency of the shard state for each individual shard request. In a standard search, once the fetch phase completes, the request context is closed. For a scroll or a PIT search, SmartObserve keeps the request context open until explicitly closed (or until the keep alive time is reached). A background thread periodically checks all open scroll and PIT contexts and deletes the ones that have exceeded their keep alive timeout. The `search.keep_alive_interval` setting specifies how frequently the contexts are checked for expiration. The `search.default_keep_alive` setting is the default deadline for expiration. A scroll or PIT request can explicitly specify the keep alive, which takes precedence over this setting. Default is `5m`.
+- `search.default_keep_alive` (Dynamic, time unit): Specifies the default keep alive value for scroll and Point in Time (PIT) searches. Because a request may land on a shard multiple times (for example, during the query and fetch phases), MCdesk opens a _request context_ that exists for the full duration of the request to ensure consistency of the shard state for each individual shard request. In a standard search, once the fetch phase completes, the request context is closed. For a scroll or a PIT search, MCdesk keeps the request context open until explicitly closed (or until the keep alive time is reached). A background thread periodically checks all open scroll and PIT contexts and deletes the ones that have exceeded their keep alive timeout. The `search.keep_alive_interval` setting specifies how frequently the contexts are checked for expiration. The `search.default_keep_alive` setting is the default deadline for expiration. A scroll or PIT request can explicitly specify the keep alive, which takes precedence over this setting. Default is `5m`.
 
-- `search.keep_alive_interval` (Static, time unit): Determines the interval at which SmartObserve checks for request contexts that have exceeded their keep alive limit. Default is `1m`.
+- `search.keep_alive_interval` (Static, time unit): Determines the interval at which MCdesk checks for request contexts that have exceeded their keep alive limit. Default is `1m`.
 
 - `search.max_keep_alive` (Dynamic, time unit): Specifies the maximum keep alive value. The `max_keep_alive` setting is used as a safety check against the other `keep_alive` settings (for example, `default_keep_alive`) and request-level keep alive settings (for scroll and PIT contexts). If a request exceeds the `max_keep_alive` value in either case, the operation will fail. Default is `24h`.
 
@@ -43,7 +43,7 @@ SmartObserve supports the following search settings:
 
 ## Scripting settings
 
-SmartObserve supports the following scripting settings:
+MCdesk supports the following scripting settings:
 
 - `script.max_size_in_bytes` (Dynamic, byte unit): Controls the maximum script byte size allowed. This setting helps prevent memory issues by rejecting scripts larger than this limit. Default is `65536` (64 KB).
 
@@ -53,4 +53,4 @@ SmartObserve supports the following scripting settings:
 
 For information about PIT settings, see [PIT settings]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/point-in-time/#pit-settings).
 
-To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).

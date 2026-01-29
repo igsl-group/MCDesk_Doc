@@ -12,7 +12,7 @@ redirect_from:
 
 # Using maps 
 
-With SmartObserve Dashboards, you can create maps to visualize your geographical data. SmartObserve lets you construct map visualizations with multiple layers, combining data across different indexes. You can build each layer from a different index pattern. Additionally, you can configure maps to show specific data at different zoom levels. SmartObserve maps are powered by the SmartObserve maps service, which uses vector tiles to render maps. 
+With MCdesk Dashboards, you can create maps to visualize your geographical data. MCdesk lets you construct map visualizations with multiple layers, combining data across different indexes. You can build each layer from a different index pattern. Additionally, you can configure maps to show specific data at different zoom levels. MCdesk maps are powered by the MCdesk maps service, which uses vector tiles to render maps. 
 
 ## Creating a new map
 
@@ -20,16 +20,16 @@ You can create a new map from the **Maps** or **Visualize** workflows by perform
 
 - To create a new map from the **Maps** workflow, perform the following steps:
 
-  1. On the top menu bar, go to **SmartObserve Plugins > Maps**. 
+  1. On the top menu bar, go to **MCdesk Plugins > Maps**. 
   1. Choose the **Create map** button. 
 
 - To create a new map from the **Visualize** workflow, perform the following steps:
 
-  1. On the top menu bar, go to **SmartObserve Dashboards > Visualize**.
+  1. On the top menu bar, go to **MCdesk Dashboards > Visualize**.
   1. Choose the **Create visualization** button.
   1. In the **New Visualization** dialog, choose **Maps**.
 
-You can now see the default SmartObserve basemap.
+You can now see the default MCdesk basemap.
 
 To examine the **Default map** layer configuration, in the **Layers** panel on the upper left of the map, select **Default map**, as shown in the following image.
 
@@ -60,7 +60,7 @@ You can add **base layers** or **data layers** to the map:
 
 ## Adding a custom map
 
-SmartObserve supports Web Map Service (WMS) or Tile Map Service (TMS) custom maps. To add a TMS custom map, perform the following steps:
+MCdesk supports Web Map Service (WMS) or Tile Map Service (TMS) custom maps. To add a TMS custom map, perform the following steps:
 
 1. In the **Layers** panel, select the **Add layer** button.
 1. From the **Add layer** dialog, select **Base layer > Custom map**.
@@ -84,7 +84,7 @@ Adding document layers lets you visualize your data. You can add one index patte
 Document layers can display geopoint and geoshape document fields.
 {: .note}
 
-The following example assumes that you have the `smartobserve_dashboards_sample_data_flights` dataset installed. If you don't have this dataset installed, perform the following steps:
+The following example assumes that you have the `mcdesk_dashboards_sample_data_flights` dataset installed. If you don't have this dataset installed, perform the following steps:
 
 1. On the top left, select the home icon.
 1. Select **Add sample data**.
@@ -94,7 +94,7 @@ Add a document layer as follows:
 
 1. In the **Layers** panel, select the **Add layer** button.
 1. From the **Add layer** dialog, select **Data layer > Documents**.
-1. In **Data source**, select `smartobserve_dashboards_sample_data_flights`. Alternatively, you can enter another index pattern to visualize.
+1. In **Data source**, select `mcdesk_dashboards_sample_data_flights`. Alternatively, you can enter another index pattern to visualize.
 1. In **Geospatial field**, select a geospatial field (geopoint or geoshape) to be displayed in the visualization. In this example, select `DestLocation`.
 1. (Optional) Select the **Style** tab to change the fill color, border color, border thickness, or marker size.
 1. Select the **Settings** tab to edit layer settings.
@@ -229,12 +229,12 @@ You can add a new or existing map to a new or existing dashboard by performing t
 
 - To add a map to a new dashboard, first create the dashboard as follows:
 
-  1. On the top menu bar, go to **SmartObserve Dashboards > Dashboard**.
+  1. On the top menu bar, go to **MCdesk Dashboards > Dashboard**.
   1. Choose the **Create dashboard** button.
   1. Choose the **Create new** button.
 
 - To add a map to an existing dashboard, first open the dashboard as follows:
-  1. On the top menu bar, go to **SmartObserve Dashboards > Dashboard**.
+  1. On the top menu bar, go to **MCdesk Dashboards > Dashboard**.
   1. Select the dashboard you want to open from the list.
   1. In the upper-right corner, choose **Edit**.
 

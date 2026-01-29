@@ -1,19 +1,19 @@
 ---
 layout: default
 title: Cluster settings
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 50
 ---
 
 # Cluster settings
 
-The following settings are related to the SmartObserve cluster.
+The following settings are related to the MCdesk cluster.
 
-To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 ## Cluster-level routing and allocation settings
 
-SmartObserve supports the following cluster-level routing and shard allocation settings:
+MCdesk supports the following cluster-level routing and shard allocation settings:
 
 - `cluster.routing.allocation.enable` (Dynamic, string): Enables or disables allocation for specific kinds of shards. 
     
@@ -62,21 +62,21 @@ SmartObserve supports the following cluster-level routing and shard allocation s
 
 - `cluster.routing.allocation.balance.threshold` (Dynamic, floating point): The minimum optimization value of operations that should be performed. Default is `1.0`. 
 
-- `cluster.routing.allocation.balance.prefer_primary` (Dynamic, Boolean): When set to `true`, SmartObserve attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to `false` after it was set to `true` does not invoke redistribution of primary shards. Default is `false`.
+- `cluster.routing.allocation.balance.prefer_primary` (Dynamic, Boolean): When set to `true`, MCdesk attempts to evenly distribute the primary shards between the cluster nodes. Enabling this setting does not always guarantee an equal number of primary shards on each node, especially in the event of a failover. Changing this setting to `false` after it was set to `true` does not invoke redistribution of primary shards. Default is `false`.
 
-- `cluster.routing.allocation.rebalance.primary.enable` (Dynamic, Boolean): When set to `true`, SmartObserve attempts to rebalance the primary shards between the cluster nodes. When enabled, the cluster tries to maintain the number of primary shards on each node, with the maximum buffer defined by the `cluster.routing.allocation.rebalance.primary.buffer` setting. Changing this setting to `false` after it was set to `true` does not invoke the redistribution of primary shards. Default is `false`.
+- `cluster.routing.allocation.rebalance.primary.enable` (Dynamic, Boolean): When set to `true`, MCdesk attempts to rebalance the primary shards between the cluster nodes. When enabled, the cluster tries to maintain the number of primary shards on each node, with the maximum buffer defined by the `cluster.routing.allocation.rebalance.primary.buffer` setting. Changing this setting to `false` after it was set to `true` does not invoke the redistribution of primary shards. Default is `false`.
 
 - `cluster.routing.allocation.rebalance.primary.buffer` (Dynamic, floating point): Defines the maximum allowed buffer of primary shards between nodes when `cluster.routing.allocation.rebalance.primary.enable` is enabled. Default is `0.1`.
 
 - `cluster.routing.allocation.disk.threshold_enabled` (Dynamic, Boolean): When set to `false`, disables the disk allocation decider. This will also remove any existing `index.blocks.read_only_allow_delete index blocks` when disabled. Default is `true`. 
 
-- `cluster.routing.allocation.disk.watermark.low` (Dynamic, string): Controls the low watermark for disk usage. When set to a percentage, SmartObserve will not allocate shards to nodes with that percentage of disk usage. This can also be entered as a ratio value, like `0.85`. Finally, this can also be set to a byte value, like `400mb`. This setting does not affect the primary shards of newly created indexes but will prevent their replicas from being allocated. Default is `85%`. 
+- `cluster.routing.allocation.disk.watermark.low` (Dynamic, string): Controls the low watermark for disk usage. When set to a percentage, MCdesk will not allocate shards to nodes with that percentage of disk usage. This can also be entered as a ratio value, like `0.85`. Finally, this can also be set to a byte value, like `400mb`. This setting does not affect the primary shards of newly created indexes but will prevent their replicas from being allocated. Default is `85%`. 
 
-- `cluster.routing.allocation.disk.watermark.high` (Dynamic, string): Controls the high watermark. SmartObserve will attempt to relocate shards away from a node whose disk usage is above the defined percentage. This can also be entered as a ratio value, like `0.85`. Finally, this can also be set to a byte value, like `400mb`. This setting affects the allocation of all shards. Default is `90%`. 
+- `cluster.routing.allocation.disk.watermark.high` (Dynamic, string): Controls the high watermark. MCdesk will attempt to relocate shards away from a node whose disk usage is above the defined percentage. This can also be entered as a ratio value, like `0.85`. Finally, this can also be set to a byte value, like `400mb`. This setting affects the allocation of all shards. Default is `90%`. 
 
-- `cluster.routing.allocation.disk.watermark.flood_stage` (Dynamic, string): Controls the flood stage watermark. This is a last resort to prevent nodes from running out of disk space. SmartObserve enforces a read-only index block (`index.blocks.read_only_allow_delete`) on every index that has one or more shards allocated on the node and at least one disk exceeding the flood stage. The index block is released once the disk utilization falls below the high watermark. This can also be entered as a ratio value, like `0.85`. Finally, this can also be set to a byte value, like `400mb`. Default is `95%`. 
+- `cluster.routing.allocation.disk.watermark.flood_stage` (Dynamic, string): Controls the flood stage watermark. This is a last resort to prevent nodes from running out of disk space. MCdesk enforces a read-only index block (`index.blocks.read_only_allow_delete`) on every index that has one or more shards allocated on the node and at least one disk exceeding the flood stage. The index block is released once the disk utilization falls below the high watermark. This can also be entered as a ratio value, like `0.85`. Finally, this can also be set to a byte value, like `400mb`. Default is `95%`. 
 
-- `cluster.info.update.interval` (Dynamic, time unit): Sets how often SmartObserve should check disk usage for each node in the cluster. Default is `30s`. 
+- `cluster.info.update.interval` (Dynamic, time unit): Sets how often MCdesk should check disk usage for each node in the cluster. Default is `30s`. 
 
 - `cluster.routing.allocation.awareness.attributes` (Dynamic, list): See [Shard allocation awareness]({{site.url}}{{site.baseurl}}/tuning-your-cluster/index#shard-allocation-awareness).
 
@@ -101,7 +101,7 @@ SmartObserve supports the following cluster-level routing and shard allocation s
 
     This setting supports the following strategies: 
     - `PRIMARY_FIRST` – Primary shards are relocated first, before replica shards. This prioritization may help prevent a cluster's health status from going red if the relocating nodes fail during the process. 
-    - `REPLICA_FIRST` – Replica shards are relocated first, before primary shards. This prioritization may help prevent a cluster's health status from going red when carrying out shard relocation in a mixed-version, segment-replication-enabled SmartObserve cluster. In this situation, primary shards relocated to SmartObserve nodes of a newer version could try to copy segment files to replica shards on an older version of SmartObserve, which would result in shard failure. Relocating replica shards first may help to avoid this in multi-version clusters. 
+    - `REPLICA_FIRST` – Replica shards are relocated first, before primary shards. This prioritization may help prevent a cluster's health status from going red when carrying out shard relocation in a mixed-version, segment-replication-enabled MCdesk cluster. In this situation, primary shards relocated to MCdesk nodes of a newer version could try to copy segment files to replica shards on an older version of MCdesk, which would result in shard failure. Relocating replica shards first may help to avoid this in multi-version clusters. 
     - `NO_PREFERENCE` – The default behavior in which the order of shard relocation has no importance. 
 
 - `cluster.routing.search_replica.strict` (Dynamic, Boolean): Controls how search requests are routed when search replica shards exist for an index, such as when `index.number_of_search_replicas` is greater than `0`. This setting applies only when search replicas are configured for an index. When set to `true`, all search requests for such indexes are routed only to search replica shards. If search replicas are unassigned, the requests fail. When set to `false`, if search replicas are unassigned, requests fall back to any available shard. Default is `true`.
@@ -116,7 +116,7 @@ SmartObserve supports the following cluster-level routing and shard allocation s
 
 ## Cluster-level shard, block, and task settings
 
-SmartObserve supports the following cluster-level shard, block, and task settings:
+MCdesk supports the following cluster-level shard, block, and task settings:
 
 - `action.search.shard_count.limit` (Integer): Limits the maximum number of shards to be hit during search. Requests that exceed this limit will be rejected.
 
@@ -143,13 +143,13 @@ SmartObserve supports the following cluster-level shard, block, and task setting
 
 ## Cluster-level search settings
 
-SmartObserve supports the following cluster-level search settings:
+MCdesk supports the following cluster-level search settings:
 
 - `cluster.search.ignore_awareness_attributes` (Boolean): Controls whether awareness attributes are considered during shard query routing. If `true` (default), the cluster ignores awareness attributes and uses Adaptive Replica Selection (ARS) to choose the optimal shard copy, reducing query response latency. Set this to `false` for routing decisions to prioritize awareness attributes instead of performance-based selection.
 
 ## Cluster-level slow log settings
 
-For more information, see [Search request slow logs]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/logs/#search-request-slow-logs).
+For more information, see [Search request slow logs]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/logs/#search-request-slow-logs).
 
 - `cluster.search.request.slowlog.threshold.warn` (Time unit): Sets the request-level slow log `WARN` threshold. Default is `-1`.
 
@@ -163,11 +163,11 @@ For more information, see [Search request slow logs]({{site.url}}{{site.baseurl}
 
 ## Cluster-level index settings
 
-For information about index-level index settings, see [Cluster-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/#cluster-level-index-settings).
+For information about index-level index settings, see [Cluster-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/#cluster-level-index-settings).
 
 ## Cluster-level coordination settings
 
-SmartObserve supports the following cluster-level coordination settings. All settings in this list are dynamic:
+MCdesk supports the following cluster-level coordination settings. All settings in this list are dynamic:
 
 - `cluster.fault_detection.leader_check.timeout` (Time unit): The amount of time a node waits for a response from the elected cluster manager during a leader check before deeming the check a failure. Valid values are from `1ms` to `60s`, inclusive. Default is `10s`. Changing this setting to a value other than the default can result in an unstable cluster.
 
@@ -181,7 +181,7 @@ SmartObserve supports the following cluster-level coordination settings. All set
 
 ## Cluster-level fault detection settings
 
-SmartObserve supports the following cluster-level fault detection settings that control how nodes detect and respond to failures:
+MCdesk supports the following cluster-level fault detection settings that control how nodes detect and respond to failures:
 
 - `cluster.fault_detection.follower_check.retry_count` (Static, integer): Sets how many consecutive follower check failures must occur before the elected cluster manager considers a node to be faulty and removes it from the cluster. This setting controls fault detection sensitivity for follower nodes. Default is `3`. **Warning**: Changing this setting from the default may cause your cluster to become unstable.
 
@@ -193,7 +193,7 @@ SmartObserve supports the following cluster-level fault detection settings that 
 
 ## Cluster-level CAT response limit settings
 
-SmartObserve supports the following cluster-level CAT API response limit settings, all of which are dynamic:
+MCdesk supports the following cluster-level CAT API response limit settings, all of which are dynamic:
 
 - `cat.indices.response.limit.number_of_indices` (Integer): Sets a limit on the number of indexes returned by the [CAT Indices API]({{site.url}}{{site.baseurl}}/api-reference/cat/cat-indices/). The default value is `-1` (no limit). If the number of indexes in the response exceeds this limit, the API returns a `429` error. To avoid this, you can specify an index pattern filter in your query (for example, `_cat/indices/<index-pattern>`).
 
@@ -203,13 +203,13 @@ SmartObserve supports the following cluster-level CAT API response limit setting
 
 ## Cluster-level metadata settings
 
-SmartObserve supports the following cluster-level metadata settings:
+MCdesk supports the following cluster-level metadata settings:
 
 - `cluster.metadata.<key>` (Dynamic, varies): Adds cluster metadata in the `"cluster.metadata.key": "value"` format. This setting is useful for persisting arbitrary, infrequently changing information about the cluster, such as contact details or annotations, without creating a dedicated index. **Important**: User-defined cluster metadata is not intended to store sensitive or confidential information. The values are visible to anyone with access to the Get Cluster Settings API and are recorded in the logs.
 
 ## Cluster-level remote cluster settings
 
-SmartObserve supports the following remote cluster settings:
+MCdesk supports the following remote cluster settings:
 
 - `cluster.remote.initial_connect_timeout` (Dynamic, time unit): Sets the timeout period for establishing initial connections to remote clusters when the node starts. This prevents nodes from hanging indefinitely during startup if remote clusters are unavailable. Default is `30s`.
 

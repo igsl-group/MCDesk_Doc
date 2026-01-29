@@ -12,7 +12,7 @@ redirect_from:
 
 # Creating custom workloads
 
-SmartObserve Benchmark includes a set of [workloads](https://github.com/igsl-group/smartobserve-benchmark-workloads) that you can use to benchmark data from your cluster. Additionally, if you want to create a workload that is tailored to your own data, you can create a custom workload using one of the following options:
+MCdesk Benchmark includes a set of [workloads](https://github.com/igsl-group/mcdesk-benchmark-workloads) that you can use to benchmark data from your cluster. Additionally, if you want to create a workload that is tailored to your own data, you can create a custom workload using one of the following options:
 
 - [Creating custom workloads](#creating-custom-workloads)
   - [Creating a workload from an existing cluster](#creating-a-workload-from-an-existing-cluster)
@@ -28,21 +28,21 @@ SmartObserve Benchmark includes a set of [workloads](https://github.com/igsl-gro
 
 ## Creating a workload from an existing cluster
 
-If you already have an SmartObserve cluster with indexed data, use the following steps to create a custom workload for your cluster.
+If you already have an MCdesk cluster with indexed data, use the following steps to create a custom workload for your cluster.
 
 ### Prerequisites
 
-Before creating a custom SmartObserve Benchmark workload, make sure you have the following prerequisites in place:
+Before creating a custom MCdesk Benchmark workload, make sure you have the following prerequisites in place:
 
-- An SmartObserve cluster with an index that contains 1000 or more documents. If your cluster's index does not contain at least 1000 documents, the workload can still run tests, however, you cannot run workloads using `--test-mode`.
-- You must have the correct permissions to access your SmartObserve cluster. For more information about cluster permissions, see [Permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/).
+- An MCdesk cluster with an index that contains 1000 or more documents. If your cluster's index does not contain at least 1000 documents, the workload can still run tests, however, you cannot run workloads using `--test-mode`.
+- You must have the correct permissions to access your MCdesk cluster. For more information about cluster permissions, see [Permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/).
 
 ### Customizing the workload
 
-To begin creating a custom SmartObserve Benchmark workload, use the `smartobserve-benchmark create-workload` command.
+To begin creating a custom MCdesk Benchmark workload, use the `mcdesk-benchmark create-workload` command.
 
 ```
-smartobserve-benchmark create-workload \
+mcdesk-benchmark create-workload \
 --workload="<WORKLOAD NAME>" \
 --target-hosts="<CLUSTER ENDPOINT>" \
 --client-options="basic_auth_user:'<USERNAME>',basic_auth_password:'<PASSWORD>'" \
@@ -54,9 +54,9 @@ Replace the following options in the preceding example with information specific
 
 - `--workload`: A custom name for your custom workload.
 - `--target-hosts:` A comma-separated list of host:port pairs from which the cluster extracts data.
-- `--client-options`: The basic authentication client options that SmartObserve Benchmark uses to access the cluster.
-- `--indices`: One or more indexes inside your SmartObserve cluster that contain data.
-- `--output-path`: The directory in which SmartObserve Benchmark creates the workload and its configuration files.
+- `--client-options`: The basic authentication client options that MCdesk Benchmark uses to access the cluster.
+- `--indices`: One or more indexes inside your MCdesk cluster that contain data.
+- `--output-path`: The directory in which MCdesk Benchmark creates the workload and its configuration files.
 
 The following example response creates a workload named `movies` from a cluster with an index named `movies-info`. The `movies-info` index contains over 2,000 documents.
 
@@ -69,25 +69,25 @@ The following example response creates a workload named `movies` from a cluster 
     /_/
 
 [INFO] You did not provide an explicit timeout in the client options. Assuming default of 10 seconds.
-[INFO] Connected to SmartObserve cluster [380d8fd64dd85b5f77c0ad81b0799e1e] version [1.1.0].
+[INFO] Connected to MCdesk cluster [380d8fd64dd85b5f77c0ad81b0799e1e] version [1.1.0].
 
 Extracting documents for index [movies] for test mode...      1000/1000 docs [100.0% done]
 Extracting documents for index [movies]...                    2000/2000 docs [100.0% done]
 
-[INFO] Workload movies has been created. Run it with: smartobserve-benchmark --workload-path=/Users/hoangia/Desktop/workloads/movies
+[INFO] Workload movies has been created. Run it with: mcdesk-benchmark --workload-path=/Users/hoangia/Desktop/workloads/movies
 
 -----------------------------------
 [INFO] ✅ SUCCESS  (took 2 seconds)
 -----------------------------------
 ```
 
-As part of workload creation, SmartObserve Benchmark generates the following files. You can access them in the directory specified by the `--output-path` option.
+As part of workload creation, MCdesk Benchmark generates the following files. You can access them in the directory specified by the `--output-path` option.
 
 - `workload.json`: Contains general workload specifications.
 - `<index>.json`: Contains mappings and settings for the extracted indexes.
 - `<index>-documents.json`: Contains the sources of every document from the extracted indexes. Any sources suffixed with `-1k` encompass only a fraction of the document corpus of the workload and are only used when running the workload in test mode.
 
-By default, SmartObserve Benchmark does not contain a reference to generate queries. Because you have the best understanding of your data, we recommend adding a query to `workload.json` that matches your index's specifications. Use the following `match_all` query as an example of a query added to your workload:
+By default, MCdesk Benchmark does not contain a reference to generate queries. Because you have the best understanding of your data, we recommend adding a query to `workload.json` that matches your index's specifications. Use the following `match_all` query as an example of a query added to your workload:
 
 ```json
 {
@@ -109,7 +109,7 @@ By default, SmartObserve Benchmark does not contain a reference to generate quer
 
 ### Creating a workload without an existing cluster
 
-If you want to create a custom workload but do not have an existing SmartObserve cluster with indexed data, you can create the workload by building the workload source files directly. All you need is data that can be exported into a JSON format.
+If you want to create a custom workload but do not have an existing MCdesk cluster with indexed data, you can create the workload by building the workload source files directly. All you need is data that can be exported into a JSON format.
 
 To build a workload with source files, create a directory for your workload and perform the following steps:
 
@@ -155,7 +155,7 @@ To build a workload with source files, create a directory for your workload and 
 
 3. Next, build a `workload.json` file that provides a high-level overview of your workload and determines how your workload runs benchmark tests. The `workload.json` file contains the following sections:
 
-   - `indices`: Defines the name of the index to be created in your SmartObserve cluster using the mappings from the workload's `index.json` file created in the previous step.
+   - `indices`: Defines the name of the index to be created in your MCdesk cluster using the mappings from the workload's `index.json` file created in the previous step.
    - `corpora`: Defines the corpora and the source file, including the:
       - `document-count`: The number of documents in `<index>-documents.json`. To get an accurate number of documents, run `wc -l <index>-documents.json`.
       - `uncompressed-bytes`: The number of bytes inside the index. To get an accurate number of bytes, run `stat -f %z <index>-documents.json` on macOS or `stat -c %s <index>-documents.json` on GNU/Linux. Alternatively, run `ls -lrt | grep <index>-documents.json`.
@@ -172,7 +172,7 @@ The following example `workload.json` file provides the entry point for the `mov
     ```json
     {
     "version": 2,
-    "description": "Tutorial benchmark for SmartObserve Benchmark",
+    "description": "Tutorial benchmark for MCdesk Benchmark",
     "indices": [
         {
         "name": "movies",
@@ -256,15 +256,15 @@ The corpora section refers to the source file created in step one, `movie-docume
 For all the workload files created, verify that the workload is functional by running a test. To verify the workload, run the following command, replacing `--workload-path` with a path to your workload directory:
 
 ```
-smartobserve-benchmark list workloads --workload-path=</path/to/workload/>
+mcdesk-benchmark list workloads --workload-path=</path/to/workload/>
 ```
 
 ## Invoking your custom workload
 
-Use the `smartobserve-benchmark run` command to invoke your new workload and run a benchmark test against your SmartObserve cluster, as shown in the following example. Replace `--workload-path` with the path to your custom workload, `--target-host` with the `host:port` pairs for your cluster, and `--client-options` with any authorization options required to access the cluster.
+Use the `mcdesk-benchmark run` command to invoke your new workload and run a benchmark test against your MCdesk cluster, as shown in the following example. Replace `--workload-path` with the path to your custom workload, `--target-host` with the `host:port` pairs for your cluster, and `--client-options` with any authorization options required to access the cluster.
 
 ```
-smartobserve-benchmark run \
+mcdesk-benchmark run \
 --pipeline="benchmark-only" \
 --workload-path="<PATH OUTPUTTED IN THE OUTPUT OF THE CREATE-WORKLOAD COMMAND>" \
 --target-host="<CLUSTER ENDPOINT>" \
@@ -287,10 +287,10 @@ To use test mode, create a `<index>-documents-1k.json` file that contains the fi
 head -n 1000 <index>-documents.json > <index>-documents-1k.json
 ```
 
-Then, run `smartobserve-benchmark run` with the option `--test-mode`. Test mode runs a quick version of the workload test.
+Then, run `mcdesk-benchmark run` with the option `--test-mode`. Test mode runs a quick version of the workload test.
 
 ```
-smartobserve-benchmark run \
+mcdesk-benchmark run \
 --pipeline="benchmark-only"  \
 --workload-path="<PATH OUTPUTTED IN THE OUTPUT OF THE CREATE-WORKLOAD COMMAND>" \
 --target-host="<CLUSTER ENDPOINT>" \
@@ -305,7 +305,7 @@ After using your custom workload several times, you might want to use the same w
 To add variance to your workload operations, go to your `workload.json` file and replace the `schedule` section with a `test_procedures` array, as shown in the following example. Each item in the array contains the following:
 
 - `name`: The name of the test procedure.
-- `default`: When set to `true`, SmartObserve Benchmark defaults to the test procedure specified as `default` in the workload if no other test procedures are specified.
+- `default`: When set to `true`, MCdesk Benchmark defaults to the test procedure specified as `default` in the workload if no other test procedures are specified.
 - `schedule`: All the operations the test procedure will run.
 
 
@@ -388,5 +388,5 @@ If you want to make your `workload.json` file more readable, you can separate yo
 
 ## Next steps
 
-- For more information about configuring SmartObserve Benchmark, see [Configuring SmartObserve Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/).
-- To show a list of prepackaged workloads for SmartObserve Benchmark, see the [smartobserve-benchmark-workloads](https://github.com/igsl-group/smartobserve-benchmark-workloads) repository.
+- For more information about configuring MCdesk Benchmark, see [Configuring MCdesk Benchmark]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/).
+- To show a list of prepackaged workloads for MCdesk Benchmark, see the [mcdesk-benchmark-workloads](https://github.com/igsl-group/mcdesk-benchmark-workloads) repository.

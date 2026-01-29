@@ -55,7 +55,7 @@ These fields are not stored in the `_source`, but you can still search them beca
 
 ## Derived source
 
-SmartObserve stores each ingested document in the `_source` field and also indexes individual fields for search. The `_source` field can consume significant storage space. To reduce storage use, you can configure SmartObserve to skip storing the `_source` field and instead reconstruct it dynamically when needed, for example, during `search`, `get`, `mget`, `reindex`, or `update` operations.
+MCdesk stores each ingested document in the `_source` field and also indexes individual fields for search. The `_source` field can consume significant storage space. To reduce storage use, you can configure MCdesk to skip storing the `_source` field and instead reconstruct it dynamically when needed, for example, during `search`, `get`, `mget`, `reindex`, or `update` operations.
 
 To enable derived source, configure the `derived_source` index-level setting:
 
@@ -114,7 +114,7 @@ Derived source supports the following field types, with most of them not requiri
 - [`byte`, `double`, `float`, `half_float`, `integer`, `long`, `short`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/numeric/)
 - [`date`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/date/)
 - [`date-nanos`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/date-nanos/)
-- [`geo_point`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point/)
+- [`geo_point`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point/)
 - [`ip`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/ip/)
 - [`keyword`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/keyword/)
 - [`unsigned_long`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/unsigned-long/)
@@ -133,4 +133,4 @@ To use the [`wildcard`]({{site.url}}{{site.baseurl}}/field-types/supported-field
 Derived source does not support the following fields:
 
 - Fields containing [`copy_to`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/copy-to/) parameters.
-- [`keyword`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/keyword/) and [`wildcard`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/wildcard/) fields that define either the [`ignore_above`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/ignore-above/) or [`normalizer`]({{site.url}}{{site.baseurl}}/analyzers/normalizers/) parameters.
+- [`keyword`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/keyword/) and [`wildcard`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/wildcard/) fields that define either the [`ignore_above`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/ignore-above/) or [`normalizer`]({{site.url}}{{site.baseurl}}/analyzers/normalizers/) parameters.

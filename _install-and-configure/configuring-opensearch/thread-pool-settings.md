@@ -1,31 +1,31 @@
 ---
 layout: default
 title: Thread pool settings
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 90
 ---
 
 # Thread pool settings
 
-SmartObserve uses several thread pools to manage memory consumption and handle different types of operations efficiently. Thread pools can be configured to optimize performance based on your cluster's workload patterns.
+MCdesk uses several thread pools to manage memory consumption and handle different types of operations efficiently. Thread pools can be configured to optimize performance based on your cluster's workload patterns.
 
-To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 ## Node processor settings
 
-SmartObserve automatically detects the number of available processors and configures thread pools accordingly. You can override this detection:
+MCdesk automatically detects the number of available processors and configures thread pools accordingly. You can override this detection:
 
-- `node.processors` (Static, integer): Explicitly sets the number of processors that SmartObserve should use for thread pool sizing calculations. This is useful when running multiple SmartObserve instances on the same host or when the automatic processor detection is incorrect. When set, thread pool sizes are calculated based on this value instead of the detected processor count. Default is the number of automatically detected processors.
+- `node.processors` (Static, integer): Explicitly sets the number of processors that MCdesk should use for thread pool sizing calculations. This is useful when running multiple MCdesk instances on the same host or when the automatic processor detection is incorrect. When set, thread pool sizes are calculated based on this value instead of the detected processor count. Default is the number of automatically detected processors.
 
 ## Thread pool types
 
-SmartObserve supports the following thread pool types. Each type supports different parameters.
+MCdesk supports the following thread pool types. Each type supports different parameters.
 
 ### Fixed thread pools
 
 Fixed thread pools maintain a constant number of threads and use a queue for pending requests. 
 
-SmartObserve supports the following fixed thread pools:
+MCdesk supports the following fixed thread pools:
 
 - `get`: For document retrieval operations (fixed type)
 - `analyze`: For Analyze API requests (fixed type)
@@ -42,7 +42,7 @@ Fixed thread pools support the following settings:
 
 Scaling thread pools dynamically adjust the number of threads based on workload.
 
-SmartObserve supports the following scaling thread pools:
+MCdesk supports the following scaling thread pools:
 
 - `generic`: For general background operations like node discovery (scaling type)
 - `snapshot`: For snapshot and restore operations (scaling type)

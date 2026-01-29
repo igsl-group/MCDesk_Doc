@@ -14,7 +14,7 @@ The `diversified_sampler` aggregation lets you reduce the bias in the distributi
 Similarly to the [`sampler` aggregation]({{site.url}}{{site.baseurl}}/aggregations/bucket/sampler/), you can use the `shard_size` setting to control the maximum number of documents collected on any one shard, as shown in the following example:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

@@ -7,7 +7,7 @@ redirect_from:
    - /api-reference/ingest-apis/processors/append/
 ---
 
-This documentation describes using the `append` processor in SmartObserve ingest pipelines. Consider using the [Data Prepper `add_entries` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/add-entries/), which runs on the SmartObserve cluster, if your use case involves large or complex datasets.
+This documentation describes using the `append` processor in MCdesk ingest pipelines. Consider using the [Data Prepper `add_entries` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/add-entries/), which runs on the MCdesk cluster, if your use case involves large or complex datasets.
 {: .note}
 
 # Append processor
@@ -53,7 +53,7 @@ Follow these steps to use the processor in a pipeline.
 
 **Step 1: Create a pipeline** 
 
-The following query creates a pipeline, named `user-behavior`, that has one append processor. It appends the `page_view` of each new document ingested into SmartObserve to an array field named `event_types`:
+The following query creates a pipeline, named `user-behavior`, that has one append processor. It appends the `page_view` of each new document ingested into MCdesk to an array field named `event_types`:
 
 ```json
 PUT _ingest/pipeline/user-behavior

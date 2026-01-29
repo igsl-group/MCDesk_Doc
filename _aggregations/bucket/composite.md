@@ -73,7 +73,7 @@ The `composite` aggregation takes the following parameters.
 | `size`    | Optional          | Numeric    | The number of `composite` buckets to return in the results. The default value is `10`. See [Paginating composite results](#paginating-composite-results). |
 | `after` | Optional | String | A key that specifies where to resume displaying paginated `composite` buckets. See [Paginating composite results](#paginating-composite-results). |
 | `order`   | Optional          | String     | For each source, whether to order the values in ascending or descending order. Valid values are `asc` and `desc`. Default is `asc`. |
-| `missing_bucket` | Optional    | Boolean   | For each source, whether to include documents with a missing value. The default value is `false`. If set to `true`, SmartObserve includes the documents, supplying `null` as the field's key. Null values rank first in ascending order. |
+| `missing_bucket` | Optional    | Boolean   | For each source, whether to include documents with a missing value. The default value is `false`. If set to `true`, MCdesk includes the documents, supplying `null` as the field's key. Null values rank first in ascending order. |
 
 For aggregation-specific parameters, see the corresponding aggregation documentation.
 {: .note}
@@ -85,10 +85,10 @@ Use a `terms` aggregation for aggregating string or Boolean data. For more infor
 You can use `terms` sources to create composite buckets for any type of data. However, since `terms` sources create buckets for every unique value, you'll normally use `histogram` sources for numerical data instead.
 {: .note}
 
-The following example request returns the first `4` composite buckets for day of the week and customer gender in the SmartObserve Dashboards sample e-commerce data:
+The following example request returns the first `4` composite buckets for day of the week and customer gender in the MCdesk Dashboards sample e-commerce data:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -177,10 +177,10 @@ Use `histogram` sources to create composite aggregations of numerical data. For 
 
 For `histogram` sources, the name used in each `composite` bucket key is the lowest value in the key's histogram interval. Each source histogram interval contains the values in the `[lower_bound, lower_bound + interval)` range. The name of the first interval is the lowest value in the source field (for ascending-value sources). 
 
-The following example request returns the first `6` composite buckets for quantity and base unit price in the SmartObserve Dashboards sample e-commerce data based on bucket widths of `1` and `50`, respectively:
+The following example request returns the first `6` composite buckets for quantity and base unit price in the MCdesk Dashboards sample e-commerce data based on bucket widths of `1` and `50`, respectively:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -278,7 +278,7 @@ The bucket key for each field is the lower bound of the field interval. For exam
 To retrieve the next `6` buckets, supply the `after` parameter with the `after_key` object from the response as follows:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -351,14 +351,14 @@ There are only two buckets remaining:
 
 To create composite aggregations of date ranges, use the `date_histogram` aggregation. For more information, see [Date histogram aggregations]({{site.url}}{{site.baseurl}}/aggregations/bucket/date-histogram/).
 
-SmartObserve represents dates, including `date_interval` bucket keys, as `long` integers representing milliseconds since the epoch in [Unix time](https://en.wikipedia.org/wiki/Unix_time). You can format the date output using the `format` parameter. This does not change the key order.
+MCdesk represents dates, including `date_interval` bucket keys, as `long` integers representing milliseconds since the epoch in [Unix time](https://en.wikipedia.org/wiki/Unix_time). You can format the date output using the `format` parameter. This does not change the key order.
 
-SmartObserve stores date-times in UTC. You can display output results in a different time zone using the `time_zone` parameter.
+MCdesk stores date-times in UTC. You can display output results in a different time zone using the `time_zone` parameter.
 
-The following example request returns the first `4` composite buckets for the year in which each sold product was created and the date on which it was sold in the SmartObserve Dashboards sample e-commerce data, based on bucket widths of 1 year and 1 day, respectively:
+The following example request returns the first `4` composite buckets for the year in which each sold product was created and the date on which it was sold in the MCdesk Dashboards sample e-commerce data, based on bucket widths of 1 year and 1 day, respectively:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -446,7 +446,7 @@ Each cell corresponds to a [map tile](https://en.wikipedia.org/wiki/Tiled_web_ma
 The following example request returns the first `6` tiles containing locations from the `geoip.location` field at a precision of `8`:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -526,7 +526,7 @@ You can combine two or more sources of any different type.
 The following example request returns buckets composed of three different source types:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -646,10 +646,10 @@ The aggregation returns the mixed-type `composite` buckets and document counts:
 
 Composite aggregations are most useful when combined with subaggregations that reveal information about the documents in the `composite` buckets.
 
-The following example request compares average spending based on gender for each day of the week in the SmartObserve Dashboards sample e-commerce data:
+The following example request compares average spending based on gender for each day of the week in the MCdesk Dashboards sample e-commerce data:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -773,7 +773,7 @@ Always use the `after_key` rather than copying the last bucket to continue a pag
 
 ## Improving performance with index sorting
 
-To speed up composite aggregations on large datasets, you can sort your index using the same fields and order used in your aggregation sources. When the `index.sort.field` and `index.sort.order` match the source fields and order used in the composite aggregation, SmartObserve can return results more efficiently and with less memory usage. While index sorting adds minor overhead during indexing, the query performance gains for composite aggregations are significant.
+To speed up composite aggregations on large datasets, you can sort your index using the same fields and order used in your aggregation sources. When the `index.sort.field` and `index.sort.order` match the source fields and order used in the composite aggregation, MCdesk can return results more efficiently and with less memory usage. While index sorting adds minor overhead during indexing, the query performance gains for composite aggregations are significant.
 
 The following example request sets sort fields and a sort order for each of the fields in the `my-sorted-index` index:
 

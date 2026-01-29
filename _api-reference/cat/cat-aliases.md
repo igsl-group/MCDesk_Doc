@@ -3,7 +3,7 @@ layout: default
 title: CAT aliases
 parent: CAT APIs
 redirect_from:
-- /smartobserve/rest-api/cat/cat-aliases/
+- /mcdesk/rest-api/cat/cat-aliases/
 
 nav_order: 1
 has_children: false
@@ -134,7 +134,7 @@ The following response shows that `alias1` refers to a `movies` index and has a 
 ```json
 alias   | index     | filter  | routing.index | routing.search  | is_write_index
 alias1  | movies    |   *     |      -        |       -         |      -
-.smartobserve-dashboards | .smartobserve-dashboards_1 |   -     |      -        |       -         |      -
+.mcdesk-dashboards | .mcdesk-dashboards_1 |   -     |      -        |       -         |      -
 ```
 
-To learn more about index aliases, see [Index aliases]({{site.url}}{{site.baseurl}}/smartobserve/index-alias).
+To learn more about index aliases, see [Index aliases]({{site.url}}{{site.baseurl}}/mcdesk/index-alias).

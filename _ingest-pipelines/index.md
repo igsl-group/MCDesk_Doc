@@ -16,23 +16,23 @@ An _ingest pipeline_ is a sequence of _processors_ that are applied to documents
 
 Processors are customizable tasks that run in a sequential order as they appear in the request body. This order is important, as each processor depends on the output of the previous processor. The modified documents appear in your index after the processors are applied.
 
-## SmartObserve ingest pipelines compared to Data Prepper
+## MCdesk ingest pipelines compared to Data Prepper
 
-OpenSeach ingest pipelines run within the SmartObserve cluster, whereas [Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/) is an external component that runs on the SmartObserve cluster. 
+OpenSeach ingest pipelines run within the MCdesk cluster, whereas [Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/) is an external component that runs on the MCdesk cluster. 
 
-SmartObserve ingest pipelines perform actions on indexes and are preferred for use cases involving pre-processing simple datasets, [machine learning (ML) processors]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/sparse-encoding/), and [vector embedding processors]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/text-image-embedding/). SmartObserve ingest pipelines are recommended for simple data pre-processing and small datasets. 
+MCdesk ingest pipelines perform actions on indexes and are preferred for use cases involving pre-processing simple datasets, [machine learning (ML) processors]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/sparse-encoding/), and [vector embedding processors]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/text-image-embedding/). MCdesk ingest pipelines are recommended for simple data pre-processing and small datasets. 
 
 Data Prepper is recommended for any data processing tasks it supports, particularly when dealing with large datasets and complex data pre-processing requirements. It streamlines the process of transferring and fetching large datasets while providing robust capabilities for intricate data preparation and transformation operations. Refer to the [Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/) documentation for more information.      
 
-SmartObserve ingest pipelines can only be managed using [Ingest API operations]({{site.url}}{{site.baseurl}}/api-reference/ingest-apis/index/).
+MCdesk ingest pipelines can only be managed using [Ingest API operations]({{site.url}}{{site.baseurl}}/api-reference/ingest-apis/index/).
 {: .note}
 
 ## Prerequisites 
 
-The following are prerequisites for using SmartObserve ingest pipelines:
+The following are prerequisites for using MCdesk ingest pipelines:
 
-- When using ingestion in a production environment, your cluster should contain at least one node with the node roles permission set to `ingest`. For information about setting up node roles within a cluster, see [Cluster Formation]({{site.url}}{{site.baseurl}}/smartobserve/cluster/).
-- If the SmartObserve Security plugin is enabled, you must have the `cluster_manage_pipelines` permission to manage ingest pipelines.
+- When using ingestion in a production environment, your cluster should contain at least one node with the node roles permission set to `ingest`. For information about setting up node roles within a cluster, see [Cluster Formation]({{site.url}}{{site.baseurl}}/mcdesk/cluster/).
+- If the MCdesk Security plugin is enabled, you must have the `cluster_manage_pipelines` permission to manage ingest pipelines.
 
 ## Define a pipeline
 
@@ -49,7 +49,7 @@ A _pipeline definition_ describes the sequence of an ingest pipeline and can be 
 
 Field | Required | Type | Description
 :--- | :--- | :--- | :---
-`processors` | Required | Array of processor objects | A component that performs a specific data processing task as the data is being ingested into SmartObserve.
+`processors` | Required | Array of processor objects | A component that performs a specific data processing task as the data is being ingested into MCdesk.
 `description` | Optional | String | A description of the ingest pipeline. 
 
 ## Next steps
@@ -60,5 +60,5 @@ Learn how to:
 - [Test a pipeline]({{site.url}}{{site.baseurl}}/ingest-pipelines/simulate-ingest/).
 - [Retrieve information about a pipeline]({{site.url}}{{site.baseurl}}/ingest-pipelines/get-ingest/).
 - [Delete a pipeline]({{site.url}}{{site.baseurl}}/ingest-pipelines/delete-ingest/). 
-- [Use ingest processors in SmartObserve]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/index-processors/)
+- [Use ingest processors in MCdesk]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/index-processors/)
 - [Use conditional execution]({{site.url}}{{site.baseurl}}/ingest-pipelines/conditional-execution/)

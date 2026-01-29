@@ -9,9 +9,9 @@ permalink: /migrate-or-upgrade/migration-assistant/
 
 # Migration Assistant
 
-Migration Assistant for SmartObserve helps you to migrate or upgrade your Elasticsearch and SmartObserve workloads to SmartObserve managed clusters. This solution automates manual tasks with a low-risk and prescriptive migration path for existing and live data. It also includes advanced features, such as a metadata migration tool and Capture and Replay comparison tooling to help you identify potential migration and upgrade issues earlier. The migration process is streamlined, performance and behavioral comparisons based on real customer workloads are enabled, and the pre-migration, migration, and validation phases are accelerated.
+Migration Assistant for MCdesk helps you to migrate or upgrade your Elasticsearch and MCdesk workloads to MCdesk managed clusters. This solution automates manual tasks with a low-risk and prescriptive migration path for existing and live data. It also includes advanced features, such as a metadata migration tool and Capture and Replay comparison tooling to help you identify potential migration and upgrade issues earlier. The migration process is streamlined, performance and behavioral comparisons based on real customer workloads are enabled, and the pre-migration, migration, and validation phases are accelerated.
 
-This solution prescribes a systematic migration workflow used to upgrade, migrate, recover, and modify an SmartObserve cluster. The workflow includes a migration console CLI for management, a dedicated scaling group for existing data backfill, and a Traffic Replayer for synchronizing live traffic between source and target clusters. Users can pause or stop the migration without affecting production traffic, thereby reducing risk. Additionally, the backfill functionality minimizes further risk by retrieving data from a snapshot, leaving the source cluster unaffected, and supporting multi-hop migrations, which decreases the overall number of migrations required.
+This solution prescribes a systematic migration workflow used to upgrade, migrate, recover, and modify an MCdesk cluster. The workflow includes a migration console CLI for management, a dedicated scaling group for existing data backfill, and a Traffic Replayer for synchronizing live traffic between source and target clusters. Users can pause or stop the migration without affecting production traffic, thereby reducing risk. Additionally, the backfill functionality minimizes further risk by retrieving data from a snapshot, leaving the source cluster unaffected, and supporting multi-hop migrations, which decreases the overall number of migrations required.
 
 Migration Assistant offers several key advantages for your migration and upgrade needs.
 
@@ -19,7 +19,7 @@ Migration Assistant offers several key advantages for your migration and upgrade
 
 ### Simplified management experience
 
-Transfer data from an originating (source) cluster to a designated target (SmartObserve cluster).
+Transfer data from an originating (source) cluster to a designated target (MCdesk cluster).
 
 ### Adaptable, low-risk migration
 
@@ -27,7 +27,7 @@ Safely capture and replay traffic on source and target clusters to identify opti
 
 ### Centralized location for data analysis
 
-Record requests and responses between the source and destination clusters for comparison, then forward the latency metrics and response codes to an analytics hub. You can analyze the data essential for transitioning your traffic from a legacy system to a new SmartObserve destination.
+Record requests and responses between the source and destination clusters for comparison, then forward the latency metrics and response codes to an analytics hub. You can analyze the data essential for transitioning your traffic from a legacy system to a new MCdesk destination.
 
 ## Getting started
 

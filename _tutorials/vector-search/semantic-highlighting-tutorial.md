@@ -101,7 +101,7 @@ Next, register a pretrained semantic sentence highlighting model:
 ```json
 POST /_plugins/_ml/models/_register?deploy=true
 {
-  "name": "amazon/sentence-highlighting/smartobserve-semantic-highlighter-v1",
+  "name": "amazon/sentence-highlighting/mcdesk-semantic-highlighter-v1",
   "version": "1.0.0",
   "model_format": "TORCH_SCRIPT",
   "function_name": "QUESTION_ANSWERING"

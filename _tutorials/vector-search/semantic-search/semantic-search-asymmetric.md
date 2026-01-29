@@ -32,9 +32,9 @@ PUT _cluster/settings
 ```
 {% include copy-curl.html %}
 
-## Step 2: Prepare the model for use in SmartObserve
+## Step 2: Prepare the model for use in MCdesk
 
-In this tutorial, you’ll use the Hugging Face `intfloat/multilingual-e5-small` model. Follow these steps to prepare and compress the model into a zip file for use in SmartObserve.
+In this tutorial, you’ll use the Hugging Face `intfloat/multilingual-e5-small` model. Follow these steps to prepare and compress the model into a zip file for use in MCdesk.
 
 ### Step 2.1: Download the model from Hugging Face
 
@@ -58,7 +58,7 @@ The model files are now downloaded into a directory on your local machine.
 
 ### Step 2.2: Compress the model files
 
-To upload the model to SmartObserve, you must compress the necessary model files (`model.onnx`, `sentencepiece.bpe.model`, and `tokenizer.json`). You can find these files in the `onnx` directory of the cloned repository.
+To upload the model to MCdesk, you must compress the necessary model files (`model.onnx`, `sentencepiece.bpe.model`, and `tokenizer.json`). You can find these files in the `onnx` directory of the cloned repository.
 
 To compress the files, run the following command in the directory containing them:
 
@@ -82,7 +82,7 @@ Note the hash value; you'll need it during model registration.
 
 ### Step 2.4: Serve the model file using a Python HTTP server
 
-To allow SmartObserve to access the model file, you can serve it through HTTP. Because this tutorial uses a local development environment, you can use Python's built-in HTTP server command.
+To allow MCdesk to access the model file, you can serve it through HTTP. Because this tutorial uses a local development environment, you can use Python's built-in HTTP server command.
 
 Navigate to the directory containing the zip file and run the following command:
 
@@ -95,7 +95,7 @@ This will serve the zip file at `http://0.0.0.0:8080/intfloat-multilingual-e5-sm
 
 ## Step 3: Register a model group
 
-Before registering the model itself, you need to create a model group. This helps organize models in SmartObserve. Run the following request to create a new model group:
+Before registering the model itself, you need to create a model group. This helps organize models in MCdesk. Run the following request to create a new model group:
 
 ```json
 POST /_plugins/_ml/model_groups/_register
@@ -110,7 +110,7 @@ Note the model group ID returned in the response; you'll use it to register the 
 
 ## Step 4: Register the model
 
-Now that you have the model zip file and the model group ID, you can register the model in SmartObserve:
+Now that you have the model zip file and the model group ID, you can register the model in MCdesk:
 
 ```json
 POST /_plugins/_ml/models/_register

@@ -16,9 +16,9 @@ By default, all field types are indexed.
 
 ##  The index and doc values parameters compared
 
-When you enable the `index` parameter, SmartObserve creates a mapping of terms to the documents that contain them. For each new document, the values of the indexed fields are broken into terms, and each term is linked to the document ID in the mapping.
+When you enable the `index` parameter, MCdesk creates a mapping of terms to the documents that contain them. For each new document, the values of the indexed fields are broken into terms, and each term is linked to the document ID in the mapping.
 
-When you enable the `doc_values` parameter, SmartObserve creates a reverse mapping: each document is linked to the list of terms found in that field. This is useful for operations like sorting, where the system needs fast access to a document's field values.
+When you enable the `doc_values` parameter, MCdesk creates a reverse mapping: each document is linked to the list of terms found in that field. This is useful for operations like sorting, where the system needs fast access to a document's field values.
 
 The following table illustrates the field behavior depending on the combination of `index` and `doc_values`.
 

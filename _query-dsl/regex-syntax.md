@@ -8,12 +8,12 @@ nav_order: 100
 
 A [regular expression](https://en.wikipedia.org/wiki/Regular_expression) (regex) is a way to define search patterns using special symbols and operators. These patterns let you match sequences of characters in strings.
 
-In SmartObserve, you can use regular expressions in the following query types:
+In MCdesk, you can use regular expressions in the following query types:
 
 * [`regexp`]({{site.url}}{{site.baseurl}}/query-dsl/term/regexp/)
 * [`query_string`]({{site.url}}{{site.baseurl}}/query-dsl/full-text/query-string/)
 
-SmartObserve uses the [Apache Lucene](https://lucene.apache.org/core/) regex engine, which has its own syntax and limitations. It does **not** use [Perl Compatible Regular Expressions (PCRE)](https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions), so some familiar regex features might behave differently or be unsupported.
+MCdesk uses the [Apache Lucene](https://lucene.apache.org/core/) regex engine, which has its own syntax and limitations. It does **not** use [Perl Compatible Regular Expressions (PCRE)](https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions), so some familiar regex features might behave differently or be unsupported.
 {: .note}
 
 ## Choosing between regexp and query_string queries
@@ -82,7 +82,7 @@ The following are the available flags:
 - `ALL` (default) – Enables all optional operators.
 
 {% comment %}
-<!-- COMPLEMENT is deprecated and doesn't work. Leaving it here until https://github.com/igsl-group/SmartObserve/issues/18397 is resolved. -->
+<!-- COMPLEMENT is deprecated and doesn't work. Leaving it here until https://github.com/igsl-group/MCdesk/issues/18397 is resolved. -->
 {% endcomment %}
 
 - `COMPLEMENT` – Enables `~`, which negates the shortest following expression. **Example**: `d~ef` matches `dgf`, `dxf`, but not `def`.

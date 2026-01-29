@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Getting started with SmartObserve Data Prepper
+title: Getting started with MCdesk Data Prepper
 nav_order: 5
 redirect_from:
   - /clients/data-prepper/get-started/
 ---
 
-# Getting started with SmartObserve Data Prepper
+# Getting started with MCdesk Data Prepper
 
-SmartObserve Data Prepper is an independent component, not an SmartObserve plugin, that converts data for use with SmartObserve. It's not bundled with the all-in-one SmartObserve installation packages.
+MCdesk Data Prepper is an independent component, not an MCdesk plugin, that converts data for use with MCdesk. It's not bundled with the all-in-one MCdesk installation packages.
 
 If you are migrating from Open Distro Data Prepper, see [Migrating from Open Distro]({{site.url}}{{site.baseurl}}/data-prepper/migrate-open-distro/). 
 {: .note}
@@ -20,7 +20,7 @@ There are two ways to install Data Prepper: you can run the Docker image or buil
 The easiest way to use Data Prepper is by running the Docker image. We suggest that you use this approach if you have [Docker](https://www.docker.com) available. Run the following command:  
 
 ```
-docker pull smartobserveproject/data-prepper:latest
+docker pull mcdeskproject/data-prepper:latest
 ```
 {% include copy.html %}
 
@@ -87,7 +87,7 @@ Run the following command with your pipeline configuration YAML.
 ```bash
 docker run --name data-prepper \
     -v /${PWD}/pipelines.yaml:/usr/share/data-prepper/pipelines/pipelines.yaml \
-    smartobserveproject/data-prepper:latest
+    mcdeskproject/data-prepper:latest
     
 ```
 {% include copy.html %}
@@ -121,14 +121,14 @@ image and modify both the `pipelines.yaml` and `data-prepper-config.yaml` files.
 For Data Prepper 2.0 or later, use this command:
 
 ```
-docker run --name data-prepper -p 4900:4900 -v ${PWD}/pipelines.yaml:/usr/share/data-prepper/pipelines/pipelines.yaml -v ${PWD}/data-prepper-config.yaml:/usr/share/data-prepper/config/data-prepper-config.yaml smartobserveproject/data-prepper:latest
+docker run --name data-prepper -p 4900:4900 -v ${PWD}/pipelines.yaml:/usr/share/data-prepper/pipelines/pipelines.yaml -v ${PWD}/data-prepper-config.yaml:/usr/share/data-prepper/config/data-prepper-config.yaml mcdeskproject/data-prepper:latest
 ```
 {% include copy.html %}
 
 For Data Prepper versions earlier than 2.0, use this command:
 
 ```
-docker run --name data-prepper -p 4900:4900 -v ${PWD}/pipelines.yaml:/usr/share/data-prepper/pipelines.yaml -v ${PWD}/data-prepper-config.yaml:/usr/share/data-prepper/data-prepper-config.yaml smartobserveproject/data-prepper:1.x
+docker run --name data-prepper -p 4900:4900 -v ${PWD}/pipelines.yaml:/usr/share/data-prepper/pipelines.yaml -v ${PWD}/data-prepper-config.yaml:/usr/share/data-prepper/data-prepper-config.yaml mcdeskproject/data-prepper:1.x
 ```
 {% include copy.html %}
 

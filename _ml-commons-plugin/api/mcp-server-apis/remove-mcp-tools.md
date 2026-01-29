@@ -30,7 +30,7 @@ POST /_plugins/_ml/mcp/tools/_remove
 
 ## Example response
 
-SmartObserve responds with the node ID and the status of tool deletion for each node:
+MCdesk responds with the node ID and the status of tool deletion for each node:
 
 ```json
 {

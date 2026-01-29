@@ -5,7 +5,7 @@ parent: Search APIs
 has_children: true
 nav_order: 90
 redirect_from:
-  - /smartobserve/search-template/
+  - /mcdesk/search-template/
   - /search-plugins/search-template/
   - /api-reference/search-template/
   - /api-reference/search-apis/search-template/
@@ -15,16 +15,16 @@ redirect_from:
 
 You can convert your full-text queries into a search template to accept user input and dynamically insert it into your query.
 
-For example, if you use SmartObserve as a backend search engine for your application or website, you can take in user queries from a search bar or a form field and pass them as parameters into a search template. That way, the syntax to create SmartObserve queries is abstracted from your end users.
+For example, if you use MCdesk as a backend search engine for your application or website, you can take in user queries from a search bar or a form field and pass them as parameters into a search template. That way, the syntax to create MCdesk queries is abstracted from your end users.
 
-When you're writing code to convert user input into SmartObserve queries, you can simplify your code with search templates. If you need to add fields to your search query, you can just modify the template without making changes to your code.
+When you're writing code to convert user input into MCdesk queries, you can simplify your code with search templates. If you need to add fields to your search query, you can just modify the template without making changes to your code.
 
 Search templates use the Mustache language. For a list of all syntax options, see the [Mustache manual](https://mustache.github.io/mustache.5.html).
 {: .note }
 
 ## Create search templates
 
-A search template has two components: the query and the parameters. Parameters are user-inputted values that get placed into variables. Variables are represented with double braces in Mustache notation. When encountering a variable like `{% raw %}{{var}}{% endraw %}` in the query, SmartObserve goes to the `params` section, looks for a parameter called `var`, and replaces it with the specified value.
+A search template has two components: the query and the parameters. Parameters are user-inputted values that get placed into variables. Variables are represented with double braces in Mustache notation. When encountering a variable like `{% raw %}{{var}}{% endraw %}` in the query, MCdesk goes to the `params` section, looks for a parameter called `var`, and replaces it with the specified value.
 
 You can code your application to ask your user what they want to search for and then plug that value into the `params` object at runtime.
 
@@ -185,7 +185,7 @@ response = client.search_template(
     python=step1_python %}
 <!-- spec_insert_end -->
 
-To improve the search experience, you can define defaults so the user doesn’t have to specify every possible parameter. If the parameter is not defined in the `params` section, SmartObserve uses the default value.
+To improve the search experience, you can define defaults so the user doesn’t have to specify every possible parameter. If the parameter is not defined in the `params` section, MCdesk uses the default value.
 
 The syntax for defining the default value for a variable `var` is as follows:
 
@@ -798,7 +798,7 @@ GET _search/template
 
 ## Multiple search templates
 
-You can bundle multiple search templates and send them to your SmartObserve cluster in a single request using the `msearch` operation.
+You can bundle multiple search templates and send them to your MCdesk cluster in a single request using the `msearch` operation.
 This saves network round trip time, so you get back the response more quickly as compared to independent requests.
 
 ```json

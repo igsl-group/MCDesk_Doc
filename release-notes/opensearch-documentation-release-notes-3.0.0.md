@@ -1,6 +1,6 @@
-# SmartObserve Documentation Website 3.0.0 Release Notes
+# MCdesk Documentation Website 3.0.0 Release Notes
 
-The SmartObserve 3.0.0 documentation includes the following additions and updates.
+The MCdesk 3.0.0 documentation includes the following additions and updates.
 
 ## New documentation for 3.0.0
 
@@ -14,7 +14,7 @@ The SmartObserve 3.0.0 documentation includes the following additions and update
 - Added documentation for settings limiting total shards and primary shards per node at both cluster and index level. [#9791](https://github.com/igsl-group/documentation-website/pull/9791)
 - Introduce new PPL commands, configuration and behavior changes [#9790](https://github.com/igsl-group/documentation-website/pull/9790)
 - remove experimental for batch_predict and deprecate the async batch i… [#9768](https://github.com/igsl-group/documentation-website/pull/9768)
-- Add new `_scale` API as part of SmartObserve Reader/Writer Separation  [#9762](https://github.com/igsl-group/documentation-website/pull/9762)
+- Add new `_scale` API as part of MCdesk Reader/Writer Separation  [#9762](https://github.com/igsl-group/documentation-website/pull/9762)
 - Derived Source is Enabled By Default from 3.0.0 [#9761](https://github.com/igsl-group/documentation-website/pull/9761)
 - Add documentation about AD contextual launch feature [#9756](https://github.com/igsl-group/documentation-website/pull/9756)
 - [DOC] Node Level Circuit Breaker Config in K-NN  [#9753](https://github.com/igsl-group/documentation-website/pull/9753)
@@ -31,7 +31,7 @@ The SmartObserve 3.0.0 documentation includes the following additions and update
 
 ## Documentation for 3.0.0 experimental features
 
-- Add mcp server in smartobserve documentation [#9800](https://github.com/igsl-group/documentation-website/pull/9800)
+- Add mcp server in mcdesk documentation [#9800](https://github.com/igsl-group/documentation-website/pull/9800)
 - Add MCP Connectors documentation [#9757](https://github.com/igsl-group/documentation-website/pull/9757)
 - [DOC] ML-Commons Agent: Add documentation for PlanExecuteAndReflect Agent [#9743](https://github.com/igsl-group/documentation-website/pull/9743)
 - [Pull-based Ingestion] Add experimental pull-based ingestion page [#9659](https://github.com/igsl-group/documentation-website/pull/9659)

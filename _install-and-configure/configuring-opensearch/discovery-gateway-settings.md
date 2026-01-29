@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Discovery and gateway settings
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 30
 ---
 
@@ -9,7 +9,7 @@ nav_order: 30
 
 The following are settings related to discovery and local gateway.
 
-To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 ## Discovery settings
 
@@ -19,11 +19,11 @@ The discovery process is used when a cluster is formed. It consists of discoveri
 
 The following **static** discovery settings must be configured before a cluster starts:
 
-- `discovery.seed_hosts` (Static, list): Provides a list of the addresses of the cluster-manager-eligible nodes in the cluster. Each address has the format `host:port` or `host`. If a hostname resolves to multiple addresses via DNS, SmartObserve uses all of them. This setting is essential in order for nodes to find each other during cluster formation. Default is `["127.0.0.1", "[::1]"]`.
+- `discovery.seed_hosts` (Static, list): Provides a list of the addresses of the cluster-manager-eligible nodes in the cluster. Each address has the format `host:port` or `host`. If a hostname resolves to multiple addresses via DNS, MCdesk uses all of them. This setting is essential in order for nodes to find each other during cluster formation. Default is `["127.0.0.1", "[::1]"]`.
 
 - `discovery.seed_providers` (Static, list): Specifies which types of seed hosts provider to use to obtain the addresses of the seed nodes used to start the discovery process. By default, this uses the settings-based seed hosts provider, which obtains seed node addresses from the `discovery.seed_hosts` setting.
 
-- `discovery.type` (Static, string): Specifies whether SmartObserve should form a multiple-node cluster or operate as a single node. When set to `single-node`, SmartObserve forms a single-node cluster and suppresses certain timeouts. This setting is useful for development and testing environments. Valid values are `multi-node` (default) and `single-node`.
+- `discovery.type` (Static, string): Specifies whether MCdesk should form a multiple-node cluster or operate as a single node. When set to `single-node`, MCdesk forms a single-node cluster and suppresses certain timeouts. This setting is useful for development and testing environments. Valid values are `multi-node` (default) and `single-node`.
 
 - `cluster.initial_cluster_manager_nodes` (Static, list): Establishes the initial set of cluster-manager-eligible nodes in a new cluster. This setting is required when bootstrapping a cluster for the first time and should contain the node names (as defined by `node.name`) of the initial cluster-manager-eligible nodes. This list should be empty for nodes joining an existing cluster. Default is `[]` (empty list).
 

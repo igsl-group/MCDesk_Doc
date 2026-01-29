@@ -2,7 +2,7 @@
 layout: default
 title: operations
 parent: Workload reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 nav_order: 100
 ---
 
@@ -32,9 +32,9 @@ The following example shows a `bulk` operation type with a `bulk-size` of `5000`
 
 ### Split documents among clients
 
-When you have multiple `clients`, SmartObserve Benchmark splits each document based on the set number of clients. Having multiple `clients` parallelizes the bulk index operations but doesn't preserve the ingestion order of each document. For example, if `clients` is set to `2`, one client indexes the document starting from the beginning, while the other client indexes the document starting from the middle.
+When you have multiple `clients`, MCdesk Benchmark splits each document based on the set number of clients. Having multiple `clients` parallelizes the bulk index operations but doesn't preserve the ingestion order of each document. For example, if `clients` is set to `2`, one client indexes the document starting from the beginning, while the other client indexes the document starting from the middle.
 
-If there are multiple documents or corpora, SmartObserve Benchmark attempts to index all documents in parallel in two ways:
+If there are multiple documents or corpora, MCdesk Benchmark attempts to index all documents in parallel in two ways:
 
 1. Each client starts at a different point in the corpus. For example, in a workload with 2 corpora and 5 clients, clients 1, 3, and 5 begin with the first corpus, whereas clients 2 and 4 start with the second corpus.
 2. Each client is assigned to multiple documents. Client 1 starts with the first split of the first document of the first corpus. Then it moves to the first split of the first document of the second corpus, and so on.
@@ -48,16 +48,16 @@ Parameter | Required | Type | Description
 `bulk-size` | Yes | Number | Specifies the number of documents to be ingested in the bulk request.
 `ingest-percentage` | No | Range [0, 100] | Defines the portion of the document corpus to be indexed. Valid values are numbers between 0 and 100.
 `corpora` | No | List | Defines which document corpus names should be targeted by the bulk operation. Only needed if the `corpora` section contains more than one document corpus and you don’t want to index all of them during the bulk request.
-`indices` | No | List | Defines which indexes should be used in the bulk index operation. SmartObserve Benchmark only selects document files that have a matching `target-index`.
-`batch-size` | No | Number | Defines how many documents SmartObserve Benchmark reads simultaneously. This is an expert setting and is only meant to avoid accidental bottlenecks for very small bulk sizes. If you want to benchmark with a `bulk-size` of `1`, you should set a higher `batch-size`.
+`indices` | No | List | Defines which indexes should be used in the bulk index operation. MCdesk Benchmark only selects document files that have a matching `target-index`.
+`batch-size` | No | Number | Defines how many documents MCdesk Benchmark reads simultaneously. This is an expert setting and is only meant to avoid accidental bottlenecks for very small bulk sizes. If you want to benchmark with a `bulk-size` of `1`, you should set a higher `batch-size`.
 `pipeline` | No | String | Defines which existing ingest pipeline to use.
 `conflicts` | No | String | Defines the type of index `conflicts` to simulate. If not specified, none are simulated. Valid values are ‘sequential’, which replaces a document ID with a sequentially increasing document ID, and ‘random’, which replaces a document ID with a random document ID.
-`conflict-probability` | No | Percentage | Defines how many of the documents are replaced when a conflict exists. Combining `conflicts=sequential` and `conflict-probability=0` makes SmartObserve Benchmark generate the index ID itself instead of using SmartObserve's automatic ID generation. Valid values are numbers between 0 and 100. Default is `25%`.
-`on-conflict` | No | String |  Determines whether SmartObserve should use the action `index` or `update` index for ID conflicts. Default is `index`, which creates a new index during ID conflicts.
+`conflict-probability` | No | Percentage | Defines how many of the documents are replaced when a conflict exists. Combining `conflicts=sequential` and `conflict-probability=0` makes MCdesk Benchmark generate the index ID itself instead of using MCdesk's automatic ID generation. Valid values are numbers between 0 and 100. Default is `25%`.
+`on-conflict` | No | String |  Determines whether MCdesk should use the action `index` or `update` index for ID conflicts. Default is `index`, which creates a new index during ID conflicts.
 `recency` | No | Number | Uses a number between 0 and 1 to indicate recency. A recency closer to `1` biases conflicting IDs toward more recent IDs. A recency closer to 0 considers all IDs for ID conflicts.
-`detailed-results` | No | Boolean | Records more detailed [metadata](#metadata) for bulk requests. As SmartObserve Benchmark analyzes the corresponding bulk response in more detail, additional overhead may be incurred, which can skew measurement results. This property must be set to `true` so that SmartObserve Benchmark logs individual bulk request failures.
-`timeout` | No | Duration | Defines the amount of time (in minutes) that SmartObserve waits per action until completing the processing of the following operations: automatic index creation, dynamic mapping updates, and waiting for active shards. Default is `1m`.
-`refresh` | No | String | Controls SmartObserve refresh behavior for bulk requests that use the `refresh` Bulk API query parameter. Valid values are `true`, which refreshes target shards in the background; `wait_for`, which blocks bulk requests until affected shards have been refreshed; and `false`, which uses the default refresh behavior.
+`detailed-results` | No | Boolean | Records more detailed [metadata](#metadata) for bulk requests. As MCdesk Benchmark analyzes the corresponding bulk response in more detail, additional overhead may be incurred, which can skew measurement results. This property must be set to `true` so that MCdesk Benchmark logs individual bulk request failures.
+`timeout` | No | Duration | Defines the amount of time (in minutes) that MCdesk waits per action until completing the processing of the following operations: automatic index creation, dynamic mapping updates, and waiting for active shards. Default is `1m`.
+`refresh` | No | String | Controls MCdesk refresh behavior for bulk requests that use the `refresh` Bulk API query parameter. Valid values are `true`, which refreshes target shards in the background; `wait_for`, which blocks bulk requests until affected shards have been refreshed; and `false`, which uses the default refresh behavior.
 
 ### Metadata
 
@@ -73,7 +73,7 @@ The `bulk` operation always returns the following metadata:
 
 If `detailed-results` is `true`, the following metadata is returned:
 
-- `ops`: A nested document with the operation name as its key, such as `index`, `update`, or `delete`, and various counts as values. `item-count` contains the total number of items for this key. Additionally, SmartObserve Benchmark returns a separate counter for each result, for example, a result for the number of created items or the number of deleted items.
+- `ops`: A nested document with the operation name as its key, such as `index`, `update`, or `delete`, and various counts as values. `item-count` contains the total number of items for this key. Additionally, MCdesk Benchmark returns a separate counter for each result, for example, a result for the number of created items or the number of deleted items.
 - `shards_histogram`: An array of hashes, each of which has two keys. The `item-count` key contains the number of items to which a shard distribution applies. The `shards` key contains a hash with the actual distribution of `total`, `successful`, and `failed` shards.
 - `bulk-request-size-bytes`: The total size of the bulk request body, in bytes.
 - `total-document-size-bytes`: The total size of all documents within the bulk request body, in bytes.
@@ -135,7 +135,7 @@ Use the following options when creating all indexes from the `indices` section o
 Parameter | Required | Type | Description
 :--- | :--- | :--- | :---
 `settings` | No | Array |  Specifies additional index settings to be merged with the index settings specified in the `indices` section of the workload.
-`request-params` | No | List of settings | Contains any request parameters allowed by the Create Index API. SmartObserve Benchmark does not attempt to serialize the parameters and passes them in their current state.
+`request-params` | No | List of settings | Contains any request parameters allowed by the Create Index API. MCdesk Benchmark does not attempt to serialize the parameters and passes them in their current state.
 
 Use the following options when creating a single index in the operation.
 
@@ -143,7 +143,7 @@ Parameter | Required | Type | Description
 :--- | :--- | :--- | :---
 `index` | Yes | String | The index name.
 `body` | No | Request body | The request body for the Create Index API. For more information, see [Create Index API](/api-reference/index-apis/create-index/).
-`request-params` | No | List of settings | Contains any request parameters allowed by the Create Index API. SmartObserve Benchmark does not attempt to serialize the parameters and passes them in their current state.
+`request-params` | No | List of settings | Contains any request parameters allowed by the Create Index API. MCdesk Benchmark does not attempt to serialize the parameters and passes them in their current state.
 
 ### Metadata
 
@@ -193,7 +193,7 @@ Use the following options when deleting all indexes indicated in the `indices` s
 Parameter | Required | Type | Description
 :--- | :--- | :--- | :---
 `only-if-exists` | No | Boolean | Decides whether an existing index should be deleted. Default is `true`.
-`request-params` | No | List of settings | Contains any request parameters allowed by the Create Index API. SmartObserve Benchmark does not attempt to serialize the parameters and passes them in their current state.
+`request-params` | No | List of settings | Contains any request parameters allowed by the Create Index API. MCdesk Benchmark does not attempt to serialize the parameters and passes them in their current state.
 
 Use the following options if you want to delete one or more indexes based on the pattern indicated in the `index` option.
 
@@ -201,7 +201,7 @@ Parameter | Required | Type | Description
 :--- | :--- | :--- | :---
 `index` | Yes | String | The index or indexes that you want to delete.
 `only-if-exists` | No | Boolean | Decides whether an index should be deleted when the index exists. Default is `true`.
-`request-params` | No | List of settings | Contains any request parameters allowed by the Create Index API. SmartObserve Benchmark does not attempt to serialize the parameters and passes them in their current state.
+`request-params` | No | List of settings | Contains any request parameters allowed by the Create Index API. MCdesk Benchmark does not attempt to serialize the parameters and passes them in their current state.
 
 ### Metadata
 
@@ -215,7 +215,7 @@ The `delete-index` operation returns the following metadata:
 ## cluster-health
 <!-- vale on -->
 
-The `cluster-health` operation runs the [Cluster Health API]({{site.url}}{{site.baseurl}}/api-reference/cluster-api/cluster-health/), which checks the cluster health status and returns the expected status according to the parameters set for `request-params`. If an unexpected cluster health status is returned, then the operation reports a failure. You can use the `--on-error` option in the SmartObserve Benchmark `run` command to control how SmartObserve Benchmark behaves when the health check fails.
+The `cluster-health` operation runs the [Cluster Health API]({{site.url}}{{site.baseurl}}/api-reference/cluster-api/cluster-health/), which checks the cluster health status and returns the expected status according to the parameters set for `request-params`. If an unexpected cluster health status is returned, then the operation reports a failure. You can use the `--on-error` option in the MCdesk Benchmark `run` command to control how MCdesk Benchmark behaves when the health check fails.
 
 
 ### Usage
@@ -243,7 +243,7 @@ Use the following options with the `cluster-health` operation.
 Parameter | Required | Type | Description
 :--- | :--- | :--- | :---
 `index` | Yes | String | The index or indexes you want to assess.
-`request-params` | No | List of settings | Contains any request parameters allowed by the Cluster Health API. SmartObserve Benchmark does not attempt to serialize the parameters and passes them in their current state.
+`request-params` | No | List of settings | Contains any request parameters allowed by the Cluster Health API. MCdesk Benchmark does not attempt to serialize the parameters and passes them in their current state.
 
 ### Metadata
 
@@ -285,7 +285,7 @@ Parameter | Required | Type | Description
 ## search
 <!-- vale on -->
 
-The `search` operation runs the [Search API]({{site.url}}{{site.baseurl}}/api-reference/search/), which you can use to run queries in SmartObserve Benchmark indexes.
+The `search` operation runs the [Search API]({{site.url}}{{site.baseurl}}/api-reference/search/), which you can use to run queries in MCdesk Benchmark indexes.
 
 ### Usage
 
@@ -313,8 +313,8 @@ The `search` operation uses the following options.
 
 Parameter | Required | Type | Description
 :--- | :--- | :--- | :---
-`index` | No | String | The indexes or data streams targeted by the query. This option is needed only when the `indices` section contains two or more indexes. Otherwise, SmartObserve Benchmark automatically derives the index or data stream to use. Specify `"index": "_all"` to query against all indexes in the workload.
-`cache` | No | Boolean | Specifies whether to use the query request cache. SmartObserve Benchmark defines no value. The default depends on the benchmark candidate settings and the SmartObserve version.
+`index` | No | String | The indexes or data streams targeted by the query. This option is needed only when the `indices` section contains two or more indexes. Otherwise, MCdesk Benchmark automatically derives the index or data stream to use. Specify `"index": "_all"` to query against all indexes in the workload.
+`cache` | No | Boolean | Specifies whether to use the query request cache. MCdesk Benchmark defines no value. The default depends on the benchmark candidate settings and the MCdesk version.
 `request-params` | No | List of settings | Contains any request parameters allowed by the Search API.
 `body` | Yes | Request body | Indicates which query and query parameters to use.
 `detailed-results` | No | Boolean | Records more detailed metadata about queries. When set to `true`, additional overhead may be incurred, which can skew measurement results. This option does not work with `scroll` queries.

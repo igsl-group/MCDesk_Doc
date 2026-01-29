@@ -151,7 +151,7 @@ To create a connector and register the model, use the following steps.
 
 First, create a connector for the model. 
 
-If you are using self-managed SmartObserve, supply your AWS credentials:
+If you are using self-managed MCdesk, supply your AWS credentials:
 
 ```json
 POST /_plugins/_ml/connectors/_create
@@ -203,7 +203,7 @@ POST /_plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %}
 
-If you are using Amazon SmartObserve Service, you can provide an AWS Identity and Access Management (IAM) role Amazon Resource Name (ARN) that allows access to Amazon Bedrock. For more information, see the [AWS documentation](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/ml-amazon-connector.html). Use the following request to create a connector:
+If you are using Amazon MCdesk Service, you can provide an AWS Identity and Access Management (IAM) role Amazon Resource Name (ARN) that allows access to Amazon Bedrock. For more information, see the [AWS documentation](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/ml-amazon-connector.html). Use the following request to create a connector:
 
 ```json
 POST /_plugins/_ml/connectors/_create
@@ -458,7 +458,7 @@ PUT /_search/pipeline/rerank_pipeline_bedrock
     "response_processors": [
         {
             "rerank": {
-                "ml_smartobserve": {
+                "ml_mcdesk": {
                     "model_id": "your_model_id_created_in_step1"
                 },
                 "context": {

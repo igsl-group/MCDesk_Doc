@@ -21,7 +21,7 @@ Rule-based auto-tagging offers the following benefits:
 * Centralized rule management
 * Easy policy updates
 
-Rule-based auto-tagging provides a flexible framework for implementing feature-specific request handling. Although this topic uses workload management as an example, the attribute-based matching system can be adapted for other SmartObserve features and use cases.
+Rule-based auto-tagging provides a flexible framework for implementing feature-specific request handling. Although this topic uses workload management as an example, the attribute-based matching system can be adapted for other MCdesk features and use cases.
 {: .tip }
 
 ## Key concepts
@@ -77,7 +77,7 @@ Note that matching behavior is determined by the feature and attribute type.
 
 ### Rule precedence
 
-When multiple rules match a request, SmartObserve uses the following precedence rules:
+When multiple rules match a request, MCdesk uses the following precedence rules:
 
 1. Rules with more specific attribute matches are prioritized.
 2. Feature-specific tie-breaking logic is applied.
@@ -89,16 +89,16 @@ For example, with index patterns:
 
 ### Evaluation process
 
-SmartObserve evaluates incoming requests using the following process:
+MCdesk evaluates incoming requests using the following process:
 
-1. SmartObserve receives a request.
+1. MCdesk receives a request.
 2. The system evaluates request attributes against defined rules.
 3. The most specific matching rule's value is assigned.
 4. If no rules match, no value is assigned.
 
 ### Rule matching examples
 
-The following examples demonstrate how SmartObserve matches attributes and resolves ties between rules.
+The following examples demonstrate how MCdesk matches attributes and resolves ties between rules.
 
 In these examples, the `username` attribute has higher priority than the `index_pattern` attribute (priority order depends on the feature and feature type).
 

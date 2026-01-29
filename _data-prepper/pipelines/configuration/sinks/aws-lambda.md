@@ -8,7 +8,7 @@ nav_order: 10
 
 # AWS Lambda sink
 
-This page explains how to configure and use [AWS Lambda](https://aws.amazon.com/lambda/) with SmartObserve Data Prepper, enabling Lambda functions to serve as both processors and sinks.
+This page explains how to configure and use [AWS Lambda](https://aws.amazon.com/lambda/) with MCdesk Data Prepper, enabling Lambda functions to serve as both processors and sinks.
 
 ## Configuration
 

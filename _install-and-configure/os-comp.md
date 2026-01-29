@@ -4,7 +4,7 @@ title: Compatible operating systems
 nav_order: 12
 ---
 
-SmartObserve and SmartObserve Dashboards are compatible with Red Hat Enterprise Linux (RHEL) and Debian-based Linux distributions that use [`systemd`](https://en.wikipedia.org/wiki/Systemd), such as Amazon Linux, and Ubuntu Long-Term Support (LTS). While SmartObserve and SmartObserve Dashboards should work on most Linux distributions, we only test a subset. 
+MCdesk and MCdesk Dashboards are compatible with Red Hat Enterprise Linux (RHEL) and Debian-based Linux distributions that use [`systemd`](https://en.wikipedia.org/wiki/Systemd), such as Amazon Linux, and Ubuntu Long-Term Support (LTS). While MCdesk and MCdesk Dashboards should work on most Linux distributions, we only test a subset. 
 
 ## Supported operating systems
 
@@ -27,7 +27,7 @@ The following table lists changes made to operating system compatibility.
 
 | Date       | Issue | PR | Details |
 |:-----------|:-------|:-------|:--------------------------|
-| 2025-02-06 | [smartobserve-build Issue 5270](https://github.com/igsl-group/smartobserve-build/issues/5270) | [PR 9165](https://github.com/igsl-group/documentation-website/pull/9165) | Remove [Ubuntu 20.04](https://ubuntu.com/blog/ubuntu-20-04-lts-end-of-life-standard-support-is-coming-to-an-end-heres-how-to-prepare) |
-| 2024-07-23 | [smartobserve-build Issue 4379](https://github.com/igsl-group/smartobserve-build/issues/4379) | [PR 7821](https://github.com/igsl-group/documentation-website/pull/7821) | Remove [CentOS7](https://blog.centos.org/2023/04/end-dates-are-coming-for-centos-stream-8-and-centos-linux-7/) |
-| 2024-03-08 | [smartobserve-build Issue 4573](https://github.com/igsl-group/smartobserve-build/issues/4573) | [PR 6637](https://github.com/igsl-group/documentation-website/pull/6637) | Remove CentOS8, add Almalinux8/Rockylinux8, and remove Ubuntu 16.04/18.04 because we currently only test on 20.04 |
+| 2025-02-06 | [mcdesk-build Issue 5270](https://github.com/igsl-group/mcdesk-build/issues/5270) | [PR 9165](https://github.com/igsl-group/documentation-website/pull/9165) | Remove [Ubuntu 20.04](https://ubuntu.com/blog/ubuntu-20-04-lts-end-of-life-standard-support-is-coming-to-an-end-heres-how-to-prepare) |
+| 2024-07-23 | [mcdesk-build Issue 4379](https://github.com/igsl-group/mcdesk-build/issues/4379) | [PR 7821](https://github.com/igsl-group/documentation-website/pull/7821) | Remove [CentOS7](https://blog.centos.org/2023/04/end-dates-are-coming-for-centos-stream-8-and-centos-linux-7/) |
+| 2024-03-08 | [mcdesk-build Issue 4573](https://github.com/igsl-group/mcdesk-build/issues/4573) | [PR 6637](https://github.com/igsl-group/documentation-website/pull/6637) | Remove CentOS8, add Almalinux8/Rockylinux8, and remove Ubuntu 16.04/18.04 because we currently only test on 20.04 |
 | 2023-06-06 | [documentation-website Issue 4217](https://github.com/igsl-group/documentation-website/issues/4217) | [PR 4218](https://github.com/igsl-group/documentation-website/pull/4218) | Support matrix creation |

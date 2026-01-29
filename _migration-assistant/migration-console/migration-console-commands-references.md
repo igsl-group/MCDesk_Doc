@@ -3,7 +3,7 @@ layout: default
 title: Command reference
 nav_order: 2
 parent: Migration console
-grand_parent: Migration Assistant for SmartObserve
+grand_parent: Migration Assistant for MCdesk
 permalink: /migration-assistant/migration-console/migration-console-command-reference/
 redirect_from:
   - /migration-console/migration-console-commands-references/
@@ -38,7 +38,7 @@ console clusters cat-indices
 
 ### Execute HTTP requests against clusters
 
-To run SmartObserve or Elasticsearch APIs directly against the configured source or target cluster, use a `curl`-like interface. Authentication, TLS, and endpoints are obtained from your console configuration.
+To run MCdesk or Elasticsearch APIs directly against the configured source or target cluster, use a `curl`-like interface. Authentication, TLS, and endpoints are obtained from your console configuration.
 
 ```sh
 console clusters curl <source_cluster|target_cluster> <path> [OPTIONS]

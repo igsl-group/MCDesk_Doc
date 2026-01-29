@@ -63,7 +63,7 @@ In this simple example, the first monitor could be a per document monitor config
 
 ## Managing composite monitors with the API
 
-You can manage composite monitors using the SmartObserve REST API or [SmartObserve Dashboards](#creating-composite-monitors-in-smartobserve-dashboards). This section describes API functionality for composite monitors.
+You can manage composite monitors using the MCdesk REST API or [MCdesk Dashboards](#creating-composite-monitors-in-mcdesk-dashboards). This section describes API functionality for composite monitors.
 
 ### Create composite monitor
 
@@ -563,9 +563,9 @@ POST _plugins/_alerting/workflows/<workflow_id>/_acknowledge/alerts
 }
 ```
 
-## Creating composite monitors in SmartObserve Dashboards
+## Creating composite monitors in MCdesk Dashboards
 
-Begin by navigating to the **Create monitor** page in SmartObserve Dashboards: **Alerting > Monitors** and select **Create monitor**. Give the monitor a name and then select **Composite monitor** as the monitor type. Steps for creating a composite monitor workflow and trigger conditions vary depending on whether you use the **Visual editor** or the **Extraction query editor**. The first provides basic UI selectors for defining the composite monitor, while the second allows you to build the workflow and trigger conditions using a script. After deciding which method to use, refer to the corresponding section.
+Begin by navigating to the **Create monitor** page in MCdesk Dashboards: **Alerting > Monitors** and select **Create monitor**. Give the monitor a name and then select **Composite monitor** as the monitor type. Steps for creating a composite monitor workflow and trigger conditions vary depending on whether you use the **Visual editor** or the **Extraction query editor**. The first provides basic UI selectors for defining the composite monitor, while the second allows you to build the workflow and trigger conditions using a script. After deciding which method to use, refer to the corresponding section.
 
 ### Visual editor
 

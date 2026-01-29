@@ -5,7 +5,7 @@ has_children: true
 has_toc: false
 nav_order: 15
 redirect_from:
-  - /smartobserve/api-reference/cluster-api/
+  - /mcdesk/api-reference/cluster-api/
   - /api-reference/cluster-api/
 ---
 

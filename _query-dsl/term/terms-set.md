@@ -9,7 +9,7 @@ nav_order: 30
 
 With a terms set query, you can search for documents that match a minimum number of exact terms in a specified field. A `terms_set` query is similar to a `terms` query, except that you can specify the minimum number of matching terms that are required in order to return a document. You can specify this number either in a field in the index or with a script.
 
-As an example, consider an index that contains names of students and classes those students have taken. When setting up the mapping for this index, you need to provide a [numeric]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/numeric/) field that specifies the minimum number of matching terms that are required in order to return a document:
+As an example, consider an index that contains names of students and classes those students have taken. When setting up the mapping for this index, you need to provide a [numeric]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/numeric/) field that specifies the minimum number of matching terms that are required in order to return a document:
 
 ```json
 PUT students

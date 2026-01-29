@@ -10,4 +10,4 @@ redirect_from:
 
 # Reference
 
-The following section contains reference materials for commands, metrics, and workloads for SmartObserve Benchmark.
+The following section contains reference materials for commands, metrics, and workloads for MCdesk Benchmark.

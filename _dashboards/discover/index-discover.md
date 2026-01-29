@@ -7,7 +7,7 @@ has_children: true
 
 # Analyzing data
 
-To analyze your data in SmartObserve and visualize key metrics, you can use the **Discover** application in SmartObserve Dashboards. An example of data analysis in **Discover** is shown in the following image. 
+To analyze your data in MCdesk and visualize key metrics, you can use the **Discover** application in MCdesk Dashboards. An example of data analysis in **Discover** is shown in the following image. 
 
 <img src="{{site.url}}{{site.baseurl}}/images/dashboards/discover.png" alt="A Discover default page" width="700">
 
@@ -22,16 +22,16 @@ In this tutorial, you'll learn about using **Discover** to:
 
 Before getting started, make sure you:
 
-- Install [SmartObserve Dashboards](https://magiccreative.io/downloads.html).
-- Add sample data or import your own data into SmartObserve. Go to the [SmartObserve Dashboards quickstart guide]({{site.url}}{{site.baseurl}}/dashboards/quickstart/) to learn about adding sample datasets. Go to [Managing indexes]({{site.url}}{{site.baseurl}}/im-plugin/index/) to learn about importing your own data.
-- Have a foundational understanding of [SmartObserve documents and indexes]({{site.url}}{{site.baseurl}}/im-plugin/index/).
+- Install [MCdesk Dashboards](https://magiccreative.io/downloads.html).
+- Add sample data or import your own data into MCdesk. Go to the [MCdesk Dashboards quickstart guide]({{site.url}}{{site.baseurl}}/dashboards/quickstart/) to learn about adding sample datasets. Go to [Managing indexes]({{site.url}}{{site.baseurl}}/im-plugin/index/) to learn about importing your own data.
+- Have a foundational understanding of [MCdesk documents and indexes]({{site.url}}{{site.baseurl}}/im-plugin/index/).
   
 ## Defining the search
 
 To define a search, follow these steps:  
 
-1. On the SmartObserve Dashboards navigation menu, select **Discover**.
-2. Choose the data you want to work with. In this case, choose `smartobserve_dashboards_sample_data_flights` from the upper-left dropdown menu. 
+1. On the MCdesk Dashboards navigation menu, select **Discover**.
+2. Choose the data you want to work with. In this case, choose `mcdesk_dashboards_sample_data_flights` from the upper-left dropdown menu. 
 3. Select the {::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/icons/calendar-oui.png" class="inline-icon" alt="calendar icon"/>{:/} icon to change the time range of your search and then select **Refresh**.
 
 The resulting view is shown in the following image.
@@ -40,7 +40,7 @@ The resulting view is shown in the following image.
 
 ## Analyzing document tables
 
-In SmartObserve, a document table stores unstructured data. In a document table, each row represents a single document, and each column contains document attributes. 
+In MCdesk, a document table stores unstructured data. In a document table, each row represents a single document, and each column contains document attributes. 
 
 To examine document attributes, follow these steps: 
 

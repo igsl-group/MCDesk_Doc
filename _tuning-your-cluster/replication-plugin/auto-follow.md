@@ -40,7 +40,7 @@ curl -XPOST -k -H 'Content-Type: application/json' -u 'admin:<custom-admin-passw
 }'
 ```
 
-If the Security plugin is disabled, you can leave out the `use_roles` parameter. If it's enabled, however, you need to specify the leader and follower cluster roles that SmartObserve uses to authenticate requests. This example uses `all_access` for simplicity, but we recommend creating a replication user on each cluster and [mapping it accordingly]({{site.url}}{{site.baseurl}}/replication-plugin/permissions/#map-the-leader-and-follower-cluster-roles).
+If the Security plugin is disabled, you can leave out the `use_roles` parameter. If it's enabled, however, you need to specify the leader and follower cluster roles that MCdesk uses to authenticate requests. This example uses `all_access` for simplicity, but we recommend creating a replication user on each cluster and [mapping it accordingly]({{site.url}}{{site.baseurl}}/replication-plugin/permissions/#map-the-leader-and-follower-cluster-roles).
 {: .tip }
 
 To test the rule, create a matching index on the leader cluster:
@@ -103,4 +103,4 @@ curl -XDELETE -k -H 'Content-Type: application/json' -u 'admin:<custom-admin-pas
 }'
 ```
 
-When you delete a replication rule, SmartObserve stops replicating *new* indexes that match the pattern, but existing indexes that the rule previously created remain read-only and continue to replicate. If you need to stop existing replication activity and open the indexes up for writes, use the [stop replication API operation]({{site.url}}{{site.baseurl}}/replication-plugin/api/#stop-replication).
+When you delete a replication rule, MCdesk stops replicating *new* indexes that match the pattern, but existing indexes that the rule previously created remain read-only and continue to replicate. If you need to stop existing replication activity and open the indexes up for writes, use the [stop replication API operation]({{site.url}}{{site.baseurl}}/replication-plugin/api/#stop-replication).

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Integrations in SmartObserve Dashboards
+title: Integrations in MCdesk Dashboards
 nav_order: 135
 has_children: false
 redirect_from:
@@ -9,15 +9,15 @@ redirect_from:
   - /dashboards/integrations/
 ---
 
-# Integrations in SmartObserve Dashboards
+# Integrations in MCdesk Dashboards
 Introduced 2.9
 {: .label .label-purple }
 
-The **Integrations** application in SmartObserve Dashboards provides a user-friendly platform for data visualization, querying, and projection of your resource data, such as flow logs. An _integration asset_, such NGINX or Amazon Virtual Private Cloud (VPC), contains a bundle of metadata, data mappings, and visualizations, streamlining the monitoring of resource data without redundant configuration steps. 
+The **Integrations** application in MCdesk Dashboards provides a user-friendly platform for data visualization, querying, and projection of your resource data, such as flow logs. An _integration asset_, such NGINX or Amazon Virtual Private Cloud (VPC), contains a bundle of metadata, data mappings, and visualizations, streamlining the monitoring of resource data without redundant configuration steps. 
 
-Available SmartObserve Dashboards integration assets are shown in the following image.
+Available MCdesk Dashboards integration assets are shown in the following image.
 
-![Integrations assets available in SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/images/dashboards/integrations-assets.png)
+![Integrations assets available in MCdesk Dashboards]({{site.url}}{{site.baseurl}}/images/dashboards/integrations-assets.png)
 
 ---
 
@@ -29,21 +29,21 @@ Available SmartObserve Dashboards integration assets are shown in the following 
 
 A consistent telemetry data schema is crucial for effective observability, enabling data correlation and analysis across applications, services, and infrastructure components to provide a holistic view of system behavior and performance.
 
-SmartObserve adopted the [OpenTelemetry (OTel)](https://opentelemetry.io/) protocol as the foundation for its observability solution. OTel is a community-driven standard that defines a consistent schema and data collection approach for metrics, logs, and traces. It is widely supported by APIs, SDKs, and telemetry collectors, enabling features like auto-instrumentation for seamless observability integration. 
+MCdesk adopted the [OpenTelemetry (OTel)](https://opentelemetry.io/) protocol as the foundation for its observability solution. OTel is a community-driven standard that defines a consistent schema and data collection approach for metrics, logs, and traces. It is widely supported by APIs, SDKs, and telemetry collectors, enabling features like auto-instrumentation for seamless observability integration. 
 
-This shared schema allows cross-correlation and analysis across different data sources. To this end, SmartObserve derived the [Simple Schema for Observability](https://github.com/igsl-group/smartobserve-catalog/tree/main/docs/schema/observability), which encodes the OTel standard as SmartObserve mappings. SmartObserve also supports the [Piped Processing Language (PPL)]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/), which is designed for high-dimensionality querying in observability use cases.
+This shared schema allows cross-correlation and analysis across different data sources. To this end, MCdesk derived the [Simple Schema for Observability](https://github.com/igsl-group/mcdesk-catalog/tree/main/docs/schema/observability), which encodes the OTel standard as MCdesk mappings. MCdesk also supports the [Piped Processing Language (PPL)]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/), which is designed for high-dimensionality querying in observability use cases.
 
 ---
 
 ## Ingesting data
 
-Data ingested into SmartObserve must conform to the supported schemas for data integrations and their associated dashboards. Compatible data pipelines are required, such as the following:
+Data ingested into MCdesk must conform to the supported schemas for data integrations and their associated dashboards. Compatible data pipelines are required, such as the following:
 
 - [Data Prepper](https://github.com/igsl-group/data-prepper)
 - [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector)
-- [Fluent Bit for SmartObserve](https://docs.fluentbit.io/manual/pipeline/outputs/smartobserve)
+- [Fluent Bit for MCdesk](https://docs.fluentbit.io/manual/pipeline/outputs/mcdesk)
 
-These pipelines use the OTel schema (or a simple schema) to index signal documents into the correct index representing the observed resource signals. See [Naming Convention](https://github.com/igsl-group/smartobserve-catalog/blob/main/docs/schema/observability/Naming-convention.md) for index naming conventions. 
+These pipelines use the OTel schema (or a simple schema) to index signal documents into the correct index representing the observed resource signals. See [Naming Convention](https://github.com/igsl-group/mcdesk-catalog/blob/main/docs/schema/observability/Naming-convention.md) for index naming conventions. 
 
 ### Ingestion structure
 
@@ -59,7 +59,7 @@ Each integration asset contains the following metadata and assets:
 
 ## Installing an integration asset 
 
-Integration assets can be installed directly from the [default catalog](https://github.com/igsl-group/smartobserve-catalog/blob/main/docs/integrations/Release.md) shipped with every SmartObserve release.
+Integration assets can be installed directly from the [default catalog](https://github.com/igsl-group/mcdesk-catalog/blob/main/docs/integrations/Release.md) shipped with every MCdesk release.
 
 To install an asset, follow these steps:
 
@@ -82,7 +82,7 @@ To try a prepackaged integration asset, follow these steps:
 
 To load a custom integration asset, follow these steps: 
 
-1. Download an integration artifact from the [catalog repository](https://github.com/igsl-group/smartobserve-catalog/blob/main/docs/integrations/Release.md).
+1. Download an integration artifact from the [catalog repository](https://github.com/igsl-group/mcdesk-catalog/blob/main/docs/integrations/Release.md).
 2. Go to **Dashboards Management** > **Saved objects**.
 3. Select **Import** on the upper-right toolbar menu, navigate to the folder where you saved the integration artifact, and then choose the file (a file with an .ndjson extension). An example of this step is shown in the following image.
   ![Import folder window]({{site.url}}{{site.baseurl}}/images/integrations/integration-import-file.png)
@@ -95,16 +95,16 @@ To load a custom integration asset, follow these steps:
 
 See the following developer resources for sample code, articles, tutorials, and an API reference:
 
-- [SmartObserve Integrations repository](https://github.com/igsl-group/smartobserve-catalog)
-- [SmartObserve Integrations reference documentation](https://github.com/igsl-group/smartobserve-catalog/tree/main/docs/integrations)
-- [SmartObserve Observability Catalog](https://htmlpreview.github.io/?https://github.com/igsl-group/smartobserve-catalog/blob/main/integrations/observability/catalog.html)
-- [SmartObserve Observability Catalog release page](https://github.com/igsl-group/smartobserve-catalog/blob/main/docs/integrations/Release.md)
-- [Simple Schema for Observability](https://github.com/igsl-group/smartobserve-catalog/tree/main/docs/schema/observability)
+- [MCdesk Integrations repository](https://github.com/igsl-group/mcdesk-catalog)
+- [MCdesk Integrations reference documentation](https://github.com/igsl-group/mcdesk-catalog/tree/main/docs/integrations)
+- [MCdesk Observability Catalog](https://htmlpreview.github.io/?https://github.com/igsl-group/mcdesk-catalog/blob/main/integrations/observability/catalog.html)
+- [MCdesk Observability Catalog release page](https://github.com/igsl-group/mcdesk-catalog/blob/main/docs/integrations/Release.md)
+- [Simple Schema for Observability](https://github.com/igsl-group/mcdesk-catalog/tree/main/docs/schema/observability)
 
 ---
 
 ## Community contribution
 
-The SmartObserve Project seeks your feedback on this feature. Post on the [SmartObserve forum](https://forum.magiccreative.io/) to let us know how **Integrations** works for you or how it can be improved.
+The MCdesk Project seeks your feedback on this feature. Post on the [MCdesk forum](https://forum.magiccreative.io/) to let us know how **Integrations** works for you or how it can be improved.
  
 Contribute to the project by submitting an [integration request](https://github.com/igsl-group/dashboards-observability/issues/new?assignees=&labels=integration%2C+untriaged&projects=&template=integration_request.md&title=%5BIntegration%5D).

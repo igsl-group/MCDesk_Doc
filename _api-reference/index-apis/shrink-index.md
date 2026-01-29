@@ -4,7 +4,7 @@ title: Shrink index
 parent: Index APIs
 nav_order: 140
 redirect_from:
-  - /smartobserve/rest-api/index-apis/shrink-index/
+  - /mcdesk/rest-api/index-apis/shrink-index/
 ---
 
 # Shrink Index API
@@ -13,7 +13,7 @@ redirect_from:
 
 The shrink index API operation moves all of your data in an existing read-only index into a new index with fewer primary shards. This operation requires that a copy of each shard, either primary or replica, is located on the same node. You can use [shard allocation filtering]({{site.url}}{{site.baseurl}}/api-reference/index-apis/shard-allocation/) to move shards to the same node.
 
-To make the index read-only, set the [dynamic index-level index setting]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/#dynamic-index-level-index-settings) `index.blocks.write` to `true`.
+To make the index read-only, set the [dynamic index-level index setting]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/#dynamic-index-level-index-settings) `index.blocks.write` to `true`.
 {: .note}
 
 
@@ -24,7 +24,7 @@ POST /<index-name>/_shrink/<target-index>
 PUT /<index-name>/_shrink/<target-index>
 ```
 
-When creating new indexes with this operation, remember that SmartObserve indexes have the following naming restrictions:
+When creating new indexes with this operation, remember that MCdesk indexes have the following naming restrictions:
 
 - All letters must be lowercase.
 - Index names can't begin with underscores (`_`) or hyphens (`-`).
@@ -45,7 +45,7 @@ The shrink index API operation requires you to specify both the source index and
 
 Parameter | Type | description
 :--- | :--- | :---
-wait_for_active_shards | String | Specifies the number of active shards that must be available before SmartObserve processes the request. Default is 1 (only the primary shard). Set to all or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the request to succeed.
+wait_for_active_shards | String | Specifies the number of active shards that must be available before MCdesk processes the request. Default is 1 (only the primary shard). Set to all or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the request to succeed.
 cluster_manager_timeout | Time | How long to wait for a connection to the cluster manager node. Default is `30s`.
 timeout | Time | How long to wait for the request to return a response. Default is `30s`.
 wait_for_completion | Boolean | When set to `false`, the request returns immediately instead of after the operation is finished. To monitor the operation status, use the [Tasks API]({{site.url}}{{site.baseurl}}/api-reference/tasks/) with the task ID returned by the request. Default is `true`.
@@ -63,9 +63,9 @@ settings | Object | Index settings you can apply to your target index. See [Inde
 
 ### The `max_shard_size` parameter
 
-The `max_shard_size` parameter specifies the maximum size of a primary shard in the target index. SmartObserve uses `max_shard_size` and the total storage for all primary shards in the source index to calculate the number of primary shards and their size for the target index. 
+The `max_shard_size` parameter specifies the maximum size of a primary shard in the target index. MCdesk uses `max_shard_size` and the total storage for all primary shards in the source index to calculate the number of primary shards and their size for the target index. 
 
-The primary shard count of the target index is the smallest factor of the source index's primary shard count for which the shard size does not exceed `max_shard_size`. For example, if the source index has 8 primary shards, they occupy a total of 400 GB of storage, and the `max_shard_size` is equal to 150 GB, SmartObserve calculates the number of primary shards in the target index using the following algorithm:
+The primary shard count of the target index is the smallest factor of the source index's primary shard count for which the shard size does not exceed `max_shard_size`. For example, if the source index has 8 primary shards, they occupy a total of 400 GB of storage, and the `max_shard_size` is equal to 150 GB, MCdesk calculates the number of primary shards in the target index using the following algorithm:
 
 1. Calculate the minimum number of primary shards as 400/150, rounded to the nearest whole integer. The minimum number of primary shards is 3.
 1. Calculate the number of primary shards as the smallest factor of 8 that is greater than 3. The number of primary shards is 4.

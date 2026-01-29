@@ -13,7 +13,7 @@ redirect_from:
 **Introduced 2.7**
 {: .label .label-purple }
 
-In SmartObserve, you don't have to specify a mapping before indexing documents. If you don't specify a mapping, SmartObserve uses [dynamic mapping]({{site.url}}{{site.baseurl}}/field-types/index#dynamic-mapping) to map every field and its subfields in the document automatically. When you ingest documents such as logs, you may not know every field's subfield name and type in advance. In this case, dynamically mapping all new subfields can quickly lead to a "mapping explosion," where the growing number of fields may degrade the performance of your cluster. 
+In MCdesk, you don't have to specify a mapping before indexing documents. If you don't specify a mapping, MCdesk uses [dynamic mapping]({{site.url}}{{site.baseurl}}/field-types/index#dynamic-mapping) to map every field and its subfields in the document automatically. When you ingest documents such as logs, you may not know every field's subfield name and type in advance. In this case, dynamically mapping all new subfields can quickly lead to a "mapping explosion," where the growing number of fields may degrade the performance of your cluster. 
 
 The flat object field type solves this problem by treating the entire JSON object as a string. Subfields within the JSON object are accessible using standard dot path notation, but they are not indexed for fast lookup.
 
@@ -24,8 +24,8 @@ The flat object field type provides the following benefits:
 
 - Efficient reads: Fetching performance is similar to that of a keyword field.
 - Memory efficiency: Storing the entire complex JSON object in one field without indexing all of its subfields reduces the number of fields in an index. 
-- Space efficiency: SmartObserve does not create an inverted index for subfields in flat objects, thereby saving space. 
-- Compatibility for migration: You can migrate your data from systems that support similar flat types to SmartObserve.
+- Space efficiency: MCdesk does not create an inverted index for subfields in flat objects, thereby saving space. 
+- Compatibility for migration: You can migrate your data from systems that support similar flat types to MCdesk.
 
 Mapping a field as a flat object applies when a field and its subfields are mostly read and not used as search criteria because the subfields are not indexed. Flat objects are useful for objects with a large number of fields or when you don't know the keys in advance.
 
@@ -61,7 +61,7 @@ The flat object field type supports the following queries:
 
 ## Limitations
 
-The following limitations apply to flat objects in SmartObserve 2.7:
+The following limitations apply to flat objects in MCdesk 2.7:
 
 - Flat objects do not support open parameters.
 - Painless scripting and wildcard queries are not supported for retrieving values of subfields.

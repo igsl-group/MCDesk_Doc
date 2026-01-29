@@ -14,7 +14,7 @@ grand_parent: Agents and tools
 {: .label .label-purple }
 <!-- vale on -->
 
-The `QueryPlanningTool` generates an SmartObserve query domain-specific language (DSL) query from a natural language question. It is a core component of [agentic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/index/), which enables natural language query processing through agent-driven workflows.
+The `QueryPlanningTool` generates an MCdesk query domain-specific language (DSL) query from a natural language question. It is a core component of [agentic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/index/), which enables natural language query processing through agent-driven workflows.
 
 The `QueryPlanningTool` supports two approaches for generating DSL queries from natural language questions:
 
@@ -153,7 +153,7 @@ POST /_plugins/_ml/models/_register
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with the model ID:
+MCdesk responds with the model ID:
 
 ```json
 {
@@ -165,7 +165,7 @@ SmartObserve responds with the model ID:
 
 ## Step 3: Register an agent
 
-You can use any [SmartObserve agent type]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/) to run the `QueryPlanningTool`. The following example uses a `flow` agent, which runs a sequence of tools in order and returns the last tool's output.
+You can use any [MCdesk agent type]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/) to run the `QueryPlanningTool`. The following example uses a `flow` agent, which runs a sequence of tools in order and returns the last tool's output.
 
 ### Using LLM knowledge only
 
@@ -194,7 +194,7 @@ When registering the agent, you can override parameters that you specified durin
 
 ### Using search templates
 
-You can add [search templates]({{site.url}}{{site.baseurl}}/api-reference/search-apis/search-template/index/) as additional context to assist the LLM in SmartObserve DSL generation.
+You can add [search templates]({{site.url}}{{site.baseurl}}/api-reference/search-apis/search-template/index/) as additional context to assist the LLM in MCdesk DSL generation.
 
 First, create the search templates:
 
@@ -271,11 +271,11 @@ POST /_plugins/_ml/agents/_register
 ```
 {% include copy-curl.html %}
 
-The LLM uses the `template_description` as the only context to help it choose the best template to use when generating an SmartObserve DSL query based on the user-provided `question`. Make sure to provide a good description of the templates to help the LLM make appropriate choices. Note that the LLM doesn't directly populate template variables or render the template; instead, it analyzes the template's query structure and uses it as a guide to generate a new, contextually appropriate SmartObserve DSL query.
+The LLM uses the `template_description` as the only context to help it choose the best template to use when generating an MCdesk DSL query based on the user-provided `question`. Make sure to provide a good description of the templates to help the LLM make appropriate choices. Note that the LLM doesn't directly populate template variables or render the template; instead, it analyzes the template's query structure and uses it as a guide to generate a new, contextually appropriate MCdesk DSL query.
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -299,7 +299,7 @@ POST /_plugins/_ml/agents/RNjQi5gBOh0h20Y9-RX1/_execute
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns the inference results, which include the generated query DSL:
+MCdesk returns the inference results, which include the generated query DSL:
 
 ```json
 {
@@ -338,13 +338,13 @@ The `QueryPlanningTool` accepts the following execution parameters.
 
 Parameter | Type | Required/Optional | Description
 :--- | :--- | :--- | :---
-`question` | String | Required | A complete natural language query with all necessary context to generate SmartObserve DSL. Include the question, any specific requirements, filters, or constraints. Examples: `Find all products with price greater than 100 dollars`, `Show me documents about machine learning published in 2023`, `Search for users with status active and age between 25 and 35`.
+`question` | String | Required | A complete natural language query with all necessary context to generate MCdesk DSL. Include the question, any specific requirements, filters, or constraints. Examples: `Find all products with price greater than 100 dollars`, `Show me documents about machine learning published in 2023`, `Search for users with status active and age between 25 and 35`.
 `index_name` | String | Required | The name of the index for which the query needs to be generated.
 `embedding_model_id` | String | Optional | The model ID used to perform semantic search.
 
 ## Customizing the prompts
 
-You can provide your own `query_planner_system_prompt` and `query_planner_user_prompt` to customize how the LLM generates SmartObserve DSL queries.
+You can provide your own `query_planner_system_prompt` and `query_planner_user_prompt` to customize how the LLM generates MCdesk DSL queries.
 
 When creating custom prompts, ensure that they include clear output formatting rules so that they work properly with agentic search. The system prompt should specify that the LLM must return only a valid JSON object without any additional text, code fences, or explanations.
 {: .important}
@@ -382,7 +382,7 @@ The following is the default system prompt:
 
 ```json
 ==== PURPOSE ====
-You are an SmartObserve DSL expert. Convert a natural-language question into a strict JSON SmartObserve query body.
+You are an MCdesk DSL expert. Convert a natural-language question into a strict JSON MCdesk query body.
 
 ==== RULES ====
 Use only fields present in the provided mapping; never invent names.
@@ -490,7 +490,7 @@ Micro Self-Check: verify fields exist; if not, swap to proxies. Only if no relev
 
 ==== OUTPUT FORMAT ====
 
-Return EXACTLY ONE JSON object (valid SmartObserve request body).
+Return EXACTLY ONE JSON object (valid MCdesk request body).
 
 No escapes, no code fences, no quotes around the whole object.
 

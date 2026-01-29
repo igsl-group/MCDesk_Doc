@@ -5,7 +5,7 @@ nav_order: 60
 has_children: false
 parent: Availability and recovery
 redirect_from: 
-  - /smartobserve/search-backpressure/
+  - /mcdesk/search-backpressure/
 ---
 
 # Search backpressure
@@ -14,19 +14,19 @@ Search backpressure is a mechanism used to identify resource-intensive search re
 
 ## Measuring resource consumption
 
-To decide whether to apply search backpressure, SmartObserve periodically measures the following resource consumption statistics for each search request:
+To decide whether to apply search backpressure, MCdesk periodically measures the following resource consumption statistics for each search request:
 
 - CPU usage
 - Heap usage
 - Elapsed time 
 
-An observer thread periodically measures the resource usage of the node. If SmartObserve determines that the node is under duress, SmartObserve examines the resource usage of each search task and search shard task and compares it against configurable thresholds. SmartObserve considers CPU usage, heap usage, and elapsed time and assigns each task a cancellation score that is then used to cancel the most resource-intensive tasks.
+An observer thread periodically measures the resource usage of the node. If MCdesk determines that the node is under duress, MCdesk examines the resource usage of each search task and search shard task and compares it against configurable thresholds. MCdesk considers CPU usage, heap usage, and elapsed time and assigns each task a cancellation score that is then used to cancel the most resource-intensive tasks.
 
-SmartObserve limits the number of cancellations to a fraction of successful task completions. Additionally, it limits the number of cancellations per unit time. SmartObserve continues to monitor and cancel tasks until the node is no longer under duress.
+MCdesk limits the number of cancellations to a fraction of successful task completions. Additionally, it limits the number of cancellations per unit time. MCdesk continues to monitor and cancel tasks until the node is no longer under duress.
 
 ## Canceled queries
 
-If a query is canceled, SmartObserve may return partial results if some shards failed. If all shards failed, SmartObserve returns an error from the server similar to the following error:
+If a query is canceled, MCdesk may return partial results if some shards failed. If all shards failed, MCdesk returns an error from the server similar to the following error:
 
 ```json
 {
@@ -76,7 +76,7 @@ Search backpressure runs in `monitor_only` (default), `enforced`, or `disabled` 
 
 ## Search backpressure settings
 
-Search backpressure adds several settings to the standard SmartObserve cluster settings. These settings are dynamic, so you can change the default behavior of this feature without restarting your cluster.
+Search backpressure adds several settings to the standard MCdesk cluster settings. These settings are dynamic, so you can change the default behavior of this feature without restarting your cluster.
 
 To configure these settings, send a PUT request to `/_cluster/settings`:
 

@@ -4,7 +4,7 @@ title: Ingest APIs
 has_children: false
 nav_order: 40
 redirect_from:
-  - /smartobserve/rest-api/ingest-apis/index/
+  - /mcdesk/rest-api/ingest-apis/index/
   - /api-reference/ingest-apis/
 ---
 
@@ -16,7 +16,7 @@ Ingest APIs are a valuable tool for loading data into a system. Ingest APIs work
 
 ## Ingest pipeline APIs
 
-Simplify, secure, and scale your SmartObserve data ingestion with the following APIs:
+Simplify, secure, and scale your MCdesk data ingestion with the following APIs:
 
 - [Create pipeline]({{site.url}}{{site.baseurl}}/api-reference/ingest-apis/create-ingest/): Use this API to create or update a pipeline configuration.
 - [Get pipeline]({{site.url}}{{site.baseurl}}/api-reference/ingest-apis/get-ingest/): Use this API to retrieve a pipeline configuration.

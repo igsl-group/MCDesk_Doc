@@ -42,7 +42,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -64,7 +64,7 @@ POST /_plugins/_ml/agents/HuJZYo0B9RaBCvhuUlpy/_execute
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with a list of individual anomaly detectors set up on your cluster (where each result contains the detector ID, the anomaly grade, and the confidence level) and the total number of anomaly results found:
+MCdesk responds with a list of individual anomaly detectors set up on your cluster (where each result contains the detector ID, the anomaly grade, and the confidence level) and the total number of anomaly results found:
 
 ```json
 {
@@ -81,7 +81,7 @@ SmartObserve responds with a list of individual anomaly detectors set up on your
 }
 ```
 
-If no anomalies are found, SmartObserve responds with an empty array in the results:
+If no anomalies are found, MCdesk responds with an empty array in the results:
 
 ```json
 {

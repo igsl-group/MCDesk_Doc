@@ -15,7 +15,7 @@ The Search Relevance Stats API provides information about [Search Relevance plug
 
 The Search Relevance Stats API captures statistics for a one-minute interval during which it receives a request. For example, if a request is received at 23:59:59.004, statistics are collected for the 23:58:00.000--23:58:59.999 time interval.
 
-To change the default time interval for which statistics are collected, update the `searchRelevanceDashboards.metrics.metricInterval` setting in the `smartobserve_dashboards.yml` file with the new time interval in milliseconds. The `smartobserve_dashboards.yml` file is located in the `config` folder of your SmartObserve Dashboards installation. For example, the following sets the interval to one second:
+To change the default time interval for which statistics are collected, update the `searchRelevanceDashboards.metrics.metricInterval` setting in the `mcdesk_dashboards.yml` file with the new time interval in milliseconds. The `mcdesk_dashboards.yml` file is located in the `config` folder of your MCdesk Dashboards installation. For example, the following sets the interval to one second:
 
 ```yml
 searchRelevanceDashboards.metrics.metricInterval: 1000 
@@ -26,10 +26,10 @@ searchRelevanceDashboards.metrics.metricInterval: 1000
 You can access the Search Relevance Stats API by providing its URL address in the following format:
 
 ```
-<smartobserve-dashboards-endpoint-address>/api/relevancy/stats
+<mcdesk-dashboards-endpoint-address>/api/relevancy/stats
 ```
 
-The SmartObserve Dashboards endpoint address may contain a port number if it is specified in the SmartObserve configuration file. The specific URL format depends on the type of SmartObserve deployment and the network environment in which it is hosted.
+The MCdesk Dashboards endpoint address may contain a port number if it is specified in the MCdesk configuration file. The specific URL format depends on the type of MCdesk deployment and the network environment in which it is hosted.
 {: .note}
 
 You can query the endpoint in two ways:

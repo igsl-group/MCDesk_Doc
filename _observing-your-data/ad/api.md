@@ -26,7 +26,7 @@ Introduced 1.0
 
 Creates an anomaly detector.
 
-This command creates a single-entity detector named `test-detector` that finds anomalies based on the sum of the `value` field and stores the result in a custom `smartobserve-ad-plugin-result-test` index:
+This command creates a single-entity detector named `test-detector` that finds anomalies based on the sum of the `value` field and stores the result in a custom `mcdesk-ad-plugin-result-test` index:
 
 #### Request
 
@@ -79,7 +79,7 @@ POST _plugins/_anomaly_detection/detectors
       "unit": "Minutes"
     }
   },
-  "result_index" : "smartobserve-ad-plugin-result-test"
+  "result_index" : "mcdesk-ad-plugin-result-test"
 }
 ```
 
@@ -339,7 +339,7 @@ Options | Description | Type | Required
 Introduced 1.2
 {: .label .label-purple }
 
-Returns whether the detector configuration has any issues that might prevent SmartObserve from creating the detector.
+Returns whether the detector configuration has any issues that might prevent MCdesk from creating the detector.
 
 You can use the validate detector API operation to identify issues in your detector configuration before creating the detector.
 
@@ -1203,7 +1203,7 @@ DELETE _plugins/_anomaly_detection/detectors/<detectorId>
 
 ```json
 {
-  "_index": ".smartobserve-anomaly-detectors",
+  "_index": ".mcdesk-anomaly-detectors",
   "_id": "70TxTXwBjd8s6RK4j1Pj",
   "_version": 2,
   "result": "deleted",
@@ -1792,7 +1792,7 @@ POST _plugins/_anomaly_detection/detectors/_search
     "max_score": 1,
     "hits": [
       {
-        "_index": ".smartobserve-anomaly-detectors",
+        "_index": ".mcdesk-anomaly-detectors",
         "_id": "Zi5zTXwBwf_U8gjUTfJG",
         "_version": 1,
         "_seq_no": 1,
@@ -1923,7 +1923,7 @@ POST _plugins/_anomaly_detection/detectors/tasks/_search
     "max_score": 0,
     "hits": [
       {
-        "_index": ".smartobserve-anomaly-detection-state",
+        "_index": ".mcdesk-anomaly-detection-state",
         "_id": "fm-RTXwBYwCbWecgB753",
         "_version": 34,
         "_seq_no": 928,
@@ -2202,8 +2202,8 @@ The following example searches anomaly results for grade greater than 0 for real
 #### Request
 
 ```json
-GET _plugins/_anomaly_detection/detectors/results/_search/smartobserve-ad-plugin-result-test
-POST _plugins/_anomaly_detection/detectors/results/_search/smartobserve-ad-plugin-result-test
+GET _plugins/_anomaly_detection/detectors/results/_search/mcdesk-ad-plugin-result-test
+POST _plugins/_anomaly_detection/detectors/results/_search/mcdesk-ad-plugin-result-test
 {
   "query": {
     "bool": {
@@ -2261,7 +2261,7 @@ For information about the response body fields, see [Anomaly result mapping]({{s
     "max_score": 0,
     "hits": [
       {
-        "_index": ".smartobserve-anomaly-results-history-2021.10.04-1",
+        "_index": ".mcdesk-anomaly-results-history-2021.10.04-1",
         "_id": "686KTXwB6HknB84SMr6G",
         "_version": 1,
         "_seq_no": 103622,
@@ -2386,7 +2386,7 @@ POST _plugins/_anomaly_detection/detectors/results/_search
     "max_score": 0,
     "hits": [
       {
-        "_index": ".smartobserve-anomaly-results-history-2021.10.04-1",
+        "_index": ".mcdesk-anomaly-results-history-2021.10.04-1",
         "_id": "VRyRTXwBDx7vzPBV8jYC",
         "_version": 1,
         "_seq_no": 149657,
@@ -3307,7 +3307,7 @@ POST _plugins/_alerting/monitors
     {
       "search": {
         "indices": [
-          ".smartobserve-anomaly-results*"
+          ".mcdesk-anomaly-results*"
         ],
         "query": {
           "size": 1,
@@ -3413,7 +3413,7 @@ POST _plugins/_alerting/monitors
       {
         "search": {
           "indices": [
-            ".smartobserve-anomaly-results*"
+            ".mcdesk-anomaly-results*"
           ],
           "query": {
             "size": 1,

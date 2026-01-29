@@ -113,7 +113,7 @@ The following response provides details regarding the active `update_by_query` t
 {
   "nodes": {
     "bvv8SKpiRhOhF9_Bu8gZ7w": {
-      "name": "smartobserve-node1",
+      "name": "mcdesk-node1",
       "transport_address": "172.18.0.4:9300",
       "host": "172.18.0.4",
       "ip": "172.18.0.4:9300",

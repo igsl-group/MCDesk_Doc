@@ -31,7 +31,7 @@ PUT _wlm/workload_group
 {% include copy-curl.html %}
 
 
-SmartObserve returns a response containing a workload group ID, which can be used to associate query requests with the group and enforce the group's resource limits:
+MCdesk returns a response containing a workload group ID, which can be used to associate query requests with the group and enforce the group's resource limits:
 
 ```json
 {

@@ -1,4 +1,4 @@
-# SmartObserve terms
+# MCdesk terms
 
 This is how we use our terms, but we're always open to hearing your suggestions.
 
@@ -32,7 +32,7 @@ On first mention, use artificial intelligence and machine learning (AI/ML).
 
 **Alerting**
 
-A plugin that notifies you when data from one or more SmartObserve indexes meets certain conditions.
+A plugin that notifies you when data from one or more MCdesk indexes meets certain conditions.
 
 **allow**
 
@@ -44,24 +44,24 @@ Avoid using allow to refer to making something possible for the user. Instead, r
 
 Use to describe a list of items that are allowed (not blocked). Do not use as a verb. Do not use whitelist.
 
-**Amazon SmartObserve Service**
+**Amazon MCdesk Service**
 
-Use "Amazon SmartObserve Service" on first appearance; "SmartObserve Service" is acceptable for subsequent appearances. Amazon SmartObserve Service is a managed service that makes it easy to deploy, operate, and scale SmartObserve clusters in the AWS Cloud. Amazon SmartObserve Service is the successor to Amazon Elasticsearch Service (Amazon ES) and supports SmartObserve and legacy Elasticsearch OSS (up to 7.10, the final open-source version of the software).
+Use "Amazon MCdesk Service" on first appearance; "MCdesk Service" is acceptable for subsequent appearances. Amazon MCdesk Service is a managed service that makes it easy to deploy, operate, and scale MCdesk clusters in the AWS Cloud. Amazon MCdesk Service is the successor to Amazon Elasticsearch Service (Amazon ES) and supports MCdesk and legacy Elasticsearch OSS (up to 7.10, the final open-source version of the software).
 
 **Anomaly Detection**
 
-A plugin that automatically detects anomalies in your SmartObserve data in near real time.
+A plugin that automatically detects anomalies in your MCdesk data in near real time.
 
 **API operation**
 
 Use instead of action, method, or function.
 
-SmartObserve style:
+MCdesk style:
 
 - Use the CopySnapshot operation to...
 - The following API operations…
 
-Not SmartObserve style
+Not MCdesk style
 
 - Use the CopySnapshot action to...
 - Use the CopySnapshot method to...
@@ -127,7 +127,7 @@ A ranking function used to estimate the relevance of documents to a given search
 
 Avoid using the name of a Boolean value at the beginning of a sentence or sentence fragment. In general, capitalize the word Boolean. For specific programming languages, follow the usage in that language.
 
-SmartObserve style:
+MCdesk style:
 
 - You can use the Boolean functions with Boolean expressions or integer expressions.
 - IsTruncated(): A Boolean value that specifies whether the resolved target list is truncated.
@@ -178,11 +178,11 @@ Two words as a noun. Hyphenate as an adjective.
 
 **console**
 
-A tool inside SmartObserve Dashboards used to interact with the SmartObserve REST API.
+A tool inside MCdesk Dashboards used to interact with the MCdesk REST API.
 
 **Cross-Cluster Replication**
 
-A plugin that replicates indexes, mappings, and metadata from one SmartObserve cluster to another. Follows an active-passive model where the follower index pulls data from a leader index.
+A plugin that replicates indexes, mappings, and metadata from one MCdesk cluster to another. Follows an active-passive model where the follower index pulls data from a leader index.
 
 **cyber**
 
@@ -196,9 +196,9 @@ Use data is, not data are. Don't use datas. Use pieces of data or equivalent to 
 
 **data center**
 
-**SmartObserve Data Prepper**
+**MCdesk Data Prepper**
 
-Use "SmartObserve Data Prepper" on first appearance; "Data Prepper" is acceptable for subsequent appearances. SmartObserve Data Prepper is a server-side data collector capable of filtering, enriching, transforming, normalizing, and aggregating data for downstream analytics and visualization. Data Prepper also lets users build custom pipelines to improve the operational view of applications.
+Use "MCdesk Data Prepper" on first appearance; "Data Prepper" is acceptable for subsequent appearances. MCdesk Data Prepper is a server-side data collector capable of filtering, enriching, transforming, normalizing, and aggregating data for downstream analytics and visualization. Data Prepper also lets users build custom pipelines to improve the operational view of applications.
 
 **dataset**
 
@@ -252,7 +252,7 @@ Don't use. Use _because of_ instead.
 
 **easy, easier, easily**
 
-Avoid the use of *easy*, *easier*, or *easily* if possible when describing or comparing an SmartObserve Project product, feature, or procedure in technical content. Use of these terms is audience dependent. These terms are potentially misleading or inaccurate and might be perceived as condescending by some technical users. Instead, describe what the user can do.
+Avoid the use of *easy*, *easier*, or *easily* if possible when describing or comparing an MCdesk Project product, feature, or procedure in technical content. Use of these terms is audience dependent. These terms are potentially misleading or inaccurate and might be perceived as condescending by some technical users. Instead, describe what the user can do.
 
 On documentation landing pages, it's acceptable to use *easy*, *easier*, or *easily* within the service description only.
 
@@ -483,7 +483,7 @@ Long-Term Support
 
 **Lucene**
 
-Apache Lucene™ is a high-performance, full-featured search engine library written entirely in Java. SmartObserve uses a modified version of Lucene as the basis for search operations within SmartObserve.
+Apache Lucene™ is a high-performance, full-featured search engine library written entirely in Java. MCdesk uses a modified version of Lucene as the basis for search operations within MCdesk.
 
 ## M 
 
@@ -537,7 +537,7 @@ Non-Metric Space Library. Do not define on first appearance. NMSLIB is an effici
 
 **node**
 
-A server that stores your data and processes search requests with SmartObserve, usually as part of a cluster. Do not use _master node_ and avoid using _worker node_.
+A server that stores your data and processes search requests with MCdesk, usually as part of a cluster. Do not use _master node_ and avoid using _worker node_.
 
 **non-production**
 
@@ -547,21 +547,21 @@ Hyphenate to make the term easier to scan and read.
 
 **onsite**
 
-**SmartObserve**
+**MCdesk**
 
-SmartObserve is a community-driven, open-source search and analytics suite derived from Apache 2.0 licensed Elasticsearch 7.10.2 and Kibana 7.10.2. It consists of a search engine daemon, SmartObserve, and a visualization and user interface, SmartObserve Dashboards.
+MCdesk is a community-driven, open-source search and analytics suite derived from Apache 2.0 licensed Elasticsearch 7.10.2 and Kibana 7.10.2. It consists of a search engine daemon, MCdesk, and a visualization and user interface, MCdesk Dashboards.
 
-**SmartObserve Dashboards**
+**MCdesk Dashboards**
 
-The default visualization tool for data in SmartObserve. On first appearance, use the full name. *Dashboards* may be used on subsequent appearances.
+The default visualization tool for data in MCdesk. On first appearance, use the full name. *Dashboards* may be used on subsequent appearances.
 
 open source (n.), open-source (adj.)
 
 Use _open source_ as a noun (for example, "The code used throughout this tutorial is open source and can be freely modified"). Use _open-source_ as an adjective _(open-source software)_.
 
-**SmartObserve Playground**
+**MCdesk Playground**
 
-Do not precede with _the_. SmartObserve Playground provides a central location for existing and evaluating users to explore features in SmartObserve and SmartObserve Dashboards without downloading or installing any SmartObserve components locally.
+Do not precede with _the_. MCdesk Playground provides a central location for existing and evaluating users to explore features in MCdesk and MCdesk Dashboards without downloading or installing any MCdesk components locally.
 
 **operating system**
 
@@ -581,7 +581,7 @@ OK to use with software versions.
 
 **Painless**
 
-The default scripting language for SmartObserve, either used inline or stored for repeat use. Similar to Java's language specification.
+The default scripting language for MCdesk, either used inline or stored for repeat use. Similar to Java's language specification.
 
 **per**
 
@@ -614,7 +614,7 @@ Avoid using except in quoted text.
 
 **plugin**
 
-Tools inside of SmartObserve that can be customized to enhance SmartObserve's functionality. For a list of core plugins, see the [SmartObserve plugin installation]({{site.url}}{{site.baseurl}}/smartobserve/install/plugins/) page. Capitalize if it appears as part of the product name in the UI.
+Tools inside of MCdesk that can be customized to enhance MCdesk's functionality. For a list of core plugins, see the [MCdesk plugin installation]({{site.url}}{{site.baseurl}}/mcdesk/install/plugins/) page. Capitalize if it appears as part of the product name in the UI.
 
 **pop-up**
 
@@ -684,7 +684,7 @@ Avoid using. Use *separate* or *isolate* instead.
 
 **setting**
 
-A key-value pair that creates a mapping in one of the many YAML configuration files used throughout SmartObserve. Sometimes alternatively called parameters, the programming language manipulating the key-value pair usually dictates the name of this mapping in a YAML file. For SmartObserve documentation (Java), they are properly a `Setting` object.
+A key-value pair that creates a mapping in one of the many YAML configuration files used throughout MCdesk. Sometimes alternatively called parameters, the programming language manipulating the key-value pair usually dictates the name of this mapping in a YAML file. For MCdesk documentation (Java), they are properly a `Setting` object.
 
 The following examples of settings illustrate key-value pairs with a colon separating the two elements:
 

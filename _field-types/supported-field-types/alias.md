@@ -5,7 +5,7 @@ nav_order: 10
 has_children: false
 parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/alias/
+  - /mcdesk/supported-field-types/alias/
   - /field-types/alias/
 ---
 

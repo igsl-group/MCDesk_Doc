@@ -35,7 +35,7 @@ GET /testindex/_search
 
 ## Concurrent segment search
 
-Starting in SmartObserve 2.12, [concurrent segment search]({{site.url}}{{site.baseurl}}/search-plugins/concurrent-segment-search/) allows each shard-level request to search segments in parallel during the query phase. The Profile API response contains several additional fields with statistics about _slices_.
+Starting in MCdesk 2.12, [concurrent segment search]({{site.url}}{{site.baseurl}}/search-plugins/concurrent-segment-search/) allows each shard-level request to search segments in parallel during the query phase. The Profile API response contains several additional fields with statistics about _slices_.
 
 A slice is the unit of work that can be executed by a thread. Each query can be partitioned into multiple slices, with each slice containing one or more segments. All the slices can be executed either in parallel or in some order depending on the available threads in the pool.
 
@@ -164,7 +164,7 @@ To profile aggregations, send an aggregation request and provide the `profile` p
 
 <!-- spec_insert_start
 component: example_code
-rest: GET /smartobserve_dashboards_sample_data_ecommerce/_search
+rest: GET /mcdesk_dashboards_sample_data_ecommerce/_search
 body: |
 {
   "profile": "true",
@@ -184,7 +184,7 @@ body: |
 }
 -->
 {% capture step1_rest %}
-GET /smartobserve_dashboards_sample_data_ecommerce/_search
+GET /mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "profile": "true",
   "size": 0,
@@ -217,7 +217,7 @@ GET /smartobserve_dashboards_sample_data_ecommerce/_search
 
 
 response = client.search(
-  index = "smartobserve_dashboards_sample_data_ecommerce",
+  index = "mcdesk_dashboards_sample_data_ecommerce",
   body =   {
     "profile": "true",
     "size": 0,
@@ -257,7 +257,7 @@ response = client.search(
 
 <!-- spec_insert_start
 component: example_code
-rest: GET /smartobserve_dashboards_sample_data_ecommerce/_search
+rest: GET /mcdesk_dashboards_sample_data_ecommerce/_search
 body: |
 {
   "size": 0,
@@ -271,7 +271,7 @@ body: |
 }
 -->
 {% capture step1_rest %}
-GET /smartobserve_dashboards_sample_data_ecommerce/_search
+GET /mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -288,7 +288,7 @@ GET /smartobserve_dashboards_sample_data_ecommerce/_search
 
 
 response = client.search(
-  index = "smartobserve_dashboards_sample_data_ecommerce",
+  index = "mcdesk_dashboards_sample_data_ecommerce",
   body =   {
     "size": 0,
     "aggs": {
@@ -697,7 +697,7 @@ The `query` array contains objects with the following fields.
 
 Field | Data type | Description
 :--- | :--- | :---
-`type` | String | The Lucene query type into which the search query was rewritten. Corresponds to the Lucene class name (which often has the same name in SmartObserve).
+`type` | String | The Lucene query type into which the search query was rewritten. Corresponds to the Lucene class name (which often has the same name in MCdesk).
 `description` | String | Contains a Lucene explanation of the query. Helps differentiate queries with the same type.
 `time_in_nanos`	| Long | The total elapsed time for this query, in nanoseconds. For concurrent segment search, `time_in_nanos` is the total time spent across all the slices (the difference between the last completed slice execution end time and the first slice execution start time).
 `max_slice_time_in_nanos`	| Long | The maximum amount of time taken by any slice to run a query, in nanoseconds. This field is included only if you enable concurrent segment search.	
@@ -760,7 +760,7 @@ Reason | Description
 `search_min_score` | A collector that returns matching documents that have a score greater than a minimum score. Present when the `min_score` parameter is specified.
 `search_multi` | A wrapper collector for other collectors. Present when search, aggregations, global aggregations, and post filters are combined in a single search.
 `search_timeout` | A collector that stops running after a specified period of time. Present when a `timeout` parameter is specified.
-`aggregation` | A collector for aggregations that is run against the specified query scope. SmartObserve uses a single `aggregation` collector to collect documents for all aggregations.
+`aggregation` | A collector for aggregations that is run against the specified query scope. MCdesk uses a single `aggregation` collector to collect documents for all aggregations.
 `global_aggregation` | A collector that is run against the global query scope. Global scope is different from a specified query scope, so in order to collect the entire dataset, a `match_all` query must be run.
 
 ### Aggregation responses
@@ -807,7 +807,7 @@ The response contains profiling information:
   "profile": {
     "shards": [
       {
-        "id": "[LidyZ1HVS-u93-73Z49dQg][smartobserve_dashboards_sample_data_ecommerce][0]",
+        "id": "[LidyZ1HVS-u93-73Z49dQg][mcdesk_dashboards_sample_data_ecommerce][0]",
         "inbound_network_time_in_millis": 0,
         "outbound_network_time_in_millis": 0,
         "searches": [
@@ -1056,7 +1056,7 @@ The response contains profiling information:
   "profile": {
     "shards": [
       {
-        "id": "[LidyZ1HVS-u93-73Z49dQg][smartobserve_dashboards_sample_data_ecommerce][0]",
+        "id": "[LidyZ1HVS-u93-73Z49dQg][mcdesk_dashboards_sample_data_ecommerce][0]",
         "inbound_network_time_in_millis": 0,
         "outbound_network_time_in_millis": 0,
         "searches": [

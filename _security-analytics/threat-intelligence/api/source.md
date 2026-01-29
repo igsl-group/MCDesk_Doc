@@ -183,7 +183,7 @@ POST _plugins/_security_analytics/threat_intel/sources/
 
 ### Example responses
 
-The following example responses show what SmartObserve returns after a successful request.
+The following example responses show what MCdesk returns after a successful request.
 
 
 #### IOC_UPLOAD type
@@ -386,7 +386,7 @@ POST /_plugins/_security_analytics/threat_intel/sources/_search
         "max_score": 1.0,
         "hits": [
             {
-                "_index": ".smartobserve-sap--job",
+                "_index": ".mcdesk-sap--job",
                 "_id": "YEAuV5ABx0lQn6qhY5C1",
                 "_version": 2,
                 "_seq_no": 1,

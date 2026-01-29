@@ -50,7 +50,7 @@ POST /_plugins/_ml/agents/_register
 
 No parameters are required to register the tool. The tool uses dynamic parameter validation at execution time. 
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -84,7 +84,7 @@ POST /_plugins/_ml/agents/OQutgJYBAc35E4_KvI1q/_execute
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns a field-by-field comparison showing distribution changes between time periods:
+MCdesk returns a field-by-field comparison showing distribution changes between time periods:
 
 ```json
 {
@@ -120,7 +120,7 @@ POST /_plugins/_ml/agents/OQutgJYBAc35E4_KvI1q/_execute
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns distribution patterns for the analyzed dataset:
+MCdesk returns distribution patterns for the analyzed dataset:
 
 ```json
 {
@@ -183,7 +183,7 @@ The following table lists the available tool parameters for running the agent.
 
 | Parameter | Type | Required/Optional | Description |
 |:----------|:-----|:------------------|:------------|
-| `index` | String | Required | The name of the SmartObserve index containing the data to analyze. |
+| `index` | String | Required | The name of the MCdesk index containing the data to analyze. |
 | `timeField` | String | Required | A date/time field for time-based filtering. |
 | `selectionTimeRangeStart` | String | Required | The start time for the analysis period, in UTC date string format (for example, `2025-01-15 10:00:00`). |
 | `selectionTimeRangeEnd` | String | Required | The end time for the analysis period, in UTC date string format (for example, `2025-01-15 11:00:00`). |

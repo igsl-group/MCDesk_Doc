@@ -7,11 +7,11 @@ nav_order: 60
 
 # Query insights dashboards
 
-You can interact with the query insights feature in SmartObserve Dashboards. This gives you real-time and historical insights into query performance, providing analytics and monitoring to improve how queries are run in your cluster.
+You can interact with the query insights feature in MCdesk Dashboards. This gives you real-time and historical insights into query performance, providing analytics and monitoring to improve how queries are run in your cluster.
 
 ## Navigation
 
-After logging in to SmartObserve Dashboards, you can find the **Query insights** page by navigating to **SmartObserve Plugins** > **Query insights**.
+After logging in to MCdesk Dashboards, you can find the **Query insights** page by navigating to **MCdesk Plugins** > **Query insights**.
 
 If you have [multiple data sources]({{site.url}}{{site.baseurl}}/dashboards/management/multi-data-sources/) enabled, the **Query insights** page can be found by navigating to **Data administration** > **Performance** > **Query insights**.
 {: .note}
@@ -56,7 +56,7 @@ The filters dropdown menus allow you to select the following query filters.
 | Filter                  | Description                                                         | Example            |
 |-------------------------|---------------------------------------------------------------------|--------------------|
 | **Type**                | Filter by query type.                                               | `query`, `group`   |
-| **Indexes**             | Filter queries based on specific SmartObserve indexes.                | `index1`, `index2` |
+| **Indexes**             | Filter queries based on specific MCdesk indexes.                | `index1`, `index2` |
 | **Search Type**         | Filter by search execution method.                                  | `query then fetch` |
 | **Coordinator Node ID** | Focus on queries executed by a specific coordinator node.           | `node-1`, `node-2` |
 | **Time Range**          | Adjust the time range for the queries displayed.                    | `last 1 day`       |
@@ -185,7 +185,7 @@ When configuring the query insights feature, remember the following best practic
 
 ## Live queries
 
-The **Live queries** page provides real-time visibility into search queries currently running in your SmartObserve cluster. It enables active monitoring, fast debugging, and insight into how a query's load is distributed across nodes and indexes.
+The **Live queries** page provides real-time visibility into search queries currently running in your MCdesk cluster. It enables active monitoring, fast debugging, and insight into how a query's load is distributed across nodes and indexes.
 
 The following image shows the live queries view.
 

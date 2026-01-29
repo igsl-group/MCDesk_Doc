@@ -10,16 +10,16 @@ redirect_from:
 
 # Using coordinate and region maps
 
-SmartObserve has a standard set of GeoJSON files that provide a vector map with each region map. SmartObserve Dashboards also provides basic map tiles with a standard vector map to create region maps. You can configure the base map tiles using [Web Map Service (WMS)](https://www.ogc.org/standards/wms). For more information, see [Configuring WMS in SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/maptiles/). 
+MCdesk has a standard set of GeoJSON files that provide a vector map with each region map. MCdesk Dashboards also provides basic map tiles with a standard vector map to create region maps. You can configure the base map tiles using [Web Map Service (WMS)](https://www.ogc.org/standards/wms). For more information, see [Configuring WMS in MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/maptiles/). 
 
-For air-gapped environments, SmartObserve Dashboards provides a self-host maps server. For more information, see [Using the self-host maps server]({{site.url}}{{site.baseurl}}/dashboards/selfhost-maps-server/).
+For air-gapped environments, MCdesk Dashboards provides a self-host maps server. For more information, see [Using the self-host maps server]({{site.url}}{{site.baseurl}}/dashboards/selfhost-maps-server/).
 
 While you can't configure a server to support user-defined vector map layers, you can configure your own GeoJSON file and upload it for this purpose. 
 {: .note}
 
 ## Customizing vector maps with GeoJSON
 
-If you have a specific locale that is not provided by SmartObserve Dashboards vector maps, such as a US county or US ZIP Code, you can create your own custom vector map with a GeoJSON file. To create a custom region map you would define a geographic shape such as a polygon with multiple coordinates. To learn more about the various geographic shapes that support a custom region map location, see [Geoshape field type]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-shape/).
+If you have a specific locale that is not provided by MCdesk Dashboards vector maps, such as a US county or US ZIP Code, you can create your own custom vector map with a GeoJSON file. To create a custom region map you would define a geographic shape such as a polygon with multiple coordinates. To learn more about the various geographic shapes that support a custom region map location, see [Geoshape field type]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-shape/).
 
 GeoJSON format allows you to encode geographic data structures. To learn more about the GeoJSON specification, go to [geojson.org](https://geojson.org/).
 
@@ -27,8 +27,8 @@ You can use [geojson.io](https://geojson.io/#map=2/20.0/0.0) to extract GeoJSON 
 
 >   **PREREQUISITE**
 >   To use a custom vector map with GeoJSON, install these two required plugins:
->   * SmartObserve Dashboards Maps [`dashboards-maps`](https://github.com/igsl-group/dashboards-maps) front-end plugin
->   * SmartObserve [`geospatial`](https://github.com/igsl-group/geospatial) backend plugin
+>   * MCdesk Dashboards Maps [`dashboards-maps`](https://github.com/igsl-group/dashboards-maps) front-end plugin
+>   * MCdesk [`geospatial`](https://github.com/igsl-group/geospatial) backend plugin
 {: .note}
 
 ### Step 1: Creating a region map visualization
@@ -36,7 +36,7 @@ You can use [geojson.io](https://geojson.io/#map=2/20.0/0.0) to extract GeoJSON 
 To create your own custom vector map, upload a JSON file that contains GEO data for your customized regional maps. The JSON file contains vector layers for visualization.
 
 1. Prepare a JSON file to upload. Make sure the file has either a `.geojson` or `.json` extension.
-1. On the top menu bar, go to **SmartObserve Dashboards > Visualize**.
+1. On the top menu bar, go to **MCdesk Dashboards > Visualize**.
 1. Select the **Create Visualization** button.
 1. Select **Region Map**.
 1. Choose a source. For example, **[Flights] Flight Log**.
@@ -49,7 +49,7 @@ To create your own custom vector map, upload a JSON file that contains GEO data 
   
   <img src="{{site.url}}{{site.baseurl}}/images/dashboards/upload-success.png" alt="Message confirming successful file upload" width="300"/>
 
-### Step 2: Viewing the custom region map in SmartObserve Dashboards
+### Step 2: Viewing the custom region map in MCdesk Dashboards
 
 After you upload a custom GeoJSON file, you need to set the vector map layer to custom, and select your vector map:
 

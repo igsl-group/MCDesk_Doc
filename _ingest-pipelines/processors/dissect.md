@@ -5,7 +5,7 @@ parent: Ingest processors
 nav_order: 60
 ---
 
-This documentation describes using the `dissect` processor in SmartObserve ingest pipelines. Consider using the [Data Prepper `dissect` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/dissect/), which runs on the SmartObserve cluster, if your use case involves large or complex datasets.
+This documentation describes using the `dissect` processor in MCdesk ingest pipelines. Consider using the [Data Prepper `dissect` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/dissect/), which runs on the MCdesk cluster, if your use case involves large or complex datasets.
 {: .note}
 
 # Dissect

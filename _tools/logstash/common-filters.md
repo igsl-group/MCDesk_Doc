@@ -13,7 +13,7 @@ This page contains a list of common filter plugins.
 
 ## mutate
 
-You can use the `mutate` filter to change the data type of a field. For example, you can use the `mutate` filter if you're sending events to SmartObserve and you need to change the data type of a field to match any existing mappings.
+You can use the `mutate` filter to change the data type of a field. For example, you can use the `mutate` filter if you're sending events to MCdesk and you need to change the data type of a field to match any existing mappings.
 
 To convert the `quantity` field from a `string` type to an `integer` type:
 

@@ -167,7 +167,7 @@ PUT <index>/_settings
 
 ## The index is a write index for some data stream
 
-If you still want to delete the index, check your [data stream]({{site.url}}{{site.baseurl}}/smartobserve/data-streams/) settings and change the write index.
+If you still want to delete the index, check your [data stream]({{site.url}}{{site.baseurl}}/mcdesk/data-streams/) settings and change the write index.
 
 ## The index is blocked
 

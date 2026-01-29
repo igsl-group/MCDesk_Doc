@@ -12,32 +12,32 @@ redirect_from:
 Introduced 2.19
 {: .label .label-purple }
 
-To extend core features, SmartObserve uses plugins, which have several limitations:
+To extend core features, MCdesk uses plugins, which have several limitations:
 - They operate in the same JVM as a cluster, sharing storage, memory, and state.
 - They require strict version compatibility.
 - They are restricted to a single tenant.
 
-To address these challenges, you can use a _remote metadata SDK client_, which enables stateless SmartObserve plugins using external data stores, such as a remote SmartObserve cluster or cloud storage services. Using the client improves scalability and makes plugins more adaptable for large workloads. For more information about the client, see [SDK Client Repository](https://github.com/igsl-group/smartobserve-remote-metadata-sdk).
+To address these challenges, you can use a _remote metadata SDK client_, which enables stateless MCdesk plugins using external data stores, such as a remote MCdesk cluster or cloud storage services. Using the client improves scalability and makes plugins more adaptable for large workloads. For more information about the client, see [SDK Client Repository](https://github.com/igsl-group/mcdesk-remote-metadata-sdk).
 
 ## Remote metadata storage
 
-Remote metadata storage allows SmartObserve plugins to operate in a stateless manner, without relying on local JVM or cluster resources, by using external storage solutions. Instead of storing metadata within the SmartObserve cluster, plugins can save it in remote locations such as other SmartObserve clusters or cloud storage services. This approach improves scalability, reduces resource contention, and enables plugins to function independently of the core SmartObserve cluster.  
+Remote metadata storage allows MCdesk plugins to operate in a stateless manner, without relying on local JVM or cluster resources, by using external storage solutions. Instead of storing metadata within the MCdesk cluster, plugins can save it in remote locations such as other MCdesk clusters or cloud storage services. This approach improves scalability, reduces resource contention, and enables plugins to function independently of the core MCdesk cluster.  
 
 Remote metadata storage offers the following benefits:
 
-- **Scalability**: Offloading metadata storage to an external system reduces SmartObserve cluster memory and CPU usage.  
+- **Scalability**: Offloading metadata storage to an external system reduces MCdesk cluster memory and CPU usage.  
 - **Multi-tenancy support**: Tenant-based storage separation enables cloud providers to offer more flexible plugin solutions, logically separating resources using tenant IDs. 
 
 ### Supported storage backends
 
 Remote metadata storage can be configured to use the following external backends:
 
-- Remote SmartObserve clusters
+- Remote MCdesk clusters
 - Amazon DynamoDB
 
 ## Enabling multi-tenancy
  
-To enable multi-tenancy in a plugin, update the following static settings. After the update, restart the cluster in order for the changes to take effect. For more information about ways to update the settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/).
+To enable multi-tenancy in a plugin, update the following static settings. After the update, restart the cluster in order for the changes to take effect. For more information about ways to update the settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/).
 
 ###  Multi-tenancy setting
 
@@ -53,18 +53,18 @@ The following table lists settings related to remote metadata storage configurat
 
 | Setting | Data type | Description |
 |:---|:---|:---|
-| `remote_metadata_type` | String | The remote metadata storage type. Valid values are: <br> - `RemoteSmartObserve`: A remote SmartObserve cluster compatible with SmartObserve Java Client. <br> - `AWSDynamoDB` : Amazon DynamoDB with zero-ETL replication to SmartObserve. <br> - `AWSSmartObserveService`: Amazon SmartObserve Service using AWS SDK v2. |
+| `remote_metadata_type` | String | The remote metadata storage type. Valid values are: <br> - `RemoteMCdesk`: A remote MCdesk cluster compatible with MCdesk Java Client. <br> - `AWSDynamoDB` : Amazon DynamoDB with zero-ETL replication to MCdesk. <br> - `AWSMCdeskService`: Amazon MCdesk Service using AWS SDK v2. |
 | `remote_metadata_endpoint` | String | The remote metadata endpoint URL. |
 | `remote_metadata_region` | String | The AWS region in which metadata is stored. |
 | `remote_metadata_service_name` | String | The remote metadata service name. |
 
 ## Example
 
-The following configuration enables multi-tenancy using a remote SmartObserve cluster:
+The following configuration enables multi-tenancy using a remote MCdesk cluster:
 
 ```yaml
 plugins.<plugin_name>.multi_tenancy_enabled: true
-plugins.<plugin_name>.remote_metadata_type: "smartobserve"
+plugins.<plugin_name>.remote_metadata_type: "mcdesk"
 plugins.<plugin_name>.remote_metadata_endpoint: "https://remote-store.example.com"
 plugins.<plugin_name>.remote_metadata_region: "us-west-2"
 plugins.<plugin_name>.remote_metadata_service_name: "remote-store-service"
@@ -73,7 +73,7 @@ plugins.<plugin_name>.remote_metadata_service_name: "remote-store-service"
 
 ## Supported plugins
 
-SmartObserve supports multi-tenancy for the following plugins.
+MCdesk supports multi-tenancy for the following plugins.
 
 ### ML Commons 
 

@@ -10,7 +10,7 @@ nav_order: 20
 
 The deploy model operation reads the model's chunks from the model index and then creates an instance of the model to cache in memory. This operation requires the `model_id`. 
 
-Starting with SmartObserve version 2.13, [externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index) are deployed automatically by default when you send a Predict API request for the first time. To disable automatic deployment for an externally hosted model, set `plugins.ml_commons.model_auto_deploy.enable` to `false`:
+Starting with MCdesk version 2.13, [externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index) are deployed automatically by default when you send a Predict API request for the first time. To disable automatic deployment for an externally hosted model, set `plugins.ml_commons.model_auto_deploy.enable` to `false`:
 
 ```json
 PUT _cluster/settings
@@ -32,7 +32,7 @@ POST /_plugins/_ml/models/<model_id>/_deploy
 
 ## Example request: Deploying to all available ML nodes
 
-In this example request, SmartObserve deploys the model to any available SmartObserve ML node:
+In this example request, MCdesk deploys the model to any available MCdesk ML node:
 
 ```json
 POST /_plugins/_ml/models/WWQI44MBbzI2oUKAvNUt/_deploy

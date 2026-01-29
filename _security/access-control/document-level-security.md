@@ -9,16 +9,16 @@ redirect_from:
 ---
 
 # Document-level security
-Document-level security lets you restrict a role to a subset of documents in an index. The easiest way to get started with document- and field-level security is to open SmartObserve Dashboards and choose **Security**. Then choose **Roles**, create a new role, and review the **Index Permissions** section, shown in the following image.
+Document-level security lets you restrict a role to a subset of documents in an index. The easiest way to get started with document- and field-level security is to open MCdesk Dashboards and choose **Security**. Then choose **Roles**, create a new role, and review the **Index Permissions** section, shown in the following image.
 
-![Document- and field-level security screen in SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/images/security-dls.png)
+![Document- and field-level security screen in MCdesk Dashboards]({{site.url}}{{site.baseurl}}/images/security-dls.png)
 
 The maximum size for the document-level security configuration is 1024 KB (1,048,404 characters). 
 {: .warning}
 
 ## Simple roles
 
-Document-level security uses SmartObserve query domain-specific language (DSL) to define which documents a role grants access to. In SmartObserve Dashboards, choose an index pattern and provide a query in the **Document-level security** section:
+Document-level security uses MCdesk query domain-specific language (DSL) to define which documents a role grants access to. In MCdesk Dashboards, choose an index pattern and provide a query in the **Document-level security** section:
 
 ```json
 {
@@ -63,7 +63,7 @@ These queries can be as complex as you want, but we recommend keeping them simpl
 
 ### A note on Unicode special characters in text fields
 
-Due to word boundaries associated with Unicode special characters, the Unicode standard analyzer cannot index a [text field type]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/text/) value as a whole value when it includes one of these special characters. As a result, a text field value that includes a special character is parsed by the standard analyzer as multiple values separated by the special character, effectively tokenizing the different elements on either side of it. This can lead to unintentional filtering of documents and potentially compromise control over their access.
+Due to word boundaries associated with Unicode special characters, the Unicode standard analyzer cannot index a [text field type]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/text/) value as a whole value when it includes one of these special characters. As a result, a text field value that includes a special character is parsed by the standard analyzer as multiple values separated by the special character, effectively tokenizing the different elements on either side of it. This can lead to unintentional filtering of documents and potentially compromise control over their access.
 
 The examples below illustrate values containing special characters that will be parsed improperly by the standard analyzer. In this example, the existence of the hyphen/minus sign in the value prevents the analyzer from distinguishing between the two different users for `user.id` and interprets them as one and the same:
 
@@ -91,7 +91,7 @@ The examples below illustrate values containing special characters that will be 
 }
 ```
 
-To avoid this circumstance when using either Query DSL or the REST API, you can use a custom analyzer or map the field as `keyword`, which performs an exact-match search. See [Keyword field type]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/keyword/) for the latter option.
+To avoid this circumstance when using either Query DSL or the REST API, you can use a custom analyzer or map the field as `keyword`, which performs an exact-match search. See [Keyword field type]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/keyword/) for the latter option.
 
 For a list of characters that should be avoided when field type is `text`, see [Word Boundaries](https://unicode.org/reports/tr29/#Word_Boundaries).
 
@@ -167,15 +167,15 @@ PUT _plugins/_security/api/roles/abac
 ```
 ## Use term-level lookup queries (TLQs) with DLS 
 
-You can perform term-level lookup queries (TLQs) with document-level security (DLS) using either of two modes: adaptive or filter level. The default mode is adaptive, where SmartObserve automatically switches between Lucene-level or filter-level mode depending on whether or not there is a TLQ. DLS queries without TLQs are executed in Lucene-level mode, whereas DLS queries with TLQs are executed in filter-level mode.
+You can perform term-level lookup queries (TLQs) with document-level security (DLS) using either of two modes: adaptive or filter level. The default mode is adaptive, where MCdesk automatically switches between Lucene-level or filter-level mode depending on whether or not there is a TLQ. DLS queries without TLQs are executed in Lucene-level mode, whereas DLS queries with TLQs are executed in filter-level mode.
 
 By default, the Security plugin detects if a DLS query contains a TLQ or not and chooses the appropriate mode automatically at runtime.
 
-To learn more about SmartObserve queries, see [Term-level queries]({{site.url}}{{site.baseurl}}/query-dsl/term/index/).
+To learn more about MCdesk queries, see [Term-level queries]({{site.url}}{{site.baseurl}}/query-dsl/term/index/).
 
-### How to set the DLS evaluation mode in `smartobserve.yml`
+### How to set the DLS evaluation mode in `mcdesk.yml`
 
-By default, the DLS evaluation mode is set to `adaptive`. You can also explicitly set the mode in `smartobserve.yml` with the `plugins.security.dls.mode` setting. Add a line to `smartobserve.yml` with the desired evaluation mode. 
+By default, the DLS evaluation mode is set to `adaptive`. You can also explicitly set the mode in `mcdesk.yml` with the `plugins.security.dls.mode` setting. Add a line to `mcdesk.yml` with the desired evaluation mode. 
 For example, to set it to filter level, add this line:
 ```
 plugins.security.dls.mode: filter-level
@@ -186,12 +186,12 @@ plugins.security.dls.mode: filter-level
 | Evaluation mode | Parameter | Description | Usage |
 :--- | :--- | :--- | :--- |
 Lucene-level DLS | `lucene-level` | This setting makes all DLS queries apply to the Lucene level. | Lucene-level DLS modifies Lucene queries and data structures directly. This is the most efficient mode but does not allow certain advanced constructs in DLS queries, including TLQs.
-Filter-level DLS | `filter-level` | This setting makes all DLS queries apply to the filter level. | In this mode, SmartObserve applies DLS by modifying queries that SmartObserve receives. This allows for term-level lookup queries in DLS queries, but you can only use the `get`, `search`, `mget`, and `msearch` operations to retrieve data from the protected index. Additionally, cross-cluster searches are limited with this mode.
-Adaptive | `adaptive-level` | The default setting that allows SmartObserve to automatically choose the mode. | DLS queries without TLQs are executed in Lucene-level mode, while DLS queries that contain TLQ are executed in filter- level mode.
+Filter-level DLS | `filter-level` | This setting makes all DLS queries apply to the filter level. | In this mode, MCdesk applies DLS by modifying queries that MCdesk receives. This allows for term-level lookup queries in DLS queries, but you can only use the `get`, `search`, `mget`, and `msearch` operations to retrieve data from the protected index. Additionally, cross-cluster searches are limited with this mode.
+Adaptive | `adaptive-level` | The default setting that allows MCdesk to automatically choose the mode. | DLS queries without TLQs are executed in Lucene-level mode, while DLS queries that contain TLQ are executed in filter- level mode.
 
 ## DLS and multiple roles
 
-SmartObserve combines all DLS queries with the logical `OR` operator. However, when a role that uses DLS is combined with another security role that doesn't use DLS, the query results are filtered to display only documents matching the DLS from the first role. This filter rule also applies to roles that do not grant read documents.
+MCdesk combines all DLS queries with the logical `OR` operator. However, when a role that uses DLS is combined with another security role that doesn't use DLS, the query results are filtered to display only documents matching the DLS from the first role. This filter rule also applies to roles that do not grant read documents.
 
 ### DLS and write permissions
 
@@ -202,7 +202,7 @@ Make sure that a user that has DLS-configured roles does not have write permissi
 When to enable the `plugins.security.dfm_empty_overrides_all` setting depends on whether you want to restrict user access to documents without DLS. 
 
 
-To ensure access is not restricted, you can set the following configuration in `smartobserve.yml`:
+To ensure access is not restricted, you can set the following configuration in `mcdesk.yml`:
 
 ```
 plugins.security.dfm_empty_overrides_all: true

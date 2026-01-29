@@ -10,14 +10,14 @@ redirect_from:
 
 # Reranking search results by a field
 
-Starting with SmartObserve 2.18, you can rerank search [results by a field]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/rerank-processor/#the-by_field-rerank-type). This feature is useful when your documents include a field that is particularly important or when you want to rerank results from an externally hosted model. For more information, see [Reranking search results by a field]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/rerank-by-field/).
+Starting with MCdesk 2.18, you can rerank search [results by a field]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/rerank-processor/#the-by_field-rerank-type). This feature is useful when your documents include a field that is particularly important or when you want to rerank results from an externally hosted model. For more information, see [Reranking search results by a field]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/rerank-by-field/).
 
-This tutorial explains how to use the [Cohere Rerank](https://docs.cohere.com/reference/rerank-1) model to rerank search results by a field in self-managed SmartObserve and in [Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/).
+This tutorial explains how to use the [Cohere Rerank](https://docs.cohere.com/reference/rerank-1) model to rerank search results by a field in self-managed MCdesk and in [Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/).
 
 Replace the placeholders beginning with the prefix `your_` with your own values.
 {: .note}
 
-## Step 1 (self-managed SmartObserve): Create a connector
+## Step 1 (self-managed MCdesk): Create a connector
 
 To create a connector, send the following request:
 
@@ -58,13 +58,13 @@ The response contains the connector ID:
 
 Note the connector ID; you'll use it in the following steps. Then go to [Step 2](#step-2-register-the-cohere-rerank-model).
 
-## Step 1 (Amazon SmartObserve Service): Create a connector
+## Step 1 (Amazon MCdesk Service): Create a connector
 
-Follow these steps to create a connector using Amazon SmartObserve Service.
+Follow these steps to create a connector using Amazon MCdesk Service.
 
-### Prerequisite: Create an SmartObserve cluster
+### Prerequisite: Create an MCdesk cluster
 
-Go to the [Amazon SmartObserve Service console](https://console.aws.amazon.com/aos/home) and create an SmartObserve domain.
+Go to the [Amazon MCdesk Service console](https://console.aws.amazon.com/aos/home) and create an MCdesk domain.
 
 Note the domain Amazon Resource Name (ARN) and URL; you'll use them in the following steps.
 
@@ -125,9 +125,9 @@ Go to the IAM console, create a new IAM role named `my_cohere_secret_role`, and 
 
 Note the role ARN; you'll use it in the following steps.
 
-### Step 1.3: Configure an IAM role in Amazon SmartObserve Service
+### Step 1.3: Configure an IAM role in Amazon MCdesk Service
 
-Follow these steps to configure an IAM role in Amazon SmartObserve Service.
+Follow these steps to configure an IAM role in Amazon MCdesk Service.
 
 #### Step 1.3.1: Create an IAM role for signing connector requests
 
@@ -169,7 +169,7 @@ You'll use the `your_iam_user_arn` IAM user to assume the role in Step 4.1.
         {
             "Effect": "Allow",
             "Action": "es:ESHttpPost",
-            "Resource": "your_smartobserve_domain_arn_created_in_step0"
+            "Resource": "your_mcdesk_domain_arn_created_in_step0"
         }
     ]
 }
@@ -182,14 +182,14 @@ Note this role ARN; you'll use it in the following steps.
 
 Follow these steps to map a backend role:
 
-1. Log in to SmartObserve Dashboards and select **Security** on the top menu.
+1. Log in to MCdesk Dashboards and select **Security** on the top menu.
 2. Select **Roles**, and then select the **ml_full_access** role. 
 3. On the **ml_full_access** role details page, select **Mapped users**, and then select **Manage mapping**. 
 4. Enter the IAM role ARN created in Step 3.1 in the **Backend roles** field, as shown in the following image.
     ![Mapping a backend role]({{site.url}}{{site.baseurl}}/images/vector-search-tutorials/mapping_iam_role_arn.png)
 4. Select **Map**. 
 
-The IAM role is now successfully configured in your SmartObserve cluster.
+The IAM role is now successfully configured in your MCdesk cluster.
 
 ## Step 1.4: Create a connector
 
@@ -202,8 +202,8 @@ import boto3
 import requests 
 from requests_aws4auth import AWS4Auth
 
-host = 'your_amazon_smartobserve_domain_endpoint_created_in_step0'
-region = 'your_amazon_smartobserve_domain_region'
+host = 'your_amazon_mcdesk_domain_endpoint_created_in_step0'
+region = 'your_amazon_mcdesk_domain_region'
 service = 'es'
 
 assume_role_response = boto3.Session().client('sts').assume_role(
@@ -261,7 +261,7 @@ Note the connector ID; you'll use it in the next step.
 
 ## Step 2: Register the Cohere Rerank model
 
-After successfully creating a connector using either the self-managed SmartObserve or Amazon SmartObserve Service method, you can register the Cohere Rerank model. 
+After successfully creating a connector using either the self-managed MCdesk or Amazon MCdesk Service method, you can register the Cohere Rerank model. 
 
 Use the connector ID from Step 1.4 to create a model:
 

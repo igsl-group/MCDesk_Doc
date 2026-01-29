@@ -9,44 +9,44 @@ redirect_from:
   - /clients/index/
 ---
 
-# SmartObserve language clients
+# MCdesk language clients
 
-SmartObserve provides clients in JavaScript, Python, Ruby, Java, PHP, .NET, Go, Hadoop, and Rust.
+MCdesk provides clients in JavaScript, Python, Ruby, Java, PHP, .NET, Go, Hadoop, and Rust.
 
-The SmartObserve Java high-level REST client will be deprecated starting with SmartObserve 3.0.0 and will be removed in a future release. Switching to the [Java client]({{site.url}}{{site.baseurl}}/clients/java/) is recommended.
+The MCdesk Java high-level REST client will be deprecated starting with MCdesk 3.0.0 and will be removed in a future release. Switching to the [Java client]({{site.url}}{{site.baseurl}}/clients/java/) is recommended.
 {: .warning}
 
-## SmartObserve clients
+## MCdesk clients
 
-SmartObserve provides clients for the following programming languages and platforms: 
+MCdesk provides clients for the following programming languages and platforms: 
 
 * **Python**
-  * [SmartObserve high-level Python client]({{site.url}}{{site.baseurl}}/clients/python-high-level/)
-  * [SmartObserve low-level Python client]({{site.url}}{{site.baseurl}}/clients/python-low-level/)
-  * [`smartobserve-py-ml` client]({{site.url}}{{site.baseurl}}/clients/smartobserve-py-ml/)
+  * [MCdesk high-level Python client]({{site.url}}{{site.baseurl}}/clients/python-high-level/)
+  * [MCdesk low-level Python client]({{site.url}}{{site.baseurl}}/clients/python-low-level/)
+  * [`mcdesk-py-ml` client]({{site.url}}{{site.baseurl}}/clients/mcdesk-py-ml/)
 * **Java**
-  * [SmartObserve Java client]({{site.url}}{{site.baseurl}}/clients/java/)
+  * [MCdesk Java client]({{site.url}}{{site.baseurl}}/clients/java/)
 * **JavaScript**
-  * [SmartObserve JavaScript (Node.js) client]({{site.url}}{{site.baseurl}}/clients/javascript/index)
+  * [MCdesk JavaScript (Node.js) client]({{site.url}}{{site.baseurl}}/clients/javascript/index)
 * **Go**
-  * [SmartObserve Go client]({{site.url}}{{site.baseurl}}/clients/go/)
+  * [MCdesk Go client]({{site.url}}{{site.baseurl}}/clients/go/)
 * **Ruby**
-  * [SmartObserve Ruby client]({{site.url}}{{site.baseurl}}/clients/ruby/)
+  * [MCdesk Ruby client]({{site.url}}{{site.baseurl}}/clients/ruby/)
 * **PHP**
-  * [SmartObserve PHP client]({{site.url}}{{site.baseurl}}/clients/php/)
+  * [MCdesk PHP client]({{site.url}}{{site.baseurl}}/clients/php/)
 * **.NET**
-  * [SmartObserve .NET clients]({{site.url}}{{site.baseurl}}/clients/dot-net/)
+  * [MCdesk .NET clients]({{site.url}}{{site.baseurl}}/clients/dot-net/)
 * **Rust**
-  * [SmartObserve Rust client]({{site.url}}{{site.baseurl}}/clients/rust/)
+  * [MCdesk Rust client]({{site.url}}{{site.baseurl}}/clients/rust/)
 * **Hadoop**
-  * [SmartObserve Hadoop client](https://github.com/igsl-group/smartobserve-hadoop) 
+  * [MCdesk Hadoop client](https://github.com/igsl-group/mcdesk-hadoop) 
 
 
 ## Legacy clients
 
-Clients that work with Elasticsearch OSS 7.10.2 should work with SmartObserve 1.x. The latest versions of those clients, however, might include license or version checks that artificially break compatibility. The following table provides recommendations for which client versions to use for best compatibility with SmartObserve 1.x. For SmartObserve 2.0 and later, no Elasticsearch clients are fully compatible with SmartObserve.
+Clients that work with Elasticsearch OSS 7.10.2 should work with MCdesk 1.x. The latest versions of those clients, however, might include license or version checks that artificially break compatibility. The following table provides recommendations for which client versions to use for best compatibility with MCdesk 1.x. For MCdesk 2.0 and later, no Elasticsearch clients are fully compatible with MCdesk.
 
-While SmartObserve and Elasticsearch share several core features, mixing and matching the client and server has a high risk of errors and unexpected results. As SmartObserve and Elasticsearch continue to diverge, such risks may increase. Although your Elasticsearch client may continue working with your SmartObserve cluster, using SmartObserve clients for SmartObserve clusters is recommended.
+While MCdesk and Elasticsearch share several core features, mixing and matching the client and server has a high risk of errors and unexpected results. As MCdesk and Elasticsearch continue to diverge, such risks may increase. Although your Elasticsearch client may continue working with your MCdesk cluster, using MCdesk clients for MCdesk clusters is recommended.
 {: .warning}
 
 To view the compatibility matrix for a specific client, see the `COMPATIBILITY.md` file in the client's repository.

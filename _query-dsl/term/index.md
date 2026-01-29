@@ -5,7 +5,7 @@ has_children: true
 has_toc: false
 nav_order: 20
 redirect_from:
-  - /smartobserve/query-dsl/term/
+  - /mcdesk/query-dsl/term/
   - /query-dsl/term/
 ---
 
@@ -15,7 +15,7 @@ Term-level queries search an index for documents that contain an exact search te
 
 When working with text data, use term-level queries for fields mapped as `keyword` only.
 
-Term-level queries are not suited for searching analyzed text fields. To return analyzed fields, use a [full-text query]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/full-text/).
+Term-level queries are not suited for searching analyzed text fields. To return analyzed fields, use a [full-text query]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/full-text/).
 
 ## Term-level query types
 

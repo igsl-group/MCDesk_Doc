@@ -368,7 +368,7 @@ DELETE /_plugins/_notifications/configs/<config_id>
 }
 ```
 
-You can also submit a comma-separated list of channel IDs you want to delete, and SmartObserve deletes all of the specified notification channels.
+You can also submit a comma-separated list of channel IDs you want to delete, and MCdesk deletes all of the specified notification channels.
 
 #### Example request
 

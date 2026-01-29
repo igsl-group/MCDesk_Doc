@@ -12,7 +12,7 @@ model_controls:
   - heading: Amazon Bedrock guardrails
     link: /tutorials/gen-ai/model-controls/bedrock-guardrails/
     list:
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Anthropic Claude"  
       - "<b>Deployment:</b> Amazon Bedrock"   
 ---

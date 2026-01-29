@@ -10,7 +10,7 @@ parent: Search pipelines
 **Introduced 3.3**
 {: .label .label-purple }
 
-System-generated search processors are processors that SmartObserve creates automatically based on the search request. Unlike [user-defined processors]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/search-processors/) that you manually configure in pipelines, system-generated processors are triggered automatically when certain features are used, eliminating the need for manual processor configuration.
+System-generated search processors are processors that MCdesk creates automatically based on the search request. Unlike [user-defined processors]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/search-processors/) that you manually configure in pipelines, system-generated processors are triggered automatically when certain features are used, eliminating the need for manual processor configuration.
 
 ## Enabling system-generated search processors
 
@@ -32,7 +32,7 @@ PUT _cluster/settings
 
 ## Processor types
 
-SmartObserve supports the following types of system-generated processors:
+MCdesk supports the following types of system-generated processors:
 
 * [Search request processors](#system-generated-search-request-processors)
 * [Search response processors](#system-generated-search-response-processors)
@@ -61,7 +61,7 @@ The following table lists the available system-generated search response process
 
 The following limitations apply to system-generated processors:
 
-- SmartObserve supports only **one system-generated processor per processor type and execution stage** for a given search request. Since each processor type (request and response) can run at two execution stages (before or after user-defined processors), a single search request can include multiple system-generated processors, as long as they are of different types or run at different execution stages. This limitation ensures deterministic execution order and predictable behavior.
+- MCdesk supports only **one system-generated processor per processor type and execution stage** for a given search request. Since each processor type (request and response) can run at two execution stages (before or after user-defined processors), a single search request can include multiple system-generated processors, as long as they are of different types or run at different execution stages. This limitation ensures deterministic execution order and predictable behavior.
 
 ## Related pages
 

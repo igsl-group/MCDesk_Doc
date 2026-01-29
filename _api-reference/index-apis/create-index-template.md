@@ -42,9 +42,9 @@ Parameter | Type | Description
 `composed_of` | String array | An ordered list of component template names. These templates are merged using the specified order. For more information, see [Using multiple component templates](#using-multiple-component-templates). Optional.
 `data_stream` | Object | When used, the request creates data streams and any backing indexes based on the template. This setting requires a matching index template. It can also be used with the `hidden` setting, which, when set to `true`, hides the data stream backing indexes. Optional.
 `_meta` | Object | Optional metadata that provides details about the index template. Optional.
-`priority` | Integer | A number that determines which index templates take precedence during the creation of a new index or data stream. SmartObserve chooses the template with the highest priority. When no priority is given, the template is assigned a `0`, signifying the lowest priority. Optional.
+`priority` | Integer | A number that determines which index templates take precedence during the creation of a new index or data stream. MCdesk chooses the template with the highest priority. When no priority is given, the template is assigned a `0`, signifying the lowest priority. Optional.
 `template` | Object | The template that includes the `aliases`, `mappings`, or `settings` for the index. For more information, see [#template]. Optional.
-`version` | Integer | The version number used to manage index templates. Version numbers are not automatically set by SmartObserve. Optional.
+`version` | Integer | The version number used to manage index templates. Version numbers are not automatically set by MCdesk. Optional.
 `context` | Object | (Experimental) The `context` parameter provides use-case-specific predefined templates that can be applied to an index. Among all settings and mappings declared for a template, context templates hold the highest priority. For more information, see [index-context]({{site.url}}{{site.baseurl}}/im-plugin/index-context/).
 
 ### Template
@@ -72,7 +72,7 @@ The field mappings that exist in the index. For more information, see [Mappings 
 
 #### `settings`
 
-Any configuration options for the index. For more information, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/).
+Any configuration options for the index. For more information, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/).
 
 ## Example requests
 

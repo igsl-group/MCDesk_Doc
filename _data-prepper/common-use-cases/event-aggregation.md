@@ -7,13 +7,13 @@ nav_order: 25
 
 # Event aggregation
 
-You can use SmartObserve Data Prepper to aggregate data from different events over a period of time. Aggregating events can help to reduce unnecessary log volume and manage use cases like multiline logs that are received as separate events. The [`aggregate` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/aggregate/) is a stateful processor that groups events based on the values for a set of specified identification keys and performs a configurable action on each group.
+You can use MCdesk Data Prepper to aggregate data from different events over a period of time. Aggregating events can help to reduce unnecessary log volume and manage use cases like multiline logs that are received as separate events. The [`aggregate` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/aggregate/) is a stateful processor that groups events based on the values for a set of specified identification keys and performs a configurable action on each group.
 
 The `aggregate` processor state is stored in memory. For example, in order to combine four events into one, the processor needs to retain pieces of the first three events. The state of an aggregate group of events is kept for a configurable amount of time. Depending on your logs, the aggregate action being used, and the number of memory options in the processor configuration, the aggregation could take place over a long period of time.
 
 ## Basic usage
 
-The following example pipeline extracts the fields `sourceIp`, `destinationIp`, and `port` using the [`grok` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/grok/) and then aggregates on those fields over a period of 30 seconds using the [`aggregate` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/aggregate/) and the `put_all` action. At the end of the 30-second period, the aggregated log is sent to the SmartObserve sink.
+The following example pipeline extracts the fields `sourceIp`, `destinationIp`, and `port` using the [`grok` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/grok/) and then aggregates on those fields over a period of 30 seconds using the [`aggregate` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/aggregate/) and the `put_all` action. At the end of the 30-second period, the aggregated log is sent to the MCdesk sink.
 
 ```json
 aggregate_pipeline:  
@@ -30,7 +30,7 @@ aggregate_pipeline:
          action:
            put_all:
    sink:
-     - smartobserve:
+     - mcdesk:
          ...
          index: aggregated_logs
 ```
@@ -116,18 +116,18 @@ log-aggregate-pipeline:
     - 4xx_status: "/response >= 400 and /response < 500"
     - 5xx_status: "/response >= 500 and /response < 600"
   sink:
-    - smartobserve:
+    - mcdesk:
         ...
         index: "aggregated_2xx_3xx"
         routes:
           - 2xx_status
           - 3xx_status
-    - smartobserve:
+    - mcdesk:
         ...
         index: "aggregated_4xx"
         routes:
           - 4xx_status
-    - smartobserve:
+    - mcdesk:
         ...
         index: "aggregated_5xx"
         routes:

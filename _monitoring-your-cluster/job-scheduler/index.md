@@ -11,30 +11,30 @@ redirect_from:
 
 # Job Scheduler
 
-The SmartObserve Job Scheduler plugin provides a framework that can be used to build schedules for common tasks performed on your cluster. You can use Job Scheduler’s Service Provider Interface (SPI) to define schedules for cluster management tasks such as taking snapshots, managing your data’s lifecycle, and running periodic jobs. Job Scheduler has a sweeper that listens for updated events on the SmartObserve cluster and a scheduler that manages when jobs run.
+The MCdesk Job Scheduler plugin provides a framework that can be used to build schedules for common tasks performed on your cluster. You can use Job Scheduler’s Service Provider Interface (SPI) to define schedules for cluster management tasks such as taking snapshots, managing your data’s lifecycle, and running periodic jobs. Job Scheduler has a sweeper that listens for updated events on the MCdesk cluster and a scheduler that manages when jobs run.
 
-You can install the Job Scheduler plugin by following the standard [SmartObserve plugin installation]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/plugins/) process. The sample-extension-plugin example provided in the [Job Scheduler GitHub repository](https://github.com/igsl-group/job-scheduler) provides a complete example of utilizing Job Scheduler when building a plugin. To define schedules, you build a plugin that implements the interfaces provided in the Job Scheduler library. You can schedule jobs by specifying an interval, or you can use a Unix cron expression such as `0 12 * * ?`, which runs at noon every day, to define a more flexible schedule.
+You can install the Job Scheduler plugin by following the standard [MCdesk plugin installation]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/plugins/) process. The sample-extension-plugin example provided in the [Job Scheduler GitHub repository](https://github.com/igsl-group/job-scheduler) provides a complete example of utilizing Job Scheduler when building a plugin. To define schedules, you build a plugin that implements the interfaces provided in the Job Scheduler library. You can schedule jobs by specifying an interval, or you can use a Unix cron expression such as `0 12 * * ?`, which runs at noon every day, to define a more flexible schedule.
 
 ## Building a plugin for Job Scheduler
 
-SmartObserve plugin developers can extend the Job Scheduler plugin to schedule jobs to perform on the cluster. Jobs you can schedule include running aggregation queries against raw data, saving the aggregated data to a new index every hour, or continuing to monitor the shard allocation by calling the SmartObserve API and then posting the output to a webhook.
+MCdesk plugin developers can extend the Job Scheduler plugin to schedule jobs to perform on the cluster. Jobs you can schedule include running aggregation queries against raw data, saving the aggregated data to a new index every hour, or continuing to monitor the shard allocation by calling the MCdesk API and then posting the output to a webhook.
 
 For examples of building a plugin that uses the Job Scheduler plugin, see the Job Scheduler [README](https://github.com/igsl-group/job-scheduler/blob/main/README.md).
 
 ## Defining an endpoint
 
-You can configure your plugin's API endpoint by referencing the [example](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/smartobserve/jobscheduler/sampleextension/SampleExtensionRestHandler.java) `SampleExtensionRestHandler.java` file. Set the endpoint URL that your plugin will expose with `WATCH_INDEX_URI`:
+You can configure your plugin's API endpoint by referencing the [example](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/mcdesk/jobscheduler/sampleextension/SampleExtensionRestHandler.java) `SampleExtensionRestHandler.java` file. Set the endpoint URL that your plugin will expose with `WATCH_INDEX_URI`:
 
 ```java
 public class SampleExtensionRestHandler extends BaseRestHandler {
     public static final String WATCH_INDEX_URI = "/_plugins/scheduler_sample/watch";
 ```
 
-You can define the job configuration by [extending](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/smartobserve/jobscheduler/sampleextension/SampleJobParameter.java) `ScheduledJobParameter`. You can also define the fields used by your plugin, like `indexToWatch`, as shown in the [example](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/smartobserve/jobscheduler/sampleextension/SampleJobParameter.java) `SampleJobParameter` file. This job configuration will be saved as a document in an index you define, as shown in [this example](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/smartobserve/jobscheduler/sampleextension/SampleExtensionPlugin.java#L54).
+You can define the job configuration by [extending](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/mcdesk/jobscheduler/sampleextension/SampleJobParameter.java) `ScheduledJobParameter`. You can also define the fields used by your plugin, like `indexToWatch`, as shown in the [example](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/mcdesk/jobscheduler/sampleextension/SampleJobParameter.java) `SampleJobParameter` file. This job configuration will be saved as a document in an index you define, as shown in [this example](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/mcdesk/jobscheduler/sampleextension/SampleExtensionPlugin.java#L54).
 
 ## Configuring parameters
 
-You can configure your plugin's parameters by referencing the [example](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/smartobserve/jobscheduler/sampleextension/SampleJobParameter.java) `SampleJobParameter.java` file and modifying it to fit your needs:
+You can configure your plugin's parameters by referencing the [example](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/mcdesk/jobscheduler/sampleextension/SampleJobParameter.java) `SampleJobParameter.java` file and modifying it to fit your needs:
 
 ```java
 /**
@@ -128,9 +128,9 @@ The following table describes the request parameters configured in the previous 
 | getLockDurationSeconds | Integer | Returns the duration of time for which the job is locked. |
 | getJitter | Integer | Returns the defined jitter value. |
 
-The logic used by your job should be defined by a class extended from `ScheduledJobRunner` in the `SampleJobParameter.java` sample file, such as `SampleJobRunner`. While the job is running, there is a locking mechanism you can use to prevent other nodes from running the same job. First, [acquire](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/smartobserve/jobscheduler/sampleextension/SampleJobRunner.java#L96) the lock. Then make sure to release the lock before the [job finishes](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/smartobserve/jobscheduler/sampleextension/SampleJobRunner.java#L116).
+The logic used by your job should be defined by a class extended from `ScheduledJobRunner` in the `SampleJobParameter.java` sample file, such as `SampleJobRunner`. While the job is running, there is a locking mechanism you can use to prevent other nodes from running the same job. First, [acquire](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/mcdesk/jobscheduler/sampleextension/SampleJobRunner.java#L96) the lock. Then make sure to release the lock before the [job finishes](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/mcdesk/jobscheduler/sampleextension/SampleJobRunner.java#L116).
 
-For more information, see the Job Scheduler [sample extension](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/smartobserve/jobscheduler/sampleextension/SampleJobParameter.java) directory in the [Job Scheduler GitHub repo](https://github.com/igsl-group/job-scheduler).
+For more information, see the Job Scheduler [sample extension](https://github.com/igsl-group/job-scheduler/blob/main/sample-extension-plugin/src/main/java/org/mcdesk/jobscheduler/sampleextension/SampleJobParameter.java) directory in the [Job Scheduler GitHub repo](https://github.com/igsl-group/job-scheduler).
 
 ## Job Scheduler APIs
 
@@ -141,7 +141,7 @@ The Job Scheduler plugin supports the following APIs used to monitor the jobs ru
 
 ## Job Scheduler cluster settings
 
-The Job Scheduler plugin supports the following cluster settings. All settings are dynamic. To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+The Job Scheduler plugin supports the following cluster settings. All settings are dynamic. To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 | Setting | Data type | Description |
 :--- | :--- | :---

@@ -11,19 +11,19 @@ redirect_from:
 vector_operations:
   - heading: "Generating embeddings from arrays of objects"
     list: 
-      - "<b>Platform</b>: SmartObserve" 
+      - "<b>Platform</b>: MCdesk" 
       - "<b>Model</b>: Amazon Titan"
       - "<b>Deployment</b>: Amazon Bedrock" 
     link: "/tutorials/vector-search/vector-operations/generate-embeddings/"
   - heading: "Semantic search using byte-quantized vectors"
     list:
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Cohere Embed"  
       - "<b>Deployment:</b> Provider API"  
     link: "/tutorials/vector-search/vector-operations/semantic-search-byte-vectors/"
   - heading: "Optimizing vector search using Cohere compressed embeddings"
     list:
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Cohere Embed Multilingual v3"  
       - "<b>Deployment:</b> Amazon Bedrock"  
     link: "/tutorials/vector-search/vector-operations/optimize-compression/"

@@ -23,7 +23,7 @@ The following example workload shows all of the essential elements needed to cre
 
 ```json
 {
-  "description": "Tutorial benchmark for SmartObserve Benchmark",
+  "description": "Tutorial benchmark for MCdesk Benchmark",
   "indices": [
     {
       "name": "movies",
@@ -97,14 +97,14 @@ To create an index, specify its `name`. To add definitions to your index, use th
 
 The `corpora` element requires the name of the index containing the document corpus, for example, `movies`, and a list of parameters that define the document corpora. This list includes the following parameters:
 
--  `source-file`: The file name that contains the workload's corresponding documents. When using SmartObserve Benchmark locally, documents are contained in a JSON file. When providing a `base_url`, use a compressed file format: `.zip`, `.bz2`, `.zst`, `.gz`, `.tar`, `.tar.gz`, `.tgz`, or `.tar.bz2`. The compressed file must include one JSON file containing the name.
+-  `source-file`: The file name that contains the workload's corresponding documents. When using MCdesk Benchmark locally, documents are contained in a JSON file. When providing a `base_url`, use a compressed file format: `.zip`, `.bz2`, `.zst`, `.gz`, `.tar`, `.tar.gz`, `.tgz`, or `.tar.bz2`. The compressed file must include one JSON file containing the name.
 -  `document-count`: The number of documents in the `source-file`, which determines which client indexes correlate to which parts of the document corpus. Each N client is assigned an Nth of the document corpus to ingest into the test cluster. When using a source that contains a document with a parent/child relationship, specify the number of parent documents.
 - `uncompressed-bytes`: The size, in bytes, of the source file after decompression, indicating how much disk space the decompressed source file needs.
 - `compressed-bytes`: The size, in bytes, of the source file before decompression. This can help you assess the amount of time needed for the cluster to ingest documents.
 
 ### Operations
 
-The `operations` element lists the SmartObserve API operations performed by the workload. For example, you can list an operation named `create-index` that creates an index in the benchmark cluster to which SmartObserve Benchmark can write documents. Operations are usually listed inside of the `schedule` element.
+The `operations` element lists the MCdesk API operations performed by the workload. For example, you can list an operation named `create-index` that creates an index in the benchmark cluster to which MCdesk Benchmark can write documents. Operations are usually listed inside of the `schedule` element.
 
 ### Schedule
 
@@ -160,13 +160,13 @@ According to this `schedule`, the actions will run in the following order:
 3. The `clients` field defines the number of clients, in this example, eight, that will run the bulk indexing operation concurrently.
 4. The `search` operation runs a `match_all` query to match all documents after they have been indexed by the `bulk` API using the specified clients.
    - The `iterations` field defines the number of times each client runs the `search` operation. The benchmark report automatically adjusts the percentile numbers based on this number. To generate a precise percentile, the benchmark needs to run at least 1,000 iterations.
-   - The `target-throughput` field defines the number of requests per second performed by each client. This setting can help reduce benchmark latency. For example, a `target-throughput` of 100 requests divided by 8 clients means that each client will issue 12 requests per second. For more information about how target throughput is defined in SmartObserve Benchmark, see [Target throughput]({{site.url}}{{site.baseurl}}/benchmark/user-guide/target-throughput/).
+   - The `target-throughput` field defines the number of requests per second performed by each client. This setting can help reduce benchmark latency. For example, a `target-throughput` of 100 requests divided by 8 clients means that each client will issue 12 requests per second. For more information about how target throughput is defined in MCdesk Benchmark, see [Target throughput]({{site.url}}{{site.baseurl}}/benchmark/user-guide/target-throughput/).
 
 ## index.json
 
 The `index.json` file defines the data mappings, indexing parameters, and index settings for workload documents during `create-index` operations. 
 
-When SmartObserve Benchmark creates an index for the workload, it uses the index settings and mappings template in the `index.json` file. Mappings in the `index.json` file are based on the mappings of a single document from the workload's corpus, which is stored in the `files.txt` file. The following is an example of the `index.json` file for the `nyc_taxis` workload. You can customize the fields, such as `number_of_shards`, `number_of_replicas`, `query_cache_enabled`, and `requests_cache_enabled`. 
+When MCdesk Benchmark creates an index for the workload, it uses the index settings and mappings template in the `index.json` file. Mappings in the `index.json` file are based on the mappings of a single document from the workload's corpus, which is stored in the `files.txt` file. The following is an example of the `index.json` file for the `nyc_taxis` workload. You can customize the fields, such as `number_of_shards`, `number_of_replicas`, `query_cache_enabled`, and `requests_cache_enabled`. 
 
 ```json
 {

@@ -199,7 +199,7 @@ Select the arrow to view the example response.
   "nodes" : {
     "F-ByTQzVQ3GQeYzQJArJGQ" : {
       "timestamp" : 1664484195257,
-      "name" : "smartobserve",
+      "name" : "mcdesk",
       "transport_address" : "127.0.0.1:9300",
       "host" : "127.0.0.1",
       "ip" : "127.0.0.1:9300",
@@ -583,7 +583,7 @@ Select the arrow to view the example response.
         },
         "data" : [
           {
-            "path" : "/usr/share/smartobserve/data/nodes/0",
+            "path" : "/usr/share/mcdesk/data/nodes/0",
             "mount" : "/ (overlay)",
             "type" : "overlay",
             "total_in_bytes" : 269490393088,
@@ -834,7 +834,7 @@ Select the arrow to view the example response.
           "hit_count" : 0,
           "miss_count" : 18,
           "item_count" : 18,
-          "store_name" : "smartobserve_onheap"
+          "store_name" : "mcdesk_onheap"
         }
       }
     }
@@ -888,7 +888,7 @@ http.total_opened | Integer | The total number of HTTP connections the node has 
 [adaptive_selection](#adaptive_selection) | Object | Statistics about adaptive selections for the node. 
 [indexing_pressure](#indexing_pressure) | Object | Statistics related to the node's indexing pressure.
 [shard_indexing_pressure](#shard_indexing_pressure) | Object | Statistics related to indexing pressure at the shard level.
-[search_backpressure]({{site.url}}{{site.baseurl}}/smartobserve/search-backpressure#search-backpressure-stats-api) | Object | Statistics related to search backpressure.
+[search_backpressure]({{site.url}}{{site.baseurl}}/mcdesk/search-backpressure#search-backpressure-stats-api) | Object | Statistics related to search backpressure.
 [cluster_manager_throttling](#cluster_manager_throttling) | Object | Statistics related to throttled tasks on the cluster manager node.
 [weighted_routing](#weighted_routing) | Object | Statistics relevant to weighted round robin requests.
 [resource_usage_stats](#resource_usage_stats) | Object | Statistics related to resource usage for the node.
@@ -1189,7 +1189,7 @@ timestamp | Integer | The last refresh time for the file store statistics, in mi
 total | Object | Statistics for all file stores of the node.
 total.total_in_bytes | Integer | The total memory size of all file stores, in bytes. 
 total.free_in_bytes | Integer | The total unallocated disk space in all file stores, in bytes.
-total.available_in_bytes | Integer | The total disk space available to the JVM on all file stores. Represents the actual amount of memory, in bytes, that SmartObserve can use.
+total.available_in_bytes | Integer | The total disk space available to the JVM on all file stores. Represents the actual amount of memory, in bytes, that MCdesk can use.
 data | Array | The list of all file stores. Each file store has the following properties.
 data.path | String | The path to the file store.
 data.mount | String | The mount point of the file store.
@@ -1205,7 +1205,7 @@ The `transport` object has the following properties.
 
 Field | Field type | Description
 :--- | :--- | :---
-server_open | Integer | The number of open inbound TCP connections that SmartObserve nodes use for internal communication. 
+server_open | Integer | The number of open inbound TCP connections that MCdesk nodes use for internal communication. 
 total_outbound_connections | Integer | The total number of outbound transport connections that the node has opened since it started.
 rx_count | Integer | The total number of RX (receive) packets the node received during internal communication.
 rx_size_in_bytes | Integer | The total size of RX packets the node received during internal communication, in bytes.
@@ -1339,11 +1339,11 @@ memory.current.all_in_bytes | Integer | The total memory consumed by indexing re
 
 ### `shard_indexing_pressure`
 
-The `shard_indexing_pressure` object contains the [shard indexing pressure]({{site.url}}{{site.baseurl}}/smartobserve/shard-indexing-backpressure) statistics and has the following properties.
+The `shard_indexing_pressure` object contains the [shard indexing pressure]({{site.url}}{{site.baseurl}}/mcdesk/shard-indexing-backpressure) statistics and has the following properties.
 
 Field | Field type | Description
 :--- | :--- | :---
-[stats]({{site.url}}{{site.baseurl}}/smartobserve/stats-api/) | Object | Statistics about shard indexing pressure.
+[stats]({{site.url}}{{site.baseurl}}/mcdesk/stats-api/) | Object | Statistics about shard indexing pressure.
 total_rejections_breakup_shadow_mode | Object | If running in shadow mode, the `total_rejections_breakup_shadow_mode` object contains statistics about the request rejection criteria of all shards in the node.
 total_rejections_breakup_shadow_mode.node_limits | Integer | The total number of rejections due to the node memory limit. When all shards reach the memory limit assigned to the node (for example, 10% of heap size), the shard is unable to take in more traffic on the node, and the indexing request is rejected.
 total_rejections_breakup_shadow_mode.no_successful_request_limits | Integer | The total number of rejections when the node occupancy level is breaching its soft limit and the shard has multiple outstanding requests that are waiting to be executed. In this case, additional indexing requests are rejected until the system recovers.
@@ -1377,9 +1377,9 @@ The `resource_usage_stats` object contains the resource usage statistics. Each e
 Field | Field type | Description
 :--- |:-----------| :---
 timestamp | Integer    | The last refresh time for the resource usage statistics, in milliseconds since the epoch.
-cpu_utilization_percent | Float      | Statistics for the average CPU usage of any SmartObserve processes within the time period configured in the `node.resource.tracker.global_cpu_usage.window_duration` setting.
+cpu_utilization_percent | Float      | Statistics for the average CPU usage of any MCdesk processes within the time period configured in the `node.resource.tracker.global_cpu_usage.window_duration` setting.
 memory_utilization_percent | Float      | The node JVM memory usage statistics within the time period configured in the `node.resource.tracker.global_jvmmp.window_duration` setting.
-max_io_utilization_percent  | Float     |  (Linux only) Statistics for the average IO usage of any SmartObserve processes within the time period configured in the `node.resource.tracker.global_io_usage.window_duration` setting.
+max_io_utilization_percent  | Float     |  (Linux only) Statistics for the average IO usage of any MCdesk processes within the time period configured in the `node.resource.tracker.global_io_usage.window_duration` setting.
 
 ### `admission_control`
 

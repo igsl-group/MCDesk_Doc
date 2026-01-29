@@ -10,7 +10,7 @@ redirect_from:
 
 # Client certificate authentication
 
-After obtaining your own certificates either from a certificate authority (CA) or by [generating your own certificates using OpenSSL]({{site.url}}{{site.baseurl}}/security/configuration/generate-certificates), you can start configuring SmartObserve to authenticate a user using a client certificate.
+After obtaining your own certificates either from a certificate authority (CA) or by [generating your own certificates using OpenSSL]({{site.url}}{{site.baseurl}}/security/configuration/generate-certificates), you can start configuring MCdesk to authenticate a user using a client certificate.
 
 Client certificate authentication offers more security advantages than just using basic authentication (username and password). Because client certificate authentication requires both a client certificate and its private key, which are often in the user's possession, it is less vulnerable to brute force attacks in which malicious individuals try to guess a user's password.
 
@@ -18,7 +18,7 @@ Another benefit of client certificate authentication is you can use it along wit
 
 ## Enabling client certificate authentication
 
-To enable client certificate authentication, you must first set `clientauth_mode` in `smartobserve.yml` to either `OPTIONAL` or `REQUIRE`:
+To enable client certificate authentication, you must first set `clientauth_mode` in `mcdesk.yml` to either `OPTIONAL` or `REQUIRE`:
 
 ```yml
 plugins.security.ssl.http.clientauth_mode: OPTIONAL
@@ -45,9 +45,9 @@ clientcert_auth_domain:
 
 ## Assigning roles to a certificate's common name
 
-You can now assign your certificate's common name (CN) to a role. This step requires you to identify the certificate's CN and the role you want to assign it to. To view a list of all predefined SmartObserve roles, see [Predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#predefined-roles). To get started, first [define a role]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#defining-roles) and then map your certificate's CN to that role.
+You can now assign your certificate's common name (CN) to a role. This step requires you to identify the certificate's CN and the role you want to assign it to. To view a list of all predefined MCdesk roles, see [Predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#predefined-roles). To get started, first [define a role]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#defining-roles) and then map your certificate's CN to that role.
 
-After determining which role to map to your certificate's CN, you can use [SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#mapping-users-to-roles), [`roles_mapping.yml`]({{site.url}}{{site.baseurl}}/security/configuration/yaml/#roles_mappingyml), or the [REST API]({{site.url}}{{site.baseurl}}/security/access-control/api/#create-role-mapping) to map the role. The following example uses the `REST API` to map the CN `CLIENT1` to the role `readall`.
+After determining which role to map to your certificate's CN, you can use [MCdesk Dashboards]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#mapping-users-to-roles), [`roles_mapping.yml`]({{site.url}}{{site.baseurl}}/security/configuration/yaml/#roles_mappingyml), or the [REST API]({{site.url}}{{site.baseurl}}/security/access-control/api/#create-role-mapping) to map the role. The following example uses the `REST API` to map the CN `CLIENT1` to the role `readall`.
 
 **Example request**
 
@@ -71,7 +71,7 @@ PUT _plugins/_security/api/rolesmapping/readall
 
 After mapping a role to your client certificate's CN, you're ready to connect to your cluster using those credentials.
 
-The code example below uses the Python `requests` library to connect to a local SmartObserve cluster and sends a GET request to the `movies` index.
+The code example below uses the Python `requests` library to connect to a local MCdesk cluster and sends a GET request to the `movies` index.
 
 ```python
 import requests
@@ -97,9 +97,9 @@ print(response.text)
 
 If you are using multiple authentication methods, it can make sense to exclude certain users from the client cert authentication.
 
-Consider the following scenario for a typical SmartObserve Dashboards setup: SmartObserve Dashboard has basic auth setup and user login from a browser. However, you also have an SmartObserve Dashboards server user. SmartObserve Dashboards uses this user to manage stored objects and perform monitoring and maintenance tasks. You do not want to use this user certificate to log in a user who submitted basic auth logic from a browser.
+Consider the following scenario for a typical MCdesk Dashboards setup: MCdesk Dashboard has basic auth setup and user login from a browser. However, you also have an MCdesk Dashboards server user. MCdesk Dashboards uses this user to manage stored objects and perform monitoring and maintenance tasks. You do not want to use this user certificate to log in a user who submitted basic auth logic from a browser.
 
-In this case, it makes sense to exclude the SmartObserve Dashboards server user from the client cert authentication so that the user who enters login information in the browser is validated. You can use the `skip_users` configuration setting to define which users should be skipped. Wildcards and regular expressions are supported:
+In this case, it makes sense to exclude the MCdesk Dashboards server user from the client cert authentication so that the user who enters login information in the browser is validated. You can use the `skip_users` configuration setting to define which users should be skipped. Wildcards and regular expressions are supported:
 
 ```yml
 
@@ -110,12 +110,12 @@ skip_users:
 
 ## Configuring Beats
 
-You can also configure your Beats so that it uses a client certificate for authentication with SmartObserve. Afterwards, it can start sending output to SmartObserve.
+You can also configure your Beats so that it uses a client certificate for authentication with MCdesk. Afterwards, it can start sending output to MCdesk.
 
 This output configuration specifies which settings you need for client certificate authentication:
 
 ```yml
-output.smartobserve:
+output.mcdesk:
   enabled: true
   # Array of hosts to connect to.
   hosts: ["localhost:9200"]
@@ -130,4 +130,4 @@ output.smartobserve:
 
 ## Using certificates with Docker
 
-While we recommend using the [tarball]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/tar/) installation of ODFE to test client certificate authentication configurations, you can also use any of the other install types. For instructions on using Docker security, see [Configuring basic security settings]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/docker/#configuring-basic-security-settings).
+While we recommend using the [tarball]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/tar/) installation of ODFE to test client certificate authentication configurations, you can also use any of the other install types. For instructions on using Docker security, see [Configuring basic security settings]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/docker/#configuring-basic-security-settings).

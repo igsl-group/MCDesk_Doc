@@ -30,15 +30,15 @@ The following table lists the available query parameters. All query parameters a
 
 ### Example
 
-Exclude a node named `smartobserve-node1` from the voting configuration:
+Exclude a node named `mcdesk-node1` from the voting configuration:
 
 <!-- spec_insert_start
 component: example_code
-rest: POST /_cluster/voting_config_exclusions?node_names=smartobserve-node1
+rest: POST /_cluster/voting_config_exclusions?node_names=mcdesk-node1
 body: 
 -->
 {% capture step1_rest %}
-POST /_cluster/voting_config_exclusions?node_names=smartobserve-node1
+POST /_cluster/voting_config_exclusions?node_names=mcdesk-node1
 
 {% endcapture %}
 
@@ -46,7 +46,7 @@ POST /_cluster/voting_config_exclusions?node_names=smartobserve-node1
 
 
 response = client.cluster.post_voting_config_exclusions(
-  params = { "node_names": "smartobserve-node1" }
+  params = { "node_names": "mcdesk-node1" }
 )
 
 {% endcapture %}

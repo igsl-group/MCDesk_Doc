@@ -23,7 +23,7 @@ The following example returns the `geo_centroid` for the `geoip.location` of eve
 
 
 ```json
-GET /smartobserve_dashboards_sample_data_ecommerce/_search
+GET /mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -84,7 +84,7 @@ You can nest `geo_centroid` aggregations under `terms` buckets of a string field
 To find the centroid location of `geoip` for the orders on each continent, sub-aggregate the centroid within the `geoip.continent_name` field:
 
 ```json
-GET /smartobserve_dashboards_sample_data_ecommerce/_search
+GET /mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {

@@ -14,7 +14,7 @@ redirect_from:
 **Introduced 2.9**
 {: .label .label-purple }
 
-Integrations with machine learning (ML) models hosted on third-party platforms allow system administrators and data scientists to run ML workloads outside of their SmartObserve cluster. Connecting to externally hosted models enables ML developers to create integrations with other ML services, such as Amazon SageMaker or OpenAI. 
+Integrations with machine learning (ML) models hosted on third-party platforms allow system administrators and data scientists to run ML workloads outside of their MCdesk cluster. Connecting to externally hosted models enables ML developers to create integrations with other ML services, such as Amazon SageMaker or OpenAI. 
 
 To integrate a model hosted on a third-party platform, choose from the following options:
 
@@ -29,7 +29,7 @@ When access control is enabled on your third-party platform, you can enter your 
 
 ### Adding trusted endpoints
 
-To configure connectors in SmartObserve, add the trusted endpoints to your cluster settings by using the `plugins.ml_commons.trusted_connector_endpoints_regex` setting, which supports Java regex expressions:
+To configure connectors in MCdesk, add the trusted endpoints to your cluster settings by using the `plugins.ml_commons.trusted_connector_endpoints_regex` setting, which supports Java regex expressions:
 
 ```json
 PUT /_cluster/settings
@@ -50,7 +50,7 @@ PUT /_cluster/settings
 
 ### Setting up connector access control
 
-If you plan on using a remote connector, make sure to use an SmartObserve cluster with the Security plugin enabled. Using the Security plugin gives you access to connector access control, which is required when using a remote connector.
+If you plan on using a remote connector, make sure to use an MCdesk cluster with the Security plugin enabled. Using the Security plugin gives you access to connector access control, which is required when using a remote connector.
 {: .warning}
 
 If you require granular access control for your connectors, use the following cluster setting:
@@ -65,7 +65,7 @@ PUT /_cluster/settings
 ```
 {% include copy-curl.html %}
 
-When access control is enabled, you can install the [Security plugin]({{site.url}}{{site.baseurl}}/security/index/). This makes the `backend_roles`, `add_all_backend_roles`, or `access_model` options required in order to use the connector API. If successful, SmartObserve returns the following response:
+When access control is enabled, you can install the [Security plugin]({{site.url}}{{site.baseurl}}/security/index/). This makes the `backend_roles`, `add_all_backend_roles`, or `access_model` options required in order to use the connector API. If successful, MCdesk returns the following response:
 
 ```json
 {
@@ -114,7 +114,7 @@ To learn more about model groups, see [Model access control]({{site.url}}{{site.
 
 You can create a standalone connector that can be reused for multiple models. Alternatively, you can specify a connector when creating a model so that it can be used only for that model. For more information and example connectors, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/).
 
-The Connectors Create API, `/_plugins/_ml/connectors/_create`, creates connectors that facilitate registering and deploying external models in SmartObserve. Using the `endpoint` parameter, you can connect ML Commons to any supported ML tool by using its specific API endpoint. For example, you can connect to a ChatGPT model by using the `api.openai.com` endpoint:
+The Connectors Create API, `/_plugins/_ml/connectors/_create`, creates connectors that facilitate registering and deploying external models in MCdesk. Using the `endpoint` parameter, you can connect ML Commons to any supported ML tool by using its specific API endpoint. For example, you can connect to a ChatGPT model by using the `api.openai.com` endpoint:
 
 ```json
 POST /_plugins/_ml/connectors/_create
@@ -169,7 +169,7 @@ POST /_plugins/_ml/models/_register
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns the task ID of the register operation:
+MCdesk returns the task ID of the register operation:
 
 ```json
 {
@@ -206,7 +206,7 @@ Take note of the returned `model_id` because you’ll need it to deploy the mode
 
 ## Step 4: Deploy the model
 
-Starting with SmartObserve version 2.13, externally hosted models are deployed automatically by default when you send a Predict API request for the first time. To disable automatic deployment for an externally hosted model, set `plugins.ml_commons.model_auto_deploy.enable` to `false`:
+Starting with MCdesk version 2.13, externally hosted models are deployed automatically by default when you send a Predict API request for the first time. To disable automatic deployment for an externally hosted model, set `plugins.ml_commons.model_auto_deploy.enable` to `false`:
 ```json
 PUT _cluster/settings
 {
@@ -334,6 +334,6 @@ You can undeploy the model automatically by defining a TTL in the model settings
 
 - For more information about connectors, including example connectors, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/).
 - For more information about connector parameters, see [Connector blueprints]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/blueprints/).
-- For more information about managing ML models in SmartObserve, see [Using ML models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/model-serving-framework/).
-- For more information about interacting with ML models in SmartObserve, see [Managing ML models in SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/ml-commons-plugin/ml-dashboard/)
+- For more information about managing ML models in MCdesk, see [Using ML models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/model-serving-framework/).
+- For more information about interacting with ML models in MCdesk, see [Managing ML models in MCdesk Dashboards]({{site.url}}{{site.baseurl}}/ml-commons-plugin/ml-dashboard/)
 For instructions on how to configure model guardrails, see [Guardrails]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/guardrails/).

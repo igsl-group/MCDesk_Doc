@@ -11,14 +11,14 @@ nav_order: 10
 **Introduced 3.0**
 {: .label .label-purple }
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
-SmartObserve provides the following APIs to manage pull-based ingestion.
+MCdesk provides the following APIs to manage pull-based ingestion.
 
 ## Pause ingestion
 
-Pauses ingestion for one or more indexes. When paused, SmartObserve stops consuming data from the streaming source for all shards in the specified indexes.
+Pauses ingestion for one or more indexes. When paused, MCdesk stops consuming data from the streaming source for all shards in the specified indexes.
 
 ### Endpoint
 
@@ -69,7 +69,7 @@ response = client.ingestion.pause(
 
 ## Resume ingestion
 
-Resumes ingestion for one or more indexes. When resumed, SmartObserve continues consuming data from the streaming source for all shards in the specified indexes.
+Resumes ingestion for one or more indexes. When resumed, MCdesk continues consuming data from the streaming source for all shards in the specified indexes.
 
 As part of the resume operation, you can optionally reset the stream consumer to start reading from a specific offset or timestamp. If reset settings are specified, all consumers for the selected shards are reset before the resume operation is applied to the index. Resetting a consumer also triggers an internal flush to persist the changes.
 
@@ -102,7 +102,7 @@ The following table lists the available request body fields.
 
 | Field | Data type | Required/Optional | Description |
 | :--- | :--- | :--- | :--- |
-| `reset_settings` | Array | Optional | A list of reset settings for each shard. If not provided, SmartObserve resumes ingestion from the current position for each shard in the specified index. |
+| `reset_settings` | Array | Optional | A list of reset settings for each shard. If not provided, MCdesk resumes ingestion from the current position for each shard in the specified index. |
 | `reset_settings.shard` | Integer | Required | The shard to reset. |
 | `reset_settings.mode` | String | Required | The reset mode. Valid values are `offset` (a positive integer offset) and `timestamp` (a Unix timestamp in milliseconds). |
 | `reset_settings.value` | String | Required | &ensp;&#x2022; `offset`: The Apache Kafka offset or Amazon Kinesis sequence number<br>&ensp;&#x2022; `timestamp`: A Unix timestamp in milliseconds. |

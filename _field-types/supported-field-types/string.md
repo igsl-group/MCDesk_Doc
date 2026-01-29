@@ -6,19 +6,19 @@ has_children: true
 has_toc: false
 parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/string/
+  - /mcdesk/supported-field-types/string/
   - /field-types/string/
 ---
 
 # String field types
 
-String field types contain text values or values derived from text. The following table lists all string field types that SmartObserve supports.
+String field types contain text values or values derived from text. The following table lists all string field types that MCdesk supports.
 
 Field data type | Description
 :--- | :---  
-[`keyword`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/keyword/) | A string that is not analyzed. Useful for exact-value search.
-[`text`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/text/) | A string that is analyzed. Useful for full-text search.
+[`keyword`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/keyword/) | A string that is not analyzed. Useful for exact-value search.
+[`text`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/text/) | A string that is analyzed. Useful for full-text search.
 [`match_only_text`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/match-only-text/) | A space-optimized version of a `text` field.
-[`token_count`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/token-count/)  | Counts the number of tokens in a string. 
+[`token_count`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/token-count/)  | Counts the number of tokens in a string. 
 [`constant_keyword`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/constant-keyword/)  | Similar to `keyword` but uses a single value for all documents.
 [`wildcard`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/wildcard/)  | A variation of `keyword` with efficient substring and regular expression matching.

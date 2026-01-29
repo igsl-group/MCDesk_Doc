@@ -4,7 +4,7 @@ title: Scroll
 parent: Search APIs
 nav_order: 30
 redirect_from:
- - /smartobserve/rest-api/scroll/
+ - /mcdesk/rest-api/scroll/
  - /api-reference/scroll/
 ---
 
@@ -14,7 +14,7 @@ redirect_from:
 
 You can use the `scroll` operation to retrieve a large number of results. For example, for machine learning jobs, you can request an unlimited number of results in batches.
 
-To use the `scroll` operation, add a `scroll` parameter to the request header with a search context to tell SmartObserve how long you need to keep scrolling. This search context needs to be long enough to process a single batch of results.
+To use the `scroll` operation, add a `scroll` parameter to the request header with a search context to tell MCdesk how long you need to keep scrolling. This search context needs to be long enough to process a single batch of results.
 
 Because search contexts consume a lot of memory, we suggest you don't use the `scroll` operation for frequent user queries. Instead, use the `sort` parameter with the `search_after` parameter to scroll responses for user queries.
 {: .note }
@@ -81,7 +81,7 @@ response = client.search(
     python=step1_python %}
 <!-- spec_insert_end -->
 
-SmartObserve caches the results and returns a scroll ID to access them in batches:
+MCdesk caches the results and returns a scroll ID to access them in batches:
 
 ```json
 "_scroll_id" : "DXF1ZXJ5QW5kRmV0Y2gBAAAAAAAAAAUWdmpUZDhnRFBUcWFtV21nMmFwUGJEQQ=="

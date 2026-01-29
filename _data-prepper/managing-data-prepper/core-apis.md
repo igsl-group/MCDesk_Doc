@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Core APIs
-parent: Managing SmartObserve Data Prepper
+parent: Managing MCdesk Data Prepper
 nav_order: 15
 ---
 
 # Core APIs
 
-All SmartObserve Data Prepper instances expose a server with some control APIs. By default, this server runs on port 4900. Some plugins, especially source plugins, may expose other servers that run on different ports. Configurations for these plugins are independent of the core API. For example, to shut down Data Prepper, you can run the following curl request:
+All MCdesk Data Prepper instances expose a server with some control APIs. By default, this server runs on port 4900. Some plugins, especially source plugins, may expose other servers that run on different ports. Configurations for these plugins are independent of the core API. For example, to shut down Data Prepper, you can run the following curl request:
 
 ```
 curl -X POST http://localhost:4900/shutdown
@@ -83,4 +83,4 @@ processorShutdownTimeout: "PT15M"
 sinkShutdownTimeout: 30s
 ```
 
-The values for these parameters are parsed into a `Duration` object through the [Data Prepper Duration Deserializer](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-pipeline-parser/src/main/java/org/smartobserve/dataprepper/pipeline/parser/DataPrepperDurationDeserializer.java). 
+The values for these parameters are parsed into a `Duration` object through the [Data Prepper Duration Deserializer](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-pipeline-parser/src/main/java/org/mcdesk/dataprepper/pipeline/parser/DataPrepperDurationDeserializer.java). 

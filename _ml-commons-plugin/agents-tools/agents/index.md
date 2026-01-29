@@ -13,7 +13,7 @@ redirect_from:
 **Introduced 2.13**
 {: .label .label-purple }
 
-An _agent_ is a coordinator that uses a large language model (LLM) to solve a problem. After the LLM reasons and decides what action to take, the agent coordinates the action execution. SmartObserve supports the following agent types:
+An _agent_ is a coordinator that uses a large language model (LLM) to solve a problem. After the LLM reasons and decides what action to take, the agent coordinates the action execution. MCdesk supports the following agent types:
 
 - [_Flow agent_]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/flow/): Runs tools sequentially, in the order specified in its configuration. The workflow of a flow agent is fixed. Useful for retrieval-augmented generation (RAG).
 - [_Conversational flow agent_]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/conversational-flow/): Runs tools sequentially, in the order specified in its configuration. The workflow of a conversational flow agent is fixed. Stores conversation history so that users can ask follow-up questions. Useful for creating a chatbot.

@@ -89,7 +89,7 @@ To ensure compatibility with the rerank pipeline, the `top_n` value must be the 
 
 You can customize the number of top documents returned in the response by providing the `size` parameter. For more information, see [Step 2.3](#step-23-test-the-reranking).
 
-SmartObserve responds with the inference results:
+MCdesk responds with the inference results:
 
 ```json
 {
@@ -177,7 +177,7 @@ PUT /_search/pipeline/rerank_pipeline_cohere
     "response_processors": [
         {
             "rerank": {
-                "ml_smartobserve": {
+                "ml_mcdesk": {
                     "model_id": "your_model_id_created_in_step1"
                 },
                 "context": {

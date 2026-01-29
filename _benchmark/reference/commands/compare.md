@@ -3,7 +3,7 @@ layout: default
 title: compare
 nav_order: 55
 parent: Command reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 redirect_from:
   - /benchmark/commands/compare/
 ---
@@ -16,7 +16,7 @@ The `compare` command helps you analyze the difference between two benchmark tes
 
 ## Usage
 
-You can compare two different workload tests using their `TestRun IDs`. To find a list of tests run from a specific workload, use `smartobserve-benchmark list test-runs`. You should receive an output similar to the following:
+You can compare two different workload tests using their `TestRun IDs`. To find a list of tests run from a specific workload, use `mcdesk-benchmark list test-runs`. You should receive an output similar to the following:
 
 
 ```
@@ -44,7 +44,7 @@ a33845cc-c2e5-4488-a2db-b0670741ff9b  20230523T213145Z           geonames       
 Then use `compare` to call a `--baseline` test and a  `--contender` test for comparison.
 
 ```
-smartobserve-benchmark compare --baseline=417ed42-6671-9i79-11a1-e367636068ce --contender=beb154e4-0a05-4f45-ad9f-e34f9a9e51f7
+mcdesk-benchmark compare --baseline=417ed42-6671-9i79-11a1-e367636068ce --contender=beb154e4-0a05-4f45-ad9f-e34f9a9e51f7
 ```
 
 You should receive the following response comparing the final benchmark metrics for both tests:

@@ -7,7 +7,7 @@ nav_order: 130
 
 # Standard tokenizer
 
-The `standard` tokenizer is the default tokenizer in SmartObserve. It tokenizes text based on word boundaries using a grammar-based approach that recognizes letters, digits, and other characters like punctuation. It is highly versatile and suitable for many languages because it uses Unicode text segmentation rules ([UAX#29](https://unicode.org/reports/tr29/)) to break text into tokens.
+The `standard` tokenizer is the default tokenizer in MCdesk. It tokenizes text based on word boundaries using a grammar-based approach that recognizes letters, digits, and other characters like punctuation. It is highly versatile and suitable for many languages because it uses Unicode text segmentation rules ([UAX#29](https://unicode.org/reports/tr29/)) to break text into tokens.
 
 ## Example usage
 
@@ -45,7 +45,7 @@ Use the following request to examine the tokens generated using the analyzer:
 POST /my_index/_analyze
 {
   "analyzer": "my_standard_analyzer",
-  "text": "SmartObserve is powerful, fast, and scalable."
+  "text": "MCdesk is powerful, fast, and scalable."
 }
 ```
 {% include copy-curl.html %}
@@ -56,7 +56,7 @@ The response contains the generated tokens:
 {
   "tokens": [
     {
-      "token": "smartobserve",
+      "token": "mcdesk",
       "start_offset": 0,
       "end_offset": 10,
       "type": "<ALPHANUM>",

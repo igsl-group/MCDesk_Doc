@@ -8,7 +8,7 @@ redirect_from:
 
 # Query Workbench
 
-You can use Query Workbench in SmartObserve Dashboards to run on-demand [SQL]({{site.url}}{{site.baseurl}}/search-plugins/sql/sql/index/) and [PPL]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/) queries, translate queries into their equivalent REST API calls, and view and save results in different [response formats]({{site.url}}{{site.baseurl}}/search-plugins/sql/response-formats/).
+You can use Query Workbench in MCdesk Dashboards to run on-demand [SQL]({{site.url}}{{site.baseurl}}/search-plugins/sql/sql/index/) and [PPL]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/) queries, translate queries into their equivalent REST API calls, and view and save results in different [response formats]({{site.url}}{{site.baseurl}}/search-plugins/sql/response-formats/).
 
 Query Workbench does not support delete or update operations through SQL or PPL. Access to data is read-only.
 {: .important}
@@ -34,10 +34,10 @@ See [Managing indexes]({{site.url}}{{site.baseurl}}/im-plugin/index/) to learn a
 
 ## Running SQL queries within Query Workbench
  
- The following steps guide you through running SQL queries against SmartObserve data:
+ The following steps guide you through running SQL queries against MCdesk data:
 
 1. Access Query Workbench.
-    - To access Query Workbench, go to SmartObserve Dashboards and choose **SmartObserve Plugins** > **Query Workbench** from the main menu.
+    - To access Query Workbench, go to MCdesk Dashboards and choose **MCdesk Plugins** > **Query Workbench** from the main menu.
 
 2. Run a query.
     - Select the **SQL** button. In the query editor, type a SQL expression and then select the **Run** button to run the query. 
@@ -65,14 +65,14 @@ See [Managing indexes]({{site.url}}{{site.baseurl}}/im-plugin/index/) to learn a
     - Select the **Clear** button to clear the query editor and run a new query. 
 
 5. Examine how the query is processed.
-    - Select the **Explain** button to examine how SmartObserve processes the query, including the steps involved and order of operations.
+    - Select the **Explain** button to examine how MCdesk processes the query, including the steps involved and order of operations.
 
 ## Running PPL queries within Query Workbench
 
-Follow these steps to learn how to run PPL queries against SmartObserve data:
+Follow these steps to learn how to run PPL queries against MCdesk data:
 
 1. Access Query Workbench.
-    - To access Query Workbench, go to SmartObserve Dashboards and choose **SmartObserve Plugins** > **Query Workbench** from the main menu.
+    - To access Query Workbench, go to MCdesk Dashboards and choose **MCdesk Plugins** > **Query Workbench** from the main menu.
 
 2. Run a query.
     - Select the **PPL** button. In the query editor, type a PPL query and then select the **Run** button to run the query. 
@@ -93,4 +93,4 @@ Follow these steps to learn how to run PPL queries against SmartObserve data:
     - Select the **Clear** button to clear the query editor and run a new query. 
 
 5. Examine how the query is processed.
-    - Select the **Explain** button to examine how SmartObserve processes the query, including the steps involved and order of operations.
+    - Select the **Explain** button to examine how MCdesk processes the query, including the steps involved and order of operations.

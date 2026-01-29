@@ -38,7 +38,7 @@ Now you can create the trigger condition and specify the tag name. This creates 
 
 ## Extraction query editor
 
-For a query-level monitor, specify a Painless script that returns `true` or `false`. Painless is the default SmartObserve scripting language and has a syntax similar to Groovy.
+For a query-level monitor, specify a Painless script that returns `true` or `false`. Painless is the default MCdesk scripting language and has a syntax similar to Groovy.
 
 Trigger condition scripts revolve around the `ctx.results[0]` variable, which corresponds to the extraction query response. For example, the script might reference `ctx.results[0].hits.total.value` or `ctx.results[0].hits.hits[i]._source.error_code`.
 
@@ -51,7 +51,7 @@ Bucket-level monitors require you to specify more information in your trigger co
 
 - `buckets_path`: Maps variable names to metrics to use in your script.
 - `parent_bucket_path`: The path to a multi-bucket aggregation. The path can include single-bucket aggregations, but the last aggregation must be multi-bucket. For example, if you have a pipeline such as `agg1>agg2>agg3`, `agg1` and `agg2` are single-bucket aggregations, but `agg3` must be a multi-bucket aggregation.
-- `script`: The script that SmartObserve runs to evaluate whether to trigger any alerts.
+- `script`: The script that MCdesk runs to evaluate whether to trigger any alerts.
 
 The following is an example script:
 
@@ -133,7 +133,7 @@ Variable | Data type | Description
 `ctx.error` | String | The error message displayed if the trigger was unable to retrieve results or could not be evaluated, typically due to a compile error or null pointer exception. Null otherwise.
 `ctx.alert` | Object | The current, active alert (if it exists). Includes `ctx.alert.id`, `ctx.alert.version`, and `ctx.alert.isAcknowledged`. Null if no alert is active. Only available with query-level monitors.
 `ctx.alerts` | Array | Newly created alerts. Includes the `ctx.alerts.0.finding_ids` that triggered the alert and the `ctx.alerts.0.related_doc_ids` associated with the findings. Only available with document-level monitors.
-`ctx.dedupedAlerts` | Array | Triggered alerts. SmartObserve keeps the existing alert to prevent the plugin from perpetually creating the same alert. Only available with bucket-level monitors.
+`ctx.dedupedAlerts` | Array | Triggered alerts. MCdesk keeps the existing alert to prevent the plugin from perpetually creating the same alert. Only available with bucket-level monitors.
 `ctx.newAlerts` | Array | Newly created alerts. Only available with bucket-level monitors.
 `ctx.completedAlerts` | Array | Completed or expired alerts. Only available with bucket-level monitors.
 `bucket_keys` | String | A comma-separated list of the monitor's bucket key values. Available only for `ctx.dedupedAlerts`, `ctx.newAlerts`, and `ctx.completedAlerts`. Accessed through the `ctx.dedupedAlerts.0.bucket_keys` variable.
@@ -184,7 +184,7 @@ Variable | Data type | Description
 
 ##### Mustache template example
 
-The `_source` object in this example is based on the `smartobserve_dashboards_sample_data_ecommerce` index available in SmartObserve Dashboards. In this example, the message template is accessing the `ctx.alerts` variable of a per document monitor.
+The `_source` object in this example is based on the `mcdesk_dashboards_sample_data_ecommerce` index available in MCdesk Dashboards. In this example, the message template is accessing the `ctx.alerts` variable of a per document monitor.
 {: .note}
 
 {% raw %}

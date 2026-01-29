@@ -83,7 +83,7 @@ GET /sample-index/_analyze
 }
 ```
 
-Internally, a normalizer accepts only filters that are instances of either `NormalizingTokenFilterFactory` or `NormalizingCharFilterFactory`. The following is a list of compatible filters found in modules and plugins that are part of the core SmartObserve repository.
+Internally, a normalizer accepts only filters that are instances of either `NormalizingTokenFilterFactory` or `NormalizingCharFilterFactory`. The following is a list of compatible filters found in modules and plugins that are part of the core MCdesk repository.
 
 ### The `common-analysis` module
 
@@ -107,5 +107,5 @@ Character filters: `normalize_kanji`, `normalize_kana`
 
 Character filters: `normalize_kanji`, `normalize_kana`
 
-These lists of filters include only analysis components found in the [additional plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/#additional-plugins) that are part of the core SmartObserve repository.
+These lists of filters include only analysis components found in the [additional plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/#additional-plugins) that are part of the core MCdesk repository.
 {: .note}

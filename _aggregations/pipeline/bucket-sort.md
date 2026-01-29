@@ -29,10 +29,10 @@ You must supply at least one of `sort`, `from`, and `size`.
 
 ## Example
 
-The following example creates a date histogram with a one-month interval from the SmartObserve Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of all bytes for each month. Finally, the aggregation sorts the buckets in descending order by number of bytes:
+The following example creates a date histogram with a one-month interval from the MCdesk Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of all bytes for each month. Finally, the aggregation sorts the buckets in descending order by number of bytes:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {
@@ -121,7 +121,7 @@ The aggregation reorders the buckets in descending order by total number of byte
 To truncate the results, provide the `from` and/or `size` parameters. The following example performs the same sort but returns two buckets, starting with the second bucket:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {
@@ -200,7 +200,7 @@ The aggregation returns the two sorted buckets:
 To truncate results without sorting, omit the `sort` parameter:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

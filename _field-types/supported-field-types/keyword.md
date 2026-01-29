@@ -6,7 +6,7 @@ has_children: false
 parent: String field types
 grand_parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/keyword/
+  - /mcdesk/supported-field-types/keyword/
   - /field-types/keyword/
 ---
 
@@ -18,7 +18,7 @@ A keyword field type contains a string that is not analyzed. It allows only exac
 
 By default, keyword fields are both indexed (because `index` is enabled) and stored on disk (because `doc_values` is enabled). To reduce disk space, you can specify not to index keyword fields by setting `index` to `false`.
 
-If you need to use a field for full-text search, map it as [`text`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/text/) instead.
+If you need to use a field for full-text search, map it as [`text`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/text/) instead.
 {: .note }
 
 ## Example
@@ -56,7 +56,7 @@ The following table lists the parameters accepted by keyword field types. All pa
 | `meta` | Accepts metadata for this field. | None | Yes |
 | [`normalizer`]({{site.url}}{{site.baseurl}}/analyzers/normalizers/) | Specifies how to preprocess this field before indexing (for example, make it lowercase). | `null` (no preprocessing) | No |
 | `norms` | A Boolean value that specifies whether the field length should be used when calculating relevance scores. | `false` | Yes |
-| [`null_value`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/index#null-value) | A value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. | `null` | No |
+| [`null_value`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/index#null-value) | A value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. | `null` | No |
 | `similarity` | The ranking algorithm for calculating relevance scores. | The index's `similarity` setting (by default, `BM25`) | No |
 | `use_similarity` | Determines whether to calculate relevance scores. Default is `false`, which uses `constant_score` for faster queries. Setting this parameter to `true` enables scoring but may increase search latency. See [The use_similarity parameter ](#the-use_similarity-parameter). | `false` | Yes |
 | `split_queries_on_whitespace` | A Boolean value that specifies whether full-text queries should be split on white space. | `false` | Yes |
@@ -64,7 +64,7 @@ The following table lists the parameters accepted by keyword field types. All pa
 
 ## The use_similarity parameter 
 
-The `use_similarity` parameter controls whether SmartObserve calculates relevance scores when querying a `keyword` field. By default, it is set to `false`, which improves performance by using `constant_score`. Setting it to `true` enables scoring based on the configured similarity algorithm (typically, BM25) but may increase query latency.
+The `use_similarity` parameter controls whether MCdesk calculates relevance scores when querying a `keyword` field. By default, it is set to `false`, which improves performance by using `constant_score`. Setting it to `true` enables scoring based on the configured similarity algorithm (typically, BM25) but may increase query latency.
 
 Run a term query on the index for which `use_similarity` is disabled (default):
 

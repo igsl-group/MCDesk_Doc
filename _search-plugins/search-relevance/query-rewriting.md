@@ -11,7 +11,7 @@ has_toc: false
 
 Query rewriting is the process of transforming or modifying a user query before it is executed. The goal of query rewriting is to improve search accuracy, relevance, or performance by addressing issues such as misspellings, synonyms, ambiguous terms, or inefficient query structure. Query rewriting is commonly used in search systems to enhance the quality of search results.
 
-You can perform query rewriting in SmartObserve using the following features:
+You can perform query rewriting in MCdesk using the following features:
 
 - [Template queries]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/template-query/) 
 

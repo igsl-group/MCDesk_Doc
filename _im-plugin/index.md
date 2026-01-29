@@ -6,14 +6,14 @@ has_children: false
 nav_exclude: true
 permalink: /im-plugin/
 redirect_from:
-  - /smartobserve/index-data/
-  - /smartobserve/rest-api/index-apis/index/
+  - /mcdesk/index-data/
+  - /mcdesk/rest-api/index-apis/index/
   - /im-plugin/index/
 ---
 
 # Managing indexes
 
-You index data using the SmartObserve REST API. Two APIs exist: the Index API and the `_bulk` API.
+You index data using the MCdesk REST API. Two APIs exist: the Index API and the `_bulk` API.
 
 For situations in which new data arrives incrementally (for example, customer orders from a small business), you might use the Index API to add documents individually as they arrive. For situations in which the data flow is less frequent (for example, weekly updates to a marketing website), you might prefer to generate a file and send it to the `_bulk` API. For large numbers of documents, lumping requests together and using the `_bulk` API offers superior performance. If your documents are exceptionally large, however, you might need to index them individually.
 
@@ -24,7 +24,7 @@ When indexing documents, the document `_id` must be 512 bytes or less in size.
 
 Before you can search data, you must *index* it. Indexing is the method by which search engines organize data for fast retrieval. The resulting structure is called, fittingly, an index.
 
-In SmartObserve, the basic unit of data is a JSON *document*. Within an index, SmartObserve identifies each document using a unique ID.
+In MCdesk, the basic unit of data is a JSON *document*. Within an index, MCdesk identifies each document using a unique ID.
 
 A request sent to the Index API appears as follows:
 
@@ -59,16 +59,16 @@ To index bulk data using the `curl` command, navigate to the folder where you ha
 curl -H "Content-Type: application/x-ndjson" -POST https://localhost:9200/data/_bulk -u 'admin:admin' --insecure --data-binary "@data.json"
 ```
 
-If any one of the actions in the `_bulk` API fail, SmartObserve continues to execute the other actions. Examine the `items` array in the response to figure out what went wrong. The entries in the `items` array are in the same order as the actions specified in the request.
+If any one of the actions in the `_bulk` API fail, MCdesk continues to execute the other actions. Examine the `items` array in the response to figure out what went wrong. The entries in the `items` array are in the same order as the actions specified in the request.
 
-SmartObserve automatically creates an index when you add a document to an index that doesn't already exist. It also automatically generates an ID if you don't specify an ID in the request. This simple example automatically creates the movies index, indexes the document, and assigns it a unique ID:
+MCdesk automatically creates an index when you add a document to an index that doesn't already exist. It also automatically generates an ID if you don't specify an ID in the request. This simple example automatically creates the movies index, indexes the document, and assigns it a unique ID:
 
 ```json
 POST movies/_doc
 { "title": "Spirited Away" }
 ```
 
-Automatic ID generation has a clear downside: because the indexing request didn't specify a document ID, you can't easily update the document at a later time. Also, if you run this request 10 times, SmartObserve indexes this document as 10 different documents with unique IDs. To specify an ID of 1, use the following request (note the use of PUT instead of POST):
+Automatic ID generation has a clear downside: because the indexing request didn't specify a document ID, you can't easily update the document at a later time. Also, if you run this request 10 times, MCdesk indexes this document as 10 different documents with unique IDs. To specify an ID of 1, use the following request (note the use of PUT instead of POST):
 
 ```json
 PUT movies/_doc/1
@@ -86,7 +86,7 @@ PUT more-movies
 
 ## Naming restrictions for indexes
 
-SmartObserve indexes have the following naming restrictions:
+MCdesk indexes have the following naming restrictions:
 
 - All letters must be lowercase.
 - Index names can't begin with underscores (`_`) or hyphens (`-`).
@@ -216,7 +216,7 @@ PUT movies/_doc/1
 
 The document with ID of 1 will contain only the `title` field, because the entire document will be replaced with the document indexed in this PUT request.
 
-Use the `upsert` object to conditionally update documents based on whether they already exist. Here, if the document exists, its `title` field changes to `Castle in the Sky`. If it doesn't, SmartObserve indexes the document in the `upsert` object.
+Use the `upsert` object to conditionally update documents based on whether they already exist. Here, if the document exists, its `title` field changes to `Castle in the Sky`. If it doesn't, MCdesk indexes the document in the `upsert` object.
 
 ```json
 POST movies/_update/2
@@ -253,7 +253,7 @@ POST movies/_update/2
 
 Each update operation for a document has a unique combination of the `_seq_no` and `_primary_term` values.
 
-SmartObserve first writes your updates to the primary shard and then sends this change to all the replica shards. An uncommon issue can occur if multiple users of your SmartObserve-based application make updates to existing documents in the same index. In this situation, another user can read and update a document from a replica before it receives your update from the primary shard. Your update operation then ends up updating an older version of the document. In the best case, you and the other user make the same changes, and the document remains accurate. In the worst case, the document now contains out-of-date information.
+MCdesk first writes your updates to the primary shard and then sends this change to all the replica shards. An uncommon issue can occur if multiple users of your MCdesk-based application make updates to existing documents in the same index. In this situation, another user can read and update a document from a replica before it receives your update from the primary shard. Your update operation then ends up updating an older version of the document. In the best case, you and the other user make the same changes, and the document remains accurate. In the worst case, the document now contains out-of-date information.
 
 To prevent this situation, use the `_seq_no` and `_primary_term` values in the request header:
 
@@ -279,7 +279,7 @@ To delete a document from an index, use a DELETE request:
 DELETE movies/_doc/1
 ```
 
-The DELETE operation increments the `_version` field. If you add the document back to the same ID, the `_version` field increments again. This behavior occurs because SmartObserve deletes the document `_source`, but retains its metadata.
+The DELETE operation increments the `_version` field. If you add the document back to the same ID, the `_version` field increments again. This behavior occurs because MCdesk deletes the document `_source`, but retains its metadata.
 
 ## Next steps
 

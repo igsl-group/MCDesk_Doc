@@ -147,8 +147,8 @@ Index a document containing the `title` and `body` fields:
 ```json
 PUT /content_library/_doc/1
 {
-  "title": "SmartObserve Documentation Guide",
-  "body": "This comprehensive guide covers mapping parameters and their usage in SmartObserve."
+  "title": "MCdesk Documentation Guide",
+  "body": "This comprehensive guide covers mapping parameters and their usage in MCdesk."
 }
 ```
 {% include copy-curl.html %}
@@ -160,7 +160,7 @@ GET /content_library/_search
 {
   "query": {
     "match": {
-      "searchable_content": "SmartObserve mapping parameters"
+      "searchable_content": "MCdesk mapping parameters"
     }
   }
 }
@@ -191,8 +191,8 @@ The response contains the matching document. The document's original `_source` f
         "_id": "1",
         "_score": 0.44133043,
         "_source": {
-          "title": "SmartObserve Documentation Guide",
-          "body": "This comprehensive guide covers mapping parameters and their usage in SmartObserve."
+          "title": "MCdesk Documentation Guide",
+          "body": "This comprehensive guide covers mapping parameters and their usage in MCdesk."
         }
       }
     ]

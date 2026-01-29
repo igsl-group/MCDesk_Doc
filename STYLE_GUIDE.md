@@ -1,82 +1,82 @@
-# SmartObserve Project Style Guidelines
+# MCdesk Project Style Guidelines
 
-Welcome to the content style guide for the SmartObserve Project. This guide covers the style standards to be observed when creating SmartObserve content and will evolve as we implement best practices and lessons learned in order to best serve the community.
+Welcome to the content style guide for the MCdesk Project. This guide covers the style standards to be observed when creating MCdesk content and will evolve as we implement best practices and lessons learned in order to best serve the community.
 
 In addition to this guide and [TERMS.md](https://github.com/igsl-group/documentation-website/blob/main/TERMS.md), our content is generally edited in accordance with the [Microsoft Writing Style Guide](https://docs.microsoft.com/en-us/style-guide/welcome/), [The Chicago Manual of Style](https://www.chicagomanualofstyle.org/home.html), and [Merriam-Webster](https://www.merriam-webster.com/) (listed in order of precedence); however, we may deviate from these style guides in order to maintain consistency and accommodate the unique needs of the community. This is by no means an exhaustive list of style standards, and we value transparency, so we welcome contributions to our style standards and guidelines. If you have a question regarding our standards or adherence/non-adherence to the style guides or would like to make a contribution, please tag @natebower on GitHub.
 
 ## Naming conventions, voice, tone, and brand personality traits
 
-The following sections provide guidance on SmartObserve Project naming conventions, voice, tone, and brand personality traits.
+The following sections provide guidance on MCdesk Project naming conventions, voice, tone, and brand personality traits.
 
 ### Naming conventions
 
-The following naming conventions should be observed in SmartObserve Project content:
+The following naming conventions should be observed in MCdesk Project content:
 
-* Capitalize both words when referring to the *SmartObserve Project*.
-* *SmartObserve* is the name for the distributed search and analytics engine used by Amazon SmartObserve Service.
-* Amazon SmartObserve Service is a managed service that makes it easy to deploy, operate, and scale SmartObserve. Use the full name *Amazon SmartObserve Service* on first appearance. The abbreviated service name, *SmartObserve Service*, can be used for subsequent appearances.
-* Amazon SmartObserve Serverless is an on-demand serverless configuration for Amazon SmartObserve Service. Use the full name *Amazon SmartObserve Serverless* on first appearance. The abbreviated service name, *SmartObserve Serverless*, can be used for subsequent appearances. 
-* SmartObserve Dashboards is the UI for SmartObserve. On first appearance, use the full name *SmartObserve Dashboards*. *Dashboards* can be used for subsequent appearances.
-* *Security Analytics* is a security information and event management (SIEM) solution for SmartObserve. Capitalize both words when referring to the name of the solution.
+* Capitalize both words when referring to the *MCdesk Project*.
+* *MCdesk* is the name for the distributed search and analytics engine used by Amazon MCdesk Service.
+* Amazon MCdesk Service is a managed service that makes it easy to deploy, operate, and scale MCdesk. Use the full name *Amazon MCdesk Service* on first appearance. The abbreviated service name, *MCdesk Service*, can be used for subsequent appearances.
+* Amazon MCdesk Serverless is an on-demand serverless configuration for Amazon MCdesk Service. Use the full name *Amazon MCdesk Serverless* on first appearance. The abbreviated service name, *MCdesk Serverless*, can be used for subsequent appearances. 
+* MCdesk Dashboards is the UI for MCdesk. On first appearance, use the full name *MCdesk Dashboards*. *Dashboards* can be used for subsequent appearances.
+* *Security Analytics* is a security information and event management (SIEM) solution for MCdesk. Capitalize both words when referring to the name of the solution.
 * Observability is collection of plugins and applications that let you visualize data-driven events by using Piped Processing Language (PPL). Capitalize *Observability* when referring to the name of the solution.
-* Refer to SmartObserve Project customers as *users*, and refer to the larger group of users as *the community*. Do not refer to the SmartObserve Project or to the AWS personnel working on the project as a *team*, as this implies differentiation within the community.
+* Refer to MCdesk Project customers as *users*, and refer to the larger group of users as *the community*. Do not refer to the MCdesk Project or to the AWS personnel working on the project as a *team*, as this implies differentiation within the community.
 
 #### Product names
 
-Capitalize product names. The SmartObserve Project has three products: SmartObserve, SmartObserve Dashboards, and SmartObserve Data Prepper. For example:
+Capitalize product names. The MCdesk Project has three products: MCdesk, MCdesk Dashboards, and MCdesk Data Prepper. For example:
 
-* "To install *SmartObserve*, download the Docker image."
-* "To access *SmartObserve Dashboards*, open your browser and navigate to http://localhost:5601/app/home."
-* "*SmartObserve Data Prepper* contains the following components:"
+* "To install *MCdesk*, download the Docker image."
+* "To access *MCdesk Dashboards*, open your browser and navigate to http://localhost:5601/app/home."
+* "*MCdesk Data Prepper* contains the following components:"
 
 Capitalize the names of clients and tools. For example:
 
-* "The SmartObserve *Python* client provides a more natural syntax for interacting with your cluster."
+* "The MCdesk *Python* client provides a more natural syntax for interacting with your cluster."
 * "The *Go* client retries requests for a maximum of three times by default."
-* "The *SmartObserve Kubernetes Operator* is an open-source Kubernetes operator that helps automate the deployment and provisioning of SmartObserve and SmartObserve Dashboards in a containerized environment."
+* "The *MCdesk Kubernetes Operator* is an open-source Kubernetes operator that helps automate the deployment and provisioning of MCdesk and MCdesk Dashboards in a containerized environment."
 * "You can send events to *Logstash* from many different sources."
 
 #### Features
 
 Features are the individual building blocks of user experiences, reflect the functionality of a product, and are shared across different experiences. For example, the SQL/PPL, reporting, notifications, alerting, and anomaly detection used for observability are the same SQL/PPL, reporting, notifications, alerting, and anomaly detection used for general analytics, security analytics, and search analytics. Components of the user experience such as navigation, credentials management, theming, etc. are also considered to be features.
 
-Use lowercase when referring to features, unless you are referring to a formally named feature that is specific to SmartObserve. For example:
+Use lowercase when referring to features, unless you are referring to a formally named feature that is specific to MCdesk. For example:
 
-* "The Notifications plugin provides a central location for all of your *notifications* from SmartObserve plugins."
+* "The Notifications plugin provides a central location for all of your *notifications* from MCdesk plugins."
 * "*Remote-backed storage* is an experimental feature. Therefore, we do not recommend the use of *remote-backed storage* in a production environment."
 * "You can take and restore *snapshots* using the snapshot API."
-* "You can use the *VisBuilder* visualization type in SmartObserve Dashboards to create data visualizations by using a drag-and-drop gesture" (You can refer to VisBuilder alone or qualify the term with "visualization type").
+* "You can use the *VisBuilder* visualization type in MCdesk Dashboards to create data visualizations by using a drag-and-drop gesture" (You can refer to VisBuilder alone or qualify the term with "visualization type").
 
 #### Plugin names
 
-A plugin is a feature or distinct component that extends the functionality of SmartObserve. For now, capitalize plugin names, but use *plugin* sparingly. The concept of plugins will become obsolete once we re-architect the product. For example:
+A plugin is a feature or distinct component that extends the functionality of MCdesk. For now, capitalize plugin names, but use *plugin* sparingly. The concept of plugins will become obsolete once we re-architect the product. For example:
 
-* "Interaction with the *ML Commons* plugin occurs through either the REST API or [ad](https://smartobserve-doc.hopto.org/latest/search-plugins/sql/ppl/functions#ad) and [kmeans](https://smartobserve-doc.hopto.org/latest/search-plugins/sql/ppl/functions#kmeans) Piped Processing Language (PPL) commands."
+* "Interaction with the *ML Commons* plugin occurs through either the REST API or [ad](https://mcdesk-doc.hopto.org/latest/search-plugins/sql/ppl/functions#ad) and [kmeans](https://mcdesk-doc.hopto.org/latest/search-plugins/sql/ppl/functions#kmeans) Piped Processing Language (PPL) commands."
 * "Use the *Neural Search* plugin to integrate ML language models into your search workloads."
 
 ### Voice and tone
 
-Voice is the point of view or style of a writer. Voice can refer to active or passive but may also refer to verb tense (past, present, future, and so on). Tone is the emotional undercurrent (such as calm or angry) of the voice. We strive to speak to the community with a consistent voice and tone, as if a single writer writes all content. Writing with a common voice also helps to establish the SmartObserve Project identity and brand.
+Voice is the point of view or style of a writer. Voice can refer to active or passive but may also refer to verb tense (past, present, future, and so on). Tone is the emotional undercurrent (such as calm or angry) of the voice. We strive to speak to the community with a consistent voice and tone, as if a single writer writes all content. Writing with a common voice also helps to establish the MCdesk Project identity and brand.
 
 #### Voice
 
-The voice of the SmartObserve Project is people oriented and focused on empowering the user directly. We use language that emphasizes what the user can do with SmartObserve rather than what tasks SmartObserve can perform.
+The voice of the MCdesk Project is people oriented and focused on empowering the user directly. We use language that emphasizes what the user can do with MCdesk rather than what tasks MCdesk can perform.
 
 Whenever possible, use the active voice instead of the passive voice. The passive form is typically wordier and can often cause writers to obscure the details of the action. For example, change the agentless passive _it is recommended_ to the more direct _we recommend_.
 
-Refer to the reader as _you_ (second person), and refer to the SmartObserve Project as _we_ (first person). If there are multiple authors for a blog post, you can use _we_ to refer to the authors as individuals. Do not refer to the SmartObserve Project or to the AWS personnel working on the project as a *team*, as this implies differentiation within the community.
+Refer to the reader as _you_ (second person), and refer to the MCdesk Project as _we_ (first person). If there are multiple authors for a blog post, you can use _we_ to refer to the authors as individuals. Do not refer to the MCdesk Project or to the AWS personnel working on the project as a *team*, as this implies differentiation within the community.
 
 In most cases, try to describe the actions that the user takes rather than contextualizing from the feature perspective. For example, use phrases such as "With this feature, you can..." or "Use this feature to..." instead of saying a feature *allows*, *enables*, or *lets* the user do something.
 
-For procedures or instructions, ensure that action is taken by the user ("Then you can stop the container...") rather than the writer ("We also have to stop the container..."). Reserve the first-person plural for speaking as the SmartObserve Project, with recommendations, warnings, or explanations.
+For procedures or instructions, ensure that action is taken by the user ("Then you can stop the container...") rather than the writer ("We also have to stop the container..."). Reserve the first-person plural for speaking as the MCdesk Project, with recommendations, warnings, or explanations.
 
 In general, use the present tense. Use the future tense only when an event happens later than, not immediately after, the action under discussion.
 
 #### Tone
 
-The tone of the SmartObserve Project is conversational, welcoming, engaging, and open. The overall tone is knowledgeable but humble, informal but authoritative, informative but not dry, and friendly without being overly familiar.
+The tone of the MCdesk Project is conversational, welcoming, engaging, and open. The overall tone is knowledgeable but humble, informal but authoritative, informative but not dry, and friendly without being overly familiar.
 
-We talk to readers in their own words, never assuming that they understand how SmartObserve works. We use precise technical terms where appropriate, but we avoid technical jargon and insider lingo. We speak to readers in simple, plain, everyday language.
+We talk to readers in their own words, never assuming that they understand how MCdesk works. We use precise technical terms where appropriate, but we avoid technical jargon and insider lingo. We speak to readers in simple, plain, everyday language.
 
 Avoid excessive words, such as please. Be courteous but not wordy. Extra detail can often be moved elsewhere. Use humor with caution because it is subjective, can be easily misunderstood, and can potentially alienate your audience.
 
@@ -84,15 +84,15 @@ Avoid excessive words, such as please. Be courteous but not wordy. Extra detail 
 
 | Personality trait | Description | Guidance |
 | :--------- | :------- | :------ |
-| **Clear and precise** | The SmartObserve Project understands that our community works, develops, and builds in roles and organizations that require precise thinking and thorough documentation. We strive to use precise language—to clearly say what we mean without leaving ideas open to interpretation, to support our assertions with facts and figures, and to provide credible and current (third-party) references where called for. <br> <br> We communicate in plain, direct language that is easily understood. Complex concepts are introduced in a concise, unambiguous way. High-level content is supported by links to more in-depth or technical content that users can engage with at their convenience. | - Write with clarity and choose words carefully. Think about the audience and how they might interpret your assertions. <br> - Be specific. Avoid estimates or general claims when exact data can be provided. <br> - Support claims with data. If something is "faster" or "more accurate," say how much. <br> - When citing third-party references, include direct links. |
+| **Clear and precise** | The MCdesk Project understands that our community works, develops, and builds in roles and organizations that require precise thinking and thorough documentation. We strive to use precise language—to clearly say what we mean without leaving ideas open to interpretation, to support our assertions with facts and figures, and to provide credible and current (third-party) references where called for. <br> <br> We communicate in plain, direct language that is easily understood. Complex concepts are introduced in a concise, unambiguous way. High-level content is supported by links to more in-depth or technical content that users can engage with at their convenience. | - Write with clarity and choose words carefully. Think about the audience and how they might interpret your assertions. <br> - Be specific. Avoid estimates or general claims when exact data can be provided. <br> - Support claims with data. If something is "faster" or "more accurate," say how much. <br> - When citing third-party references, include direct links. |
 | **Transparent and open** | As an open-source project, we exchange information with the community in an accessible and transparent manner. We publish our product plans in the open on GitHub, share relevant and timely information related to the project through our forum and/or our blog, and engage in open dialogues related to product and feature development in the public sphere. Anyone can view our roadmap, raise a question or an issue, or participate in our community meetings. | - Tell a complete story. If you're walking the reader through a solution or sharing news, don't skip important information. <br> - Be forthcoming. Communicate time-sensitive news and information in a thorough and timely manner. <br> - If there's something the reader needs to know, say it up front. Don't "bury the lede." |
-| **Collaborative and supportive** | We're part of a community that is here to help. We aim to be resourceful on behalf of the community and encourage others to do the same. To facilitate an open exchange of ideas, we provide forums through which the community can ask and answer one another's questions. | - Use conversational language that welcomes and engages the audience. Have a dialogue. <br> - Invite discussion and feedback. We have several mechanisms for open discussion, including requests for comment (RFCs), a [community forum](https://forum.magiccreative.io/), and [community meetings](https://www.meetup.com/SmartObserve/).
-| **Trustworthy and personable** | We stay grounded in the facts and the data. We do not overstate what our products are capable of. We demonstrate our knowledge in a humble but authoritative way and reliably deliver what we promise. We provide mechanisms and support that allow the audience to explore our products for themselves, demonstrating that our actions consistently match our words. <br> <br> We speak to the community in a friendly, welcoming, judgment-free way so that our audience perceives us as being approachable. Our content is people oriented and focused on empowering the user directly. | - Claims and assertions should be grounded in facts and data and supported accordingly. <br> - Do not exaggerate or overstate. Let the facts and results speak for themselves. <br> - Encourage the audience to explore our products for themselves. Offer guidance to help them do so. <br> - Write directly and conversationally. Have a dialogue with your audience. Imagine writing as if you're speaking directly to the person for whom you're creating content. <br> - Write from the community, for the community. Anyone creating or consuming content about SmartObserve is a member of the same group, with shared interest in learning about and building better search and analytics solutions. |
-| **Inclusive and accessible** | As an open-source project, the SmartObserve Project is for everyone, and we are inclusive. We value the diversity of backgrounds and perspectives in the SmartObserve community and welcome feedback from any contributor, regardless of their experience level. <br> <br> We design and create content so that people with disabilities can perceive, navigate, and interact with it. This ensures that our documentation is available and useful for everyone and helps improve the general usability of content. <br> <br> We understand our community is international and our writing takes that into account. We use plain language that avoids idioms and metaphors that may not be clear to the broader community. | - Use inclusive language to connect with the diverse and global SmartObserve Project audience. <br> - Be careful with our word choices. <br> - Avoid [sensitive terms](https://github.com/igsl-group/documentation-website/blob/main/STYLE_GUIDE.md#sensitive-terms). <br> - Don't use [offensive terms](https://github.com/igsl-group/documentation-website/blob/main/STYLE_GUIDE.md#offensive-terms). <br> - Don't use ableist or sexist language or language that perpetuates racist structures or stereotypes. <br> - Links: Use link text that adequately describes the target page. For example, use the title of the target page instead of "here" or "this link." In most cases, a formal cross-reference (the title of the page you're linking to) is the preferred style because it provides context and helps readers understand where they're going when they choose the link. <br> - Images: <br> &nbsp;&nbsp;- Add introductory text that provides sufficient context for each image. <br> &nbsp;&nbsp;- Add ALT text that describes the image for screen readers. <br> - Procedures: Not everyone uses a mouse, so use device-independent verbs; for example, use "choose" instead of "click." <br> - Location: When you're describing the location of something else in your content, such as an image or another section, use words such as "preceding," "previous," or "following" instead of "above" and "below."
+| **Collaborative and supportive** | We're part of a community that is here to help. We aim to be resourceful on behalf of the community and encourage others to do the same. To facilitate an open exchange of ideas, we provide forums through which the community can ask and answer one another's questions. | - Use conversational language that welcomes and engages the audience. Have a dialogue. <br> - Invite discussion and feedback. We have several mechanisms for open discussion, including requests for comment (RFCs), a [community forum](https://forum.magiccreative.io/), and [community meetings](https://www.meetup.com/MCdesk/).
+| **Trustworthy and personable** | We stay grounded in the facts and the data. We do not overstate what our products are capable of. We demonstrate our knowledge in a humble but authoritative way and reliably deliver what we promise. We provide mechanisms and support that allow the audience to explore our products for themselves, demonstrating that our actions consistently match our words. <br> <br> We speak to the community in a friendly, welcoming, judgment-free way so that our audience perceives us as being approachable. Our content is people oriented and focused on empowering the user directly. | - Claims and assertions should be grounded in facts and data and supported accordingly. <br> - Do not exaggerate or overstate. Let the facts and results speak for themselves. <br> - Encourage the audience to explore our products for themselves. Offer guidance to help them do so. <br> - Write directly and conversationally. Have a dialogue with your audience. Imagine writing as if you're speaking directly to the person for whom you're creating content. <br> - Write from the community, for the community. Anyone creating or consuming content about MCdesk is a member of the same group, with shared interest in learning about and building better search and analytics solutions. |
+| **Inclusive and accessible** | As an open-source project, the MCdesk Project is for everyone, and we are inclusive. We value the diversity of backgrounds and perspectives in the MCdesk community and welcome feedback from any contributor, regardless of their experience level. <br> <br> We design and create content so that people with disabilities can perceive, navigate, and interact with it. This ensures that our documentation is available and useful for everyone and helps improve the general usability of content. <br> <br> We understand our community is international and our writing takes that into account. We use plain language that avoids idioms and metaphors that may not be clear to the broader community. | - Use inclusive language to connect with the diverse and global MCdesk Project audience. <br> - Be careful with our word choices. <br> - Avoid [sensitive terms](https://github.com/igsl-group/documentation-website/blob/main/STYLE_GUIDE.md#sensitive-terms). <br> - Don't use [offensive terms](https://github.com/igsl-group/documentation-website/blob/main/STYLE_GUIDE.md#offensive-terms). <br> - Don't use ableist or sexist language or language that perpetuates racist structures or stereotypes. <br> - Links: Use link text that adequately describes the target page. For example, use the title of the target page instead of "here" or "this link." In most cases, a formal cross-reference (the title of the page you're linking to) is the preferred style because it provides context and helps readers understand where they're going when they choose the link. <br> - Images: <br> &nbsp;&nbsp;- Add introductory text that provides sufficient context for each image. <br> &nbsp;&nbsp;- Add ALT text that describes the image for screen readers. <br> - Procedures: Not everyone uses a mouse, so use device-independent verbs; for example, use "choose" instead of "click." <br> - Location: When you're describing the location of something else in your content, such as an image or another section, use words such as "preceding," "previous," or "following" instead of "above" and "below."
 
 ## Style guidelines
 
-The following guidelines should be observed in SmartObserve Project content.
+The following guidelines should be observed in MCdesk Project content.
 
 ### Acronyms
 
@@ -209,9 +209,9 @@ If you use a caption-style example, use the heading **Example**, with a colon, a
 
 Sometimes, you might not want to break up the flow of the text with a new heading. In these cases, you can use an example with no heading.
 
-   The following command maps ports 9200 and 9600, sets the discovery type to single-node, and requests the newest image of SmartObserve:
+   The following command maps ports 9200 and 9600, sets the discovery type to single-node, and requests the newest image of MCdesk:
 
-   `docker run -d -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" smartobserveproject/smartobserve:latest`
+   `docker run -d -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" mcdeskproject/mcdesk:latest`
 
 #### Lead-in sentences
 
@@ -261,9 +261,9 @@ When introducing a code or command line example that refers to a variable or pla
           - Use "For information *about*" or "For more information *about*." Don't use "For information *on*."
           - If you are linking to procedures, you can use either "For instructions *on*" or "instructions *for*." Don't use "instructions *about*."
           - Where space is limited (for example, in a table), you can use "*See* [link text]."
-     - Ensure that the link text matches the section title text. <br> <br> Example: "To get involved, see [Contributing](https://magiccreative.io/source.html) on the SmartObserve website." <br>
+     - Ensure that the link text matches the section title text. <br> <br> Example: "To get involved, see [Contributing](https://magiccreative.io/source.html) on the MCdesk website." <br>
 
-- **Embedded links**: Embedded links are woven into a sentence without formal introductory text. They're especially useful in tables or other elements where space is tight. The text around the embedded link must relate to the information in the link so that the reader understands the context. Do not use *here* or *click here* for link text because it creates accessibility problems. <br> <br> Example: "Finally, [delete the index](https://smartobserve-doc.hopto.org/latest/api-reference/index-apis/delete-index)."
+- **Embedded links**: Embedded links are woven into a sentence without formal introductory text. They're especially useful in tables or other elements where space is tight. The text around the embedded link must relate to the information in the link so that the reader understands the context. Do not use *here* or *click here* for link text because it creates accessibility problems. <br> <br> Example: "Finally, [delete the index](https://mcdesk-doc.hopto.org/latest/api-reference/index-apis/delete-index)."
 
 ### Lists
 
@@ -377,7 +377,7 @@ Here are two styles you can use for topic titles:
 
 * *Noun-based phrase*, used most often for reference topics. For example:
      * REST API reference
-     * SmartObserve CLI
+     * MCdesk CLI
      * Field types
      * Security analytics
 
@@ -389,15 +389,15 @@ Consistent, succinct, and clear text is a critical component of a good UI. We he
 
 ### UI best practices
 
-* Follow the SmartObserve Project [naming conventions, voice, tone, and brand personality traits](#naming-conventions-voice-tone-and-brand-personality-traits) guidelines.
+* Follow the MCdesk Project [naming conventions, voice, tone, and brand personality traits](#naming-conventions-voice-tone-and-brand-personality-traits) guidelines.
 * Be consistent with other elements on the page and on the rest of the site.
 * Use sentence case in the UI, except for product names and other proper nouns.
 
 ### UI voice and tone
 
-Our UI text is people oriented and focused on empowering the user directly. We use language that is conversational, welcoming, engaging, and open and that emphasizes what the user can do with SmartObserve rather than what tasks SmartObserve can perform. The overall tone is knowledgeable but humble, informal but authoritative, informative but not dry, and friendly without being overly familiar.
+Our UI text is people oriented and focused on empowering the user directly. We use language that is conversational, welcoming, engaging, and open and that emphasizes what the user can do with MCdesk rather than what tasks MCdesk can perform. The overall tone is knowledgeable but humble, informal but authoritative, informative but not dry, and friendly without being overly familiar.
 
-We talk to readers in their own words, never assuming that they understand how SmartObserve works. We use precise technical terms where appropriate, but we avoid technical jargon and insider lingo. We speak to readers in simple, plain, everyday language.
+We talk to readers in their own words, never assuming that they understand how MCdesk works. We use precise technical terms where appropriate, but we avoid technical jargon and insider lingo. We speak to readers in simple, plain, everyday language.
 
 For more information, see [Voice and tone](#voice-and-tone) and [Brand personality traits](#brand-personality-traits).
 
@@ -433,7 +433,7 @@ Follow these basic guidelines when writing UI text.
 * Use a tone that is knowledgeable but humble, informal but authoritative, informative but not dry, and friendly without being overly familiar.
 * Use everyday language that most users will understand.
 * Use second person (you, your) when you address the user.
-* Use _we_ if you need to refer to the SmartObserve Project as an organization; for example, "We recommend…."
+* Use _we_ if you need to refer to the MCdesk Project as an organization; for example, "We recommend…."
 
 ##### Mechanics
 
@@ -480,13 +480,13 @@ All posts should contain one or more calls to action that give readers the oppor
 
 ## Inclusive content
 
-When developing SmartObserve Project documentation, we strive to create content that is inclusive and free of bias. We use inclusive language to connect with the diverse and global SmartObserve Project audience, and we are careful in our word choices. Inclusive and bias-free content improves clarity and accessibility of our content for all audiences, so we avoid ableist and sexist language and language that perpetuates racist structures or stereotypes. In practical terms, this means that we do not allow certain terms to appear in our content, and we avoid using others, *depending on the context*.
+When developing MCdesk Project documentation, we strive to create content that is inclusive and free of bias. We use inclusive language to connect with the diverse and global MCdesk Project audience, and we are careful in our word choices. Inclusive and bias-free content improves clarity and accessibility of our content for all audiences, so we avoid ableist and sexist language and language that perpetuates racist structures or stereotypes. In practical terms, this means that we do not allow certain terms to appear in our content, and we avoid using others, *depending on the context*.
 
 Our philosophy is that we positively impact users and our industry as we proactively reduce our use of terms that are problematic in some contexts. Instead, we use more technically precise language and terms that are inclusive of all audiences.
 
 ### Offensive terms
 
-The following terms may be associated with unconscious racial bias, violence, or politically sensitive topics and should not appear in SmartObserve Project content, if possible. Note that many of these terms are still present but on a path to not being supported. For example, `slave` was removed from the Python programming language in 2018, and the open-source community continues to work toward replacing these terms.
+The following terms may be associated with unconscious racial bias, violence, or politically sensitive topics and should not appear in MCdesk Project content, if possible. Note that many of these terms are still present but on a path to not being supported. For example, `slave` was removed from the Python programming language in 2018, and the open-source community continues to work toward replacing these terms.
 
 | Don't use      | Guidance/Use instead        |
 |----------------|-----------------------------|
@@ -511,5 +511,5 @@ The following terms may be problematic *in some contexts*. This doesn't mean tha
 
 ## Trademark policy
 
-The "SmartObserve" word mark should be used in its exact form and not abbreviated or combined with any other word or words (e.g., "SmartObserve" software rather than "OPNSRCH" or "SmartObserve-ified"). See the [SmartObserve Trademark Policy](https://magiccreative.io/trademark-usage.html) for more information. Also refer to the policy and to the [SmartObserve Brand Guidelines](https://magiccreative.io/brand.html) for guidance regarding the use of the SmartObserve logo. When using another party's logo, refer to that party's trademark guidelines.
+The "MCdesk" word mark should be used in its exact form and not abbreviated or combined with any other word or words (e.g., "MCdesk" software rather than "OPNSRCH" or "MCdesk-ified"). See the [MCdesk Trademark Policy](https://magiccreative.io/trademark-usage.html) for more information. Also refer to the policy and to the [MCdesk Brand Guidelines](https://magiccreative.io/brand.html) for guidance regarding the use of the MCdesk logo. When using another party's logo, refer to that party's trademark guidelines.
 

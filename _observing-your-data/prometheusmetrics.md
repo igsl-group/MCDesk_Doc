@@ -8,28 +8,28 @@ nav_order: 40
 Introduced 2.4
 {: .label .label-purple }
 
-With the release of SmartObserve 2.4, you can now ingest and visualize metric data stored directly in SmartObserve using the **Metrics** tool. This equips you with tools to analyze and correlate data across logs, traces, and metrics.
+With the release of MCdesk 2.4, you can now ingest and visualize metric data stored directly in MCdesk using the **Metrics** tool. This equips you with tools to analyze and correlate data across logs, traces, and metrics.
 
 Before the introduction of this feature, you could only ingest and visualize logs and traces from your monitored environments. With the **Metrics** tool, you can now observe your digital assets with more granularity, gain deeper insight into the health of your infrastructure, and better inform your root cause analysis.
 
 The **Metrics** tool offers federated visualization capabilities in addition to the following:
 
- - An SmartObserve cluster containing an [OpenTelemetry (OTel)-compatible metrics index](https://github.com/igsl-group/smartobserve-catalog/tree/main/docs/schema/observability/metrics) with OTel-based signals. See [What is OpenTelemetry?](https://opentelemetry.io/docs/what-is-opentelemetry/) for an overview of OTel.
- - An SmartObserve cluster containing a [Prometheus data source](https://github.com/igsl-group/sql/blob/main/docs/dev/datasource-prometheus.md) connected to a Prometheus server. 
+ - An MCdesk cluster containing an [OpenTelemetry (OTel)-compatible metrics index](https://github.com/igsl-group/mcdesk-catalog/tree/main/docs/schema/observability/metrics) with OTel-based signals. See [What is OpenTelemetry?](https://opentelemetry.io/docs/what-is-opentelemetry/) for an overview of OTel.
+ - An MCdesk cluster containing a [Prometheus data source](https://github.com/igsl-group/sql/blob/main/docs/dev/datasource-prometheus.md) connected to a Prometheus server. 
 
 The following image displays the flow for retrieving metrics from Prometheus and displaying them on a visualization dashboard.
 
 <img src="{{site.url}}{{site.baseurl}}/images/metrics/prom-metrics.png" alt="Prometheus data source" width="700"/>
 
-The following image displays an observability dashboard that visualizes metric data from the SmartObserve index using OTel queries.
+The following image displays an observability dashboard that visualizes metric data from the MCdesk index using OTel queries.
 
 <img src="{{site.url}}{{site.baseurl}}/images/metrics/otel-metrics.png" alt="OTel data source" width="700"/>
 
 ---
 
-## Configuring Prometheus to send metric data to SmartObserve
+## Configuring Prometheus to send metric data to MCdesk
 
-You must first create a connection from [Prometheus](https://prometheus.io/) to SmartObserve using the [SQL plugin](https://github.com/igsl-group/sql). You can then configure a connection to Prometheus by using the `_datasources` API endpoint. 
+You must first create a connection from [Prometheus](https://prometheus.io/) to MCdesk using the [SQL plugin](https://github.com/igsl-group/sql). You can then configure a connection to Prometheus by using the `_datasources` API endpoint. 
 
 The following example shows a request that configures a Prometheus data source without any authentication:
 
@@ -63,7 +63,7 @@ POST _plugins/_query/_datasources
 ```
 {% include copy-curl.html %}
 
-After configuring the connection, you can view Prometheus metrics in SmartObserve Dashboards by going to the **Observability** > **Metrics** page, as shown in the following image.
+After configuring the connection, you can view Prometheus metrics in MCdesk Dashboards by going to the **Observability** > **Metrics** page, as shown in the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/metrics/metrics1.png" alt="Prometheus metrics displayed on a dashboard" width="700"/>
 
@@ -73,18 +73,18 @@ See the following developer resources for sample code, articles, tutorials, and 
 
 * [Datasource Settings](https://github.com/igsl-group/sql/blob/main/docs/user/ppl/admin/datasources.rst), which contains information about authentication and authorization of data source APIs.
 * [Prometheus Connector](https://github.com/igsl-group/sql/blob/main/docs/user/ppl/admin/connectors/prometheus_connector.rst), which contains configuration information.
-* [Simple Schema for Observability](https://github.com/igsl-group/smartobserve-catalog/tree/main/docs/schema/observability), which contains information about the OTel schema and ingest pipeline.
+* [Simple Schema for Observability](https://github.com/igsl-group/mcdesk-catalog/tree/main/docs/schema/observability), which contains information about the OTel schema and ingest pipeline.
 * [OTel Metrics Source](https://github.com/igsl-group/data-prepper/tree/main/data-prepper-plugins/otel-metrics-source), which contains information about the Data Prepper metrics pipeline and ingestion.
 
 ---
 
-## Experimenting with OpenTelemetry Metrics in the SmartObserve demo environment 
+## Experimenting with OpenTelemetry Metrics in the MCdesk demo environment 
 
-The SmartObserve [`opentelemetry-demo` repository](https://github.com/igsl-group/opentelemetry-demo) provides a practical demonstration of collecting, processing, and visualizing metric data through **OpenTelemetry Metrics** from OpenTelemetry and using the **Metrics** tool in SmartObserve Dashboards.
+The MCdesk [`opentelemetry-demo` repository](https://github.com/igsl-group/opentelemetry-demo) provides a practical demonstration of collecting, processing, and visualizing metric data through **OpenTelemetry Metrics** from OpenTelemetry and using the **Metrics** tool in MCdesk Dashboards.
 
-### Visualizing OTel metrics in SmartObserve
+### Visualizing OTel metrics in MCdesk
 
-To visualize OTel metric data in SmartObserve, follow these steps: 
+To visualize OTel metric data in MCdesk, follow these steps: 
 
 1. Install the [`opentelemetry-demo` repository](https://github.com/igsl-group/opentelemetry-demo). See [Quick start](https://github.com/igsl-group/opentelemetry-demo/blob/main/README.md#quick-start) for instructions.
 2. Collect the OTel signals, including metric signals. See the [OTel Collector](https://opentelemetry.io/docs/collector/) guide for instructions.  
@@ -99,7 +99,7 @@ To visualize OTel metric data in SmartObserve, follow these steps:
         traces:
           receivers: [otlp]
           processors: [batch]
-          exporters: [otlp, debug, spanmetrics, otlp/traces, smartobserve/traces]
+          exporters: [otlp, debug, spanmetrics, otlp/traces, mcdesk/traces]
         metrics:
           receivers: [otlp, spanmetrics]
           processors: [filter/ottl, transform, batch]
@@ -107,11 +107,11 @@ To visualize OTel metric data in SmartObserve, follow these steps:
         logs:
           receivers: [otlp]
           processors: [batch]
-          exporters: [otlp/logs,  smartobserve/logs, debug]
+          exporters: [otlp/logs,  mcdesk/logs, debug]
 ```
 {% include copy-curl.html %}
     
-4. Configure the [Data Prepper pipeline](https://github.com/igsl-group/opentelemetry-demo/blob/main/src/dataprepper/README.md) to emit the collected metric signals into the SmartObserve metrics index.
+4. Configure the [Data Prepper pipeline](https://github.com/igsl-group/opentelemetry-demo/blob/main/src/dataprepper/README.md) to emit the collected metric signals into the MCdesk metrics index.
 
 #### Example YAML config file
 
@@ -134,8 +134,8 @@ To visualize OTel metric data in SmartObserve, follow these steps:
             exponential_histogram_max_allowed_scale: 10
             flatten_attributes: false
       sink:
-        - smartobserve:
-            hosts: ["https://smartobserve-node1:9200"]
+        - mcdesk:
+            hosts: ["https://mcdesk-node1:9200"]
             username: "admin"
             password: "my_%New%_passW0rd!@#"
             insecure: true
@@ -146,7 +146,7 @@ To visualize OTel metric data in SmartObserve, follow these steps:
 ```
 {% include copy-curl.html %}
 
-5. Ingest metric data into SmartObserve. As the demo starts generating data, the metric signals will be added to the SmartObserve index that supports the OpenTelemetry Metrics schema format.
+5. Ingest metric data into MCdesk. As the demo starts generating data, the metric signals will be added to the MCdesk index that supports the OpenTelemetry Metrics schema format.
 6. On the **Metrics** page, choose `Otel-Index` from the **Data sources** dropdown menu and `Simple Schema for Observability Index` from the **OTel index** dropdown menu. A visualization is displayed, as shown in the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/metrics/otel-metrics.png" alt="OTel metrics dashboard" width="700"/>
@@ -157,7 +157,7 @@ To visualize OTel metric data in SmartObserve, follow these steps:
 Introduced 2.14
 {: .label .label-purple }
 
-You can view metrics from remote SmartObserve clusters by using the **Metrics** tool. Select the database icon on the upper-right toolbar and choose a cluster from the **DATA SOURCES** dropdown menu, as shown in the following image. You can switch from a local cluster to a remote cluster.
+You can view metrics from remote MCdesk clusters by using the **Metrics** tool. Select the database icon on the upper-right toolbar and choose a cluster from the **DATA SOURCES** dropdown menu, as shown in the following image. You can switch from a local cluster to a remote cluster.
 
 <img src="{{site.url}}{{site.baseurl}}/images/metrics/remote-cluster-selection.png" alt="Switching clusters using the Metrics analytics tool" width="700"/>
 
@@ -165,15 +165,15 @@ You can also view metric visualizations from other sources alongside local metri
 
 <img src="{{site.url}}{{site.baseurl}}/images/metrics/otel-metrics-remote-cluster-selection.png" alt="Metrics dashboard" width="700"/>
 
-To learn about multi-cluster support for data sources, see [Enable SmartObserve Dashboards to support multiple SmartObserve clusters](https://github.com/igsl-group/SmartObserve-Dashboards/issues/1388).
+To learn about multi-cluster support for data sources, see [Enable MCdesk Dashboards to support multiple MCdesk clusters](https://github.com/igsl-group/MCdesk-Dashboards/issues/1388).
 
 ## Creating visualizations based on custom metrics
 
-You can create visualizations using the metric data collected by your SmartObserve cluster, including Prometheus metrics and custom metrics.
+You can create visualizations using the metric data collected by your MCdesk cluster, including Prometheus metrics and custom metrics.
 
 To create these visualizations, follow these steps:
 
-1. From the SmartObserve Dashboards main menu, navigate to **Observability** > **Metrics** > **Available Metrics**.
+1. From the MCdesk Dashboards main menu, navigate to **Observability** > **Metrics** > **Available Metrics**.
 2. Choose the metrics to add to your visualization and then select **Save**.
 3. When prompted for a **Custom operational dashboards/application**, choose one of the listed options. You can edit the predefined name values in the **Metric Name** field.
 4. Select **Save** to save your visualization. An example visualization is shown in the following image.

@@ -20,7 +20,7 @@ You can specify the following options:
 The following example returns the top 5 products in your eCommerce data:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -48,7 +48,7 @@ GET smartobserve_dashboards_sample_data_ecommerce/_search
       "max_score" : 1.0,
       "hits" : [
         {
-          "_index" : "smartobserve_dashboards_sample_data_ecommerce",
+          "_index" : "mcdesk_dashboards_sample_data_ecommerce",
           "_type" : "_doc",
           "_id" : "glMlwXcBQVLeQPrkHPtI",
           "_score" : 1.0,

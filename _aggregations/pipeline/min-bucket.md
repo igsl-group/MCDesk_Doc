@@ -23,10 +23,10 @@ The `min_bucket` aggregation takes the following parameters.
 
 ## Example
 
-The following example creates a date histogram with a one-month interval from the SmartObserve Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of bytes for each month. Finally, the `min_bucket` aggregation finds the minimum---the smallest of these buckets:
+The following example creates a date histogram with a one-month interval from the MCdesk Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of bytes for each month. Finally, the `min_bucket` aggregation finds the minimum---the smallest of these buckets:
 
 ```json
-POST smartobserve_dashboards_sample_data_logs/_search
+POST mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

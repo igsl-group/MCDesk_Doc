@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Monitoring
-parent: Managing SmartObserve Data Prepper
+parent: Managing MCdesk Data Prepper
 nav_order: 25
 ---
  
-# Monitoring SmartObserve Data Prepper with metrics
+# Monitoring MCdesk Data Prepper with metrics
 
-You can monitor SmartObserve Data Prepper with metrics using [Micrometer](https://micrometer.io/). There are two types of metrics: JVM/system metrics and plugin metrics. [Prometheus](https://prometheus.io/) is used as the default metrics backend.
+You can monitor MCdesk Data Prepper with metrics using [Micrometer](https://micrometer.io/). There are two types of metrics: JVM/system metrics and plugin metrics. [Prometheus](https://prometheus.io/) is used as the default metrics backend.
 
 ## JVM and system metrics
 
@@ -52,7 +52,7 @@ Plugins report their own metrics. Data Prepper uses a naming convention to help 
 
 ### Naming
 
-Metrics follow a naming convention of **PIPELINE_NAME_PLUGIN_NAME_METRIC_NAME**. For example, a **recordsIn** metric for the **smartobserve-sink** plugin in a pipeline named **output-pipeline** has a qualified name of **output-pipeline_smartobserve_sink_recordsIn**.
+Metrics follow a naming convention of **PIPELINE_NAME_PLUGIN_NAME_METRIC_NAME**. For example, a **recordsIn** metric for the **mcdesk-sink** plugin in a pipeline named **output-pipeline** has a qualified name of **output-pipeline_mcdesk_sink_recordsIn**.
 
 ### Serving
 

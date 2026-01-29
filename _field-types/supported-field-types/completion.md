@@ -6,7 +6,7 @@ has_children: false
 parent: Autocomplete field types
 grand_parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/completion/
+  - /mcdesk/supported-field-types/completion/
   - /field-types/completion/
 ---
 
@@ -68,7 +68,7 @@ PUT chess_store
 }
 ```
 
-Index suggestions into SmartObserve:
+Index suggestions into MCdesk:
 
 ```json
 PUT chess_store/_doc/1

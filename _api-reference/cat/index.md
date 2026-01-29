@@ -5,8 +5,8 @@ nav_order: 10
 has_children: true
 has_toc: false
 redirect_from:
-  - /smartobserve/catapis/
-  - /smartobserve/rest-api/cat/index/
+  - /mcdesk/catapis/
+  - /mcdesk/rest-api/cat/index/
   - /api-reference/cat/
 ---
 

@@ -160,7 +160,7 @@ Name | Description
 `audit_trace_doc_types` | The document types affected by the request. Only logged if `resolve_indices` is true.
 
 
-## Transport smartobserve_SECURITY_INDEX_ATTEMPT attributes
+## Transport mcdesk_SECURITY_INDEX_ATTEMPT attributes
 
 Name | Description
 :--- | :---

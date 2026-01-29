@@ -6,23 +6,23 @@ nav_order: 70
 
 # PHP client
 
-The SmartObserve PHP client provides a safer and easier way to interact with your SmartObserve cluster. Rather than using SmartObserve from a browser and potentially exposing your data to the public, you can build an SmartObserve client that takes care of sending requests to your cluster. The client contains a library of APIs that let you perform different operations on your cluster and return a standard response body.
+The MCdesk PHP client provides a safer and easier way to interact with your MCdesk cluster. Rather than using MCdesk from a browser and potentially exposing your data to the public, you can build an MCdesk client that takes care of sending requests to your cluster. The client contains a library of APIs that let you perform different operations on your cluster and return a standard response body.
 
-This getting started guide illustrates how to connect to SmartObserve, index documents, and run queries. For the client source code, see the [smartobserve-php repo](https://github.com/igsl-group/smartobserve-php).
+This getting started guide illustrates how to connect to MCdesk, index documents, and run queries. For the client source code, see the [mcdesk-php repo](https://github.com/igsl-group/mcdesk-php).
 
 ## Setup
 
 To add the client to your project, install it using [composer](https://getcomposer.org/):
 
 ```bash
-composer require smartobserve-project/smartobserve-php
+composer require mcdesk-project/mcdesk-php
 ```
 {% include copy.html %}
 
 To install a specific major version of the client, run the following command:
 
 ```bash
-composer require smartobserve-project/smartobserve-php:<version>
+composer require mcdesk-project/mcdesk-php:<version>
 ```
 {% include copy.html %}
 
@@ -33,18 +33,18 @@ require __DIR__ . '/vendor/autoload.php';
 ```
 {% include copy.html %}
 
-## Connecting to SmartObserve
+## Connecting to MCdesk
 
-Use a PSR client to connect to SmartObserve. For information about the supported PSR clients, see [Client factories](https://github.com/igsl-group/smartobserve-php/blob/main/USER_GUIDE.md#client-factories). For information about basic authentication using PSR clients, see [Basic authentication using a PSR client](https://github.com/igsl-group/smartobserve-php/blob/main/guides/auth.md#using-a-psr-client).
+Use a PSR client to connect to MCdesk. For information about the supported PSR clients, see [Client factories](https://github.com/igsl-group/mcdesk-php/blob/main/USER_GUIDE.md#client-factories). For information about basic authentication using PSR clients, see [Basic authentication using a PSR client](https://github.com/igsl-group/mcdesk-php/blob/main/guides/auth.md#using-a-psr-client).
 
-## Connecting to Amazon SmartObserve Service
+## Connecting to Amazon MCdesk Service
 
-For information about connecting to Amazon SmartObserve Service, see [IAM authentication using a PSR client](https://github.com/igsl-group/smartobserve-php/blob/main/guides/auth.md#using-a-psr-client-1).
+For information about connecting to Amazon MCdesk Service, see [IAM authentication using a PSR client](https://github.com/igsl-group/mcdesk-php/blob/main/guides/auth.md#using-a-psr-client-1).
 
 
 ## Creating an index
 
-To create an SmartObserve index with custom settings, use the following code:
+To create an MCdesk index with custom settings, use the following code:
 
 ```php
 public function createIndex()
@@ -65,7 +65,7 @@ public function createIndex()
 
 ## Indexing a document
 
-You can index a document into SmartObserve using the following code:
+You can index a document into MCdesk using the following code:
 
 ```php
 public function create()
@@ -168,7 +168,7 @@ public function deleteByIndex()
 
 ## Sample program
 
-The following sample program creates a client and performs various SmartObserve operations:
+The following sample program creates a client and performs various MCdesk operations:
 
 ```php
 <?php
@@ -176,10 +176,10 @@ require __DIR__ . '/vendor/autoload.php';
 
 define('INDEX_NAME', 'test_elastic_index_name2');
 
-class MySmartObserveClass
+class MyMCdeskClass
 {
 
-    protected ?\SmartObserve\Client $client;
+    protected ?\MCdesk\Client $client;
     protected $existingID = 1668504743;
     protected $deleteID = 1668504743;
     protected $bulkIds = [];
@@ -188,7 +188,7 @@ class MySmartObserveClass
     public function __construct()
     {
         // Simple Setup
-        $this->client = (new \SmartObserve\GuzzleClientFactory())->create([
+        $this->client = (new \MCdesk\GuzzleClientFactory())->create([
             'base_uri' => 'https://localhost:9200',
             'auth' => ['admin', getenv('OPENSEARCH_PASSWORD')],
             'verify' => false, // Disables SSL verification for local development.
@@ -213,7 +213,7 @@ class MySmartObserveClass
 
     public function info()
     {
-        // Print SmartObserve version information on console.
+        // Print MCdesk version information on console.
         var_dump($this->client->info());
     }
 
@@ -488,7 +488,7 @@ class MySmartObserveClass
 
 try {
 
-    $e = new MySmartObserveClass();
+    $e = new MyMCdeskClass();
     $e->info();
     $e->createIndex();
     $e->create();
@@ -513,5 +513,5 @@ try {
 
 ## Next steps
 
-- [PHP client main user guide](https://github.com/igsl-group/smartobserve-php/blob/main/USER_GUIDE.md)
-- [Other PHP client user guides](https://github.com/igsl-group/smartobserve-php/tree/main/guides)
+- [PHP client main user guide](https://github.com/igsl-group/mcdesk-php/blob/main/USER_GUIDE.md)
+- [Other PHP client user guides](https://github.com/igsl-group/mcdesk-php/tree/main/guides)

@@ -26,10 +26,10 @@ The `matrix_stats` aggregation takes the following parameters.
 
 ## Example
 
-The following example returns statistics for the `taxful_total_price` and `products.base_price` fields in the SmartObserve Dashboards e-commerce sample data:
+The following example returns statistics for the `taxful_total_price` and `products.base_price` fields in the MCdesk Dashboards e-commerce sample data:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -155,7 +155,7 @@ GET students/_search
 ```
 {% include copy-curl.html %}
 
-SmartObserve ignores missing values when calculating the matrix statistics:
+MCdesk ignores missing values when calculating the matrix statistics:
 
 ```json
 {
@@ -240,7 +240,7 @@ GET students/_search
 ```
 {% include copy-curl.html %}
 
-SmartObserve substitutes `0` for any missing `gpa` or `class_grades` values when calculating the matrix statistics:
+MCdesk substitutes `0` for any missing `gpa` or `class_grades` values when calculating the matrix statistics:
 
 ```json
 {

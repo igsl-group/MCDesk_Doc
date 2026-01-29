@@ -2,7 +2,7 @@
 layout: default
 title: Is Migration Assistant right for you?
 nav_order: 10
-parent: Migration Assistant for SmartObserve
+parent: Migration Assistant for MCdesk
 redirect_from:
   - /migration-assistant/overview/is-migration-assistant-right-for-you/
 ---
@@ -11,13 +11,13 @@ redirect_from:
 
 Whether Migration Assistant is right for you depends on your upgrade path, infrastructure complexity, and operational goals. This page will help you evaluate whether Migration Assistant fits your use case.
 
-Migration Assistant addresses key limitations in traditional migration approaches. For example, if you're upgrading across multiple major versions—such as from Elasticsearch 6.8 to SmartObserve 2.19—you can use Migration Assistant to complete the process in a single step. Other methods, like rolling upgrades or snapshot restoration, require upgrading through each major version and often reindexing at every stage.
+Migration Assistant addresses key limitations in traditional migration approaches. For example, if you're upgrading across multiple major versions—such as from Elasticsearch 6.8 to MCdesk 2.19—you can use Migration Assistant to complete the process in a single step. Other methods, like rolling upgrades or snapshot restoration, require upgrading through each major version and often reindexing at every stage.
 
 Migration Assistant also supports live traffic replication, enabling zero-downtime migrations. This makes it a strong fit for environments where minimizing service disruption is critical.
 
 ## Supported migration paths
 
-The following matrix shows which source versions can be directly migrated to which SmartObserve target versions:
+The following matrix shows which source versions can be directly migrated to which MCdesk target versions:
 
 <!-- Migration matrix rendering logic retained -->
 {% comment %}First, collect all unique target versions{% endcomment %}
@@ -57,11 +57,11 @@ The following matrix shows which source versions can be directly migrated to whi
 **Source and target platforms**
 
 - Self-managed (on premises or hosted by a cloud provider)
-- Amazon SmartObserve Service (Amazon SmartObserve Serverless collections are not supported)
+- Amazon MCdesk Service (Amazon MCdesk Serverless collections are not supported)
 
 **Supported AWS Regions**
 
-Refer to [Supported AWS Regions](https://docs.aws.amazon.com/solutions/latest/migration-assistant-for-amazon-smartobserve-service/plan-your-deployment.html#supported-aws-regions) for the full list of supported Regions.
+Refer to [Supported AWS Regions](https://docs.aws.amazon.com/solutions/latest/migration-assistant-for-amazon-mcdesk-service/plan-your-deployment.html#supported-aws-regions) for the full list of supported Regions.
 
 ## Supported features
 
@@ -75,19 +75,19 @@ Before starting an upgrade or migration, consider the cluster feature to be incl
 | **Index templates**   | Yes   | Migrate with the `Metadata-Migration-Tool`. |
 | **Component templates**  | Yes   | Migrate with the `Metadata-Migration-Tool`.  |
 | **Aliases**   | Yes   | Migrate with the `Metadata-Migration-Tool`.  |
-| **Index State Management (ISM) policies**  | Expected in 2025    | Manually migrate using an API. For more information about ISM support, see [issue #944](https://github.com/igsl-group/smartobserve-migrations/issues/944). |
-| **Elasticsearch Kibana dashboards** | Expected in 2025 | This tool is only needed when migrating from Elasticsearch Kibana dashboards to SmartObserve Dashboards. Start by exporting JSON files from Kibana and importing them into SmartObserve Dashboards. For Elasticsearch versions 7.10.2 to 7.17, use the [`dashboardsSanitizer`](https://github.com/igsl-group/smartobserve-migrations/tree/main/dashboardsSanitizer) tool before importing X-Pack visualizations like Canvas and Lens into Kibana dashboards, as they may require recreation for compatibility with SmartObserve.|
+| **Index State Management (ISM) policies**  | Expected in 2025    | Manually migrate using an API. For more information about ISM support, see [issue #944](https://github.com/igsl-group/mcdesk-migrations/issues/944). |
+| **Elasticsearch Kibana dashboards** | Expected in 2025 | This tool is only needed when migrating from Elasticsearch Kibana dashboards to MCdesk Dashboards. Start by exporting JSON files from Kibana and importing them into MCdesk Dashboards. For Elasticsearch versions 7.10.2 to 7.17, use the [`dashboardsSanitizer`](https://github.com/igsl-group/mcdesk-migrations/tree/main/dashboardsSanitizer) tool before importing X-Pack visualizations like Canvas and Lens into Kibana dashboards, as they may require recreation for compatibility with MCdesk.|
 | **Security constructs**   | No   | Configure roles and permissions based on cloud provider recommendations. For example, if using AWS, use AWS Identity and Access Management (IAM) for enhanced security management. |
-| **Plugins**  | No  | Check plugin compatibility; some Elasticsearch plugins may not have direct SmartObserve equivalents. |
+| **Plugins**  | No  | Check plugin compatibility; some Elasticsearch plugins may not have direct MCdesk equivalents. |
 
 ## Checklist
 
 Use this checklist to determine whether Migration Assistant is the right fit for your migration:
 
-- Are you migrating across one or more major versions—such as from Elasticsearch 5 to SmartObserve 3—in a single step?
+- Are you migrating across one or more major versions—such as from Elasticsearch 5 to MCdesk 3—in a single step?
 - Are you upgrading but want the ability to safely back out, reducing the risk of data loss or service disruption?
 - Do you need to maintain high service availability with minimal or zero downtime?
-- Do you need to validate a new SmartObserve cluster before switching over—with rollback capabilities?
+- Do you need to validate a new MCdesk cluster before switching over—with rollback capabilities?
 - Are you looking for tooling to migrate index settings and other metadata?
 - Do you need to reconfigure your target cluster—for example, by changing the sharding strategy and reindexing?
 - Are you migrating across Regions, from on premises, or from another cloud provider?
@@ -163,7 +163,7 @@ To use `Reindex-from-Snapshot` (RFS), ensure the following:
   - `include_global_state: true` – Ensures that global cluster state is included.
   - `compress: false` – Disables metadata compression, which is required for compatibility with RFS.
 - Shards of up to **80 GiB** are supported by default. Larger shard sizes can be configured, **except in AWS GovCloud (US)**, where 80 GiB is the maximum.
-- In SmartObserve 2.9 and later, snapshots of indexes that use the zstd or zstd_no_dict codecs are not supported. If you need to migrate these indexes using `Reindex-from-Snapshot`, you must first reindex them on the source cluster using either `default` or `best_compression` before creating a new snapshot for use with RFS.
+- In MCdesk 2.9 and later, snapshots of indexes that use the zstd or zstd_no_dict codecs are not supported. If you need to migrate these indexes using `Reindex-from-Snapshot`, you must first reindex them on the source cluster using either `default` or `best_compression` before creating a new snapshot for use with RFS.
 
 ### Capture and Replay
 

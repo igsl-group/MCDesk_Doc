@@ -6,11 +6,11 @@ nav_order: 25
 
 # Workflow templates
 
-SmartObserve provides several workflow templates for some common machine learning (ML) use cases. Using a template simplifies complex setups and provides many default values for use cases like semantic or conversational search. 
+MCdesk provides several workflow templates for some common machine learning (ML) use cases. Using a template simplifies complex setups and provides many default values for use cases like semantic or conversational search. 
 
 You can specify a workflow template when you call the [Create Workflow API]({{site.url}}{{site.baseurl}}/automating-configurations/api/create-workflow/):
 
-- To use an SmartObserve-provided workflow template, specify the template use case as the `use_case` query parameter (see the [Example](#example)). For a list of SmartObserve-provided templates, see [Supported workflow templates](#supported-workflow-templates).
+- To use an MCdesk-provided workflow template, specify the template use case as the `use_case` query parameter (see the [Example](#example)). For a list of MCdesk-provided templates, see [Supported workflow templates](#supported-workflow-templates).
 
 - To use a custom workflow template, provide the complete template in the request body. For an example of a custom template, see [an example JSON template]({{site.url}}{{site.baseurl}}/automating-configurations/api/create-workflow/#example-request-register-and-deploy-a-remote-model-json) or [an example YAML template]({{site.url}}{{site.baseurl}}/automating-configurations/api/create-workflow/#example-request-register-and-deploy-an-externally-hosted-model-yaml). 
 
@@ -36,7 +36,7 @@ POST /_plugins/_flow_framework/workflow?use_case=semantic_search_with_cohere_emb
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with a workflow ID for the created workflow:
+MCdesk responds with a workflow ID for the created workflow:
 
 ```json
 {
@@ -335,7 +335,7 @@ This workflow configures [neural sparse search]({{site.url}}{{site.baseurl}}/sea
 
 - **Use case**: `local_neural_sparse_search_bi_encoder`
 - **Created components**: 
-  - A locally hosted pretrained sparse encoding model (by default, `amazon/neural-sparse/smartobserve-neural-sparse-encoding-v1`)
+  - A locally hosted pretrained sparse encoding model (by default, `amazon/neural-sparse/mcdesk-neural-sparse-encoding-v1`)
   - An ingest pipeline with a `sparse_encoding` processor
   - A vector index configured with the pipeline
 - **Required parameters**: None

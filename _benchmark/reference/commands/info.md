@@ -3,7 +3,7 @@ layout: default
 title: info
 nav_order: 75
 parent: Command reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 redirect_from:
   - /benchmark/commands/info/
 ---
@@ -12,17 +12,17 @@ redirect_from:
 # info
 <!-- vale on -->
 
-The `info` command prints details about an SmartObserve Benchmark component.
+The `info` command prints details about an MCdesk Benchmark component.
 
 ## Usage
 
 The following example returns information about a workload named `nyc_taxis`:
 
 ```
-smartobserve-benchmark info --workload=nyc_taxis
+mcdesk-benchmark info --workload=nyc_taxis
 ```
 
-SmartObserve Benchmark returns information about the workload, as shown in the following example response:
+MCdesk Benchmark returns information about the workload, as shown in the following example response:
 
 ```
    ____                  _____                      __       ____                  __                         __
@@ -154,10 +154,10 @@ Schedule:
 You can use the following options with the `info` command:
 
 
-- `--workload-repository`: Defines the repository from where SmartObserve Benchmark loads workloads.
+- `--workload-repository`: Defines the repository from where MCdesk Benchmark loads workloads.
 - `--workload-path`: Defines the path to a downloaded or custom workload.
-- `--workload-revision`: Defines a specific revision from the workload source tree that SmartObserve Benchmark should use.
-- `--workload`: Defines the workload to use based on the workload's name. You can find a list of preloaded workloads using `smartobserve-benchmark list workloads`.
-- `--test-procedure`: Defines a test procedure to use. You can find a list of test procedures using `smartobserve-benchmark list test_procedures`.
+- `--workload-revision`: Defines a specific revision from the workload source tree that MCdesk Benchmark should use.
+- `--workload`: Defines the workload to use based on the workload's name. You can find a list of preloaded workloads using `mcdesk-benchmark list workloads`.
+- `--test-procedure`: Defines a test procedure to use. You can find a list of test procedures using `mcdesk-benchmark list test_procedures`.
 - `--include-tasks`: Defines a comma-separated list of test procedure tasks to run. By default, all tasks listed in a test procedure array are run.
 - `--exclude-tasks`: Defines a comma-separated list of test procedure tasks not to run.

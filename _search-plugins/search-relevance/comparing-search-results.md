@@ -9,7 +9,7 @@ has_children: true
 
 # Comparing search results
 
-Comparing search results, also called a _pairwise experiment_, in SmartObserve Dashboards allows you to compare results of multiple search configurations. Using this tool helps assess how results change when applying different search configurations to queries.
+Comparing search results, also called a _pairwise experiment_, in MCdesk Dashboards allows you to compare results of multiple search configurations. Using this tool helps assess how results change when applying different search configurations to queries.
 
 For example, you can see how results change when you apply one of the following query changes:
 

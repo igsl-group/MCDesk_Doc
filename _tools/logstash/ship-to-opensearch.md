@@ -1,26 +1,26 @@
 ---
 layout: default
-title: Ship events to SmartObserve
+title: Ship events to MCdesk
 parent: Logstash
 nav_order: 220
 redirect_from:
- - /clients/logstash/ship-to-smartobserve/
+ - /clients/logstash/ship-to-mcdesk/
 ---
 
-# Ship events to SmartObserve
+# Ship events to MCdesk
 
-You can ship Logstash events to an SmartObserve cluster and then visualize your events with SmartObserve Dashboards.
+You can ship Logstash events to an MCdesk cluster and then visualize your events with MCdesk Dashboards.
 
-Make sure you have [Logstash]({{site.url}}{{site.baseurl}}/tools/logstash/index#install-logstash), [SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/index/), and [SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/index/).
+Make sure you have [Logstash]({{site.url}}{{site.baseurl}}/tools/logstash/index#install-logstash), [MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/index/), and [MCdesk Dashboards]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/index/).
 {: .note }
 
-## SmartObserve output plugin
+## MCdesk output plugin
 
-To run the SmartObserve output plugin, add the following configuration in your `pipeline.conf` file:
+To run the MCdesk output plugin, add the following configuration in your `pipeline.conf` file:
 
 ```yml
 output {
-  smartobserve {
+  mcdesk {
     hosts       => "https://localhost:9200"
     user        => "admin"
     password    => "admin"
@@ -44,7 +44,7 @@ The following walkthrough shows an example of how the ship a Logstash event.
     }
 
     output {
-      smartobserve {
+      mcdesk {
         hosts       => "https://localhost:9200"
         user        => "admin"
         password    => "admin"
@@ -54,7 +54,7 @@ The following walkthrough shows an example of how the ship a Logstash event.
     }
     ```
 
-The Logstash pipeline accepts JSON input through the terminal and ships the events to an SmartObserve cluster running locally. Logstash writes the events to an index with the `logstash-logs-%{+YYYY.MM.dd}` naming convention.
+The Logstash pipeline accepts JSON input through the terminal and ships the events to an MCdesk cluster running locally. Logstash writes the events to an index with the `logstash-logs-%{+YYYY.MM.dd}` naming convention.
 
 2. Start Logstash:
 
@@ -70,7 +70,7 @@ The Logstash pipeline accepts JSON input through the terminal and ships the even
     { "amount": 10, "quantity": 2}
     ```
 
-4. Start SmartObserve Dashboards and choose **Dev Tools**:
+4. Start MCdesk Dashboards and choose **Dev Tools**:
 
     ```json
     GET _cat/indices?v
@@ -85,7 +85,7 @@ In addition to the existing authentication mechanisms, you can add a new authent
 
 ```yml
 output {    
-    smartobserve {        
+    mcdesk {        
           hosts  => ["https://hostname:port"]     
           auth_type => {            
               type => 'basic'           
@@ -106,11 +106,11 @@ The following parameters are supported in the `auth_type` setting:
 
 ## Configuration for AWS IAM Authentication
 
-To run the Logstash Output SmartObserve plugin using `aws_iam` authentication, add the following configuration:
+To run the Logstash Output MCdesk plugin using `aws_iam` authentication, add the following configuration:
 
 ```yml
 output {        
-   smartobserve {     
+   mcdesk {     
           hosts => ["https://hostname:port"]              
           auth_type => {    
               type => 'aws_iam'     
@@ -138,11 +138,11 @@ output {
 ### Optional Parameters
 
 - `template` (path): You can set the path to your own template here. If no template is specified, the plugin uses the default template.
-- `template_name` (string, default => `logstash`): Defines how the template is named inside SmartObserve.
+- `template_name` (string, default => `logstash`): Defines how the template is named inside MCdesk.
 - `service_name` (string): Defines the service name to be used for `aws_iam` authentication.
-- `legacy_template` (Boolean, default => `true`): Selects the SmartObserve template API. When `true`, uses legacy templates derived from the `_template` API. When `false`, uses the `index_template` API.
-- `default_server_major_version` (number): The SmartObserve server major version to use when it's not available from the SmartObserve root URL. If not set, the plugin throws an exception when the version can't be fetched.
-- `target_bulk_bytes` (number): The maximum number of bytes in the buffer. When the maximum is reached, Logstash will flush the data to SmartObserve. This is useful when the bulk requests are too large for the SmartObserve cluster and the cluster returns a `429` error.
+- `legacy_template` (Boolean, default => `true`): Selects the MCdesk template API. When `true`, uses legacy templates derived from the `_template` API. When `false`, uses the `index_template` API.
+- `default_server_major_version` (number): The MCdesk server major version to use when it's not available from the MCdesk root URL. If not set, the plugin throws an exception when the version can't be fetched.
+- `target_bulk_bytes` (number): The maximum number of bytes in the buffer. When the maximum is reached, Logstash will flush the data to MCdesk. This is useful when the bulk requests are too large for the MCdesk cluster and the cluster returns a `429` error.
 
 ### Credential resolution logic
 
@@ -155,16 +155,16 @@ The following list provides details on the credential resolution logic:
 
 ## Data streams
 
-The SmartObserve output plugin can store both time series datasets (such as logs, events, and metrics) and non-time series data in SmartObserve.
-The data stream is recommended to index time series datasets (such as logs, metrics, and events) into SmartObserve.
+The MCdesk output plugin can store both time series datasets (such as logs, events, and metrics) and non-time series data in MCdesk.
+The data stream is recommended to index time series datasets (such as logs, metrics, and events) into MCdesk.
 
-To learn more about data streams, see the [data stream documentation]({{site.url}}{{site.baseurl}}/smartobserve/data-streams/).
+To learn more about data streams, see the [data stream documentation]({{site.url}}{{site.baseurl}}/mcdesk/data-streams/).
 
 To ingest data into a data stream through Logstash, create the data stream and specify the name of the data stream and set the `action` setting to `create`, as shown in the following example configuration:
 
 ```yml
 output {    
-    smartobserve {        
+    mcdesk {        
           hosts  => ["https://hostname:port"]     
           auth_type => {            
               type => 'basic'           

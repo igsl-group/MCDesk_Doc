@@ -17,7 +17,7 @@ The `significant_terms` aggregation examines all documents in the foreground set
 In the sample web log data, each document has a field containing the `user-agent` of the visitor. This example searches for all requests from an iOS operating system. A regular `terms` aggregation on this foreground set returns Firefox because it has the most number of documents within this bucket. On the other hand, a `significant_terms` aggregation returns Internet Explorer (IE) because IE has a significantly higher appearance in the foreground set as compared to the background set.
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "query": {

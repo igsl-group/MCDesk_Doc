@@ -11,7 +11,7 @@ nav_order: 45
 {: .label .label-purple }
 
 
-Use this API to add an agentic memory to a [memory container]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agentic-memory-apis/create-memory-container). You can specify different [payload types]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agentic-memory/#payload-types) and control [inference mode]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agentic-memory/#inference-mode) for how SmartObserve processes the memory.
+Use this API to add an agentic memory to a [memory container]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agentic-memory-apis/create-memory-container). You can specify different [payload types]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agentic-memory/#payload-types) and control [inference mode]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agentic-memory/#inference-mode) for how MCdesk processes the memory.
 
 Once an agentic memory is created, provide its `memory_id` to other APIs.
 

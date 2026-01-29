@@ -7,22 +7,22 @@ nav_exclude: true
 permalink: /aggregations/
 redirect_from:
   - /query-dsl/aggregations/aggregations/
-  - /smartobserve/aggregations/
+  - /mcdesk/aggregations/
   - /query-dsl/aggregations/
   - /aggregations/index/
 ---
 
 # Aggregations
 
-SmartObserve isn’t just for search. Aggregations let you tap into SmartObserve's powerful analytics engine to analyze your data and extract statistics from it.
+MCdesk isn’t just for search. Aggregations let you tap into MCdesk's powerful analytics engine to analyze your data and extract statistics from it.
 
-The use cases of aggregations vary from analyzing data in real time to take some action to using SmartObserve Dashboards to create a visualization dashboard.
+The use cases of aggregations vary from analyzing data in real time to take some action to using MCdesk Dashboards to create a visualization dashboard.
 
-SmartObserve can perform aggregations on massive datasets in milliseconds. Compared to queries, aggregations consume more CPU cycles and memory.
+MCdesk can perform aggregations on massive datasets in milliseconds. Compared to queries, aggregations consume more CPU cycles and memory.
 
 ## Aggregations on text fields
 
-By default, SmartObserve doesn't support aggregations on a text field. Because text fields are tokenized, an aggregation on a text field has to reverse the tokenization process back to its original string and then formulate an aggregation based on that. This kind of an operation consumes significant memory and degrades cluster performance.
+By default, MCdesk doesn't support aggregations on a text field. Because text fields are tokenized, an aggregation on a text field has to reverse the tokenization process back to its original string and then formulate an aggregation based on that. This kind of an operation consumes significant memory and degrades cluster performance.
 
 While you can enable aggregations on text fields by setting the `fielddata` parameter to `true` in the mapping, the aggregations are still based on the tokenized words and not on the raw text.
 
@@ -67,20 +67,20 @@ GET _search
 
 If you’re only interested in the aggregation result and not in the results of the query, set `size` to 0.
 
-In the `aggs` property (you can use `aggregations` if you want), you can define any number of aggregations. Each aggregation is defined by its name and one of the types of aggregations that SmartObserve supports.
+In the `aggs` property (you can use `aggregations` if you want), you can define any number of aggregations. Each aggregation is defined by its name and one of the types of aggregations that MCdesk supports.
 
 The name of the aggregation helps you to distinguish between different aggregations in the response. The `AGG_TYPE` property is where you specify the type of aggregation.
 
 ## Sample aggregation
 
-This section uses the SmartObserve Dashboards sample ecommerce data and web log data. To add the sample data, log in to SmartObserve Dashboards, choose **Home**, and then choose **Try our sample data**. For **Sample eCommerce orders** and **Sample web logs**, choose **Add data**.
+This section uses the MCdesk Dashboards sample ecommerce data and web log data. To add the sample data, log in to MCdesk Dashboards, choose **Home**, and then choose **Try our sample data**. For **Sample eCommerce orders** and **Sample web logs**, choose **Add data**.
 
 ### avg
 
 To find the average value of the `taxful_total_price` field:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -162,7 +162,7 @@ Bucket aggregations produce buckets of documents that you can nest in other aggr
 
 The inner `aggs` keyword begins a new nested aggregation. The syntax of the parent aggregation and the nested aggregation is the same. Nested aggregations run in the context of the preceding parent aggregations.
 
-You can also pair your aggregations with search queries to narrow down things you’re trying to analyze before aggregating. If you don't add a query, SmartObserve implicitly uses the `match_all` query.
+You can also pair your aggregations with search queries to narrow down things you’re trying to analyze before aggregating. If you don't add a query, MCdesk implicitly uses the `match_all` query.
 
 ## Limitations
 

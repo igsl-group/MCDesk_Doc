@@ -82,7 +82,7 @@
         const getBreadcrumbs = result => {
             const crumbs = [...result.ancestors].filter(crumb => crumb && crumb.trim());
 
-            if (result.type === 'DOCS') crumbs.unshift(`SmartObserve ${result.versionLabel || result.version}`);
+            if (result.type === 'DOCS') crumbs.unshift(`MCdesk ${result.versionLabel || result.version}`);
             else if (result.type) crumbs.unshift(result.type);
 
             return sanitizeText(crumbs.join(' › '));
@@ -302,7 +302,7 @@ window.doResultsPageSearch = async (query, type, version) => {
 
               const contentCite = document.createElement('cite');
               const crumbs = [...result.ancestors].filter(crumb => crumb && crumb.trim());
-              if (result.type === 'DOCS') crumbs.unshift(`SmartObserve ${result.versionLabel || result.version}`);
+              if (result.type === 'DOCS') crumbs.unshift(`MCdesk ${result.versionLabel || result.version}`);
               else if (result.type) crumbs.unshift(result.type);
               contentCite.textContent = crumbs.join(' › ')?.replace?.(/</g, '&lt;');
               contentCite.style.fontSize = '.8em';

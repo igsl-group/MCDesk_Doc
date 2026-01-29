@@ -59,7 +59,7 @@ body: |
             "metadata_url": "https://idp.example.com/saml/metadata"
           },
           "sp": {
-            "entity_id": "smartobserve"
+            "entity_id": "mcdesk"
           }
         }
       },
@@ -98,7 +98,7 @@ PATCH /_plugins/_security/api/securityconfig
             "metadata_url": "https://idp.example.com/saml/metadata"
           },
           "sp": {
-            "entity_id": "smartobserve"
+            "entity_id": "mcdesk"
           }
         }
       },
@@ -140,7 +140,7 @@ response = client.security.patch_configuration(
               "metadata_url": "https://idp.example.com/saml/metadata"
             },
             "sp": {
-              "entity_id": "smartobserve"
+              "entity_id": "mcdesk"
             }
           }
         },

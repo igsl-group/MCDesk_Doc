@@ -9,7 +9,7 @@ nav_order: 150
 # Geo IP processor
 
 The `geoip` processor enriches events with geographic information extracted from IP addresses contained in the events.
-By default, SmartObserve Data Prepper uses the [MaxMind GeoLite2](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) geolocation database.
+By default, MCdesk Data Prepper uses the [MaxMind GeoLite2](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) geolocation database.
 Data Prepper administrators can configure the databases using the [`geoip_service`]({{site.url}}{{site.baseurl}}/data-prepper/managing-data-prepper/extensions/geoip-service/) extension configuration.
 
 ## Usage

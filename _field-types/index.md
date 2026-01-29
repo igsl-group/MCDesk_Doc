@@ -5,14 +5,14 @@ nav_order: 1
 nav_exclude: true
 permalink: /field-types/
 redirect_from: 
-  - /smartobserve/mappings/
+  - /mcdesk/mappings/
   - /field-types/mappings/
   - /field-types/index/
 ---
 
 # Mappings and field types
 
-Mappings tell SmartObserve how to store and index your documents and their fields. You can specify the data type for each field (for example, `year` as `date`) to make storage and querying more efficient. 
+Mappings tell MCdesk how to store and index your documents and their fields. You can specify the data type for each field (for example, `year` as `date`) to make storage and querying more efficient. 
 
 While [dynamic mappings](#dynamic-mapping) automatically add new data and fields, using explicit mappings is recommended. Explicit mappings let you define the exact structure and data types upfront. This helps to maintain data consistency and optimize performance, especially for large datasets or high-volume indexing operations.
 
@@ -20,23 +20,23 @@ For example, with explicit mappings, you can ensure that `year` is treated as te
 
 ## Dynamic mapping
 
-When you index a document, SmartObserve adds fields automatically with dynamic mapping. You can also explicitly add fields to an index mapping.
+When you index a document, MCdesk adds fields automatically with dynamic mapping. You can also explicitly add fields to an index mapping.
 
 ### Dynamic mapping types
 
 Type | Description
 :--- | :---
-`null` | A `null` field can't be indexed or searched. When a field is set to null, SmartObserve behaves as if the field has no value.
-`boolean` | SmartObserve accepts `true` and `false` as Boolean values. An empty string is equal to `false.`
+`null` | A `null` field can't be indexed or searched. When a field is set to null, MCdesk behaves as if the field has no value.
+`boolean` | MCdesk accepts `true` and `false` as Boolean values. An empty string is equal to `false.`
 `float` | A single-precision, 32-bit IEEE 754 floating-point number, restricted to finite values.
 `double` | A double-precision, 64-bit IEEE 754 floating-point number, restricted to finite values.
 `integer` | A signed 32-bit number.
 `object` | Objects are standard JSON objects, which can have fields and mappings of their own. For example, a `movies` object can have additional properties such as `title`, `year`, and `director`.
-`array` | SmartObserve does not have a specific array data type. Arrays are represented as a set of values of the same data type (for example, integers or strings) associated with a field. When indexing, you can pass multiple values for a field, and SmartObserve will treat it as an array. Empty arrays are valid and recognized as array fields with zero elements---not as fields with no values. SmartObserve supports querying and filtering arrays, including checking for values, range queries, and array operations like concatenation and intersection. Nested arrays, which may contain complex objects or other arrays, can also be used for advanced data modeling. 
+`array` | MCdesk does not have a specific array data type. Arrays are represented as a set of values of the same data type (for example, integers or strings) associated with a field. When indexing, you can pass multiple values for a field, and MCdesk will treat it as an array. Empty arrays are valid and recognized as array fields with zero elements---not as fields with no values. MCdesk supports querying and filtering arrays, including checking for values, range queries, and array operations like concatenation and intersection. Nested arrays, which may contain complex objects or other arrays, can also be used for advanced data modeling. 
 `text` | A string sequence of characters that represent full-text values.
 `keyword` | A string sequence of structured characters, such as an email address or ZIP code.
 date detection string | Enabled by default, if new string fields match a date's format, then the string is processed as a `date` field. For example, `date: "2012/03/11"` is processed as a date.
-numeric detection string | If disabled, SmartObserve may automatically process numeric values as strings when they should be processed as numbers. When enabled, SmartObserve can process strings into `long`, `integer`, `short`, `byte`, `double`, `float`, `half_float`, `scaled_float`, and `unsigned_long`. Default is disabled.
+numeric detection string | If disabled, MCdesk may automatically process numeric values as strings when they should be processed as numbers. When enabled, MCdesk can process strings into `long`, `integer`, `short`, `byte`, `double`, `float`, `half_float`, `scaled_float`, and `unsigned_long`. Default is disabled.
 
 ### Dynamic templates
 
@@ -131,7 +131,7 @@ Mapping parameters are used to configure the behavior of index fields. See [Mapp
 
 ## Mapping limit settings
 
-SmartObserve has certain mapping limits and settings, such as the settings listed in the following table. Settings can be configured based on your requirements. 
+MCdesk has certain mapping limits and settings, such as the settings listed in the following table. Settings can be configured based on your requirements. 
 
 | Setting | Default value | Allowed value | Type | Description |
 |-|-|-|-|-|

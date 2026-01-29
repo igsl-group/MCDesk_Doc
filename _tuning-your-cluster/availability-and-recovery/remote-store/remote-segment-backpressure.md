@@ -27,7 +27,7 @@ At every segment merge, a corresponding refresh is initiated. Because this refre
 
 ## Remote segment backpressure settings
 
-Remote segment backpressure adds several settings to the standard SmartObserve cluster settings. The settings are dynamic, so you can change the default backpressure behavior without restarting your cluster. 
+Remote segment backpressure adds several settings to the standard MCdesk cluster settings. The settings are dynamic, so you can change the default backpressure behavior without restarting your cluster. 
 
 The following table lists the settings used for activating backpressure. For threshold calculation, see [Thresholds](#thresholds).
 

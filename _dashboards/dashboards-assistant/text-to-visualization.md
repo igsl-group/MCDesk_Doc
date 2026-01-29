@@ -1,17 +1,17 @@
 ---
 layout: default
 title: Text to visualization
-parent: SmartObserve Assistant for SmartObserve Dashboards
+parent: MCdesk Assistant for MCdesk Dashboards
 nav_order: 1
 has_children: false
 ---
 
 # Text to visualization
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
-The SmartObserve Dashboards Assistant can create visualizations using natural language instructions.
+The MCdesk Dashboards Assistant can create visualizations using natural language instructions.
 
 ## Configuration
 
@@ -19,7 +19,7 @@ To configure text to visualization, use the following steps.
 
 ### Step 1: Enable text to visualization
 
-To enable text to visualization, configure the following `smartobserve_dashboards.yml` setting:
+To enable text to visualization, configure the following `mcdesk_dashboards.yml` setting:
 
 ```yaml
 assistant.text2viz.enabled: true
@@ -222,7 +222,7 @@ POST /_plugins/_ml/agents/<ROOT_AGENT_ID>/_execute
   "parameters": {
     "input_question": "find unique visitors and average bytes every 3 hours",
     "input_instruction": "display with different layers, use independent scale for different layers, display unique visitors with light blue bar chart",
-    "ppl": "source=smartobserve_dashboards_sample_data_ecommerce| stats DISTINCT_COUNT(user) as unique_visitors, AVG(taxful_total_price) as avg_bytes by span(order_date, 3h)",
+    "ppl": "source=mcdesk_dashboards_sample_data_ecommerce| stats DISTINCT_COUNT(user) as unique_visitors, AVG(taxful_total_price) as avg_bytes by span(order_date, 3h)",
     "sampleData": """[{\"unique_visitors\":15,\"avg_bytes\":90.98684210526316,\"span(order_date,3h)\":\"2024-04-25 00:00:00\"},{\"unique_visitors\":14,\"avg_bytes\":72.72083333333333,\"span(order_date,3h)\":\"2024-04-25 03:00:00\"}]""",
     "dataSchema": """[{\"name\":\"unique_visitors\",\"type\":\"integer\"},{\"name\":\"avg_bytes\",\"type\":\"double\"},{\"name\":\"span(order_date,3h)\",\"type\":\"timestamp\"}]"""
   }
@@ -256,11 +256,11 @@ Parameter | Required/Optional | Description
 `sampleData` | Required | Provides sample entries from the data that will populate the visualization.
 `input_instruction` | Optional | Specifies the styling instructions, such as colors, for the visualization.
 
-## Generating visualizations from text in SmartObserve Dashboards
+## Generating visualizations from text in MCdesk Dashboards
 
-To generate visualizations from text in SmartObserve Dashboards, use the following steps:
+To generate visualizations from text in MCdesk Dashboards, use the following steps:
 
-1. On the top menu bar, go to **SmartObserve Dashboards > Visualize** and then select **Create visualization**.
+1. On the top menu bar, go to **MCdesk Dashboards > Visualize** and then select **Create visualization**.
 
 1. In the **New Visualization** dialog, select **Natural language**, as shown in the following image.
 

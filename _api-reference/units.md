@@ -3,14 +3,14 @@ layout: default
 title: Supported units
 nav_order: 90
 redirect_from:
-  - /smartobserve/units/
+  - /mcdesk/units/
 ---
 
 # Supported units
 **Introduced 1.0**
 {: .label .label-purple }
 
-SmartObserve supports the following units for all REST operations:
+MCdesk supports the following units for all REST operations:
 
 Unit | Description | Example
 :--- | :--- | :---
@@ -19,4 +19,4 @@ Bytes | The supported units for byte size are `b` for bytes, `kb` for kibibytes,
 Distances | The supported units for distance are `mi` for miles, `yd` for yards, `ft` for feet, `in` for inches, `km` for kilometers, `m` for meters, `cm` for centimeters, `mm` for millimeters, and `nmi` or `NM` for nautical miles. | `5mi` or `4ft`
 Quantities without units | For large values that don't have a unit, use `k` for kilo, `m` for mega, `g` for giga, `t` for tera, and `p` for peta. | `5k` for 5,000
 
-To convert output units to human-readable values, see [Common REST parameters]({{site.url}}{{site.baseurl}}/smartobserve/common-parameters/).
+To convert output units to human-readable values, see [Common REST parameters]({{site.url}}{{site.baseurl}}/mcdesk/common-parameters/).

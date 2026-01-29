@@ -52,7 +52,7 @@ To learn more about model groups, see [Model access control]({{site.url}}{{site.
 
 You can create a standalone connector that can be reused for multiple models. Alternatively, you can specify a connector when creating a model so that it can be used only for that model. For more information and example connectors, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/).
 
-The Connectors Create API, `/_plugins/_ml/connectors/_create`, creates connectors that facilitate registering and deploying external models in SmartObserve. Using the `endpoint` parameter, you can connect ML Commons to any supported ML tool by using its specific API endpoint. For example, you can connect to a ChatGPT model by using the `api.openai.com` endpoint:
+The Connectors Create API, `/_plugins/_ml/connectors/_create`, creates connectors that facilitate registering and deploying external models in MCdesk. Using the `endpoint` parameter, you can connect ML Commons to any supported ML tool by using its specific API endpoint. For example, you can connect to a ChatGPT model by using the `api.openai.com` endpoint:
 
 ```json
 POST /_plugins/_ml/connectors/_create
@@ -110,7 +110,7 @@ POST /_plugins/_ml/models/_register
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns the task ID of the register operation:
+MCdesk returns the task ID of the register operation:
 
 ```json
 {
@@ -147,7 +147,7 @@ Take note of the returned `model_id` because you’ll need it to deploy the mode
 
 ## Step 4: Deploy the model
 
-Starting in SmartObserve version 2.13, externally hosted models are deployed automatically when you send a Predict API request for the first time. To disable automatic deployment for an externally hosted model, set `plugins.ml_commons.model_auto_deploy.enable` to `false`:
+Starting in MCdesk version 2.13, externally hosted models are deployed automatically when you send a Predict API request for the first time. To disable automatic deployment for an externally hosted model, set `plugins.ml_commons.model_auto_deploy.enable` to `false`:
 
 ```json
 PUT _cluster/settings

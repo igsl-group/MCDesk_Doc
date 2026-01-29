@@ -5,7 +5,7 @@ has_children: true
 has_toc: false
 nav_order: 25
 redirect_from:
-  - /smartobserve/rest-api/document-apis/index/
+  - /mcdesk/rest-api/document-apis/index/
   - /api-reference/document-apis/
 ---
 

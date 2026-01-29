@@ -30,10 +30,10 @@ The `avg_bucket` aggregation takes the following parameters.
 
 ## Example
 
-The following example creates a date histogram with a one-week interval from the SmartObserve Dashboards e-commerce sample data. The `sum` sub-aggregation adds up the `taxful_total_price` for each week. Finally, the `percentiles_bucket` aggregation calculates the percentile values for each week from these sums:
+The following example creates a date histogram with a one-week interval from the MCdesk Dashboards e-commerce sample data. The `sum` sub-aggregation adds up the `taxful_total_price` for each week. Finally, the `percentiles_bucket` aggregation calculates the percentile values for each week from these sums:
 
 ```json
-POST /smartobserve_dashboards_sample_data_ecommerce/_search
+POST /mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -159,7 +159,7 @@ The next example computes percentiles using the same data as in the previous exa
 The example is as follows:
 
 ```json
-POST /smartobserve_dashboards_sample_data_ecommerce/_search
+POST /mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {

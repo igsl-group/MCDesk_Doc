@@ -58,18 +58,18 @@ Using the API to return the state of snapshots that are not currently running ca
 
 ## Example request
 
-The following request returns the status of `my-first-snapshot` in the `my-smartobserve-repo` repository. Unavailable snapshots are ignored.
+The following request returns the status of `my-first-snapshot` in the `my-mcdesk-repo` repository. Unavailable snapshots are ignored.
 
 <!-- spec_insert_start
 component: example_code
-rest: GET /_snapshot/my-smartobserve-repo/my-first-snapshot/_status
+rest: GET /_snapshot/my-mcdesk-repo/my-first-snapshot/_status
 body: |
 {
    "ignore_unavailable": true
 }
 -->
 {% capture step1_rest %}
-GET /_snapshot/my-smartobserve-repo/my-first-snapshot/_status
+GET /_snapshot/my-mcdesk-repo/my-first-snapshot/_status
 {
   "ignore_unavailable": true
 }
@@ -79,7 +79,7 @@ GET /_snapshot/my-smartobserve-repo/my-first-snapshot/_status
 
 
 response = client.snapshot.status(
-  repository = "my-smartobserve-repo",
+  repository = "my-mcdesk-repo",
   snapshot = "my-first-snapshot"
 )
 
@@ -95,14 +95,14 @@ response = client.snapshot.status(
 
 The example that follows corresponds to the request above in the [Example request](#example-request) section.
 
-The `GET _snapshot/my-smartobserve-repo/my-first-snapshot/_status` request returns the following fields:
+The `GET _snapshot/my-mcdesk-repo/my-first-snapshot/_status` request returns the following fields:
 
 ````json
 {
   "snapshots" : [
     {
       "snapshot" : "my-first-snapshot",
-      "repository" : "my-smartobserve-repo",
+      "repository" : "my-mcdesk-repo",
       "uuid" : "dCK4Qth-TymRQ7Tu7Iga0g",
       "state" : "SUCCESS",
       "include_global_state" : true,
@@ -127,7 +127,7 @@ The `GET _snapshot/my-smartobserve-repo/my-first-snapshot/_status` request retur
         "time_in_millis" : 14054
       },
       "indices" : {
-        ".smartobserve-observability" : {
+        ".mcdesk-observability" : {
           "shards_stats" : {
             "initializing" : 0,
             "started" : 0,
@@ -205,7 +205,7 @@ The `GET _snapshot/my-smartobserve-repo/my-first-snapshot/_status` request retur
             }
           }
         },
-        "smartobserve_dashboards_sample_data_flights" : {
+        "mcdesk_dashboards_sample_data_flights" : {
           "shards_stats" : {
             "initializing" : 0,
             "started" : 0,
@@ -361,7 +361,7 @@ The `GET _snapshot/my-smartobserve-repo/my-first-snapshot/_status` request retur
             }
           }
         },
-        ".smartobserve-notifications-config" : {
+        ".mcdesk-notifications-config" : {
           "shards_stats" : {
             "initializing" : 0,
             "started" : 0,
@@ -457,4 +457,4 @@ All property values are integers.
 :--- | :--- | :--- |
 | shards_stats | Object | See [Shard stats](#shard-stats). |
 | stats | Object | See [Snapshot file stats](#snapshot-file-stats). |
-| shards | List of objects | Contains information about the shards included in the snapshot. SmartObserve returns the following properties about the shard: <br /><br /> **stage**: The current state of shards in the snapshot. Shard states are: <br /><br /> * DONE: The number of shards in the snapshot that were successfully stored in the repository. <br /><br /> * FAILURE: The number of shards in the snapshot that were not successfully stored in the repository. <br /><br /> * FINALIZE: The number of shards in the snapshot that are in the finalizing stage of being stored in the repository. <br /><br />* INIT: The number of shards in the snapshot that are in the initializing stage of being stored in the repository.<br /><br />* STARTED:  The number of shards in the snapshot that are in the started stage of being stored in the repository.<br /><br /> **stats**: See [Snapshot file stats](#snapshot-file-stats). <br /><br /> **total**: The total number and sizes of files referenced by the snapshot. <br /><br /> **start_time_in_millis**: The time (in milliseconds) when snapshot creation began. <br /><br /> **time_in_millis**: The total amount of time (in milliseconds) that the snapshot took to complete.  |
+| shards | List of objects | Contains information about the shards included in the snapshot. MCdesk returns the following properties about the shard: <br /><br /> **stage**: The current state of shards in the snapshot. Shard states are: <br /><br /> * DONE: The number of shards in the snapshot that were successfully stored in the repository. <br /><br /> * FAILURE: The number of shards in the snapshot that were not successfully stored in the repository. <br /><br /> * FINALIZE: The number of shards in the snapshot that are in the finalizing stage of being stored in the repository. <br /><br />* INIT: The number of shards in the snapshot that are in the initializing stage of being stored in the repository.<br /><br />* STARTED:  The number of shards in the snapshot that are in the started stage of being stored in the repository.<br /><br /> **stats**: See [Snapshot file stats](#snapshot-file-stats). <br /><br /> **total**: The total number and sizes of files referenced by the snapshot. <br /><br /> **start_time_in_millis**: The time (in milliseconds) when snapshot creation began. <br /><br /> **time_in_millis**: The total amount of time (in milliseconds) that the snapshot took to complete.  |

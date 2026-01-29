@@ -6,7 +6,7 @@ has_children: false
 parent: Geographic field types
 grand_parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/geo-shape/
+  - /mcdesk/supported-field-types/geo-shape/
   - /field-types/geo-shape/
 ---
 
@@ -14,7 +14,7 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-A geoshape field type contains a geographic shape, such as a polygon or a collection of geographic points. To index a geoshape, SmartObserve tesselates the shape into a triangular mesh and stores each triangle in a BKD tree. This provides a 10<sup>-7</sup>decimal degree of precision, which represents near-perfect spatial resolution. Performance of this process is mostly impacted by the number of vertices in a polygon you are indexing.
+A geoshape field type contains a geographic shape, such as a polygon or a collection of geographic points. To index a geoshape, MCdesk tesselates the shape into a triangular mesh and stores each triangle in a BKD tree. This provides a 10<sup>-7</sup>decimal degree of precision, which represents near-perfect spatial resolution. Performance of this process is mostly impacted by the number of vertices in a polygon you are indexing.
 
 ## Example
 
@@ -48,9 +48,9 @@ In both GeoJSON and WKT, the coordinates must be specified in the `longitude, la
 
 The following table describes the possible geoshape types and their relationship to the GeoJSON and WKT types.
 
-SmartObserve type | GeoJSON type | WKT type | Description 
+MCdesk type | GeoJSON type | WKT type | Description 
 :--- | :--- | :--- | :--- 
-[`point`](#point) | Point | POINT | A geographic point specified by latitude and longitude. SmartObserve uses World Geodetic System (WGS84) coordinates.
+[`point`](#point) | Point | POINT | A geographic point specified by latitude and longitude. MCdesk uses World Geodetic System (WGS84) coordinates.
 [`linestring`](#linestring) | LineString | LINESTRING | A line specified by two or more points. May be a straight line or a path of connected line segments.
 [`polygon`](#polygon) | Polygon | POLYGON | A polygon specified by a list of vertices in coordinate form. The polygon must be closed, meaning the last point must be the same as the first point. Therefore, to create an n-gon, n+1 vertices are required. The minimum number of vertices is four, which creates a triangle.
 [`multipoint`](#multipoint) | MultiPoint | MULTIPOINT | An array of discrete related points that are not connected.
@@ -191,7 +191,7 @@ PUT testindex/_doc/4
 ```
 {% include copy-curl.html %}
 
-You can specify a polygon in SmartObserve by listing its vertices in clockwise or counterclockwise order. This works well for polygons that do not cross the date line (that are narrower than 180&deg;). However, a polygon that crosses the date line (is wider than 180&deg;) might be ambiguous because WKT does not impose a specific order on vertices. Thus, you must specify polygons that cross the date line by listing their vertices in counterclockwise order. 
+You can specify a polygon in MCdesk by listing its vertices in clockwise or counterclockwise order. This works well for polygons that do not cross the date line (that are narrower than 180&deg;). However, a polygon that crosses the date line (is wider than 180&deg;) might be ambiguous because WKT does not impose a specific order on vertices. Thus, you must specify polygons that cross the date line by listing their vertices in counterclockwise order. 
 
 You can define an [`orientation`](#parameters) parameter to specify the vertex traversal order at mapping time:
 

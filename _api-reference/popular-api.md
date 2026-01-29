@@ -3,14 +3,14 @@ layout: default
 title: Popular APIs
 nav_order: 96
 redirect_from:
-  - /smartobserve/popular-api/
+  - /mcdesk/popular-api/
 ---
 
 # Popular APIs
 **Introduced 1.0**
 {: .label .label-purple }
 
-This page contains example requests for popular SmartObserve operations.
+This page contains example requests for popular MCdesk operations.
 
 
 ---
@@ -69,7 +69,7 @@ PUT my-logs/_doc/1
 
 ## Index several documents at once
 
-The blank line at the end of the request body is required. If you omit the `_id` field, SmartObserve generates a random ID.
+The blank line at the end of the request body is required. If you omit the `_id` field, MCdesk generates a random ID.
 
 ```json
 POST _bulk

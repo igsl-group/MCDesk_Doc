@@ -6,19 +6,19 @@ has_children: false
 parent: .NET clients
 ---
 
-# Low-level .NET client (SmartObserve.Net)
+# Low-level .NET client (MCdesk.Net)
 
-SmartObserve.Net is a low-level .NET client that provides the foundational layer of communication with SmartObserve. It is dependency free, and it can handle round-robin load balancing, transport, and the basic request/response cycle. SmartObserve.Net contains all SmartObserve API endpoints as methods. When using SmartObserve.Net, you need to construct the queries yourself.
+MCdesk.Net is a low-level .NET client that provides the foundational layer of communication with MCdesk. It is dependency free, and it can handle round-robin load balancing, transport, and the basic request/response cycle. MCdesk.Net contains all MCdesk API endpoints as methods. When using MCdesk.Net, you need to construct the queries yourself.
 
-This getting started guide illustrates how to connect to SmartObserve, index documents, and run queries. For the client source code, see the [smartobserve-net repo](https://github.com/igsl-group/smartobserve-net).
+This getting started guide illustrates how to connect to MCdesk, index documents, and run queries. For the client source code, see the [mcdesk-net repo](https://github.com/igsl-group/mcdesk-net).
 
 ## Stable Release
 
-This documentation reflects the latest updates available in the [GitHub repository](https://github.com/igsl-group/smartobserve-net) and may include changes unavailable in the current stable release. The current stable release in NuGet is [1.2.0](https://www.nuget.org/packages/SmartObserve.Net.Auth.AwsSigV4/1.2.0).
+This documentation reflects the latest updates available in the [GitHub repository](https://github.com/igsl-group/mcdesk-net) and may include changes unavailable in the current stable release. The current stable release in NuGet is [1.2.0](https://www.nuget.org/packages/MCdesk.Net.Auth.AwsSigV4/1.2.0).
 
 ## Example
 
-The following example illustrates connecting to SmartObserve, indexing documents, and sending queries on the data. It uses the Student class to represent one student, which is equivalent to one document in the index.
+The following example illustrates connecting to MCdesk, indexing documents, and sending queries on the data. It uses the Student class to represent one student, which is equivalent to one document in the index.
 
 ```cs
 public class Student
@@ -34,11 +34,11 @@ public class Student
 
 ## Installing the Opensearch.Net client
 
-To install Opensearch.Net, download the [Opensearch.Net NuGet package](https://www.nuget.org/packages/SmartObserve.Net) and add it to your project in an IDE of your choice. In Microsoft Visual Studio, follow the steps below: 
+To install Opensearch.Net, download the [Opensearch.Net NuGet package](https://www.nuget.org/packages/MCdesk.Net) and add it to your project in an IDE of your choice. In Microsoft Visual Studio, follow the steps below: 
 - In the **Solution Explorer** panel, right-click on your solution or project and select **Manage NuGet Packages for Solution**.
-- Search for the SmartObserve.Net NuGet package, and select **Install**.
+- Search for the MCdesk.Net NuGet package, and select **Install**.
 
-Alternatively, you can add SmartObserve.Net to your .csproj file:
+Alternatively, you can add MCdesk.Net to your .csproj file:
 
 ```xml
 <Project>
@@ -50,35 +50,35 @@ Alternatively, you can add SmartObserve.Net to your .csproj file:
 ```
 {% include copy.html %}
 
-## Connecting to SmartObserve
+## Connecting to MCdesk
 
-Use the default constructor when creating an SmartObserveLowLevelClient object to connect to the default SmartObserve host (`http://localhost:9200`). 
+Use the default constructor when creating an MCdeskLowLevelClient object to connect to the default MCdesk host (`http://localhost:9200`). 
 
 ```cs
-var client  = new SmartObserveLowLevelClient();
+var client  = new MCdeskLowLevelClient();
 ```
 {% include copy.html %}
 
-To connect to your SmartObserve cluster through a single node with a known address, create a ConnectionConfiguration object with that address and pass it to the SmartObserve.Net constructor:
+To connect to your MCdesk cluster through a single node with a known address, create a ConnectionConfiguration object with that address and pass it to the MCdesk.Net constructor:
 
 ```cs
 var nodeAddress = new Uri("http://myserver:9200");
 var config = new ConnectionConfiguration(nodeAddress);
-var client = new SmartObserveLowLevelClient(config);
+var client = new MCdeskLowLevelClient(config);
 ```
 {% include copy.html %}
 
-You can also use a [connection pool]({{site.url}}{{site.baseurl}}/clients/dot-net-conventions#connection-pools) to manage the nodes in the cluster. Additionally, you can set up a connection configuration to have SmartObserve return the response as formatted JSON.
+You can also use a [connection pool]({{site.url}}{{site.baseurl}}/clients/dot-net-conventions#connection-pools) to manage the nodes in the cluster. Additionally, you can set up a connection configuration to have MCdesk return the response as formatted JSON.
 
 ```cs
 var uri = new Uri("http://localhost:9200");
 var connectionPool = new SingleNodeConnectionPool(uri);
 var settings = new ConnectionConfiguration(connectionPool).PrettyJson();
-var client = new SmartObserveLowLevelClient(settings);
+var client = new MCdeskLowLevelClient(settings);
 ```
 {% include copy.html %}
 
-To connect to your SmartObserve cluster using multiple nodes, create a connection pool with their addresses. In this example, a [`SniffingConnectionPool`]({{site.url}}{{site.baseurl}}/clients/dot-net-conventions#connection-pools) is used because it keeps track of nodes being removed or added to the cluster, so it works best for clusters that scale automatically. 
+To connect to your MCdesk cluster using multiple nodes, create a connection pool with their addresses. In this example, a [`SniffingConnectionPool`]({{site.url}}{{site.baseurl}}/clients/dot-net-conventions#connection-pools) is used because it keeps track of nodes being removed or added to the cluster, so it works best for clusters that scale automatically. 
 
 ```cs
 var uris = new[]
@@ -89,17 +89,17 @@ var uris = new[]
 };
 var connectionPool = new SniffingConnectionPool(uris);
 var settings = new ConnectionConfiguration(connectionPool).PrettyJson();
-var client = new SmartObserveLowLevelClient(settings);
+var client = new MCdeskLowLevelClient(settings);
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Service
+## Connecting to Amazon MCdesk Service
 
-The following example illustrates connecting to Amazon SmartObserve Service:
+The following example illustrates connecting to Amazon MCdesk Service:
 
 ```cs
-using SmartObserve.Client;
-using SmartObserve.Net.Auth.AwsSigV4;
+using MCdesk.Client;
+using MCdesk.Net.Auth.AwsSigV4;
 
 namespace Application
 {
@@ -108,9 +108,9 @@ namespace Application
         static void Main(string[] args)
         {
             var endpoint = new Uri("https://search-xxx.region.es.amazonaws.com");
-            var connection = new AwsSigV4HttpConnection(RegionEndpoint.APSoutheast2, service: AwsSigV4HttpConnection.SmartObserveService);
+            var connection = new AwsSigV4HttpConnection(RegionEndpoint.APSoutheast2, service: AwsSigV4HttpConnection.MCdeskService);
             var config = new ConnectionSettings(endpoint, connection);
-            var client = new SmartObserveClient(config);
+            var client = new MCdeskClient(config);
 
             Console.WriteLine($"{client.RootNodeInfo().Version.Distribution}: {client.RootNodeInfo().Version.Number}");
         }
@@ -119,13 +119,13 @@ namespace Application
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Serverless
+## Connecting to Amazon MCdesk Serverless
 
-The following example illustrates connecting to Amazon SmartObserve Serverless Service:
+The following example illustrates connecting to Amazon MCdesk Serverless Service:
 
 ```cs
-using SmartObserve.Client;
-using SmartObserve.Net.Auth.AwsSigV4;
+using MCdesk.Client;
+using MCdesk.Net.Auth.AwsSigV4;
 
 namespace Application
 {
@@ -134,9 +134,9 @@ namespace Application
         static void Main(string[] args)
         {
             var endpoint = new Uri("https://search-xxx.region.aoss.amazonaws.com");
-            var connection = new AwsSigV4HttpConnection(RegionEndpoint.APSoutheast2, service: AwsSigV4HttpConnection.SmartObserveServerlessService);
+            var connection = new AwsSigV4HttpConnection(RegionEndpoint.APSoutheast2, service: AwsSigV4HttpConnection.MCdeskServerlessService);
             var config = new ConnectionSettings(endpoint, connection);
-            var client = new SmartObserveClient(config);
+            var client = new MCdeskClient(config);
 
             Console.WriteLine($"{client.RootNodeInfo().Version.Distribution}: {client.RootNodeInfo().Version.Number}");
         }
@@ -148,11 +148,11 @@ namespace Application
 
 ## Using ConnectionSettings
 
-`ConnectionConfiguration` is used to pass configuration options to the SmartObserve.Net client. `ConnectionSettings` inherits from `ConnectionConfiguration` and provides additional configuration options.
+`ConnectionConfiguration` is used to pass configuration options to the MCdesk.Net client. `ConnectionSettings` inherits from `ConnectionConfiguration` and provides additional configuration options.
 The following example uses `ConnectionSettings` to:
 - Set the default index name for requests that don't specify the index name.
 - Enable gzip-compressed requests and responses.
-- Signal to SmartObserve to return formatted JSON. 
+- Signal to MCdesk to return formatted JSON. 
 - Make field names lowercase.
 
 ```cs
@@ -164,7 +164,7 @@ var settings = new ConnectionSettings(connectionPool)
     .PrettyJson()
     .DefaultFieldNameInferrer(f => f.ToLower());
 
-var client = new SmartObserveLowLevelClient(settings);
+var client = new MCdeskLowLevelClient(settings);
 ```
 {% include copy.html %}
 
@@ -285,9 +285,9 @@ Console.WriteLine(searchResponse.Body);
 ```
 {% include copy.html %}
 
-## Using SmartObserve.Net methods asynchronously
+## Using MCdesk.Net methods asynchronously
 
-For applications that require asynchronous code, all method calls in SmartObserve.Client have asynchronous counterparts:
+For applications that require asynchronous code, all method calls in MCdesk.Client have asynchronous counterparts:
 
 ```cs
 // synchronous method
@@ -302,7 +302,7 @@ var response = client.IndexAsync<StringResponse>("students", "100",
 
 ## Handling exceptions
 
-By default, SmartObserve.Net does not throw exceptions when an operation is unsuccessful. In particular, SmartObserve.Net does not throw exceptions if the response status code has one of the expected values for this request. For example, the following query searches for a document in an index that does not exist:
+By default, MCdesk.Net does not throw exceptions when an operation is unsuccessful. In particular, MCdesk.Net does not throw exceptions if the response status code has one of the expected values for this request. For example, the following query searches for a document in an index that does not exist:
 
 ```cs
 var searchResponse = client.Search<StringResponse>("students1",
@@ -349,14 +349,14 @@ The response contains an error status code 404, which is one of the expected err
 }
 ```
 
-To configure SmartObserve.Net to throw exceptions, turn on the `ThrowExceptions()` setting on `ConnectionConfiguration`:
+To configure MCdesk.Net to throw exceptions, turn on the `ThrowExceptions()` setting on `ConnectionConfiguration`:
 
 ```cs
 var uri = new Uri("http://localhost:9200");
 var connectionPool = new SingleNodeConnectionPool(uri);
 var settings = new ConnectionConfiguration(connectionPool)
                         .PrettyJson().ThrowExceptions();
-var client = new SmartObserveLowLevelClient(settings);
+var client = new MCdeskLowLevelClient(settings);
 ```
 {% include copy.html %}
 
@@ -377,8 +377,8 @@ Console.WriteLine("Original Exception: " + searchResponse.OriginalException);
 The following program creates an index, indexes data, and searches for documents.
 
 ```cs
-using SmartObserve.Net;
-using SmartObserve.Client;
+using MCdesk.Net;
+using MCdesk.Client;
 
 namespace NetClientProgram;
 
@@ -391,7 +391,7 @@ internal class Program
         var connectionPool = new SingleNodeConnectionPool(uri);
         var settings = new ConnectionSettings(connectionPool)
             .PrettyJson();
-        var client = new SmartObserveLowLevelClient(settings);
+        var client = new MCdeskLowLevelClient(settings);
 
 
         Console.WriteLine("Indexing one student......");

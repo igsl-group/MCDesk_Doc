@@ -7,7 +7,7 @@ nav_order: 40
 
 # Get Workflow Status API
 
-[Provisioning a workflow]({{site.url}}{{site.baseurl}}/automating-configurations/api/provision-workflow/) may take a significant amount of time, particularly when the action is associated with SmartObserve indexing operations. The Get Workflow State API permits monitoring of the provisioning deployment status until it is complete.
+[Provisioning a workflow]({{site.url}}{{site.baseurl}}/automating-configurations/api/provision-workflow/) may take a significant amount of time, particularly when the action is associated with MCdesk indexing operations. The Get Workflow State API permits monitoring of the provisioning deployment status until it is complete.
 
 ## Endpoints
 
@@ -59,9 +59,9 @@ GET /_plugins/_flow_framework/workflow/8xL8bowB8y25Tqfenm50/_status
 
 ## Example response
 
-SmartObserve responds with a summary of the provisioning status and a list of created resources. 
+MCdesk responds with a summary of the provisioning status and a list of created resources. 
 
-Before provisioning has begun, SmartObserve does not return any resources:
+Before provisioning has begun, MCdesk does not return any resources:
 
 ```json
 {
@@ -70,7 +70,7 @@ Before provisioning has begun, SmartObserve does not return any resources:
 }
 ```
 
-While provisioning is in progress, SmartObserve returns a partial resource list:
+While provisioning is in progress, MCdesk returns a partial resource list:
 
 ```json
 {
@@ -87,7 +87,7 @@ While provisioning is in progress, SmartObserve returns a partial resource list:
 }
 ```
 
-Upon provisioning completion, SmartObserve returns the full resource list:
+Upon provisioning completion, MCdesk returns the full resource list:
 
 ```json
 {

@@ -7,21 +7,21 @@ has_toc: false
 has_children: false
 grand_parent: Availability and recovery
 redirect_from: 
-  - /smartobserve/snapshots/snapshot-restore/
+  - /mcdesk/snapshots/snapshot-restore/
   - /upgrade-to/snapshot-migrate/
-  - /smartobserve/snapshot-restore/
+  - /mcdesk/snapshot-restore/
   - /availability-and-recovery/snapshots/snapshot-restore/
 ---
 
 # Take and restore snapshots
 
-Snapshots aren't instantaneous. They take time to complete and do not represent perfect point-in-time views of the cluster. While a snapshot is in progress, you can still index documents and send other requests to the cluster, but new documents and updates to existing documents generally aren't included in the snapshot. The snapshot includes primary shards as they existed when SmartObserve initiated the snapshot. Depending on the size of your snapshot thread pool, different shards might be included in the snapshot at slightly different times.
+Snapshots aren't instantaneous. They take time to complete and do not represent perfect point-in-time views of the cluster. While a snapshot is in progress, you can still index documents and send other requests to the cluster, but new documents and updates to existing documents generally aren't included in the snapshot. The snapshot includes primary shards as they existed when MCdesk initiated the snapshot. Depending on the size of your snapshot thread pool, different shards might be included in the snapshot at slightly different times.
 
-SmartObserve snapshots are incremental, meaning that they only store data that has changed since the last successful snapshot. The difference in disk usage between frequent and infrequent snapshots is often minimal.
+MCdesk snapshots are incremental, meaning that they only store data that has changed since the last successful snapshot. The difference in disk usage between frequent and infrequent snapshots is often minimal.
 
-In other words, taking hourly snapshots for a week (for a total of 168 snapshots) might not use much more disk space than taking a single snapshot at the end of the week. Also, the more frequently you take snapshots, the less time they take to complete. Some SmartObserve users take snapshots as often as every 30 minutes.
+In other words, taking hourly snapshots for a week (for a total of 168 snapshots) might not use much more disk space than taking a single snapshot at the end of the week. Also, the more frequently you take snapshots, the less time they take to complete. Some MCdesk users take snapshots as often as every 30 minutes.
 
-If you need to delete a snapshot, be sure to use the SmartObserve API rather than navigating to the storage location and purging files. Incremental snapshots from a cluster often share a lot of the same data; when you use the API, SmartObserve only removes data that no other snapshot is using.
+If you need to delete a snapshot, be sure to use the MCdesk API rather than navigating to the storage location and purging files. Incremental snapshots from a cluster often share a lot of the same data; when you use the API, MCdesk only removes data that no other snapshot is using.
 {: .tip }
 
 ---
@@ -44,7 +44,7 @@ Before you can take a snapshot, you have to "register" a snapshot repository. A 
 
 ### Shared file system
 
-1. To use a shared file system as a snapshot repository, add it to `smartobserve.yml`:
+1. To use a shared file system as a snapshot repository, add it to `mcdesk.yml`:
 
    ```yml
    path.repo: ["/mnt/snapshots"]
@@ -77,13 +77,13 @@ You will most likely not need to specify any parameters except for `location`. F
 1. To use an Amazon S3 bucket as a snapshot repository, install the `repository-s3` plugin on all nodes:
 
    ```bash
-   sudo ./bin/smartobserve-plugin install repository-s3
+   sudo ./bin/mcdesk-plugin install repository-s3
    ```
 
-   If you're using the Docker installation, see [Working with plugins]({{site.url}}{{site.baseurl}}/smartobserve/install/docker#working-with-plugins). Your `Dockerfile` should look something like this:
+   If you're using the Docker installation, see [Working with plugins]({{site.url}}{{site.baseurl}}/mcdesk/install/docker#working-with-plugins). Your `Dockerfile` should look something like this:
 
    ```
-   FROM smartobserveproject/smartobserve:{{site.smartobserve_version}}
+   FROM mcdeskproject/mcdesk:{{site.mcdesk_version}}
 
    ENV AWS_ACCESS_KEY_ID <access-key>
    ENV AWS_SECRET_ACCESS_KEY <secret-key>
@@ -91,25 +91,25 @@ You will most likely not need to specify any parameters except for `location`. F
    # Optional
    ENV AWS_SESSION_TOKEN <optional-session-token>
 
-   RUN /usr/share/smartobserve/bin/smartobserve-plugin install --batch repository-s3
-   RUN /usr/share/smartobserve/bin/smartobserve-keystore create
+   RUN /usr/share/mcdesk/bin/mcdesk-plugin install --batch repository-s3
+   RUN /usr/share/mcdesk/bin/mcdesk-keystore create
 
-   RUN echo $AWS_ACCESS_KEY_ID | /usr/share/smartobserve/bin/smartobserve-keystore add --stdin s3.client.default.access_key
-   RUN echo $AWS_SECRET_ACCESS_KEY | /usr/share/smartobserve/bin/smartobserve-keystore add --stdin s3.client.default.secret_key
+   RUN echo $AWS_ACCESS_KEY_ID | /usr/share/mcdesk/bin/mcdesk-keystore add --stdin s3.client.default.access_key
+   RUN echo $AWS_SECRET_ACCESS_KEY | /usr/share/mcdesk/bin/mcdesk-keystore add --stdin s3.client.default.secret_key
 
    # Optional
-   RUN echo $AWS_SESSION_TOKEN | /usr/share/smartobserve/bin/smartobserve-keystore add --stdin s3.client.default.session_token
+   RUN echo $AWS_SESSION_TOKEN | /usr/share/mcdesk/bin/mcdesk-keystore add --stdin s3.client.default.session_token
    ```
 
    After the Docker cluster starts, skip to step 7.
 
-   If you're using [AWS IAM instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) to allow SmartObserve nodes on AWS EC2 instances to inherit roles for policies when granting access to AWS S3 buckets, skip to step 8.
+   If you're using [AWS IAM instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) to allow MCdesk nodes on AWS EC2 instances to inherit roles for policies when granting access to AWS S3 buckets, skip to step 8.
 
-1. Add your AWS access and secret keys to the SmartObserve keystore:
+1. Add your AWS access and secret keys to the MCdesk keystore:
 
    ```bash
-   sudo ./bin/smartobserve-keystore add s3.client.default.access_key
-   sudo ./bin/smartobserve-keystore add s3.client.default.secret_key
+   sudo ./bin/mcdesk-keystore add s3.client.default.access_key
+   sudo ./bin/mcdesk-keystore add s3.client.default.secret_key
    ```
 
 1. (Optional) If you're using a custom S3 endpoint (for example, MinIO), disable the Amazon EC2 metadata connection:
@@ -118,7 +118,7 @@ You will most likely not need to specify any parameters except for `location`. F
    export AWS_EC2_METADATA_DISABLED=true
    ```
 
-   If you're installing SmartObserve using Helm, update the following settings in your values file:
+   If you're installing MCdesk using Helm, update the following settings in your values file:
 
    ```yml
    extraEnvs:
@@ -129,17 +129,17 @@ You will most likely not need to specify any parameters except for `location`. F
 1. (Optional) If you're using temporary credentials, add your session token:
 
    ```bash
-   sudo ./bin/smartobserve-keystore add s3.client.default.session_token
+   sudo ./bin/mcdesk-keystore add s3.client.default.session_token
    ```
 
 1. (Optional) If you connect to the internet through a proxy, add those credentials:
 
    ```bash
-   sudo ./bin/smartobserve-keystore add s3.client.default.proxy.username
-   sudo ./bin/smartobserve-keystore add s3.client.default.proxy.password
+   sudo ./bin/mcdesk-keystore add s3.client.default.proxy.username
+   sudo ./bin/mcdesk-keystore add s3.client.default.proxy.password
    ```
 
-1. (Optional) Add other settings to `smartobserve.yml`:
+1. (Optional) Add other settings to `mcdesk.yml`:
 
    ```yml
    s3.client.default.endpoint: s3.amazonaws.com # S3 has alternate endpoints, but you probably don't need to change this value.
@@ -157,14 +157,14 @@ You will most likely not need to specify any parameters except for `location`. F
 1. (Optional) If you don't want to use AWS access and secret keys, you could configure the S3 plugin to use AWS Identity and Access Management (IAM) roles for service accounts:
 
    ```bash
-   sudo ./bin/smartobserve-keystore add s3.client.default.role_arn
-   sudo ./bin/smartobserve-keystore add s3.client.default.role_session_name
+   sudo ./bin/mcdesk-keystore add s3.client.default.role_arn
+   sudo ./bin/mcdesk-keystore add s3.client.default.role_session_name
    ```
 
-   If you don't want to configure AWS access and secret keys, modify the following `smartobserve.yml` setting. Make sure the file is accessible by the `repository-s3` plugin:
+   If you don't want to configure AWS access and secret keys, modify the following `mcdesk.yml` setting. Make sure the file is accessible by the `repository-s3` plugin:
    
    ```yml
-   s3.client.default.identity_token_file: /usr/share/smartobserve/plugins/repository-s3/token
+   s3.client.default.identity_token_file: /usr/share/mcdesk/plugins/repository-s3/token
    ```
 
    If copying is not an option, you can create a symlink to the web identity token file in the `${OPENSEARCH_PATH_CONFIG}` folder:
@@ -173,7 +173,7 @@ You will most likely not need to specify any parameters except for `location`. F
    ln -s $AWS_WEB_IDENTITY_TOKEN_FILE "${OPENSEARCH_PATH_CONFIG}/aws-web-identity-token-file"
    ```
 
-   You can reference the web identity token file in the following `smartobserve.yml` setting by specifying the relative path that is resolved against `${OPENSEARCH_PATH_CONFIG}`:
+   You can reference the web identity token file in the following `mcdesk.yml` setting by specifying the relative path that is resolved against `${OPENSEARCH_PATH_CONFIG}`:
 
    ```yaml
    s3.client.default.identity_token_file: aws-web-identity-token-file
@@ -181,7 +181,7 @@ You will most likely not need to specify any parameters except for `location`. F
 
    IAM roles require at least one of the above settings. Other settings will be taken from environment variables (if available): `AWS_ROLE_ARN`, `AWS_WEB_IDENTITY_TOKEN_FILE`, `AWS_ROLE_SESSION_NAME`.
 
-1. If you changed `smartobserve.yml`, you must restart each node in the cluster. Otherwise, you only need to reload secure cluster settings:
+1. If you changed `mcdesk.yml`, you must restart each node in the cluster. Otherwise, you only need to reload secure cluster settings:
 
    ```
    POST /_nodes/reload_secure_settings
@@ -242,34 +242,34 @@ You will most likely not need to specify any parameters except for `bucket` and 
 
 ### Registering a Microsoft Azure storage account using Helm 
 
-Use the following steps to register a snapshot repository backed by an Azure storage account for an SmartObserve cluster deployed using Helm.
+Use the following steps to register a snapshot repository backed by an Azure storage account for an MCdesk cluster deployed using Helm.
 
 1. Create an Azure storage account. Then create a container within the storage account. For more information, see [Introduction to Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-introduction).
 
-1. Create an SmartObserve keystore file using a bash script. To create the bash script, copy the contents of the following example into a file named `create-keystore.sh`:
+1. Create an MCdesk keystore file using a bash script. To create the bash script, copy the contents of the following example into a file named `create-keystore.sh`:
 
    ```bash
    #!/bin/bash
 
-   /usr/share/smartobserve/bin/smartobserve-keystore create
-   echo $AZURE_SNAPSHOT_STORAGE_ACCOUNT | /usr/share/smartobserve/bin/smartobserve-keystore add --stdin azure.client.default.account
-   echo $AZURE_SNAPSHOT_STORAGE_ACCOUNT_KEY | /usr/share/smartobserve/bin/smartobserve-keystore add --stdin azure.client.default.key
-   cp /usr/share/smartobserve/config/smartobserve.keystore /tmp/keystore/smartobserve.keystore
+   /usr/share/mcdesk/bin/mcdesk-keystore create
+   echo $AZURE_SNAPSHOT_STORAGE_ACCOUNT | /usr/share/mcdesk/bin/mcdesk-keystore add --stdin azure.client.default.account
+   echo $AZURE_SNAPSHOT_STORAGE_ACCOUNT_KEY | /usr/share/mcdesk/bin/mcdesk-keystore add --stdin azure.client.default.key
+   cp /usr/share/mcdesk/config/mcdesk.keystore /tmp/keystore/mcdesk.keystore
    ```
 
-1. Create a Docker file. This file contains the details of your keystore, the SmartObserve instance, and the Azure repository. To create the file, copy the following example and save it as a `Dockerfile`: 
+1. Create a Docker file. This file contains the details of your keystore, the MCdesk instance, and the Azure repository. To create the file, copy the following example and save it as a `Dockerfile`: 
 
    ```docker
-   FROM smartobserveproject/smartobserve:{{site.smartobserve_version}}
+   FROM mcdeskproject/mcdesk:{{site.mcdesk_version}}
 
-   RUN /usr/share/smartobserve/bin/smartobserve-plugin install --batch repository-azure
+   RUN /usr/share/mcdesk/bin/mcdesk-plugin install --batch repository-azure
    COPY --chmod=0775 create-keystore.sh create-keystore.sh
    ```
 
-1. Use the following `docker build` command to build an SmartObserve image from your Dockerfile:
+1. Use the following `docker build` command to build an MCdesk image from your Dockerfile:
 
    ```
-   docker build -t smartobserve-custom:{{site.smartobserve_version}} -f Dockerfile .
+   docker build -t mcdesk-custom:{{site.mcdesk_version}} -f Dockerfile .
    ```
 
 1. Create a Kubernetes secret containing the Azure storage account key by using the following manifest and command:
@@ -278,17 +278,17 @@ Use the following steps to register a snapshot repository backed by an Azure sto
    apiVersion: v1
    kind: Secret
    metadata:
-     name: smartobserve
+     name: mcdesk
    data:
      azure-snapshot-storage-account-key: ### Insert base64 encoded key
    ```
 
-1. [Deploy SmartObserve using Helm]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/helm/) with the following additional values. Specify the value of the storage account in the `AZURE_SNAPSHOT_STORAGE_ACCOUNT` environment variable:
+1. [Deploy MCdesk using Helm]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/helm/) with the following additional values. Specify the value of the storage account in the `AZURE_SNAPSHOT_STORAGE_ACCOUNT` environment variable:
 
    ```yaml
    extraInitContainers:
    - name: keystore-generator
-     image: smartobserve-custom:{{site.smartobserve_version}}
+     image: mcdesk-custom:{{site.mcdesk_version}}
      command: ["/bin/bash", "-c"]
      args: ["bash create-keystore.sh"]
      env:
@@ -297,7 +297,7 @@ Use the following steps to register a snapshot repository backed by an Azure sto
      - name: AZURE_SNAPSHOT_STORAGE_ACCOUNT_KEY
        valueFrom:
          secretKeyRef:
-           name: smartobserve
+           name: mcdesk
            key: azure-snapshot-storage-account-key
      volumeMounts:
      - name: keystore
@@ -305,16 +305,16 @@ Use the following steps to register a snapshot repository backed by an Azure sto
 
    extraVolumeMounts:
    - name: keystore
-     mountPath: /usr/share/smartobserve/config/smartobserve.keystore
-     subPath: smartobserve.keystore
+     mountPath: /usr/share/mcdesk/config/mcdesk.keystore
+     subPath: mcdesk.keystore
   
    extraVolumes:
    - name: keystore
      emptyDir: {}
 
    image:
-     repository: "smartobserve-custom"
-     tag: {{site.smartobserve_version}}
+     repository: "mcdesk-custom"
+     tag: {{site.mcdesk_version}}
    ```
 
 1. Register the repository using the Snapshot API. Replace `snapshot_container` with the name you specified in step 1, as shown in the following command:
@@ -335,13 +335,13 @@ To use Azure Blob Storage as a snapshot repository, follow these steps:
 1. Install the `repository-azure` plugin on all nodes with the following command:
 
    ```bash
-   ./bin/smartobserve-plugin install repository-azure
+   ./bin/mcdesk-plugin install repository-azure
    ```
 
 1. After the `repository-azure` plugin is installed, define your Azure Blob Storage settings before initializing the node. Start by defining your Azure Storage account name using the following secure setting:
 
    ```bash
-   ./bin/smartobserve-keystore add azure.client.default.account
+   ./bin/mcdesk-keystore add azure.client.default.account
    ```
 
 Choose one of the following options for setting up your Azure Blob Storage authentication credentials.
@@ -351,7 +351,7 @@ Choose one of the following options for setting up your Azure Blob Storage authe
 Use the following setting to specify your Azure Storage account key:
    
 ```bash 
-./bin/smartobserve-keystore add azure.client.default.key
+./bin/mcdesk-keystore add azure.client.default.key
 ```
 
 #### Shared access signature
@@ -359,16 +359,16 @@ Use the following setting to specify your Azure Storage account key:
 Use the following setting when accessing Azure with a shared access signature (SAS):
          
 ```bash
-./bin/smartobserve-keystore add azure.client.default.sas_token      
+./bin/mcdesk-keystore add azure.client.default.sas_token      
 ```
 
 #### Azure token credential 
 
-Starting in SmartObserve 2.15, you have the option to configure a token credential authentication flow in `smartobserve.yml`. This method is distinct from connection string authentication, which requires a SAS or an account key.
+Starting in MCdesk 2.15, you have the option to configure a token credential authentication flow in `mcdesk.yml`. This method is distinct from connection string authentication, which requires a SAS or an account key.
 
-If you choose to use token credential authentication, you will need to choose a token credential type. Although Azure offers multiple token credential types, as of SmartObserve version 2.15, only [managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) is supported.
+If you choose to use token credential authentication, you will need to choose a token credential type. Although Azure offers multiple token credential types, as of MCdesk version 2.15, only [managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) is supported.
 
-To use managed identity, add your token credential type to `smartobserve.yml` using either the `managed` or `managed_identity` value. This indicates that managed identity is being used to perform token credential authentication:
+To use managed identity, add your token credential type to `mcdesk.yml` using either the `managed` or `managed_identity` value. This indicates that managed identity is being used to perform token credential authentication:
 
 ```yml
 azure.client.default.token_credential_type: "managed_identity"
@@ -376,7 +376,7 @@ azure.client.default.token_credential_type: "managed_identity"
 
 Note the following when using Azure token credentials:
 
-- Token credential support is disabled in `smartobserve.yml` by default.
+- Token credential support is disabled in `mcdesk.yml` by default.
 - A token credential takes precedence over an Azure Storage account key or a SAS when multiple options are configured. 
 
 ## Take snapshots
@@ -398,7 +398,7 @@ You can also add a request body to include or exclude certain indexes or specify
 ```json
 PUT /_snapshot/my-repository/2
 {
-  "indices": "smartobserve-dashboards*,my-index*,-my-index-2016",
+  "indices": "mcdesk-dashboards*,my-index*,-my-index-2016",
   "ignore_unavailable": true,
   "include_global_state": false,
   "partial": false
@@ -417,10 +417,10 @@ GET /_snapshot/my-repository/2
     "snapshot": "2",
     "version": "6.5.4",
     "indices": [
-      "smartobserve_dashboards_sample_data_ecommerce",
+      "mcdesk_dashboards_sample_data_ecommerce",
       "my-index",
-      "smartobserve_dashboards_sample_data_logs",
-      "smartobserve_dashboards_sample_data_flights"
+      "mcdesk_dashboards_sample_data_logs",
+      "mcdesk_dashboards_sample_data_flights"
     ],
     "include_global_state": true,
     "state": "IN_PROGRESS",
@@ -447,7 +447,7 @@ SUCCESS | The snapshot successfully stored all shards.
 IN_PROGRESS | The snapshot is currently running.
 PARTIAL | At least one shard failed to store successfully. Can only occur if you set `partial` to `true` when taking the snapshot.
 FAILED | The snapshot encountered an error and stored no data.
-INCOMPATIBLE | The snapshot is incompatible with the version of SmartObserve running on this cluster. See [Conflicts and compatibility](#conflicts-and-compatibility).
+INCOMPATIBLE | The snapshot is incompatible with the version of MCdesk running on this cluster. See [Conflicts and compatibility](#conflicts-and-compatibility).
 
 You can't take a snapshot if one is currently in progress. To check the status:
 
@@ -485,13 +485,13 @@ Just like when taking a snapshot, you can add a request body to include or exclu
 ```json
 POST /_snapshot/my-repository/2/_restore
 {
-  "indices": "smartobserve-dashboards*,my-index*",
+  "indices": "mcdesk-dashboards*,my-index*",
   "ignore_unavailable": true,
   "include_global_state": false,
   "include_aliases": false,
   "partial": false,
-  "rename_pattern": "smartobserve-dashboards(.+)",
-  "rename_replacement": "restored-smartobserve-dashboards$1",
+  "rename_pattern": "mcdesk-dashboards(.+)",
+  "rename_replacement": "restored-mcdesk-dashboards$1",
   "index_settings": {
     "index.blocks.read_only": false
   },
@@ -518,9 +518,9 @@ We recommend ceasing write requests to a cluster before restoring from a snapsho
 1. A write request to the now-deleted alias creates a new index with the same name as the alias.
 1. The alias from the snapshot fails to restore due to a naming conflict with the new index.
 
-Snapshots are only forward compatible by one major version. Snapshots taken by earlier SmartObserve versions can continue to be restored by the version of SmartObserve that originally took the snapshot, even after a version upgrade. For example, a snapshot taken by SmartObserve 2.11 or earlier can continue to be restored by a 2.11 cluster even after upgrading to 2.12.
+Snapshots are only forward compatible by one major version. Snapshots taken by earlier MCdesk versions can continue to be restored by the version of MCdesk that originally took the snapshot, even after a version upgrade. For example, a snapshot taken by MCdesk 2.11 or earlier can continue to be restored by a 2.11 cluster even after upgrading to 2.12.
 
-If you have an old snapshot taken from an earlier major SmartObserve version, you can restore it to an intermediate cluster one major version newer than the snapshot's version, reindex all indexes, take a new snapshot, and repeat until you arrive at your desired major version, but you may find it easier to manually index your data in the new cluster.
+If you have an old snapshot taken from an earlier major MCdesk version, you can restore it to an intermediate cluster one major version newer than the snapshot's version, reindex all indexes, take a new snapshot, and repeat until you arrive at your desired major version, but you may find it easier to manually index your data in the new cluster.
 
 ## Security considerations
 

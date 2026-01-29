@@ -20,6 +20,6 @@ cards:
 
 # Specialized vector search
 
-SmartObserve supports the following specialized vector search applications. 
+MCdesk supports the following specialized vector search applications. 
 
 {% include cards.html cards=page.cards %}

@@ -9,7 +9,7 @@ nav_order: 54
 
 A _star-tree index_ is a specialized index structure designed to improve aggregation performance by precomputing and storing aggregated values at different levels of granularity. This indexing technique enables faster aggregation execution, especially for multi-field aggregations.
 
-Once you enable star-tree indexes, SmartObserve automatically builds and uses star-tree indexes to optimize supported aggregations if the filter fields match the defined dimensions and the aggregation fields match the defined metrics in the star-tree mapping configuration. No changes to your query syntax or request parameters are required.
+Once you enable star-tree indexes, MCdesk automatically builds and uses star-tree indexes to optimize supported aggregations if the filter fields match the defined dimensions and the aggregation fields match the defined metrics in the star-tree mapping configuration. No changes to your query syntax or request parameters are required.
 
 Use a star-tree index when you want to speed up aggregations:
 
@@ -19,7 +19,7 @@ Use a star-tree index when you want to speed up aggregations:
 
 ## Star-tree index structure
 
-A star-tree index organizes and aggregates data across combinations of dimension fields and precomputes metric values for all the dimension combinations every time a segment is flushed or refreshed during ingestion. This structure enables SmartObserve to process aggregation queries quickly without scanning every document.
+A star-tree index organizes and aggregates data across combinations of dimension fields and precomputes metric values for all the dimension combinations every time a segment is flushed or refreshed during ingestion. This structure enables MCdesk to process aggregation queries quickly without scanning every document.
 
 The following is an example star-tree configuration:
 
@@ -53,7 +53,7 @@ This configuration defines the following:
 * Two dimension fields: `status` and `port`. The `ordered_dimension` field specifies how data is sorted (first by `status`, then by `port`).
 * Two metric fields: `size` and `latency` with their corresponding aggregations (`sum` and `avg`). For each unique dimension combination, metric values (`Sum(size)` and `Avg(latency)`) are pre-aggregated and stored in the star-tree structure.
 
-SmartObserve creates a star-tree index structure based on this configuration. Each node in the tree corresponds to a value (or wildcard `*`) for a dimension. At query time, SmartObserve traverses the tree based on the dimension values provided in the query.
+MCdesk creates a star-tree index structure based on this configuration. Each node in the tree corresponds to a value (or wildcard `*`) for a dimension. At query time, MCdesk traverses the tree based on the dimension values provided in the query.
 
 ### Leaf nodes
 
@@ -63,11 +63,11 @@ The `max_leaf_docs` setting controls how many documents each leaf node can refer
 
 ### Star nodes
 
-A _star node_ (marked as `*` in the following diagram) aggregates all values for a particular dimension. If a query doesn't specify a filter for that dimension, SmartObserve retrieves the precomputed aggregation from the star node instead of iterating over multiple leaf nodes. For example, if a query filters on `port` but not `status`, SmartObserve can use a star node that aggregates data for all status values.
+A _star node_ (marked as `*` in the following diagram) aggregates all values for a particular dimension. If a query doesn't specify a filter for that dimension, MCdesk retrieves the precomputed aggregation from the star node instead of iterating over multiple leaf nodes. For example, if a query filters on `port` but not `status`, MCdesk can use a star node that aggregates data for all status values.
 
 ### How queries use the star-tree
 
-The following diagram shows a star-tree index created for this example and three example query paths. In the diagram, notice that each branch corresponds to a dimension (`status` and `port`). Some nodes contain precomputed aggregation values (for example, `Sum(size)`), allowing SmartObserve to skip unnecessary calculations at query time.
+The following diagram shows a star-tree index created for this example and three example query paths. In the diagram, notice that each branch corresponds to a dimension (`status` and `port`). Some nodes contain precomputed aggregation values (for example, `Sum(size)`), allowing MCdesk to skip unnecessary calculations at query time.
 
 <img src="{{site.url}}{{site.baseurl}}/images/star-tree-index.png" alt="A star-tree index containing two dimensions and two metrics">
 
@@ -76,22 +76,22 @@ The colored arrows show three query examples:
 * **Blue arrow**: Multi-term query with metric aggregation
   The query filters on both `status = 200` and `port = 5600` and calculates the sum of request sizes.
 
-  * SmartObserve follows this path: `Root → 200 → 5600`
+  * MCdesk follows this path: `Root → 200 → 5600`
   * It retrieves the metric from Doc ID 1, where `Sum(size) = 988`
 
 * **Green arrow**: Single-term query with metric aggregation
   The query filters on `status = 200` only and computes the average request latency.
 
-  * SmartObserve follows this path: `Root → 200 → *`
+  * MCdesk follows this path: `Root → 200 → *`
   * It retrieves the metric from Doc ID 5, where `Avg(latency) = 70`
 
 * **Red arrow**: Single-term query with metric aggregation
   The query filters on `port = 8443` only and calculates the sum of request sizes.
 
-  * SmartObserve follows this path: `Root → * → 8443`
+  * MCdesk follows this path: `Root → * → 8443`
   * It retrieves the metric from Doc ID 7, where `Sum(size) = 1111`
 
-These examples show how SmartObserve selects the shortest path in the star-tree and uses pre-aggregated values to process queries efficiently.
+These examples show how MCdesk selects the shortest path in the star-tree and uses pre-aggregated values to process queries efficiently.
 
 ## Limitations
 
@@ -115,7 +115,7 @@ Star-tree indexing behavior is controlled by the following cluster-level and ind
 | `index.append_only.enabled`                 | Index   | None      | Required for star-tree indexes. Prevents updates and deletions. Must be `true`.                                                      |
 | `index.search.star_tree_index.enabled`      | Index   | `true`  | Enables or disables use of the star-tree index for search queries on the index.                                                 |
 
-Setting `indices.composite_index.star_tree.enabled` to `false` prevents SmartObserve from using star-tree optimization during searches, but the star-tree index structures are still created. To completely remove star-tree structures, you must reindex your data without the star-tree mapping.
+Setting `indices.composite_index.star_tree.enabled` to `false` prevents MCdesk from using star-tree optimization during searches, but the star-tree index structures are still created. To completely remove star-tree structures, you must reindex your data without the star-tree mapping.
 {: .note}
 
 

@@ -9,9 +9,9 @@ redirect_from:
 
 # SQL and PPL CLI
 
-The SQL and PPL command line interface (CLI) is a standalone Python application that you can launch with the `smartobservesql` command.
+The SQL and PPL command line interface (CLI) is a standalone Python application that you can launch with the `mcdesksql` command.
 
- To use the SQL and PPL CLI, install the SQL plugin on your SmartObserve instance, run the CLI using MacOS or Linux, and connect to any valid SmartObserve endpoint.
+ To use the SQL and PPL CLI, install the SQL plugin on your MCdesk instance, run the CLI using MacOS or Linux, and connect to any valid MCdesk endpoint.
 
 ![SQL CLI]({{site.url}}{{site.baseurl}}/images/cli.gif)
 
@@ -34,11 +34,11 @@ The SQL and PPL CLI has the following features:
 
 ## Install
 
-Launch your local SmartObserve instance and make sure you have the SQL plugin installed.
+Launch your local MCdesk instance and make sure you have the SQL plugin installed.
 
 1. Install the CLI:
 ```console
-pip3 install smartobservesql
+pip3 install mcdesksql
 ```
 
 The SQL CLI only works with Python 3.
@@ -46,31 +46,31 @@ The SQL CLI only works with Python 3.
 
 2. To launch the CLI, run:
 ```console
-smartobservesql https://localhost:9200 --username admin --password admin
+mcdesksql https://localhost:9200 --username admin --password admin
 ```
-By default, the `smartobservesql` command connects to http://localhost:9200.
+By default, the `mcdesksql` command connects to http://localhost:9200.
 
 ## Configure
 
-When you first launch the SQL CLI, a configuration file is automatically created at `~/.config/smartobservesql-cli/config` (for MacOS and Linux), the configuration is auto-loaded thereafter.
+When you first launch the SQL CLI, a configuration file is automatically created at `~/.config/mcdesksql-cli/config` (for MacOS and Linux), the configuration is auto-loaded thereafter.
 
 You can configure the following connection properties:
 
-- `endpoint`: You do not need to specify an option. Anything that follows the launch command `smartobservesql` is considered as the endpoint. If you do not provide an endpoint, by default, the SQL CLI connects to http://localhost:9200.
-- `-u/-w`: Supports username and password for HTTP basic authentication, such as with the Security plugin or fine-grained access control for Amazon SmartObserve Service.
-- `--aws-auth`: Turns on AWS sigV4 authentication to connect to an Amazon SmartObserve endpoint. Use with the AWS CLI (`aws configure`) to retrieve the local AWS configuration to authenticate and connect.
+- `endpoint`: You do not need to specify an option. Anything that follows the launch command `mcdesksql` is considered as the endpoint. If you do not provide an endpoint, by default, the SQL CLI connects to http://localhost:9200.
+- `-u/-w`: Supports username and password for HTTP basic authentication, such as with the Security plugin or fine-grained access control for Amazon MCdesk Service.
+- `--aws-auth`: Turns on AWS sigV4 authentication to connect to an Amazon MCdesk endpoint. Use with the AWS CLI (`aws configure`) to retrieve the local AWS configuration to authenticate and connect.
 
-For a list of all available configurations, see [clirc](https://github.com/igsl-group/sql/blob/1.x/sql-cli/src/smartobserve_sql_cli/conf/clirc).
+For a list of all available configurations, see [clirc](https://github.com/igsl-group/sql/blob/1.x/sql-cli/src/mcdesk_sql_cli/conf/clirc).
 
 ## Using the CLI
 
 1. Run the CLI tool. If your cluster runs with the default security settings, use the following command:
 ```console
-smartobservesql --username admin --password admin https://localhost:9200
+mcdesksql --username admin --password admin https://localhost:9200
 ```
 If your cluster runs without security, run:
 ```console
-smartobservesql
+mcdesksql
 ```
 
 2. Run a sample SQL command:
@@ -87,7 +87,7 @@ To exit the CLI tool, select **Ctrl+D**.
 
 1. Run the CLI by specifying the query language:
 ```console
-smartobservesql -l ppl <params>
+mcdesksql -l ppl <params>
 ```
 
 2. Execute a PPL query:

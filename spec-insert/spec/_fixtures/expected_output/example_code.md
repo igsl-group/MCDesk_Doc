@@ -9,7 +9,7 @@ GET /_cat/health?pretty=true&human=false
 
 {% capture step1_python %}
 
-from smartobservepy import SmartObserve
+from mcdeskpy import MCdesk
 
 host = 'localhost'
 port = 9200
@@ -17,7 +17,7 @@ auth = ('admin', 'admin') # For testing only. Don't store credentials in code.
 ca_certs_path = '/full/path/to/root-ca.pem' # Provide a CA bundle if you use intermediate CAs with your root CA.
 
 # Create the client with SSL/TLS enabled, but hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     http_auth = auth,
@@ -126,7 +126,7 @@ POST /_bulk?expand_wildcards=all
 
 {% capture step1_python %}
 
-from smartobservepy import SmartObserve
+from mcdeskpy import MCdesk
 
 host = 'localhost'
 port = 9200
@@ -134,7 +134,7 @@ auth = ('admin', 'admin') # For testing only. Don't store credentials in code.
 ca_certs_path = '/full/path/to/root-ca.pem' # Provide a CA bundle if you use intermediate CAs with your root CA.
 
 # Create the client with SSL/TLS enabled, but hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     http_auth = auth,
@@ -188,7 +188,7 @@ POST /_bulk?expand_wildcards=all
 
 {% capture step1_python %}
 
-from smartobservepy import SmartObserve
+from mcdeskpy import MCdesk
 
 host = 'localhost'
 port = 9200
@@ -196,7 +196,7 @@ auth = ('admin', 'admin') # For testing only. Don't store credentials in code.
 ca_certs_path = '/full/path/to/root-ca.pem' # Provide a CA bundle if you use intermediate CAs with your root CA.
 
 # Create the client with SSL/TLS enabled, but hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     http_auth = auth,

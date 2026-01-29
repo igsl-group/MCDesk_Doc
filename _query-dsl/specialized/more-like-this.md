@@ -16,7 +16,7 @@ The `more_like_this` query analyzes the input documents or texts and selects ter
 
 Before you use a `more_like_this` query, ensure that the fields you target are indexed and their data type is either [`text`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/text/) or [`keyword`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/keyword/). 
 
-If you reference documents in the `like` section, SmartObserve needs access to their content. This is typically done through the `_source` field, which is enabled by default. If `_source` is disabled, you must either store the fields individually or configure them to save [`term_vector`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/term-vector/) data. 
+If you reference documents in the `like` section, MCdesk needs access to their content. This is typically done through the `_source` field, which is enabled by default. If `_source` is disabled, you must either store the fields individually or configure them to save [`term_vector`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/term-vector/) data. 
 
 Saving [`term_vector`]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/term-vector/) information when indexing documents can greatly accelerate `more_like_this` queries because the engine can directly retrieve the important terms without reanalyzing the field text at query time.
 {: .note}

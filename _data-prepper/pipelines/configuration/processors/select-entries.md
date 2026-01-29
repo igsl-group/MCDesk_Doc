@@ -8,7 +8,7 @@ nav_order: 320
 
 # Select entries processor
 
-The `select_entries` processor selects entries from an SmartObserve Data Prepper event.
+The `select_entries` processor selects entries from an MCdesk Data Prepper event.
 Only the selected entries remain in the processed event and while all other entries are removed. However, the processor does not remove any events from the Data Prepper pipeline.
 
 ## Configuration

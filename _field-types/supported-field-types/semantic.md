@@ -9,10 +9,10 @@ parent: Supported field types
 **Introduced 3.1**
 {: .label .label-purple }
 
-The `semantic` field type is a high-level abstraction that simplifies neural search setup in SmartObserve. It can wrap a variety of field types, including all string and binary fields. The `semantic` field type automatically enables semantic indexing and querying based on the configured machine learning (ML) model.
+The `semantic` field type is a high-level abstraction that simplifies neural search setup in MCdesk. It can wrap a variety of field types, including all string and binary fields. The `semantic` field type automatically enables semantic indexing and querying based on the configured machine learning (ML) model.
 
 **PREREQUISITE**<br>
-Before using the `semantic` field type, you must configure either a local ML model hosted on your SmartObserve cluster or an externally hosted model connected to your SmartObserve cluster. For more information about local models, see [Using ML models within SmartObserve]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For more information about externally hosted models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/).
+Before using the `semantic` field type, you must configure either a local ML model hosted on your MCdesk cluster or an externally hosted model connected to your MCdesk cluster. For more information about local models, see [Using ML models within MCdesk]({{site.url}}{{site.baseurl}}/ml-commons-plugin/using-ml-models/). For more information about externally hosted models, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/).
 {: .note}
 
 ## Example: Dense embedding model
@@ -169,9 +169,9 @@ The `semantic` field type supports the following parameters.
 | `semantic_info_field_name`       | String                   | No        | Optional          | A custom name for the internal metadata field that stores the embedding and model information. By default, this field name is derived by appending `_semantic_info` to the `semantic` field name.                                                                                                                                                                                                                                                                                                                                                                                      |
 | `chunking`                       | Boolean or Array of maps | No        | Optional          | Enables chunking of long-form text during ingestion. Set to `Yes` to use a default fixed token-length strategy, or specify a list of strategy objects to apply multiple chunking algorithms in sequence. See [Text chunking](#text-chunking).                                                                                                                                                                                                                                                                                                                                          |
 | `semantic_field_search_analyzer` | String                   | Yes       | Optional          | Specifies an analyzer for tokenizing the query input when using a sparse model. Valid values are `standard`, `bert-uncased`, and `mbert-uncased`. Cannot be used together with `search_model_id`. For more information, see [Analyzers]({{site.url}}{{site.baseurl}}/analyzers/supported-analyzers/).                                                                                                                                                                                                                                                                                  |
-| `dense_embedding_config`         | Map                      | No        | Optional          | Defines custom settings for the underlying `knn_vector` field used when a `semantic` field is backed by a dense embedding model. This allows fine-grained control over vector indexing behavior, similarity function, and engine parameters. If omitted, SmartObserve applies default settings based on the model's embedding dimension and engine defaults. For supported parameters, see [Dense embedding config](#dense-embedding-configuration).                                                                                                                                     |
+| `dense_embedding_config`         | Map                      | No        | Optional          | Defines custom settings for the underlying `knn_vector` field used when a `semantic` field is backed by a dense embedding model. This allows fine-grained control over vector indexing behavior, similarity function, and engine parameters. If omitted, MCdesk applies default settings based on the model's embedding dimension and engine defaults. For supported parameters, see [Dense embedding config](#dense-embedding-configuration).                                                                                                                                     |
 | `sparse_encoding_config`         | Map                      | No        | Optional          | Configures how sparse vectors are encoded for the `semantic` field when using a sparse model. Supports all pruning strategies available in the [`sparse_encoding` processor]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/sparse-encoding/#pruning-sparse-vectors). If omitted, a default pruning strategy is applied using `max_ratio` with a prune ratio of `0.1`. This helps reduce noise and index size while preserving the most informative dimensions of the sparse vector. For supported parameters, see [Sparse encoding config](#sparse-encoding-configuration). |
-| `skip_existing_embedding`        | Boolean                  | Yes       | Optional          | Determines whether to skip embedding generation for the `semantic` field. When enabled, SmartObserve checks the existing document to see if the `semantic` field already has an embedding and whether both the `semantic` field's value and the ID of the ML model used to generate the embedding have not changed. If both conditions are true, SmartObserve reuses the existing embedding and skips generation. Default is `false`.                                                                                                                                                                 |
+| `skip_existing_embedding`        | Boolean                  | Yes       | Optional          | Determines whether to skip embedding generation for the `semantic` field. When enabled, MCdesk checks the existing document to see if the `semantic` field already has an embedding and whether both the `semantic` field's value and the ID of the ML model used to generate the embedding have not changed. If both conditions are true, MCdesk reuses the existing embedding and skips generation. Default is `false`.                                                                                                                                                                 |
 
 
 ## Text chunking
@@ -269,7 +269,7 @@ The `chunking` parameter supports all algorithms supported by the [text chunking
 
 ## Dense embedding configuration
 
-When a `semantic` field uses a dense model, SmartObserve automatically generates a companion `knn_vector` field to store the embeddings. You can use the `dense_embedding_config` parameter to customize how this vector field is configured during index creation.
+When a `semantic` field uses a dense model, MCdesk automatically generates a companion `knn_vector` field to store the embeddings. You can use the `dense_embedding_config` parameter to customize how this vector field is configured during index creation.
 
 The structure of `dense_embedding_config` closely mirrors the configuration for a standard `knn_vector` field. You can use this parameter to configure settings like the k-NN engine and indexing behavior.
 
@@ -308,7 +308,7 @@ PUT /my-nlp-index
 
 ## Sparse encoding configuration
 
-When a `semantic` field uses a sparse model, SmartObserve automatically generates a companion field to store the sparse vector representation. By default, this vector is pruned in order to reduce dimensionality and improve efficiency.
+When a `semantic` field uses a sparse model, MCdesk automatically generates a companion field to store the sparse vector representation. By default, this vector is pruned in order to reduce dimensionality and improve efficiency.
 
 The `sparse_encoding_config` parameter allows you to control how pruning is applied during encoding by specifying a strategy and its parameters. This provides fine-grained control over how sparse vectors are indexed, balancing accuracy and storage/performance.
 
@@ -337,7 +337,7 @@ PUT /my-nlp-index
 
 ## Ingest batch size for semantic fields
 
-When documents are ingested into an index containing `semantic` fields, SmartObserve uses a system-generated ingest pipeline to call the underlying ML model and generate embeddings. To optimize performance, these operations are batched. 
+When documents are ingested into an index containing `semantic` fields, MCdesk uses a system-generated ingest pipeline to call the underlying ML model and generate embeddings. To optimize performance, these operations are batched. 
 
 You can control the number of documents processed together during this step using the index-level dynamic `index.neural_search.semantic_ingest_batch_size` setting. This setting specifies the number of documents batched together when generating embeddings for `semantic` fields during ingestion (default is `10`). 
 
@@ -364,7 +364,7 @@ PUT /my-index/_settings
 ```
 {% include copy-curl.html %}
 
-For more information about updating dynamic settings, see [Dynamic settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/#dynamic-settings).
+For more information about updating dynamic settings, see [Dynamic settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/#dynamic-settings).
 
 ## Limitations
 

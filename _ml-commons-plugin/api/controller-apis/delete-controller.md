@@ -53,4 +53,4 @@ DELETE /_plugins/_ml/controllers/MzcIJX8BA7mbufL6DOwl
 
 ## Required permissions
 
-If you use the Security plugin, make sure you have the appropriate permissions: `cluster:admin/smartobserve/ml/controllers/delete`.
+If you use the Security plugin, make sure you have the appropriate permissions: `cluster:admin/mcdesk/ml/controllers/delete`.

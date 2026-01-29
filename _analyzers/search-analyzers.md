@@ -11,7 +11,7 @@ Search analyzers are specified at query time and are used to analyze the query s
 
 ## Determining which search analyzer to use
 
-To determine which analyzer to use for a query string at query time, SmartObserve examines the following parameters in order:
+To determine which analyzer to use for a query string at query time, MCdesk examines the following parameters in order:
 
 1. The `analyzer` parameter of the query
 1. The `search_analyzer` mapping parameter of the field

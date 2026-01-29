@@ -374,7 +374,7 @@ const BreakingChangesUI = (function() {
           }).join('')}</ul>
           <p class="transformation-request">
             To request additional transformations to be built into the Migration Assistant, 
-            open a GitHub issue <a href="https://github.com/igsl-group/smartobserve-migrations/issues">here</a>.
+            open a GitHub issue <a href="https://github.com/igsl-group/mcdesk-migrations/issues">here</a>.
           </p>
         `;
       } else {
@@ -382,7 +382,7 @@ const BreakingChangesUI = (function() {
           <p>No specific breaking changes found for your selection.</p>
           <p class="transformation-request">
             To request additional transformations to be built into the Migration Assistant, 
-            open a GitHub issue <a href="https://github.com/igsl-group/smartobserve-migrations/issues">here</a>.
+            open a GitHub issue <a href="https://github.com/igsl-group/mcdesk-migrations/issues">here</a>.
           </p>
         `;
       }

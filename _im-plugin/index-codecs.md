@@ -11,20 +11,20 @@ Index codecs determine how the index’s stored fields are compressed and stored
 
 ## Supported codecs
 
-SmartObserve provides support for four codecs that can be used for compressing the stored fields. Each codec offers different tradeoffs between compression ratio (storage size) and indexing performance (speed): 
+MCdesk provides support for four codecs that can be used for compressing the stored fields. Each codec offers different tradeoffs between compression ratio (storage size) and indexing performance (speed): 
 
 * `default` -- This codec employs the [LZ4 algorithm](https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)) with a preset dictionary, which prioritizes performance over compression ratio. It offers faster indexing and search operations when compared with `best_compression` but may result in larger index/shard sizes. If no codec is provided in the index settings, then LZ4 is used as the default algorithm for compression.
 * `best_compression` -- This codec uses [zlib](https://en.wikipedia.org/wiki/Zlib) as an underlying algorithm for compression. It achieves high compression ratios that result in smaller index sizes. However, this may incur additional CPU usage during index operations and may subsequently result in high indexing and search latencies. 
 
-As of SmartObserve 2.9, two new codecs based on the [Zstandard compression algorithm](https://github.com/facebook/zstd) are available. This algorithm provides a good balance between compression ratio and speed.
+As of MCdesk 2.9, two new codecs based on the [Zstandard compression algorithm](https://github.com/facebook/zstd) are available. This algorithm provides a good balance between compression ratio and speed.
 
 It may be challenging to change the codec setting of an existing index (see [Changing an index codec](#changing-an-index-codec)), so it is important to test a representative workload in a non-production environment before using a new codec setting.
 {: .important}
 
-* `zstd` (SmartObserve 2.9 and later) -- This codec provides significant compression comparable to the `best_compression` codec with reasonable CPU usage and improved indexing and search performance compared to the `default` codec.
-* `zstd_no_dict` (SmartObserve 2.9 and later) -- This codec is similar to `zstd` but excludes the dictionary compression feature. It provides faster indexing and search operations compared to `zstd` at the expense of a slightly larger index size.
+* `zstd` (MCdesk 2.9 and later) -- This codec provides significant compression comparable to the `best_compression` codec with reasonable CPU usage and improved indexing and search performance compared to the `default` codec.
+* `zstd_no_dict` (MCdesk 2.9 and later) -- This codec is similar to `zstd` but excludes the dictionary compression feature. It provides faster indexing and search operations compared to `zstd` at the expense of a slightly larger index size.
 
-As of SmartObserve 2.10, the `zstd` and `zstd_no_dict` compression codecs cannot be used for [k-NN]({{site.url}}{{site.baseurl}}/search-plugins/knn/index/) or [Security Analytics]({{site.url}}{{site.baseurl}}/security-analytics/index/) indexes.
+As of MCdesk 2.10, the `zstd` and `zstd_no_dict` compression codecs cannot be used for [k-NN]({{site.url}}{{site.baseurl}}/search-plugins/knn/index/) or [Security Analytics]({{site.url}}{{site.baseurl}}/security-analytics/index/) indexes.
 {: .warning}
 
 For the `zstd` and `zstd_no_dict` codecs, you can optionally specify a compression level in the `index.codec.compression_level` setting. This setting takes integers in the [1, 6] range. A higher compression level results in a higher compression ratio (smaller storage size) with a tradeoff in speed (slower compression and decompression speeds lead to greater indexing and search latencies). 
@@ -32,11 +32,11 @@ For the `zstd` and `zstd_no_dict` codecs, you can optionally specify a compressi
 When an index segment is created, it uses the current index codec for compression. If you update the index codec, any segment created after the update will use the new compression algorithm. For specific operation considerations, see [Index codec considerations for index operations](#index-codec-considerations-for-index-operations).
 {: .note}
 
-As of SmartObserve 2.15, hardware-accelerated compression codecs for the `DEFLATE` and `LZ4` compression algorithms are available. These hardware-accelerated codecs are available on the latest 4th and 5th Gen Intel®️ Xeon®️ processors running Linux kernel 3.10 and later. For all other systems and platforms, the codecs use that platform's corresponding software implementations. 
+As of MCdesk 2.15, hardware-accelerated compression codecs for the `DEFLATE` and `LZ4` compression algorithms are available. These hardware-accelerated codecs are available on the latest 4th and 5th Gen Intel®️ Xeon®️ processors running Linux kernel 3.10 and later. For all other systems and platforms, the codecs use that platform's corresponding software implementations. 
 
 The new hardware-accelerated codecs can be used by setting one of the following `index.codec` values:
-* `qat_lz4` (SmartObserve 2.15 and later): Hardware-accelerated `LZ4`
-* `qat_deflate` (SmartObserve 2.15 and later): Hardware-accelerated `DEFLATE`
+* `qat_lz4` (MCdesk 2.15 and later): Hardware-accelerated `LZ4`
+* `qat_deflate` (MCdesk 2.15 and later): Hardware-accelerated `DEFLATE`
 
 `qat_deflate` offers a much better compression ratio than `qat_lz4`, with a modest drop in compression and decompression speed.
 {: .note}
@@ -66,7 +66,7 @@ Every index consists of shards, each of which is further divided into Lucene seg
 
 ### Merges
 
-During segment merges, SmartObserve combines smaller index segments into larger segments in order to provide optimal resource utilization and improve performance. The index codec setting influences the speed and efficiency of the merge operations. The number of merges that happen on an index is a factor of the segment size, and a smaller segment size directly translates into smaller merge sizes. If you update the `index.codec` setting, the new merge operations will use the new codec when creating merged segments. The merged segments will have the compression characteristics of the new codec.
+During segment merges, MCdesk combines smaller index segments into larger segments in order to provide optimal resource utilization and improve performance. The index codec setting influences the speed and efficiency of the merge operations. The number of merges that happen on an index is a factor of the segment size, and a smaller segment size directly translates into smaller merge sizes. If you update the `index.codec` setting, the new merge operations will use the new codec when creating merged segments. The merged segments will have the compression characteristics of the new codec.
 
 ### Splits and shrinks
 
@@ -76,9 +76,9 @@ The [Split API]({{site.url}}{{site.baseurl}}/api-reference/index-apis/split/) sp
 
 When creating a [snapshot]({{site.url}}{{site.baseurl}}/tuning-your-cluster/availability-and-recovery/snapshots/index/), the index codec setting influences the size of the snapshot and the time required for its creation. If the codec of an index is updated, newly created snapshots will use the latest codec setting. The resulting snapshot size will reflect the compression characteristics of the latest codec setting. Existing segments included in the snapshot will retain their original compression characteristics. 
 
-When you restore the indexes from a snapshot of a cluster to another cluster, it is important to verify that the target cluster supports the codecs of the segments in the source snapshot. For example, if the source snapshot contains segments of the `zstd` or `zstd_no_dict` codecs (introduced in SmartObserve 2.9), you won't be able to restore the snapshot to a cluster that runs on an older SmartObserve version because it doesn't support these codecs. 
+When you restore the indexes from a snapshot of a cluster to another cluster, it is important to verify that the target cluster supports the codecs of the segments in the source snapshot. For example, if the source snapshot contains segments of the `zstd` or `zstd_no_dict` codecs (introduced in MCdesk 2.9), you won't be able to restore the snapshot to a cluster that runs on an older MCdesk version because it doesn't support these codecs. 
 
-For hardware-accelerated compression codecs, available in SmartObserve 2.15 and later, the value of `index.codec.qatmode` affects how snapshots and restores are performed. If the value is `auto` (the default), then snapshots and restores work without issue. However, if the value is `hardware`, then it must be reset to `auto` in order for the restore process to succeed on systems lacking the hardware accelerator.
+For hardware-accelerated compression codecs, available in MCdesk 2.15 and later, the value of `index.codec.qatmode` affects how snapshots and restores are performed. If the value is `auto` (the default), then snapshots and restores work without issue. However, if the value is `hardware`, then it must be reset to `auto` in order for the restore process to succeed on systems lacking the hardware accelerator.
 
 You can modify the value of `index.codec.qatmode` during the restore process by setting its value as follows: `"index_settings": {"index.codec.qatmode": "auto"}`.
 {: .note}
@@ -97,7 +97,7 @@ It is not possible to change the codec setting of an open index. You can close t
 
 ## Performance tuning and benchmarking
 
-Depending on your specific use case, you might need to experiment with different index codec settings to fine-tune the performance of your SmartObserve cluster. Conducting benchmark tests with different codecs and measuring the impact on indexing speed, search performance, and resource utilization can help you identify the optimal index codec setting for your workload. With the `zstd` and `zstd_no_dict` codecs, you can also fine-tune the compression level in order to identify the optimal configuration for your cluster.
+Depending on your specific use case, you might need to experiment with different index codec settings to fine-tune the performance of your MCdesk cluster. Conducting benchmark tests with different codecs and measuring the impact on indexing speed, search performance, and resource utilization can help you identify the optimal index codec setting for your workload. With the `zstd` and `zstd_no_dict` codecs, you can also fine-tune the compression level in order to identify the optimal configuration for your cluster.
 
 ### Benchmarking
 

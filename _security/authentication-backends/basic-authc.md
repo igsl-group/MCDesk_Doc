@@ -9,7 +9,7 @@ redirect_from:
 
 # HTTP basic authentication
 
-HTTP basic authentication provides a simple challenge-and-response process for gaining access to SmartObserve and its resources that prompts you to sign in with a username and password. You enable HTTP basic authentication in the `http_authenticator` section of the configuration by specifying `type` as `basic`, as shown in the following example:
+HTTP basic authentication provides a simple challenge-and-response process for gaining access to MCdesk and its resources that prompts you to sign in with a username and password. You enable HTTP basic authentication in the `http_authenticator` section of the configuration by specifying `type` as `basic`, as shown in the following example:
 
 ```yml
 _meta:

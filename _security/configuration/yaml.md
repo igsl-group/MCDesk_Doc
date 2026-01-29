@@ -11,13 +11,13 @@ redirect_from:
 
 The Security installation provides a number of YAML configuration files that are used to store the necessary settings that define the way the Security plugin manages users, roles, and activity within the cluster. These settings range from configurations for authentication backends to lists of allowed endpoints and HTTP requests. 
 
-Before running [`securityadmin.sh`]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/) to load the settings into the `.opendistro_security` index, perform an initial configuration of the YAML files. The files can be found in the `config/smartobserve-security` directory. It's also good practice to back up these files so that you can reuse them for other clusters.
+Before running [`securityadmin.sh`]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/) to load the settings into the `.opendistro_security` index, perform an initial configuration of the YAML files. The files can be found in the `config/mcdesk-security` directory. It's also good practice to back up these files so that you can reuse them for other clusters.
 
-The approach we recommend for using the YAML files is to first configure [reserved and hidden resources]({{site.url}}{{site.baseurl}}/security/access-control/api#reserved-and-hidden-resources), such as the `admin` and `kibanaserver` users. Thereafter you can create other users, roles, mappings, action groups, and tenants using SmartObserve Dashboards or the REST API.
+The approach we recommend for using the YAML files is to first configure [reserved and hidden resources]({{site.url}}{{site.baseurl}}/security/access-control/api#reserved-and-hidden-resources), such as the `admin` and `kibanaserver` users. Thereafter you can create other users, roles, mappings, action groups, and tenants using MCdesk Dashboards or the REST API.
 
 ## action_groups.yml
 
-This file contains any role mappings required for your security configuration. You can find the `role_mapping.yml` file in `<OPENSEARCH_HOME>/config/smartobserve-security/roles_mapping.yml`.
+This file contains any role mappings required for your security configuration. You can find the `role_mapping.yml` file in `<OPENSEARCH_HOME>/config/mcdesk-security/roles_mapping.yml`.
 
 Aside from some metadata, the default file is empty, because the Security plugin has a number of static action groups that it adds automatically. These static action groups cover a wide variety of use cases and are a great way to get started with the plugin.
 
@@ -43,7 +43,7 @@ _meta:
 
 You can use `allowlist.yml` to add any endpoints and HTTP requests to a list of allowed endpoints and requests. If enabled, all users except the super admin are allowed access to only the specified endpoints and HTTP requests, and all other HTTP requests associated with the endpoint are denied. For example, if GET `_cluster/settings` is added to the allow list, users cannot submit PUT requests to `_cluster/settings` to update cluster settings.
 
-You can find the `allowlist.yml` file in `<OPENSEARCH_HOME>/config/smartobserve-security/allowlist.yml`.
+You can find the `allowlist.yml` file in `<OPENSEARCH_HOME>/config/mcdesk-security/allowlist.yml`.
 
 Note that while you can configure access to endpoints this way, for most cases, it is still best to configure permissions using the Security plugin's users and roles, which have more granular settings.
 
@@ -58,8 +58,8 @@ _meta:
 # if enabled is false, all endpoints are accessible.
 # if enabled is true, all users except the SuperAdmin can only submit the allowed requests to the specified endpoints.
 # SuperAdmin can access all APIs.
-# SuperAdmin is defined by the SuperAdmin certificate, which is configured with the smartobserve.yml setting plugins.security.authcz.admin_dn:
-# Refer to the example setting in smartobserve.yml to learn more about configuring SuperAdmin.
+# SuperAdmin is defined by the SuperAdmin certificate, which is configured with the mcdesk.yml setting plugins.security.authcz.admin_dn:
+# Refer to the example setting in mcdesk.yml to learn more about configuring SuperAdmin.
 #
 # requests - map of allow listed endpoints and HTTP requests
 
@@ -94,9 +94,9 @@ requests: # Only allow GET requests to /sample-index1/_doc/1 and /sample-index2/
 
 ## internal_users.yml
 
-This file contains any initial users that you want to add to the Security plugin's internal user database. You can find this file in `<OPENSEARCH_HOME>/config/smartobserve-security/internal_users.yml`.
+This file contains any initial users that you want to add to the Security plugin's internal user database. You can find this file in `<OPENSEARCH_HOME>/config/mcdesk-security/internal_users.yml`.
 
-The file format requires a hashed password. To generate one, run `plugins/smartobserve-security/tools/hash.sh -p <new-password>`. If you decide to keep any of the demo users, *change their passwords* and re-run [securityadmin.sh]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/) to apply the new passwords.
+The file format requires a hashed password. To generate one, run `plugins/mcdesk-security/tools/hash.sh -p <new-password>`. If you decide to keep any of the demo users, *change their passwords* and re-run [securityadmin.sh]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/) to apply the new passwords.
 
 ```yml
 ---
@@ -132,7 +132,7 @@ admin:
 kibanaserver:
   hash: "$2a$12$4AcgAt3xwOWadA5s5blL6ev39OXDNhmOesEoo33eZtrq2N0YrU3H."
   reserved: true
-  description: "Demo user for the SmartObserve Dashboards server"
+  description: "Demo user for the MCdesk Dashboards server"
 
 kibanaro:
   hash: "$2a$12$JJSXNfTowz7Uu5ttXfeYpeYE0arACvcwlPBStB1F.MI7f0U9Z4DGC"
@@ -144,7 +144,7 @@ kibanaro:
     attribute1: "value1"
     attribute2: "value2"
     attribute3: "value3"
-  description: "Demo read-only user for SmartObserve dashboards"
+  description: "Demo read-only user for MCdesk dashboards"
 
 logstash:
   hash: "$2a$12$u1ShR4l4uBS3Uv59Pa2y5.1uQuZBrZtmNfqB3iM/.jL0XoV9sghS2"
@@ -170,7 +170,7 @@ snapshotrestore:
 
 ## nodes_dn.yml
 
-`nodes_dn.yml` lets you add certificates' [distinguished names (DNs)]({{site.url}}{{site.baseurl}}/security/configuration/generate-certificates/#add-distinguished-names-to-smartobserveyml) to an allow list to enable communication between any number of nodes or clusters. For example, a node that has the DN `CN=node1.example.com` in its allow list accepts communication from any other node or certificate that uses that DN.
+`nodes_dn.yml` lets you add certificates' [distinguished names (DNs)]({{site.url}}{{site.baseurl}}/security/configuration/generate-certificates/#add-distinguished-names-to-mcdeskyml) to an allow list to enable communication between any number of nodes or clusters. For example, a node that has the DN `CN=node1.example.com` in its allow list accepts communication from any other node or certificate that uses that DN.
 
 The DNs get indexed into a [system index]({{site.url}}{{site.baseurl}}/security/configuration/system-indices) that only a super admin or an admin with a Transport Layer Security (TLS) certificate can access. If you want to programmatically add DNs to your allow lists, use the [REST API]({{site.url}}{{site.baseurl}}/security/access-control/api/#distinguished-names).
 
@@ -265,7 +265,7 @@ kibana_server:
 
 ## roles.yml
 
-This file contains any initial roles that you want to add to the Security plugin. By default, this file contains predefined roles that grant usage to plugins within the default distribution of SmartObserve. The Security plugin will also add a number static roles automatically.
+This file contains any initial roles that you want to add to the Security plugin. By default, this file contains predefined roles that grant usage to plugins within the default distribution of MCdesk. The Security plugin will also add a number static roles automatically.
 
 ```yml
 ---
@@ -278,7 +278,7 @@ complex-role:
   - "cluster:monitor/task/get"
   index_permissions:
   - index_patterns:
-    - "smartobserve_dashboards_sample_data_*"
+    - "mcdesk_dashboards_sample_data_*"
     dls: "{\"match\": {\"FlightDelay\": true}}"
     fls:
     - "~FlightNum"
@@ -299,9 +299,9 @@ _meta:
 
 ## tenants.yml
 
-You can use this file to specify and add any number of SmartObserve Dashboards tenants to your SmartObserve cluster. For more information about tenants, see [SmartObserve Dashboards multi-tenancy]({{site.url}}{{site.baseurl}}/security/multi-tenancy/tenant-index).
+You can use this file to specify and add any number of MCdesk Dashboards tenants to your MCdesk cluster. For more information about tenants, see [MCdesk Dashboards multi-tenancy]({{site.url}}{{site.baseurl}}/security/multi-tenancy/tenant-index).
 
-Like all of the other YAML files, we recommend you use `tenants.yml` to add any tenants you must have in your cluster, and then use SmartObserve Dashboards or the [REST API]({{site.url}}{{site.baseurl}}/security/access-control/api/#tenants) if you need to further configure or create any other tenants.
+Like all of the other YAML files, we recommend you use `tenants.yml` to add any tenants you must have in your cluster, and then use MCdesk Dashboards or the [REST API]({{site.url}}{{site.baseurl}}/security/access-control/api/#tenants) if you need to further configure or create any other tenants.
 
 ```yml
 ---
@@ -313,9 +313,9 @@ admin_tenant:
   description: "Demo tenant for admin user"
 ```
 
-## smartobserve.yml
+## mcdesk.yml
 
-In addition to many SmartObserve settings, the `smartobserve.yml` file contains paths to TLS certificates and their attributes, such as distinguished names and trusted certificate authorities. You can find this file in  `<OPENSEARCH_HOME>/config/`.
+In addition to many MCdesk settings, the `mcdesk.yml` file contains paths to TLS certificates and their attributes, such as distinguished names and trusted certificate authorities. You can find this file in  `<OPENSEARCH_HOME>/config/`.
 
 ```yml
 plugins.security.ssl.transport.pemcert_filepath: esnode.pem
@@ -331,7 +331,7 @@ plugins.security.allow_default_init_securityindex: true
 plugins.security.authcz.admin_dn:
   - CN=kirk,OU=client,O=client,L=test, C=de
 
-plugins.security.audit.type: internal_smartobserve
+plugins.security.audit.type: internal_mcdesk
 plugins.security.enable_snapshot_restore_privilege: true
 plugins.security.check_snapshot_restore_write_privileges: true
 plugins.security.cache.ttl_minutes: 60
@@ -341,12 +341,12 @@ plugins.security.system_indices.indices: [".opendistro-alerting-config", ".opend
 node.max_local_storage_nodes: 3
 ```
 
-For a full list of `smartobserve.yml` Security plugin settings, see [Security settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/security-settings/).
+For a full list of `mcdesk.yml` Security plugin settings, see [Security settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/security-settings/).
 {: .note}
 
 ### Refining your configuration
 
-The `plugins.security.allow_default_init_securityindex` setting, when set to `true`, sets the Security plugin to its default security settings if an attempt to create the security index fails when SmartObserve launches. Default security settings are stored in YAML files contained in the `smartobserve-project/security/config` directory. By default, this setting is `false`.
+The `plugins.security.allow_default_init_securityindex` setting, when set to `true`, sets the Security plugin to its default security settings if an attempt to create the security index fails when MCdesk launches. Default security settings are stored in YAML files contained in the `mcdesk-project/security/config` directory. By default, this setting is `false`.
 
 ```yml
 plugins.security.allow_default_init_securityindex: true
@@ -375,9 +375,9 @@ To learn more about system index permissions, see [System index permissions]({{s
 
 ### Password settings
 
-If you want to run your users' passwords against some validation, specify a regular expression (regex) in this file. You can also include an error message that loads when passwords don't pass validation. The following example demonstrates how to include a regex so SmartObserve requires new passwords to be a minimum of eight characters with at least one uppercase, one lowercase, one digit, and one special character.
+If you want to run your users' passwords against some validation, specify a regular expression (regex) in this file. You can also include an error message that loads when passwords don't pass validation. The following example demonstrates how to include a regex so MCdesk requires new passwords to be a minimum of eight characters with at least one uppercase, one lowercase, one digit, and one special character.
 
-Note that SmartObserve validates only users and passwords created through SmartObserve Dashboards or the REST API.
+Note that MCdesk validates only users and passwords created through MCdesk Dashboards or the REST API.
 
 ```yml
 plugins.security.restapi.password_validation_regex: '(?=.*[A-Z])(?=.*[^a-zA-Z\d])(?=.*[0-9])(?=.*[a-z]).{8,}'
@@ -398,7 +398,7 @@ Score-based password strength requires two settings to configure the feature. Th
 | `plugins.security.restapi.password_min_length` | Sets the minimum number of characters for the password length. The default is `8`. This is also the minimum. |
 | `plugins.security.restapi.password_score_based_validation_strength` | Sets a threshold to determine whether the password is strong or weak. There are four values that represent a threshold's increasing complexity.<br>`fair`--A very "guessable" password: provides protection from throttled online attacks.<br>`good`--A somewhat guessable password: provides protection from unthrottled online attacks.<br>`strong`--A safely "unguessable" password: provides moderate protection from an offline, slow-hash scenario.<br>`very_strong`--A very unguessable password: provides strong protection from an offline, slow-hash scenario. |
 
-The following example shows the settings configured for the `smartobserve.yml` file and enabling a password with a minimum of 10 characters and a threshold requiring the highest strength:
+The following example shows the settings configured for the `mcdesk.yml` file and enabling a password with a minimum of 10 characters and a threshold requiring the highest strength:
 
 ```yml
 plugins.security.restapi.password_min_length: 10

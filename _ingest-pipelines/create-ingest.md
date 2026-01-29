@@ -3,7 +3,7 @@ layout: default
 title: Create pipeline
 nav_order: 10
 redirect_from:
-  - /smartobserve/rest-api/ingest-apis/create-update-ingest/
+  - /mcdesk/rest-api/ingest-apis/create-update-ingest/
   - /api-reference/ingest-apis/create-ingest/
   - /api-reference/ingest-apis/create-update-ingest/
 ---
@@ -12,7 +12,7 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-Use the create pipeline API operation to create or update pipelines in SmartObserve. Note that the pipeline requires you to define at least one processor that specifies how to change the documents. 
+Use the create pipeline API operation to create or update pipelines in MCdesk. Note that the pipeline requires you to define at least one processor that specifies how to change the documents. 
 
 ## Path and HTTP method
 

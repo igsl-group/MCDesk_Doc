@@ -58,9 +58,9 @@ The `mmr` object is provided in the `ext` object of the Search API request body 
 | ------------------------- | --------- | ----------------------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `diversity`               | Float     | Optional                                        | Controls the weight of diversity ($$\lambda$$) in the reranking process. Valid values range from `0` to `1`, inclusive. A value of `1` prioritizes maximum diversity; `0` disables diversity. Default is `0.5`. |
 | `candidates`              | Integer   | Optional                                        | The number of candidate documents to retrieve before applying MMR reranking. Default is `3 * size`, where `size` is the query's `size` parameter (the requested number of results to return).                                                                                        |
-| `vector_field_path`       | String    | Optional (required for remote indexes) | The path to the vector field used for MMR reranking. If not provided, SmartObserve resolves it automatically from the search request.                                                            |
-| `vector_field_data_type`  | String    | Optional (required for remote indexes) | The data type of the vector field. Used to parse the field and calculate similarity. If not provided, SmartObserve resolves it from the index mapping.                                            |
-| `vector_field_space_type` | String    | Optional (required for remote indexes) | Used to determine the similarity function for the vector field, such as cosine similarity or Euclidean distance. If not provided, SmartObserve resolves it from the index mapping.               |   
+| `vector_field_path`       | String    | Optional (required for remote indexes) | The path to the vector field used for MMR reranking. If not provided, MCdesk resolves it automatically from the search request.                                                            |
+| `vector_field_data_type`  | String    | Optional (required for remote indexes) | The data type of the vector field. Used to parse the field and calculate similarity. If not provided, MCdesk resolves it from the index mapping.                                            |
+| `vector_field_space_type` | String    | Optional (required for remote indexes) | Used to determine the similarity function for the vector field, such as cosine similarity or Euclidean distance. If not provided, MCdesk resolves it from the index mapping.               |   
 
 
 # Example request
@@ -122,7 +122,7 @@ The following limitations apply to vector search with MMR reranking:
 
 - **Supported query types**: MMR supports only a `knn` or `neural` query as the top-level query in a search request. If a `knn` or `neural` query is nested inside another query type (such as a `bool` query or `hybrid` query), MMR is not supported.
 
-- **Remote index requirements**: When querying remote indexes, you must explicitly provide vector field information (`vector_field_path`, `vector_field_data_type`, and `vector_field_space_type`). Unlike a local index for which SmartObserve can automatically resolve this metadata from the index mapping, the system cannot reliably fetch this information from the remote cluster. Providing these details ensures correct parsing of the vector data and accurate similarity calculations.
+- **Remote index requirements**: When querying remote indexes, you must explicitly provide vector field information (`vector_field_path`, `vector_field_data_type`, and `vector_field_space_type`). Unlike a local index for which MCdesk can automatically resolve this metadata from the index mapping, the system cannot reliably fetch this information from the remote cluster. Providing these details ensures correct parsing of the vector data and accurate similarity calculations.
 
 ## Related pages
 

@@ -39,21 +39,21 @@ Path parameters are optional.
 
 ## Example request
 
-The following request verifies that the my-smartobserve-repo is functional:
+The following request verifies that the my-mcdesk-repo is functional:
 
 <!-- spec_insert_start
 component: example_code
-rest: POST /_snapshot/my-smartobserve-repo/_verify?timeout=0s&cluster_manager_timeout=50s
+rest: POST /_snapshot/my-mcdesk-repo/_verify?timeout=0s&cluster_manager_timeout=50s
 -->
 {% capture step1_rest %}
-POST /_snapshot/my-smartobserve-repo/_verify?timeout=0s&cluster_manager_timeout=50s
+POST /_snapshot/my-mcdesk-repo/_verify?timeout=0s&cluster_manager_timeout=50s
 {% endcapture %}
 
 {% capture step1_python %}
 
 
 response = client.snapshot.verify_repository(
-  repository = "my-smartobserve-repo",
+  repository = "my-mcdesk-repo",
   params = { "timeout": "0s", "cluster_manager_timeout": "50s" }
 )
 
@@ -68,13 +68,13 @@ response = client.snapshot.verify_repository(
 
 The example that follows corresponds to the request above in the [Example request](#example-request) section.
 
-The `POST /_snapshot/my-smartobserve-repo/_verify?timeout=0s&cluster_manager_timeout=50s` request returns the following fields:
+The `POST /_snapshot/my-mcdesk-repo/_verify?timeout=0s&cluster_manager_timeout=50s` request returns the following fields:
 
 ````json
 {
   "nodes" : {
     "by1kztwTRoeCyg4iGU5Y8A" : {
-      "name" : "smartobserve-node1"
+      "name" : "mcdesk-node1"
     }
   }
 }

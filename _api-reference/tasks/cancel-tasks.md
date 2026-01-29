@@ -56,21 +56,21 @@ The following table lists the available query parameters. All query parameters a
 
 ## Example request
 
-The following request cancels any tasks currently running on `smartobserve-node1` and `smartobserve-node2`:
+The following request cancels any tasks currently running on `mcdesk-node1` and `mcdesk-node2`:
 
 <!-- spec_insert_start
 component: example_code
-rest: POST /_tasks/_cancel?nodes=smartobserve-node1,smartobserve-node2
+rest: POST /_tasks/_cancel?nodes=mcdesk-node1,mcdesk-node2
 -->
 {% capture step1_rest %}
-POST /_tasks/_cancel?nodes=smartobserve-node1,smartobserve-node2
+POST /_tasks/_cancel?nodes=mcdesk-node1,mcdesk-node2
 {% endcapture %}
 
 {% capture step1_python %}
 
 
 response = client.tasks.cancel(
-  params = { "nodes": "smartobserve-node1,smartobserve-node2" }
+  params = { "nodes": "mcdesk-node1,mcdesk-node2" }
 )
 
 {% endcapture %}
@@ -89,7 +89,7 @@ The following response shows that a bulk write and update task were canceled wit
   "node_failures": [],
   "nodes": {
     "JzrCxdtFTCO_RaINw8ckNA": {
-      "name": "smartobserve-node1",
+      "name": "mcdesk-node1",
       "transport_address": "127.0.0.1:9300",
       "host": "127.0.0.1",
       "ip": "127.0.0.1:9300",
@@ -116,7 +116,7 @@ The following response shows that a bulk write and update task were canceled wit
       }
     },
     "K8iyDdtGQCO_SbJNw9dkMB": {
-      "name": "smartobserve-node2",
+      "name": "mcdesk-node2",
       "transport_address": "127.0.0.1:9301",
       "host": "127.0.0.1",
       "ip": "127.0.0.1:9301",

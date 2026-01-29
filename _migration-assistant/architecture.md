@@ -2,7 +2,7 @@
 layout: default
 title: Architecture
 nav_order: 15
-parent: Migration Assistant for SmartObserve
+parent: Migration Assistant for MCdesk
 permalink: /migration-assistant/architecture/
 redirect_from:
   - /migration-assistant/overview/architecture/

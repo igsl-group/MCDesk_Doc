@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 70
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-templates/
+- /mcdesk/rest-api/cat/cat-templates/
 ---
 
 # CAT Templates API
@@ -104,7 +104,7 @@ response = client.cat.templates(
 
 ```
 name | index_patterns order version composed_of
-tenant_template | [smartobserve-dashboards*] | 0  |    
+tenant_template | [mcdesk-dashboards*] | 0  |    
 ```
 
-To learn more about index templates, see [Index templates]({{site.url}}{{site.baseurl}}/smartobserve/index-templates).
+To learn more about index templates, see [Index templates]({{site.url}}{{site.baseurl}}/mcdesk/index-templates).

@@ -10,7 +10,7 @@ redirect_from:
 
 # Semantic search using Amazon Bedrock Titan in another account
 
-Starting with SmartObserve version 2.15, you must configure a connector to an Amazon Bedrock model hosted in a different account than the account hosting Amazon SmartObserve Service. This tutorial shows you how to implement semantic search in [Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/) using the [Amazon Bedrock Titan embedding model](https://docs.aws.amazon.com/bedrock/latest/userguide/titan-embedding-models.html) hosted in another account. For more information, see [Semantic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/semantic-search/).
+Starting with MCdesk version 2.15, you must configure a connector to an Amazon Bedrock model hosted in a different account than the account hosting Amazon MCdesk Service. This tutorial shows you how to implement semantic search in [Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/) using the [Amazon Bedrock Titan embedding model](https://docs.aws.amazon.com/bedrock/latest/userguide/titan-embedding-models.html) hosted in another account. For more information, see [Semantic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/semantic-search/).
 
 Amazon Bedrock has a [quota limit](https://docs.aws.amazon.com/bedrock/latest/userguide/quotas.html). For more information about increasing this limit, see [Increase model invocation capacity with Provisioned Throughput in Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html).
 {: .warning}
@@ -20,9 +20,9 @@ Replace the placeholders beginning with the prefix `your_` with your own values.
 
 # Overview
 
-In this tutorial, you'll use two AWS accounts: Account A (hosting Amazon SmartObserve Service) and Account B (hosting an Amazon Bedrock model).
+In this tutorial, you'll use two AWS accounts: Account A (hosting Amazon MCdesk Service) and Account B (hosting an Amazon Bedrock model).
 
-To invoke a model hosted in a different account than the account hosting Amazon SmartObserve Service, you must configure two roles in the connector credentials:
+To invoke a model hosted in a different account than the account hosting Amazon MCdesk Service, you must configure two roles in the connector credentials:
 
 - `roleArn`: The role in Account A that is used to assume the external account role in Account B.
 - `externalAccountRoleArn`: The role in Account B that is used to invoke the Amazon Bedrock model.
@@ -37,9 +37,9 @@ In this tutorial , you'll use the following role names:
 
   ARN: `arn:aws:iam::<your_aws_account_B>:role/my_invoke_bedrock_role_accountB`
 
-## Prerequisite: Create an SmartObserve cluster
+## Prerequisite: Create an MCdesk cluster
 
-Go to the [Amazon SmartObserve Service console](https://console.aws.amazon.com/aos/home) and create an SmartObserve domain.
+Go to the [Amazon MCdesk Service console](https://console.aws.amazon.com/aos/home) and create an MCdesk domain.
 
 Note the domain ARN; you'll use it in the following steps.
 
@@ -90,7 +90,7 @@ Note the role ARN; you'll use it in the following steps.
 
 ## 2. Create an IAM role in Account A
 
-Follow these steps to configure an IAM role in Amazon SmartObserve Service.
+Follow these steps to configure an IAM role in Amazon MCdesk Service.
 
 ### Step 2.1: Create an IAM role for assuming externalAccountRoleArn
 
@@ -174,7 +174,7 @@ You'll use the `your_iam_user_arn` IAM user to assume the role in Step 3.
         {
             "Effect": "Allow",
             "Action": "es:ESHttpPost",
-            "Resource": "your_smartobserve_domain_arn_created"
+            "Resource": "your_mcdesk_domain_arn_created"
         }
     ]
 }
@@ -187,14 +187,14 @@ Note this role ARN; you'll use it in the following steps.
 
 Follow these steps to map a backend role:
 
-1. Log in to SmartObserve Dashboards and select **Security** on the top menu.
+1. Log in to MCdesk Dashboards and select **Security** on the top menu.
 2. Select **Roles**, and then select the **ml_full_access** role. 
 3. On the **ml_full_access** role details page, select **Mapped users**, and then select **Manage mapping**. 
 4. Enter the IAM role ARN created in Step 2.2 (`arn:aws:iam::<your_aws_account_A>:role/my_create_connector_role_accountA`) in the **Backend roles** field, as shown in the following image.
     ![Mapping a backend role]({{site.url}}{{site.baseurl}}/images/vector-search-tutorials/mapping_iam_role_arn.png)
 5. Select **Map**. 
 
-The IAM role is now successfully configured in your SmartObserve cluster.
+The IAM role is now successfully configured in your MCdesk cluster.
 
 ## Step 3: Create a connector
 
@@ -207,8 +207,8 @@ import boto3
 import requests 
 from requests_aws4auth import AWS4Auth
 
-host = 'your_amazon_smartobserve_domain_endpoint_created'
-region = 'your_amazon_smartobserve_domain_region'
+host = 'your_amazon_mcdesk_domain_endpoint_created'
+region = 'your_amazon_mcdesk_domain_region'
 service = 'es'
 
 assume_role_response = boto3.Session().client('sts').assume_role(
@@ -268,7 +268,7 @@ Note the connector ID; you'll use it in the next step.
 
 ## Step 4: Create and test the model
 
-Log in to SmartObserve Dashboards, open the DevTools console, and run the following requests to create and test the model.
+Log in to MCdesk Dashboards, open the DevTools console, and run the following requests to create and test the model.
 
 1. Create a model group:
 

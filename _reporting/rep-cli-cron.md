@@ -33,5 +33,5 @@ crontab -e
 In the crontab editor, enter the report request. The following example shows a cron report that runs every day at 8:00 AM:
 
 ```
-0 8 * * * smartobserve-reporting-cli -u https://playground.magiccreative.io/app/dashboards#/view/084aed50-6f48-11ed-a3d5-1ddbf0afc873 -e ses -s <sender_email> -r <recipient_email>
+0 8 * * * mcdesk-reporting-cli -u https://playground.magiccreative.io/app/dashboards#/view/084aed50-6f48-11ed-a3d5-1ddbf0afc873 -e ses -s <sender_email> -r <recipient_email>
 ```

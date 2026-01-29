@@ -23,10 +23,10 @@ The `avg_bucket` aggregation takes the following parameters.
 
 ## Example
 
-The following example creates a date histogram with a one-month interval from the SmartObserve Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of bytes for each month. Finally, the `avg_bucket` aggregation calculates the average number of bytes per month from these sums:
+The following example creates a date histogram with a one-month interval from the MCdesk Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of bytes for each month. Finally, the `avg_bucket` aggregation calculates the average number of bytes per month from these sums:
 
 ```json
-POST smartobserve_dashboards_sample_data_logs/_search
+POST mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

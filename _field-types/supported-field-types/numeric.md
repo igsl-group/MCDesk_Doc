@@ -5,13 +5,13 @@ parent: Supported field types
 nav_order: 15
 has_children: true
 redirect_from:
-  - /smartobserve/supported-field-types/numeric/
+  - /mcdesk/supported-field-types/numeric/
   - /field-types/numeric/
 ---
 
 # Numeric field types
 
-The following table lists all numeric field types that SmartObserve supports.
+The following table lists all numeric field types that MCdesk supports.
 
 Field data type | Description  
 :--- | :--- 
@@ -25,10 +25,10 @@ Field data type | Description
 `short` | A signed 16-bit integer. Minimum is &minus;2<sup>15</sup>. Maximum is 2<sup>15</sup> &minus; 1. 
 [`scaled_float`](#scaled-float-field-type) | A floating-point value that is multiplied by the double scale factor and stored as a long value.
 
-Integer, long, float, and double field types have corresponding [range field types]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/range/).
+Integer, long, float, and double field types have corresponding [range field types]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/range/).
 {: .note }
 
-If your numeric field contains an identifier such as an ID, you can map this field as a [keyword]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/keyword/) to optimize for faster term-level queries. If you need to use range queries on this field, you can map this field as a numeric field type in addition to a keyword field type.
+If your numeric field contains an identifier such as an ID, you can map this field as a [keyword]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/keyword/) to optimize for faster term-level queries. If you need to use range queries on this field, you can map this field as a numeric field type in addition to a keyword field type.
 {: .tip }
 
 ## Example
@@ -142,7 +142,7 @@ Parameter | Description
 `ignore_malformed` | A Boolean value that specifies to ignore malformed values and not to throw an exception. Default is `false`. Dynamically updatable.
 `index` | A Boolean value that specifies whether the field should be searchable. Default is `true`. 
 `meta` | Accepts metadata for this field.
-[`null_value`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/index#null-value) | A  value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
+[`null_value`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/index#null-value) | A  value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
 `skip_list` | A Boolean value that specifies whether to enable skip list indexing for doc values. When enabled, this creates indexed doc values that can improve performance for `range` queries by allowing the query engine to skip over irrelevant document ranges. Default is `false`.
 `store` | A Boolean value that specifies whether the field value should be stored and can be retrieved separately from the _source field. Default is `false`. 
 
@@ -151,4 +151,4 @@ Scaled float has an additional required parameter: `scaling_factor`.
 Parameter | Description 
 :--- | :--- 
 `scaling_factor` | A double value that is multiplied by the field value and rounded to the nearest long. Required.
-`skip_list` | A Boolean value that specifies whether to enable skip list indexing for doc values. When enabled, SmartObserve creates indexed doc values that can improve performance for `range` queries by allowing the query engine to skip irrelevant document ranges. Default is `false`. 
+`skip_list` | A Boolean value that specifies whether to enable skip list indexing for doc values. When enabled, MCdesk creates indexed doc values that can improve performance for `range` queries by allowing the query engine to skip irrelevant document ranges. Default is `false`. 

@@ -56,7 +56,7 @@ Use the following request to examine the tokens generated using the analyzer:
 GET /truncate_example/_analyze
 {
   "analyzer": "truncate_analyzer",
-  "text": "SmartObserve is powerful and scalable"
+  "text": "MCdesk is powerful and scalable"
 }
 
 ```

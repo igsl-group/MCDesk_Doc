@@ -8,7 +8,7 @@ grand_parent: User guide
 
 # Performance testing best practices
 
-When conducting performance testing using SmartObserve Benchmark, it's crucial to follow some key best practices to ensure accurate, reliable, and meaningful results. These practices help in creating realistic test scenarios, minimizing external factors that could skew results, and generating comparable and reproducible benchmarks. By adhering to these guidelines, you can gain valuable insights into your cluster's performance, including identifying bottlenecks and making informed decisions about cluster configuration and optimization.
+When conducting performance testing using MCdesk Benchmark, it's crucial to follow some key best practices to ensure accurate, reliable, and meaningful results. These practices help in creating realistic test scenarios, minimizing external factors that could skew results, and generating comparable and reproducible benchmarks. By adhering to these guidelines, you can gain valuable insights into your cluster's performance, including identifying bottlenecks and making informed decisions about cluster configuration and optimization.
 
 ## Environment setup
 
@@ -16,7 +16,7 @@ Performance testing requires careful attention to the testing environment. A pro
 
 When setting up your testing environment, it's essential to use hardware that closely matches your production environment. Using development or underpowered hardware will not provide meaningful results that are translatable to production performance. Local machines often have limited hardware, and local development libraries can conflict with the workload's library, preventing the benchmark test from running effectively.
 
-For the best results, make sure that your load generation host or machine running SmartObserve Benchmark follows the minimum hardware requirements:
+For the best results, make sure that your load generation host or machine running MCdesk Benchmark follows the minimum hardware requirements:
 
 - CPU: 8+ cores
 - RAM: 32+ GB
@@ -53,7 +53,7 @@ The following example shows a basic benchmark configuration file. This configura
 
 ### Index settings
 
-Your SmartObserve index settings should be optimized for your specific use case. Try to set the number of shards per index to match your production cluster. However, if you're a developer who wants to focus on a single shard's performance and limit the variables impacting performance, use a single primary shard, as shown in the following example `index_settings`:
+Your MCdesk index settings should be optimized for your specific use case. Try to set the number of shards per index to match your production cluster. However, if you're a developer who wants to focus on a single shard's performance and limit the variables impacting performance, use a single primary shard, as shown in the following example `index_settings`:
 
 ```json
 {
@@ -75,7 +75,7 @@ Running benchmark tests involves monitoring the system during the test and ensur
 While you can run a basic test, you can also customize your test run with additional [benchmark command options]({{site.url}}{{site.baseurl}}/benchmark/reference/commands/index/). The following example runs a `geonames` workload test that targets a specific host and outputs the test results as a `csv`, which can be used for further analysis of the benchmark's metrics:
 
 ```bash
-smartobserve-benchmark run \
+mcdesk-benchmark run \
   --workload=geonames \
   --target-hosts=localhost:9200 \
   --pipeline=benchmark-only \
@@ -93,7 +93,7 @@ During a test run, it's essential to monitor various system metrics to ensure th
 # Monitor system resources
 vmstat 1
 
-# Monitor SmartObserve metrics
+# Monitor MCdesk metrics
 curl localhost:9200/_cat/nodes?v
 curl localhost:9200/_cat/indices?v
 
@@ -151,20 +151,20 @@ metrics_to_track = {
 
 ### Calculating metrics
 
-SmartObserve Benchmark calculates metrics differently than traditional client-server systems. For detailed information about how metrics are calculated, see [Differences between SmartObserve Benchmark and a traditional client-server system]({{site.url}}{{site.baseurl}}/benchmark/user-guide/concepts/#differences-between-smartobserve-benchmark-and-a-traditional-client-server-system).
+MCdesk Benchmark calculates metrics differently than traditional client-server systems. For detailed information about how metrics are calculated, see [Differences between MCdesk Benchmark and a traditional client-server system]({{site.url}}{{site.baseurl}}/benchmark/user-guide/concepts/#differences-between-mcdesk-benchmark-and-a-traditional-client-server-system).
 
-## Integration with SmartObserve Dashboards
+## Integration with MCdesk Dashboards
 
-To integrate SmartObserve Benchmark results with SmartObserve Dashboards, use the following steps:
+To integrate MCdesk Benchmark results with MCdesk Dashboards, use the following steps:
 
-1. [Configure SmartObserve Benchmark]({{site.url}}{{site.baseurl}}/benchmark/user-guide/install-and-configure/configuring-benchmark/) to store results in SmartObserve.
-2. Create index patterns in SmartObserve Dashboards for the benchmark results.
+1. [Configure MCdesk Benchmark]({{site.url}}{{site.baseurl}}/benchmark/user-guide/install-and-configure/configuring-benchmark/) to store results in MCdesk.
+2. Create index patterns in MCdesk Dashboards for the benchmark results.
 3. Create visualizations and dashboards to analyze the benchmark data.
 
 
 ## Common pitfalls
 
-When conducting performance tests using SmartObserve Benchmark, it's important to be aware of some common pitfalls that can lead to inaccurate or misleading results.
+When conducting performance tests using MCdesk Benchmark, it's important to be aware of some common pitfalls that can lead to inaccurate or misleading results.
 
 ### Warmup intervals
 
@@ -175,7 +175,7 @@ Don't run tests without a warmup period.
 Instead, always include an adequate warmup period in your tests. This allows the system to reach a steady state before measurements begin. In the following example, a `geonames` run is given a warmup period of `300s`:
 
 ```python
-smartobserve-benchmark run --workload=geonames --workload-params="warmup_time_period:300"
+mcdesk-benchmark run --workload=geonames --workload-params="warmup_time_period:300"
 ```
 
 The appropriate warmup period can vary depending on your specific workload and system configuration. Start with at least 5 minutes (300 seconds) and adjust as needed based on your observations.
@@ -192,7 +192,7 @@ Proper documentation of your test environment is crucial for reproducibility and
 
 Don't omit environment details from your test reports.
 
-Instead, always comprehensively document the details of your test environment. This should include hardware specifications, software versions, and any relevant configuration settings. The following example shows you how to add environment details when running SmartObserve Benchmark with a Python script:
+Instead, always comprehensively document the details of your test environment. This should include hardware specifications, software versions, and any relevant configuration settings. The following example shows you how to add environment details when running MCdesk Benchmark with a Python script:
 
 ```python
 # DO: Document environment details
@@ -201,11 +201,11 @@ def run_benchmark():
         'hardware': 'AWS m5.2xlarge',
         'os': 'Ubuntu 20.04',
         'kernel': '5.4.0-1018-aws',
-        'smartobserve': '2.0.0',
+        'mcdesk': '2.0.0',
         'java': 'OpenJDK 11.0.11',
         'benchmark_version': '1.0.0'
     }
-    results = smartobserve_benchmark.run()
+    results = mcdesk_benchmark.run()
     return {'environment': environment, 'results': results}
 ```
 {% include copy.html %}
@@ -214,7 +214,7 @@ By documenting these details, you ensure that your test results can be properly 
 
 ### Troubleshooting with logs
 
-When encountering issues or unexpected results, SmartObserve Benchmark logs can provide valuable insights. Here's how to effectively use logs for troubleshooting:
+When encountering issues or unexpected results, MCdesk Benchmark logs can provide valuable insights. Here's how to effectively use logs for troubleshooting:
 
 1. Navigate to the log file. The main log file is typically located at `~/.osb/logs/benchmark.log`.
 
@@ -226,11 +226,11 @@ When encountering issues or unexpected results, SmartObserve Benchmark logs can 
 
 5. Pay attention to the duration of different phases of the benchmark, including warmup and measurement periods.
 
-By carefully reviewing these logs, you can often identify the root cause of performance issues or unexpected benchmark results. If you encounter a log error that you do not recognize, create an issue in the [SmartObserve Benchmark repository](https://github.com/igsl-group/smartobserve-benchmark).
+By carefully reviewing these logs, you can often identify the root cause of performance issues or unexpected benchmark results. If you encounter a log error that you do not recognize, create an issue in the [MCdesk Benchmark repository](https://github.com/igsl-group/mcdesk-benchmark).
 
 ## Security considerations
 
-In most cases, a basic authentication protocol should be sufficient for testing. However, you can use SSL for secure communication during benchmark testing, as shown in the following example `smartobserve.yml` configuration:
+In most cases, a basic authentication protocol should be sufficient for testing. However, you can use SSL for secure communication during benchmark testing, as shown in the following example `mcdesk.yml` configuration:
 
 ```yaml
 security:
@@ -250,17 +250,17 @@ Regular maintenance of your benchmark environment and tools is essential for con
 Keep your benchmark tools and workloads up to date with the following commands:
 
 ```bash
-# Update SmartObserve Benchmark
-pip install --upgrade smartobserve-benchmark
+# Update MCdesk Benchmark
+pip install --upgrade mcdesk-benchmark
 
 # Update workloads
-smartobserve-benchmark update-workload geonames
+mcdesk-benchmark update-workload geonames
 
 # Clean old data
-smartobserve-benchmark clean
+mcdesk-benchmark clean
 ```
 {% include copy.html %}
 
-## Amazon SmartObserve Serverless considerations
+## Amazon MCdesk Serverless considerations
 
-When testing using Amazon SmartObserve Serverless, be aware that not all test procedures may be supported. Always check the `README.md` file of the [workload](https://github.com/igsl-group/smartobserve-benchmark-workloads) you're using to confirm whether it's compatible with SmartObserve Serverless. If compatibility information is not provided, you may need to test the procedures individually to determine which ones are supported.
+When testing using Amazon MCdesk Serverless, be aware that not all test procedures may be supported. Always check the `README.md` file of the [workload](https://github.com/igsl-group/mcdesk-benchmark-workloads) you're using to confirm whether it's compatible with MCdesk Serverless. If compatibility information is not provided, you may need to test the procedures individually to determine which ones are supported.

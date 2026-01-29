@@ -8,7 +8,7 @@ nav_order: 80
 
 # REST layer authorization
 
-Authorization on the REST layer provides an added level of security for plugin and extension API requests by offering a mechanism for authorization checks on the REST layer. This level of security sits atop the transport layer and provides a complementary method of authorization without replacing, modifying, or in any way changing the same process on the transport layer. REST layer authorization was initially created to address the need for an authorization check for extensions, which do not communicate on the transport layer. However, the feature is also available to developers who wish to use it when creating future plugins for SmartObserve.
+Authorization on the REST layer provides an added level of security for plugin and extension API requests by offering a mechanism for authorization checks on the REST layer. This level of security sits atop the transport layer and provides a complementary method of authorization without replacing, modifying, or in any way changing the same process on the transport layer. REST layer authorization was initially created to address the need for an authorization check for extensions, which do not communicate on the transport layer. However, the feature is also available to developers who wish to use it when creating future plugins for MCdesk.
 
 For users that work with REST layer authorization, the methods of assigning roles and mapping users and roles, and the general usage of plugins and extensions, remain the same---the only additional requirement being that users become familiar with a new scheme for permissions. 
 
@@ -26,7 +26,7 @@ You must have the Security plugin enabled to use REST layer authorization.
 
 REST layer authorization provides cluster administrators with the ability to grant or revoke access to specific endpoints in a cluster. To achieve this, the route to the resource uses a unique name.
 
-To facilitate REST layer authorization, the SmartObserve Project has introduced the idea of [`NamedRoute`](https://github.com/igsl-group/SmartObserve/blob/main/server/src/main/java/org/smartobserve/rest/NamedRoute.java) for route registration. For developers, this standard requires a new method of registering routes that uses a unique name. While transport actions typically consist of a method name, a part, and a corresponding transport action, this new implementation requires a method name, a part, and a unique name for the route. As the name suggests, it is essential that it be unique among all plugins and extensions or, in other words, not registered to any other route.
+To facilitate REST layer authorization, the MCdesk Project has introduced the idea of [`NamedRoute`](https://github.com/igsl-group/MCdesk/blob/main/server/src/main/java/org/mcdesk/rest/NamedRoute.java) for route registration. For developers, this standard requires a new method of registering routes that uses a unique name. While transport actions typically consist of a method name, a part, and a corresponding transport action, this new implementation requires a method name, a part, and a unique name for the route. As the name suggests, it is essential that it be unique among all plugins and extensions or, in other words, not registered to any other route.
 
 For example, consider the following route for an Anomaly Detection resource:
 
@@ -58,7 +58,7 @@ When a user initiates a REST request, the user's roles are examined, and each pe
 abcplugin_read_access:
    reserved: true
    cluster_permissions:
-     - 'cluster:admin/smartobserve/abcplugin/route/get'
+     - 'cluster:admin/mcdesk/abcplugin/route/get'
 ```
 
 Also consider the following role mapping:

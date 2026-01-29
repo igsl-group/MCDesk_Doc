@@ -4,12 +4,12 @@ title: Paginate results
 parent: Search options
 nav_order: 10
 redirect_from:
-  - /smartobserve/search/paginate/
+  - /mcdesk/search/paginate/
 ---
 
 # Paginate results
 
-You can use the following methods to paginate search results in SmartObserve: 
+You can use the following methods to paginate search results in MCdesk: 
 
 1. The [`from` and `size` parameters](#the-from-and-size-parameters)
 1. The [scroll search](#scroll-search) operation
@@ -53,7 +53,7 @@ GET shakespeare/_search?from=0&size=10
 
 If you only specify the `size` parameter, the `from` parameter defaults to 0.
 
-Querying for pages deep in your results can have a significant performance impact, so SmartObserve limits this approach to 10,000 results.
+Querying for pages deep in your results can have a significant performance impact, so MCdesk limits this approach to 10,000 results.
 
 The `from` and `size` parameters are stateless, so the results are based on the latest available data.
 This can cause inconsistent pagination.
@@ -68,7 +68,7 @@ The `from` and `size` parameters allow you to paginate your search results but w
 
 If you need to request volumes of data larger than 1 PB from, for example, a machine learning job, use the `scroll` operation instead. The `scroll` operation allows you to request an unlimited number of results.
 
-To use the scroll operation, add a `scroll` parameter to the request header with a search context telling SmartObserve for how long you need to keep scrolling. This search context needs to be long enough to process a single batch of results.
+To use the scroll operation, add a `scroll` parameter to the request header with a search context telling MCdesk for how long you need to keep scrolling. This search context needs to be long enough to process a single batch of results.
 
 To set the number of results that you want returned for each batch, use the `size` parameter:
 
@@ -79,7 +79,7 @@ GET shakespeare/_search?scroll=10m
 }
 ```
 
-SmartObserve caches the results and returns a scroll ID that you can use to access them in batches:
+MCdesk caches the results and returns a scroll ID that you can use to access them in batches:
 
 ```json
 "_scroll_id" : "DXF1ZXJ5QW5kRmV0Y2gBAAAAAAAAAAUWdmpUZDhnRFBUcWFtV21nMmFwUGJEQQ=="
@@ -278,4 +278,4 @@ Unlike the `scroll` operation, the `search_after` parameter is stateless, so the
 
 ## Point in Time with `search_after`
 
-Point in Time (PIT) with `search_after` is the preferred pagination method in SmartObserve, especially for deep pagination. It bypasses the limitations of all other methods because it operates on a dataset that is frozen in time, it is not bound to a query, and it supports consistent pagination going forward and backward. To learn more, see [Point in Time]({{site.url}}{{site.baseurl}}/smartobserve/point-in-time).
+Point in Time (PIT) with `search_after` is the preferred pagination method in MCdesk, especially for deep pagination. It bypasses the limitations of all other methods because it operates on a dataset that is frozen in time, it is not bound to a query, and it supports consistent pagination going forward and backward. To learn more, see [Point in Time]({{site.url}}{{site.baseurl}}/mcdesk/point-in-time).

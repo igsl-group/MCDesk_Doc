@@ -42,10 +42,10 @@ allow_partial_search_results | Boolean | Whether to return partial results if th
 `default_operator` | String | Indicates whether the default operator for a string query should be `AND` or `OR`. Default is `OR`.
 `df` | String | The default field if a field prefix is not provided in the query string.
 `expand_wildcards` | String | Specifies the type of index that wildcard expressions can match. Supports comma-separated values. Valid values are `all` (match any index), `open` (match open, non-hidden indexes), `closed` (match closed, non-hidden indexes), `hidden` (match hidden indexes), and `none` (deny wildcard expressions). Default is `open`.
-`explain` | Boolean | Whether to return information about how SmartObserve computed the [document's score](#explain). Default is `false`.
+`explain` | Boolean | Whether to return information about how MCdesk computed the [document's score](#explain). Default is `false`.
 `ignore_unavailable` |  Boolean | Specifies whether to include missing or closed indexes in the response and ignores unavailable shards during the search request. Default is `false`.
-`lenient` | Boolean | Specifies whether SmartObserve should ignore format-based query failures (for example, as a result of querying a text field for an integer). Default is `false`. 
-`rewrite` | Determines how SmartObserve [rewrites](#rewrite) and scores multi-term queries. Valid values are `constant_score`, `scoring_boolean`, `constant_score_boolean`, `top_terms_N`, `top_terms_boost_N`, and `top_terms_blended_freqs_N`. Default is `constant_score`.
+`lenient` | Boolean | Specifies whether MCdesk should ignore format-based query failures (for example, as a result of querying a text field for an integer). Default is `false`. 
+`rewrite` | Determines how MCdesk [rewrites](#rewrite) and scores multi-term queries. Valid values are `constant_score`, `scoring_boolean`, `constant_score_boolean`, `top_terms_N`, `top_terms_boost_N`, and `top_terms_blended_freqs_N`. Default is `constant_score`.
 `q` | String | A query in the Lucene string syntax.
 
 ## Example request
@@ -203,7 +203,7 @@ If the query passes validation, then the response indicates that the query is `t
 }
 ```
 
-If the query does not pass validation, then SmartObserve responds that the query is `false`. The following example request query includes a dynamic mapping not configured in the `hamlet` index:
+If the query does not pass validation, then MCdesk responds that the query is `false`. The following example request query includes a dynamic mapping not configured in the `hamlet` index:
 
 <!-- spec_insert_start
 component: example_code
@@ -252,7 +252,7 @@ response = client.indices.validate_query(
     python=step1_python %}
 <!-- spec_insert_end -->
 
-SmartObserve responds with the following, where the `valid` parameter is `false`:
+MCdesk responds with the following, where the `valid` parameter is `false`:
 
 ```
 {

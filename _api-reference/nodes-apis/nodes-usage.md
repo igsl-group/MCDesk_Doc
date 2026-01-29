@@ -75,7 +75,7 @@ The following is an example response:
     "successful" : 1,
     "failed" : 0
   },
-  "cluster_name" : "smartobserve-cluster",
+  "cluster_name" : "mcdesk-cluster",
   "nodes" : {
     "t7uqHu4SSuWObK3ElkCRfw" : {
       "timestamp" : 1665695174312,

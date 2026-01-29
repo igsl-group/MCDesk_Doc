@@ -3,7 +3,7 @@ layout: default
 title: Index aliases
 nav_order: 5
 redirect_from:
-  - /smartobserve/index-alias/
+  - /mcdesk/index-alias/
 ---
 
 # Index aliases

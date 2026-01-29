@@ -19,7 +19,7 @@ Impersonation can occur on either the REST interface or at the transport layer.
 
 ## REST interface
 
-To allow one user to impersonate another, add the following to `smartobserve.yml`:
+To allow one user to impersonate another, add the following to `mcdesk.yml`:
 
 ```yml
 plugins.security.authcz.rest_impersonation_user:

@@ -12,7 +12,7 @@ A tiered cache is a multi-level cache in which each tier has its own characteris
 
 ## Types of tiered caches
 
-SmartObserve provides one implementation of a tiered spillover cache. It is called `tiered_spillover`, and its implementation is stored in the `cache-common` module. It has two tiers: an upper tier and a lower tier. While any pluggable cache implementation can be used for each tier, typically the upper tier would be a smaller and faster on-heap tier, such as `smartobserve_onheap`, and the lower tier would be a larger and slower disk tier, such as `ehcache_disk`. This lower tier can be dynamically enabled and disabled with the setting `indices.requests.cache.tiered_spillover.disk.store.enabled`. 
+MCdesk provides one implementation of a tiered spillover cache. It is called `tiered_spillover`, and its implementation is stored in the `cache-common` module. It has two tiers: an upper tier and a lower tier. While any pluggable cache implementation can be used for each tier, typically the upper tier would be a smaller and faster on-heap tier, such as `mcdesk_onheap`, and the lower tier would be a larger and slower disk tier, such as `ehcache_disk`. This lower tier can be dynamically enabled and disabled with the setting `indices.requests.cache.tiered_spillover.disk.store.enabled`. 
 
 Items entering the cache will first go into the upper, on-heap tier. Once the upper tier is full, it evicts items (typically in LRU order, although cache implementations can evict items in any order). Those evicted items enter the lower, disk tier. When the disk tier is full, the items it evicts are removed from the cache entirely. If the lower tier is disabled, items evicted from the upper tier will leave the cache. 
 
@@ -29,11 +29,11 @@ A tiered cache will fail to initialize if the `cache-ehcache` plugin is not inst
 
 ## Tiered cache settings
 
-In SmartObserve 2.14 and later, the request cache can use the `tiered_spillover` cache or any other pluggable cache implementation. To begin, configure the following settings in the `smartobserve.yml` file.
+In MCdesk 2.14 and later, the request cache can use the `tiered_spillover` cache or any other pluggable cache implementation. To begin, configure the following settings in the `mcdesk.yml` file.
 
 ### Cache store name
 
-To use the SmartObserve-provided tiered spillover cache implementation, set the cache store name to `tiered_spillover`, as shown in the following example:
+To use the MCdesk-provided tiered spillover cache implementation, set the cache store name to `tiered_spillover`, as shown in the following example:
 
 ```yaml
 indices.requests.cache.store.name: tiered_spillover
@@ -42,13 +42,13 @@ indices.requests.cache.store.name: tiered_spillover
 
 ### Setting on-heap and disk store tiers
 
-Set the on-heap and disk store tiers to `smartobserve_onheap` and `ehcache_disk`, as shown in the following example:
+Set the on-heap and disk store tiers to `mcdesk_onheap` and `ehcache_disk`, as shown in the following example:
 
 ```yaml
-indices.requests.cache.tiered_spillover.onheap.store.name: smartobserve_onheap
+indices.requests.cache.tiered_spillover.onheap.store.name: mcdesk_onheap
 indices.requests.cache.tiered_spillover.disk.store.name: ehcache_disk
 ```
-The `smartobserve_onheap` setting uses the built-in on-heap cache available in SmartObserve. 
+The `mcdesk_onheap` setting uses the built-in on-heap cache available in MCdesk. 
 
 The `ehcache_disk` setting is the disk cache implementation based on [Ehcache](https://www.ehcache.org/) and requires installing the `cache-ehcache` plugin.
 
@@ -56,12 +56,12 @@ The `ehcache_disk` setting is the disk cache implementation based on [Ehcache](h
 
 ### Configuring on-heap and disk stores
 
-The following table lists the cache store settings for the `smartobserve_onheap` store.
+The following table lists the cache store settings for the `mcdesk_onheap` store.
 
 Setting | Data type | Default | Description
 :--- | :--- | :--- | :---
-`indices.requests.cache.smartobserve_onheap.size` | Percentage | 1% of the heap size | The size of the on-heap cache. Optional.
-`indices.requests.cache.smartobserve_onheap.expire` | Time unit | `MAX_VALUE` (disabled) | Specifies a time-to-live (TTL) for the cached results. Optional.
+`indices.requests.cache.mcdesk_onheap.size` | Percentage | 1% of the heap size | The size of the on-heap cache. Optional.
+`indices.requests.cache.mcdesk_onheap.expire` | Time unit | `MAX_VALUE` (disabled) | Specifies a time-to-live (TTL) for the cached results. Optional.
 
 The following table lists the disk cache store settings for the `ehcache_disk` store.
 
@@ -85,7 +85,7 @@ Setting | Data type | Default | Description
 `indices.requests.cache.tiered_spillover.policies.took_time.threshold` | Time unit | `0ms` | A policy used to determine whether to cache a query into the cache based on its query phase execution time. This is a dynamic setting. Optional.
 `indices.requests.cache.tiered_spillover.disk.store.policies.took_time.threshold` | Time unit | `10ms` | A policy used to determine whether to cache a query into the disk tier of the cache based on its query phase execution time. This is a dynamic setting. Optional.
 `indices.requests.cache.tiered_spillover.disk.store.enabled` | Boolean | `True` | Enables or disables the disk cache dynamically within a tiered spillover cache. Note: After disabling a disk cache, entries are not removed automatically and requires the cache to be manually cleared. Optional.
-`indices.requests.cache.tiered_spillover.onheap.store.size` | Percentage | 1% of the heap size | Defines the size of the on-heap cache within a tiered cache. This setting overrides any size setting for the on-heap cache implementation itself, such as `indices.requests.cache.smartobserve_onheap.size`. Optional.
+`indices.requests.cache.tiered_spillover.onheap.store.size` | Percentage | 1% of the heap size | Defines the size of the on-heap cache within a tiered cache. This setting overrides any size setting for the on-heap cache implementation itself, such as `indices.requests.cache.mcdesk_onheap.size`. Optional.
 `indices.requests.cache.tiered_spillover.disk.store.size` | Long | `1073741824` (1 GB) | Defines the size of the disk cache within a tiered cache. This setting overrides any size setting for the disk cache implementation itself, such as `indices.requests.cache.ehcache_disk.max_size_in_bytes`. Optional.
 `indices.requests.cache.tiered_spillover.segments` | Integer | `2 ^ (ceil(log2(CPU_CORES * 1.5)))` | This determines the number of segments in the tiered cache, with each segment secured by a re-entrant read/write lock. These locks enable multiple concurrent readers without contention, while the segmentation allows multiple writers to operate simultaneously, resulting in higher write throughput. Optional.
 

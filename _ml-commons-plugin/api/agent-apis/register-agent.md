@@ -174,7 +174,7 @@ POST /_plugins/_ml/agents/_register
     {
       "type": "VectorDBTool",
       "name": "VectorDBTool",
-      "description": "A tool to search smartobserve index with natural language question. If you don't know answer for some question, you should always try to search data with this tool. Action Input: <natural language question>",
+      "description": "A tool to search mcdesk index with natural language question. If you don't know answer for some question, you should always try to search data with this tool. Action Input: <natural language question>",
       "parameters": {
         "model_id": "<embedding_model_id>",
         "index": "<your_knn_index>",
@@ -188,7 +188,7 @@ POST /_plugins/_ml/agents/_register
     {
       "type": "ListIndexTool",
       "name": "RetrieveIndexMetaTool",
-      "description": "Use this tool to get SmartObserve index information: (health, status, index, uuid, primary count, replica count, docs.count, docs.deleted, store.size, primary.store.size)."
+      "description": "Use this tool to get MCdesk index information: (health, status, index, uuid, primary count, replica count, docs.count, docs.deleted, store.size, primary.store.size)."
     }
   ]
 }
@@ -235,7 +235,7 @@ POST /_plugins/_ml/agents/_register
 
 ## Example response
 
-SmartObserve responds with an agent ID that you can use to refer to the agent:
+MCdesk responds with an agent ID that you can use to refer to the agent:
 
 ```json
 {

@@ -76,7 +76,7 @@ The **Finding details** pane contains specific information about the finding, in
     
 The **Discover** panel displays the document that generated the finding with a highlighted background. Other documents that came either before or after the event are also displayed.
 
-For details about working with **Discover** in SmartObserve Dashboards, see [Exploring data]({{site.url}}{{site.baseurl}}/dashboards/discover/index-discover/).
+For details about working with **Discover** in MCdesk Dashboards, see [Exploring data]({{site.url}}{{site.baseurl}}/dashboards/discover/index-discover/).
 
 #### Viewing correlated findings
 

@@ -139,7 +139,7 @@ The relevance scores calculated by the `script_score` query cannot be negative.
 
 ## Customizing score calculation with built-in functions
 
-To customize score calculation, you can use one of the built-in Painless functions. For every function, SmartObserve provides one or more Painless methods you can access in the script score context. You can call the Painless methods listed in the following sections directly without using a class name or instance name qualifier.
+To customize score calculation, you can use one of the built-in Painless functions. For every function, MCdesk provides one or more Painless methods you can access in the script score context. You can call the Painless methods listed in the following sections directly without using a class name or instance name qualifier.
 
 ### Saturation
 
@@ -309,7 +309,7 @@ GET blogs/_search
     "script_score": {
       "query": {
         "match": {
-          "name": "smartobserve"
+          "name": "mcdesk"
         }
       },
       "script": {

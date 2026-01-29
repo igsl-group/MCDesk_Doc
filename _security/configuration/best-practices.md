@@ -5,9 +5,9 @@ parent: Configuration
 nav_order: 3
 ---
 
-# Best practices for SmartObserve security
+# Best practices for MCdesk security
 
-Setting up security in SmartObserve is crucial for protecting your data. Here are 10 best practices that offer clear steps for keeping your system safe.
+Setting up security in MCdesk is crucial for protecting your data. Here are 10 best practices that offer clear steps for keeping your system safe.
 
 ## 1. Use your own PKI to set up SSL/TLS
 
@@ -29,7 +29,7 @@ For additional configuration options, such as specifying certificate paths, keys
 
 ### Replace all demo certificates with your own PKI
 
-The certificates generated when initializing an SmartObserve cluster with `install_demo_configuration.sh` are not suitable for production. These should be replaced with your own certificates.
+The certificates generated when initializing an MCdesk cluster with `install_demo_configuration.sh` are not suitable for production. These should be replaced with your own certificates.
 
 You can generate custom certificates in a few different ways. One approach is to use OpenSSL, described in detail at [Generating self-signed certificates]({{site.url}}{{site.baseurl}}/security/configuration/generate-certificates/). Alternatively, there are online tools available that can simplify the certificate creation process, such as the following:
 
@@ -43,11 +43,11 @@ Client certificate authentication offers a secure alternative to password authen
 For detailed configuration instructions and additional information about client certificate authentication, see [Enabling client certificate authentication]({{site.url}}{{site.baseurl}}/security/authentication-backends/client-auth/#enabling-client-certificate-authentication).
 
 
-## 3. Prefer SSO using SAML or OpenID for SmartObserve Dashboards authentication
+## 3. Prefer SSO using SAML or OpenID for MCdesk Dashboards authentication
 
-Implementing single sign-on (SSO) with protocols like SAML or OpenID for SmartObserve Dashboards authentication enhances security by delegating credential management to a dedicated system.
+Implementing single sign-on (SSO) with protocols like SAML or OpenID for MCdesk Dashboards authentication enhances security by delegating credential management to a dedicated system.
 
-This approach minimizes direct interaction with passwords in SmartObserve, streamlines authentication processes, and prevents clutter in the internal user database. For more information, go to the [SAML section of the SmartObserve documentation]({{site.url}}{{site.baseurl}}/security/authentication-backends/saml/).
+This approach minimizes direct interaction with passwords in MCdesk, streamlines authentication processes, and prevents clutter in the internal user database. For more information, go to the [SAML section of the MCdesk documentation]({{site.url}}{{site.baseurl}}/security/authentication-backends/saml/).
 
 ## 4. Limit the number of roles assigned to a user
 
@@ -58,7 +58,7 @@ Additional best practices for role management include:
 1. Role granularity: Define roles based on specific job functions or access requirements to minimize unnecessary privileges.
 2. Regular role review: Regularly review and audit assigned roles to ensure alignment with organizational policies and access needs.
 
-For more information about roles, go to the documentation on [defining users and roles in SmartObserve]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/).
+For more information about roles, go to the documentation on [defining users and roles in MCdesk]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/).
 
 ## 5. Verify DLS, FLS, and field masking
 
@@ -89,7 +89,7 @@ Whenever possible, adhere to these recommendations:
 
 ## 7. Consider disabling the private tenant
 
-In many cases, the use of private tenants is unnecessary, although this feature is enabled by default. As a result, every SmartObserve Dashboards user is provided with their own private tenant and a corresponding new index in which to save objects. This can lead to a large number of unnecessary indexes. Evaluate whether private tenants are needed in your cluster. If private tenants are not needed, disable the feature by adding the following configuration to the `config.yml` file:
+In many cases, the use of private tenants is unnecessary, although this feature is enabled by default. As a result, every MCdesk Dashboards user is provided with their own private tenant and a corresponding new index in which to save objects. This can lead to a large number of unnecessary indexes. Evaluate whether private tenants are needed in your cluster. If private tenants are not needed, disable the feature by adding the following configuration to the `config.yml` file:
 
 ```yaml
 config:
@@ -102,7 +102,7 @@ config:
 
 ## 8. Manage the configuration using `securityadmin.sh`
 
-Use `securityadmin.sh` to manage the configuration of your clusters. `securityadmin.sh` is a command-line tool provided by SmartObserve for managing security configurations. It allows administrators to efficiently manage security settings, including roles, role mappings, and other security-related configurations within an SmartObserve cluster.
+Use `securityadmin.sh` to manage the configuration of your clusters. `securityadmin.sh` is a command-line tool provided by MCdesk for managing security configurations. It allows administrators to efficiently manage security settings, including roles, role mappings, and other security-related configurations within an MCdesk cluster.
 
 Using `securityadmin.sh` provides the following benefits:
 
@@ -110,24 +110,24 @@ Using `securityadmin.sh` provides the following benefits:
 2. Automation: `securityadmin.sh` enables automation of security configuration tasks, making it easier to deploy and manage security settings across multiple nodes or clusters.
 3. Version control: Security configurations managed through `securityadmin.sh` can be version controlled using standard version control systems like Git. This facilitates tracking changes, auditing, and reverting to previous configurations.
 
-You can prevent configuration overrides by first creating a backup of the current configuration created using the SmartObserve Dashboards UI or the SmartObserve API by running the `securityadmin.sh` tool with the `-backup` option. This ensures that all configurations are captured before uploading the modified configuration with `securityadmin.sh`.
+You can prevent configuration overrides by first creating a backup of the current configuration created using the MCdesk Dashboards UI or the MCdesk API by running the `securityadmin.sh` tool with the `-backup` option. This ensures that all configurations are captured before uploading the modified configuration with `securityadmin.sh`.
 
-For more detailed information about using `securityadmin.sh` and managing SmartObserve security configurations, refer to the following resources:
+For more detailed information about using `securityadmin.sh` and managing MCdesk security configurations, refer to the following resources:
 - [Applying changes to configuration files]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/)
 - [Modifying YAML files]({{site.url}}{{site.baseurl}}/security/configuration/yaml/)
 
 ## 9. Replace all default passwords
 
-When initializing SmartObserve with the demo configuration, many default passwords are provided for internal users in `internal_users.yml`, such as `admin`, `kibanaserver`, and `logstash`.
+When initializing MCdesk with the demo configuration, many default passwords are provided for internal users in `internal_users.yml`, such as `admin`, `kibanaserver`, and `logstash`.
 
-You should change the passwords for these users to strong, complex passwords either at startup or as soon as possible once the cluster is running. Creating password configurations is a straightforward procedure, especially when using the scripts bundled with SmartObserve, like `hash.sh` or `hash.bat`, located in the `plugin/SmartObserve security/tools` directory.
+You should change the passwords for these users to strong, complex passwords either at startup or as soon as possible once the cluster is running. Creating password configurations is a straightforward procedure, especially when using the scripts bundled with MCdesk, like `hash.sh` or `hash.bat`, located in the `plugin/MCdesk security/tools` directory.
 
-The `kibanaserver` user is a crucial component that allows SmartObserve Dashboards to communicate with the SmartObserve cluster. By default, this user is preconfigured with a default password in the demo configuration. This should be replaced with a strong, unique password in the SmartObserve configuration, and the `smartobserve_dashboards.yml` file should be updated to reflect this change.
+The `kibanaserver` user is a crucial component that allows MCdesk Dashboards to communicate with the MCdesk cluster. By default, this user is preconfigured with a default password in the demo configuration. This should be replaced with a strong, unique password in the MCdesk configuration, and the `mcdesk_dashboards.yml` file should be updated to reflect this change.
 
 
 ## 10. Getting help
 
 If you need additional help, you can do the following:
 
-- Create an issue on GitHub at [SmartObserve-project/security](https://github.com/igsl-group/security/security) or [SmartObserve-project/SmartObserve](https://github.com/igsl-group/SmartObserve/security).
-- Ask a question on the [SmartObserve forum](https://forum.magiccreative.io/tag/cve).
+- Create an issue on GitHub at [MCdesk-project/security](https://github.com/igsl-group/security/security) or [MCdesk-project/MCdesk](https://github.com/igsl-group/MCdesk/security).
+- Ask a question on the [MCdesk forum](https://forum.magiccreative.io/tag/cve).

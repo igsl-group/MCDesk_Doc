@@ -202,7 +202,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 
 For more information, see [The `guardrails` parameter]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/model-apis/register-model/#the-guardrails-parameter).
 
-SmartObserve returns the task ID of the register operation:
+MCdesk returns the task ID of the register operation:
 
 ```json
 {
@@ -394,7 +394,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns the task ID of the register operation and the model ID of the registered model:
+MCdesk returns the task ID of the register operation and the model ID of the registered model:
 
 ```json
 {
@@ -573,7 +573,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns the task ID of the register operation and the model ID of the registered model:
+MCdesk returns the task ID of the register operation and the model ID of the registered model:
 
 ```json
 {
@@ -600,7 +600,7 @@ POST /_plugins/_ml/models/43JqDZABNFJeYR3IQPQH/_predict
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with the LLM answer:
+MCdesk responds with the LLM answer:
 
 ```json
 {
@@ -632,7 +632,7 @@ POST /_plugins/_ml/models/43JqDZABNFJeYR3IQPQH/_predict
 }
 ```
 
-SmartObserve responds with an error.
+MCdesk responds with an error.
 
 ## Next steps
 

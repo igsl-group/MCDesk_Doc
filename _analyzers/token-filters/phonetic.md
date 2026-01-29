@@ -9,10 +9,10 @@ nav_order: 330
 
 The `phonetic` token filter transforms tokens into their phonetic representations, enabling more flexible matching of words that sound similar but are spelled differently. This is particularly useful for searching names, brands, or other entities that users might spell differently but pronounce similarly.
 
-The `phonetic` token filter is not included in SmartObserve distributions by default. To use this token filter, you must first install the `analysis-phonetic` plugin as follows and then restart SmartObserve:
+The `phonetic` token filter is not included in MCdesk distributions by default. To use this token filter, you must first install the `analysis-phonetic` plugin as follows and then restart MCdesk:
 
 ```bash
-./bin/smartobserve-plugin install analysis-phonetic
+./bin/mcdesk-plugin install analysis-phonetic
 ```
 {% include copy.html %}
 

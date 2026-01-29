@@ -5,7 +5,7 @@ nav_order: 35
 has_children: false
 parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/range/
+  - /mcdesk/supported-field-types/range/
   - /field-types/range/
 ---
 
@@ -13,16 +13,16 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-The following table lists all range field types that SmartObserve supports.
+The following table lists all range field types that MCdesk supports.
 
 Field data type | Description
 :--- | :---
-`integer_range` | A range of [integer]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/numeric/) values. 
-`long_range` | A range of [long]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/numeric/) values.   
-`double_range` | A range of [double]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/numeric/) values.  
-`float_range` | A range of [float]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/numeric/) values. 
-`ip_range` | A range of [IP addresses]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/ip/) in IPv4 or IPv6 format. Start and end IP addresses may be in different formats.  
-`date_range` | A range of [date]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/) values. Start and end dates may be in different [formats]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/#formats). Internally, all dates are stored as unsigned 64-bit integers representing milliseconds since the epoch.
+`integer_range` | A range of [integer]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/numeric/) values. 
+`long_range` | A range of [long]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/numeric/) values.   
+`double_range` | A range of [double]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/numeric/) values.  
+`float_range` | A range of [float]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/numeric/) values. 
+`ip_range` | A range of [IP addresses]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/ip/) in IPv4 or IPv6 format. Start and end IP addresses may be in different formats.  
+`date_range` | A range of [date]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/) values. Start and end dates may be in different [formats]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/#formats). Internally, all dates are stored as unsigned 64-bit integers representing milliseconds since the epoch.
 
 ## Example
 

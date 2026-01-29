@@ -11,7 +11,7 @@ nav_order: 20
 
 Runs a stored script that was previously saved to the cluster state using the Create Stored Script API. 
 
-SmartObserve provides several ways to run a script; the following sections show how to run a script by passing script information in the request body of a `GET <index>/_search` request.
+MCdesk provides several ways to run a script; the following sections show how to run a script by passing script information in the request body of a `GET <index>/_search` request.
 
 ## Endpoints
 

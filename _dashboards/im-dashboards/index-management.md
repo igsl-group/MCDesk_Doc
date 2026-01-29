@@ -52,7 +52,7 @@ To attach policies to indexes, perform the following steps:
 
 ## Indexes
 
-The **Indices** section displays a list of indexes in your SmartObserve cluster. For each index, you can see its health status (`green`, `yellow`, or `red`), policy (if the index is managed by a policy), status, total size, primary sizes, total documents, deleted documents, primaries, and replicas.
+The **Indices** section displays a list of indexes in your MCdesk cluster. For each index, you can see its health status (`green`, `yellow`, or `red`), policy (if the index is managed by a policy), status, total size, primary sizes, total documents, deleted documents, primaries, and replicas.
 
 The following are the three index health statuses:
 
@@ -161,7 +161,7 @@ To delete an index, select the index you want to delete from the **Indices** lis
 
 ## Templates
 
-[Index templates]({{site.url}}{{site.baseurl}}/smartobserve/index-templates/) let you initialize new indexes with predefined mappings and settings. For example, if you continuously index log data, you can define an index template so that all of the indexes have the same number of shards and replicas as shown in the following image.
+[Index templates]({{site.url}}{{site.baseurl}}/mcdesk/index-templates/) let you initialize new indexes with predefined mappings and settings. For example, if you continuously index log data, you can define an index template so that all of the indexes have the same number of shards and replicas as shown in the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/admin-ui-index/templates.PNG" alt="User interface showing Templates page">
 

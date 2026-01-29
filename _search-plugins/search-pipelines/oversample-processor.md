@@ -23,7 +23,7 @@ Field | Data type | Description
 `context_prefix` | String | May be used to scope the `original_size` variable in order to avoid collisions. Optional.
 `tag` | String | The processor's identifier. Optional.
 `description` | String | A description of the processor. Optional.
-`ignore_failure` | Boolean | If `true`, SmartObserve [ignores any failure]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/creating-search-pipeline/#ignoring-processor-failures) of this processor and continues to run the remaining processors in the search pipeline. Optional. Default is `false`.
+`ignore_failure` | Boolean | If `true`, MCdesk [ignores any failure]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/creating-search-pipeline/#ignoring-processor-failures) of this processor and continues to run the remaining processors in the search pipeline. Optional. Default is `false`.
 
 
 ## Example

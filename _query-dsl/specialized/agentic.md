@@ -9,7 +9,7 @@ nav_order: 2
 **Introduced 3.2**
 {: .label .label-purple }
 
-Use the `agentic` query to ask questions in natural language and have SmartObserve automatically plan and execute the retrieval. The `agentic` query works in conjunction with a preconfigured agent that reads the question, plans the search, and returns relevant results. For more information about agentic search, see [Agentic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/index/).
+Use the `agentic` query to ask questions in natural language and have MCdesk automatically plan and execute the retrieval. The `agentic` query works in conjunction with a preconfigured agent that reads the question, plans the search, and returns relevant results. For more information about agentic search, see [Agentic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/index/).
 
 ## Prerequisite
 
@@ -51,7 +51,7 @@ When executed, the agentic search request performs the following steps:
 
 1. Sends the natural language question, along with the index mapping and a default prompt, to a large language model (LLM).
 2. The LLM generates a query domain-specific language (DSL) query based on the input.
-3. The generated DSL query is executed as a search request in SmartObserve.
+3. The generated DSL query is executed as a search request in MCdesk.
 4. Returns the search results based on the generated query.
 
 For a complete example, see [Agentic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/index/).

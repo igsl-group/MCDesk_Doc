@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installing SmartObserve Dashboards
+title: Installing MCdesk Dashboards
 nav_order: 3
 has_children: true
 redirect_from:
@@ -9,9 +9,9 @@ redirect_from:
   - /install-and-configure/install-dashboards/
 ---
 
-# Installing SmartObserve Dashboards
+# Installing MCdesk Dashboards
 
-SmartObserve Dashboards provides a fully integrated solution for visually exploring, discovering, and querying your observability data. You can install SmartObserve Dashboards with any of the following options:
+MCdesk Dashboards provides a fully integrated solution for visually exploring, discovering, and querying your observability data. You can install MCdesk Dashboards with any of the following options:
 
 - [Docker]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/docker/)
 - [Tarball]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/tar/)
@@ -22,7 +22,7 @@ SmartObserve Dashboards provides a fully integrated solution for visually explor
 
 ## Browser compatibility
 
-SmartObserve Dashboards supports the following web browsers:
+MCdesk Dashboards supports the following web browsers:
 
 - Chrome
 - Firefox
@@ -33,9 +33,9 @@ Other Chromium-based browsers might work, as well. Internet Explorer and Microso
 
 ## Node.js compatibility
 
-SmartObserve Dashboards requires the Node.js runtime binary to run. One is included in the distribution packages available from the [SmartObserve downloads page](https://magiccreative.io/downloads.html){:target='\_blank'}.
+MCdesk Dashboards requires the Node.js runtime binary to run. One is included in the distribution packages available from the [MCdesk downloads page](https://magiccreative.io/downloads.html){:target='\_blank'}.
 
-SmartObserve Dashboards 2.8.0 and newer can use Node.js versions 14, 16, and 18. The distribution packages for SmartObserve Dashboards 2.10.0 and newer include Node.js 18 and 14 (for backward compatibility). 
+MCdesk Dashboards 2.8.0 and newer can use Node.js versions 14, 16, and 18. The distribution packages for MCdesk Dashboards 2.10.0 and newer include Node.js 18 and 14 (for backward compatibility). 
 
 To use a Node.js runtime binary other than the ones included in the distribution packages, follow these steps:
 
@@ -63,9 +63,9 @@ To use a Node.js runtime binary other than the ones included in the distribution
 
    Consult your operating system's documentation to make a persistent change to the environment variables.
 
-The SmartObserve Dashboards start script,`bin/smartobserve-dashboards`, searches for the Node.js runtime binary using `NODE_OSD_HOME`,
+The MCdesk Dashboards start script,`bin/mcdesk-dashboards`, searches for the Node.js runtime binary using `NODE_OSD_HOME`,
 and then `NODE_HOME`, before using the binaries included with the distribution packages. If a usable Node.js runtime binary is not found, the start script will attempt to find one in the system-wide `PATH` before failing.
 
 ## Configuration
 
-To learn how to configure TLS for SmartObserve Dashboards, see [Configure TLS]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/tls/).
+To learn how to configure TLS for MCdesk Dashboards, see [Configure TLS]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/tls/).

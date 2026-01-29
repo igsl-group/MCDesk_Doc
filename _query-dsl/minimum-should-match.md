@@ -54,7 +54,7 @@ Consider an example index containing the following five documents:
 ```json
 PUT testindex/_doc/1
 {
-  "text": "one SmartObserve"
+  "text": "one MCdesk"
 }
 ```
 {% include copy-curl.html %}
@@ -62,7 +62,7 @@ PUT testindex/_doc/1
 ```json
 PUT testindex/_doc/2
 {
-  "text": "one two SmartObserve"
+  "text": "one two MCdesk"
 }
 ```
 {% include copy-curl.html %}
@@ -70,7 +70,7 @@ PUT testindex/_doc/2
 ```json
 PUT testindex/_doc/3
 {
-  "text": "one two three SmartObserve"
+  "text": "one two three MCdesk"
 }
 ```
 {% include copy-curl.html %}
@@ -78,7 +78,7 @@ PUT testindex/_doc/3
 ```json
 PUT testindex/_doc/4
 {
-  "text": "one two three four SmartObserve"
+  "text": "one two three four MCdesk"
 }
 ```
 {% include copy-curl.html %}
@@ -86,7 +86,7 @@ PUT testindex/_doc/4
 ```json
 PUT testindex/_doc/5
 {
-  "text": "SmartObserve"
+  "text": "MCdesk"
 }
 ```
 {% include copy-curl.html %}
@@ -101,7 +101,7 @@ GET testindex/_search
       "must": [
         {
           "match": {
-            "text": "SmartObserve"
+            "text": "MCdesk"
           }
         }
       ], 
@@ -158,7 +158,7 @@ Because `minimum_should_match` is specified as `80%`, the number of optional cla
         "_id": "4",
         "_score": 2.494999,
         "_source": {
-          "text": "one two three four SmartObserve"
+          "text": "one two three four MCdesk"
         }
       },
       {
@@ -166,7 +166,7 @@ Because `minimum_should_match` is specified as `80%`, the number of optional cla
         "_id": "3",
         "_score": 1.5744598,
         "_source": {
-          "text": "one two three SmartObserve"
+          "text": "one two three MCdesk"
         }
       }
     ]
@@ -184,7 +184,7 @@ GET testindex/_search
       "must": [
         {
           "match": {
-            "text": "SmartObserve"
+            "text": "MCdesk"
           }
         }
       ], 
@@ -241,7 +241,7 @@ The number of non-matching optional clauses that a document can have is calculat
         "_id": "4",
         "_score": 2.494999,
         "_source": {
-          "text": "one two three four SmartObserve"
+          "text": "one two three four MCdesk"
         }
       }
     ]
@@ -253,7 +253,7 @@ Note that specifying a positive percentage (`80%`) and negative percentage (`-20
 
 ### Default `minimum_should_match` value 
 
-If a query contains a `must` or `filter` clause, the default `minimum_should_match` value is 0. For example, the following query searches for documents that match `SmartObserve` and 0 optional `should` clauses:
+If a query contains a `must` or `filter` clause, the default `minimum_should_match` value is 0. For example, the following query searches for documents that match `MCdesk` and 0 optional `should` clauses:
 
 ```json
 GET testindex/_search
@@ -263,7 +263,7 @@ GET testindex/_search
       "must": [
         {
           "match": {
-            "text": "SmartObserve"
+            "text": "MCdesk"
           }
         }
       ], 
@@ -319,7 +319,7 @@ This query returns all five documents in the index:
         "_id": "4",
         "_score": 2.494999,
         "_source": {
-          "text": "one two three four SmartObserve"
+          "text": "one two three four MCdesk"
         }
       },
       {
@@ -327,7 +327,7 @@ This query returns all five documents in the index:
         "_id": "3",
         "_score": 1.5744598,
         "_source": {
-          "text": "one two three SmartObserve"
+          "text": "one two three MCdesk"
         }
       },
       {
@@ -335,7 +335,7 @@ This query returns all five documents in the index:
         "_id": "2",
         "_score": 0.91368985,
         "_source": {
-          "text": "one two SmartObserve"
+          "text": "one two MCdesk"
         }
       },
       {
@@ -343,7 +343,7 @@ This query returns all five documents in the index:
         "_id": "1",
         "_score": 0.4338556,
         "_source": {
-          "text": "one SmartObserve"
+          "text": "one MCdesk"
         }
       },
       {
@@ -351,7 +351,7 @@ This query returns all five documents in the index:
         "_id": "5",
         "_score": 0.11964063,
         "_source": {
-          "text": "SmartObserve"
+          "text": "MCdesk"
         }
       }
     ]
@@ -418,7 +418,7 @@ The results contain only four documents that match at least one of the optional 
         "_id": "4",
         "_score": 2.426633,
         "_source": {
-          "text": "one two three four SmartObserve"
+          "text": "one two three four MCdesk"
         }
       },
       {
@@ -426,7 +426,7 @@ The results contain only four documents that match at least one of the optional 
         "_id": "3",
         "_score": 1.4978898,
         "_source": {
-          "text": "one two three SmartObserve"
+          "text": "one two three MCdesk"
         }
       },
       {
@@ -434,7 +434,7 @@ The results contain only four documents that match at least one of the optional 
         "_id": "2",
         "_score": 0.8266785,
         "_source": {
-          "text": "one two SmartObserve"
+          "text": "one two MCdesk"
         }
       },
       {
@@ -442,7 +442,7 @@ The results contain only four documents that match at least one of the optional 
         "_id": "1",
         "_score": 0.3331056,
         "_source": {
-          "text": "one SmartObserve"
+          "text": "one MCdesk"
         }
       }
     ]

@@ -7,39 +7,39 @@ has_children: false
 
 # Ruby client
 
-The SmartObserve Ruby client allows you to interact with your SmartObserve clusters through Ruby methods rather than HTTP methods and raw JSON. For the client's complete API documentation and additional examples, see the [`smartobserve-transport`](https://rubydoc.info/gems/smartobserve-transport), [`smartobserve-api`](https://rubydoc.info/gems/smartobserve-api), [`smartobserve-dsl`](https://rubydoc.info/gems/smartobserve-dsl), and [`smartobserve-ruby`](https://rubydoc.info/gems/smartobserve-ruby/) gem documentation.
+The MCdesk Ruby client allows you to interact with your MCdesk clusters through Ruby methods rather than HTTP methods and raw JSON. For the client's complete API documentation and additional examples, see the [`mcdesk-transport`](https://rubydoc.info/gems/mcdesk-transport), [`mcdesk-api`](https://rubydoc.info/gems/mcdesk-api), [`mcdesk-dsl`](https://rubydoc.info/gems/mcdesk-dsl), and [`mcdesk-ruby`](https://rubydoc.info/gems/mcdesk-ruby/) gem documentation.
 
-This getting started guide illustrates how to connect to SmartObserve, index documents, and run queries. For the client source code, see the [smartobserve-ruby repo](https://github.com/igsl-group/smartobserve-ruby).
+This getting started guide illustrates how to connect to MCdesk, index documents, and run queries. For the client source code, see the [mcdesk-ruby repo](https://github.com/igsl-group/mcdesk-ruby).
 
 ## Installing the Ruby client
 
 To install the Ruby gem for the Ruby client, run the following command:
 
 ```bash
-gem install smartobserve-ruby
+gem install mcdesk-ruby
 ```
 {% include copy.html %}
 
 To use the client, import it as a module:
 
 ```ruby
-require 'smartobserve'
+require 'mcdesk'
 ```
 {% include copy.html %}
 
-## Connecting to SmartObserve
+## Connecting to MCdesk
 
-To connect to the default SmartObserve host, create a client object, passing the default host address in the constructor:
+To connect to the default MCdesk host, create a client object, passing the default host address in the constructor:
 
 ```ruby
-client = SmartObserve::Client.new(host: 'http://localhost:9200')
+client = MCdesk::Client.new(host: 'http://localhost:9200')
 ```
 {% include copy.html %}
 
 The following example creates a client object with a custom URL and the `log` option set to `true`. It sets the `retry_on_failure` parameter to retry a failed request five times rather than the default three times. Finally, it increases the timeout by setting the `request_timeout` parameter to 120 seconds. It then returns the basic cluster health information:
 
 ```ruby
-client = SmartObserve::Client.new(
+client = MCdesk::Client.new(
     url: "http://localhost:9200",
     retry_on_failure: 5,
     request_timeout: 120,
@@ -55,11 +55,11 @@ The output is as follows:
 ```bash
 2022-08-25 14:24:52 -0400: GET http://localhost:9200/ [status:200, request:0.048s, query:n/a]
 2022-08-25 14:24:52 -0400: < {
-  "name" : "smartobserve",
+  "name" : "mcdesk",
   "cluster_name" : "docker-cluster",
   "cluster_uuid" : "Aw0F5Pt9QF6XO9vXQHIs_w",
   "version" : {
-    "distribution" : "smartobserve",
+    "distribution" : "mcdesk",
     "number" : "2.2.0",
     "build_type" : "tar",
     "build_hash" : "b1017fa3b9a1c781d4f34ecee411e0cdf930a515",
@@ -69,23 +69,23 @@ The output is as follows:
     "minimum_wire_compatibility_version" : "7.10.0",
     "minimum_index_compatibility_version" : "7.0.0"
   },
-  "tagline" : "The SmartObserve Project: https://magiccreative.io/"
+  "tagline" : "The MCdesk Project: https://magiccreative.io/"
 }
 
 2022-08-25 14:24:52 -0400: GET http://localhost:9200/_cluster/health [status:200, request:0.018s, query:n/a]
 2022-08-25 14:24:52 -0400: < {"cluster_name":"docker-cluster","status":"yellow","timed_out":false,"number_of_nodes":1,"number_of_data_nodes":1,"discovered_master":true,"discovered_cluster_manager":true,"active_primary_shards":10,"active_shards":10,"relocating_shards":0,"initializing_shards":0,"unassigned_shards":8,"delayed_unassigned_shards":0,"number_of_pending_tasks":0,"number_of_in_flight_fetch":0,"task_max_waiting_in_queue_millis":0,"active_shards_percent_as_number":55.55555555555556}
 ```
 
-## Connecting to Amazon SmartObserve Service
+## Connecting to Amazon MCdesk Service
 
-To connect to Amazon SmartObserve Service, first install the `smartobserve-aws-sigv4` gem:
+To connect to Amazon MCdesk Service, first install the `mcdesk-aws-sigv4` gem:
 
 ```bash
-gem install smartobserve-aws-sigv4
+gem install mcdesk-aws-sigv4
 ```
 
 ```ruby
-require 'smartobserve-aws-sigv4'
+require 'mcdesk-aws-sigv4'
 require 'aws-sigv4'
 
 signer = Aws::Sigv4::Signer.new(service: 'es',
@@ -93,8 +93,8 @@ signer = Aws::Sigv4::Signer.new(service: 'es',
                                 access_key_id: 'key_id',
                                 secret_access_key: 'secret')
 
-client = SmartObserve::Aws::Sigv4Client.new({
-    host: 'https://your.amz-managed-smartobserve.domain',
+client = MCdesk::Aws::Sigv4Client.new({
+    host: 'https://your.amz-managed-mcdesk.domain',
     log: true
 }, signer)
 
@@ -116,16 +116,16 @@ client.indices.delete(index: index)
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Serverless
+## Connecting to Amazon MCdesk Serverless
 
-To connect to Amazon SmartObserve Serverless Service, first install the `smartobserve-aws-sigv4` gem:
+To connect to Amazon MCdesk Serverless Service, first install the `mcdesk-aws-sigv4` gem:
 
 ```bash
-gem install smartobserve-aws-sigv4
+gem install mcdesk-aws-sigv4
 ```
 
 ```ruby
-require 'smartobserve-aws-sigv4'
+require 'mcdesk-aws-sigv4'
 require 'aws-sigv4'
 
 signer = Aws::Sigv4::Signer.new(service: 'aoss',
@@ -133,8 +133,8 @@ signer = Aws::Sigv4::Signer.new(service: 'aoss',
                                 access_key_id: 'key_id',
                                 secret_access_key: 'secret')
 
-client = SmartObserve::Aws::Sigv4Client.new({
-    host: 'https://your.amz-managed-smartobserve.domain', # serverless endpoint for SmartObserve Serverless
+client = MCdesk::Aws::Sigv4Client.new({
+    host: 'https://your.amz-managed-mcdesk.domain', # serverless endpoint for MCdesk Serverless
     log: true
 }, signer)
 
@@ -159,7 +159,7 @@ client.indices.delete(index: index)
 
 ## Creating an index 
 
-You don't need to create an index explicitly in SmartObserve. Once you upload a document into an index that does not exist, SmartObserve creates the index automatically. Alternatively, you can create an index explicitly to specify settings like the number of primary and replica shards. To create an index with non-default settings, create an index body hash with those settings:
+You don't need to create an index explicitly in MCdesk. Once you upload a document into an index that does not exist, MCdesk creates the index automatically. Alternatively, you can create an index explicitly to specify settings like the number of primary and replica shards. To create an index with non-default settings, create an index body hash with those settings:
 
 ```ruby
 index_body = {
@@ -180,7 +180,7 @@ client.indices.create(
 
 ## Mappings
 
-SmartObserve uses dynamic mapping to infer field types of the documents that are indexed. However, to have more control over the schema of your document, you can pass an explicit mapping to SmartObserve. You can define data types for some or all fields of your document in this mapping. To create a mapping for an index, use the `put_mapping` method:
+MCdesk uses dynamic mapping to infer field types of the documents that are indexed. However, to have more control over the schema of your document, you can pass an explicit mapping to MCdesk. You can define data types for some or all fields of your document in this mapping. To create a mapping for an index, use the `put_mapping` method:
 
 ```ruby
 client.indices.put_mapping(
@@ -195,7 +195,7 @@ client.indices.put_mapping(
 ```
 {% include copy.html %}
 
-By default, string fields are mapped as `text`, but in the mapping above, the `first_name` and `last_name` fields are mapped as `keyword`. This mapping signals to SmartObserve that these fields should not be analyzed and should support only full case-sensitive matches.
+By default, string fields are mapped as `text`, but in the mapping above, the `first_name` and `last_name` fields are mapped as `keyword`. This mapping signals to MCdesk that these fields should not be analyzed and should support only full case-sensitive matches.
 
 You can verify the index's mappings using the `get_mapping` method:
 
@@ -241,7 +241,7 @@ client.index(
 ```
 {% include copy.html %}
 
-SmartObserve returns a mapping error:
+MCdesk returns a mapping error:
 
 ```bash
 {"error":{"root_cause":[{"type":"strict_dynamic_mapping_exception","reason":"mapping set to strict, dynamic introduction of [grad_yea] within [_doc] is not allowed"}],"type":"strict_dynamic_mapping_exception","reason":"mapping set to strict, dynamic introduction of [grad_yea] within [_doc] is not allowed"},"status":400}
@@ -373,7 +373,7 @@ client.search(index: 'students')
 
 ## Boolean query
 
-The Ruby client exposes full SmartObserve query capability. In addition to simple searches that use the match query, you can create a more complex Boolean query to search for students who graduated in 2022 and sort them by last name. In the example below, search is limited to 10 documents.
+The Ruby client exposes full MCdesk query capability. In addition to simple searches that use the match query, you can create a more complex Boolean query to search for students who graduated in 2022 and sort them by last name. In the example below, search is limited to 10 documents.
 
 ```ruby
 query = {
@@ -428,7 +428,7 @@ end
 ```
 {% include copy.html %}
 
-First, you issue a search query, specifying the `scroll` and `size` parameters. The `scroll` parameter tells SmartObserve how long to keep the search context. In this case, it is set to two minutes. The `size` parameter specifies how many documents you want to return in each request. 
+First, you issue a search query, specifying the `scroll` and `size` parameters. The `scroll` parameter tells MCdesk how long to keep the search context. In this case, it is set to two minutes. The `size` parameter specifies how many documents you want to return in each request. 
 
 The response to the initial search query contains a `_scroll_id` that you can use to get the next set of documents. To do this, you use the `scroll` method, again specifying the `scroll` parameter and passing the `_scroll_id` in the body. You don't need to specify the query or index to the `scroll` method. The `scroll` method returns the next set of documents and the `_scroll_id`. It's important to use the latest `_scroll_id` when requesting the next batch of documents because `_scroll_id` can change between requests.
 
@@ -446,9 +446,9 @@ response = client.indices.delete(index: index_name)
 The following is a complete sample program that illustrates all of the concepts described in the preceding sections. The Ruby client's methods return responses as Ruby hashes, which are hard to read. To display JSON responses in a pretty format, the sample program uses the `MultiJson.dump` method.
 
 ```ruby
-require 'smartobserve'
+require 'mcdesk'
 
-client = SmartObserve::Client.new(host: 'http://localhost:9200')
+client = MCdesk::Client.new(host: 'http://localhost:9200')
 
 # Create an index with non-default settings
 index_name = 'students'
@@ -634,10 +634,10 @@ puts MultiJson.dump(response, pretty: "true")
 
 # Ruby AWS Sigv4 Client
 
-The [smartobserve-aws-sigv4](https://github.com/igsl-group/smartobserve-ruby-aws-sigv4) gem provides the `SmartObserve::Aws::Sigv4Client` class, which has all features of `SmartObserve::Client`. The only difference between these two clients is that `SmartObserve::Aws::Sigv4Client` requires an instance of `Aws::Sigv4::Signer` during instantiation to authenticate with AWS:
+The [mcdesk-aws-sigv4](https://github.com/igsl-group/mcdesk-ruby-aws-sigv4) gem provides the `MCdesk::Aws::Sigv4Client` class, which has all features of `MCdesk::Client`. The only difference between these two clients is that `MCdesk::Aws::Sigv4Client` requires an instance of `Aws::Sigv4::Signer` during instantiation to authenticate with AWS:
 
 ```ruby
-require 'smartobserve-aws-sigv4'
+require 'mcdesk-aws-sigv4'
 require 'aws-sigv4'
 
 signer = Aws::Sigv4::Signer.new(service: 'es',
@@ -645,7 +645,7 @@ signer = Aws::Sigv4::Signer.new(service: 'es',
                                 access_key_id: 'key_id',
                                 secret_access_key: 'secret')
 
-client = SmartObserve::Aws::Sigv4Client.new({ log: true }, signer)
+client = MCdesk::Aws::Sigv4Client.new({ log: true }, signer)
 
 client.cluster.health
 

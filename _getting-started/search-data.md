@@ -6,13 +6,13 @@ nav_order: 50
 
 # Search your data
 
-In SmartObserve, there are several ways to search data:
+In MCdesk, there are several ways to search data:
 
-- [Query domain-specific language (DSL)]({{site.url}}{{site.baseurl}}/query-dsl/index/): The primary SmartObserve query language, which you can use to create complex, fully customizable queries.
-- [Query string query language]({{site.url}}{{site.baseurl}}/query-dsl/full-text/query-string/): A scaled-down query language that you can use in a query parameter of a search request or in SmartObserve Dashboards.
-- [SQL]({{site.url}}{{site.baseurl}}/search-plugins/sql/sql/index/): A traditional query language that bridges the gap between traditional relational database concepts and the flexibility of SmartObserve’s document-oriented data storage.
-- [Piped Processing Language (PPL)]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/): The primary language used for observability in SmartObserve. PPL uses a pipe syntax that chains commands into a query.
-- [Dashboards Query Language (DQL)]({{site.url}}{{site.baseurl}}/dashboards/dql/): A simple text-based query language for filtering data in SmartObserve Dashboards. 
+- [Query domain-specific language (DSL)]({{site.url}}{{site.baseurl}}/query-dsl/index/): The primary MCdesk query language, which you can use to create complex, fully customizable queries.
+- [Query string query language]({{site.url}}{{site.baseurl}}/query-dsl/full-text/query-string/): A scaled-down query language that you can use in a query parameter of a search request or in MCdesk Dashboards.
+- [SQL]({{site.url}}{{site.baseurl}}/search-plugins/sql/sql/index/): A traditional query language that bridges the gap between traditional relational database concepts and the flexibility of MCdesk’s document-oriented data storage.
+- [Piped Processing Language (PPL)]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/): The primary language used for observability in MCdesk. PPL uses a pipe syntax that chains commands into a query.
+- [Dashboards Query Language (DQL)]({{site.url}}{{site.baseurl}}/dashboards/dql/): A simple text-based query language for filtering data in MCdesk Dashboards. 
 
 This tutorial contains a brief introduction to searching using [query string queries](#query-string-queries) and [query DSL](#query-dsl).
 
@@ -52,7 +52,7 @@ GET /students/_search
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns the matching documents:
+MCdesk returns the matching documents:
 
 ```json
 {
@@ -120,7 +120,7 @@ The `took` field contains the amount of time the query took to run, in milliseco
 ### timed_out
 <!-- vale on -->
 
-This field indicates whether the request timed out. If a request timed out, then SmartObserve returns the results that were gathered before the timeout. You can set the desired timeout value by providing the `timeout` query parameter:
+This field indicates whether the request timed out. If a request timed out, then MCdesk returns the results that were gathered before the timeout. You can set the desired timeout value by providing the `timeout` query parameter:
 
 ```json
 GET /students/_search?timeout=20ms
@@ -131,7 +131,7 @@ GET /students/_search?timeout=20ms
 ### _shards
 <!-- vale on -->
 
-The `_shards` object specifies the total number of shards on which the query ran as well as the number of shards that succeeded or failed. A shard may fail if the shard itself and all its replicas are unavailable. If any of the involved shards fail, SmartObserve continues to run the query on the remaining shards.
+The `_shards` object specifies the total number of shards on which the query ran as well as the number of shards that succeeded or failed. A shard may fail if the shard itself and all its replicas are unavailable. If any of the involved shards fail, MCdesk continues to run the query on the remaining shards.
 
 <!-- vale off -->
 ### hits
@@ -150,7 +150,7 @@ GET /students/_search?q=name:john
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns the matching document:
+MCdesk returns the matching document:
 
 ```json
 {
@@ -194,7 +194,7 @@ Using Query DSL, you can create more complex and customized queries.
 
 ### Full-text search
 
-You can run a full-text search on fields mapped as `text`. By default, text fields are analyzed by the `default` analyzer. The analyzer splits text into terms and changes it to lowercase. For more information about SmartObserve analyzers, see [Analyzers]({{site.url}}{{site.baseurl}}/analyzers/).
+You can run a full-text search on fields mapped as `text`. By default, text fields are analyzed by the `default` analyzer. The analyzer splits text into terms and changes it to lowercase. For more information about MCdesk analyzers, see [Analyzers]({{site.url}}{{site.baseurl}}/analyzers/).
 
 For example, the following query searches for students with the name `john`:
 
@@ -308,7 +308,7 @@ The match query type uses `OR` as an operator by default, so the query is functi
 
 ### Keyword search
 
-The `name` field contains the `name.keyword` subfield, which is added by SmartObserve automatically. If you search the `name.keyword` field in a manner similar to the previous request:
+The `name` field contains the `name.keyword` subfield, which is added by MCdesk automatically. If you search the `name.keyword` field in a manner similar to the previous request:
 
 ```json
 GET /students/_search
@@ -338,7 +338,7 @@ GET /students/_search
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns the matching document:
+MCdesk returns the matching document:
 
 ```json
 {
@@ -440,7 +440,7 @@ For more information about Boolean and other compound queries, see [Compound que
 
 ## Search methods
 
-Along with the traditional full-text search described in this tutorial, SmartObserve supports a range of machine learning (ML)-powered search methods, including k-NN, semantic, multimodal, sparse, hybrid, and conversational search. For information about all SmartObserve-supported search methods, see [Search]({{site.url}}{{site.baseurl}}/search-plugins/).
+Along with the traditional full-text search described in this tutorial, MCdesk supports a range of machine learning (ML)-powered search methods, including k-NN, semantic, multimodal, sparse, hybrid, and conversational search. For information about all MCdesk-supported search methods, see [Search]({{site.url}}{{site.baseurl}}/search-plugins/).
 
 ## Next steps
 

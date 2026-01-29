@@ -1,55 +1,55 @@
 ---
 layout: default
 title: Network settings
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 20
 ---
 
 # Network settings
 
-SmartObserve uses HTTP settings to configure communication with external clients through the REST API and transport settings for internal node-to-node communication within SmartObserve.
+MCdesk uses HTTP settings to configure communication with external clients through the REST API and transport settings for internal node-to-node communication within MCdesk.
 
-To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
-SmartObserve supports the following common network settings:
+MCdesk supports the following common network settings:
 
-- `network.host` (Static, list): Binds an SmartObserve node to an address. Use `0.0.0.0` to include all available network interfaces, or specify an IP address assigned to a specific interface. The `network.host` setting is a combination of `network.bind_host` and `network.publish_host` if they are the same value. An alternative to `network.host` is to configure `network.bind_host` and `network.publish_host` separately as needed. See [Advanced network settings](#advanced-network-settings).
+- `network.host` (Static, list): Binds an MCdesk node to an address. Use `0.0.0.0` to include all available network interfaces, or specify an IP address assigned to a specific interface. The `network.host` setting is a combination of `network.bind_host` and `network.publish_host` if they are the same value. An alternative to `network.host` is to configure `network.bind_host` and `network.publish_host` separately as needed. See [Advanced network settings](#advanced-network-settings).
 
-- `http.port` (Static, single value or range): Binds an SmartObserve node to a custom port or a range of ports for HTTP communication. You can specify an address or a range of addresses. Default is `9200-9300`.
+- `http.port` (Static, single value or range): Binds an MCdesk node to a custom port or a range of ports for HTTP communication. You can specify an address or a range of addresses. Default is `9200-9300`.
 
-- `transport.port` (Static, single value or range): Binds an SmartObserve node to a custom port for communication between nodes. You can specify an address or a range of addresses. Default is `9300-9400`.
+- `transport.port` (Static, single value or range): Binds an MCdesk node to a custom port for communication between nodes. You can specify an address or a range of addresses. Default is `9300-9400`.
 
 ## Advanced network settings
 
-SmartObserve supports the following advanced network settings:
+MCdesk supports the following advanced network settings:
 
-- `network.bind_host` (Static, list): Binds an SmartObserve node to an address or addresses for incoming connections. Default is the value in `network.host`. 
+- `network.bind_host` (Static, list): Binds an MCdesk node to an address or addresses for incoming connections. Default is the value in `network.host`. 
 
-- `network.publish_host` (Static, list): Specifies an address or addresses that an SmartObserve node publishes to other nodes in the cluster so that they can connect to it.
+- `network.publish_host` (Static, list): Specifies an address or addresses that an MCdesk node publishes to other nodes in the cluster so that they can connect to it.
 
 ## General TCP settings
 
-SmartObserve supports the following TCP settings that apply to all network connections, including both the HTTP and transport layers:
+MCdesk supports the following TCP settings that apply to all network connections, including both the HTTP and transport layers:
 
-- `network.tcp.keep_alive` (Static, Boolean): Enables or disables TCP keep-alive for all TCP connections used by SmartObserve, including the HTTP and transport layers. When enabled, the operating system will send periodic keep-alive packets to detect dead connections. Default is `true`.
+- `network.tcp.keep_alive` (Static, Boolean): Enables or disables TCP keep-alive for all TCP connections used by MCdesk, including the HTTP and transport layers. When enabled, the operating system will send periodic keep-alive packets to detect dead connections. Default is `true`.
 
 - `network.tcp.no_delay` (Static, Boolean): Enables or disables the `TCP_NODELAY` option for all TCP connections. When enabled, disables Nagle's algorithm, which can reduce latency for small messages at the cost of increased network traffic. This applies to both HTTP and transport connections. Default is `true`.
 
-- `network.tcp.receive_buffer_size` (Static, byte unit): Sets the size of the TCP receive buffer for all TCP connections used by SmartObserve. This affects both HTTP and transport connections. A larger buffer can improve throughput for high-bandwidth connections. By default, this is not explicitly set and uses the operating system default.
+- `network.tcp.receive_buffer_size` (Static, byte unit): Sets the size of the TCP receive buffer for all TCP connections used by MCdesk. This affects both HTTP and transport connections. A larger buffer can improve throughput for high-bandwidth connections. By default, this is not explicitly set and uses the operating system default.
 
 - `network.tcp.reuse_address` (Static, Boolean): Controls whether TCP addresses can be reused for all TCP connections. This affects socket binding behavior for both HTTP and transport connections. Default is `true` on non-Windows machines and `false` on Windows.
 
-- `network.tcp.send_buffer_size` (Static, byte unit): Sets the size of the TCP send buffer for all TCP connections used by SmartObserve. This affects both HTTP and transport connections. A larger buffer can improve throughput for high-bandwidth connections. By default, this is not explicitly set and uses the operating system default.
+- `network.tcp.send_buffer_size` (Static, byte unit): Sets the size of the TCP send buffer for all TCP connections used by MCdesk. This affects both HTTP and transport connections. A larger buffer can improve throughput for high-bandwidth connections. By default, this is not explicitly set and uses the operating system default.
 
 ## Advanced HTTP settings
 
-SmartObserve supports the following advanced network settings for HTTP communication:
+MCdesk supports the following advanced network settings for HTTP communication:
 
-- `http.host` (Static, list): Sets the address of an SmartObserve node for HTTP communication. The `http.host` setting is a combination of `http.bind_host` and `http.publish_host` if they are the same value. An alternative to `http.host` is to configure `http.bind_host` and `http.publish_host` separately as needed. 
+- `http.host` (Static, list): Sets the address of an MCdesk node for HTTP communication. The `http.host` setting is a combination of `http.bind_host` and `http.publish_host` if they are the same value. An alternative to `http.host` is to configure `http.bind_host` and `http.publish_host` separately as needed. 
 
-- `http.bind_host` (Static, list): Specifies an address or addresses to which an SmartObserve node binds to listen for incoming HTTP connections. 
+- `http.bind_host` (Static, list): Specifies an address or addresses to which an MCdesk node binds to listen for incoming HTTP connections. 
 
-- `http.publish_host` (Static, list): Specifies an address or addresses that an SmartObserve node publishes to other nodes for HTTP communication.
+- `http.publish_host` (Static, list): Specifies an address or addresses that an MCdesk node publishes to other nodes for HTTP communication.
 
 - `http.compression` (Static, Boolean): Enables support for compression using `Accept-Encoding` when applicable. When `HTTPS` is enabled, the default is `false`, otherwise, the default is `true`. Disabling compression for HTTPS helps mitigate potential security risks, such as `BREACH` attacks. To enable compression for HTTPS traffic, explicitly set `http.compression` to `true`.
 
@@ -73,9 +73,9 @@ SmartObserve supports the following advanced network settings for HTTP communica
 
 ## HTTP CORS settings
 
-SmartObserve supports the following Cross-Origin Resource Sharing (CORS) settings for HTTP:
+MCdesk supports the following Cross-Origin Resource Sharing (CORS) settings for HTTP:
 
-- `http.cors.enabled` (Static, Boolean): Enables or disables CORS for HTTP requests. When enabled, SmartObserve processes CORS preflight requests and responds with appropriate `Access-Control-Allow-Origin` headers if the request origin is permitted. When disabled, SmartObserve ignores the `Origin` request header, effectively disabling CORS. Default is `false`.
+- `http.cors.enabled` (Static, Boolean): Enables or disables CORS for HTTP requests. When enabled, MCdesk processes CORS preflight requests and responds with appropriate `Access-Control-Allow-Origin` headers if the request origin is permitted. When disabled, MCdesk ignores the `Origin` request header, effectively disabling CORS. Default is `false`.
 
 - `http.cors.allow-origin` (Static, list): Specifies which origins are allowed for CORS requests. You can use wildcards (`*`) to allow all origins, though this is considered to be a security risk. You can also use regular expressions by wrapping the value with forward slashes (for example, `/https?:\/\/localhost(:[0-9]+)?/`). Default is no origins allowed.
 
@@ -89,13 +89,13 @@ SmartObserve supports the following Cross-Origin Resource Sharing (CORS) setting
 
 ## HTTP error handling settings
 
-SmartObserve supports the following HTTP error handling settings:
+MCdesk supports the following HTTP error handling settings:
 
 - `http.detailed_errors.enabled` (Static, Boolean): Controls whether detailed error messages and stack traces are included in HTTP response output. When set to `false`, only simple error messages are returned unless the `error_trace` request parameter is specified (which will return an error when detailed errors are disabled). Default is `true`.
 
 ## HTTP debugging settings
 
-SmartObserve supports the following HTTP debugging settings for tracing HTTP communication:
+MCdesk supports the following HTTP debugging settings for tracing HTTP communication:
 
 - `http.tracer.include` (Dynamic, list): Specifies a comma-separated list of HTTP request paths or wildcard patterns to include in HTTP tracing. When configured, only HTTP requests matching these patterns are traced in the logs. This setting is useful for debugging specific HTTP endpoints or API calls. Default is `[]` (empty list, traces all requests when HTTP tracing is enabled).
 
@@ -103,25 +103,25 @@ SmartObserve supports the following HTTP debugging settings for tracing HTTP com
 
 ## Advanced transport settings
 
-SmartObserve supports the following advanced network settings for transport communication:
+MCdesk supports the following advanced network settings for transport communication:
 
-- `transport.host` (Static, list): Sets the address of an SmartObserve node for transport communication. The `transport.host` setting is a combination of `transport.bind_host` and `transport.publish_host` if they are the same value. An alternative to `transport.host` is to configure `transport.bind_host` and `transport.publish_host` separately as needed. 
+- `transport.host` (Static, list): Sets the address of an MCdesk node for transport communication. The `transport.host` setting is a combination of `transport.bind_host` and `transport.publish_host` if they are the same value. An alternative to `transport.host` is to configure `transport.bind_host` and `transport.publish_host` separately as needed. 
 
-- `transport.bind_host` (Static, list): Specifies an address or addresses to which an SmartObserve node binds to listen for incoming transport connections. 
+- `transport.bind_host` (Static, list): Specifies an address or addresses to which an MCdesk node binds to listen for incoming transport connections. 
 
-- `transport.publish_host` (Static, list): Specifies an address or addresses that an SmartObserve node publishes to other nodes for transport communication.
+- `transport.publish_host` (Static, list): Specifies an address or addresses that an MCdesk node publishes to other nodes for transport communication.
 
 ## Transport debugging settings
 
-SmartObserve supports the following transport debugging settings for tracing transport communication:
+MCdesk supports the following transport debugging settings for tracing transport communication:
 
-- `transport.tracer.include` (Dynamic, list): Specifies a comma-separated list of transport actions or patterns to include in transport tracing. When configured, only transport communications matching these patterns are traced in the logs. This setting is useful for debugging specific internal SmartObserve operations. Default is `[]` (empty list, traces all actions when transport tracing is enabled).
+- `transport.tracer.include` (Dynamic, list): Specifies a comma-separated list of transport actions or patterns to include in transport tracing. When configured, only transport communications matching these patterns are traced in the logs. This setting is useful for debugging specific internal MCdesk operations. Default is `[]` (empty list, traces all actions when transport tracing is enabled).
 
 - `transport.tracer.exclude` (Dynamic, list): Specifies a comma-separated list of transport actions or patterns to exclude from transport tracing. Transport communications matching these patterns are not traced in the logs, even if transport tracing is enabled. This setting is useful for reducing noise from frequent or unimportant operations. Default is `[]` (empty list, no exclusions when transport tracing is enabled).
 
 ## Transport profile settings
 
-SmartObserve supports the following transport profile settings that allow configuration of multiple transport profiles for different types of connections.
+MCdesk supports the following transport profile settings that allow configuration of multiple transport profiles for different types of connections.
 
 Transport profiles allow you to bind to multiple ports on different interfaces for different types of connections. The `default` profile serves as a fallback for other profiles and controls how this node connects to other nodes in the cluster. The following settings can be configured for each transport profile:
 
@@ -149,7 +149,7 @@ Transport profiles allow you to bind to multiple ports on different interfaces f
 
 ## Advanced transport settings
 
-SmartObserve supports the following advanced transport settings:
+MCdesk supports the following advanced transport settings:
 
 - `transport.compress` (Static, Boolean): Enables `DEFLATE` compression for all inter-node transport communications. When enabled, data transmitted between nodes is compressed to reduce network bandwidth usage, which can be beneficial for clusters connected over slower network links. However, compression adds CPU overhead for compression and decompression operations. Default is `false`.
 
@@ -161,8 +161,8 @@ SmartObserve supports the following advanced transport settings:
 
 ## Selecting the transport
 
-The default SmartObserve transport is provided by the `transport-netty4` module and uses the [Netty 4](https://netty.io/) engine for both internal TCP-based communication between nodes in the cluster and external HTTP-based communication with clients. This communication is fully asynchronous and non-blocking. The following table lists other available transport plugins that can be used interchangeably.
+The default MCdesk transport is provided by the `transport-netty4` module and uses the [Netty 4](https://netty.io/) engine for both internal TCP-based communication between nodes in the cluster and external HTTP-based communication with clients. This communication is fully asynchronous and non-blocking. The following table lists other available transport plugins that can be used interchangeably.
 
 Plugin | Description
 :---------- | :--------
-`transport-reactor-netty4`    | The SmartObserve HTTP transport based on [Project Reactor](https://github.com/reactor/reactor-netty) and Netty 4 (**experimental**) <br> Installation: `./bin/smartobserve-plugin install transport-reactor-netty4` <br> Configuration (using `smartobserve.yml`): <br> `http.type: reactor-netty4` <br> `http.type: reactor-netty4-secure`
+`transport-reactor-netty4`    | The MCdesk HTTP transport based on [Project Reactor](https://github.com/reactor/reactor-netty) and Netty 4 (**experimental**) <br> Installation: `./bin/mcdesk-plugin install transport-reactor-netty4` <br> Configuration (using `mcdesk.yml`): <br> `http.type: reactor-netty4` <br> `http.type: reactor-netty4-secure`

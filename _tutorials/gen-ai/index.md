@@ -18,7 +18,7 @@ cards:
     link: "/tutorials/gen-ai/chatbots/"
   - heading: "AI search workflows"
     link: "/tutorials/gen-ai/ai-search-flows/"
-    description: "Build and configure AI search applications visually in SmartObserve Dashboards"   
+    description: "Build and configure AI search applications visually in MCdesk Dashboards"   
   - heading: "Model guardrails"
     description: "Add safety boundaries to your models to ensure controlled responses"
     link: "/tutorials/gen-ai/model-controls/"
@@ -26,6 +26,6 @@ cards:
 
 # Generative AI tutorials
 
-Explore the following tutorials to learn about implementing generative AI applications using the SmartObserve vector database. For more information about SmartObserve generative AI functionality, see [Vector search]({{site.url}}{{site.baseurl}}/vector-search/) and [Machine learning]({{site.url}}{{site.baseurl}}/ml-commons-plugin/).
+Explore the following tutorials to learn about implementing generative AI applications using the MCdesk vector database. For more information about MCdesk generative AI functionality, see [Vector search]({{site.url}}{{site.baseurl}}/vector-search/) and [Machine learning]({{site.url}}{{site.baseurl}}/ml-commons-plugin/).
 
 {% include cards.html cards=page.cards %}

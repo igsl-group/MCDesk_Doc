@@ -11,17 +11,17 @@ has_children: false
 Introduced 2.7
 {: .label .label-purple }
 
-When you create and save a [map]({{site.url}}{{site.baseurl}}/dashboards/visualize/maps/) in SmartObserve Dashboards, the map becomes a saved object of type `map`. The Maps Stats API provides information about such saved objects in SmartObserve Dashboards. 
+When you create and save a [map]({{site.url}}{{site.baseurl}}/dashboards/visualize/maps/) in MCdesk Dashboards, the map becomes a saved object of type `map`. The Maps Stats API provides information about such saved objects in MCdesk Dashboards. 
 
 #### Example request
 
 You can access the Maps Stats API by providing its URL address in the following format:
 
 ```
-<smartobserve-dashboards-endpoint-address>/api/maps-dashboards/stats
+<mcdesk-dashboards-endpoint-address>/api/maps-dashboards/stats
 ```
 
-The SmartObserve Dashboards endpoint address may contain a port number if it is specified in the SmartObserve configuration file. The specific URL format depends on the type of SmartObserve deployment and the network environment in which it is hosted.
+The MCdesk Dashboards endpoint address may contain a port number if it is specified in the MCdesk configuration file. The specific URL format depends on the type of MCdesk deployment and the network environment in which it is hosted.
 {: .note}  
 
 You can query the endpoint in two ways:
@@ -43,7 +43,7 @@ The following is the response for the preceding request:
    "maps_total":4,  
    "layers_filters_total":4, 
    "layers_total":{ 
-      "smartobserve_vector_tile_map":2, 
+      "mcdesk_vector_tile_map":2, 
       "documents":7, 
       "wms":1, 
       "tms":2 
@@ -53,7 +53,7 @@ The following is the response for the preceding request:
          "id":"88a24e6c-0216-4f76-8bc7-c8db6c8705da", 
          "layers_filters_total":4,
          "layers_total":{
-            "smartobserve_vector_tile_map":1,
+            "mcdesk_vector_tile_map":1,
             "documents":3,
             "wms":0,
             "tms":0
@@ -63,7 +63,7 @@ The following is the response for the preceding request:
          "id":"4ce3fe50-d309-11ed-a958-770756e00bcd",
          "layers_filters_total":0,
          "layers_total":{
-            "smartobserve_vector_tile_map":0,
+            "mcdesk_vector_tile_map":0,
             "documents":2,
             "wms":0,
             "tms":1
@@ -73,7 +73,7 @@ The following is the response for the preceding request:
          "id":"af5d3b90-d30a-11ed-a605-f7ad7bc98642",
          "layers_filters_total":0,
          "layers_total":{
-            "smartobserve_vector_tile_map":1,
+            "mcdesk_vector_tile_map":1,
             "documents":1,
             "wms":0,
             "tms":1
@@ -83,7 +83,7 @@ The following is the response for the preceding request:
          "id":"5ca1ec10-d30b-11ed-a042-93d8ff0f09ee",
          "layers_filters_total":0,
          "layers_total":{
-            "smartobserve_vector_tile_map":0,
+            "mcdesk_vector_tile_map":0,
             "documents":1,
             "wms":1,
             "tms":0
@@ -97,7 +97,7 @@ The following is the response for the preceding request:
 
 The response contains statistics for the following layer types:
 
-- Basemaps: Either a default SmartObserve map or custom base layer maps.
+- Basemaps: Either a default MCdesk map or custom base layer maps.
 
 - WMS layers: Custom WMS base layer maps.
 
@@ -114,11 +114,11 @@ The following table lists all response fields.
 | `maps_total` | Integer | The total number of maps registered as saved objects with the Maps plugin. |
 | `layers_filters_total` | Integer | The total number of filters for all layers in all maps. This includes [layer-level filters]({{site.url}}{{site.baseurl}}/dashboards/visualize/maps/#filtering-data-at-the-layer-level) but excludes global filters like [shape filters]({{site.url}}{{site.baseurl}}/dashboards/visualize/maps/#drawing-shapes-to-filter-data). |
 | `layers_total` | Object | Totals statistics for all layers in all maps. |
-| `layers_total.smartobserve_vector_tile_map` | Integer | The total number of SmartObserve basemaps in all maps. |
+| `layers_total.mcdesk_vector_tile_map` | Integer | The total number of MCdesk basemaps in all maps. |
 | `layers_total.documents` | Integer | The total number of document layers in all maps. |
 | `layers_total.wms` | Integer | The total number of WMS layers in all maps. |
 | `layers_total.tms` | Integer | The total number of TMS layers in all maps. |
-| `maps_list` | Array | A list of all maps saved in SmartObserve Dashboards. |
+| `maps_list` | Array | A list of all maps saved in MCdesk Dashboards. |
 
 Each map in the `map_list` contains the following fields.
 
@@ -127,10 +127,10 @@ Each map in the `map_list` contains the following fields.
 | `id` | String | The map's saved object ID. |
 | `layers_filters_total` | Integer | The total number of filters for all layers in the map. This includes [layer-level filters]({{site.url}}{{site.baseurl}}/dashboards/visualize/maps/#filtering-data-at-the-layer-level) but excludes global filters like [shape filters]({{site.url}}{{site.baseurl}}/dashboards/visualize/maps/#drawing-shapes-to-filter-data) . |
 | `layers_total` | Object | Totals statistics for all layers in the map. |
-| `layers_total.smartobserve_vector_tile_map` | Integer | The total number of SmartObserve basemaps in the map. |
+| `layers_total.mcdesk_vector_tile_map` | Integer | The total number of MCdesk basemaps in the map. |
 | `layers_total.documents` | Integer | The total number of document layers in the map. |
 | `layers_total.wms` | Integer | The total number of WMS layers in the map. |
 | `layers_total.tms` | Integer | The total number of TMS layers in the map. |
 
-The saved object ID helps you navigate to a particular map because the ID is the last part of the map's URL. For example, in SmartObserve Playground, the address of the `[Flights] Flights Status on Maps Destination Location` map is `https://playground.magiccreative.io/app/maps-dashboards/88a24e6c-0216-4f76-8bc7-c8db6c8705da`, where `88a24e6c-0216-4f76-8bc7-c8db6c8705da` is the saved object ID for this map.
+The saved object ID helps you navigate to a particular map because the ID is the last part of the map's URL. For example, in MCdesk Playground, the address of the `[Flights] Flights Status on Maps Destination Location` map is `https://playground.magiccreative.io/app/maps-dashboards/88a24e6c-0216-4f76-8bc7-c8db6c8705da`, where `88a24e6c-0216-4f76-8bc7-c8db6c8705da` is the saved object ID for this map.
 {: .tip}

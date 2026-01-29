@@ -10,7 +10,7 @@ has_math: true
 
 # Faiss 16-bit scalar quantization 
  
-Starting with version 2.13, SmartObserve supports performing scalar quantization for the Faiss engine within SmartObserve. Within the Faiss engine, a scalar quantizer (SQfp16) performs the conversion between 32-bit and 16-bit vectors. At ingestion time, when you upload 32-bit floating-point vectors to SmartObserve, SQfp16 quantizes them into 16-bit floating-point vectors and stores the quantized vectors in a vector index. 
+Starting with version 2.13, MCdesk supports performing scalar quantization for the Faiss engine within MCdesk. Within the Faiss engine, a scalar quantizer (SQfp16) performs the conversion between 32-bit and 16-bit vectors. At ingestion time, when you upload 32-bit floating-point vectors to MCdesk, SQfp16 quantizes them into 16-bit floating-point vectors and stores the quantized vectors in a vector index. 
 
 At search time, SQfp16 decodes the vector values back into 32-bit floating-point values for distance computation. The SQfp16 quantization can decrease the memory footprint by a factor of 2. Additionally, it leads to a minimal loss in recall when differences between vector values are large compared to the error introduced by eliminating their two least significant bits. When used with [SIMD optimization]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-methods-engines/#simd-optimization), SQfp16 quantization can also significantly reduce search latencies and improve indexing throughput. 
 

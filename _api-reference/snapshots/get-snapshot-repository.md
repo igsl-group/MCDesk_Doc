@@ -11,7 +11,7 @@ nav_order: 2
 
 Retrieves information about a snapshot repository.
 
-To learn more about repositories, see [Register repository]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/snapshot-restore#register-repository).
+To learn more about repositories, see [Register repository]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/snapshot-restore#register-repository).
 
 You can also get details about a snapshot during and after snapshot creation. See [Get snapshot status]({{site.url}}{{site.baseurl}}/api-reference/snapshots/get-snapshot-status/).
 {: .note}
@@ -37,21 +37,21 @@ GET /_snapshot/<repository>
 
 ## Example request
 
-The following request retrieves information for the `my-smartobserve-repo` repository:
+The following request retrieves information for the `my-mcdesk-repo` repository:
 
 <!-- spec_insert_start
 component: example_code
-rest: GET /_snapshot/my-smartobserve-repo
+rest: GET /_snapshot/my-mcdesk-repo
 -->
 {% capture step1_rest %}
-GET /_snapshot/my-smartobserve-repo
+GET /_snapshot/my-mcdesk-repo
 {% endcapture %}
 
 {% capture step1_python %}
 
 
 response = client.snapshot.get_repository(
-  repository = "my-smartobserve-repo"
+  repository = "my-mcdesk-repo"
 )
 
 {% endcapture %}
@@ -67,7 +67,7 @@ Upon success, the response returns repositry information. This sample is for an 
 
 ````json
 {
-  "my-smartobserve-repo" : {
+  "my-mcdesk-repo" : {
     "type" : "s3",
     "settings" : {
       "bucket" : "my-open-search-bucket",

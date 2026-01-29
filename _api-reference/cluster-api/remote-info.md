@@ -4,7 +4,7 @@ title: Remote cluster information
 parent: Cluster APIs
 nav_order: 67
 redirect_from: 
- - /smartobserve/rest-api/remote-info/
+ - /mcdesk/rest-api/remote-info/
  - /api-reference/remote-info/
 ---
 
@@ -12,7 +12,7 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-This operation provides connection information for any remote SmartObserve clusters that you've configured for the local cluster, such as the remote cluster alias, connection mode (`sniff` or `proxy`), IP addresses for seed nodes, and timeout settings.
+This operation provides connection information for any remote MCdesk clusters that you've configured for the local cluster, such as the remote cluster alias, connection mode (`sniff` or `proxy`), IP addresses for seed nodes, and timeout settings.
 
 The response is more comprehensive and useful than a call to `_cluster/settings`, which only includes the cluster alias and seed nodes.
 
@@ -27,7 +27,7 @@ GET _remote/info
 
 ```json
 {
-  "smartobserve-cluster2": {
+  "mcdesk-cluster2": {
     "connected": true,
     "mode": "sniff",
     "seeds": [

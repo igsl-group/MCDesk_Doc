@@ -42,10 +42,10 @@ The `extended_stats` aggregation takes the following parameters.
 
 ## Example
 
-The following example request returns extended stats for `taxful_total_price` in the SmartObserve Dashboards sample e-commerce data:
+The following example request returns extended stats for `taxful_total_price` in the MCdesk Dashboards sample e-commerce data:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -101,7 +101,7 @@ You can define the number of standard deviations used to calculate the `std_devi
 Set the number of `std_deviation_bounds` standard deviations to `3`:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {
@@ -223,7 +223,7 @@ GET students/_search
 ```
 {% include copy-curl.html %}
 
-SmartObserve calculates the extended statistics, omitting documents containing missing field values (the default behavior):
+MCdesk calculates the extended statistics, omitting documents containing missing field values (the default behavior):
 
 ```json
 ...

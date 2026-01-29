@@ -4,14 +4,14 @@ title: Did-you-mean
 parent: Search options
 nav_order: 70
 redirect_from:
-  - /smartobserve/search/did-you-mean/
+  - /mcdesk/search/did-you-mean/
 ---
 
 # Did-you-mean
 
 The `Did-you-mean` suggester shows suggested corrections for misspelled search terms.
 
-For example, if a user types "fliud," SmartObserve suggests a corrected search term like "fluid." You can then suggest the corrected term to the user or even automatically correct the search term.
+For example, if a user types "fliud," MCdesk suggests a corrected search term like "fluid." You can then suggest the corrected term to the user or even automatically correct the search term.
 
 You can implement the `did-you-mean` suggester using one of the following methods:
 
@@ -210,7 +210,7 @@ max_edits | The maximum edit distance for suggestions. Valid values are in the [
 prefix_length | An integer that specifies the minimum length the matched prefix must be to start returning suggestions. If the prefix of `prefix_length` is not matched, but the search term is still within the edit distance, no suggestions are returned. Default is 1. Higher values improve spellcheck performance because misspellings don’t tend to occur in the beginning of words.
 min_word_length | The minimum length a suggestion must be in order to be included in the response. Default is 4.
 shard_size | The maximum number of candidate suggestions to obtain from each shard. After all candidate suggestions are considered, the top `shard_size` suggestions are returned. Default is equal to the `size` value. Shard-level document frequencies may not be exact because terms may reside in different shards. If `shard_size` is larger than `size`, the document frequencies for suggestions are more accurate, at the cost of decreased performance. 
-max_inspections | The multiplication factor for `shard_size`. The maximum number of candidate suggestions SmartObserve inspects to find suggestions is calculated as `shard_size` multiplied by `max_inspection`. May improve accuracy at the cost of decreased performance. Default is 5.
+max_inspections | The multiplication factor for `shard_size`. The maximum number of candidate suggestions MCdesk inspects to find suggestions is calculated as `shard_size` multiplied by `max_inspection`. May improve accuracy at the cost of decreased performance. Default is 5.
 min_doc_freq | The minimum number or percentage of documents in which a suggestion should appear for it to be returned. May improve accuracy by returning only suggestions with high shard-level document frequencies. Valid values are integers that represent the document frequency or floats in the [0, 1] range that represent the percentage of documents. Default is 0 (feature disabled). 
 max_term_freq | The maximum number of documents in which a suggestion should appear in order for it to be returned. Valid values are integers that represent the document frequency or floats in the [0, 1] range that represent the percentage of documents. Default is 0.01. Excluding high-frequency terms improves spellcheck performance because high-frequency terms are usually spelled correctly. Uses shard-level document frequencies.
 string_distance | The edit distance algorithm to use to determine similarity. Valid values are:<br>- `internal`: The default algorithm that is based on the [Damerau-Levenshtein algorithm](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance) but is highly optimized for comparing edit distances for terms in the index.<br> - `damerau_levenshtein`: The edit distance algorithm based on the [Damerau-Levenshtein algorithm](https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance). <br>- `levenshtein`: The edit distance algorithm based on the [Levenshtein edit distance algorithm](https://en.wikipedia.org/wiki/Levenshtein_distance).<br> - `jaro_winkler`: The edit distance algorithm based on the [Jaro-Winkler algorithm](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance).<br> - `ngram`: The edit distance algorithm based on character n-grams.
@@ -332,7 +332,7 @@ The phrase suggester returns the corrected phrase:
 }
 ```
 
-To highlight suggestions, set up the [`highlight`]({{site.url}}{{site.baseurl}}/smartobserve/search/highlight) field for the phrase suggester:
+To highlight suggestions, set up the [`highlight`]({{site.url}}{{site.baseurl}}/mcdesk/search/highlight) field for the phrase suggester:
 
 ```json
 GET books2/_search
@@ -418,7 +418,7 @@ highlight.post_tag | The ending tag for highlighting.
 
 ### Collate field
 
-To filter out spellchecked suggestions that will not return any results, you can use the `collate` field. This field contains a scripted query that is run for each returned suggestion. See [Search templates]({{site.url}}{{site.baseurl}}/smartobserve/search-template) for information on constructing a templated query. You can specify the current suggestion using the `{% raw %}{{suggestion}}{% endraw %}` variable, or you can pass your own template parameters in the `params` field (the suggestion value will be added to the variables you specify).
+To filter out spellchecked suggestions that will not return any results, you can use the `collate` field. This field contains a scripted query that is run for each returned suggestion. See [Search templates]({{site.url}}{{site.baseurl}}/mcdesk/search-template) for information on constructing a templated query. You can specify the current suggestion using the `{% raw %}{{suggestion}}{% endraw %}` variable, or you can pass your own template parameters in the `params` field (the suggestion value will be added to the variables you specify).
 
 The collate query for a suggestion is run only on the shard from which the suggestion was sourced. The query is required.  
 
@@ -503,7 +503,7 @@ stupid.backoff.discount | The factor by which to multiply the lower-order n-gram
 laplace | Uses additive smoothing, adding a constant `alpha` to all counts to balance weights.
 laplace.alpha | The constant added to all counts to balance weights, typically 1.0 or smaller. Optional. Default is 0.5.
 
-By default, SmartObserve uses the Stupid Backoff model&mdash;a simple algorithm that starts with the shingles of the highest order and takes lower-order shingles if higher-order shingles are not found. For example, if you set up the phrase suggester to have 3-grams, 2-grams, and 1-grams, the Stupid Backoff model first inspects the 3-grams. If there are no 3-grams, it inspects 2-grams but multiplies the score by the `discount` factor. If there are no 2-grams, it inspects 1-grams but again multiplies the score by the `discount` factor. The Stupid Backoff model works well in most cases. If you need to choose the Laplace smoothing model, specify it in the `smoothing` parameter:
+By default, MCdesk uses the Stupid Backoff model&mdash;a simple algorithm that starts with the shingles of the highest order and takes lower-order shingles if higher-order shingles are not found. For example, if you set up the phrase suggester to have 3-grams, 2-grams, and 1-grams, the Stupid Backoff model first inspects the 3-grams. If there are no 3-grams, it inspects 2-grams but multiplies the score by the `discount` factor. If there are no 2-grams, it inspects 1-grams but again multiplies the score by the `discount` factor. The Stupid Backoff model works well in most cases. If you need to choose the Laplace smoothing model, specify it in the `smoothing` parameter:
 
 ```json
 GET books2/_search
@@ -563,7 +563,7 @@ suggest_mode | The suggest mode specifies the terms for which suggestions genera
 max_edits | The maximum edit distance for suggestions. Valid values are in the [1, 2] range. Default is 2.
 prefix_length | An integer that specifies the minimum length the matched prefix must be to start returning suggestions. If the prefix of `prefix_length` is not matched but the search term is still within the edit distance, no suggestions are returned. Default is 1. Higher values improve spellcheck performance because misspellings don’t tend to occur in the beginning of words.
 min_word_length | The minimum length a suggestion must be in order to be included. Default is 4.
-max_inspections | The multiplication factor for `shard_size`. The maximum number of candidate suggestions SmartObserve inspects to find suggestions is calculated as `shard_size` multiplied by `max_inspection`. May improve accuracy at the cost of decreased performance. Default is 5.
+max_inspections | The multiplication factor for `shard_size`. The maximum number of candidate suggestions MCdesk inspects to find suggestions is calculated as `shard_size` multiplied by `max_inspection`. May improve accuracy at the cost of decreased performance. Default is 5.
 min_doc_freq | The minimum number or percentage of documents in which a suggestion should appear in order for it to be returned. May improve accuracy by returning only suggestions with high shard-level document frequencies. Valid values are integers that represent the document frequency or floats in the [0, 1] range that represent the percentage of documents. Default is 0 (feature disabled). 
 max_term_freq | The maximum number of documents in which a suggestion should appear in order for it to be returned. Valid values are integers that represent the document frequency or floats in the [0, 1] range that represent the percentage of documents. Default is 0.01. Excluding high-frequency terms improves spellcheck performance because high-frequency terms are usually spelled correctly. Uses shard-level document frequencies.
 pre_filter | An analyzer that is applied to each input text token passed to the generator before a suggestion is generated. 

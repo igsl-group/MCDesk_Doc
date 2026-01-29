@@ -10,7 +10,7 @@ nav_order: 35
 **Introduced 2.13**
 {: .label .label-purple }
 
-Use this command to search for agents you've already created. You can provide any SmartObserve search query in the request body.
+Use this command to search for agents you've already created. You can provide any MCdesk search query in the request body.
 
 ## Endpoints
 

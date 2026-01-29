@@ -12,7 +12,7 @@ redirect_from:
 Introduced 2.5
 {: .label .label-purple }
 
-The Index Management interface in SmartObserve Dashboards provides a unified solution for managing common indexing and data stream operations. The interface allows you to perform create, read, update, and delete (CRUD) and mapping operations for indexes, index templates, and aliases instead of using REST APIs or YAML configurations for basic administrative operations and interventions, along with other operations such as open, close, reindex, shrink, and split indexes. The interface also provides you with the capabilities to run index status and data validation before submitting requests and compare changes with previously saved settings before making updates.
+The Index Management interface in MCdesk Dashboards provides a unified solution for managing common indexing and data stream operations. The interface allows you to perform create, read, update, and delete (CRUD) and mapping operations for indexes, index templates, and aliases instead of using REST APIs or YAML configurations for basic administrative operations and interventions, along with other operations such as open, close, reindex, shrink, and split indexes. The interface also provides you with the capabilities to run index status and data validation before submitting requests and compare changes with previously saved settings before making updates.
 
 An example of the interface is shown in the following image.
 
@@ -22,11 +22,11 @@ An example of the interface is shown in the following image.
 
 **Step 1: Open Index Management** 
 
-- Once you're in SmartObserve Dashboards, select **Index Management** from the **SmartObserve Plugins** main menu. Then select **Indices**.
+- Once you're in MCdesk Dashboards, select **Index Management** from the **MCdesk Plugins** main menu. Then select **Indices**.
 
 **Step 2: View indexes** 
 
-- In the **Indices** interface you will see a list of existing indexes in your SmartObserve cluster. The list provides information such as index name, health state, document count, index size, and other relevant details.  
+- In the **Indices** interface you will see a list of existing indexes in your MCdesk cluster. The list provides information such as index name, health state, document count, index size, and other relevant details.  
 
 **Step 3: Create an index** 
 

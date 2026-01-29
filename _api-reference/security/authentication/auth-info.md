@@ -146,7 +146,7 @@ The response body is a JSON object with the following fields.
 | `user` | String | A string representation of the user object, including the username and backend roles. |
 | `user_name` | String | The username of the authenticated user. |
 | `backend_roles` | Array of strings | The backend roles associated with the user, typically obtained from an external authentication system. |
-| `roles` | Array of strings | The SmartObserve Security roles assigned to the user, determining their permissions. |
+| `roles` | Array of strings | The MCdesk Security roles assigned to the user, determining their permissions. |
 | `tenants` | Object | The tenants the user has access to, with `true` indicating read-write access and `false` indicating read-only access. |
 | `principal` |  String | The user's authentication principal, if available. |
 | `peer_certificates` | String | The number of peer certificates related to the user's authentication. |

@@ -164,7 +164,7 @@ GET blogs/_search
 {
   "query": {
     "function_score": {
-      "query": {"match": {"name": "smartobserve"}},
+      "query": {"match": {"name": "mcdesk"}},
       "script_score": {
         "script": "_score * Math.log(1 + doc['likes'].value + doc['views'].value)"
       }
@@ -182,7 +182,7 @@ GET blogs/_search
   "query": {
     "function_score": {
       "query": {
-        "match": { "name": "smartobserve" }
+        "match": { "name": "mcdesk" }
       },
       "script_score": {
         "script": {
@@ -405,7 +405,7 @@ The first two blog posts in the results have a score of 1 because one is at the 
         "_id": "1",
         "_score": 1,
         "_source": {
-          "name": "Semantic search in SmartObserve",
+          "name": "Semantic search in MCdesk",
           "views": 1200,
           "likes": 150,
           "comments": 16,
@@ -417,7 +417,7 @@ The first two blog posts in the results have a score of 1 because one is at the 
         "_id": "2",
         "_score": 1,
         "_source": {
-          "name": "Get started with SmartObserve 2.7",
+          "name": "Get started with MCdesk 2.7",
           "views": 1400,
           "likes": 100,
           "comments": 20,
@@ -523,7 +523,7 @@ In the results, the first blog post was published within one day of 04/24/2022, 
         "_id": "1",
         "_score": 0.25,
         "_source": {
-          "name": "Semantic search in SmartObserve",
+          "name": "Semantic search in MCdesk",
           "views": 1200,
           "likes": 150,
           "comments": 16,
@@ -535,7 +535,7 @@ In the results, the first blog post was published within one day of 04/24/2022, 
         "_id": "2",
         "_score": 0.15154076,
         "_source": {
-          "name": "Get started with SmartObserve 2.7",
+          "name": "Get started with MCdesk 2.7",
           "views": 1400,
           "likes": 100,
           "comments": 20,
@@ -707,7 +707,7 @@ Changing the relevance score does not change the list of matching documents. To 
 
 ### Example
 
-The following request searches for blog posts that include the words "SmartObserve Data Prepper", preferring the posts published around 04/24/2022. Additionally, the number of views and likes are taken into consideration. Finally, the cutoff threshold is set at the score of 10:
+The following request searches for blog posts that include the words "MCdesk Data Prepper", preferring the posts published around 04/24/2022. Additionally, the number of views and likes are taken into consideration. Finally, the cutoff threshold is set at the score of 10:
 
 ```json
 GET blogs/_search
@@ -747,7 +747,7 @@ GET blogs/_search
       ],
       "query": {
         "match": {
-          "name": "smartobserve data prepper"
+          "name": "mcdesk data prepper"
         }
       },
       "max_boost": 10,
@@ -802,7 +802,7 @@ The results contain the three matching blog posts:
         "_id": "1",
         "_score": 13.907352,
         "_source": {
-          "name": "Semantic search in SmartObserve",
+          "name": "Semantic search in MCdesk",
           "views": 1200,
           "likes": 150,
           "comments": 16,
@@ -814,7 +814,7 @@ The results contain the three matching blog posts:
         "_id": "2",
         "_score": 11.150461,
         "_source": {
-          "name": "Get started with SmartObserve 2.7",
+          "name": "Get started with MCdesk 2.7",
           "views": 1400,
           "likes": 100,
           "comments": 20,
@@ -912,7 +912,7 @@ The response explains the scoring process. For each function, the explanation co
         "_id": "1",
         "_score": 6.1600614,
         "_source": {
-          "name": "Semantic search in SmartObserve",
+          "name": "Semantic search in MCdesk",
           "views": 1200,
           "likes": 150,
           "comments": 16,

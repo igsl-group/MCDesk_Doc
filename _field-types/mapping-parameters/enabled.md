@@ -10,9 +10,9 @@ has_toc: false
 
 # Enabled
 
-SmartObserve tries to index all fields you provide, but sometimes you may want to store a field without making it searchable. For example, if you use SmartObserve as a web session store, you might index the session ID and last update time but store the session data itself without indexing it, since you don't need to search or aggregate this data.
+MCdesk tries to index all fields you provide, but sometimes you may want to store a field without making it searchable. For example, if you use MCdesk as a web session store, you might index the session ID and last update time but store the session data itself without indexing it, since you don't need to search or aggregate this data.
 
-Setting the `enabled` parameter to `false` causes SmartObserve to skip parsing of the field contents entirely. SmartObserve still stores the field's value in the `_source` field but does not index or parse its contents, so the field is not searchable. This parameter can be applied only to the top-level mapping definition and to object fields. 
+Setting the `enabled` parameter to `false` causes MCdesk to skip parsing of the field contents entirely. MCdesk still stores the field's value in the `_source` field but does not index or parse its contents, so the field is not searchable. This parameter can be applied only to the top-level mapping definition and to object fields. 
 
 The `enabled` parameter accepts the following values. 
 
@@ -26,7 +26,7 @@ The `enabled` parameter for existing fields and the top-level mapping definition
 
 ## Disabling object fields
 
-Create an index with a disabled `session_data` object field. SmartObserve stores its contents in the `_source` field but does not index or parse it:
+Create an index with a disabled `session_data` object field. MCdesk stores its contents in the `_source` field but does not index or parse it:
 
 ```json
 PUT /session_store
@@ -75,7 +75,7 @@ PUT /session_store/_doc/session_2
 ```
 {% include copy-curl.html %}
 
-The `session_data` field accepts any arbitrary data because SmartObserve completely skips parsing its contents. Both object and non-object data is accepted.
+The `session_data` field accepts any arbitrary data because MCdesk completely skips parsing its contents. Both object and non-object data is accepted.
 
 ## Disabling entire mappings
 

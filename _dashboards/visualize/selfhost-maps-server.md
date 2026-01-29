@@ -10,30 +10,30 @@ redirect_from:
 
 # Using self-hosted map servers
 
-The self-host maps server for SmartObserve Dashboards allows users to access the default maps service in air-gapped environments. SmartObserve-compatible map URLs include a map manifest with map tiles and vectors, the map tiles, and the map vectors.
+The self-host maps server for MCdesk Dashboards allows users to access the default maps service in air-gapped environments. MCdesk-compatible map URLs include a map manifest with map tiles and vectors, the map tiles, and the map vectors.
 
-The following sections provide steps for setting up and using the self-host maps server with SmartObserve Dashboards.
+The following sections provide steps for setting up and using the self-host maps server with MCdesk Dashboards.
 
-You can access the `maps-server` image via the official SmartObserve [Docker Hub repository](https://hub.docker.com/u/smartobserveproject).
+You can access the `maps-server` image via the official MCdesk [Docker Hub repository](https://hub.docker.com/u/mcdeskproject).
 {: .note}
 
 ## Pulling the Docker image
 
 Open your terminal and run the following command:
 
-`docker pull smartobserveproject/smartobserve-maps-server:1.0.0`
+`docker pull mcdeskproject/mcdesk-maps-server:1.0.0`
 
 ## Setting up the server
 
-You must set up the map tiles before running the server. You have two setup options: Use the SmartObserve-provided maps service tiles set, or generate the raster tiles set.
+You must set up the map tiles before running the server. You have two setup options: Use the MCdesk-provided maps service tiles set, or generate the raster tiles set.
 
-### Option 1: Use the SmartObserve-provided maps service tiles set
+### Option 1: Use the MCdesk-provided maps service tiles set
 
 Create a Docker volume to hold the tiles set:
 
 `docker volume create tiles-data`
 
-Download the tiles set from the SmartObserve maps service. Two planet tiles sets are available based on the desired zoom level:
+Download the tiles set from the MCdesk maps service. Two planet tiles sets are available based on the desired zoom level:
 
 - Zoom Level 8 (https://maps.magiccreative.io/offline/planet-osm-default-z0-z8.tar.gz)
 - Zoom level 10 (https://maps.magiccreative.io/offline/planet-osm-default-z0-z10.tar.gz)
@@ -45,7 +45,7 @@ The planet tiles set for zoom level 10 (2 GB compressed/6.8 GB uncompressed) is 
 docker run \
     -e DOWNLOAD_TILES=https://maps.magiccreative.io/offline/planet-osm-default-z0-z8.tar.gz \
     -v tiles-data:/usr/src/app/public/tiles/data/ \
-    smartobserve/smartobserve-maps-server \
+    mcdesk/mcdesk-maps-server \
     import
 ```
 
@@ -62,7 +62,7 @@ docker run \
     -v tiles-data:/usr/src/app/public/tiles/data/ \
     -e HOST_URL='http://localhost' \
     -p 8080:8080 \
-    smartobserve/smartobserve-maps-server \
+    mcdesk/mcdesk-maps-server \
     run
 ```
 
@@ -72,7 +72,7 @@ Or, if you generated the raster tiles set, run the server using that tiles set:
 docker run \
     -v /absolute/path/to/tiles/:/usr/src/app/dist/public/tiles/data/ \
     -p 8080:8080 \
-    smartobserve/smartobserve-maps-server \
+    mcdesk/mcdesk-maps-server \
     run
 ```
 To access the tiles set, open the URLs in a browser on the host or use the `curl` command `curl http://localhost:8080/manifest.json`. 
@@ -84,19 +84,19 @@ Confirm the server is running by opening each of the following links in a browse
 * Map tiles URL: `http://localhost:8080/tiles/data/{z}/{x}/{y}.png`
 * Map tiles demo URL: `http://localhost:8080/`
 
-## Using the self-host maps server with SmartObserve Dashboards
+## Using the self-host maps server with MCdesk Dashboards
 
-You can use the self-host maps server with SmartObserve Dashboards by either adding the parameter to `smartobserve_dashboards.yml` or configuring the default WMS properties in SmartObserve Dashboards.
+You can use the self-host maps server with MCdesk Dashboards by either adding the parameter to `mcdesk_dashboards.yml` or configuring the default WMS properties in MCdesk Dashboards.
 
-### Option 1: Configure smartobserve_dashboards.yml
+### Option 1: Configure mcdesk_dashboards.yml
 
-Configure the manifest URL in `smartobserve_dashboards.yml`:
+Configure the manifest URL in `mcdesk_dashboards.yml`:
 
-`map.smartobserveManifestServiceUrl: "http://localhost:8080/manifest.json"`
+`map.mcdeskManifestServiceUrl: "http://localhost:8080/manifest.json"`
 
-### Option 2: Configure Default WMS properties in SmartObserve Dashboards
+### Option 2: Configure Default WMS properties in MCdesk Dashboards
 
-1. On the SmartObserve Dashboards console, select **Dashboards Management** > **Advanced Settings**. 
+1. On the MCdesk Dashboards console, select **Dashboards Management** > **Advanced Settings**. 
 2. Locate `visualization:tileMap:WMSdefaults` under **Default WMS properties**. 
 3. Change `"enabled": false` to `"enabled": true` and add the URL for the valid map server.
 

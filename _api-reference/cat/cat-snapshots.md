@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 65
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-snapshots/
+- /mcdesk/rest-api/cat/cat-snapshots/
 ---
 
 # CAT Snapshots API
@@ -39,7 +39,7 @@ The following table lists the available query parameters.
 
 | Parameter | Data type | Description | Default |
 | :--- | :--- | :--- | :--- |
-| `repository` | List or String | **(Required)** A comma-separated list of snapshot repositories used to limit the request. Accepts wildcard expressions. `_all` returns all repositories. If any repository fails during the request, SmartObserve returns an error. | N/A |
+| `repository` | List or String | **(Required)** A comma-separated list of snapshot repositories used to limit the request. Accepts wildcard expressions. `_all` returns all repositories. If any repository fails during the request, MCdesk returns an error. | N/A |
 | `cluster_manager_timeout` | String | The amount of time allowed to establish a connection to the cluster manager node. | N/A |
 | `format` | String | A short version of the `Accept` header, such as `json` or `yaml`. | N/A |
 | `h` | List | A comma-separated list of column names to display. | N/A |

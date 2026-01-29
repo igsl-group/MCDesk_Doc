@@ -8,7 +8,7 @@ nav_order: 45
 
 # Kinesis source
 
-You can use the SmartObserve Data Prepper `kinesis` source to ingest records from one or more [Amazon Kinesis Data Streams](https://aws.amazon.com/kinesis/data-streams/).
+You can use the MCdesk Data Prepper `kinesis` source to ingest records from one or more [Amazon Kinesis Data Streams](https://aws.amazon.com/kinesis/data-streams/).
 
 ## Usage
 
@@ -36,7 +36,7 @@ The `kinesis` source supports the following configuration options.
 Option | Required | Type     | Description
 :--- |:---------|:---------| :---
 `aws` | Yes      | AWS      | Specifies the AWS configuration. See [`aws`](#aws).
-`acknowledgments` | No       | Boolean  | When set to `true`, enables the `kinesis` source to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines#end-to-end-acknowledgments) when events are received by SmartObserve sinks.
+`acknowledgments` | No       | Boolean  | When set to `true`, enables the `kinesis` source to receive [end-to-end acknowledgments]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines#end-to-end-acknowledgments) when events are received by MCdesk sinks.
 `streams` | Yes      | List     | Configures a list of multiple Kinesis data streams that the `kinesis` source uses to read records. You can configure up to four streams. See [Streams](#streams).
 `codec` | Yes      | Codec    | Specifies the [codec](#codec) to apply.
 `buffer_timeout` | No       | Duration | Sets the amount of time allowed for writing events to the Data Prepper buffer before timeout occurs. Any events that the source cannot write to the buffer during the specified amount of time are discarded. Default is `1s`.

@@ -10,7 +10,7 @@ has_children: false
 Introduced 2.17
 {: .label .label-purple }
 
-Scheduled Query Acceleration (SQA) is designed to optimize queries sent directly from SmartObserve to external data sources, such as Amazon Simple Storage Service (Amazon S3). It uses automation to address issues commonly encountered when managing and refreshing indexes, views, and data. 
+Scheduled Query Acceleration (SQA) is designed to optimize queries sent directly from MCdesk to external data sources, such as Amazon Simple Storage Service (Amazon S3). It uses automation to address issues commonly encountered when managing and refreshing indexes, views, and data. 
 
 Query acceleration is facilitated by secondary indexes like [skipping indexes]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/#skipping-indexes), [covering indexes]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/#covering-indexes), or [materialized views]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/#materialized-views). When queries run, they use these indexes instead of directly querying Amazon S3. 
 
@@ -30,17 +30,17 @@ SQA provides the following benefits:
 
 Before configuring SQA, familiarize yourself with the following topics:
 
-- [Optimizing query performance using SmartObserve indexing]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/)
-- [Flint index refresh](https://github.com/igsl-group/smartobserve-spark/blob/main/docs/index.md#flint-index-refresh)
-- [Index State Management](https://github.com/igsl-group/smartobserve-spark/blob/main/docs/index.md#index-state-transition-1)
+- [Optimizing query performance using MCdesk indexing]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/)
+- [Flint index refresh](https://github.com/igsl-group/mcdesk-spark/blob/main/docs/index.md#flint-index-refresh)
+- [Index State Management](https://github.com/igsl-group/mcdesk-spark/blob/main/docs/index.md#index-state-transition-1)
 
 ## Prerequisites
 
 Before configuring SQA, verify that the following requirements are met:
 
-- Ensure you're running SmartObserve version 2.17 or later.
-- Ensure you have the SQL plugin installed. The SQL plugin is included in most SmartObserve distributions. For more information, see [Installing plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
-- Ensure you have configured a data source (in this example, Amazon S3): Configure a skipping index, covering index, or materialized view. These secondary data sources are additional data structures that improve query performance by optimizing queries sent to external data sources, such as Amazon S3. For more information, see [Optimizing query performance using SmartObserve indexing]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/).
+- Ensure you're running MCdesk version 2.17 or later.
+- Ensure you have the SQL plugin installed. The SQL plugin is included in most MCdesk distributions. For more information, see [Installing plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
+- Ensure you have configured a data source (in this example, Amazon S3): Configure a skipping index, covering index, or materialized view. These secondary data sources are additional data structures that improve query performance by optimizing queries sent to external data sources, such as Amazon S3. For more information, see [Optimizing query performance using MCdesk indexing]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/).
 - Configure Amazon EMR Serverless (needed for access to Apache Spark). 
 
 ## Configuring SQA settings
@@ -60,7 +60,7 @@ If you want to override default configuration values, change the following clust
 
     For more information, see [Settings](https://github.com/igsl-group/sql/blob/main/docs/user/admin/settings.rst#pluginsqueryexecutionengineasync_queryenabled).
 
-- **Configure the external scheduler interval for asynchronous queries**: This setting defines how often the external scheduler checks for tasks, allowing customization of refresh frequency. There is no default value for this setting: if this value is empty, the default comes from `smartobserve-spark` and is `5 minutes`. Adjusting the interval based on workload volume can help you to optimize resources and manage costs:
+- **Configure the external scheduler interval for asynchronous queries**: This setting defines how often the external scheduler checks for tasks, allowing customization of refresh frequency. There is no default value for this setting: if this value is empty, the default comes from `mcdesk-spark` and is `5 minutes`. Adjusting the interval based on workload volume can help you to optimize resources and manage costs:
     ```json
     PUT /_cluster/settings
     {
@@ -108,7 +108,7 @@ When creating indexes using an accelerated query, you can specify the following 
 | `refresh_interval`  | Defines the amount of time between index refresh operations for the index, which determines how frequently new data is ingested into the index. This is applicable only when `auto_refresh` is enabled. The interval determines how frequently new data is integrated and can be specified in formats like `1 minute` or `10 seconds`. For valid time units, see [Time units](#time-units).| 
 | `scheduler_mode`    | Specifies the scheduling mode for auto-refresh (internal or external scheduling). The external scheduler requires a `checkpoint_location` (a path for refresh job checkpoints) for state management. For more information, see [Starting streaming queries](https://spark.apache.org/docs/3.5.1/structured-streaming-programming-guide.html#starting-streaming-queries). Valid values are `internal` and `external`.| 
 
-For more information and additional available parameters, see [Flint index refresh](https://github.com/igsl-group/smartobserve-spark/blob/main/docs/index.md#flint-index-refresh).
+For more information and additional available parameters, see [Flint index refresh](https://github.com/igsl-group/mcdesk-spark/blob/main/docs/index.md#flint-index-refresh).
 
 ## Time units
 
@@ -201,7 +201,7 @@ SHOW FLINT INDEXES EXTENDED
 ```
 {% include copy.html %}
 
-For more information, see the [SmartObserve Spark documentation](https://github.com/igsl-group/smartobserve-spark/blob/main/docs/index.md#all-indexes).
+For more information, see the [MCdesk Spark documentation](https://github.com/igsl-group/mcdesk-spark/blob/main/docs/index.md#all-indexes).
 
 ## Troubleshooting
 

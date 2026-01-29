@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Custom models
-parent: Using ML models within SmartObserve
+parent: Using ML models within MCdesk
 grand_parent: Integrating ML models
 nav_order: 120
 ---
@@ -10,17 +10,17 @@ nav_order: 120
 **Introduced 2.9**
 {: .label .label-purple }
 
-To use a custom model locally, you can upload it to the SmartObserve cluster.
+To use a custom model locally, you can upload it to the MCdesk cluster.
 
 ## Model support
 
-As of SmartObserve 2.6, SmartObserve supports local text embedding models.
+As of MCdesk 2.6, MCdesk supports local text embedding models.
 
-As of SmartObserve 2.11, SmartObserve supports local sparse encoding models.
+As of MCdesk 2.11, MCdesk supports local sparse encoding models.
 
-As of SmartObserve 2.12, SmartObserve supports local cross-encoder models.
+As of MCdesk 2.12, MCdesk supports local cross-encoder models.
 
-As of SmartObserve 2.13, SmartObserve supports local question answering models.
+As of MCdesk 2.13, MCdesk supports local question answering models.
 
 Running local models on the CentOS 7 operating system is not supported. Moreover, not all local models can run on all hardware and operating systems.
 {: .important}
@@ -31,13 +31,13 @@ For all the models, you must provide a tokenizer JSON file within the model zip 
 
 For sparse encoding models, make sure your output format is `{"output":<sparse_vector>}` so that ML Commons can post-process the sparse vector.
 
-If you fine-tune a sparse model on your own dataset, you may also want to use your own sparse tokenizer model. It is preferable to provide your own [IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) JSON file in the tokenizer model zip file because this increases query performance when you use the tokenizer model in the query. Alternatively, you can use an SmartObserve-provided generic [IDF from MSMARCO](https://artifacts.magiccreative.io/models/ml-models/amazon/neural-sparse/smartobserve-neural-sparse-tokenizer-v1/1.0.0/torch_script/smartobserve-neural-sparse-tokenizer-v1-1.0.0.zip). If the IDF file is not provided, the default weight of each token is set to 1, which may influence sparse neural search performance.  
+If you fine-tune a sparse model on your own dataset, you may also want to use your own sparse tokenizer model. It is preferable to provide your own [IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) JSON file in the tokenizer model zip file because this increases query performance when you use the tokenizer model in the query. Alternatively, you can use an MCdesk-provided generic [IDF from MSMARCO](https://artifacts.magiccreative.io/models/ml-models/amazon/neural-sparse/mcdesk-neural-sparse-tokenizer-v1/1.0.0/torch_script/mcdesk-neural-sparse-tokenizer-v1-1.0.0.zip). If the IDF file is not provided, the default weight of each token is set to 1, which may influence sparse neural search performance.  
 
 ### Model format
 
-To use a model in SmartObserve, you'll need to export the model into a portable format. As of Version 2.5, SmartObserve only supports the [TorchScript](https://pytorch.org/docs/stable/jit.html) and [ONNX](https://onnx.ai/) formats.
+To use a model in MCdesk, you'll need to export the model into a portable format. As of Version 2.5, MCdesk only supports the [TorchScript](https://pytorch.org/docs/stable/jit.html) and [ONNX](https://onnx.ai/) formats.
 
-You must save the model file as zip before uploading it to SmartObserve. To ensure that ML Commons can upload your model, compress your TorchScript file before uploading. For an example, download a TorchScript [model file](https://github.com/igsl-group/ml-commons/blob/2.x/ml-algorithms/src/test/resources/org/smartobserve/ml/engine/algorithms/text_embedding/all-MiniLM-L6-v2_torchscript_sentence-transformer.zip).
+You must save the model file as zip before uploading it to MCdesk. To ensure that ML Commons can upload your model, compress your TorchScript file before uploading. For an example, download a TorchScript [model file](https://github.com/igsl-group/ml-commons/blob/2.x/ml-algorithms/src/test/resources/org/mcdesk/ml/engine/algorithms/text_embedding/all-MiniLM-L6-v2_torchscript_sentence-transformer.zip).
 
 Additionally, you must calculate a SHA256 checksum for the model zip file that you'll need to provide when registering the model. For example, on UNIX, use the following command to obtain the checksum:
 
@@ -47,11 +47,11 @@ shasum -a 256 sentence-transformers_paraphrase-mpnet-base-v2-1.0.0-onnx.zip
 
 ### Model size
 
-Most deep learning models are more than 100 MB, making it difficult to fit them into a single document. SmartObserve splits the model file into smaller chunks to be stored in a model index. When allocating ML or data nodes for your SmartObserve cluster, make sure you correctly size your ML nodes so that you have enough memory when making ML inferences.
+Most deep learning models are more than 100 MB, making it difficult to fit them into a single document. MCdesk splits the model file into smaller chunks to be stored in a model index. When allocating ML or data nodes for your MCdesk cluster, make sure you correctly size your ML nodes so that you have enough memory when making ML inferences.
 
 ## Prerequisites 
 
-To upload a custom model to SmartObserve, you need to prepare it outside of your SmartObserve cluster. You can use a pretrained model, like one from [Hugging Face](https://huggingface.co/), or train a new model in accordance with your needs.
+To upload a custom model to MCdesk, you need to prepare it outside of your MCdesk cluster. You can use a pretrained model, like one from [Hugging Face](https://huggingface.co/), or train a new model in accordance with your needs.
 
 ### Cluster settings
 
@@ -134,7 +134,7 @@ POST /_plugins/_ml/models/_register
 ```
 {% include copy-curl.html %}
 
-Note that in SmartObserve Dashboards, wrapping the `all_config` field contents in triple quotes (`"""`) automatically escapes quotation marks within the field and provides better readability:
+Note that in MCdesk Dashboards, wrapping the `all_config` field contents in triple quotes (`"""`) automatically escapes quotation marks within the field and provides better readability:
 
 ```json
 POST /_plugins/_ml/models/_register
@@ -159,7 +159,7 @@ POST /_plugins/_ml/models/_register
 ```
 {% include copy.html %}
 
-SmartObserve returns the task ID of the register operation:
+MCdesk returns the task ID of the register operation:
 
 ```json
 {
@@ -342,7 +342,7 @@ POST /_plugins/_ml/models/_register
         "model_type": "bert",
         "framework_type": "huggingface_transformers"
     },
-    "url": "https://github.com/igsl-group/ml-commons/blob/main/ml-algorithms/src/test/resources/org/smartobserve/ml/engine/algorithms/question_answering/question_answering_pt.zip?raw=true"
+    "url": "https://github.com/igsl-group/ml-commons/blob/main/ml-algorithms/src/test/resources/org/mcdesk/ml/engine/algorithms/question_answering/question_answering_pt.zip?raw=true"
 }
 ```
 {% include copy-curl.html %}

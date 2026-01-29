@@ -4,17 +4,17 @@ title: Bulk
 parent: Document APIs
 nav_order: 20
 redirect_from:
- - /smartobserve/rest-api/document-apis/bulk/
+ - /mcdesk/rest-api/document-apis/bulk/
 ---
 
 # Bulk API
 **Introduced 1.0**
 {: .label .label-purple }
 
-The bulk operation lets you add, update, or delete multiple documents in a single request. Compared to individual SmartObserve indexing requests, the bulk operation has significant performance benefits. Whenever practical, we recommend batching indexing operations into bulk requests.
+The bulk operation lets you add, update, or delete multiple documents in a single request. Compared to individual MCdesk indexing requests, the bulk operation has significant performance benefits. Whenever practical, we recommend batching indexing operations into bulk requests.
 
 
-Beginning in SmartObserve 2.9, when indexing documents using the bulk operation, the document `_id` must be 512 bytes or less in size.
+Beginning in MCdesk 2.9, when indexing documents using the bulk operation, the document `_id` must be 512 bytes or less in size.
 {: .note}
 
 
@@ -28,7 +28,7 @@ POST <index>/_bulk
 
 Specifying the index in the path means you don't need to include it in the [request body]({{site.url}}{{site.baseurl}}/api-reference/document-apis/bulk/#request-body).
 
-SmartObserve also accepts PUT requests to the `_bulk` path, but we highly recommend using POST. The accepted usage of PUT---adding or replacing a single resource at a given path---doesn't make sense for bulk requests.
+MCdesk also accepts PUT requests to the `_bulk` path, but we highly recommend using POST. The accepted usage of PUT---adding or replacing a single resource at a given path---doesn't make sense for bulk requests.
 {: .note }
 
 
@@ -43,7 +43,7 @@ refresh | Enum | Whether to refresh the affected shards after performing the ind
 require_alias | Boolean | Set to `true` to require that all actions target an index alias rather than an index. Default is `false`.
 routing | String | Routes the request to the specified shard.
 timeout | Time | How long to wait for the request to return. Default is `1m`.
-wait_for_active_shards | String | Specifies the number of active shards that must be available before SmartObserve processes the bulk request. Default is `1` (only the primary shard). Set to `all` or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have 2 replicas distributed across 2 additional nodes in order for the request to succeed.
+wait_for_active_shards | String | Specifies the number of active shards that must be available before MCdesk processes the bulk request. Default is `1` (only the primary shard). Set to `all` or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have 2 replicas distributed across 2 additional nodes in order for the request to succeed.
 
 
 ## Request body
@@ -57,9 +57,9 @@ Action and metadata\n
 Optional document\n
 ```
 
-The optional JSON document doesn't need to be minified---spaces are fine---but it does need to be on a single line. SmartObserve uses newline characters to parse bulk requests and requires that the request body end with a newline character.
+The optional JSON document doesn't need to be minified---spaces are fine---but it does need to be on a single line. MCdesk uses newline characters to parse bulk requests and requires that the request body end with a newline character.
 
-All actions support the same metadata: `_index`, `_id`, and `_require_alias`. If you don't provide an ID, SmartObserve generates one automatically, which can make it challenging to update the document at a later time.
+All actions support the same metadata: `_index`, `_id`, and `_require_alias`. If you don't provide an ID, MCdesk generates one automatically, which can make it challenging to update the document at a later time.
 
 ### Create
 
@@ -72,7 +72,7 @@ All actions support the same metadata: `_index`, `_id`, and `_require_alias`. If
 
 ### Delete
 
-This action deletes a document if it exists. If the document doesn't exist, SmartObserve doesn't return an error but instead returns `not_found` under `result`. Delete actions don't require documents on the next line:
+This action deletes a document if it exists. If the document doesn't exist, MCdesk doesn't return an error but instead returns `not_found` under `result`. Delete actions don't require documents on the next line:
 
 ```json
 { "delete": { "_index": "movies", "_id": "tt2229499" } }

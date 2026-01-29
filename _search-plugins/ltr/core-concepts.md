@@ -8,7 +8,7 @@ has_children: false
 
 # ML ranking core concepts
 
-This guide is intended for SmartObserve developers and data scientist who are interested in adding machine learning (ML) ranking capabilities to their SmartObserve system.
+This guide is intended for MCdesk developers and data scientist who are interested in adding machine learning (ML) ranking capabilities to their MCdesk system.
 
 ## What is LTR?
 
@@ -25,7 +25,7 @@ For comprehensive information about LTR, see [How is Search Different From Other
 
 Judgment lists, also known as golden sets, provide a way to grade individual search results for a keyword search. These lists express the ideal ordering of search results based on your expectations. 
 
-For example, using the [demo on GitHub](http://github.com/smartobserve-project/smartobserve-learning-to-rank-base/tree/main/demo/), in a search for `Rambo`, the judgment list may appear similar to the following: 
+For example, using the [demo on GitHub](http://github.com/mcdesk-project/mcdesk-learning-to-rank-base/tree/main/demo/), in a search for `Rambo`, the judgment list may appear similar to the following: 
 
 ```
 grade,keywords,movie

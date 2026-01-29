@@ -9,13 +9,13 @@ has_children: false
 
 # Per query and per bucket monitors
 
-Per query monitors are a type of alert monitor that can be used to identify and alert on specific queries that are run against an SmartObserve index; for example, queries that detect and respond to anomalies in specific queries. Per query monitors only trigger one alert at a time. 
+Per query monitors are a type of alert monitor that can be used to identify and alert on specific queries that are run against an MCdesk index; for example, queries that detect and respond to anomalies in specific queries. Per query monitors only trigger one alert at a time. 
 
-Per bucket monitors are a type of alert monitor that can be used to identify and alert on specific buckets of data that are created by a query against an SmartObserve index.
+Per bucket monitors are a type of alert monitor that can be used to identify and alert on specific buckets of data that are created by a query against an MCdesk index.
 
-Both monitor types support querying remote indexes using the same `cluster-name:index-name` pattern used by [cross-cluster search]({{site.url}}{{site.baseurl}}/security/access-control/cross-cluster-search/) or by using SmartObserve Dashboards 2.12 or later.
+Both monitor types support querying remote indexes using the same `cluster-name:index-name` pattern used by [cross-cluster search]({{site.url}}{{site.baseurl}}/security/access-control/cross-cluster-search/) or by using MCdesk Dashboards 2.12 or later.
 
-The following [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) are required in order to create a cross-cluster monitor through the dashboards UI: `cluster:admin/smartobserve/alerting/remote/indexes/get`, `indices:admin/resolve/index`, `cluster:monitor/health`, and `indices:admin/mappings/get`.
+The following [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) are required in order to create a cross-cluster monitor through the dashboards UI: `cluster:admin/mcdesk/alerting/remote/indexes/get`, `indices:admin/resolve/index`, `cluster:monitor/health`, and `indices:admin/mappings/get`.
 {: .note}
 
 <img src="{{site.url}}{{site.baseurl}}/images/alerting/cross-cluster-per-query-per-bucket-monitors.png" alt="Cluster metrics monitor" width="700"/>
@@ -28,7 +28,7 @@ To create a per query monitor, follow these steps:
 
    - Visual definition works well for monitors that can be defined as "some value is above or below some threshold for some amount of time." It also works well for most monitors.
 
-   - Query definition provides flexibility in relation to your query (using [SmartObserve query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/full-text/index)) and how you evaluate the results of that query (Painless scripting).
+   - Query definition provides flexibility in relation to your query (using [MCdesk query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/full-text/index)) and how you evaluate the results of that query (Painless scripting).
 
 The following example averages the `cpu_usage` field:
 
@@ -84,9 +84,9 @@ Visual definition works well for most monitors.
 
 If you use the Security plugin, you can only choose indexes that you have permission to access. For details, see [Alerting security]({{site.url}}{{site.baseurl}}/security/).
 
-To use a query, choose **Extraction query editor**, add your query (using [SmartObserve query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/full-text/index)), and test it using the **Run** button.
+To use a query, choose **Extraction query editor**, add your query (using [MCdesk query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/full-text/index)), and test it using the **Run** button.
 
-The monitor makes this query to SmartObserve as often as the schedule dictates; check the **Query Performance** section and make sure you're comfortable with the performance implications.
+The monitor makes this query to MCdesk as often as the schedule dictates; check the **Query Performance** section and make sure you're comfortable with the performance implications.
 
 Anomaly detection is available only if you are defining a per query monitor.
 {: .warning}
@@ -97,7 +97,7 @@ The anomaly detection option is for pairing with the Anomaly Detection plugin. S
 
 For anomaly detector, choose an appropriate schedule for the monitor based on the detector interval. Otherwise, the alerting monitor might miss reading the results. For example, assume you set the monitor interval and the detector interval as 5 minutes, and you start the detector at 12:00. If an anomaly is detected at 12:05, it might be available at 12:06 because of the delay between writing the anomaly and it being available for queries. The monitor reads the anomaly results between 12:00 and 12:05, so it does not get the anomaly results available at 12:06.
 
-To avoid this issue, make sure the alerting monitor is at least twice the detector interval. When you create a monitor using SmartObserve Dashboards, the anomaly detector plugin generates a default monitor schedule that's twice the detector interval.
+To avoid this issue, make sure the alerting monitor is at least twice the detector interval. When you create a monitor using MCdesk Dashboards, the anomaly detector plugin generates a default monitor schedule that's twice the detector interval.
 
 Whenever you update a detector’s interval, make sure to update the associated monitor interval, as the Anomaly Detection plugin does not do this automatically.
 

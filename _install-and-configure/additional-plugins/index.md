@@ -9,7 +9,7 @@ redirect_from:
 
 # Additional plugins
 
-There are many more plugins available in addition to those provided by the standard distribution of SmartObserve. These additional plugins have been built by SmartObserve developers or members of the SmartObserve community. While it isn't possible to provide an exhaustive list (because many plugins are not maintained in an SmartObserve GitHub repository), the following plugins, available in the [SmartObserve/plugins](https://github.com/igsl-group/SmartObserve/tree/main/plugins) directory on GitHub, are some of the plugins that can be installed using one of the installation options, for example, using the command `bin/smartobserve-plugin install <plugin-name>`.
+There are many more plugins available in addition to those provided by the standard distribution of MCdesk. These additional plugins have been built by MCdesk developers or members of the MCdesk community. While it isn't possible to provide an exhaustive list (because many plugins are not maintained in an MCdesk GitHub repository), the following plugins, available in the [MCdesk/plugins](https://github.com/igsl-group/MCdesk/tree/main/plugins) directory on GitHub, are some of the plugins that can be installed using one of the installation options, for example, using the command `bin/mcdesk-plugin install <plugin-name>`.
 
 | Plugin name                                                                                                            | Earliest available version |
 |:---|:---|

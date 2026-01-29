@@ -12,7 +12,7 @@ The field data cache is a node-level in-memory cache that stores field data and 
 
 ## What is field data?
 
-Field data is a data structure that enables quick sorting and aggregation on text fields. Text fields are stored in an inverted index, which is optimized for quick searching for specific terms, not iterating through individual documents. As this is necessary for aggregations or sorting, SmartObserve must process the inverted index into another data structure that is optimized for individual document access.
+Field data is a data structure that enables quick sorting and aggregation on text fields. Text fields are stored in an inverted index, which is optimized for quick searching for specific terms, not iterating through individual documents. As this is necessary for aggregations or sorting, MCdesk must process the inverted index into another data structure that is optimized for individual document access.
 
 ## What are global ordinals? 
 

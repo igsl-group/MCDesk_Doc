@@ -38,7 +38,7 @@ PUT my_index
       "filter": {
         "keep_words_filter": {
           "type": "keep",
-          "keep_words": ["example", "world", "smartobserve"],
+          "keep_words": ["example", "world", "mcdesk"],
           "keep_words_case": true
         }
       }
@@ -56,7 +56,7 @@ Use the following request to examine the tokens generated using the analyzer:
 GET /my_index/_analyze
 {
   "analyzer": "custom_keep_word",
-  "text": "Hello, world! This is an SmartObserve example."
+  "text": "Hello, world! This is an MCdesk example."
 }
 ```
 {% include copy-curl.html %}
@@ -74,7 +74,7 @@ The response contains the generated tokens:
       "position": 1
     },
     {
-      "token": "SmartObserve",
+      "token": "MCdesk",
       "start_offset": 25,
       "end_offset": 35,
       "type": "<ALPHANUM>",

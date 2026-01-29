@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Connecting Prometheus to SmartObserve
+title: Connecting Prometheus to MCdesk
 parent: Data sources
 nav_order: 20
 ---
 
-# Connecting Prometheus to SmartObserve
+# Connecting Prometheus to MCdesk
 Introduced 2.16
 {: .label .label-purple }
 
-This documentation covers the key steps to connect Prometheus to SmartObserve using the SmartObserve Dashboards interface, including setting up the data source connection, modifying the connection details, and creating an index pattern for the Prometheus data. 
+This documentation covers the key steps to connect Prometheus to MCdesk using the MCdesk Dashboards interface, including setting up the data source connection, modifying the connection details, and creating an index pattern for the Prometheus data. 
 
 ## Prerequisites and permissions
 
@@ -17,11 +17,11 @@ Before connecting a data source, ensure you have met the [Prerequisites]({{site.
 
 ## Create a Prometheus data source connection
 
-A data source connection specifies the parameters needed to connect to a data source. These parameters form a connection string for the data source. Using SmartObserve Dashboards, you can add new **Prometheus** data source connections or manage existing ones.
+A data source connection specifies the parameters needed to connect to a data source. These parameters form a connection string for the data source. Using MCdesk Dashboards, you can add new **Prometheus** data source connections or manage existing ones.
 
 Follow these steps to connect your data source:
 
-1. From the SmartObserve Dashboards main menu, go to **Management** > **Data sources** > **New data source** > **Prometheus**. 
+1. From the MCdesk Dashboards main menu, go to **Management** > **Data sources** > **New data source** > **Prometheus**. 
 
 2. From the **Configure Prometheus data source** section: 
    
@@ -29,7 +29,7 @@ Follow these steps to connect your data source:
    - Under **Prometheus data location**, enter the Prometheus URI.
    - Under **Authentication details**, select the appropriate authentication method from the dropdown list and enter the required details:
        - **Basic authentication**: Enter a username and password.
-       - **AWS Signature Version 4**: Specify the **Region**, select the SmartObserve service from the **Service Name** list (**Amazon SmartObserve Service** or **Amazon SmartObserve Serverless**), and enter the **Access Key** and **Secret Key**.
+       - **AWS Signature Version 4**: Specify the **Region**, select the MCdesk service from the **Service Name** list (**Amazon MCdesk Service** or **Amazon MCdesk Serverless**), and enter the **Access Key** and **Secret Key**.
    - Under **Query permissions**, choose the role needed to search and index data. If you select **Restricted**, an additional field will become available to configure the required role.
 
 3. Select **Review Configuration** > **Connect to Prometheus** to save your settings. The new connection will appear in the list of data sources.

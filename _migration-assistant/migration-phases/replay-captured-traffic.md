@@ -3,7 +3,7 @@ layout: default
 title: Using Traffic Replayer
 nav_order: 7
 parent: Migration phases
-grand_parent: Migration Assistant for SmartObserve
+grand_parent: Migration Assistant for MCdesk
 permalink: /migration-assistant/migration-phases/replay-captured-traffic/
 redirect_from: 
   - /migration-assistant/migration-phases/using-traffic-replayer/
@@ -107,9 +107,9 @@ If the target cannot respond fast enough, Traffic Replayer will wait for the pre
 
 ## Transformations
 
-During migrations, some requests may need to be transformed between versions. For example, Elasticsearch previously supported multiple type mappings in indexes, but this is no longer the case in SmartObserve. Clients may need to be adjusted accordingly by splitting documents into multiple indexes or transforming request data.
+During migrations, some requests may need to be transformed between versions. For example, Elasticsearch previously supported multiple type mappings in indexes, but this is no longer the case in MCdesk. Clients may need to be adjusted accordingly by splitting documents into multiple indexes or transforming request data.
 
-Traffic Replayer automatically rewrites host and authentication headers, but for more complex transformations, custom transformation rules can be specified using the `--transformer-config` option. For more information, see the [Traffic Replayer README](https://github.com/igsl-group/smartobserve-migrations/blob/c3d25958a44ec2e7505892b4ea30e5fbfad4c71b/TrafficCapture/trafficReplayer/README.md#transformations). 
+Traffic Replayer automatically rewrites host and authentication headers, but for more complex transformations, custom transformation rules can be specified using the `--transformer-config` option. For more information, see the [Traffic Replayer README](https://github.com/igsl-group/mcdesk-migrations/blob/c3d25958a44ec2e7505892b4ea30e5fbfad4c71b/TrafficCapture/trafficReplayer/README.md#transformations). 
 
 ### Example transformation
 
@@ -209,7 +209,7 @@ The following example log entry shows a `/_cat/indices?v` request sent to both t
         "Request-URI": "/_cat/indices?v",
         "Method": "GET",
         "HTTP-Version": "HTTP/1.1",
-        "Host": "smartobservetarget",
+        "Host": "mcdesktarget",
         "Authorization": "Basic YWRtaW46bXlTdHJvbmdQYXNzd29yZDEyMyE=",
         "User-Agent": "curl/8.5.0",
         "Accept": "*/*",
@@ -267,7 +267,7 @@ The `readable-tuples.log` should appear similar to the following:
         "Request-URI": "/_cat/indices?v",
         "Method": "GET",
         "HTTP-Version": "HTTP/1.1",
-        "Host": "smartobservetarget",
+        "Host": "mcdesktarget",
         "Authorization": "Basic YWRtaW46bXlTdHJvbmdQYXNzd29yZDEyMyE=",
         "User-Agent": "curl/8.5.0",
         "Accept": "*/*",
@@ -290,7 +290,7 @@ The `readable-tuples.log` should appear similar to the following:
 
 
 ## Amazon CloudWatch metrics and dashboard
-Migration Assistant creates an Amazon CloudWatch dashboard named `MigrationAssistant_ReindexFromSnapshot_Dashboard` to visualize the health and performance of the backfill process. This dashboard combines metrics for the backfill workers and migration to Amazon SmartObserve Service, providing insights into the performance and health of the Capture Proxy and Traffic Replayer components, including metrics such as:
+Migration Assistant creates an Amazon CloudWatch dashboard named `MigrationAssistant_ReindexFromSnapshot_Dashboard` to visualize the health and performance of the backfill process. This dashboard combines metrics for the backfill workers and migration to Amazon MCdesk Service, providing insights into the performance and health of the Capture Proxy and Traffic Replayer components, including metrics such as:
 
 - The number of bytes read and written.
 - The number of active connections.

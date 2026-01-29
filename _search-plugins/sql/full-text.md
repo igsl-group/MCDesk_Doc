@@ -9,9 +9,9 @@ redirect_from:
 
 # Full-text search
 
-Use SQL commands for full-text search. The SQL plugin supports a subset of full-text queries available in SmartObserve.
+Use SQL commands for full-text search. The SQL plugin supports a subset of full-text queries available in MCdesk.
 
-To learn about full-text queries in SmartObserve, see [Full-text queries]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/full-text/index).
+To learn about full-text queries in MCdesk, see [Full-text queries]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/full-text/index).
 
 ## Match
 
@@ -318,7 +318,7 @@ SOURCE=accounts | WHERE match_phrase(address, '880 Holmes Lane') | FIELDS accoun
 
 ## Simple query string
 
-The `simple_query_string` function maps to the `simple_query_string` query in SmartObserve. It returns the documents that match a provided text, number, date or boolean value with a given field or fields.
+The `simple_query_string` function maps to the `simple_query_string` query in MCdesk. It returns the documents that match a provided text, number, date or boolean value with a given field or fields.
 The **^** lets you *boost* certain fields. Boosts are multipliers that weigh matches in one field more heavily than matches in other fields.
 
 ### Syntax

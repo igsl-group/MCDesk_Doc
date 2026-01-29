@@ -21,7 +21,7 @@ The following GIF demonstrates creating a component template.
 
 ## Prerequisites
 
-This tutorial is intended for admin users who [manage SmartObserve clusters]({{site.url}}{{site.baseurl}}/tuning-your-cluster/cluster/) and are familiar with [index management in SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/dashboards/im-dashboards/index/).
+This tutorial is intended for admin users who [manage MCdesk clusters]({{site.url}}{{site.baseurl}}/tuning-your-cluster/cluster/) and are familiar with [index management in MCdesk Dashboards]({{site.url}}{{site.baseurl}}/dashboards/im-dashboards/index/).
 
 ## Key terms
 
@@ -32,11 +32,11 @@ It's helpful to understand the following terms before starting this tutorial:
 
 ## Creating component templates using the Index Management UI
 
-You can use predefined SmartObserve Dashboards component templates or customize your own, either by creating original templates or by modifying existing templates. Predefined component templates include preconfigured charts, tables, and graphs and are a good starting point for users who are new to SmartObserve Dashboards. Alternatively, customized template components provide you with options for tailoring reports and visualizations that meet your specific requirements and preferences.
+You can use predefined MCdesk Dashboards component templates or customize your own, either by creating original templates or by modifying existing templates. Predefined component templates include preconfigured charts, tables, and graphs and are a good starting point for users who are new to MCdesk Dashboards. Alternatively, customized template components provide you with options for tailoring reports and visualizations that meet your specific requirements and preferences.
 
 To create template components using the UI, follow these steps:
 
-1. On the SmartObserve Dashboards main page, select **Index Management** in the navigation menu.
+1. On the MCdesk Dashboards main page, select **Index Management** in the navigation menu.
 1. In the Index Management window, select **Templates** > **Component templates**.
 1. Select **Create** and then define the component template settings. 
 1. To configure aliases, settings, and mappings, toggle **Use configuration**, as shown in the following image.

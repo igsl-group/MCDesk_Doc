@@ -30,7 +30,7 @@ Values from the command line argument have higher priority than the environment 
 The following command requests a report with basic authentication in PNG format:
 
 ```
-smartobserve-reporting-cli --url https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d --format png --auth basic --credentials admin:<custom-admin-password>
+mcdesk-reporting-cli --url https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d --format png --auth basic --credentials admin:<custom-admin-password>
 ```
 
 Upon success, the report will download to the current directory.
@@ -57,13 +57,13 @@ To use Amazon SES as the email transport mechanism, the following prerequisites 
 The following command requests an email with the report attached:
 
 ```
-smartobserve-reporting-cli --url https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d --transport ses --from <sender_email_id> --to <recipient_email_id>
+mcdesk-reporting-cli --url https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d --transport ses --from <sender_email_id> --to <recipient_email_id>
 ```
 
 The following command uses default values for all other options. You can also set `OPENSEARCH_FROM`, `OPENSEARCH_TO`, and `OPENSEARCH_TRANSPORT` in your .env file and use the following command:
 
 ```
-smartobserve-reporting-cli --url https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d
+mcdesk-reporting-cli --url https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d
 ```
 
 To modify the body of your email, you can edit the *index.hbs* file.
@@ -75,7 +75,7 @@ To send a report to an email address with SMTP transport, you need to set the op
 Once the transport options are set in your .env file, you can send the email using the following command:
 
 ```
-smartobserve-reporting-cli --url https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d --transport smtp --from <sender_email_id> --to <recipient_email_id>
+mcdesk-reporting-cli --url https://localhost:5601/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d --transport smtp --from <sender_email_id> --to <recipient_email_id>
 ```
 
 You can choose to set options using either your *.env* file or the command line argument values in any combination. Make sure to specify all required values to avoid errors.

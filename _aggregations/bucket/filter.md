@@ -14,7 +14,7 @@ A `filter` aggregation is a query clause, exactly like a search query — `match
 The following example shows the `avg` aggregation running within the context of a filter. The `avg` aggregation only aggregates the documents that match the `range` query:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {

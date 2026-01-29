@@ -51,7 +51,7 @@ GET /_plugins/_ml/controllers/T_S-cY0BKCJ3ot9qr0aP
 }
 ```
 
-If there is no controller defined for the model, SmartObserve returns an error:
+If there is no controller defined for the model, MCdesk returns an error:
 
 ```json
 {
@@ -75,4 +75,4 @@ For response field descriptions, see [Create Controller API request fields]({{si
 
 ## Required permissions
 
-If you use the Security plugin, make sure you have the appropriate permissions: `cluster:admin/smartobserve/ml/controllers/get`.
+If you use the Security plugin, make sure you have the appropriate permissions: `cluster:admin/mcdesk/ml/controllers/get`.

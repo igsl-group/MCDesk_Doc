@@ -14,7 +14,7 @@ Mappings provide control over how data is indexed and queried, enabling optimize
 
 ## Example: Ignoring malformed IP addresses
 
-The following example shows you how to create a mapping specifying that SmartObserve should ignore any documents containing malformed IP addresses that do not conform to the [`ip`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/ip/) data type. You can accomplish this by setting the `ignore_malformed` parameter to `true`.
+The following example shows you how to create a mapping specifying that MCdesk should ignore any documents containing malformed IP addresses that do not conform to the [`ip`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/ip/) data type. You can accomplish this by setting the `ignore_malformed` parameter to `true`.
 
 ### Create an index with an `ip` mapping
 

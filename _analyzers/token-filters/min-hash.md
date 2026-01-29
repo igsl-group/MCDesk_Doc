@@ -61,7 +61,7 @@ Use the following request to examine the tokens generated using the analyzer:
 POST /minhash_index/_analyze
 {
   "analyzer": "minhash_analyzer",
-  "text": "SmartObserve is very powerful."
+  "text": "MCdesk is very powerful."
 }
 ```
 {% include copy-curl.html %}
@@ -91,15 +91,15 @@ The response contains the generated tokens (the tokens are not human readable be
 In order to demonstrate the usefulness of the `min_hash` token filter, you can use the following Python script to compare the two strings using the previously created analyzer:
 
 ```python
-from smartobservepy import SmartObserve
+from mcdeskpy import MCdesk
 from requests.auth import HTTPBasicAuth
 
-# Initialize the SmartObserve client with authentication
+# Initialize the MCdesk client with authentication
 host = 'https://localhost:9200'  # Update if using a different host/port
 auth = ('admin', 'admin')  # Username and password
 
-# Create the SmartObserve client with SSL verification turned off
-client = SmartObserve(
+# Create the MCdesk client with SSL verification turned off
+client = MCdesk(
     hosts=[host],
     http_auth=auth,
     use_ssl=True,
@@ -119,8 +119,8 @@ def analyze_text(index, text):
     return [token['token'] for token in response['tokens']]
 
 # Analyze two similar texts
-tokens_1 = analyze_text('minhash_index', 'SmartObserve is a powerful search engine.')
-tokens_2 = analyze_text('minhash_index', 'SmartObserve is a very powerful search engine.')
+tokens_1 = analyze_text('minhash_index', 'MCdesk is a powerful search engine.')
+tokens_2 = analyze_text('minhash_index', 'MCdesk is a very powerful search engine.')
 
 # Calculate Jaccard similarity
 set_1 = set(tokens_1)

@@ -4,14 +4,14 @@ title: Update document
 parent: Document APIs
 nav_order: 10
 redirect_from: 
- - /smartobserve/rest-api/document-apis/update-document/
+ - /mcdesk/rest-api/document-apis/update-document/
 ---
 
 # Update Document API
 **Introduced 1.0**
 {: .label .label-purple }
 
-If you need to update a document's fields in your index, you can use the update document API operation. You can do so by specifying the new data you want to be in your index or by including a script in your request body, which SmartObserve runs to update the document. By default, the update operation only updates a document that exists in the index. If a document does not exist, the API returns an error. To _upsert_ a document (update the document that exists or index a new one), use the [upsert](#using-the-upsert-operation) operation.
+If you need to update a document's fields in your index, you can use the update document API operation. You can do so by specifying the new data you want to be in your index or by including a script in your request body, which MCdesk runs to update the document. By default, the update operation only updates a document that exists in the index. If a document does not exist, the API returns an error. To _upsert_ a document (update the document that exists or index a new one), use the [upsert](#using-the-upsert-operation) operation.
 
 
 You cannot explicitly specify an ingest pipeline when calling the Update Document API. If a `default_pipeline` or `final_pipeline` is defined in your index, the following behavior applies:
@@ -43,14 +43,14 @@ if_seq_no | Integer | Only perform the update operation if the document has the 
 if_primary_term | Integer | Perform the update operation if the document has the specified primary term. | No
 lang | String | Language of the script. Default is `painless`. | No
 require_alias | Boolean | Specifies whether the destination must be an index alias. Default is `false`. | No
-refresh | Enum | If true, SmartObserve refreshes shards to make the operation visible to searching. Valid options are `true`, `false`, and `wait_for`, which tells SmartObserve to wait for a refresh before executing the operation. Default is `false`. | No
-retry_on_conflict | Integer | The amount of times SmartObserve should retry the operation if there's a document conflict. Default is 0. | No
+refresh | Enum | If true, MCdesk refreshes shards to make the operation visible to searching. Valid options are `true`, `false`, and `wait_for`, which tells MCdesk to wait for a refresh before executing the operation. Default is `false`. | No
+retry_on_conflict | Integer | The amount of times MCdesk should retry the operation if there's a document conflict. Default is 0. | No
 routing | String | Value to route the update operation to a specific shard. | No
 _source | Boolean or List | Whether or not to include the `_source` field in the response body. Default is `false`. This parameter also supports a comma-separated list of source fields for including multiple source fields in the query response. | No
 _source_excludes | List | A comma-separated list of source fields to exclude in the query response. | No
 _source_includes | List | A comma-separated list of source fields to include in the query response. | No
 timeout | Time | How long to wait for a response from the cluster. | No
-wait_for_active_shards | String | The number of active shards that must be available before SmartObserve processes the update request. Default is 1 (only the primary shard). Set to `all` or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the operation to succeed. | No
+wait_for_active_shards | String | The number of active shards that must be available before MCdesk processes the update request. Default is 1 (only the primary shard). Set to `all` or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the operation to succeed. | No
 
 ## Request body fields
 
@@ -65,7 +65,7 @@ Your request body must contain the information with which you want to update you
 }
 ```
 
-You can also use a script to tell SmartObserve how to update your document:
+You can also use a script to tell MCdesk how to update your document:
 
 ```json
 {
@@ -412,7 +412,7 @@ After the upsert operation, the document's `first_name` and `last_name` fields a
 ```
 {% include copy-curl.html %}
 
-You can also use a script to control how the document is updated. By setting the `scripted_upsert` parameter to `true`, you instruct SmartObserve to use the script even when the document doesn't exist yet. This allows you to define the entire upsert logic in the script.
+You can also use a script to control how the document is updated. By setting the `scripted_upsert` parameter to `true`, you instruct MCdesk to use the script even when the document doesn't exist yet. This allows you to define the entire upsert logic in the script.
 
 In the following example, the script sets the document to contain specific fields regardless of whether it previously existed:
 
@@ -523,7 +523,7 @@ _version | The document's version.
 result | The result of the update operation.
 _shards | Detailed information about the cluster's shards.
 total | The total number of shards.
-successful | The number of shards SmartObserve successfully updated the document in.
-failed | The number of shards SmartObserve failed to update the document in.
+successful | The number of shards MCdesk successfully updated the document in.
+failed | The number of shards MCdesk failed to update the document in.
 _seq_no | The sequence number assigned when the document was indexed.
 _primary_term | The primary term assigned when the document was indexed.

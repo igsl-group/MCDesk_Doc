@@ -16,7 +16,7 @@ This tutorial is compatible with version 2.17 and later, except for [Using a tem
 
 This tutorial uses the Cohere Embed Multilingual v3 model on Amazon Bedrock. For more information about using Cohere compressed embeddings on Amazon Bedrock, see [this blog post](https://aws.amazon.com/about-aws/whats-new/2024/06/amazon-bedrock-compressed-embeddings-cohere-embed/).
 
-In this tutorial, you'll use the following SmartObserve components:
+In this tutorial, you'll use the following MCdesk components:
 - [ML inference ingest processor]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/ml-inference/) 
 - [ML inference search request processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/ml-inference-search-request/)
 - [Search template query]({{site.url}}{{site.baseurl}}/api-reference/search-template/) 
@@ -36,7 +36,7 @@ Create a connector for the embedding model using [this blueprint](https://github
 Because you'll use the [ML inference processor]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/ml-inference/) in this tutorial, you don't need to specify a pre- or post-processing function in the connector.
 {: .note}
 
-To create a connector, send the following request. The `"embedding_types": ["int8"]` parameter specifies 8-bit integer quantized embeddings from the Cohere model. This setting compresses embeddings from 32-bit floats to 8-bit integers, reducing storage space and improving computation speed. While there is a slight trade-off in precision, it is typically negligible for search tasks. These quantized embeddings are compatible with SmartObserve's `knn_index`, which supports byte vectors:
+To create a connector, send the following request. The `"embedding_types": ["int8"]` parameter specifies 8-bit integer quantized embeddings from the Cohere model. This setting compresses embeddings from 32-bit floats to 8-bit integers, reducing storage space and improving computation speed. While there is a slight trade-off in precision, it is typically negligible for search tasks. These quantized embeddings are compatible with MCdesk's `knn_index`, which supports byte vectors:
 
 ```json
 POST _plugins/_ml/connectors/_create

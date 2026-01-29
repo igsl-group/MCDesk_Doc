@@ -10,7 +10,7 @@ nav_order: 10
 **Introduced 1.0**
 {: .label .label-purple }
 
-The Upgrade Check API allows you to check whether your Security plugin configuration requires any upgrades. This is particularly useful after upgrading SmartObserve to a new version because it helps identify any security configuration components that need to be updated to maintain compatibility or take advantage of new features.
+The Upgrade Check API allows you to check whether your Security plugin configuration requires any upgrades. This is particularly useful after upgrading MCdesk to a new version because it helps identify any security configuration components that need to be updated to maintain compatibility or take advantage of new features.
 
 <!-- spec_insert_start
 api: security.config_upgrade_check
@@ -84,9 +84,9 @@ The response body is a JSON object with the following fields.
 
 ## Usage notes
 
-When managing security configurations across SmartObserve upgrades, it's important to understand how to interpret and act upon the Upgrade Check API results. The following notes provide guidance on how to use this API:
+When managing security configurations across MCdesk upgrades, it's important to understand how to interpret and act upon the Upgrade Check API results. The following notes provide guidance on how to use this API:
 
 - Running this API does not make any changes to your configuration; it only checks for potential upgrades.
 - After identifying necessary upgrades using this API, you can use the appropriate Configuration APIs to implement the required changes.
-- We recommend running this check after every SmartObserve version upgrade.
+- We recommend running this check after every MCdesk version upgrade.
 - You may need administrator privileges to use this API.

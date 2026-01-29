@@ -3,16 +3,16 @@ layout: default
 title: Configuring
 nav_order: 7
 grand_parent: User guide
-parent: Install and configure SmartObserve Benchmark
+parent: Install and configure MCdesk Benchmark
 redirect_from:
   - /benchmark/configuring-benchmark/
   - /benchmark/user-guide/configuring-benchmark/
   - /benchmark/tutorials/sigv4/
 ---
 
-# Configuring SmartObserve Benchmark
+# Configuring MCdesk Benchmark
 
-SmartObserve Benchmark configuration data is stored in `~/.benchmark/benchmark.ini`, which is automatically created the first time SmartObserve Benchmark runs.
+MCdesk Benchmark configuration data is stored in `~/.benchmark/benchmark.ini`, which is automatically created the first time MCdesk Benchmark runs.
 
 The file is separated into the following sections, which you can customize based on the needs of your cluster.
 
@@ -20,7 +20,7 @@ The file is separated into the following sections, which you can customize based
 
 This section explains how to customize client-level settings during benchmark execution using the `--client-options` command line flag.
 
-You can pass client-specific parameters to SmartObserve Benchmark using the `--client-options` flag. These parameters let you control low-level client behavior such as timeouts, authentication methods, and SSL settings.
+You can pass client-specific parameters to MCdesk Benchmark using the `--client-options` flag. These parameters let you control low-level client behavior such as timeouts, authentication methods, and SSL settings.
 
 The `--client-options` flag accepts a comma-separated list of key-value pairs, as shown in the following example:
 
@@ -33,12 +33,12 @@ You can customize `--client-options` with the following settings.
 | Option | Type | Description |
 | :---- | :---- | :---- |
 | `timeout` | Integer | Sets the request timeout value in seconds. |
-| `verify_certs` | Boolean | Determines whether to verify SSL certificates when connecting to the SmartObserve cluster. |
+| `verify_certs` | Boolean | Determines whether to verify SSL certificates when connecting to the MCdesk cluster. |
 
 This example runs a benchmark with a 2-minute timeout and disabled certificate verification:
 
 ```bash
-smartobserve-benchmark run \
+mcdesk-benchmark run \
 --target-hosts=https://localhost:9200 \
 --pipeline=benchmark-only \
 --workload=geonames \
@@ -53,20 +53,20 @@ This section contains meta information about the configuration file.
 
 | Parameter | Type | Description |
 | :---- | :---- | :---- |
-| `config.version` | Integer |  The version of the configuration file format. This property is managed by SmartObserve Benchmark and should not be changed. |
+| `config.version` | Integer |  The version of the configuration file format. This property is managed by MCdesk Benchmark and should not be changed. |
 
 <!-- vale off -->
 ## system
 <!-- vale on -->
 
-This section contains global information for the current benchmark environment. This information should be identical on all machines on which SmartObserve Benchmark is installed.
+This section contains global information for the current benchmark environment. This information should be identical on all machines on which MCdesk Benchmark is installed.
 
 | Parameter | Type | Description |
 | :---- | :---- | :---- |
-| `env.name` | String | The name of the benchmark environment used as metadata in metrics documents when an SmartObserve metrics store is configured. Only alphanumeric characters are allowed. Default is `local`. |
-| `available.cores` | Integer | Determines the number of available CPU cores. SmartObserve Benchmark aims to create one asyncio event loop per core and distributes it to clients evenly across event loops. Defaults to the number of logical CPU cores for your cluster. |
-| `async.debug` | Boolean | Enables debug mode on SmartObserve Benchmark's asyncio event loop. Default is `false`. |
-| `passenv` | String | A comma-separated list of environment variable names that should be passed to SmartObserve for processing. |
+| `env.name` | String | The name of the benchmark environment used as metadata in metrics documents when an MCdesk metrics store is configured. Only alphanumeric characters are allowed. Default is `local`. |
+| `available.cores` | Integer | Determines the number of available CPU cores. MCdesk Benchmark aims to create one asyncio event loop per core and distributes it to clients evenly across event loops. Defaults to the number of logical CPU cores for your cluster. |
+| `async.debug` | Boolean | Enables debug mode on MCdesk Benchmark's asyncio event loop. Default is `false`. |
+| `passenv` | String | A comma-separated list of environment variable names that should be passed to MCdesk for processing. |
 
 <!-- vale off -->
 ## node
@@ -76,27 +76,27 @@ This section contains node-specific information that can be customized according
 
 | Parameter | Type | Description |
 | :---- | :---- | :---- |
-| `root.dir` | String | The directory that stores all SmartObserve Benchmark data. SmartObserve Benchmark assumes control over this directory and all its subdirectories. |
-| `src.root.dir` | String | The directory from which the SmartObserve source code and any SmartObserve plugins are called. Only relevant for benchmarks from [sources](#source). |
+| `root.dir` | String | The directory that stores all MCdesk Benchmark data. MCdesk Benchmark assumes control over this directory and all its subdirectories. |
+| `src.root.dir` | String | The directory from which the MCdesk source code and any MCdesk plugins are called. Only relevant for benchmarks from [sources](#source). |
 
 <!-- vale off -->
 ## source
 <!-- vale on -->
 
-This section contains more details about the SmartObserve source tree.
+This section contains more details about the MCdesk source tree.
 
 | Parameter | Type | Description |
 | :---- | :---- | :---- |
-| `remote.repo.url` | URL | The URL from which to check out SmartObserve. Default is `https://github.com/igsl-group/SmartObserve.git`.
-| `smartobserve.src.subdir` | String | The local path relative to the `src.root.dir` of the SmartObserve search tree. Default is `SmartObserve`.
-| `cache` | Boolean | Enables SmartObserve's internal source artifact cache, `smartobserve*.tar.gz`, and any plugin zip files. Artifacts are cached based on their Git revision. Default is `true`. |
+| `remote.repo.url` | URL | The URL from which to check out MCdesk. Default is `https://github.com/igsl-group/MCdesk.git`.
+| `mcdesk.src.subdir` | String | The local path relative to the `src.root.dir` of the MCdesk search tree. Default is `MCdesk`.
+| `cache` | Boolean | Enables MCdesk's internal source artifact cache, `mcdesk*.tar.gz`, and any plugin zip files. Artifacts are cached based on their Git revision. Default is `true`. |
 | `cache.days` | Integer | The number of days that an artifact should be kept in the source artifact cache. Default is `7`. |
 
 <!-- vale off -->
 ## benchmarks
 <!-- vale on -->
 
-This section contains the settings that can be customized in the SmartObserve Benchmark data directory.
+This section contains the settings that can be customized in the MCdesk Benchmark data directory.
 
 | Parameter | Type | Description |
 | :---- | :---- | :---- |
@@ -110,29 +110,29 @@ This section defines how benchmark metrics are stored.
 
 | Parameter | Type | Description |
 | :---- | :---- | :---- |
-| `datastore.type` | String | If set to `in-memory` all metrics are kept in memory while running the benchmark. If set to `smartobserve` all metrics are instead written to a persistent metrics store and the data is made available for further analysis. Default is `in-memory`. |
-| `sample.queue.size` | Function | The number of metric samples that can be stored in SmartObserve Benchmark's in-memory queue. Default is `2^20`. |
+| `datastore.type` | String | If set to `in-memory` all metrics are kept in memory while running the benchmark. If set to `mcdesk` all metrics are instead written to a persistent metrics store and the data is made available for further analysis. Default is `in-memory`. |
+| `sample.queue.size` | Function | The number of metric samples that can be stored in MCdesk Benchmark's in-memory queue. Default is `2^20`. |
 | metrics.request.downsample.factor | Integer| (default: 1): Determines how many service time and latency samples are saved in the metrics store. By default, all values are saved. If you want to, for example. keep only every 100th sample, specify `100`. This is useful to avoid overwhelming the metrics store in benchmarks with many clients. Default is `1`. |
-| `output.processingtime` | Boolean | If set to `true`, SmartObserve shows the additional metric processing time in the command line report. Default is `false`. |
+| `output.processingtime` | Boolean | If set to `true`, MCdesk shows the additional metric processing time in the command line report. Default is `false`. |
 
 <!-- vale off -->
 ### `datastore.type` parameters
 <!-- vale on -->
 
-When `datastore.type` is set to `smartobserve`, the following reporting settings can be customized.
+When `datastore.type` is set to `mcdesk`, the following reporting settings can be customized.
 
 | Parameter | Type | Description |
 | :---- | :---- | :---- |
 | `datastore.host` | IP address | The hostname of the metrics store, for example, `124.340.200.22`. |
 | datastore.port| Port | The port number of the metrics store, for example, `9200`. |
-| `datastore.secure` | Boolean | If set to `false`, SmartObserve assumes an HTTP connection. If set to true, it assumes an HTTPS connection. |
+| `datastore.secure` | Boolean | If set to `false`, MCdesk assumes an HTTP connection. If set to true, it assumes an HTTPS connection. |
 | `datastore.ssl.verification_mode` | String | When set to the default `full`, the metrics store’s SSL certificate is checked. To disable certificate verification, set this value to `none`. |
 | `datastore.ssl.certificate_authorities` | String | Determines the local file system path to the certificate authority’s signing certificate.
 | `datastore.user` | Username | Sets the username for the metrics store |
 | `datastore.password` | String | Sets the password for the metrics store. Alternatively, this password can be configured using the `OSB_DATASTORE_PASSWORD` environment variable, which avoids storing credentials in a plain text file. The environment variable takes precedence over the config file if both define a password. |
 | `datastore.probe.cluster_version` | String | Enables automatic detection of the metrics store’s version. Default is `true`. |
-| `datastore.number_of_shards` | Integer | The number of primary shards that the `smartobserve-*` indexes should have. Any updates to this setting after initial index creation will only be applied to new `smartobserve-*` indexes. Default is the [SmartObserve static index value]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/#static-index-level-index-settings). |
-| `datastore.number_of_replicas` | Integer | The number of replicas each primary shard in the datastore contains. Any updates to this setting after initial index creation will only be applied to new `smartobserve-* `indexes. Default is the [SmartObserve static index value]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/#static-index-level-index-settings). |
+| `datastore.number_of_shards` | Integer | The number of primary shards that the `mcdesk-*` indexes should have. Any updates to this setting after initial index creation will only be applied to new `mcdesk-*` indexes. Default is the [MCdesk static index value]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/#static-index-level-index-settings). |
+| `datastore.number_of_replicas` | Integer | The number of replicas each primary shard in the datastore contains. Any updates to this setting after initial index creation will only be applied to new `mcdesk-* `indexes. Default is the [MCdesk static index value]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/#static-index-level-index-settings). |
 
 ### Examples
 
@@ -142,7 +142,7 @@ This example defines an unprotected metrics store in the local network:
 
 ```
 [reporting]
-datastore.type = smartobserve
+datastore.type = mcdesk
 datastore.host = 192.168.10.17
 datastore.port = 9200
 datastore.secure = false
@@ -154,7 +154,7 @@ This example defines a secure connection to a metrics store in the local network
 
 ```
 [reporting]
-datastore.type = smartobserve
+datastore.type = mcdesk
 datastore.host = 192.168.10.22
 datastore.port = 9200
 datastore.secure = true
@@ -167,44 +167,44 @@ datastore.password = the-password-to-your-cluster
 ## workloads
 <!-- vale on -->
 
-This section defines how workloads are retrieved. All keys are read by SmartObserve using the syntax `<<workload-repository-name>>.url`, which you can select using the SmartObserve Benchmark CLI `--workload-repository=workload-repository-name"` option. By default, SmartObserve chooses the workload repository using the `default.url` `https://github.com/igsl-group/smartobserve-benchmark-workloads`.
+This section defines how workloads are retrieved. All keys are read by MCdesk using the syntax `<<workload-repository-name>>.url`, which you can select using the MCdesk Benchmark CLI `--workload-repository=workload-repository-name"` option. By default, MCdesk chooses the workload repository using the `default.url` `https://github.com/igsl-group/mcdesk-benchmark-workloads`.
 
 <!-- vale off -->
 ## defaults
 <!-- vale on -->
 
-This section defines the default values of certain SmartObserve Benchmark CLI parameters.
+This section defines the default values of certain MCdesk Benchmark CLI parameters.
 
 | Parameter | Type | Description |
 | :---- | :---- | :---- |
-| `preserve_benchmark_candidate` | Boolean | Determines whether SmartObserve installations are preserved or wiped by default after a benchmark. To preserve an installation for a single benchmark, use the command line flag `--preserve-install`. Default is `false`.
+| `preserve_benchmark_candidate` | Boolean | Determines whether MCdesk installations are preserved or wiped by default after a benchmark. To preserve an installation for a single benchmark, use the command line flag `--preserve-install`. Default is `false`.
 
 <!-- vale off -->
 ## distributions
 <!-- vale on -->
 
-This section defines how SmartObserve versions are distributed.
+This section defines how MCdesk versions are distributed.
 
 | Parameter | Type | Description |
 | :---- | :---- | :---- |
-| `release.cache` | Boolean | Determines whether newly released SmartObserve versions should be cached locally. |
+| `release.cache` | Boolean | Determines whether newly released MCdesk versions should be cached locally. |
 
-## Running SmartObserve Benchmark with AWS Signature Version 4
+## Running MCdesk Benchmark with AWS Signature Version 4
 
-SmartObserve Benchmark supports AWS Signature Version 4 authentication. To run SmartObserve Benchmark with AWS Signature Version 4, you need to set up an [AWS Identity and Access Management (IAM) user or role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) and provide it access to the SmartObserve cluster using AWS Signature Version 4 authentication.
+MCdesk Benchmark supports AWS Signature Version 4 authentication. To run MCdesk Benchmark with AWS Signature Version 4, you need to set up an [AWS Identity and Access Management (IAM) user or role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) and provide it access to the MCdesk cluster using AWS Signature Version 4 authentication.
 
 Whether to use an IAM role or user depends on your test cluster's access management requirements. For more information about whether to use an IAM role or user, see [When to create an IAM user (instead of a role)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html#id_which-to-choose).
 
-### SmartObserve Benchmark version 1.15.0 and later
+### MCdesk Benchmark version 1.15.0 and later
 
-Starting with SmartObserve Benchmark version 1.15.0, you can use session-based authentication that automatically handles temporary credential generation and refresh. This method eliminates the need to manually export AWS credentials:
+Starting with MCdesk Benchmark version 1.15.0, you can use session-based authentication that automatically handles temporary credential generation and refresh. This method eliminates the need to manually export AWS credentials:
 
-1. Create an IAM role or user in the AWS Management Console that has the necessary permissions to access your SmartObserve cluster. Ensure that the role or user has the required policies attached for SmartObserve access.
+1. Create an IAM role or user in the AWS Management Console that has the necessary permissions to access your MCdesk cluster. Ensure that the role or user has the required policies attached for MCdesk access.
 
-2. Run the following `execute-test` command with the `--client-options=amazon_aws_log_in:session` flag. SmartObserve Benchmark will automatically generate temporary credentials and handle auto-refresh:
+2. Run the following `execute-test` command with the `--client-options=amazon_aws_log_in:session` flag. MCdesk Benchmark will automatically generate temporary credentials and handle auto-refresh:
 
    ```bash
-   smartobserve-benchmark execute-test \
+   mcdesk-benchmark execute-test \
    --target-hosts=<CLUSTER ENDPOINT> \
    --pipeline=benchmark-only \
    --workload=geonames \
@@ -212,13 +212,13 @@ Starting with SmartObserve Benchmark version 1.15.0, you can use session-based a
    ```
    {% include copy.html %}
 
-### SmartObserve Benchmark version 1.14.0 and earlier
+### MCdesk Benchmark version 1.14.0 and earlier
 
-For SmartObserve Benchmark versions prior to 1.15.0, use the environment variable method:
+For MCdesk Benchmark versions prior to 1.15.0, use the environment variable method:
 
 1. Create an IAM role or user in the AWS Management Console.
 
-2. Set up your environment variables. If you're testing using Amazon SmartObserve Serverless, set `OSB_SERVICE` to `aoss`.
+2. Set up your environment variables. If you're testing using Amazon MCdesk Serverless, set `OSB_SERVICE` to `aoss`.
 
    - For an IAM user, configure the following environment variables:
 
@@ -242,10 +242,10 @@ For SmartObserve Benchmark versions prior to 1.15.0, use the environment variabl
    {% include copy.html %}
 
 
-3. Customize and run the following `run` command with the `--client-options=amazon_aws_log_in:environment` flag. This flag provides the location of your exported credentials to SmartObserve Benchmark.
+3. Customize and run the following `run` command with the `--client-options=amazon_aws_log_in:environment` flag. This flag provides the location of your exported credentials to MCdesk Benchmark.
 
    ```bash
-   smartobserve-benchmark run \
+   mcdesk-benchmark run \
    --target-hosts=<CLUSTER ENDPOINT> \
    --pipeline=benchmark-only \
    --workload=geonames \
@@ -256,16 +256,16 @@ For SmartObserve Benchmark versions prior to 1.15.0, use the environment variabl
 
 ## Proxy configurations
 
-SmartObserve automatically downloads all the necessary proxy data for you, including:
+MCdesk automatically downloads all the necessary proxy data for you, including:
 
-- SmartObserve distributions, when you specify `--distribution-version=<OPENSEARCH-VERSION>`.
-- SmartObserve source code, when you specify a Git revision number, for example, `--revision=1e04b2w`.
-- Any metadata tracked from the [SmartObserve GitHub repository](https://github.com/igsl-group/SmartObserve).
+- MCdesk distributions, when you specify `--distribution-version=<OPENSEARCH-VERSION>`.
+- MCdesk source code, when you specify a Git revision number, for example, `--revision=1e04b2w`.
+- Any metadata tracked from the [MCdesk GitHub repository](https://github.com/igsl-group/MCdesk).
 
-As of SmartObserve Benchmark 0.5.0, only `http_proxy` is supported.
+As of MCdesk Benchmark 0.5.0, only `http_proxy` is supported.
 {: .warning}
 
-You can use an `http_proxy` to connect SmartObserve Benchmark to a specific proxy and connect the proxy to a benchmark workload. To add the proxy:
+You can use an `http_proxy` to connect MCdesk Benchmark to a specific proxy and connect the proxy to a benchmark workload. To add the proxy:
 
 
 1. Add your proxy URL to your shell profile:
@@ -289,10 +289,10 @@ You can use an `http_proxy` to connect SmartObserve Benchmark to a specific prox
 4. Use `git clone` to clone the workloads repository by using the following command. If the proxy configured correctly, the clone is successful.
 
    ```
-   git clone http://github.com/smartobserve-project/smartobserve-benchmark-workloads.git
+   git clone http://github.com/mcdesk-project/mcdesk-benchmark-workloads.git
    ```
 
-5. Lastly, verify that SmartObserve Benchmark can connect to the proxy server by checking the `/.benchmark/logs/benchmark.log` log. When SmartObserve Benchmark starts, you should see the following at the top of the log:
+5. Lastly, verify that MCdesk Benchmark can connect to the proxy server by checking the `/.benchmark/logs/benchmark.log` log. When MCdesk Benchmark starts, you should see the following at the top of the log:
 
     ```
     Connecting via proxy URL [http://proxy.proxy.org:4444/] to the Internet (picked up from the environment variable [http_proxy]).
@@ -300,13 +300,13 @@ You can use an `http_proxy` to connect SmartObserve Benchmark to a specific prox
 
 ## Logging
 
-Logs from SmartObserve Benchmark can be configured in the `~/.benchmark/logging.json` file. For more information about how to format the log file, see the following Python documentation:
+Logs from MCdesk Benchmark can be configured in the `~/.benchmark/logging.json` file. For more information about how to format the log file, see the following Python documentation:
 
 - For general tips and tricks, use the [Python Logging Cookbook](https://docs.python.org/3/howto/logging-cookbook.html).
 - For the file format, see the Python [logging configuration schema](https://docs.python.org/3/library/logging.config.html#logging-config-dictschema).
 - For instructions on how to customize where the log output is written, see the [logging handlers documentation](https://docs.python.org/3/library/logging.handlers.html).
 
-By default, SmartObserve Benchmark logs all output to `~/.benchmark/logs/benchmark.log`.
+By default, MCdesk Benchmark logs all output to `~/.benchmark/logs/benchmark.log`.
 
 
 

@@ -14,7 +14,7 @@ redirect_from:
 # MCP server APIs
 **Introduced 3.0**
 
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) defines how an agent can discover and execute tools. The MCP server in SmartObserve allows agents to connect and use available [tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/).
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) defines how an agent can discover and execute tools. The MCP server in MCdesk allows agents to connect and use available [tools]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/tools/).
 
 The MCP server in ML Commons uses the Streamable HTTP transport protocol to communicate with the clients. For details about the transport, see the [official MCP documentation](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports).
 {: .note }
@@ -29,7 +29,7 @@ ML Commons supports the following MCP APIs:
 
 ## Removed APIs
 
-The following experimental APIs were removed in SmartObserve 3.3 in favor of the Streamable HTTP transport:
+The following experimental APIs were removed in MCdesk 3.3 in favor of the Streamable HTTP transport:
 
 - MCP SSE Message API
 - MCP SSE Session API

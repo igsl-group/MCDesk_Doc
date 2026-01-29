@@ -28,26 +28,26 @@ GET _snapshot/<repository>/<snapshot>/
 
 | Parameter | Data type | Description | 
 :--- | :--- | :---
-| verbose | Boolean | When `true`, returns additional information about each snapshot, such as the version of SmartObserve that took the snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot. When `false`, returns only snapshot names and contained indexes. This is useful when the snapshots belong to a cloud-based repository, where each blob read is a cost or performance concern. Optional. Default is `true`.|
+| verbose | Boolean | When `true`, returns additional information about each snapshot, such as the version of MCdesk that took the snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot. When `false`, returns only snapshot names and contained indexes. This is useful when the snapshots belong to a cloud-based repository, where each blob read is a cost or performance concern. Optional. Default is `true`.|
 | ignore_unavailable | Boolean | How to handle snapshots that are unavailable (corrupted or otherwise temporarily can't be returned). If `true` and the snapshot is unavailable, the request does not return the snapshot. If `false` and the snapshot is unavailable, the request returns an error. Optional. Default is `false`.|
 
 ## Example request
 
-The following request retrieves information for the `my-first-snapshot` located in the `my-smartobserve-repo` repository:
+The following request retrieves information for the `my-first-snapshot` located in the `my-mcdesk-repo` repository:
 
 <!-- spec_insert_start
 component: example_code
-rest: GET /_snapshot/my-smartobserve-repo/my-first-snapshot
+rest: GET /_snapshot/my-mcdesk-repo/my-first-snapshot
 -->
 {% capture step1_rest %}
-GET /_snapshot/my-smartobserve-repo/my-first-snapshot
+GET /_snapshot/my-mcdesk-repo/my-first-snapshot
 {% endcapture %}
 
 {% capture step1_python %}
 
 
 response = client.snapshot.get(
-  repository = "my-smartobserve-repo",
+  repository = "my-mcdesk-repo",
   snapshot = "my-first-snapshot"
 )
 
@@ -71,12 +71,12 @@ Upon success, the response returns snapshot information:
       "version_id" : 136217927,
       "version" : "2.0.1",
       "indices" : [
-        ".smartobserve-observability",
+        ".mcdesk-observability",
         ".opendistro-reports-instances",
-        ".smartobserve-notifications-config",
+        ".mcdesk-notifications-config",
         "shakespeare",
         ".opendistro-reports-definitions",
-        "smartobserve_dashboards_sample_data_flights",
+        "mcdesk_dashboards_sample_data_flights",
         ".kibana_1"
       ],
       "data_streams" : [ ],

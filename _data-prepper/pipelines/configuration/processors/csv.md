@@ -99,7 +99,7 @@ Then, the processor parses the event into the following output. Because `delete_
 
 ## Metrics
 
-The following table describes common [Abstract processor](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-api/src/main/java/org/smartobserve/dataprepper/model/processor/AbstractProcessor.java) metrics.
+The following table describes common [Abstract processor](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-api/src/main/java/org/mcdesk/dataprepper/model/processor/AbstractProcessor.java) metrics.
 
 | Metric name | Type | Description |
 | ------------- | ---- | -----------|
@@ -113,4 +113,4 @@ The `csv` processor includes the following custom metrics.
 
 The `csv` processor includes the following counter metrics:
 
-* `csvInvalidEvents`: The number of invalid events, usually caused by an unclosed quotation mark in the event itself. SmartObserve Data Prepper throws an exception when an invalid event is parsed. 
+* `csvInvalidEvents`: The number of invalid events, usually caused by an unclosed quotation mark in the event itself. MCdesk Data Prepper throws an exception when an invalid event is parsed. 

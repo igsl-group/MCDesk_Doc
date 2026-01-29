@@ -1,19 +1,19 @@
 ---
 layout: default
-title: Getting started with SmartObserve security
+title: Getting started with MCdesk security
 nav_order: 60
 ---
 
-# Getting started with SmartObserve security
+# Getting started with MCdesk security
 
-The demo configuration is the most straightforward way to get started with SmartObserve security. SmartObserve comes bundled with a number of useful scripts, including `install_demo_configuration.sh` (or `install_demo_configuration.bat` for Windows).
+The demo configuration is the most straightforward way to get started with MCdesk security. MCdesk comes bundled with a number of useful scripts, including `install_demo_configuration.sh` (or `install_demo_configuration.bat` for Windows).
 
-This script is located in `plugins/smartobserve-security/tools` and performs the following actions:
+This script is located in `plugins/mcdesk-security/tools` and performs the following actions:
 
 - Creates demo certificates for TLS encryption on both the transport and REST layers.
 - Configures demo users, roles, and role mappings.
 - Configures the Security plugin to use an internal database for authentication and authorization.
-- Updates the `smartobserve.yml` file with the basic configuration needed to start the cluster.
+- Updates the `mcdesk.yml` file with the basic configuration needed to start the cluster.
 
 You can find more information about the demo configuration and how to quickly get started at [Setting up a demo configuration]({{site.url}}{{site.baseurl}}/security/configuration/demo-configuration/).
 {: .note}
@@ -23,12 +23,12 @@ Certain aspects of this configuration, such as demo certificates and default pas
 
 ## Setting up the demo configuration
 
-Prior to running the `install_demo_configuration.sh` script, you must create an environment variable named `OPENSEARCH_INITIAL_ADMIN_PASSWORD` with a strong password. This will be used as the password for the admin user to authenticate with SmartObserve. Use the online tool [_Zxcvbn_](https://lowe.github.io/tryzxcvbn/) to test the strength of any password. After this, you can execute `install_demo_configuration.sh` and follow the terminal prompt to enter necessary details.
+Prior to running the `install_demo_configuration.sh` script, you must create an environment variable named `OPENSEARCH_INITIAL_ADMIN_PASSWORD` with a strong password. This will be used as the password for the admin user to authenticate with MCdesk. Use the online tool [_Zxcvbn_](https://lowe.github.io/tryzxcvbn/) to test the strength of any password. After this, you can execute `install_demo_configuration.sh` and follow the terminal prompt to enter necessary details.
 
-After the script is executed, you can start SmartObserve and test the configuration by running the following command:
+After the script is executed, you can start MCdesk and test the configuration by running the following command:
 
 ```
-curl -k -XGET -u admin:<password> https://<smartobserve-ip>:9200
+curl -k -XGET -u admin:<password> https://<mcdesk-ip>:9200
 ```
 {% include copy.html %}
 
@@ -37,10 +37,10 @@ You should see output similar to the following:
 ```
 {
   "name" : "smoketestnode",
-  "cluster_name" : "smartobserve",
+  "cluster_name" : "mcdesk",
   "cluster_uuid" : "0a5DYAk0Rbi14wqT3TqMiQ",
   "version" : {
-    "distribution" : "smartobserve",
+    "distribution" : "mcdesk",
     "number" : "2.13.0",
     "build_type" : "tar",
     "build_hash" : "7ec678d1b7c87d6e779fdef94e33623e1f1e2647",
@@ -50,43 +50,43 @@ You should see output similar to the following:
     "minimum_wire_compatibility_version" : "7.10.0",
     "minimum_index_compatibility_version" : "7.0.0"
   },
-  "tagline" : "The SmartObserve Project: https://magiccreative.io/"
+  "tagline" : "The MCdesk Project: https://magiccreative.io/"
 }
 ```
 
-## Setting up SmartObserve Dashboards
+## Setting up MCdesk Dashboards
 
-In order to quickly get started with SmartObserve Dashboards, you can add the following configuration to `smartobserve_dashboards.yml`:
+In order to quickly get started with MCdesk Dashboards, you can add the following configuration to `mcdesk_dashboards.yml`:
 
 ```
-smartobserve.hosts: [https://localhost:9200]
-smartobserve.ssl.verificationMode: none
-smartobserve.username: kibanaserver
-smartobserve.password: kibanaserver
-smartobserve.requestHeadersWhitelist: [authorization, securitytenant]
+mcdesk.hosts: [https://localhost:9200]
+mcdesk.ssl.verificationMode: none
+mcdesk.username: kibanaserver
+mcdesk.password: kibanaserver
+mcdesk.requestHeadersWhitelist: [authorization, securitytenant]
 
-smartobserve_security.multitenancy.enabled: true
-smartobserve_security.multitenancy.tenants.preferred: [Private, Global]
-smartobserve_security.readonly_mode.roles: [kibana_read_only]
-# Use this setting if you are running smartobserve-dashboards without https
-smartobserve_security.cookie.secure: false
+mcdesk_security.multitenancy.enabled: true
+mcdesk_security.multitenancy.tenants.preferred: [Private, Global]
+mcdesk_security.readonly_mode.roles: [kibana_read_only]
+# Use this setting if you are running mcdesk-dashboards without https
+mcdesk_security.cookie.secure: false
 ```
 {% include copy.html %}
 
-You can start the binary or service, depending on which method was used to install SmartObserve and SmartObserve Dashboards.
+You can start the binary or service, depending on which method was used to install MCdesk and MCdesk Dashboards.
 
 When using binary, you need to supply `--no-base-path` to `yarn start` command to set a URL without a base path. If this is not set, a random three-letter base path will be added.
 {: .note}
 
-After starting SmartObserve Dashboards, you should see the following two log lines:
+After starting MCdesk Dashboards, you should see the following two log lines:
 
 ```
 [info][listening] Server running at http://localhost:5601
-[info][server][SmartObserveDashboards][http] http server running at http://localhost:5601
+[info][server][MCdeskDashboards][http] http server running at http://localhost:5601
 ```
 {% include copy.html %}
 
-You can now access SmartObserve Dashboards using http://localhost:5601 in your browser. Use the username `admin` and the password that was configured in the `OPENSEARCH_INITIAL_ADMIN_PASSWORD` environment variable.
+You can now access MCdesk Dashboards using http://localhost:5601 in your browser. Use the username `admin` and the password that was configured in the `OPENSEARCH_INITIAL_ADMIN_PASSWORD` environment variable.
 
 # Adding users
 
@@ -94,12 +94,12 @@ There are three ways to add users, roles, and other security-related configurati
 
   - Updating appropriate configuration files (`internal_users.yml` for adding/updating/removing users) 
   - Using the API
-  - Using the SmartObserve Dashboards UI
+  - Using the MCdesk Dashboards UI
 
-Security configuration files are located in the `config/smartobserve-security` directory.
+Security configuration files are located in the `config/mcdesk-security` directory.
 {: .note}
 
-You can add an SmartObserve Dashboards user by updating the `internal_users.yml` file with the following settings:
+You can add an MCdesk Dashboards user by updating the `internal_users.yml` file with the following settings:
 
 ```
 test-user:
@@ -111,9 +111,9 @@ test-user:
 ```
 {% include copy.html %}
 
-The `hash` string is generated using the `hash.sh` script located in the `plugins/smartobserve-security/tools/` directory. In this case, the hash of the string `secretpassword` was used.
+The `hash` string is generated using the `hash.sh` script located in the `plugins/mcdesk-security/tools/` directory. In this case, the hash of the string `secretpassword` was used.
 
-Note the use of the built-in backend role `kibanauser`, which provides the user permissions needed to navigate SmartObserve Dashboards.
+Note the use of the built-in backend role `kibanauser`, which provides the user permissions needed to navigate MCdesk Dashboards.
 
 ## Creating roles
 
@@ -148,7 +148,7 @@ Note that the cluster permissions are not listed in this example because these a
 
 ## Mapping users to roles
 
-When a user logs in to SmartObserve, they need to be mapped to the appropriate role in order to obtain the correct permissions. This mapping is performed using the `roles_mapping.yml` file with the following structure:
+When a user logs in to MCdesk, they need to be mapped to the appropriate role in order to obtain the correct permissions. This mapping is performed using the `roles_mapping.yml` file with the following structure:
 
 ```
 <role_name>:
@@ -182,17 +182,17 @@ kibana_user:
 
 ## Uploading the configuration to a security index
 
-The final step in configuring a user, role, or any other security configuration is uploading it to a SmartObserve security index. Only updating the files, without uploading them, will not change the configuration of an already running SmartObserve cluster. 
+The final step in configuring a user, role, or any other security configuration is uploading it to a MCdesk security index. Only updating the files, without uploading them, will not change the configuration of an already running MCdesk cluster. 
 
 To upload a configuration, the following command can be used with the admin certificate that was generated during `install_demo_configuration.sh` execution:
 
 ```
-./plugins/smartobserve-security/tools/securityadmin.sh -cd "config/smartobserve-security" -icl -key "../kirk-key.pem" -cert "../kirk.pem" -cacert "../root-ca.pem" -nhnv
+./plugins/mcdesk-security/tools/securityadmin.sh -cd "config/mcdesk-security" -icl -key "../kirk-key.pem" -cert "../kirk.pem" -cacert "../root-ca.pem" -nhnv
 ```
 {% include copy.html %}
 
 ## Next steps
 
-The [Best practices for SmartObserve security]({{site.url}}{{site.baseurl}}/security/configuration/best-practices/)  guide covers 10 things to consider when getting started with SmartObserve security.
+The [Best practices for MCdesk security]({{site.url}}{{site.baseurl}}/security/configuration/best-practices/)  guide covers 10 things to consider when getting started with MCdesk security.
 
-The [Security configuration]({{site.url}}{{site.baseurl}}/security/configuration/index/) overview provides the basic steps for setting up security in your SmartObserve implementation and includes links to information about customizing security for your business needs. 
+The [Security configuration]({{site.url}}{{site.baseurl}}/security/configuration/index/) overview provides the basic steps for setting up security in your MCdesk implementation and includes links to information about customizing security for your business needs. 

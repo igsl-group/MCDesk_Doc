@@ -2,12 +2,12 @@
 layout: default
 title: Source coordination
 nav_order: 35
-parent: Managing SmartObserve Data Prepper
+parent: Managing MCdesk Data Prepper
 ---
 
 # Source coordination
 
-_Source coordination_ is the concept of coordinating and distributing work between SmartObserve Data Prepper data sources in a multi-node environment. Some data sources, such as Amazon Kinesis or Amazon Simple Queue Service (Amazon SQS), handle coordination natively. Other data sources, such as SmartObserve, Amazon Simple Storage Service (Amazon S3), Amazon DynamoDB, and JDBC/ODBC, do not support source coordination.
+_Source coordination_ is the concept of coordinating and distributing work between MCdesk Data Prepper data sources in a multi-node environment. Some data sources, such as Amazon Kinesis or Amazon Simple Queue Service (Amazon SQS), handle coordination natively. Other data sources, such as MCdesk, Amazon Simple Storage Service (Amazon S3), Amazon DynamoDB, and JDBC/ODBC, do not support source coordination.
 
 Data Prepper source coordination decides which partition of work is performed by each node in the Data Prepper cluster and prevents duplicate partitions of work.
 
@@ -15,7 +15,7 @@ Inspired by the [Kinesis Client Library](https://docs.aws.amazon.com/streams/lat
 
 ## Formatting partitions
 
-Source coordination separates sources into "partitions of work." For example, an S3 object would be a partition of work for Amazon S3, or an SmartObserve index would be a partition of work for SmartObserve.
+Source coordination separates sources into "partitions of work." For example, an S3 object would be a partition of work for Amazon S3, or an MCdesk index would be a partition of work for MCdesk.
 
 Data Prepper takes each partition of work that is chosen by the source and creates corresponding items in the distributed store that Data Prepper uses for source coordination. Each of these items has the following standard format, which can be extended by the distributed store implementation.
 

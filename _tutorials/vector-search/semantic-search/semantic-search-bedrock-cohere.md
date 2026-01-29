@@ -10,14 +10,14 @@ redirect_from:
 
 # Semantic search using Cohere Embed on Amazon Bedrock
 
-This tutorial shows you how to implement semantic search in [Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/) using the [Cohere Embed model](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-embed.html). For more information, see [Semantic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/semantic-search/).
+This tutorial shows you how to implement semantic search in [Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/) using the [Cohere Embed model](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-embed.html). For more information, see [Semantic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/semantic-search/).
 
-If using Python, you can create a Cohere connector and test the model using the [smartobserve-py-ml](https://github.com/igsl-group/smartobserve-py-ml) client CLI. The CLI automates many configuration steps, making setup faster and reducing the chance of errors. For more information about using the CLI, see the [CLI documentation](https://smartobserve-project.github.io/smartobserve-py-ml/cli/index.html#).
+If using Python, you can create a Cohere connector and test the model using the [mcdesk-py-ml](https://github.com/igsl-group/mcdesk-py-ml) client CLI. The CLI automates many configuration steps, making setup faster and reducing the chance of errors. For more information about using the CLI, see the [CLI documentation](https://mcdesk-project.github.io/mcdesk-py-ml/cli/index.html#).
 {: .tip}
 
-If using self-managed SmartObserve instead of Amazon SmartObserve Service, create a connector to the model on Amazon Bedrock using [the blueprint](https://github.com/igsl-group/ml-commons/blob/2.x/docs/remote_inference_blueprints/bedrock_connector_cohere_cohere.embed-english-v3_blueprint.md). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/).
+If using self-managed MCdesk instead of Amazon MCdesk Service, create a connector to the model on Amazon Bedrock using [the blueprint](https://github.com/igsl-group/ml-commons/blob/2.x/docs/remote_inference_blueprints/bedrock_connector_cohere_cohere.embed-english-v3_blueprint.md). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/).
 
-The easiest way to set up an embedding model in Amazon SmartObserve Service is by using [AWS CloudFormation](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/cfn-template.html). Alternatively, you can set up an embedding model using [the AIConnectorHelper notebook](https://github.com/igsl-group/ml-commons/blob/2.x/docs/tutorials/aws/AIConnectorHelper.ipynb).
+The easiest way to set up an embedding model in Amazon MCdesk Service is by using [AWS CloudFormation](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/cfn-template.html). Alternatively, you can set up an embedding model using [the AIConnectorHelper notebook](https://github.com/igsl-group/ml-commons/blob/2.x/docs/tutorials/aws/AIConnectorHelper.ipynb).
 {: .tip}
 
 Amazon Bedrock has a [quota limit](https://docs.aws.amazon.com/bedrock/latest/userguide/quotas.html). For more information about increasing this limit, see [Increase model invocation capacity with Provisioned Throughput in Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html).
@@ -26,9 +26,9 @@ Amazon Bedrock has a [quota limit](https://docs.aws.amazon.com/bedrock/latest/us
 Replace the placeholders beginning with the prefix `your_` with your own values.
 {: .note}
 
-## Prerequisite: Create an SmartObserve cluster
+## Prerequisite: Create an MCdesk cluster
 
-Go to the [Amazon SmartObserve Service console](https://console.aws.amazon.com/aos/home) and create an SmartObserve domain.
+Go to the [Amazon MCdesk Service console](https://console.aws.amazon.com/aos/home) and create an MCdesk domain.
 
 Note the domain Amazon Resource Name (ARN); you'll use it in the following steps.
 
@@ -79,9 +79,9 @@ If you need a model with multilingual support, you can use the `cohere.embed-mul
 
 Note the role ARN; you'll use it in the following steps.
 
-## Step 2: Configure an IAM role in Amazon SmartObserve Service
+## Step 2: Configure an IAM role in Amazon MCdesk Service
 
-Follow these steps to configure an IAM role in Amazon SmartObserve Service.
+Follow these steps to configure an IAM role in Amazon MCdesk Service.
 
 ### Step 2.1: Create an IAM role for signing connector requests
 
@@ -123,7 +123,7 @@ You'll use the `your_iam_user_arn` IAM user to assume the role in Step 3.
         {
             "Effect": "Allow",
             "Action": "es:ESHttpPost",
-            "Resource": "your_smartobserve_domain_arn"
+            "Resource": "your_mcdesk_domain_arn"
         }
     ]
 }
@@ -136,14 +136,14 @@ Note this role ARN; you'll use it in the following steps.
 
 Follow these steps to map a backend role:
 
-1. Log in to SmartObserve Dashboards and select **Security** on the top menu.
+1. Log in to MCdesk Dashboards and select **Security** on the top menu.
 2. Select **Roles**, and then select the **ml_full_access** role. 
 3. On the **ml_full_access** role details page, select **Mapped users**, and then select **Manage mapping**. 
 4. Enter the IAM role ARN created in Step 2.1 in the **Backend roles** field, as shown in the following image.
     ![Mapping a backend role]({{site.url}}{{site.baseurl}}/images/vector-search-tutorials/mapping_iam_role_arn.png)
 5. Select **Map**. 
 
-The IAM role is now successfully configured in your SmartObserve cluster.
+The IAM role is now successfully configured in your MCdesk cluster.
 
 ## Step 3: Create a connector
 
@@ -156,8 +156,8 @@ import boto3
 import requests 
 from requests_aws4auth import AWS4Auth
 
-host = 'your_amazon_smartobserve_domain_endpoint'
-region = 'your_amazon_smartobserve_domain_region'
+host = 'your_amazon_mcdesk_domain_endpoint'
+region = 'your_amazon_mcdesk_domain_region'
 service = 'es'
 
 assume_role_response = boto3.Session().client('sts').assume_role(
@@ -219,7 +219,7 @@ Note the connector ID; you'll use it in the next step.
 
 ## Step 4: Create and test the model
 
-Log in to SmartObserve Dashboards, open the DevTools console, and run the following requests to create and test the model.
+Log in to MCdesk Dashboards, open the DevTools console, and run the following requests to create and test the model.
 
 1. Create a model group:
 

@@ -1,108 +1,108 @@
 ---
 layout: default
 title: Debian
-parent: Installing SmartObserve
+parent: Installing MCdesk
 redirect_from:
-- /smartobserve/install/deb/
+- /mcdesk/install/deb/
 nav_order: 55
 ---
 
 {% comment %}
 The following liquid syntax declares a variable, major_version_mask, which is transformed into "N.x" where "N" is the major version number. This is required for proper versioning references to the Yum repo.
 {% endcomment %}
-{% assign version_parts = site.smartobserve_major_minor_version | split: "." %}
+{% assign version_parts = site.mcdesk_major_minor_version | split: "." %}
 {% assign major_version_mask = version_parts[0] | append: ".x" %}
 
 # Debian
 
-Installing SmartObserve using the Advanced Packaging Tool (APT) package manager simplifies the process considerably compared to the [Tarball]({{site.url}}{{site.baseurl}}/smartobserve/install/tar/) method. Several technical considerations, such as the installation path, location of configuration files, and creation of a service managed by `systemd`, as examples, are handled automatically by the package manager.
+Installing MCdesk using the Advanced Packaging Tool (APT) package manager simplifies the process considerably compared to the [Tarball]({{site.url}}{{site.baseurl}}/mcdesk/install/tar/) method. Several technical considerations, such as the installation path, location of configuration files, and creation of a service managed by `systemd`, as examples, are handled automatically by the package manager.
 
-Generally speaking, installing SmartObserve from the Debian distribution can be broken down into a few steps:
+Generally speaking, installing MCdesk from the Debian distribution can be broken down into a few steps:
 
-1. **Download and install SmartObserve.**
+1. **Download and install MCdesk.**
    - Install manually from a Debian package or from an APT repository.
-1. **(Optional) Test SmartObserve.**
-   - Confirm that SmartObserve is able to run before you apply any custom configuration.
+1. **(Optional) Test MCdesk.**
+   - Confirm that MCdesk is able to run before you apply any custom configuration.
    - This can be done without any security (no password, no certificates) or with a demo security configuration that can be applied by a packaged script.
-1. **Configure SmartObserve for your environment.**
-   -  Apply basic settings to SmartObserve and start using it in your environment.
+1. **Configure MCdesk for your environment.**
+   -  Apply basic settings to MCdesk and start using it in your environment.
 
-The Debian distribution provides everything you need to run SmartObserve inside Debian-based Linux Distributions, such as Ubuntu.
+The Debian distribution provides everything you need to run MCdesk inside Debian-based Linux Distributions, such as Ubuntu.
 
 This guide assumes that you are comfortable working from the Linux command line interface (CLI). You should understand how to input commands, navigate between directories, and edit text files. Some example commands reference the `vi` text editor, but you may use any text editor available.
 {:.note}
 
-## Step 1: Download and install SmartObserve
+## Step 1: Download and install MCdesk
 
-### Install SmartObserve from a package
+### Install MCdesk from a package
 
-1. Download the Debian package for the desired version directly from the [SmartObserve downloads page](https://magiccreative.io/downloads.html){:target='\_blank'}. The Debian package can be downloaded for both **x64** and **arm64** architectures.
+1. Download the Debian package for the desired version directly from the [MCdesk downloads page](https://magiccreative.io/downloads.html){:target='\_blank'}. The Debian package can be downloaded for both **x64** and **arm64** architectures.
 1. From the CLI, install the package using `dpkg`:
 
-   For new installations of SmartObserve 2.12 and later, you must define a custom admin password in order to set up a demo security configuration. Use one of the following commands to define a custom admin password:
+   For new installations of MCdesk 2.12 and later, you must define a custom admin password in order to set up a demo security configuration. Use one of the following commands to define a custom admin password:
    ```bash
    # x64
-   sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password> dpkg -i smartobserve-{{site.smartobserve_version}}-linux-x64.deb
+   sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password> dpkg -i mcdesk-{{site.mcdesk_version}}-linux-x64.deb
    
    # arm64
-   sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password> dpkg -i smartobserve-{{site.smartobserve_version}}-linux-arm64.deb
+   sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password> dpkg -i mcdesk-{{site.mcdesk_version}}-linux-arm64.deb
    ```
-   Use the following command for SmartObserve versions 2.11 and earlier:
+   Use the following command for MCdesk versions 2.11 and earlier:
    ```bash
    # x64
-   sudo dpkg -i smartobserve-<version>-linux-x64.deb
+   sudo dpkg -i mcdesk-<version>-linux-x64.deb
    
    # arm64
-   sudo dpkg -i smartobserve-<version>-linux-arm64.deb
+   sudo dpkg -i mcdesk-<version>-linux-arm64.deb
    ```
 
-1. After the installation succeeds, enable SmartObserve as a service.
+1. After the installation succeeds, enable MCdesk as a service.
     ```bash
-    sudo systemctl enable smartobserve
+    sudo systemctl enable mcdesk
     ```
     {% include copy.html %}
 
-1. Start the SmartObserve service.
+1. Start the MCdesk service.
     ```bash
-    sudo systemctl start smartobserve
+    sudo systemctl start mcdesk
     ```
     {% include copy.html %}
 
-1. Verify that SmartObserve launched correctly.
+1. Verify that MCdesk launched correctly.
     ```bash
-    sudo systemctl status smartobserve
+    sudo systemctl status mcdesk
     ```
     {% include copy.html %}
 
 ### Fingerprint verification
 
-The Debian package is not signed. If you would like to verify the fingerprint, the SmartObserve Project provides a `.sig` file as well as the `.deb` package for use with GNU Privacy Guard (GPG).
+The Debian package is not signed. If you would like to verify the fingerprint, the MCdesk Project provides a `.sig` file as well as the `.deb` package for use with GNU Privacy Guard (GPG).
 
 1. Download the desired Debian package.
    ```bash
-   curl -SLO https://artifacts.magiccreative.io/releases/bundle/smartobserve/{{site.smartobserve_version}}/smartobserve-{{site.smartobserve_version}}-linux-x64.deb
+   curl -SLO https://artifacts.magiccreative.io/releases/bundle/mcdesk/{{site.mcdesk_version}}/mcdesk-{{site.mcdesk_version}}-linux-x64.deb
    ```
    {% include copy.html %}
 
 1. Download the corresponding signature file.
    ```bash
-   curl -SLO https://artifacts.magiccreative.io/releases/bundle/smartobserve/{{site.smartobserve_version}}/smartobserve-{{site.smartobserve_version}}-linux-x64.deb.sig
+   curl -SLO https://artifacts.magiccreative.io/releases/bundle/mcdesk/{{site.mcdesk_version}}/mcdesk-{{site.mcdesk_version}}-linux-x64.deb.sig
    ```
    {% include copy.html %}
 
 1. Download and import the GPG key.
    ```bash
-   curl -o- https://artifacts.magiccreative.io/publickeys/smartobserve-release.pgp | gpg --import -
+   curl -o- https://artifacts.magiccreative.io/publickeys/mcdesk-release.pgp | gpg --import -
    ```
    {% include copy.html %}
 
 1. Verify the signature.
    ```bash
-   gpg --verify smartobserve-{{site.smartobserve_version}}-linux-x64.deb.sig smartobserve-{{site.smartobserve_version}}-linux-x64.deb
+   gpg --verify mcdesk-{{site.mcdesk_version}}-linux-x64.deb.sig mcdesk-{{site.mcdesk_version}}-linux-x64.deb
    ```
    {% include copy.html %}
 
-### Install SmartObserve from an APT repository
+### Install MCdesk from an APT repository
 
 APT, the primary package management tool for Debian–based operating systems, allows you to download and install the Debian package from the APT repository. 
 
@@ -114,13 +114,13 @@ APT, the primary package management tool for Debian–based operating systems, a
 
 1. Import the public GPG key. This key is used to verify that the APT repository is signed.
     ```bash
-    curl -o- https://artifacts.magiccreative.io/publickeys/smartobserve-release.pgp | sudo gpg --dearmor --batch --yes -o /usr/share/keyrings/smartobserve-release-keyring
+    curl -o- https://artifacts.magiccreative.io/publickeys/mcdesk-release.pgp | sudo gpg --dearmor --batch --yes -o /usr/share/keyrings/mcdesk-release-keyring
     ```
     {% include copy.html %}
 
-1. Create an APT repository for SmartObserve:
+1. Create an APT repository for MCdesk:
    ```bash
-   echo "deb [signed-by=/usr/share/keyrings/smartobserve-release-keyring] https://artifacts.magiccreative.io/releases/bundle/smartobserve/{{major_version_mask}}/apt stable main" | sudo tee /etc/apt/sources.list.d/smartobserve-{{major_version_mask}}.list
+   echo "deb [signed-by=/usr/share/keyrings/mcdesk-release-keyring] https://artifacts.magiccreative.io/releases/bundle/mcdesk/{{major_version_mask}}/apt stable main" | sudo tee /etc/apt/sources.list.d/mcdesk-{{major_version_mask}}.list
    ```
    {% include copy.html %}
 
@@ -130,42 +130,42 @@ APT, the primary package management tool for Debian–based operating systems, a
     ```
     {% include copy.html %}
 
-1. With the repository information added, list all available versions of SmartObserve:
+1. With the repository information added, list all available versions of MCdesk:
    ```bash
-   sudo apt list -a smartobserve
+   sudo apt list -a mcdesk
    ```
    {% include copy.html %}
 
-1. Choose the version of SmartObserve you want to install: 
-   - Unless otherwise indicated, the latest available version of SmartObserve is installed.
+1. Choose the version of MCdesk you want to install: 
+   - Unless otherwise indicated, the latest available version of MCdesk is installed.
 
    ```bash
-   # For new installations of SmartObserve 2.12 and later, you must define a custom admin password in order to set up a demo security configuration.
+   # For new installations of MCdesk 2.12 and later, you must define a custom admin password in order to set up a demo security configuration.
    # Use one of the following commands to define a custom admin password:
-   sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password> apt-get install smartobserve
+   sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password> apt-get install mcdesk
    ```
    {% include copy.html %}
 
-   For more information, see the [password requirements]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/docker/#password-requirements).
+   For more information, see the [password requirements]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/docker/#password-requirements).
    {: .note}
 
-   - To install a specific version of SmartObserve:
+   - To install a specific version of MCdesk:
 
    ```bash
-   # Specify the version manually using smartobserve=<version>
+   # Specify the version manually using mcdesk=<version>
 
-   # For new installations of SmartObserve 2.12 and later, you must define a custom admin password in order to set up a demo security configuration.
+   # For new installations of MCdesk 2.12 and later, you must define a custom admin password in order to set up a demo security configuration.
    # Use one of the following commands to define a custom admin password:
-   sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password> apt-get install smartobserve={{site.smartobserve_version}}
+   sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password> apt-get install mcdesk={{site.mcdesk_version}}
 
-   # Use the following command for SmartObserve versions 2.11 and earlier:
-   sudo apt-get install smartobserve=<version>
+   # Use the following command for MCdesk versions 2.11 and earlier:
+   sudo apt-get install mcdesk=<version>
    ```
 
-1. If the installation succeeds, it means APT has validated that the repository metadata was signed with a trusted GPG key. To manually confirm that the key you imported matches the official SmartObserve release key, execute the following command:
+1. If the installation succeeds, it means APT has validated that the repository metadata was signed with a trusted GPG key. To manually confirm that the key you imported matches the official MCdesk release key, execute the following command:
 
    ```bash
-   gpg --no-default-keyring --keyring /etc/apt/trusted.gpg.d/smartobserve.gpg --fingerprint
+   gpg --no-default-keyring --keyring /etc/apt/trusted.gpg.d/mcdesk.gpg --fingerprint
    ```
 
    In the output you should see the following snippet:
@@ -175,34 +175,34 @@ APT, the primary package management tool for Debian–based operating systems, a
    ```
    {% include copy.html %}
 
-1. Once complete, enable SmartObserve.
+1. Once complete, enable MCdesk.
     ```bash
-    sudo systemctl enable smartobserve
+    sudo systemctl enable mcdesk
     ```
     {% include copy.html %}
 
-1. Start SmartObserve.
+1. Start MCdesk.
     ```bash
-    sudo systemctl start smartobserve
+    sudo systemctl start mcdesk
     ```
     {% include copy.html %}
 
-1. Verify that SmartObserve launched correctly.
+1. Verify that MCdesk launched correctly.
     ```bash
-    sudo systemctl status smartobserve
+    sudo systemctl status mcdesk
     ```
     {% include copy.html %}
 
-## Step 2: (Optional) Test SmartObserve
+## Step 2: (Optional) Test MCdesk
 
-Before proceeding with any configuration, you should test your installation of SmartObserve. Otherwise, it can be difficult to determine whether future problems are due to installation issues or custom settings you applied after installation.
+Before proceeding with any configuration, you should test your installation of MCdesk. Otherwise, it can be difficult to determine whether future problems are due to installation issues or custom settings you applied after installation.
 
-When SmartObserve is installed using the Debian package, some demo security settings are automatically applied. This includes self-signed TLS certificates and several users and roles. If you would like to configure these yourself, see [Set up SmartObserve in your environment](#step-3-set-up-smartobserve-in-your-environment).
+When MCdesk is installed using the Debian package, some demo security settings are automatically applied. This includes self-signed TLS certificates and several users and roles. If you would like to configure these yourself, see [Set up MCdesk in your environment](#step-3-set-up-mcdesk-in-your-environment).
 
-An SmartObserve node in its default configuration (with demo certificates and users with default passwords) is not suitable for a production environment. If you plan to use the node in a production environment, you should, at a minimum, replace the demo TLS certificates with your own TLS certificates and [update the list of internal users and passwords]({{site.url}}{{site.baseurl}}/security-plugin/configuration/yaml). See [Security configuration]({{site.url}}{{site.baseurl}}/security-plugin/configuration/index/) for additional guidance to ensure that your nodes are configured according to your security requirements.
+An MCdesk node in its default configuration (with demo certificates and users with default passwords) is not suitable for a production environment. If you plan to use the node in a production environment, you should, at a minimum, replace the demo TLS certificates with your own TLS certificates and [update the list of internal users and passwords]({{site.url}}{{site.baseurl}}/security-plugin/configuration/yaml). See [Security configuration]({{site.url}}{{site.baseurl}}/security-plugin/configuration/index/) for additional guidance to ensure that your nodes are configured according to your security requirements.
 {: .warning}
 
-1. Send requests to the server to verify that SmartObserve is running. Note the use of the `--insecure` flag, which is required because the TLS certificates are self-signed.
+1. Send requests to the server to verify that MCdesk is running. Note the use of the `--insecure` flag, which is required because the TLS certificates are self-signed.
    - Send a request to port 9200:
       ```bash
       curl -X GET https://localhost:9200 -u 'admin:<custom-admin-password>' --insecure
@@ -213,10 +213,10 @@ An SmartObserve node in its default configuration (with demo certificates and us
       ```bash
       {
          "name":"hostname",
-         "cluster_name":"smartobserve",
+         "cluster_name":"mcdesk",
          "cluster_uuid":"QqgpHCbnSRKcPAizqjvoOw",
          "version":{
-            "distribution":"smartobserve",
+            "distribution":"mcdesk",
             "number":<version>,
             "build_type":<build-type>,
             "build_hash":<build-hash>,
@@ -226,7 +226,7 @@ An SmartObserve node in its default configuration (with demo certificates and us
             "minimum_wire_compatibility_version":"7.10.0",
             "minimum_index_compatibility_version":"7.0.0"
          },
-         "tagline":"The SmartObserve Project: https://magiccreative.io/"
+         "tagline":"The MCdesk Project: https://magiccreative.io/"
       }
       ```
    - Query the plugins endpoint:
@@ -238,47 +238,47 @@ An SmartObserve node in its default configuration (with demo certificates and us
     The response should look like this:
     ```bash
     name          component                            version
-    hostname      smartobserve-alerting                  {{site.smartobserve_version}}
-    hostname      smartobserve-anomaly-detection         {{site.smartobserve_version}}
-    hostname      smartobserve-asynchronous-search       {{site.smartobserve_version}}
-    hostname      smartobserve-cross-cluster-replication {{site.smartobserve_version}}
-    hostname      smartobserve-geospatial                {{site.smartobserve_version}}
-    hostname      smartobserve-index-management          {{site.smartobserve_version}}
-    hostname      smartobserve-job-scheduler             {{site.smartobserve_version}}
-    hostname      smartobserve-knn                       {{site.smartobserve_version}}
-    hostname      smartobserve-ml                        {{site.smartobserve_version}}
-    hostname      smartobserve-neural-search             {{site.smartobserve_version}}
-    hostname      smartobserve-notifications             {{site.smartobserve_version}}
-    hostname      smartobserve-notifications-core        {{site.smartobserve_version}}
-    hostname      smartobserve-observability             {{site.smartobserve_version}}
-    hostname      smartobserve-performance-analyzer      {{site.smartobserve_version}}
-    hostname      smartobserve-reports-scheduler         {{site.smartobserve_version}}
-    hostname      smartobserve-security                  {{site.smartobserve_version}}
-    hostname      smartobserve-security-analytics        {{site.smartobserve_version}}
-    hostname      smartobserve-sql                       {{site.smartobserve_version}}
+    hostname      mcdesk-alerting                  {{site.mcdesk_version}}
+    hostname      mcdesk-anomaly-detection         {{site.mcdesk_version}}
+    hostname      mcdesk-asynchronous-search       {{site.mcdesk_version}}
+    hostname      mcdesk-cross-cluster-replication {{site.mcdesk_version}}
+    hostname      mcdesk-geospatial                {{site.mcdesk_version}}
+    hostname      mcdesk-index-management          {{site.mcdesk_version}}
+    hostname      mcdesk-job-scheduler             {{site.mcdesk_version}}
+    hostname      mcdesk-knn                       {{site.mcdesk_version}}
+    hostname      mcdesk-ml                        {{site.mcdesk_version}}
+    hostname      mcdesk-neural-search             {{site.mcdesk_version}}
+    hostname      mcdesk-notifications             {{site.mcdesk_version}}
+    hostname      mcdesk-notifications-core        {{site.mcdesk_version}}
+    hostname      mcdesk-observability             {{site.mcdesk_version}}
+    hostname      mcdesk-performance-analyzer      {{site.mcdesk_version}}
+    hostname      mcdesk-reports-scheduler         {{site.mcdesk_version}}
+    hostname      mcdesk-security                  {{site.mcdesk_version}}
+    hostname      mcdesk-security-analytics        {{site.mcdesk_version}}
+    hostname      mcdesk-sql                       {{site.mcdesk_version}}
     ```
 
-## Step 3: Set up SmartObserve in your environment
+## Step 3: Set up MCdesk in your environment
 
-Users who do not have prior experience with SmartObserve may want a list of recommended settings in order to get started with the service. By default, SmartObserve is not bound to a network interface and cannot be reached by external hosts. Additionally, security settings are populated by default user names and passwords. The following recommendations will enable a user to bind SmartObserve to a network interface, create and sign TLS certificates, and configure basic authentication.
+Users who do not have prior experience with MCdesk may want a list of recommended settings in order to get started with the service. By default, MCdesk is not bound to a network interface and cannot be reached by external hosts. Additionally, security settings are populated by default user names and passwords. The following recommendations will enable a user to bind MCdesk to a network interface, create and sign TLS certificates, and configure basic authentication.
 
 The following recommended settings will allow you to:
 
-- Bind SmartObserve to an IP or network interface on the host.
+- Bind MCdesk to an IP or network interface on the host.
 - Set initial and maximum JVM heap sizes.
 - Define an environment variable that points to the bundled JDK.
 - Configure your own TLS certificates—no third-party certificate authority (CA) is required.
 - Create an admin user with a custom password.
 
-If you ran the security demo script, then you will need to manually reconfigure settings that were modified. Refer to [Security configuration]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/) for guidance before proceeding.
+If you ran the security demo script, then you will need to manually reconfigure settings that were modified. Refer to [Security configuration]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/) for guidance before proceeding.
 {:.note}
 
 Before modifying any configuration files, it's always a good idea to save a backup copy before making changes. The backup file can be used to mitigate any issues caused by a bad configuration.
 {:.tip}
 
-1. Open `smartobserve.yml`.
+1. Open `mcdesk.yml`.
    ```bash
-   sudo vi /etc/smartobserve/smartobserve.yml
+   sudo vi /etc/mcdesk/mcdesk.yml
    ```
    {% include copy.html %}
 
@@ -286,12 +286,12 @@ Before modifying any configuration files, it's always a good idea to save a back
 
    ```bash
    # Path to directory where to store the data (separate multiple locations by comma):
-   path.data: /var/lib/smartobserve
+   path.data: /var/lib/mcdesk
    
    # Path to log files:
-   path.logs: /var/log/smartobserve
+   path.logs: /var/log/mcdesk
 
-   # Bind SmartObserve to the correct network interface. Use 0.0.0.0
+   # Bind MCdesk to the correct network interface. Use 0.0.0.0
    # to include all available interfaces or specify an IP address
    # assigned to a specific interface.
    network.host: 0.0.0.0
@@ -301,7 +301,7 @@ Before modifying any configuration files, it's always a good idea to save a back
    # fail when you try to start the service.
    discovery.type: single-node
 
-   # If you previously disabled the Security plugin in smartobserve.yml,
+   # If you previously disabled the Security plugin in mcdesk.yml,
    # be sure to re-enable it. Otherwise you can skip this setting.
    plugins.security.disabled: false
    ```
@@ -314,7 +314,7 @@ Before modifying any configuration files, it's always a good idea to save a back
    1.  Open `jvm.options`.
          
          ```bash
-         sudo vi /etc/smartobserve/jvm.options
+         sudo vi /etc/mcdesk/jvm.options
          ```
          {% include copy.html %}
 
@@ -331,12 +331,12 @@ Before modifying any configuration files, it's always a good idea to save a back
 
 ### Configure TLS
 
-TLS certificates provide additional security for your cluster by allowing clients to confirm the identity of hosts and encrypt traffic between the client and host. For more information, refer to [Configure TLS Certificates]({{site.url}}{{site.baseurl}}/security-plugin/configuration/tls/) and [Generate Certificates]({{site.url}}{{site.baseurl}}/security-plugin/configuration/generate-certificates/), which are included in the [Security plugin]({{site.url}}{{site.baseurl}}/security-plugin/index/) documentation. For work performed in a development environment, self-signed certificates are usually adequate. This section will guide you through the basic steps required to generate your own TLS certificates and apply them to your SmartObserve host.
+TLS certificates provide additional security for your cluster by allowing clients to confirm the identity of hosts and encrypt traffic between the client and host. For more information, refer to [Configure TLS Certificates]({{site.url}}{{site.baseurl}}/security-plugin/configuration/tls/) and [Generate Certificates]({{site.url}}{{site.baseurl}}/security-plugin/configuration/generate-certificates/), which are included in the [Security plugin]({{site.url}}{{site.baseurl}}/security-plugin/index/) documentation. For work performed in a development environment, self-signed certificates are usually adequate. This section will guide you through the basic steps required to generate your own TLS certificates and apply them to your MCdesk host.
 
 1. Delete the demo certificates.
    
    ```bash
-   sudo sh -c 'rm /etc/smartobserve/*.pem'
+   sudo sh -c 'rm /etc/mcdesk/*.pem'
    ```
    {% include copy.html %}
 
@@ -344,28 +344,28 @@ TLS certificates provide additional security for your cluster by allowing client
    
    ```bash
    # Create a private key for the root certificate
-   sudo openssl genrsa -out /etc/smartobserve/root-ca-key.pem 2048
+   sudo openssl genrsa -out /etc/mcdesk/root-ca-key.pem 2048
    
    # Use the private key to create a self-signed root certificate. Be sure to
    # replace the arguments passed to -subj so they reflect your specific host.
-   sudo openssl req -new -x509 -sha256 -key /etc/smartobserve/root-ca-key.pem -subj "/C=CA/ST=ONTARIO/L=TORONTO/O=ORG/OU=UNIT/CN=ROOT" -out /etc/smartobserve/root-ca.pem -days 730
+   sudo openssl req -new -x509 -sha256 -key /etc/mcdesk/root-ca-key.pem -subj "/C=CA/ST=ONTARIO/L=TORONTO/O=ORG/OU=UNIT/CN=ROOT" -out /etc/mcdesk/root-ca.pem -days 730
    ```
 
 1. Next, create the admin certificate. This certificate is used to gain elevated rights for performing administrative tasks relating to the Security plugin.
    
    ```bash
    # Create a private key for the admin certificate.
-   sudo openssl genrsa -out /etc/smartobserve/admin-key-temp.pem 2048
+   sudo openssl genrsa -out /etc/mcdesk/admin-key-temp.pem 2048
 
    # Convert the private key to PKCS#8.
-   sudo openssl pkcs8 -inform PEM -outform PEM -in /etc/smartobserve/admin-key-temp.pem -topk8 -nocrypt -v1 PBE-SHA1-3DES -out /etc/smartobserve/admin-key.pem
+   sudo openssl pkcs8 -inform PEM -outform PEM -in /etc/mcdesk/admin-key-temp.pem -topk8 -nocrypt -v1 PBE-SHA1-3DES -out /etc/mcdesk/admin-key.pem
    
    # Create the certficiate signing request (CSR). A common name (CN) of "A" is acceptable because this certificate is
    # used for authenticating elevated access and is not tied to a host.
-   sudo openssl req -new -key /etc/smartobserve/admin-key.pem -subj "/C=CA/ST=ONTARIO/L=TORONTO/O=ORG/OU=UNIT/CN=A" -out /etc/smartobserve/admin.csr
+   sudo openssl req -new -key /etc/mcdesk/admin-key.pem -subj "/C=CA/ST=ONTARIO/L=TORONTO/O=ORG/OU=UNIT/CN=A" -out /etc/mcdesk/admin.csr
    
    # Sign the admin certificate with the root certificate and private key you created earlier.
-   sudo openssl x509 -req -in /etc/smartobserve/admin.csr -CA /etc/smartobserve/root-ca.pem -CAkey /etc/smartobserve/root-ca-key.pem -CAcreateserial -sha256 -out /etc/smartobserve/admin.pem -days 730
+   sudo openssl x509 -req -in /etc/mcdesk/admin.csr -CA /etc/mcdesk/root-ca.pem -CAkey /etc/mcdesk/root-ca-key.pem -CAcreateserial -sha256 -out /etc/mcdesk/admin.pem -days 730
    ```
    {% include copy.html %}
 
@@ -373,39 +373,39 @@ TLS certificates provide additional security for your cluster by allowing client
    
    ```bash
    # Create a private key for the node certificate.
-   sudo openssl genrsa -out /etc/smartobserve/node1-key-temp.pem 2048
+   sudo openssl genrsa -out /etc/mcdesk/node1-key-temp.pem 2048
    
    # Convert the private key to PKCS#8.
-   sudo openssl pkcs8 -inform PEM -outform PEM -in /etc/smartobserve/node1-key-temp.pem -topk8 -nocrypt -v1 PBE-SHA1-3DES -out /etc/smartobserve/node1-key.pem
+   sudo openssl pkcs8 -inform PEM -outform PEM -in /etc/mcdesk/node1-key-temp.pem -topk8 -nocrypt -v1 PBE-SHA1-3DES -out /etc/mcdesk/node1-key.pem
 
    # Create the CSR and replace the arguments passed to -subj so they reflect your specific host.
    # The CN should match a DNS A record for the host-do not use the hostname.
-   sudo openssl req -new -key /etc/smartobserve/node1-key.pem -subj "/C=CA/ST=ONTARIO/L=TORONTO/O=ORG/OU=UNIT/CN=node1.dns.a-record" -out /etc/smartobserve/node1.csr
+   sudo openssl req -new -key /etc/mcdesk/node1-key.pem -subj "/C=CA/ST=ONTARIO/L=TORONTO/O=ORG/OU=UNIT/CN=node1.dns.a-record" -out /etc/mcdesk/node1.csr
    
    # Create an extension file that defines a SAN DNS name for the host. This
    # should match the DNS A record of the host.
-   sudo sh -c 'echo subjectAltName=DNS:node1.dns.a-record > /etc/smartobserve/node1.ext'
+   sudo sh -c 'echo subjectAltName=DNS:node1.dns.a-record > /etc/mcdesk/node1.ext'
    
    # Sign the node certificate with the root certificate and private key that you created earlier.
-   sudo openssl x509 -req -in /etc/smartobserve/node1.csr -CA /etc/smartobserve/root-ca.pem -CAkey /etc/smartobserve/root-ca-key.pem -CAcreateserial -sha256 -out /etc/smartobserve/node1.pem -days 730 -extfile /etc/smartobserve/node1.ext
+   sudo openssl x509 -req -in /etc/mcdesk/node1.csr -CA /etc/mcdesk/root-ca.pem -CAkey /etc/mcdesk/root-ca-key.pem -CAcreateserial -sha256 -out /etc/mcdesk/node1.pem -days 730 -extfile /etc/mcdesk/node1.ext
    ```
    {% include copy.html %}
 
 1. Remove temporary files that are no longer required.
    
    ```bash
-   sudo sh -c 'rm -f /etc/smartobserve/*temp.pem /etc/smartobserve/*.csr /etc/smartobserve/*.ext'
+   sudo sh -c 'rm -f /etc/mcdesk/*temp.pem /etc/mcdesk/*.csr /etc/mcdesk/*.ext'
    ```
    {% include copy.html %}
 
-1. Make sure the remaining certificates are owned by the smartobserve user.
+1. Make sure the remaining certificates are owned by the mcdesk user.
    
    ```bash
-   sudo chown smartobserve:smartobserve /etc/smartobserve/admin-key.pem /etc/smartobserve/admin.pem /etc/smartobserve/node1-key.pem /etc/smartobserve/node1.pem /etc/smartobserve/root-ca-key.pem /etc/smartobserve/root-ca.pem /etc/smartobserve/root-ca.srl
+   sudo chown mcdesk:mcdesk /etc/mcdesk/admin-key.pem /etc/mcdesk/admin.pem /etc/mcdesk/node1-key.pem /etc/mcdesk/node1.pem /etc/mcdesk/root-ca-key.pem /etc/mcdesk/root-ca.pem /etc/mcdesk/root-ca.srl
    ```
    {% include copy.html %}
 
-1. Add these certificates to `/etc/smartobserve/smartobserve.yml` as described in [Generate Certificates]({{site.url}}{{site.baseurl}}/security-plugin/configuration/generate-certificates/#add-distinguished-names-to-smartobserveyml). Advanced users might also choose to append the settings using the following script:
+1. Add these certificates to `/etc/mcdesk/mcdesk.yml` as described in [Generate Certificates]({{site.url}}{{site.baseurl}}/security-plugin/configuration/generate-certificates/#add-distinguished-names-to-mcdeskyml). Advanced users might also choose to append the settings using the following script:
    
    ```bash
    #! /bin/bash
@@ -413,22 +413,22 @@ TLS certificates provide additional security for your cluster by allowing client
    # Before running this script, make sure to replace the CN in the 
    # node's distinguished name with a real DNS A record.
 
-   echo "plugins.security.ssl.transport.pemcert_filepath: /etc/smartobserve/node1.pem" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.ssl.transport.pemkey_filepath: /etc/smartobserve/node1-key.pem" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.ssl.transport.pemtrustedcas_filepath: /etc/smartobserve/root-ca.pem" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.ssl.http.enabled: true" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.ssl.http.pemcert_filepath: /etc/smartobserve/node1.pem" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.ssl.http.pemkey_filepath: /etc/smartobserve/node1-key.pem" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.ssl.http.pemtrustedcas_filepath: /etc/smartobserve/root-ca.pem" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.allow_default_init_securityindex: true" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.authcz.admin_dn:" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "  - 'CN=A,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA'" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.nodes_dn:" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "  - 'CN=node1.dns.a-record,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA'" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.audit.type: internal_smartobserve" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.enable_snapshot_restore_privilege: true" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.check_snapshot_restore_write_privileges: true" | sudo tee -a /etc/smartobserve/smartobserve.yml
-   echo "plugins.security.restapi.roles_enabled: [\"all_access\", \"security_rest_api_access\"]" | sudo tee -a /etc/smartobserve/smartobserve.yml
+   echo "plugins.security.ssl.transport.pemcert_filepath: /etc/mcdesk/node1.pem" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.ssl.transport.pemkey_filepath: /etc/mcdesk/node1-key.pem" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.ssl.transport.pemtrustedcas_filepath: /etc/mcdesk/root-ca.pem" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.ssl.http.enabled: true" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.ssl.http.pemcert_filepath: /etc/mcdesk/node1.pem" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.ssl.http.pemkey_filepath: /etc/mcdesk/node1-key.pem" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.ssl.http.pemtrustedcas_filepath: /etc/mcdesk/root-ca.pem" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.allow_default_init_securityindex: true" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.authcz.admin_dn:" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "  - 'CN=A,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA'" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.nodes_dn:" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "  - 'CN=node1.dns.a-record,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA'" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.audit.type: internal_mcdesk" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.enable_snapshot_restore_privilege: true" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.check_snapshot_restore_write_privileges: true" | sudo tee -a /etc/mcdesk/mcdesk.yml
+   echo "plugins.security.restapi.roles_enabled: [\"all_access\", \"security_rest_api_access\"]" | sudo tee -a /etc/mcdesk/mcdesk.yml
    ```
    {% include copy.html %}
 
@@ -436,7 +436,7 @@ TLS certificates provide additional security for your cluster by allowing client
    
    ```bash
    # Copy the root certificate to the correct directory
-   sudo install -m 0644 /etc/smartobserve/root-ca.pem /usr/local/share/ca-certificates/root-ca.crt
+   sudo install -m 0644 /etc/mcdesk/root-ca.pem /usr/local/share/ca-certificates/root-ca.crt
    
    # Add trust
    sudo update-ca-certificates
@@ -445,12 +445,12 @@ TLS certificates provide additional security for your cluster by allowing client
 
 ### Configure a user
 
-Users are defined and authenticated by SmartObserve in a variety of ways. One method that does not require additional backend infrastructure is manually configuring users in `internal_users.yml`. See [YAML files]({{site.url}}{{site.baseurl}}/security-plugin/configuration/yaml/) for more information about configuring users. The following steps explain how to replace the `admin` default password using a script:
+Users are defined and authenticated by MCdesk in a variety of ways. One method that does not require additional backend infrastructure is manually configuring users in `internal_users.yml`. See [YAML files]({{site.url}}{{site.baseurl}}/security-plugin/configuration/yaml/) for more information about configuring users. The following steps explain how to replace the `admin` default password using a script:
 
 1. Navigate to the Security plugins tools directory.
    
    ```bash
-   cd /usr/share/smartobserve/plugins/smartobserve-security/tools
+   cd /usr/share/mcdesk/plugins/mcdesk-security/tools
    ```
    {% include copy.html %}
 
@@ -461,7 +461,7 @@ Users are defined and authenticated by SmartObserve in a variety of ways. One me
       # Example output if a JDK isn't found...
       $ ./hash.sh
       **************************************************************************
-      ** This tool will be deprecated in the next major release of SmartObserve **
+      ** This tool will be deprecated in the next major release of MCdesk **
       ** https://github.com/igsl-group/security/issues/1755           **
       **************************************************************************
       which: no java in (/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/user/.local/bin:/home/user/bin)
@@ -473,7 +473,7 @@ Users are defined and authenticated by SmartObserve in a variety of ways. One me
    - Declare an environment variable when you invoke the script in order to avoid issues:
       
       ```bash
-      OPENSEARCH_JAVA_HOME=/usr/share/smartobserve/jdk ./hash.sh
+      OPENSEARCH_JAVA_HOME=/usr/share/mcdesk/jdk ./hash.sh
       ```
       {% include copy.html %}
 
@@ -481,7 +481,7 @@ Users are defined and authenticated by SmartObserve in a variety of ways. One me
 1. Open `internal_users.yml`.
    
    ```bash
-   sudo vi /etc/smartobserve/smartobserve-security/internal_users.yml
+   sudo vi /etc/mcdesk/mcdesk-security/internal_users.yml
    ```
    {% include copy.html %}
 
@@ -518,12 +518,12 @@ Users are defined and authenticated by SmartObserve in a variety of ways. One me
 
 ### Apply changes
 
-Now that TLS certificates are installed and demo users were removed or assigned new passwords, the last step is to apply the configuration changes. This last configuration step requires invoking `securityadmin.sh` while SmartObserve is running on the host.
+Now that TLS certificates are installed and demo users were removed or assigned new passwords, the last step is to apply the configuration changes. This last configuration step requires invoking `securityadmin.sh` while MCdesk is running on the host.
 
-1. SmartObserve must be running for `securityadmin.sh` to apply changes. If you made changes to `smartobserve.yml`, restart SmartObserve.
+1. MCdesk must be running for `securityadmin.sh` to apply changes. If you made changes to `mcdesk.yml`, restart MCdesk.
    
    ```bash
-   sudo systemctl restart smartobserve
+   sudo systemctl restart mcdesk
    ```
    {% include copy.html %}
 
@@ -531,7 +531,7 @@ Now that TLS certificates are installed and demo users were removed or assigned 
    
    ```bash
    # Change to the correct directory
-   cd /usr/share/smartobserve/plugins/smartobserve-security/tools
+   cd /usr/share/mcdesk/plugins/mcdesk-security/tools
    ```
    {% include copy.html %}
 
@@ -539,13 +539,13 @@ Now that TLS certificates are installed and demo users were removed or assigned 
    
    ```bash
    # You can omit the environment variable if you declared this in your $PATH.
-   sudo OPENSEARCH_JAVA_HOME=/usr/share/smartobserve/jdk ./securityadmin.sh -cd /etc/smartobserve/smartobserve-security/ -cacert /etc/smartobserve/root-ca.pem -cert /etc/smartobserve/admin.pem -key /etc/smartobserve/admin-key.pem -icl -nhnv
+   sudo OPENSEARCH_JAVA_HOME=/usr/share/mcdesk/jdk ./securityadmin.sh -cd /etc/mcdesk/mcdesk-security/ -cacert /etc/mcdesk/root-ca.pem -cert /etc/mcdesk/admin.pem -key /etc/mcdesk/admin-key.pem -icl -nhnv
    ```
    {% include copy.html %}
 
 ### Verify that the service is running
 
-SmartObserve is now running on your host with custom TLS certificates and a secure user for basic authentication. You can verify external connectivity by sending an API request to your SmartObserve node from another host.
+MCdesk is now running on your host with custom TLS certificates and a secure user for basic authentication. You can verify external connectivity by sending an API request to your MCdesk node from another host.
 
 During the previous test you directed requests to `localhost`. Now that TLS certificates have been applied and the new certificates reference your host's actual DNS record, requests to `localhost` will fail the CN check and the certificate will be considered invalid. Instead, requests should be sent to the address you specified while generating the certificate.
 
@@ -561,10 +561,10 @@ You should receive the following response:
 ```
 {
    "name":"hostname",
-   "cluster_name":"smartobserve",
+   "cluster_name":"mcdesk",
    "cluster_uuid":"QqgpHCbnSRKcPAizqjvoOw",
    "version":{
-      "distribution":"smartobserve",
+      "distribution":"mcdesk",
       "number":<version>,
       "build_type":<build-type>,
       "build_hash":<build-hash>,
@@ -574,53 +574,53 @@ You should receive the following response:
       "minimum_wire_compatibility_version":"7.10.0",
       "minimum_index_compatibility_version":"7.0.0"
    },
-   "tagline":"The SmartObserve Project: https://magiccreative.io/"
+   "tagline":"The MCdesk Project: https://magiccreative.io/"
 }
 ```
 
 ## Upgrade to a newer version
 
-SmartObserve instances installed using `dpkg` or `apt-get` can be easily upgraded to a newer version.
+MCdesk instances installed using `dpkg` or `apt-get` can be easily upgraded to a newer version.
 
 ### Manual upgrade with DPKG 
 
-Download the Debian package for the desired upgrade version directly from the [SmartObserve Project downloads page](https://magiccreative.io/downloads.html){:target='\_blank'}.
+Download the Debian package for the desired upgrade version directly from the [MCdesk Project downloads page](https://magiccreative.io/downloads.html){:target='\_blank'}.
 
 Navigate to the directory containing the distribution and run the following command:
 
 ```bash
-sudo dpkg -i smartobserve-{{site.smartobserve_version}}-linux-x64.deb
+sudo dpkg -i mcdesk-{{site.mcdesk_version}}-linux-x64.deb
 ```
 {% include copy.html %}
 
 ### APT-GET
 
-To upgrade to the latest version of SmartObserve using `apt-get`:
+To upgrade to the latest version of MCdesk using `apt-get`:
 
 ```bash
-sudo apt-get upgrade smartobserve
+sudo apt-get upgrade mcdesk
 ```
 {% include copy.html %}
 
-You can also upgrade to a specific SmartObserve version:
+You can also upgrade to a specific MCdesk version:
 
 ```bash
-sudo apt-get upgrade smartobserve=<version>
+sudo apt-get upgrade mcdesk=<version>
 ```
 {% include copy.html %}
 
 ### Automatically restart the service after a package upgrade (2.13.0+)
 
-To automatically restart SmartObserve after a package upgrade, enable the `smartobserve.service` through `systemd`:
+To automatically restart MCdesk after a package upgrade, enable the `mcdesk.service` through `systemd`:
 
 ```bash
-sudo systemctl enable smartobserve.service
+sudo systemctl enable mcdesk.service
 ```
 {% include copy.html %}
 
 ## Related links
 
-- [SmartObserve configuration]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/)
-- [Install and configure SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/index/)
-- [SmartObserve plugin installation]({{site.url}}{{site.baseurl}}/smartobserve/install/plugins/)
+- [MCdesk configuration]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/)
+- [Install and configure MCdesk Dashboards]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/index/)
+- [MCdesk plugin installation]({{site.url}}{{site.baseurl}}/mcdesk/install/plugins/)
 - [About the Security plugin]({{site.url}}{{site.baseurl}}/security-plugin/index/)

@@ -14,7 +14,7 @@ redirect_from:
 
 # RAG chatbot with a conversational flow agent
 
-This tutorial explains how to use a conversational flow agent to build a retrieval-augmented generation (RAG) application with your SmartObserve data as a knowledge base.
+This tutorial explains how to use a conversational flow agent to build a retrieval-augmented generation (RAG) application with your MCdesk data as a knowledge base.
 
 Replace the placeholders beginning with the prefix `your_` with your own values.
 {: .note}
@@ -23,7 +23,7 @@ An alternative way to build RAG conversational search is to use a RAG pipeline. 
 
 ## Prerequisite
 
-In this tutorial, you'll build a RAG application that provides an SmartObserve [vector index]({{site.url}}{{site.baseurl}}/search-plugins/knn/knn-index/) as a knowledge base for a large language model (LLM). For data retrieval, you'll use [semantic search]({{site.url}}{{site.baseurl}}/search-plugins/semantic-search/). For a comprehensive semantic search setup, see [this tutorial]({{site.url}}{{site.baseurl}}/search-plugins/neural-search-tutorial/).
+In this tutorial, you'll build a RAG application that provides an MCdesk [vector index]({{site.url}}{{site.baseurl}}/search-plugins/knn/knn-index/) as a knowledge base for a large language model (LLM). For data retrieval, you'll use [semantic search]({{site.url}}{{site.baseurl}}/search-plugins/semantic-search/). For a comprehensive semantic search setup, see [this tutorial]({{site.url}}{{site.baseurl}}/search-plugins/neural-search-tutorial/).
 
 First, you'll need to update your cluster settings. If you don't have a dedicated machine learning (ML) node, set `"plugins.ml_commons.only_run_on_ml_node": false`. To avoid triggering a native memory circuit breaker, set `"plugins.ml_commons.native_memory_threshold"` to 100%:
 
@@ -85,7 +85,7 @@ POST /_plugins/_ml/models/your_text_embedding_model_id/_predict
 ```
 {% include copy-curl.html %}
 
-For more information about using models within your SmartObserve cluster, see [Pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
+For more information about using models within your MCdesk cluster, see [Pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
 
 ### Step 1.2: Create an ingest pipeline
 
@@ -251,7 +251,7 @@ POST /_plugins/_ml/models/your_LLM_model_id/_predict
 
 ## Step 3: Register an agent
 
-SmartObserve provides the following agent types: `flow`, `conversational_flow`, and `conversational`. For more information about agents, see [Agents]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/).
+MCdesk provides the following agent types: `flow`, `conversational_flow`, and `conversational`. For more information about agents, see [Agents]({{site.url}}{{site.baseurl}}/ml-commons-plugin/agents-tools/agents/).
 
 You will use a `conversational_flow` agent in this tutorial. The agent consists of the following:
 
@@ -300,7 +300,7 @@ POST /_plugins/_ml/agents/_register
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -527,7 +527,7 @@ POST /_plugins/_ml/agents/your_agent_id/_execute
 
 ## Running queries on an index
 
-Use `SearchIndexTool` to run any SmartObserve query on any index.
+Use `SearchIndexTool` to run any MCdesk query on any index.
 
 ### Setup: Register an agent
 
@@ -750,7 +750,7 @@ The `PPLTool` can translate a natural language query (NLQ) to [Piped Processing 
 
 #### Setup
 
-Before you start, go to the SmartObserve Dashboards home page, select `Add sample data`, and then add `Sample eCommerce orders`.
+Before you start, go to the MCdesk Dashboards home page, select `Add sample data`, and then add `Sample eCommerce orders`.
 
 <!-- vale off -->
 #### Step 1: Register an agent with the PPLTool
@@ -806,7 +806,7 @@ POST /_plugins/_ml/agents/your_agent_id/_execute
 {
     "parameters": {
         "question": "How many orders do I have in last week",
-        "index": "smartobserve_dashboards_sample_data_ecommerce"
+        "index": "mcdesk_dashboards_sample_data_ecommerce"
     }
 }
 ```

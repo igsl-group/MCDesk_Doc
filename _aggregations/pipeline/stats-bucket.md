@@ -23,10 +23,10 @@ The `stats_bucket` aggregation takes the following parameters.
 
 ## Example
 
-The following example creates a date histogram with a one-month interval using the SmartObserve Dashboards e-commerce sample data. The `sum` sub-aggregation calculates the sum of all bytes for each month. Finally, the `stats_bucket` aggregation returns the `count`, `avg`, `sum`, `min`, and `max` stats from these sums:
+The following example creates a date histogram with a one-month interval using the MCdesk Dashboards e-commerce sample data. The `sum` sub-aggregation calculates the sum of all bytes for each month. Finally, the `stats_bucket` aggregation returns the `count`, `avg`, `sum`, `min`, and `max` stats from these sums:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

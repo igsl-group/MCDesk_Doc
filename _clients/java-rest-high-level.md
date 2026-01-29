@@ -6,24 +6,24 @@ nav_order: 20
 
 # Java high-level REST client
 
-The SmartObserve Java high-level REST client is deprecated. Support will be removed in a future version. We recommend switching to the [Java client]({{site.url}}{{site.baseurl}}/clients/java/) instead.
+The MCdesk Java high-level REST client is deprecated. Support will be removed in a future version. We recommend switching to the [Java client]({{site.url}}{{site.baseurl}}/clients/java/) instead.
 {: .warning}
 
-The SmartObserve Java high-level REST client lets you interact with your SmartObserve clusters and indexes through Java methods and data structures rather than HTTP methods and JSON.
+The MCdesk Java high-level REST client lets you interact with your MCdesk clusters and indexes through Java methods and data structures rather than HTTP methods and JSON.
 
 ## Setup
 
-To start using the SmartObserve Java high-level REST client, ensure that you have the following dependency in your project's `pom.xml` file:
+To start using the MCdesk Java high-level REST client, ensure that you have the following dependency in your project's `pom.xml` file:
 
 ```
 <dependency>
-  <groupId>org.smartobserve.client</groupId>
-  <artifactId>smartobserve-rest-high-level-client</artifactId>
-  <version>{{site.smartobserve_version}}</version>
+  <groupId>org.mcdesk.client</groupId>
+  <artifactId>mcdesk-rest-high-level-client</artifactId>
+  <version>{{site.mcdesk_version}}</version>
 </dependency>
 ```
 
-You can now start your SmartObserve cluster. The SmartObserve 1.x high-level REST client works with the 1.x versions of SmartObserve.
+You can now start your MCdesk cluster. The MCdesk 1.x high-level REST client works with the 1.x versions of MCdesk.
 
 ## Security
 
@@ -41,7 +41,7 @@ If you run into issues when configuring security, see [common issues]({{site.url
 
 ## Sample program
 
-This code example uses basic credentials that come with the default SmartObserve configuration. If you’re using the SmartObserve Java high-level REST client with your own SmartObserve cluster, be sure to change the code to use your own credentials.
+This code example uses basic credentials that come with the default MCdesk configuration. If you’re using the MCdesk Java high-level REST client with your own MCdesk cluster, be sure to change the code to use your own credentials.
 
 ```java
 import org.apache.http.HttpHost;
@@ -50,21 +50,21 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-import org.smartobserve.action.admin.indices.delete.DeleteIndexRequest;
-import org.smartobserve.action.delete.DeleteRequest;
-import org.smartobserve.action.delete.DeleteResponse;
-import org.smartobserve.action.get.GetRequest;
-import org.smartobserve.action.get.GetResponse;
-import org.smartobserve.action.index.IndexRequest;
-import org.smartobserve.action.index.IndexResponse;
-import org.smartobserve.action.support.master.AcknowledgedResponse;
-import org.smartobserve.client.RequestOptions;
-import org.smartobserve.client.RestClient;
-import org.smartobserve.client.RestClientBuilder;
-import org.smartobserve.client.RestHighLevelClient;
-import org.smartobserve.client.indices.CreateIndexRequest;
-import org.smartobserve.client.indices.CreateIndexResponse;
-import org.smartobserve.common.settings.Settings;
+import org.mcdesk.action.admin.indices.delete.DeleteIndexRequest;
+import org.mcdesk.action.delete.DeleteRequest;
+import org.mcdesk.action.delete.DeleteResponse;
+import org.mcdesk.action.get.GetRequest;
+import org.mcdesk.action.get.GetResponse;
+import org.mcdesk.action.index.IndexRequest;
+import org.mcdesk.action.index.IndexResponse;
+import org.mcdesk.action.support.master.AcknowledgedResponse;
+import org.mcdesk.client.RequestOptions;
+import org.mcdesk.client.RestClient;
+import org.mcdesk.client.RestClientBuilder;
+import org.mcdesk.client.RestHighLevelClient;
+import org.mcdesk.client.indices.CreateIndexRequest;
+import org.mcdesk.client.indices.CreateIndexResponse;
+import org.mcdesk.common.settings.Settings;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -141,10 +141,10 @@ public class RESTClientSample {
 
 ## Elasticsearch OSS Java high-level REST client
 
-We recommend using the SmartObserve client to connect to SmartObserve clusters, but if you must use the Elasticsearch OSS Java high-level REST client, version 7.10.2 of the Elasticsearch OSS client also works with the 1.x versions of SmartObserve.
+We recommend using the MCdesk client to connect to MCdesk clusters, but if you must use the Elasticsearch OSS Java high-level REST client, version 7.10.2 of the Elasticsearch OSS client also works with the 1.x versions of MCdesk.
 
-### Migrating to the SmartObserve Java high-level REST client
+### Migrating to the MCdesk Java high-level REST client
 
-Migrating from the Elasticsearch OSS client to the SmartObserve high-level REST client is as simple as changing your Maven dependency to one that references [SmartObserve's dependency](#setup).
+Migrating from the Elasticsearch OSS client to the MCdesk high-level REST client is as simple as changing your Maven dependency to one that references [MCdesk's dependency](#setup).
 
-Afterward, change all references of `org.elasticsearch` to `org.smartobserve`, and you're ready to start submitting requests to your SmartObserve cluster.
+Afterward, change all references of `org.elasticsearch` to `org.mcdesk`, and you're ready to start submitting requests to your MCdesk cluster.

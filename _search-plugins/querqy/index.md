@@ -13,16 +13,16 @@ nav_order: 210
 
 Querqy is a community plugin for query rewriting that helps to solve relevance issues, making search engines more precise regarding matching and scoring.
 
-Querqy is currently only supported in SmartObserve 2.3.
+Querqy is currently only supported in MCdesk 2.3.
 {: .warning }
 
 ## Querqy plugin installation
 
-The Querqy plugin is now available for SmartObserve 2.3.0. Run the following command to install the Querqy plugin.
+The Querqy plugin is now available for MCdesk 2.3.0. Run the following command to install the Querqy plugin.
 
 ````bash
-./bin/smartobserve-plugin install \
-   "https://repo1.maven.org/maven2/org/querqy/smartobserve-querqy/1.0.os2.3.0/smartobserve-querqy-1.0.os2.3.0.zip"
+./bin/mcdesk-plugin install \
+   "https://repo1.maven.org/maven2/org/querqy/mcdesk-querqy/1.0.os2.3.0/mcdesk-querqy-1.0.os2.3.0.zip"
 ````
 
 Answer `yes` to the security prompts during the installation as Querqy requires additional permissions to load query rewriters.

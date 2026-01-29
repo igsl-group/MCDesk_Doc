@@ -6,7 +6,7 @@ has_children: false
 parent: String field types
 grand_parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/token-count/
+  - /mcdesk/supported-field-types/token-count/
   - /field-types/token-count/
 ---
 
@@ -120,5 +120,5 @@ Parameter | Description
 `doc_values` | A Boolean value that specifies whether the field should be stored on disk so that it can be used for aggregations, sorting, or scripting. Default is `false`.
 `enable_position_increments` | A Boolean value that specifies whether position increments should be counted. To avoid removing stopwords, set this field to `false`. Default is `true`.
 `index` | A Boolean value that specifies whether the field should be searchable. Default is `true`.
-[`null_value`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/index#null-value) | A  value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
+[`null_value`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/index#null-value) | A  value to be used in place of `null`. Must be of the same type as the field. If this parameter is not specified, the field is treated as missing when its value is `null`. Default is `null`.
 `store` | A Boolean value that specifies whether the field value should be stored and can be retrieved separately from the _source field. Default is `false`. 

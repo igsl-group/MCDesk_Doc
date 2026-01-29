@@ -11,7 +11,7 @@ The Security plugin supports anonymous authentication, through which a user is a
 
 ## Configuration
 
-To enable anonymous authentication, you need to modify the `config.yml` file inside the `smartobserve-security` configuration subdirectory of your cluster.
+To enable anonymous authentication, you need to modify the `config.yml` file inside the `mcdesk-security` configuration subdirectory of your cluster.
 
 In the `config.yml` file, there is an `http` section, which includes the `anonymous_auth_enabled` setting: 
 
@@ -30,17 +30,17 @@ The following table describes the `anonymous_auth_enabled` setting. For more inf
 If you disable anonymous authentication, you must provide at least one `authc` in order for the Security plugin to initialize successfully.
 {: .important }
 
-## SmartObserve Dashboards configuration
+## MCdesk Dashboards configuration
 
-To enable anonymous authentication for SmartObserve Dashboards, you need to modify the `smartobserve_dashboards.yml` file in the configuration directory of your SmartObserve Dashboards installation.
+To enable anonymous authentication for MCdesk Dashboards, you need to modify the `mcdesk_dashboards.yml` file in the configuration directory of your MCdesk Dashboards installation.
 
-Add the following setting to `smartobserve_dashboards.yml`:
+Add the following setting to `mcdesk_dashboards.yml`:
 
 ```yml
-smartobserve_security.auth.anonymous_auth_enabled: true
+mcdesk_security.auth.anonymous_auth_enabled: true
 ```
 
-Anonymous login for SmartObserve Dashboards requires anonymous authentication to be enabled on the SmartObserve cluster.
+Anonymous login for MCdesk Dashboards requires anonymous authentication to be enabled on the MCdesk cluster.
 {: .important}
 
 ## Defining anonymous authentication privileges
@@ -83,5 +83,5 @@ anonymous_users_role:
 
 Notice that the role is mapped to `opendistro_security_anonymous_backendrole`, which means that all users with the anonymous user backend role will have these privileges. 
 
-Alternatively, you can complete these steps using the REST API or SmartObserve Dashboards. 
+Alternatively, you can complete these steps using the REST API or MCdesk Dashboards. 
 

@@ -3,7 +3,7 @@ layout: default
 title: Accessing the migration console
 nav_order: 1
 parent: Migration console
-grand_parent: Migration Assistant for SmartObserve
+grand_parent: Migration Assistant for MCdesk
 permalink: /migration-assistant/migration-console/accessing-the-migration-console/
 redirect_from:
   - /migration-console/accessing-the-migration-console/
@@ -18,7 +18,7 @@ To access the migration console, use the following commands:
 ```shell
 export STAGE=dev  # Use the same stage value from your cdk.context.json deployment
 export AWS_REGION=us-west-2
-/smartobserve-migrations/deployment/cdk/smartobserve-service-migration/accessContainer.sh migration-console ${STAGE} ${AWS_REGION}
+/mcdesk-migrations/deployment/cdk/mcdesk-service-migration/accessContainer.sh migration-console ${STAGE} ${AWS_REGION}
 ```
 {% include copy.html %}
 

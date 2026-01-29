@@ -4,9 +4,9 @@ title: Create or update mappings
 parent: Index APIs
 nav_order: 105
 redirect_from:
-  - /smartobserve/rest-api/index-apis/put-mapping/
-  - /smartobserve/rest-api/index-apis/update-mapping/
-  - /smartobserve/rest-api/update-mapping/
+  - /mcdesk/rest-api/index-apis/put-mapping/
+  - /mcdesk/rest-api/index-apis/update-mapping/
+  - /mcdesk/rest-api/update-mapping/
 ---
 
 # Create Or Update Mappings API
@@ -15,7 +15,7 @@ redirect_from:
 
 If you want to create or add mappings and fields to an index, you can use the put mapping API operation. For an existing mapping, this operation updates the mapping.
 
-You can't use this operation to update mappings that already map to existing data in the index. You must first create a new index with your desired mappings, and then use the [reindex API operation]({{site.url}}{{site.baseurl}}/smartobserve/reindex-data) to map all the documents from your old index to the new index. If you don't want any downtime while you re-index your indexes, you can use [aliases]({{site.url}}{{site.baseurl}}/smartobserve/index-alias).
+You can't use this operation to update mappings that already map to existing data in the index. You must first create a new index with your desired mappings, and then use the [reindex API operation]({{site.url}}{{site.baseurl}}/mcdesk/reindex-data) to map all the documents from your old index to the new index. If you don't want any downtime while you re-index your indexes, you can use [aliases]({{site.url}}{{site.baseurl}}/mcdesk/index-alias).
 
 ## Endpoints
 
@@ -48,10 +48,10 @@ Parameter | Data type | Description
 :--- | :--- | :---
 allow_no_indices | Boolean | Whether to ignore wildcards that don’t match any indexes. Default is `true`.
 expand_wildcards | String | Expands wildcard expressions to different indexes. Combine multiple values with commas. Available values are `all` (match all indexes), `open` (match open indexes), `closed` (match closed indexes), `hidden` (match hidden indexes), and `none` (do not accept wildcard expressions), which must be used with `open`, `closed`, or both. Default is `open`.
-ignore_unavailable | Boolean | If true, SmartObserve does not include missing or closed indexes in the response.
+ignore_unavailable | Boolean | If true, MCdesk does not include missing or closed indexes in the response.
 cluster_manager_timeout | Time | How long to wait for a connection to the cluster manager node. Default is `30s`.
 timeout | Time | How long to wait for the response to return. Default is `30s`.
-write_index_only | Boolean | Whether SmartObserve should apply mapping updates only to the write index.
+write_index_only | Boolean | Whether MCdesk should apply mapping updates only to the write index.
 
 ## Request body fields
 

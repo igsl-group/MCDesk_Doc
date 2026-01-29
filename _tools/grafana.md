@@ -9,4 +9,4 @@ redirect_from:
 
 # Grafana support
 
-Grafana has a data source plugin that lets you explore and visualize your SmartObserve data. For information on getting started with the plugin, see the [Grafana overview page](https://grafana.com/grafana/plugins/grafana-smartobserve-datasource/).
+Grafana has a data source plugin that lets you explore and visualize your MCdesk data. For information on getting started with the plugin, see the [Grafana overview page](https://grafana.com/grafana/plugins/grafana-mcdesk-datasource/).

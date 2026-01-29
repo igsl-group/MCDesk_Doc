@@ -23,12 +23,12 @@ The following image gives you a snapshot of the Dashboard interface.
 
 Before getting started, you must have:
 
-- Installed SmartObserve and SmartObserve Dashboards version 2.9 or later. See [Installing SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/install-smartobserve/index/).
-- Installed the Alerting and Notifications Dashboards plugins. See [Managing SmartObserve Dashboards plugins]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/plugins/) to get started.
+- Installed MCdesk and MCdesk Dashboards version 2.9 or later. See [Installing MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/index/).
+- Installed the Alerting and Notifications Dashboards plugins. See [Managing MCdesk Dashboards plugins]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/plugins/) to get started.
 
 ## Configuring admin settings
 
-Users can only access, create, or manage alerts for resources for which they have permissions. Access to alerting dashboards and visualizations is controlled by SmartObserve and SmartObserve Dashboards permissions. It is enabled by default and appears as a feature under **Dashboards Management** > **Advanced Settings** > **Visualization**. If the setting is disabled, it does not appear. You can disable the setting at the cluster level in the `smartobserve-dashboards.yml` file.
+Users can only access, create, or manage alerts for resources for which they have permissions. Access to alerting dashboards and visualizations is controlled by MCdesk and MCdesk Dashboards permissions. It is enabled by default and appears as a feature under **Dashboards Management** > **Advanced Settings** > **Visualization**. If the setting is disabled, it does not appear. You can disable the setting at the cluster level in the `mcdesk-dashboards.yml` file.
 
 ## General requirements for alerting visualizations
 
@@ -50,7 +50,7 @@ By default, when you begin to create the alert monitor workflow using the Dashbo
 
 To create an alerting monitor: 
 
-1. Choose **Dashboard** from the SmartObserve Dashboards main menu.
+1. Choose **Dashboard** from the MCdesk Dashboards main menu.
 2. From the **Dashboards** window, select **Create** and then choose **Dashboard**.
 3. Select **Add an existing**, then select the appropriate alerting visualization from the **Add panels** list. The visualization is added to the dashboard.
 4. From the visualization panel, choose the ellipsis icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/ellipsis-icon.png" class="inline-icon" alt="ellipsis icon"/>{:/}). 

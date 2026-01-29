@@ -5,12 +5,12 @@ parent: Shard indexing backpressure
 nav_order: 50
 grand_parent: Availability and recovery
 redirect_from: 
-  - /smartobserve/shard-indexing-settings/
+  - /mcdesk/shard-indexing-settings/
 ---
 
 # Settings
 
-Shard indexing backpressure adds several settings to the standard SmartObserve cluster settings. They are dynamic, so you can change the default behavior of this feature without restarting your cluster.
+Shard indexing backpressure adds several settings to the standard MCdesk cluster settings. They are dynamic, so you can change the default behavior of this feature without restarting your cluster.
 
 ## High-level controls
 

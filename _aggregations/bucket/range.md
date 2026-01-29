@@ -16,7 +16,7 @@ For example, you can find the number of bytes between 1000 and 2000, 2000 and 30
 Within the `range` parameter, you can define ranges as objects of an array.
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

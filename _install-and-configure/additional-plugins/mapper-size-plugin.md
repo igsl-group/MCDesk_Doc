@@ -8,14 +8,14 @@ nav_order: 20
 
 # Mapper-size plugin
 
-The `mapper-size` plugin enables the use of the `_size` field in SmartObserve indexes. The `_size` field stores the size, in bytes, of each document.
+The `mapper-size` plugin enables the use of the `_size` field in MCdesk indexes. The `_size` field stores the size, in bytes, of each document.
 
 ## Installing the plugin
 
 You can install the `mapper-size` plugin using the following command:
 
 ```sh
-./bin/smartobserve-plugin install mapper-size
+./bin/mcdesk-plugin install mapper-size
 ```
 
 ## Examples

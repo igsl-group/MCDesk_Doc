@@ -8,7 +8,7 @@ nav_order: 25
 
 # Sinks
 
-A `sink` is an output component that specifies the destination(s) to which an SmartObserve Data Prepper pipeline publishes events. Sink destinations can be services like SmartObserve, Amazon Simple Storage Service (Amazon S3), or even another Data Prepper pipeline, enabling chaining of multiple pipelines. The sink component has the following configurable options that you can use to customize the destination type.
+A `sink` is an output component that specifies the destination(s) to which an MCdesk Data Prepper pipeline publishes events. Sink destinations can be services like MCdesk, Amazon Simple Storage Service (Amazon S3), or even another Data Prepper pipeline, enabling chaining of multiple pipelines. The sink component has the following configurable options that you can use to customize the destination type.
 
 ## Configuration options
 

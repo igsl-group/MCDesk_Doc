@@ -24,10 +24,10 @@ The `bucket_selector` aggregation takes the following parameters.
 
 ## Example
 
-The following example creates a date histogram with a one-week interval from the SmartObserve Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of all sales for each week. Finally, the `bucket_selector` aggregation filters the resulting weekly buckets, removing all the buckets that do not have a sum of more than $75,000:
+The following example creates a date histogram with a one-week interval from the MCdesk Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of all sales for each week. Finally, the `bucket_selector` aggregation filters the resulting weekly buckets, removing all the buckets that do not have a sum of more than $75,000:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {

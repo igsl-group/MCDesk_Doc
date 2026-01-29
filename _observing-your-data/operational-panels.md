@@ -9,7 +9,7 @@ redirect_from:
 
 # Operational panels
 
-Operational panels in SmartObserve Dashboards are collections of visualizations generated using [Piped Processing Language]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index) (PPL) queries.
+Operational panels in MCdesk Dashboards are collections of visualizations generated using [Piped Processing Language]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index) (PPL) queries.
 
 ## Get started with operational panels
 

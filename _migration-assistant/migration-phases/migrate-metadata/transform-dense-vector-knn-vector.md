@@ -10,13 +10,13 @@ permalink: /migration-assistant/migration-phases/migrate-metadata/transform-dens
 # Transform dense_vector fields to knn_vector
 
 
-This guide explains how Migration Assistant automatically handles the transformation of Elasticsearch's `dense_vector` field type to SmartObserve's `knn_vector` field type during migration.
+This guide explains how Migration Assistant automatically handles the transformation of Elasticsearch's `dense_vector` field type to MCdesk's `knn_vector` field type during migration.
 
 ## Overview
 
-The `dense_vector` field type was introduced in Elasticsearch 7.x for storing dense vectors used in machine learning and similarity search applications. When migrating from Elasticsearch 7.x to SmartObserve, Migration Assistant automatically converts `dense_vector` fields to SmartObserve's equivalent `knn_vector` type.
+The `dense_vector` field type was introduced in Elasticsearch 7.x for storing dense vectors used in machine learning and similarity search applications. When migrating from Elasticsearch 7.x to MCdesk, Migration Assistant automatically converts `dense_vector` fields to MCdesk's equivalent `knn_vector` type.
 
-This transformation includes mapping the vector configuration parameters and enabling the necessary SmartObserve k-NN plugin settings.
+This transformation includes mapping the vector configuration parameters and enabling the necessary MCdesk k-NN plugin settings.
 
 To determine whether an Elasticsearch cluster uses `dense_vector` field types, make a call to your source cluster's `GET /_mapping` API. In the migration console, run `console clusters curl source_cluster "/_mapping"`. If you see `"type":"dense_vector"`, then this transformation is applicable and these fields will be automatically transformed during migration.
 
@@ -24,7 +24,7 @@ To determine whether an Elasticsearch cluster uses `dense_vector` field types, m
 
 The `dense_vector` to `knn_vector` transformation applies to:
 - **Source clusters**: Elasticsearch 7.x+
-- **Target clusters**: SmartObserve 1.x+
+- **Target clusters**: MCdesk 1.x+
 - **Automatic conversion**: No configuration required
 
 ## Automatic conversion logic
@@ -34,11 +34,11 @@ Migration Assistant performs the following transformations when converting `dens
 ### Field type transformation
 - Changes `type: "dense_vector"` to `type: "knn_vector"`
 - Maps `dims` parameter to `dimension`
-- Converts similarity metrics to SmartObserve space types
+- Converts similarity metrics to MCdesk space types
 - Configures the Hierarchical Navigable Small World (HNSW) algorithm with the Lucene engine
 
 ### Similarity mapping
-The transformation maps Elasticsearch similarity functions to SmartObserve space types:
+The transformation maps Elasticsearch similarity functions to MCdesk space types:
 - `cosine` → `cosinesimil`
 - `dot_product` → `innerproduct`
 - `l2` (default) → `l2`
@@ -55,7 +55,7 @@ During the migration process, you'll see this transformation in the output:
 ```
 Transformations:
    dense_vector to knn_vector:
-      Convert field data type dense_vector to SmartObserve knn_vector
+      Convert field data type dense_vector to MCdesk knn_vector
 ```
 
 ## Transformation behavior
@@ -107,13 +107,13 @@ Transformations:
 ### HNSW algorithm parameters
 
 The transformation automatically configures the HNSW algorithm with the following options:
-- `engine`: `lucene` (SmartObserve default)
+- `engine`: `lucene` (MCdesk default)
 - `encoder`: `sq` (scalar quantization for memory efficiency)
 - `method`: `hnsw` (approximate nearest neighbor search)
 
 ### Index options mapping
 
-Elasticsearch `index_options` are mapped to SmartObserve HNSW parameters:
+Elasticsearch `index_options` are mapped to MCdesk HNSW parameters:
 - `m` → `m` (maximum number of connections per node)
 - `ef_construction` → `ef_construction` (size of dynamic candidate list)
 
@@ -131,13 +131,13 @@ When any `dense_vector` fields are converted, the following index setting is aut
 
 ## Behavior differences
 
-Migration Assistant automatically transforms all `dense_vector` fields during metadata migration. The k-NN plugin must be installed and enabled on the target SmartObserve cluster. Note: Most SmartObserve distributions include the k-NN plugin in which case no action is needed.
+Migration Assistant automatically transforms all `dense_vector` fields during metadata migration. The k-NN plugin must be installed and enabled on the target MCdesk cluster. Note: Most MCdesk distributions include the k-NN plugin in which case no action is needed.
 
 ### Query compatibility
 
 After migration, vector search queries need to be updated:
 - Elasticsearch uses `script_score` queries with vector functions.
-- SmartObserve uses native `knn` query syntax.
+- MCdesk uses native `knn` query syntax.
 
 **Elasticsearch query example**:
 ```json
@@ -154,7 +154,7 @@ After migration, vector search queries need to be updated:
 }
 ```
 
-**SmartObserve query example**:
+**MCdesk query example**:
 ```json
 {
   "query": {
@@ -172,7 +172,7 @@ After migration, vector search queries need to be updated:
 
 If you encounter issues with `dense_vector` conversion:
 
-1. **Verify the k-NN plugin** -- Ensure the k-NN plugin is installed and enabled on your target SmartObserve cluster:
+1. **Verify the k-NN plugin** -- Ensure the k-NN plugin is installed and enabled on your target MCdesk cluster:
    ```bash
    GET /_cat/plugins
    ```
@@ -202,7 +202,7 @@ If you encounter issues with `dense_vector` conversion:
    }
    ```
 
-5. **Monitor performance** -- Vector search performance may differ between Elasticsearch and SmartObserve. Monitor query performance and adjust HNSW parameters if needed.
+5. **Monitor performance** -- Vector search performance may differ between Elasticsearch and MCdesk. Monitor query performance and adjust HNSW parameters if needed.
 
 ## Related documentation
 

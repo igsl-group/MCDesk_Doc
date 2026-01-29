@@ -1,6 +1,6 @@
-# SmartObserve Documentation Website 2.15.0 Release Notes
+# MCdesk Documentation Website 2.15.0 Release Notes
 
-The SmartObserve 2.15.0 documentation includes the following additions and updates.
+The MCdesk 2.15.0 documentation includes the following additions and updates.
 
 ## New documentation for 2.15.0
 

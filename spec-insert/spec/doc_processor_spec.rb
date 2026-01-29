@@ -5,7 +5,7 @@ require_relative '../lib/doc_processor'
 require_relative '../lib/spec_hash'
 
 describe DocProcessor do
-  SpecHash.load_file('spec/_fixtures/smartobserve_spec.yaml')
+  SpecHash.load_file('spec/_fixtures/mcdesk_spec.yaml')
 
   def test_file(file_name)
     expected_output = File.read("#{__dir__}/_fixtures/expected_output/#{file_name}.md")

@@ -6,7 +6,7 @@ nav_order: 10
 
 # securityadmin.sh Troubleshooting
 
-This page includes troubleshooting steps for `securityadmin.sh`. The script can be found at `/plugins/smartobserve-security/tools/securityadmin.sh`. For more information about using this tool, see [Applying changes to configuration files]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/).
+This page includes troubleshooting steps for `securityadmin.sh`. The script can be found at `/plugins/mcdesk-security/tools/securityadmin.sh`. For more information about using this tool, see [Applying changes to configuration files]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/).
 
 
 ---
@@ -23,9 +23,9 @@ This page includes troubleshooting steps for `securityadmin.sh`. The script can 
 If `securityadmin.sh` can't reach the cluster, it outputs:
 
 ```
-SmartObserve Security Admin v6
+MCdesk Security Admin v6
 Will connect to localhost:9200
-ERR: Seems there is no smartobserve running on localhost:9200 - Will exit
+ERR: Seems there is no mcdesk running on localhost:9200 - Will exit
 ```
 
 
@@ -46,7 +46,7 @@ By default, `securityadmin.sh` uses `9200`. If your cluster runs on a different 
 If `securityadmin.sh` can reach the cluster, but can't update the configuration, it outputs this error:
 
 ```
-Contacting smartobserve cluster 'smartobserve' and wait for YELLOW clusterstate ...
+Contacting mcdesk cluster 'mcdesk' and wait for YELLOW clusterstate ...
 Cannot retrieve cluster state due to: None of the configured nodes are available: [{#transport#-1}{mr2NlX3XQ3WvtVG0Dv5eHw}{localhost}{127.0.0.1:9300}]. This is not an error, will keep on trying ...
 ```
 
@@ -59,7 +59,7 @@ Cannot retrieve cluster state due to: None of the configured nodes are available
 
 ### Check cluster name
 
-By default, `securityadmin.sh` uses `smartobserve` as the cluster name.
+By default, `securityadmin.sh` uses `mcdesk` as the cluster name.
 
 If your cluster has a different name, you can either ignore the name completely using the `-icl` option or specify the name using the `-cn` option.
 
@@ -80,7 +80,7 @@ If your cluster state is red, you can still execute `securityadmin.sh`, but you 
 
 ### Check the security index name
 
-By default, the Security plugin uses `.opendistro_security` as the name of the configuration index. If you configured a different index name in `smartobserve.yml`, specify it using the `-i` option.
+By default, the Security plugin uses `.opendistro_security` as the name of the configuration index. If you configured a different index name in `mcdesk.yml`, specify it using the `-i` option.
 
 
 ## "ERR: DN is not an admin user"
@@ -99,7 +99,7 @@ You must use an admin certificate when executing the script. To learn more, see 
 For more information on why `securityadmin.sh` is not executing, add the `--diagnose` option:
 
 ```
-./securityadmin.sh -diagnose -cd ../../../config/smartobserve-security/ -cacert ... -cert ... -key ... -keypass ...
+./securityadmin.sh -diagnose -cd ../../../config/mcdesk-security/ -cacert ... -cert ... -key ... -keypass ...
 ```
 
 The script prints the location of the generated diagnostic file.

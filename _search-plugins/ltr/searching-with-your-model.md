@@ -8,7 +8,7 @@ has_children: false
 
 # Optimizing search with LTR
 
-After you have trained a model, you can use the `sltr` query to execute it. However, directly running the query on the entire index is not recommended because it can be CPU intensive and impact the performance of your SmartObserve cluster. The query allows you to apply your trained model to search results, as shown in the following example:
+After you have trained a model, you can use the `sltr` query to execute it. However, directly running the query on the entire index is not recommended because it can be CPU intensive and impact the performance of your MCdesk cluster. The query allows you to apply your trained model to search results, as shown in the following example:
 
 ```json
     POST tmdb/_search
@@ -88,11 +88,11 @@ You can selectively score a subset of features by specifying the `active_feature
 
 The `my_model` model is applied but only scores the `title_query` feature. 
 
-## Combining `sltr` with other SmartObserve features
+## Combining `sltr` with other MCdesk features
 
-The `sltr` query can be integrated with the following SmartObserve features and functionalities to create more sophisticated and tailored search solutions that go beyond applying a model to your results:
+The `sltr` query can be integrated with the following MCdesk features and functionalities to create more sophisticated and tailored search solutions that go beyond applying a model to your results:
 
--   Filtering out results based on business rules using SmartObserve filters before applying the model
+-   Filtering out results based on business rules using MCdesk filters before applying the model
 -   Chaining multiple rescores to refine the relevance of your results
 -   Rescoring once to address relevance with `sltr` and a second time for business concerns
 -   Downboosting relevant but low-quality content in the baseline query to prevent it from being rescored

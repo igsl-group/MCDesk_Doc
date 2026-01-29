@@ -128,7 +128,7 @@ If you don't want to use a saved template, or want to test a template before sav
 
 ## Example response
 
-SmartObserve responds with information about the template's output:
+MCdesk responds with information about the template's output:
 
 ```json
 {

@@ -47,7 +47,7 @@ Use the following request to examine the tokens generated using the analyzer:
 GET /uppercase_example/_analyze
 {
   "analyzer": "uppercase_analyzer",
-  "text": "SmartObserve is powerful"
+  "text": "MCdesk is powerful"
 }
 ```
 {% include copy-curl.html %}

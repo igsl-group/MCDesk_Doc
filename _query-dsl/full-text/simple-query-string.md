@@ -325,9 +325,9 @@ GET /customers/_search
 
 ## Multi-position tokens
 
-For multi-position tokens, simple query string creates a [match phrase query]({{site.url}}{{site.baseurl}}/query-dsl/full-text/match-phrase/). Thus, if you specify `ml, machine learning` as synonyms and search for `ml`, SmartObserve searches for `ml OR "machine learning"`. 
+For multi-position tokens, simple query string creates a [match phrase query]({{site.url}}{{site.baseurl}}/query-dsl/full-text/match-phrase/). Thus, if you specify `ml, machine learning` as synonyms and search for `ml`, MCdesk searches for `ml OR "machine learning"`. 
 
-Alternatively, you can match multi-position tokens using conjunctions. If you set `auto_generate_synonyms_phrase_query` to `false`, SmartObserve searches for `ml OR (machine AND learning)`. 
+Alternatively, you can match multi-position tokens using conjunctions. If you set `auto_generate_synonyms_phrase_query` to `false`, MCdesk searches for `ml OR (machine AND learning)`. 
 
 For example, the following query searches for the text `ml models` and specifies not to auto-generate a match phrase query for each synonym:
 
@@ -345,7 +345,7 @@ GET /testindex/_search
 ```
 {% include copy-curl.html %}
 
-For this query, SmartObserve creates the following Boolean query: `(ml OR (machine AND learning)) models`.
+For this query, MCdesk creates the following Boolean query: `(ml OR (machine AND learning)) models`.
 
 ## Parameters
 
@@ -354,15 +354,15 @@ The following table lists the top-level parameters that `simple_query_string` qu
 Parameter | Data type | Description
 :--- | :--- | :---
 `query`| String | The text that may contain expressions in the [simple query string syntax](#simple-query-string-syntax) to use for search. Required.
-`analyze_wildcard` | Boolean | Specifies whether SmartObserve should attempt to analyze wildcard terms. Default is `false`.
-`analyzer` | String | The analyzer used to tokenize the query string text. Default is the index-time analyzer specified for the `default_field`. If no analyzer is specified for the `default_field`, the `analyzer` is the default analyzer for the index. For more information about `index.query.default_field`, see [Dynamic index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/#dynamic-index-level-index-settings).
+`analyze_wildcard` | Boolean | Specifies whether MCdesk should attempt to analyze wildcard terms. Default is `false`.
+`analyzer` | String | The analyzer used to tokenize the query string text. Default is the index-time analyzer specified for the `default_field`. If no analyzer is specified for the `default_field`, the `analyzer` is the default analyzer for the index. For more information about `index.query.default_field`, see [Dynamic index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/#dynamic-index-level-index-settings).
 `auto_generate_synonyms_phrase_query` | Boolean | Specifies whether to create [match_phrase queries]({{site.url}}{{site.baseurl}}/query-dsl/full-text/match/) automatically for multi-term synonyms. Default is `true`.
 `default_operator`| String | If the query string contains multiple search terms, whether all terms need to match (`AND`) or only one term needs to match (`OR`) for a document to be considered a match. Valid values are:<br>- `OR`: The string `to be` is interpreted as `to OR be`<br>- `AND`: The string `to be` is interpreted as `to AND be`<br> Default is `OR`.
 `fields` | String array | The list of fields to search (for example, `"fields": ["title^4", "description"]`). Supports wildcards. If unspecified, defaults to the `index.query.default_field` setting, which defaults to `["*"]`. The maximum number of fields that can be searched at the same time is defined by `indices.query.bool.max_clause_count`, which is 1,024 by default.
 `flags` | String | A `|`-delimited string of [flags](#limit-operators) to enable (for example, `AND|OR|NOT`). Default is `ALL`. You can explicitly set the value for `default_field`. For example, to return all titles, set it to `"default_field": "title"`.
-`fuzzy_max_expansions` | Positive integer | The maximum number of terms to which the query can expand. Fuzzy queries “expand to” a number of matching terms that are within the distance specified in `fuzziness`. Then SmartObserve tries to match those terms. Default is `50`.
+`fuzzy_max_expansions` | Positive integer | The maximum number of terms to which the query can expand. Fuzzy queries “expand to” a number of matching terms that are within the distance specified in `fuzziness`. Then MCdesk tries to match those terms. Default is `50`.
 `fuzzy_transpositions` | Boolean | Setting `fuzzy_transpositions` to `true` (default) adds swaps of adjacent characters to the insert, delete, and substitute operations of the `fuzziness` option. For example, the distance between `wind` and `wnid` is 1 if `fuzzy_transpositions` is true (swap "n" and "i") and 2 if it is false (delete "n", insert "n"). If `fuzzy_transpositions` is false, `rewind` and `wnid` have the same distance (2) from `wind`, despite the more human-centric opinion that `wnid` is an obvious typo. The default is a good choice for most use cases.
 `fuzzy_prefix_length`| Integer | The number of beginning characters left unchanged for fuzzy matching. Default is 0. 
 `lenient` | Boolean | Setting `lenient` to `true` ignores data type mismatches between the query and the document field. For example, a query string of `"8.2"` could match a field of type `float`. Default is `false`.
 `minimum_should_match` | Positive or negative integer, positive or negative percentage, combination | If the query string contains multiple search terms and you use the `or` operator, the number of terms that need to match for the document to be considered a match. For example, if `minimum_should_match` is 2, `wind often rising` does not match `The Wind Rises.` If `minimum_should_match` is `1`, it matches. For details, see [Minimum should match]({{site.url}}{{site.baseurl}}/query-dsl/minimum-should-match/).
-`quote_field_suffix` | String | This option supports searching for exact matches (surrounded with quotation marks) using a different analysis method than non-exact matches use. For example, if `quote_field_suffix` is `.exact` and you search for `\"lightly\"` in the `title` field, SmartObserve searches for the word `lightly` in the `title.exact` field. This second field might use a different type (for example, `keyword` rather than `text`) or a different analyzer.
+`quote_field_suffix` | String | This option supports searching for exact matches (surrounded with quotation marks) using a different analysis method than non-exact matches use. For example, if `quote_field_suffix` is `.exact` and you search for `\"lightly\"` in the `title` field, MCdesk searches for the word `lightly` in the `title.exact` field. This second field might use a different type (for example, `keyword` rather than `text`) or a different analyzer.

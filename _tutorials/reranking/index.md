@@ -11,37 +11,37 @@ reranking:
   - heading: Reranking search results using Cohere Rerank
     link: /tutorials/reranking/reranking-cohere/
     list:
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Cohere Rerank"  
       - "<b>Deployment:</b> Provider API"  
   - heading: Reranking search results using Cohere Rerank on Amazon Bedrock
     link: /tutorials/reranking/reranking-cohere-bedrock/
     list:
-      - "<b>Platform:</b> SmartObserve, Amazon SmartObserve Service"
+      - "<b>Platform:</b> MCdesk, Amazon MCdesk Service"
       - "<b>Model:</b> Cohere Rerank"  
       - "<b>Deployment:</b> Amazon Bedrock" 
   - heading: Reranking search results using Amazon Bedrock models
     link: /tutorials/reranking/reranking-bedrock/
     list:
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Amazon Bedrock reranker models"  
       - "<b>Deployment:</b> Amazon Bedrock"  
   - heading: Reranking search results using a cross-encoder in Amazon SageMaker
     link: /tutorials/reranking/reranking-cross-encoder/
     list:
-      - "<b>Platform:</b> SmartObserve"
+      - "<b>Platform:</b> MCdesk"
       - "<b>Model:</b> Hugging Face MS MARCO"  
       - "<b>Deployment:</b> Amazon SageMaker" 
   - heading: Reranking search results using a reranker in Amazon SageMaker
     link: /tutorials/reranking/reranking-sagemaker/
     list:
-      - "<b>Platform:</b> SmartObserve, Amazon SmartObserve Service"
+      - "<b>Platform:</b> MCdesk, Amazon MCdesk Service"
       - "<b>Model:</b> Hugging Face BAAI/bge-reranker"  
       - "<b>Deployment:</b> Amazon SageMaker" 
   - heading: Reranking search results by a field
     link: /tutorials/reranking/reranking-by-field/
     list:
-      - "<b>Platform:</b> SmartObserve, Amazon SmartObserve Service"
+      - "<b>Platform:</b> MCdesk, Amazon MCdesk Service"
       - "<b>Model:</b> Cohere Rerank"  
       - "<b>Deployment:</b> Provider API" 
 ---

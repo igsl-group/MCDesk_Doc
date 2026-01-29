@@ -23,10 +23,10 @@ The `derivative` aggregation takes the following parameters.
 
 ## Example: First derivative
 
-The following example creates a date histogram with a one-month interval from the SmartObserve Dashboards e-commerce sample data. The `sum` sub-aggregation calculates the sum of all bytes for each month. Finally, the `derivative` aggregation calculates the first derivative of the `sum` sub-aggregation. The first derivative is estimated as the difference between the number of bytes in the current month and the previous month:
+The following example creates a date histogram with a one-month interval from the MCdesk Dashboards e-commerce sample data. The `sum` sub-aggregation calculates the sum of all bytes for each month. Finally, the `derivative` aggregation calculates the first derivative of the `sum` sub-aggregation. The first derivative is estimated as the difference between the number of bytes in the current month and the previous month:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {
@@ -121,7 +121,7 @@ No derivative is calculated for the first bucket because no previous bucket is a
 To calculate a second derivative, chain one derivative aggregation to another:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

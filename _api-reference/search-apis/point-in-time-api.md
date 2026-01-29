@@ -6,14 +6,14 @@ has_children: false
 parent: Search APIs
 grand_parent: Search options
 redirect_from:
-  - /smartobserve/point-in-time-api/
+  - /mcdesk/point-in-time-api/
   - /search-plugins/point-in-time-api/
   - /search-plugins/searching-data/point-in-time-api/
 ---
 
 # Point In Time API
 
-Use the [Point in Time (PIT)]({{site.url}}{{site.baseurl}}/smartobserve/point-in-time/) APIs to manage PITs. 
+Use the [Point in Time (PIT)]({{site.url}}{{site.baseurl}}/mcdesk/point-in-time/) APIs to manage PITs. 
 
 ---
 
@@ -95,7 +95,7 @@ response = client.create_pit(
 
 Field | Data type | Description 
 :--- | :--- | :---  
-`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/binary/) | The PIT ID.
+`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/binary/) | The PIT ID.
 `creation_time` | long | The time at which the PIT was created, in milliseconds since the epoch. 
 
 ## Extend a PIT time
@@ -131,7 +131,7 @@ The `keep_alive` parameter in a search request is optional. It specifies the amo
 Introduced 2.4
 {: .label .label-purple }
 
-Returns all PITs in the SmartObserve cluster.
+Returns all PITs in the MCdesk cluster.
 
 ### Cross-cluster behavior
 
@@ -186,7 +186,7 @@ Each PIT object contains the following fields.
 
 Field | Data type | Description 
 :--- | :--- | :---  
-`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/binary/) | The PIT ID.
+`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/binary/) | The PIT ID.
 `creation_time` | long | The time at which the PIT was created, in milliseconds since the epoch. 
 `keep_alive` | long |  The amount of time to keep the PIT, in milliseconds.
 
@@ -228,7 +228,7 @@ If you want to delete one or several PITs, specify their PIT IDs in the request 
 
 Field | Data type | Description  
 :--- | :--- | :---
-`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/binary/) or an array of binaries | The PIT IDs of the PITs to be deleted. Required.
+`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/binary/) or an array of binaries | The PIT IDs of the PITs to be deleted. Required.
 
 #### Example request: Delete PITs by ID
 
@@ -296,11 +296,11 @@ For each PIT, the response contains a JSON object with a PIT ID and a `successfu
 Field | Data type | Description  
 :--- | :--- | :---
 `successful` | Boolean | Whether the delete operation was successful.
-`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/binary/)  | The PIT ID of the PIT to be deleted.
+`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/binary/)  | The PIT ID of the PIT to be deleted.
 
 ## Security model
 
-This section describes the permissions needed to use PIT API operations if you are running SmartObserve with the Security plugin enabled.
+This section describes the permissions needed to use PIT API operations if you are running MCdesk with the Security plugin enabled.
 
 You can access all PIT API operations using the `point_in_time_full_access` role. If this role doesn't meet your needs, mix and match individual PIT permissions to suit your use case. Each action corresponds to an operation in the REST API. For example, the `indices:data/read/point_in_time/create` permission lets you create a PIT. The following are the possible permissions:
 

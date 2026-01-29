@@ -7,13 +7,13 @@ nav_order: 45
 
 # TSVB
 
-The Time-Series Visual Builder (TSVB) is a powerful data visualization tool in SmartObserve Dashboards that allows you to create detailed time-series visualizations. One of its key features is the ability to add annotations or markers at specific time points based on index data. This feature is particularly useful for making connections between multiple indexes and building visualizations that display data over time, such as flight status, delays by type, and more. TSVB currently supports the following visualization types: Area, Line, Metric, Gauge, Markdown, and Data Table.
+The Time-Series Visual Builder (TSVB) is a powerful data visualization tool in MCdesk Dashboards that allows you to create detailed time-series visualizations. One of its key features is the ability to add annotations or markers at specific time points based on index data. This feature is particularly useful for making connections between multiple indexes and building visualizations that display data over time, such as flight status, delays by type, and more. TSVB currently supports the following visualization types: Area, Line, Metric, Gauge, Markdown, and Data Table.
 
 ## Creating TSVB visualizations from multiple data sources
 Introduced 2.14
 {: .label .label-purple }
 
-Before proceeding, ensure that the following configuration settings are enabled in the `config/smartobserve_dasboards.yaml` file:
+Before proceeding, ensure that the following configuration settings are enabled in the `config/mcdesk_dasboards.yaml` file:
 
 ```yaml
 data_source.enabled: true
@@ -21,13 +21,13 @@ vis_type_timeseries.enabled: true
 ```
 {% include copy-curl.html %}
 
-Once you have configured [multiple data sources]({{site.url}}{{site.baseurl}}/dashboards/management/multi-data-sources/) in SmartObserve Dashboards, you can use Vega to query those data sources. The following GIF shows the process of creating TSVB visualizations in SmartObserve Dashboards.
+Once you have configured [multiple data sources]({{site.url}}{{site.baseurl}}/dashboards/management/multi-data-sources/) in MCdesk Dashboards, you can use Vega to query those data sources. The following GIF shows the process of creating TSVB visualizations in MCdesk Dashboards.
 
-![Process of creating TSVB visualizations in SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/images/dashboards/configure-tsvb.gif)
+![Process of creating TSVB visualizations in MCdesk Dashboards]({{site.url}}{{site.baseurl}}/images/dashboards/configure-tsvb.gif)
 
 **Step 1: Set up and connect data sources**
 
-Open SmartObserve Dashboards and follow these steps:
+Open MCdesk Dashboards and follow these steps:
 
 1. Select **Dashboards Management** from the main menu on the left.
 2. Select **Data sources** and then select the **Create data source** button.
@@ -50,8 +50,8 @@ Follow these steps to create the visualization:
 After creating a TSVB visualization, data may appear based on your default index pattern. To change the index pattern or configure additional settings, follow these steps:
 
 1. In the **Create** window, select **Panel options**.
-2. Under **Data source**, select the SmartObserve cluster from which to pull data. In this case, choose your newly created data source.
-3. Under **Index name**, enter `smartobserve_dashboards_sample_data_logs`.
+2. Under **Data source**, select the MCdesk cluster from which to pull data. In this case, choose your newly created data source.
+3. Under **Index name**, enter `mcdesk_dashboards_sample_data_logs`.
 4. Under **Time field**, select `@timestamp`. This setting specifies the time range for rendering the visualization.
 
 **(Optional) Step 4: Add annotations**
@@ -60,7 +60,7 @@ Annotations are markers that can be added to time-series visualizations. Follow 
 
 1. On the upper-left corner of the page, select **Time Series**.
 2. Select the **Annotations** tab and then **Add data source**.
-3. In the **Index** name field, specify the appropriate index. In this case, continue using the same index from the previous steps, that is, `smartobserve_dashboards_sample_data_logs`.
+3. In the **Index** name field, specify the appropriate index. In this case, continue using the same index from the previous steps, that is, `mcdesk_dashboards_sample_data_logs`.
 4. From **Time** field, select `@timestamp`.
 5. In the **Fields** field, enter `timestamp`.
 6. In the **Row template** field, enter `timestamp`.

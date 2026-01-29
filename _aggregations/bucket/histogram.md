@@ -11,12 +11,12 @@ redirect_from:
 
 The `histogram` aggregation buckets documents based on a specified interval.
 
-With `histogram` aggregations, you can visualize the distributions of values in a given range of documents very easily. Now SmartObserve doesn’t give you back an actual graph of course, that’s what SmartObserve Dashboards is for. But it'll give you the JSON response that you can use to construct your own graph.
+With `histogram` aggregations, you can visualize the distributions of values in a given range of documents very easily. Now MCdesk doesn’t give you back an actual graph of course, that’s what MCdesk Dashboards is for. But it'll give you the JSON response that you can use to construct your own graph.
 
 The following example buckets the `number_of_bytes` field by 10,000 intervals:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

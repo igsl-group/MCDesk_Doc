@@ -9,10 +9,10 @@ nav_order: 27
 **Introduced 3.3**
 {: .label .label-purple }
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
-The Security Configuration Versioning and Rollback API provides version control for SmartObserve security configurations, enabling administrators to track changes, maintain audit trails, and restore previous configurations when needed.
+The Security Configuration Versioning and Rollback API provides version control for MCdesk security configurations, enabling administrators to track changes, maintain audit trails, and restore previous configurations when needed.
 
 This API automatically creates versions when security configurations change, allowing you to track the complete history of security configuration modifications, view detailed information about any previous version, and roll back to any previous configuration version, thus maintaining operational safety.
 
@@ -26,7 +26,7 @@ A new version is created **only when a change is detected** compared to the late
 
 ## Enabling versioning
 
-To use the security configuration versioning, you must enable it in your SmartObserve configuration. Add the following setting to your `smartobserve.yml` configuration file:
+To use the security configuration versioning, you must enable it in your MCdesk configuration. Add the following setting to your `mcdesk.yml` configuration file:
 
 ```yaml
 plugins.security.configurations_versions.enabled: true
@@ -40,7 +40,7 @@ plugins.security.config_version.retention_count: 10
 
 The default retention count is `10` versions. When the retention limit is reached, the oldest version is automatically removed to make space for one new version.
 
-After modifying `smartobserve.yml`, restart your SmartObserve cluster for the changes to take effect. For more information, see [Experimental feature flags]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/experimental/).
+After modifying `mcdesk.yml`, restart your MCdesk cluster for the changes to take effect. For more information, see [Experimental feature flags]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/experimental/).
 
 ## Endpoints
 
@@ -164,7 +164,7 @@ POST /_plugins/_security/api/version/rollback
 
 ### Example response
 
-SmartObserve sends the following response when rolling back to the `v4` version from the `v5` version:
+MCdesk sends the following response when rolling back to the `v4` version from the `v5` version:
 
 ```json
 {

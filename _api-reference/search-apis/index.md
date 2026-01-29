@@ -12,11 +12,11 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-SmartObserve provides a comprehensive suite of search-related APIs that allow you to perform various search operations, test and validate your searches, and work with search templates. SmartObserve supports the following Search APIs.
+MCdesk provides a comprehensive suite of search-related APIs that allow you to perform various search operations, test and validate your searches, and work with search templates. MCdesk supports the following Search APIs.
 
 ## Core search APIs
 
-These APIs form the foundation of SmartObserve's search capabilities:
+These APIs form the foundation of MCdesk's search capabilities:
 
 - **[Search]({{site.url}}{{site.baseurl}}/api-reference/search-apis/search/)**: Run search queries across one or more indexes.
 - **[Multi-search]({{site.url}}{{site.baseurl}}/api-reference/search-apis/multi-search/)**: Run multiple search requests in a single API call.

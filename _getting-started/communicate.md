@@ -1,18 +1,18 @@
 ---
 layout: default
-title: Communicate with SmartObserve
+title: Communicate with MCdesk
 nav_order: 30
 ---
 
-# Communicate with SmartObserve
+# Communicate with MCdesk
 
-You can communicate with SmartObserve using the REST API or one of the SmartObserve language clients. This page introduces the SmartObserve REST API. If you need to communicate with SmartObserve in your programming language, see the [Clients]({{site.url}}{{site.baseurl}}/clients/) section for a list of available clients.
+You can communicate with MCdesk using the REST API or one of the MCdesk language clients. This page introduces the MCdesk REST API. If you need to communicate with MCdesk in your programming language, see the [Clients]({{site.url}}{{site.baseurl}}/clients/) section for a list of available clients.
 
-## SmartObserve REST API
+## MCdesk REST API
 
-You interact with SmartObserve clusters using the REST API, which offers a lot of flexibility. Through the REST API, you can change most SmartObserve settings, modify indexes, check cluster health, get statistics---almost everything. You can use clients like [cURL](https://curl.se/) or any programming language that can send HTTP requests. 
+You interact with MCdesk clusters using the REST API, which offers a lot of flexibility. Through the REST API, you can change most MCdesk settings, modify indexes, check cluster health, get statistics---almost everything. You can use clients like [cURL](https://curl.se/) or any programming language that can send HTTP requests. 
 
-You can send HTTP requests in your terminal or in the [Dev Tools console]({{site.url}}{{site.baseurl}}/dashboards/dev-tools/index-dev/) in SmartObserve Dashboards.
+You can send HTTP requests in your terminal or in the [Dev Tools console]({{site.url}}{{site.baseurl}}/dashboards/dev-tools/index-dev/) in MCdesk Dashboards.
 
 ### Sending requests in a terminal
 
@@ -40,14 +40,14 @@ curl -X GET "https://localhost:9200/_cluster/health" -ku admin:<custom-admin-pas
 #### Pretty format
 
 
-SmartObserve generally returns responses in a flat JSON format by default. For a human-readable response body, provide the `pretty` query parameter:
+MCdesk generally returns responses in a flat JSON format by default. For a human-readable response body, provide the `pretty` query parameter:
 
 ```bash
 curl -X GET "http://localhost:9200/_cluster/health?pretty"
 ```
 {% include copy.html %}
 
-For more information about `pretty` and other useful query parameters, see [Common REST parameters]({{site.url}}{{site.baseurl}}/smartobserve/common-parameters/).
+For more information about `pretty` and other useful query parameters, see [Common REST parameters]({{site.url}}{{site.baseurl}}/mcdesk/common-parameters/).
 
 #### Request body
 
@@ -65,22 +65,22 @@ curl -X GET "http://localhost:9200/students/_search?pretty" -H 'Content-Type: ap
 
 ### Sending requests in Dev Tools
 
-The Dev Tools console in SmartObserve Dashboards uses a simpler syntax to format REST requests as compared to the cURL command. To send requests in Dev Tools, use the following steps:
+The Dev Tools console in MCdesk Dashboards uses a simpler syntax to format REST requests as compared to the cURL command. To send requests in Dev Tools, use the following steps:
 
-1. Access SmartObserve Dashboards by opening `http://localhost:5601/` in a web browser on the same host that is running your SmartObserve cluster. If you're using the Security plugin, access SmartObserve Dashboards by opening `https://localhost:5601/`. The default username is `admin`, and the password is set in your `docker-compose.yml` file in the `OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password>` setting.
+1. Access MCdesk Dashboards by opening `http://localhost:5601/` in a web browser on the same host that is running your MCdesk cluster. If you're using the Security plugin, access MCdesk Dashboards by opening `https://localhost:5601/`. The default username is `admin`, and the password is set in your `docker-compose.yml` file in the `OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password>` setting.
 1. On the top menu bar, go to **Management > Dev Tools**.
 1. In the left pane of the console, enter the following request:
     ```json
     GET _cluster/health
     ```
     {% include copy-curl.html %}
-1. Choose the triangle icon on the upper right of the request to submit the query. You can also submit the request by pressing `Ctrl+Enter` (or `Cmd+Enter` for Mac users). To learn more about using the SmartObserve Dashboards console for submitting queries, see [Running queries in the console]({{site.url}}{{site.baseurl}}/dashboards/run-queries/).
+1. Choose the triangle icon on the upper right of the request to submit the query. You can also submit the request by pressing `Ctrl+Enter` (or `Cmd+Enter` for Mac users). To learn more about using the MCdesk Dashboards console for submitting queries, see [Running queries in the console]({{site.url}}{{site.baseurl}}/dashboards/run-queries/).
 
-In the following sections, and in most of the SmartObserve documentation, requests are presented in the Dev Tools console format. 
+In the following sections, and in most of the MCdesk documentation, requests are presented in the Dev Tools console format. 
 
 ## Indexing documents
 
-To add a JSON document to an SmartObserve index (that is, to _index_ a document), you send an HTTP request with the following header:
+To add a JSON document to an MCdesk index (that is, to _index_ a document), you send an HTTP request with the following header:
 
 ```json
 PUT /<index-name>/_doc/<document-id>
@@ -98,13 +98,13 @@ PUT /students/_doc/1
 ```
 {% include copy-curl.html %}
 
-Once you send the preceding request, SmartObserve creates an index called `students` and stores the ingested document in the index. If you don't provide an ID for your document, SmartObserve generates a document ID. In the preceding request, the document ID is specified as the student ID (`1`).
+Once you send the preceding request, MCdesk creates an index called `students` and stores the ingested document in the index. If you don't provide an ID for your document, MCdesk generates a document ID. In the preceding request, the document ID is specified as the student ID (`1`).
 
 To learn more about indexing, see [Managing indexes]({{site.url}}{{site.baseurl}}/im-plugin/).
 
 ## Dynamic mapping
 
-When you index a document, SmartObserve infers the field types from the JSON types submitted in the document. This process is called _dynamic mapping_. For more information, see [Dynamic mapping]({{site.url}}{{site.baseurl}}/field-types/#dynamic-mapping).
+When you index a document, MCdesk infers the field types from the JSON types submitted in the document. This process is called _dynamic mapping_. For more information, see [Dynamic mapping]({{site.url}}{{site.baseurl}}/field-types/#dynamic-mapping).
 
 To view the inferred field types, send a request to the `_mapping` endpoint:
 
@@ -113,7 +113,7 @@ GET /students/_mapping
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with the field `type` for each field:
+MCdesk responds with the field `type` for each field:
 
 ```json
 {
@@ -141,9 +141,9 @@ SmartObserve responds with the field `type` for each field:
 }
 ```
 
-SmartObserve mapped the numeric fields to the `float` and `long` types. Notice that SmartObserve mapped the `name` text field to `text` and added a `name.keyword` subfield mapped to `keyword`. Fields mapped to `text` are analyzed (lowercased and split into terms) and can be used for full-text search. Fields mapped to `keyword` are used for exact term search.
+MCdesk mapped the numeric fields to the `float` and `long` types. Notice that MCdesk mapped the `name` text field to `text` and added a `name.keyword` subfield mapped to `keyword`. Fields mapped to `text` are analyzed (lowercased and split into terms) and can be used for full-text search. Fields mapped to `keyword` are used for exact term search.
 
-SmartObserve mapped the `grad_year` field to `long`. If you want to map it to the `date` type instead, you need to [delete the index](#deleting-an-index) and then recreate it, explicitly specifying the mappings. For instructions on how to explicitly specify mappings, see [Index mappings and settings](#index-mappings-and-settings).
+MCdesk mapped the `grad_year` field to `long`. If you want to map it to the `date` type instead, you need to [delete the index](#deleting-an-index) and then recreate it, explicitly specifying the mappings. For instructions on how to explicitly specify mappings, see [Index mappings and settings](#index-mappings-and-settings).
 
 ## Searching for documents
 
@@ -159,7 +159,7 @@ GET /students/_search
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns the indexed document:
+MCdesk returns the indexed document:
 
 ```json
 {
@@ -197,7 +197,7 @@ For more information about search, see [Search your data]({{site.url}}{{site.bas
 
 ## Updating documents
 
-In SmartObserve, documents are immutable. However, you can update a document by retrieving it, updating its information, and reindexing it. You can update an entire document using the Index Document API, providing values for all existing and added fields in the document. For example, to update the `gpa` field and add an `address` field to the previously indexed document, send the following request:
+In MCdesk, documents are immutable. However, you can update a document by retrieving it, updating its information, and reindexing it. You can update an entire document using the Index Document API, providing values for all existing and added fields in the document. For example, to update the `gpa` field and add an `address` field to the previously indexed document, send the following request:
 
 ```json
 PUT /students/_doc/1
@@ -245,10 +245,10 @@ DELETE /students
 
 ## Index mappings and settings
 
-SmartObserve indexes are configured with mappings and settings:
+MCdesk indexes are configured with mappings and settings:
 
 - A _mapping_ is a collection of fields and the types of those fields. For more information, see [Mappings and field types]({{site.url}}{{site.baseurl}}/field-types/).
-- _Settings_ include index data like the index name, creation date, and number of shards. For more information, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+- _Settings_ include index data like the index name, creation date, and number of shards. For more information, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 You can specify the mappings and settings in one request. For example, the following request specifies the number of index shards and maps the `name` field to `text` and the `grad_year` field to `date`:
 
@@ -291,7 +291,7 @@ GET /students/_mapping
 ```
 {% include copy-curl.html %}
 
-SmartObserve mapped the `name` and `grad_year` fields according to the specified types and inferred the field type for the `gpa` field:
+MCdesk mapped the `name` and `grad_year` fields according to the specified types and inferred the field type for the `gpa` field:
 
 ```json
 {
@@ -318,11 +318,11 @@ Once a field is created, you cannot change its type. Changing a field type requi
 
 ## Further reading
 
-- For information about the SmartObserve REST API, see the [REST API reference]({{site.url}}{{site.baseurl}}/api-reference/).
-- For information about SmartObserve language clients, see [Clients]({{site.url}}{{site.baseurl}}/clients/).
+- For information about the MCdesk REST API, see the [REST API reference]({{site.url}}{{site.baseurl}}/api-reference/).
+- For information about MCdesk language clients, see [Clients]({{site.url}}{{site.baseurl}}/clients/).
 - For information about mappings, see [Mappings and field types]({{site.url}}{{site.baseurl}}/field-types/).
-- For information about settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+- For information about settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 ## Next steps
 
-- See [Ingest data into SmartObserve]({{site.url}}{{site.baseurl}}/getting-started/ingest-data/) to learn about ingestion options.
+- See [Ingest data into MCdesk]({{site.url}}{{site.baseurl}}/getting-started/ingest-data/) to learn about ingestion options.

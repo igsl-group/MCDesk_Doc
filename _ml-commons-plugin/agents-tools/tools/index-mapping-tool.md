@@ -42,7 +42,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -52,7 +52,7 @@ SmartObserve responds with an agent ID:
 
 ## Step 2: Run the agent
 
-Before you run the agent, make sure that you add the sample SmartObserve Dashboards `Sample eCommerce orders` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
+Before you run the agent, make sure that you add the sample MCdesk Dashboards `Sample eCommerce orders` dataset. To learn more, see [Adding sample data]({{site.url}}{{site.baseurl}}/dashboards/quickstart#adding-sample-data).
 
 Then, run the agent by sending the following request and providing the index name and the question:
 
@@ -67,7 +67,7 @@ POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 ```
 {% include copy-curl.html %} 
 
-SmartObserve returns the mappings and settings for the specified index:
+MCdesk returns the mappings and settings for the specified index:
 
 ```json
 {

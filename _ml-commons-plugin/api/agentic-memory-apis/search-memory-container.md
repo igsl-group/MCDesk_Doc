@@ -10,7 +10,7 @@ nav_order: 25
 **Introduced 3.3**
 {: .label .label-purple }
 
-Use this API to search for memory containers using SmartObserve query domain-specific language (DSL).
+Use this API to search for memory containers using MCdesk query domain-specific language (DSL).
 
 ## Endpoints
 
@@ -21,7 +21,7 @@ POST /_plugins/_ml/memory_containers/_search
 
 ## Request fields
 
-The request body supports standard SmartObserve query DSL. For more information, see [Query DSL]({{site.url}}{{site.baseurl}}/query-dsl/).
+The request body supports standard MCdesk query DSL. For more information, see [Query DSL]({{site.url}}{{site.baseurl}}/query-dsl/).
 
 ## Example request
 

@@ -13,7 +13,7 @@ Introduced 3.1
 In search applications, tuning relevance is a constant, iterative exercise intended to provide the right search results to your end users. The tooling in Search Relevance Workbench helps search relevance engineers and business users create the best search experience possible for application users. It does this without hiding internal information, enabling engineers to experiment and investigate details as necessary.
 
 Search Relevance Workbench consists of a [frontend component](https://github.com/igsl-group/dashboards-search-relevance) that simplifies the process of evaluating search quality.
-The frontend uses the [SmartObserve Search Relevance plugin](https://github.com/igsl-group/search-relevance) as a backend to manage the resources for each tool provided. For example, most use cases involve creating and using search configurations, query sets, and judgment lists. All of these resources are created, updated, deleted, and maintained by the Search Relevance plugin. When you are satisfied with the relevance improvements, you can take the output of the experimentation and manually deploy the changes into your search application.
+The frontend uses the [MCdesk Search Relevance plugin](https://github.com/igsl-group/search-relevance) as a backend to manage the resources for each tool provided. For example, most use cases involve creating and using search configurations, query sets, and judgment lists. All of these resources are created, updated, deleted, and maintained by the Search Relevance plugin. When you are satisfied with the relevance improvements, you can take the output of the experimentation and manually deploy the changes into your search application.
 
 ## Key relevance concepts
 
@@ -37,9 +37,9 @@ To enable Search Relevance Workbench, you must first enable the frontend and bac
 
 ### Enabling the Search Relevance Workbench frontend plugin
 
-To activate the frontend plugin, in SmartObserve Dashboards, go to **Management** > **Dashboards Management** > **Advanced Settings** and turn on the toggle, as shown in the following image.
+To activate the frontend plugin, in MCdesk Dashboards, go to **Management** > **Dashboards Management** > **Advanced Settings** and turn on the toggle, as shown in the following image.
 
-<img src="{{site.url}}{{site.baseurl}}/images/search-relevance-workbench/activate_frontend_plugin.png" alt="Activate frontend plugin in SmartObserve Dashboards settings"/>{: .img-fluid }
+<img src="{{site.url}}{{site.baseurl}}/images/search-relevance-workbench/activate_frontend_plugin.png" alt="Activate frontend plugin in MCdesk Dashboards settings"/>{: .img-fluid }
 
 ### Enabling the Search Relevance Workbench backend plugin
 
@@ -97,7 +97,7 @@ Every search configuration contains a `search_configuration_name` and a `query_b
 
 ### Example: Creating two search configurations
 
-For your first experiment, you'll explore how adding a weight of `10` to the `title` field affects your search configuration. First, upload your current search configuration to SmartObserve:
+For your first experiment, you'll explore how adding a weight of `10` to the `title` field affects your search configuration. First, upload your current search configuration to MCdesk:
 
 ```json
 PUT _plugins/_search_relevance/search_configurations
@@ -328,12 +328,12 @@ The response provides the detailed experiment results:
 
 </details>
 
-## Using Search Relevance Workbench in SmartObserve Dashboards
+## Using Search Relevance Workbench in MCdesk Dashboards
 
-You can create all Search Relevance Workbench components and visualize the experiment results in SmartObserve Dashboards.
+You can create all Search Relevance Workbench components and visualize the experiment results in MCdesk Dashboards.
 In this example, you'll create the same experiment and review its results.
 
-In the left navigation pane, select **SmartObserve Plugins** > **Search Relevance** and then select **Query Set Comparison**, as shown in the following image.
+In the left navigation pane, select **MCdesk Plugins** > **Search Relevance** and then select **Query Set Comparison**, as shown in the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/search-relevance-workbench/select_query_set_comparison.png" alt="Select Query Set Comparison Experiment"/>{: .img-fluid }
 

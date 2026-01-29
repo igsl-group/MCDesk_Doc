@@ -297,7 +297,7 @@ The following table lists the available statistics. For statistics with paths pr
 | `text_chunking_fixed_token_length_processors` | `info` | `processors.ingest.text_chunking_fixed_token_length_processors` | The number of `text_chunking` processors using the `fixed_token_length` algorithm in ingest pipelines. |
 | `text_chunking_fixed_char_length_processors` | `info` | `processors.ingest.text_chunking_fixed_char_length_processors` | The number of `text_chunking` processors using the `fixed_character_length` algorithm in ingest pipelines. |
 | `text_chunking_processors` | `info` | `processors.ingest.text_chunking_processors` | The number of `text_chunking` processors in ingest pipelines. |
-| `rerank_ml_processors` | `info` | `processors.search.rerank_ml_processors` | The number of `rerank` processors of the `ml_smartobserve` type in search pipelines. |
+| `rerank_ml_processors` | `info` | `processors.search.rerank_ml_processors` | The number of `rerank` processors of the `ml_mcdesk` type in search pipelines. |
 | `rerank_by_field_processors` | `info` | `processors.search.rerank_by_field_processors` | The number of `rerank` processors of the `by_field` type. |
 | `neural_sparse_two_phase_processors` | `info` | `processors.search.neural_sparse_two_phase_processors` | The number of `neural_sparse_two_phase_processor` processors in search pipelines. |
 | `neural_query_enricher_processors` | `info` | `processors.search.neural_query_enricher_processors` | The number of `neural_query_enricher` processors in search pipelines. |
@@ -333,7 +333,7 @@ The following table lists the available statistics. For statistics with paths pr
 | `neural_sparse_two_phase_executions` | `nodes`, `all_nodes` | `processors.search.neural_sparse_two_phase_executions` | The number of `neural_sparse_two_phase_processor` processor executions. |
 | `rerank_by_field_executions` | `nodes`, `all_nodes` | `processors.search.rerank_by_field_executions` | The number of `rerank` processor executions of the `by_field` type. |
 | `neural_query_enricher_executions` | `nodes`, `all_nodes` | `processors.search.neural_query_enricher_executions` | The number of `neural_query_enricher` processor executions. |
-| `rerank_ml_executions` | `nodes`, `all_nodes` | `processors.search.rerank_ml_executions` | The number of `rerank` processor executions of the `ml_smartobserve` type. |
+| `rerank_ml_executions` | `nodes`, `all_nodes` | `processors.search.rerank_ml_executions` | The number of `rerank` processor executions of the `ml_mcdesk` type. |
 
 **Node-level statistics: Hybrid processors**
 
@@ -423,7 +423,7 @@ The `timestamped_event_counter` object contains the following metadata fields.
 **Introduced 3.3**
 {: .label .label-purple }
 
-Sparse indexes support [neural sparse ANN search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-ann/). To maximize search efficiency, SmartObserve caches sparse data in JVM memory.
+Sparse indexes support [neural sparse ANN search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-ann/). To maximize search efficiency, MCdesk caches sparse data in JVM memory.
 
 To avoid high latency during initial searches, you can run random queries during a warmup period. After the warmup period, sparse data is stored in JVM memory, and you can start production workloads. However, this approach is indirect and requires additional effort.
 
@@ -478,7 +478,7 @@ The API call returns results only after the warm up operation finishes or the re
 
 If the request times out, then the operation continues on the cluster. 
 
-To monitor the warm up operation, use the SmartObserve Tasks API:
+To monitor the warm up operation, use the MCdesk Tasks API:
 
 ```json
 GET /_tasks
@@ -493,7 +493,7 @@ The following table lists all response body fields.
 
 | Field                | Data type | Description                                                      |
 | :------------------- | :-------- | :--------------------------------------------------------------- |
-| `_shards.total`      | Integer   | The total number of shards that SmartObserve attempted to warm up. |
+| `_shards.total`      | Integer   | The total number of shards that MCdesk attempted to warm up. |
 | `_shards.successful` | Integer   | The number of shards that were successfully warmed up.           |
 | `_shards.failed`     | Integer   | The number of shards that failed to warm up.                     |
 
@@ -501,7 +501,7 @@ The following table lists all response body fields.
 
 To ensure that the warm up operation works properly, follow these best practices:
 
-* Avoid running merge operations on indexes you plan to warm up: During a merge operation, SmartObserve creates new segments and may delete old ones. For example, if the warm up API operation loads sparse indexes A and B into native memory, but a merge creates a new segment C from A and B, then A and B are removed from memory but C is not yet loaded. In this case, the initial loading delay for sparse index C still occurs.
+* Avoid running merge operations on indexes you plan to warm up: During a merge operation, MCdesk creates new segments and may delete old ones. For example, if the warm up API operation loads sparse indexes A and B into native memory, but a merge creates a new segment C from A and B, then A and B are removed from memory but C is not yet loaded. In this case, the initial loading delay for sparse index C still occurs.
 
 * Verify that all sparse indexes you plan to warm up can fit into JVM memory. For more information about memory limits, see [neural_search.circuit_breaker.limit]({{site.url}}{{site.baseurl}}/vector-search/settings#neural-search-plugin-settings).
 
@@ -566,7 +566,7 @@ The API call returns results only after the clear cache operation finishes or th
 
 If the request times out, the operation continues running in the cluster.
 
-To monitor the progress of the clear cache operation, use the SmartObserve Tasks API:
+To monitor the progress of the clear cache operation, use the MCdesk Tasks API:
 
 ```json
 GET /_tasks
@@ -582,6 +582,6 @@ The following table lists all response body fields.
 
 | Field                | Data type | Description                                                      |
 | :------------------- | :-------- | :--------------------------------------------------------------- |
-| `_shards.total`      | Integer   | The total number of shards for which SmartObserve attempted to clear cache. |
+| `_shards.total`      | Integer   | The total number of shards for which MCdesk attempted to clear cache. |
 | `_shards.successful` | Integer   | The number of shards for which cache was successfully cleared.           |
 | `_shards.failed`     | Integer   | The number of shards for which cache failed to clear.                     |

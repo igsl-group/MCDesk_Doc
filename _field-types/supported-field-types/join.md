@@ -6,7 +6,7 @@ has_children: false
 parent: Object field types
 grand_parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/join/
+  - /mcdesk/supported-field-types/join/
   - /field-types/join/
 ---
 

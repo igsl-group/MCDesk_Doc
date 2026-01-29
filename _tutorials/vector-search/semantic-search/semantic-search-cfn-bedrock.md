@@ -10,26 +10,26 @@ redirect_from:
 
 # Semantic search using AWS CloudFormation and Amazon Bedrock 
 
-This tutorial shows you how to implement semantic search in [Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/) using [AWS CloudFormation](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/cfn-template.html) and Amazon Bedrock. For more information, see [Semantic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/semantic-search/).
+This tutorial shows you how to implement semantic search in [Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/) using [AWS CloudFormation](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/cfn-template.html) and Amazon Bedrock. For more information, see [Semantic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/semantic-search/).
 
-If you are using self-managed SmartObserve instead of Amazon SmartObserve Service, create a connector to the Amazon Bedrock models using [the blueprints](https://github.com/igsl-group/ml-commons/blob/main/docs/remote_inference_blueprints/). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/). 
+If you are using self-managed MCdesk instead of Amazon MCdesk Service, create a connector to the Amazon Bedrock models using [the blueprints](https://github.com/igsl-group/ml-commons/blob/main/docs/remote_inference_blueprints/). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/). 
 
 The CloudFormation integration automates the steps in the [Semantic search using Amazon Bedrock Titan]({{site.url}}{{site.baseurl}}/vector-search/tutorials/semantic-search/semantic-search-bedrock-cohere/) tutorials. The CloudFormation template creates an AWS Identity and Access Management (IAM) role and invokes an AWS Lambda function to set up an AI connector and model.
 
 Replace the placeholders beginning with the prefix `your_` with your own values.
 {: .note}
 
-## Prerequisite: Create an SmartObserve cluster
+## Prerequisite: Create an MCdesk cluster
 
-Go to the [Amazon SmartObserve Service console](https://console.aws.amazon.com/aos/home) and create an SmartObserve domain.
+Go to the [Amazon MCdesk Service console](https://console.aws.amazon.com/aos/home) and create an MCdesk domain.
 
 Note the domain Amazon Resource Name (ARN); you'll use it in the following steps.
 
 ## Step 1: Map a backend role
 
-The SmartObserve CloudFormation template uses a Lambda function to create an AI connector with an IAM role. You must map the IAM role to `ml_full_access` to grant the required permissions. Follow [Step 2.2 of the Semantic search using Amazon Bedrock Titan tutorial]({{site.url}}{{site.baseurl}}/vector-search/tutorials/semantic-search/semantic-search-bedrock-titan/#step-22-map-a-backend-role) to map a backend role.
+The MCdesk CloudFormation template uses a Lambda function to create an AI connector with an IAM role. You must map the IAM role to `ml_full_access` to grant the required permissions. Follow [Step 2.2 of the Semantic search using Amazon Bedrock Titan tutorial]({{site.url}}{{site.baseurl}}/vector-search/tutorials/semantic-search/semantic-search-bedrock-titan/#step-22-map-a-backend-role) to map a backend role.
 
-The IAM role is specified in the **Lambda Invoke SmartObserve ML Commons Role Name** field in the CloudFormation template. The default IAM role is `LambdaInvokeSmartObserveMLCommonsRole`, so you must map the `arn:aws:iam::your_aws_account_id:role/LambdaInvokeSmartObserveMLCommonsRole` backend role to `ml_full_access`.
+The IAM role is specified in the **Lambda Invoke MCdesk ML Commons Role Name** field in the CloudFormation template. The default IAM role is `LambdaInvokeMCdeskMLCommonsRole`, so you must map the `arn:aws:iam::your_aws_account_id:role/LambdaInvokeMCdeskMLCommonsRole` backend role to `ml_full_access`.
 
 For a broader mapping, you can grant all roles `ml_full_access` using a wildcard:  
 
@@ -41,7 +41,7 @@ Because `all_access` includes more permissions than `ml_full_access`, mapping th
 
 ## Step 2: Run the CloudFormation template  
 
-The CloudFormation template integration is available in the [Amazon SmartObserve Service console](https://console.aws.amazon.com/aos/home). From the left navigation pane, select **Integrations**, as shown in the following image.
+The CloudFormation template integration is available in the [Amazon MCdesk Service console](https://console.aws.amazon.com/aos/home). From the left navigation pane, select **Integrations**, as shown in the following image.
 
 ![Semantic search CloudFormation integration]({{site.url}}{{site.baseurl}}/images/vector-search-tutorials/semantic_search_bedrock_integration_1.png)  
 
@@ -51,7 +51,7 @@ To create a connector, complete the following form.
 
 Complete the following fields, keeping all other fields at their default values:  
 
-1. Enter your **Amazon SmartObserve Endpoint**.  
+1. Enter your **Amazon MCdesk Endpoint**.  
 2. In **Model Configuration**, select a **Model** to be deployed. Choose one of the following supported models: 
     - `amazon.titan-embed-text-v1`
     - `amazon.titan-embed-image-v1`

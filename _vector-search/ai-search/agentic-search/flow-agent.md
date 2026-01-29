@@ -70,7 +70,7 @@ POST _bulk
 
 ## Step 3: Create a model for the agent and QueryPlanningTool
 
-Register a single model that will be used by both the conversational agent and the `QueryPlanningTool`. This model analyzes natural language questions, coordinates tool usage, and generates the SmartObserve DSL. For available model options, see [Model configurations]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/agent-customization/#model-configuration):
+Register a single model that will be used by both the conversational agent and the `QueryPlanningTool`. This model analyzes natural language questions, coordinates tool usage, and generates the MCdesk DSL. For available model options, see [Model configurations]({{site.url}}{{site.baseurl}}/vector-search/ai-search/agentic-search/agent-customization/#model-configuration):
 
 ```json
 POST /_plugins/_ml/models/_register

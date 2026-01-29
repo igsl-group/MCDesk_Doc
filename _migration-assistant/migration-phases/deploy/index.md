@@ -2,7 +2,7 @@
 layout: default
 title: Deploy
 parent: Migration phases
-grand_parent: Migration Assistant for SmartObserve
+grand_parent: Migration Assistant for MCdesk
 nav_order: 2
 has_children: true
 has_toc: true
@@ -16,7 +16,7 @@ redirect_from:
 
 This quickstart assumes that you have performed an [assessment]({{site.url}}{{site.baseurl}}/migration-assistant/migration-phases/assessment/) to understand upgrade breaking changes and limitations before beginning.
 
-This quickstart outlines how to deploy Migration Assistant for SmartObserve and execute an existing data migration using `Reindex-from-Snapshot` (RFS). It uses AWS for illustrative purposes. However, you can modify the steps for use with other cloud providers.
+This quickstart outlines how to deploy Migration Assistant for MCdesk and execute an existing data migration using `Reindex-from-Snapshot` (RFS). It uses AWS for illustrative purposes. However, you can modify the steps for use with other cloud providers.
 
 **Note**: Although this page focuses on RFS-only deployment, you can add capture and replay functionality or replace RFS options with  Capture and Replay  as described in [Configuration options]({{site.url}}{{site.baseurl}}/migration-assistant/migration-phases/deploy/configuration-options/#live-capture-migration-with-cr).
 
@@ -49,7 +49,7 @@ Before proceeding with the deployment, ensure you have completed the following p
 To begin your migration, use the following steps to install a `bootstrap` box on an Amazon Elastic Compute Cloud (Amazon EC2) instance. The instance uses AWS CloudFormation to create and manage the stack.
 
 1. Log in to the target AWS account in which you want to deploy Migration Assistant.
-2. From the browser where you are logged in to your target AWS account, right-click [here](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?templateURL=https://solutions-reference.s3.amazonaws.com/migration-assistant-for-amazon-smartobserve-service/latest/migration-assistant-for-amazon-smartobserve-service.template&redirectId=SolutionWeb) to load the CloudFormation template from a new browser tab.
+2. From the browser where you are logged in to your target AWS account, right-click [here](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?templateURL=https://solutions-reference.s3.amazonaws.com/migration-assistant-for-amazon-mcdesk-service/latest/migration-assistant-for-amazon-mcdesk-service.template&redirectId=SolutionWeb) to load the CloudFormation template from a new browser tab.
 3. Follow the CloudFormation stack wizard:
    * **Stack Name:** `MigrationBootstrap`
    * **Stage Name:** `dev`
@@ -108,10 +108,10 @@ To use these steps, make sure you fulfill the following prerequisites:
     ```
     {% include copy.html %}
     
-3. Once logged in, run the following command from the shell of the Bootstrap instance in the `/smartobserve-migrations` directory:
+3. Once logged in, run the following command from the shell of the Bootstrap instance in the `/mcdesk-migrations` directory:
 
     ```bash
-    ./initBootstrap.sh && cd deployment/cdk/smartobserve-service-migration
+    ./initBootstrap.sh && cd deployment/cdk/mcdesk-service-migration
     ```
     {% include copy.html %}
     
@@ -139,7 +139,7 @@ Use the following steps to configure and deploy RFS, deploy Migration Assistant,
    
    Be sure to copy the secret Amazon Resource Name (ARN) for use during deployment. 
 
-2. From the same shell as the Bootstrap instance, modify the `cdk.context.json` file located in the `/smartobserve-migrations/deployment/cdk/smartobserve-service-migration` directory and configure the following settings:
+2. From the same shell as the Bootstrap instance, modify the `cdk.context.json` file located in the `/mcdesk-migrations/deployment/cdk/mcdesk-service-migration` directory and configure the following settings:
 
     ```json
     {
@@ -276,7 +276,7 @@ Run the following command to access the migration console:
 {% include copy.html %}
 
 
-`accessContainer.sh` is located in `/smartobserve-migrations/deployment/cdk/smartobserve-service-migration/` on the Bootstrap instance. To learn more, see [Accessing the migration console]({{site.url}}{{site.baseurl}}/migration-assistant/migration-phases/migrating-metadata/).
+`accessContainer.sh` is located in `/mcdesk-migrations/deployment/cdk/mcdesk-service-migration/` on the Bootstrap instance. To learn more, see [Accessing the migration console]({{site.url}}{{site.baseurl}}/migration-assistant/migration-phases/migrating-metadata/).
 {: .note}
 
 ---

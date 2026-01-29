@@ -6,7 +6,7 @@ has_children: false
 parent: String field types
 grand_parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/text/
+  - /mcdesk/supported-field-types/text/
   - /field-types/text/
 ---
 
@@ -17,7 +17,7 @@ redirect_from:
 A `text` field type contains a string that is analyzed. It is used for full-text search because it allows partial matches. Searches for multiple terms can match some but not all of them. Depending on the analyzer, results can be case insensitive, stemmed, have stopwords removed, have synonyms applied, and so on.
 
 
-If you need to use a field for exact-value search, map it as a [`keyword`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/keyword/) instead.
+If you need to use a field for exact-value search, map it as a [`keyword`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/keyword/) instead.
 {: .note }
 
 The [`match_only_text`]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/match-only-text/) field is a space-optimized version of the `text` field. If you don't need to query phrases or use positional queries, map the field as `match_only_text` instead of `text`. Positional queries are queries in which the position of the term in the phrase is important, such as interval or span queries. 

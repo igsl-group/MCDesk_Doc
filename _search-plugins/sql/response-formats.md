@@ -61,7 +61,7 @@ In the response, the `schema` contains the field names and types, and the `datar
 }
 ```
 
-If an error of any type occurs, SmartObserve returns the error message.
+If an error of any type occurs, MCdesk returns the error message.
 
 The following query searches for a non-existent field `unknown`:
 
@@ -85,9 +85,9 @@ The response contains the error message and the cause of the error:
 }
 ```
 
-## SmartObserve DSL JSON format
+## MCdesk DSL JSON format
 
-If you set the format to `json`, the original SmartObserve response is returned in JSON format. Because this is the native response from SmartObserve, extra effort is needed to parse and interpret it.
+If you set the format to `json`, the original MCdesk response is returned in JSON format. Because this is the native response from MCdesk, extra effort is needed to parse and interpret it.
 
 #### Example request
 
@@ -102,7 +102,7 @@ POST _plugins/_sql?format=json
 
 #### Example response
 
-The response is the original response from SmartObserve:
+The response is the original response from MCdesk:
 
 ```json
 {
@@ -177,7 +177,7 @@ Hattie,Bond,36
 ```
 ### Sanitizing results in CSV format
 
-By default, SmartObserve sanitizes header cells (field names) and data cells (field contents) according to the following rules:
+By default, MCdesk sanitizes header cells (field names) and data cells (field contents) according to the following rules:
 
 - If a cell starts with `+`, `-`, `=` , or `@`, the sanitizer inserts a single quote (`'`) at the start of the cell.
 - If a cell contains one or more commas (`,`), the sanitizer surrounds the cell with double quotes (`"`).
@@ -249,7 +249,7 @@ Dale|Adams|33
 Hattie|Bond|36
 ```
 
-By default, SmartObserve sanitizes results in `raw` format according to the following rule:
+By default, MCdesk sanitizes results in `raw` format according to the following rule:
 
 - If a data cell contains one or more pipe characters (`|`), the sanitizer surrounds the cell with double quotes.
 

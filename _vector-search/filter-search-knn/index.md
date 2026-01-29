@@ -13,8 +13,8 @@ redirect_from:
 To refine vector search results, you can filter a vector search using one of the following methods:
 
 - [Efficient k-nearest neighbors (k-NN) filtering]({{site.url}}{{site.baseurl}}/vector-search/filter-search-knn/efficient-knn-filtering/): This approach applies filtering _during_ the vector search, as opposed to before or after the vector search, which ensures that `k` results are returned (if there are at least `k` results in total). This approach is supported by the following engines:
-  - Lucene engine with a Hierarchical Navigable Small World (HNSW) algorithm (SmartObserve version 2.4 and later) 
-  - Faiss engine with an HNSW algorithm (SmartObserve version 2.9 and later) or IVF algorithm (SmartObserve version 2.10 and later). In SmartObserve version 3.1 and later, when using the Faiss engine and HNSW, the [Lucene ACORN filtering optimization](https://github.com/apache/lucene/pull/14160) is applied during HNSW traversal when [memory-optimized search]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/memory-optimized-search/) is enabled.
+  - Lucene engine with a Hierarchical Navigable Small World (HNSW) algorithm (MCdesk version 2.4 and later) 
+  - Faiss engine with an HNSW algorithm (MCdesk version 2.9 and later) or IVF algorithm (MCdesk version 2.10 and later). In MCdesk version 3.1 and later, when using the Faiss engine and HNSW, the [Lucene ACORN filtering optimization](https://github.com/apache/lucene/pull/14160) is applied during HNSW traversal when [memory-optimized search]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/memory-optimized-search/) is enabled.
     - With the Faiss engine and HNSW, the [Lucene ACORN filtering optimization](https://github.com/apache/lucene/pull/14160) is applied during HNSW traversal when [memory-optimized search]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/memory-optimized-search/) is enabled.
 
 -  [Post-filtering]({{site.url}}{{site.baseurl}}/vector-search/filter-search-knn/post-filtering/): Because it is performed after the vector search, this approach may return significantly fewer than `k` results for a restrictive filter. You can use the following two filtering strategies for this approach:
@@ -39,7 +39,7 @@ Filtering in neural sparse vector search | After search (post-filtering) | Appro
 
 Depending on your dataset and use case, you might be more interested in maximizing recall or minimizing latency. The following table provides guidance on various k-NN search configurations and the filtering methods used to optimize for higher recall or lower latency. The first three columns of the table provide several example k-NN search configurations. A search configuration consists of:
 
-- The number of documents in an index, where one SmartObserve document corresponds to one k-NN vector.
+- The number of documents in an index, where one MCdesk document corresponds to one k-NN vector.
 - The percentage of documents left in the results after filtering. This value depends on the restrictiveness of the filter that you provide in the query. The most restrictive filter in the table returns 2.5% of documents in the index, while the least restrictive filter returns 80% of documents.
 - The desired number of returned results (k). 
 

@@ -6,13 +6,13 @@ has_children: true
 has_toc: false
 parent: Supported field types
 redirect_from:
-  - /smartobserve/supported-field-types/object-fields/
+  - /mcdesk/supported-field-types/object-fields/
   - /field-types/object-fields/
 ---
 
 # Object field types
 
-Object field types contain values that are objects or relations. The following table lists all object field types that SmartObserve supports.
+Object field types contain values that are objects or relations. The following table lists all object field types that MCdesk supports.
 
 Field data type | Description
 :--- | :---  

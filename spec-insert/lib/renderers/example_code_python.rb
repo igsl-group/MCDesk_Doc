@@ -10,7 +10,7 @@ class ExampleCodePython < BaseMustacheRenderer
   def call_code
     return "# Invalid action" unless @action&.full_name
     client_setup = <<~PYTHON
-    from smartobservepy import SmartObserve
+    from mcdeskpy import MCdesk
     
     host = 'localhost'
     port = 9200
@@ -18,7 +18,7 @@ class ExampleCodePython < BaseMustacheRenderer
     ca_certs_path = '/full/path/to/root-ca.pem' # Provide a CA bundle if you use intermediate CAs with your root CA.
     
     # Create the client with SSL/TLS enabled, but hostname verification disabled.
-    client = SmartObserve(
+    client = MCdesk(
         hosts = [{'host': host, 'port': port}],
         http_compress = True, # enables gzip compression for request bodies
         http_auth = auth,

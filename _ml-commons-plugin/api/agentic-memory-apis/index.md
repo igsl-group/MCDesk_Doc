@@ -29,7 +29,7 @@ PUT /_cluster/settings
 ```
 {% include copy-curl.html %}
 
-SmartObserve supports the following memory container APIs:
+MCdesk supports the following memory container APIs:
 
 - [Create memory container]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agentic-memory-apis/create-memory-container/)
 - [Get memory container]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agentic-memory-apis/get-memory-container/)
@@ -37,7 +37,7 @@ SmartObserve supports the following memory container APIs:
 - [Delete memory container]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agentic-memory-apis/delete-memory-container/)
 - [Search memory container]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agentic-memory-apis/search-memory-container/)
 
-SmartObserve supports the following memory APIs:
+MCdesk supports the following memory APIs:
 
 - [Add memory]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agentic-memory-apis/add-memory/)
 - [Create session]({{site.url}}{{site.baseurl}}/ml-commons-plugin/api/agentic-memory-apis/create-session/)

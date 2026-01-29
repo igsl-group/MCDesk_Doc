@@ -21,7 +21,7 @@ This page includes troubleshooting steps for configuring TLS certificates with t
 
 ## Validate YAML
 
-`smartobserve.yml` and the files in `config/smartobserve-security/` are in the YAML format. A linter like [YAML Validator](https://codebeautify.org/yaml-validator) can help verify that you don't have any formatting errors.
+`mcdesk.yml` and the files in `config/mcdesk-security/` are in the YAML format. A linter like [YAML Validator](https://codebeautify.org/yaml-validator) can help verify that you don't have any formatting errors.
 
 
 ## View contents of PEM certificates
@@ -32,7 +32,7 @@ You can use OpenSSL to display the content of each PEM certificate:
 openssl x509 -subject -nameopt RFC2253 -noout -in node1.pem
 ```
 
-Then ensure that the value matches the one in `smartobserve.yml`.
+Then ensure that the value matches the one in `mcdesk.yml`.
 
 For more complete information on a certificate:
 
@@ -73,7 +73,7 @@ plugins.security.nodes_dn:
 
 Sometimes the IP address in your certificate is not the one communicating with the cluster. This problem can occur if your node has multiple interfaces or is running on a dual stack network (IPv6 and IPv4).
 
-If this problem occurs, you might see the following in the node's SmartObserve log:
+If this problem occurs, you might see the following in the node's MCdesk log:
 
 ```
 SSL Problem Received fatal alert: certificate_unknown javax.net.ssl.SSLException: Received fatal alert: certificate_unknown
@@ -126,7 +126,7 @@ Generally, the keystore contains client or node certificate and all intermediate
 
 ### Check the configured alias
 
-If you have multiple entries in the keystore and you are using aliases to refer to them, make sure that the configured alias in `smartobserve.yml` matches the one in the keystore. If there is only one entry in the keystore, you do not need to configure an alias.
+If you have multiple entries in the keystore and you are using aliases to refer to them, make sure that the configured alias in `mcdesk.yml` matches the one in the keystore. If there is only one entry in the keystore, you do not need to configure an alias.
 
 
 ## View contents of your keystore and truststore
@@ -193,7 +193,7 @@ ExtendedKeyUsages [
 
 ## TLS versions
 
-The Security plugin disables TLS version 1.0 by default; it is outdated, insecure, and vulnerable. If you need to use `TLSv1` and accept the risks, you can enable it in `smartobserve.yml`:
+The Security plugin disables TLS version 1.0 by default; it is outdated, insecure, and vulnerable. If you need to use `TLSv1` and accept the risks, you can enable it in `mcdesk.yml`:
 
 ```yml
 plugins.security.ssl.http.enabled_protocols:

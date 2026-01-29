@@ -8,17 +8,17 @@ redirect_from:
   - /monitoring-your-cluster/metrics/
 ---
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, see the associated [GitHub issue](https://github.com/igsl-group/SmartObserve/issues/10141).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, see the associated [GitHub issue](https://github.com/igsl-group/MCdesk/issues/10141).    
 {: .warning}
 
-While the SmartObserve Stats APIs offer insight into the inner workings of each node and an SmartObserve cluster as a whole, the statistics lack certain details, such as percentiles, and do not provide the semantics of richer metric types, like histograms. Consequently, identifying outliers within cluster statistics becomes challenging when using only the Stats API. 
+While the MCdesk Stats APIs offer insight into the inner workings of each node and an MCdesk cluster as a whole, the statistics lack certain details, such as percentiles, and do not provide the semantics of richer metric types, like histograms. Consequently, identifying outliers within cluster statistics becomes challenging when using only the Stats API. 
 
-The metrics framework feature adds comprehensive metrics support to effectively monitor an SmartObserve cluster. Using the Metrics Framework APIs, plugin, and extension, developers can add new monitoring metrics. In addition, the SmartObserve distribution bundles the `telemetry-otel` plugin, which provides the implementation for metrics instrumentation based on the [OpenTelemetry](https://opentelemetry.io) Java SDK.
+The metrics framework feature adds comprehensive metrics support to effectively monitor an MCdesk cluster. Using the Metrics Framework APIs, plugin, and extension, developers can add new monitoring metrics. In addition, the MCdesk distribution bundles the `telemetry-otel` plugin, which provides the implementation for metrics instrumentation based on the [OpenTelemetry](https://opentelemetry.io) Java SDK.
 
 
 ## Getting started
 
-The metrics framework feature is experimental as of SmartObserve 2.11. To begin using the metrics framework feature, you need to first enable the `telemetry feature` by using the `smartobserve.experimental.feature.telemetry.enabled` feature flag and subsequently by using the metrics framework feature flag. 
+The metrics framework feature is experimental as of MCdesk 2.11. To begin using the metrics framework feature, you need to first enable the `telemetry feature` by using the `mcdesk.experimental.feature.telemetry.enabled` feature flag and subsequently by using the metrics framework feature flag. 
 
 Enabling this feature can consume system resources. Before enabling the metrics framework feature, determine whether you have sufficient cluster resources to allocate.
 {: .warning}
@@ -27,19 +27,19 @@ Enabling this feature can consume system resources. Before enabling the metrics 
 
 The `enable` flag is toggled using a Java Virtual Machine (JVM) parameter that is set either in `OPENSEARCH_JAVA_OPTS` or in `config/jvm.options`.
 
-#### Option 1: Enable the experimental feature flag in the `smartobserve.yml` file
+#### Option 1: Enable the experimental feature flag in the `mcdesk.yml` file
 
-1. Navigate to your SmartObserve directory using the following command:
+1. Navigate to your MCdesk directory using the following command:
 
   ```bash
-  cd \path\to\smartobserve
+  cd \path\to\mcdesk
   ```
 
-2. Open your `smartobserve.yml` file.
-3. Add the following setting to `smartobserve.yml`:
+2. Open your `mcdesk.yml` file.
+3. Add the following setting to `mcdesk.yml`:
 
   ```yaml
-  smartobserve.experimental.feature.telemetry.enabled: true
+  mcdesk.experimental.feature.telemetry.enabled: true
   ```
   {% include copy.html %}
 
@@ -47,10 +47,10 @@ The `enable` flag is toggled using a Java Virtual Machine (JVM) parameter that i
 
 #### Option 2: Modify jvm.options
 
-To enable the metrics framework feature using `jvm`, add the following line to `config/jvm.options` before starting SmartObserve:
+To enable the metrics framework feature using `jvm`, add the following line to `config/jvm.options` before starting MCdesk:
 
 ```bash
--Dsmartobserve.experimental.feature.telemetry.enabled=true
+-Dmcdesk.experimental.feature.telemetry.enabled=true
 ```
 {% include copy.html %}
 
@@ -59,31 +59,31 @@ To enable the metrics framework feature using `jvm`, add the following line to `
 You can enable the metrics framework feature with a single command by adding the metrics framework environment variable to the `OPENSEARCH_JAVA_OPTS` command, as shown in the following example:
 
 ```bash
-OPENSEARCH_JAVA_OPTS="-Dsmartobserve.experimental.feature.telemetry.enabled=true" ./smartobserve-2.9.0/bin/smartobserve
+OPENSEARCH_JAVA_OPTS="-Dmcdesk.experimental.feature.telemetry.enabled=true" ./mcdesk-2.9.0/bin/mcdesk
 ```
 {% include copy.html %}
 
-You can also define the environment variable separately before running SmartObserve by running the following command:
+You can also define the environment variable separately before running MCdesk by running the following command:
 
 ```bash
-export OPENSEARCH_JAVA_OPTS="-Dsmartobserve.experimental.feature.telemetry.enabled=true"
- ./bin/smartobserve
+export OPENSEARCH_JAVA_OPTS="-Dmcdesk.experimental.feature.telemetry.enabled=true"
+ ./bin/mcdesk
 ```
 {% include copy.html %}
 
 ### Enable with Docker 
 
-If you're running SmartObserve using Docker, add the following line to `docker-compose.yml` under `environment`:
+If you're running MCdesk using Docker, add the following line to `docker-compose.yml` under `environment`:
 
 ```bash
-OPENSEARCH_JAVA_OPTS="-Dsmartobserve.experimental.feature.telemetry.enabled=true"
+OPENSEARCH_JAVA_OPTS="-Dmcdesk.experimental.feature.telemetry.enabled=true"
 ```
 {% include copy.html %}
 
 
 ### Enable the metrics framework feature
 
-Once you've enabled the feature flag, you can enable the metrics framework feature by using the following setting, which enables metrics in the `smartobserve.yaml` file:
+Once you've enabled the feature flag, you can enable the metrics framework feature by using the following setting, which enables metrics in the `mcdesk.yaml` file:
 
 ```bash
 telemetry.feature.metrics.enabled: true
@@ -93,7 +93,7 @@ The metrics framework feature supports various telemetry solutions through plugi
 
 
 1. **Publish interval:** The metrics framework feature can locally aggregate metrics with unique information about the configured publish interval and then export those metrics. By default, the interval is 1 minute. However, you can change the interval using the `telemetry.otel.metrics.publish.interval` cluster setting.
-2. **Exporters:** Exporters are responsible for persisting the data. OpenTelemetry provides several out-of-the-box exporters. SmartObserve supports the following exporters:
+2. **Exporters:** Exporters are responsible for persisting the data. OpenTelemetry provides several out-of-the-box exporters. MCdesk supports the following exporters:
     - `LoggingMetricExporter`: Exports metrics to a log file, generating a separate file in the logs directory `_otel_metrics.log`. Default is `telemetry.otel.metrics.exporter.class=io.opentelemetry.exporter.logging.LoggingMetricExporter`.
     - `OtlpGrpcMetricExporter`: Exports spans through gRPC. To use this exporter, you need to install the `otel-collector` on the node. By default, it writes to the http://localhost:4317/ endpoint. To use this exporter, set the following static setting: `telemetry.otel.metrics.exporter.class=io.opentelemetry.exporter.otlp.metrics.OtlpGrpcMetricExporter`.
   
@@ -110,7 +110,7 @@ The metrics framework feature supports the following metric types:
 Introduced 3.1
 {: .label .label-purple }
 
-SmartObserve provides enhanced observability for [machine learning (ML)]({{site.url}}{{site.baseurl}}/ml-commons-plugin/) workflows. Metrics related to ML operations are pushed directly to the core metrics registry, giving you improved visibility into model usage and performance. Additionally, every 5 minutes, a periodic job collects and exports state data, helping you monitor the health and activity of your ML workloads over time.
+MCdesk provides enhanced observability for [machine learning (ML)]({{site.url}}{{site.baseurl}}/ml-commons-plugin/) workflows. Metrics related to ML operations are pushed directly to the core metrics registry, giving you improved visibility into model usage and performance. Additionally, every 5 minutes, a periodic job collects and exports state data, helping you monitor the health and activity of your ML workloads over time.
 
 The static collector job captures the following metrics about different types of created models and agents:
 
@@ -130,7 +130,7 @@ The following is an example of captured agent metrics:
 {_llm_interface=bedrock/converse/claude, model_deployment=remote, is_hidden=false, model_service_provider=bedrock, model_type=llm, memory_type=conversation_index, model=us.anthropic.claude-3-7-sonnet-20250219-v1:0, type=CONVERSATIONAL}
 ```
 
-To enable ML observability, specify the following settings in `smartobserve.yml`:
+To enable ML observability, specify the following settings in `mcdesk.yml`:
 
 ```yaml
 plugins.ml_commons.metrics_collection_enabled: true

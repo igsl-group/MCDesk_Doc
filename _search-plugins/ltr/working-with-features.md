@@ -12,7 +12,7 @@ The following sections describe the specific functionality provided by the Learn
 
 ## Understanding the role of features in the Learning to Rank plugin
 
-The Learning to Rank plugin defines a _feature_ as an _SmartObserve query_. When you execute an SmartObserve query using your search terms and other relevant parameters, the resulting score is the value that can be used in your training data. For example, a feature may include basic `match` queries on fields such as `title`:  
+The Learning to Rank plugin defines a _feature_ as an _MCdesk query_. When you execute an MCdesk query using your search terms and other relevant parameters, the resulting score is the value that can be used in your training data. For example, a feature may include basic `match` queries on fields such as `title`:  
 
 ```json
 {
@@ -187,7 +187,7 @@ DELETE _ltr/_featureset/more_movie_features
 
 ## Validating features
 
-When adding new features, you should validate that the features work as expected. You can do this by adding a `validation` block in your feature creation request. This allows the Learning to Rank plugin to run the query before adding the feature, catching any issues early. If you do not run this validation, you may not discover until later that the query, while valid JSON, contains a malformed SmartObserve query.
+When adding new features, you should validate that the features work as expected. You can do this by adding a `validation` block in your feature creation request. This allows the Learning to Rank plugin to run the query before adding the feature, catching any issues early. If you do not run this validation, you may not discover until later that the query, while valid JSON, contains a malformed MCdesk query.
 
 To run validation, you can specify the test parameters and the index to use, as shown in the following example validation block:
 

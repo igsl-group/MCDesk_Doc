@@ -6,9 +6,9 @@ nav_order: 50
 
 # Go client
 
-The SmartObserve Go client lets you connect your Go application with the data in your SmartObserve cluster. This getting started guide illustrates how to connect to SmartObserve, index documents, and run queries. For the client's complete API documentation and additional examples, see the [Go client API documentation](https://pkg.go.dev/github.com/smartobserve-project/smartobserve-go/v4).
+The MCdesk Go client lets you connect your Go application with the data in your MCdesk cluster. This getting started guide illustrates how to connect to MCdesk, index documents, and run queries. For the client's complete API documentation and additional examples, see the [Go client API documentation](https://pkg.go.dev/github.com/mcdesk-project/mcdesk-go/v4).
 
-For the client source code, see the [smartobserve-go repo](https://github.com/igsl-group/smartobserve-go).
+For the client source code, see the [mcdesk-go repo](https://github.com/igsl-group/mcdesk-go).
 
 
 ## Setup
@@ -23,16 +23,16 @@ go mod init <mymodulename>
 To add the Go client to your project, import it like any other module:
 
 ```go
-go get github.com/smartobserve-project/smartobserve-go
+go get github.com/mcdesk-project/mcdesk-go
 ```
 {% include copy.html %}
 
-## Connecting to SmartObserve
+## Connecting to MCdesk
 
-To connect to the default SmartObserve host, create a client object with the address `https://localhost:9200` if you are using the Security plugin:
+To connect to the default MCdesk host, create a client object with the address `https://localhost:9200` if you are using the Security plugin:
 
 ```go
-client, err := smartobserve.NewClient(smartobserve.Config{
+client, err := mcdesk.NewClient(mcdesk.Config{
         Transport: &http.Transport{
             TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
         },
@@ -46,7 +46,7 @@ client, err := smartobserve.NewClient(smartobserve.Config{
 If you are not using the Security plugin, create a client object with the address `http://localhost:9200`:
 
 ```go
-client, err := smartobserve.NewClient(smartobserve.Config{
+client, err := mcdesk.NewClient(mcdesk.Config{
         Transport: &http.Transport{
             TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
         },
@@ -55,9 +55,9 @@ client, err := smartobserve.NewClient(smartobserve.Config{
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Service
+## Connecting to Amazon MCdesk Service
 
-The following example illustrates connecting to Amazon SmartObserve Service:
+The following example illustrates connecting to Amazon MCdesk Service:
 
 ```go
 package main
@@ -68,12 +68,12 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
-	smartobserve "github.com/smartobserve-project/smartobserve-go/v4"
-	smartobserveapi "github.com/smartobserve-project/smartobserve-go/v4/smartobserveapi"
-	requestsigner "github.com/smartobserve-project/smartobserve-go/v4/signer/awsv2"
+	mcdesk "github.com/mcdesk-project/mcdesk-go/v4"
+	mcdeskapi "github.com/mcdesk-project/mcdesk-go/v4/mcdeskapi"
+	requestsigner "github.com/mcdesk-project/mcdesk-go/v4/signer/awsv2"
 )
 
-const endpoint = "" // e.g. https://smartobserve-domain.region.com or Amazon SmartObserve Serverless endpoint
+const endpoint = "" // e.g. https://mcdesk-domain.region.com or Amazon MCdesk Serverless endpoint
 
 func main() {
 	ctx := context.Background()
@@ -94,8 +94,8 @@ func main() {
 		log.Fatal(err) // Do not log.fatal in a production ready app.
 	}
 
-	// Create an smartobserve client and use the request-signer
-	client, err := smartobserve.NewClient(smartobserve.Config{
+	// Create an mcdesk client and use the request-signer
+	client, err := mcdesk.NewClient(mcdesk.Config{
 		Addresses: []string{endpoint},
 		Signer:    signer,
 	})
@@ -120,9 +120,9 @@ func getCredentialProvider(accessKey, secretAccessKey, token string) aws.Credent
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Serverless
+## Connecting to Amazon MCdesk Serverless
 
-The following example illustrates connecting to Amazon SmartObserve Serverless Service:
+The following example illustrates connecting to Amazon MCdesk Serverless Service:
 
 ```go
 package main
@@ -133,11 +133,11 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
-	smartobserve "github.com/smartobserve-project/smartobserve-go/v4"
-	requestsigner "github.com/smartobserve-project/smartobserve-go/v4/signer/awsv2"
+	mcdesk "github.com/mcdesk-project/mcdesk-go/v4"
+	requestsigner "github.com/mcdesk-project/mcdesk-go/v4/signer/awsv2"
 )
 
-const endpoint = "" // e.g. https://smartobserve-domain.region.com or Amazon SmartObserve Serverless endpoint
+const endpoint = "" // e.g. https://mcdesk-domain.region.com or Amazon MCdesk Serverless endpoint
 
 func main() {
 	ctx := context.Background()
@@ -158,8 +158,8 @@ func main() {
 		log.Fatal(err) // Do not log.fatal in a production ready app.
 	}
 
-	// Create an smartobserve client and use the request-signer
-	client, err := smartobserve.NewClient(smartobserve.Config{
+	// Create an mcdesk client and use the request-signer
+	client, err := mcdesk.NewClient(mcdesk.Config{
 		Addresses: []string{endpoint},
 		Signer:    signer,
 	})
@@ -183,16 +183,16 @@ func getCredentialProvider(accessKey, secretAccessKey, token string) aws.Credent
 ```
 {% include copy.html %}
 
-The Go client constructor takes an `smartobserve.Config{}` type, which can be customized using options such as a list of SmartObserve node addresses or a username and password combination.
+The Go client constructor takes an `mcdesk.Config{}` type, which can be customized using options such as a list of MCdesk node addresses or a username and password combination.
 
-To connect to multiple SmartObserve nodes, specify them in the `Addresses` parameter:
+To connect to multiple MCdesk nodes, specify them in the `Addresses` parameter:
 
 ```go
 var (
     urls = []string{"http://localhost:9200", "http://localhost:9201", "http://localhost:9202"}
 )
 
-client, err := smartobserve.NewClient(smartobserve.Config{
+client, err := mcdesk.NewClient(mcdesk.Config{
         Transport: &http.Transport{
             TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
         },
@@ -204,7 +204,7 @@ client, err := smartobserve.NewClient(smartobserve.Config{
 The Go client retries requests for a maximum of three times by default. To customize the number of retries, set the `MaxRetries` parameter. Additionally, you can change the list of response codes for which a request is retried by setting the `RetryOnStatus` parameter. The following code snippet creates a new Go client with custom `MaxRetries` and `RetryOnStatus` values:
 
 ```go
-client, err := smartobserve.NewClient(smartobserve.Config{
+client, err := mcdesk.NewClient(mcdesk.Config{
         Transport: &http.Transport{
             TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
         },
@@ -217,7 +217,7 @@ client, err := smartobserve.NewClient(smartobserve.Config{
 
 ## Creating an index
 
-To create an SmartObserve index, use the `IndicesCreateRequest` method. You can use the following code to construct a JSON object with custom settings :
+To create an MCdesk index, use the `IndicesCreateRequest` method. You can use the following code to construct a JSON object with custom settings :
 
 ```go
 settings := strings.NewReader(`{
@@ -229,7 +229,7 @@ settings := strings.NewReader(`{
         }
     }`)
 
-res := smartobserveapi.IndicesCreateRequest{
+res := mcdeskapi.IndicesCreateRequest{
     Index: "go-test-index1",
     Body:  settings,
 }
@@ -238,7 +238,7 @@ res := smartobserveapi.IndicesCreateRequest{
 
 ## Indexing a document
 
-You can index a document into SmartObserve using the `IndexRequest` method:
+You can index a document into MCdesk using the `IndexRequest` method:
 
 ```go
 document := strings.NewReader(`{
@@ -248,7 +248,7 @@ document := strings.NewReader(`{
 }`)
 
 docId := "1"
-req := smartobserveapi.IndexRequest{
+req := mcdeskapi.IndexRequest{
     Index:      "go-test-index1",
     DocumentID: docId,
     Body:       document,
@@ -290,7 +290,7 @@ content := strings.NewReader(`{
     }
 }`)
 
-search := smartobserveapi.SearchRequest{
+search := mcdeskapi.SearchRequest{
     Index: []string{"go-test-index1"},
     Body: content,
 }
@@ -304,7 +304,7 @@ searchResponse, err := search.Do(context.Background(), client)
 You can delete a document using the `DeleteRequest` method:
 
 ```go
-delete := smartobserveapi.DeleteRequest{
+delete := mcdeskapi.DeleteRequest{
     Index:      "go-test-index1",
     DocumentID: "1",
 }
@@ -318,7 +318,7 @@ deleteResponse, err := delete.Do(context.Background(), client)
 You can delete an index using the `IndicesDeleteRequest` method:
 
 ```go
-deleteIndex := smartobserveapi.IndicesDeleteRequest{
+deleteIndex := mcdeskapi.IndicesDeleteRequest{
     Index: []string{"go-test-index1"},
 }
 
@@ -337,15 +337,15 @@ import (
     "context"
     "crypto/tls"
     "fmt"
-    smartobserve "github.com/smartobserve-project/smartobserve-go"
-    smartobserveapi "github.com/smartobserve-project/smartobserve-go/smartobserveapi"
+    mcdesk "github.com/mcdesk-project/mcdesk-go"
+    mcdeskapi "github.com/mcdesk-project/mcdesk-go/mcdeskapi"
     "net/http"
     "strings"
 )
 const IndexName = "go-test-index1"
 func main() {
     // Initialize the client with SSL/TLS enabled.
-    client, err := smartobserve.NewClient(smartobserve.Config{
+    client, err := mcdesk.NewClient(mcdesk.Config{
         Transport: &http.Transport{
             TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
         },
@@ -358,7 +358,7 @@ func main() {
         os.Exit(1)
     }
 
-    // Print SmartObserve version information on console.
+    // Print MCdesk version information on console.
     fmt.Println(client.Info())
 
     // Define index settings.
@@ -372,7 +372,7 @@ func main() {
      }`)
 
     // Create an index with non-default settings.
-    res := smartobserveapi.IndicesCreateRequest{
+    res := mcdeskapi.IndicesCreateRequest{
         Index: IndexName,
         Body:  settings,
     }
@@ -387,7 +387,7 @@ func main() {
     }`)
 
     docId := "1"
-    req := smartobserveapi.IndexRequest{
+    req := mcdeskapi.IndexRequest{
         Index:      IndexName,
         DocumentID: docId,
         Body:       document,
@@ -431,7 +431,7 @@ func main() {
       }
     }`)
 
-    search := smartobserveapi.SearchRequest{
+    search := mcdeskapi.SearchRequest{
         Index: []string{IndexName},
         Body: content,
     }
@@ -446,7 +446,7 @@ func main() {
     defer searchResponse.Body.Close()
 
     // Delete the document.
-    delete := smartobserveapi.DeleteRequest{
+    delete := mcdeskapi.DeleteRequest{
         Index:      IndexName,
         DocumentID: docId,
     }
@@ -461,7 +461,7 @@ func main() {
     defer deleteResponse.Body.Close()
 
     // Delete the previously created index.
-    deleteIndex := smartobserveapi.IndicesDeleteRequest{
+    deleteIndex := mcdeskapi.IndicesDeleteRequest{
         Index: []string{IndexName},
     }
 

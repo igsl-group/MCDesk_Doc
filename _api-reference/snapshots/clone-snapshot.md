@@ -57,18 +57,18 @@ The following table lists the available query parameters. All query parameters a
 
 ## Example request
 
-The following request clones indexes `index_a` and `index_b` from `my_snapshot`, a snapshot located in the snapshot repository `my-smartobserve-repo`, into a new snapshot in the same repository called `my_new_snapshot`:
+The following request clones indexes `index_a` and `index_b` from `my_snapshot`, a snapshot located in the snapshot repository `my-mcdesk-repo`, into a new snapshot in the same repository called `my_new_snapshot`:
 
 <!-- spec_insert_start
 component: example_code
-rest: PUT /_snapshot/my-smartobserve-repo/my_snapshot/_clone/my_new_snapshot
+rest: PUT /_snapshot/my-mcdesk-repo/my_snapshot/_clone/my_new_snapshot
 body: |
 {
 	“indices” : “index_a,index_b”
 }
 -->
 {% capture step1_rest %}
-PUT /_snapshot/my-smartobserve-repo/my_snapshot/_clone/my_new_snapshot
+PUT /_snapshot/my-mcdesk-repo/my_snapshot/_clone/my_new_snapshot
 {
 	“indices” : “index_a,index_b”
 }
@@ -78,7 +78,7 @@ PUT /_snapshot/my-smartobserve-repo/my_snapshot/_clone/my_new_snapshot
 
 
 response = client.snapshot.clone(
-  repository = "my-smartobserve-repo",
+  repository = "my-mcdesk-repo",
   snapshot = "my_snapshot",
   target_snapshot = "my_new_snapshot",
   body = '''

@@ -9,13 +9,13 @@ redirect_from:
 
 # Snapshot and restore for migration
 
-Snapshots are one of the most reliable methods for migrating data between SmartObserve clusters. This approach is particularly useful when you need to move data from one environment to another, such as migrating from a proof-of-concept cluster to a production environment, or when performing major version upgrades that require a fresh cluster deployment.
+Snapshots are one of the most reliable methods for migrating data between MCdesk clusters. This approach is particularly useful when you need to move data from one environment to another, such as migrating from a proof-of-concept cluster to a production environment, or when performing major version upgrades that require a fresh cluster deployment.
 
 ## When to use snapshot and restore for migration
 
 Snapshot and restore is ideal for migration scenarios when:
 
-- **Migrating between different SmartObserve versions** where in-place upgrades aren't supported.
+- **Migrating between different MCdesk versions** where in-place upgrades aren't supported.
 - **Moving to a different infrastructure** (on-premises to cloud, different cloud providers).
 - **Changing cluster architecture** (different node configurations, shard strategies).
 - **Zero-downtime requirements** aren't critical and you can afford some downtime.
@@ -29,7 +29,7 @@ A typical snapshot-based migration follows this workflow:
 1. **Prepare the source cluster**: Ensure cluster health and configure a snapshot repository.
 2. **Create snapshot repository**: Set up shared storage accessible by both clusters.
 3. **Take comprehensive snapshots**: Capture all necessary indexes and cluster state.
-4. **Set up a target cluster**: Deploy and configure the destination SmartObserve cluster.
+4. **Set up a target cluster**: Deploy and configure the destination MCdesk cluster.
 5. **Register repository on target**: Connect the target cluster to the snapshot repository.
 6. **Restore snapshots**: Selectively restore indexes and configurations.
 7. **Validate and test** - Verify data integrity and application functionality.
@@ -46,7 +46,7 @@ Snapshots capture data as it existed when the snapshot was initiated, but they'r
 ### Version compatibility
 - Snapshots are **forward compatible by one major version**.
 - For larger version gaps, you may need to restore to an intermediate cluster, reindex, and take new snapshots.
-- Always verify compatibility between source and target SmartObserve versions.
+- Always verify compatibility between source and target MCdesk versions.
 
 ### Storage requirements
 - **Incremental nature** means that frequent snapshots don't significantly increase storage usage.

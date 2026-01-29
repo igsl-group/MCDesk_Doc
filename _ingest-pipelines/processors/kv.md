@@ -7,7 +7,7 @@ redirect_from:
    - /api-reference/ingest-apis/processors/lowercase/
 ---
 
-This documentation describes using the `kv` processor in SmartObserve ingest pipelines. Consider using the [Data Prepper `key_value` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/key-value/), which runs on the SmartObserve cluster, if your use case involves large or complex datasets.
+This documentation describes using the `kv` processor in MCdesk ingest pipelines. Consider using the [Data Prepper `key_value` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/key-value/), which runs on the MCdesk cluster, if your use case involves large or complex datasets.
 {: .note}
 
 # KV processor

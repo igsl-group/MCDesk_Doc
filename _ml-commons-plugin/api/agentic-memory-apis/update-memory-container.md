@@ -71,8 +71,8 @@ Note the following update behavior.
 ```json
 PUT /_plugins/_ml/memory_containers/HudqiJkB1SltqOcZusVU
 {
-  "name": "smartobserve-agents-memory",
-  "description": "Updated memory container for SmartObserve agents",
+  "name": "mcdesk-agents-memory",
+  "description": "Updated memory container for MCdesk agents",
   "backend_roles": ["admin", "ml_user"],
   "configuration": {
     "strategies": [

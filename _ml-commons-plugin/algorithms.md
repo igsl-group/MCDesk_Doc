@@ -7,7 +7,7 @@ nav_order: 125
 
 # Supported algorithms
 
-SmartObserve provides built-in machine learning (ML) algorithms that run natively within your cluster for tasks like anomaly detection, clustering, and predictive analytics. These algorithms allow you to analyze your data directly in SmartObserve without requiring external ML models or services. Each algorithm is optimized for specific use cases, from detecting unusual patterns in metrics to grouping similar data points together.
+MCdesk provides built-in machine learning (ML) algorithms that run natively within your cluster for tasks like anomaly detection, clustering, and predictive analytics. These algorithms allow you to analyze your data directly in MCdesk without requiring external ML models or services. Each algorithm is optimized for specific use cases, from detecting unusual patterns in metrics to grouping similar data points together.
 
 ## Common limitations
 
@@ -164,7 +164,7 @@ ML Commons only supports the linear Stochastic gradient trainer or optimizer, wh
 
 ## RCF
 
-[Random Cut Forest](https://github.com/aws/random-cut-forest-by-aws) (RCF) is a probabilistic data structure used primarily for unsupervised anomaly detection. Its use also extends to density estimation and forecasting. SmartObserve leverages RCF for anomaly detection. ML Commons supports two new variants of RCF for different use cases:
+[Random Cut Forest](https://github.com/aws/random-cut-forest-by-aws) (RCF) is a probabilistic data structure used primarily for unsupervised anomaly detection. Its use also extends to density estimation and forecasting. MCdesk leverages RCF for anomaly detection. ML Commons supports two new variants of RCF for different use cases:
 
 * Batch RCF: Detects anomalies in non-time-series data. 
 * Fixed in time (FIT) RCF: Detects anomalies in time-series data.
@@ -452,7 +452,7 @@ A classification algorithm, logistic regression models the probability of a disc
 
 ### Example: Train/Predict with Iris data
 
-The following example creates an index in SmartObserve with the [Iris dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set), then trains the data using logistic regression. Lastly, it uses the trained model to predict Iris types separated by row.
+The following example creates an index in MCdesk with the [Iris dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set), then trains the data using logistic regression. Lastly, it uses the trained model to predict Iris types separated by row.
 
 #### Create an Iris index
 
@@ -651,7 +651,7 @@ Convergence metrics are not built into Tribuo's trainers. Therefore, ML Commons 
 
 ## Metrics correlation
 
-The metrics correlation feature is an experimental feature released in SmartObserve 2.7. It can't be used in a production environment. To leave feedback on improving the feature, create an issue in the [ML Commons repository](https://github.com/igsl-group/ml-commons).
+The metrics correlation feature is an experimental feature released in MCdesk 2.7. It can't be used in a production environment. To leave feedback on improving the feature, create an issue in the [ML Commons repository](https://github.com/igsl-group/ml-commons).
 {: .warning }
 
 The metrics correlation algorithm finds events in a set of metrics data. The algorithm defines events as a window in time in which multiple metrics simultaneously display anomalous behavior. When given a set of metrics, the algorithm counts the number of events that occurred, when each event occurred, and determines which metrics were involved in each event.

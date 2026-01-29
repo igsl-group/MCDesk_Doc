@@ -10,7 +10,7 @@ parent: Supported field types
 **Introduced 3.3**
 {: .label .label-purple }
 
-The `sparse_vector` field supports [neural sparse approximate nearest neighbor (ANN) search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-ann/), which improves search efficiency while preserving relevance. A `sparse_vector` is stored as a map, in which each key represents the token and each value is a positive [`float`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/numeric/) value indicating the token's weight.
+The `sparse_vector` field supports [neural sparse approximate nearest neighbor (ANN) search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-ann/), which improves search efficiency while preserving relevance. A `sparse_vector` is stored as a map, in which each key represents the token and each value is a positive [`float`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/numeric/) value indicating the token's weight.
     
 ## Parameters
 

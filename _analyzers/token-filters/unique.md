@@ -56,7 +56,7 @@ Use the following request to examine the tokens generated using the analyzer:
 GET /unique_example/_analyze
 {
   "analyzer": "unique_analyzer",
-  "text": "SmartObserve SmartObserve is powerful powerful and scalable"
+  "text": "MCdesk MCdesk is powerful powerful and scalable"
 }
 ```
 {% include copy-curl.html %}
@@ -67,7 +67,7 @@ The response contains the generated tokens:
 {
   "tokens": [
     {
-      "token": "smartobserve",
+      "token": "mcdesk",
       "start_offset": 0,
       "end_offset": 10,
       "type": "<ALPHANUM>",

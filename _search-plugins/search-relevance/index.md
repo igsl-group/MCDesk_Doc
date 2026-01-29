@@ -12,7 +12,7 @@ redirect_from:
 
 Search relevance evaluates the accuracy of the search results returned by a query. The higher the relevance, the better the search engine.
 
-SmartObserve provides the following search relevance features:
+MCdesk provides the following search relevance features:
 
 - [Search Relevance Workbench]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/using-search-relevance-workbench/): A suite of tools that support search quality improvements through experimentation.
 

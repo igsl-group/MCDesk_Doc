@@ -6,7 +6,7 @@ nav_order: 35
 
 # Vector search workload
 
-The vector search workload benchmarks SmartObserve's vector engine capabilities for both indexing and search operations. It tests various vector search algorithms, quantization methods, and index configurations to measure performance metrics like throughput, latency, and recall accuracy. The workload supports different datasets and can evaluate both trained and untrained vector search methods.
+The vector search workload benchmarks MCdesk's vector engine capabilities for both indexing and search operations. It tests various vector search algorithms, quantization methods, and index configurations to measure performance metrics like throughput, latency, and recall accuracy. The workload supports different datasets and can evaluate both trained and untrained vector search methods.
 
 This workload currently supports datasets in either the `HDF5` or `BIG-ANN` formats. To download the datasets, use [this link](http://corpus-texmex.irisa.fr/).
 
@@ -60,9 +60,9 @@ The no-train test procedure tests vector search indexes that require no training
 
 The no-train test (index only) procedure is used to index vector search indexes that require no training. This can be particularly useful when you want to benchmark only the indexing operation.
 
-### No-train test (Amazon SmartObserve Serverless)
+### No-train test (Amazon MCdesk Serverless)
 
-The no-train test procedure for Amazon SmartObserve Serverless is used specifically for SmartObserve Serverless vector search collections. This procedure doesn't include operations like **refresh** and **warmup** because they aren't supported by vector search collections.
+The no-train test procedure for Amazon MCdesk Serverless is used specifically for MCdesk Serverless vector search collections. This procedure doesn't include operations like **refresh** and **warmup** because they aren't supported by vector search collections.
 
 ### Force merge index procedure
 
@@ -88,7 +88,7 @@ To run the vector search workload, use the following command:
 export ENDPOINT=<cluster-endpoint>
 export PARAMS_FILE=<params-file-path>
 
-smartobserve-benchmark run \
+mcdesk-benchmark run \
     --target-hosts $ENDPOINT \
     --workload vectorsearch \
     --workload-params ${PARAMS_FILE} \

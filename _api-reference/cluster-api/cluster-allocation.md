@@ -5,7 +5,7 @@ nav_order: 10
 parent: Cluster APIs
 has_children: false
 redirect_from:
- - /smartobserve/rest-api/cluster-allocation/
+ - /mcdesk/rest-api/cluster-allocation/
 ---
 
 # Cluster Allocation Explain API
@@ -14,7 +14,7 @@ redirect_from:
 
 The most basic cluster allocation explain request finds an unassigned shard and explains why it can't be allocated to a node.
 
-If you add some options, you can instead get information on a specific shard, including why SmartObserve assigned it to its current node.
+If you add some options, you can instead get information on a specific shard, including why MCdesk assigned it to its current node.
 
 
 ## Endpoints
@@ -30,7 +30,7 @@ All parameters are optional.
 
 Parameter | Type | Description
 :--- | :--- | :---
-include_yes_decisions | Boolean | SmartObserve makes a series of yes or no decisions when trying to allocate a shard to a node. If this parameter is true, SmartObserve includes the (generally more numerous) "yes" decisions in its response. Default is `false`.
+include_yes_decisions | Boolean | MCdesk makes a series of yes or no decisions when trying to allocate a shard to a node. If this parameter is true, MCdesk includes the (generally more numerous) "yes" decisions in its response. Default is `false`.
 include_disk_info | Boolean | Whether to include information about disk usage in the response. Default is `false`.
 
 
@@ -96,7 +96,7 @@ response = client.cluster.allocation_explain(
   "current_state": "started",
   "current_node": {
     "id": "d8jRZcW1QmCBeVFlgOJx5A",
-    "name": "smartobserve-node1",
+    "name": "mcdesk-node1",
     "transport_address": "172.24.0.4:9300",
     "weight_ranking": 1
   },
@@ -106,7 +106,7 @@ response = client.cluster.allocation_explain(
   "rebalance_explanation": "cannot rebalance as no target node exists that can both allocate this shard and improve the cluster balance",
   "node_allocation_decisions": [{
     "node_id": "vRxi4uPcRt2BtHlFoyCyTQ",
-    "node_name": "smartobserve-node2",
+    "node_name": "mcdesk-node2",
     "transport_address": "172.24.0.3:9300",
     "node_decision": "no",
     "weight_ranking": 1,

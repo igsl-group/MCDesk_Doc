@@ -43,21 +43,21 @@ The following table lists the available query parameters. All query parameters a
 
 ## Example request
 
-The following request returns tasks currently running on a node named `smartobserve-node1`:
+The following request returns tasks currently running on a node named `mcdesk-node1`:
 
 <!-- spec_insert_start
 component: example_code
-rest: GET /_tasks?nodes=smartobserve-node1
+rest: GET /_tasks?nodes=mcdesk-node1
 -->
 {% capture step1_rest %}
-GET /_tasks?nodes=smartobserve-node1
+GET /_tasks?nodes=mcdesk-node1
 {% endcapture %}
 
 {% capture step1_python %}
 
 
 response = client.tasks.list(
-  params = { "nodes": "smartobserve-node1" }
+  params = { "nodes": "mcdesk-node1" }
 )
 
 {% endcapture %}
@@ -75,7 +75,7 @@ The following response provides information about running tasks:
 {
   "nodes": {
     "Mgqdm0r9SEGClWxp_RbnaQ": {
-      "name": "smartobserve-node1",
+      "name": "mcdesk-node1",
       "transport_address": "sample_address",
       "host": "sample_host",
       "ip": "sample_ip",

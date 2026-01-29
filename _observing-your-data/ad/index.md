@@ -11,18 +11,18 @@ redirect_from:
 
 # Anomaly detection
 
-An _anomaly_ in SmartObserve is any unusual behavior change in your time-series data. Anomalies can provide valuable insights into your data. For example, for IT infrastructure data, an anomaly in the memory usage metric can help identify early signs of a system failure.
+An _anomaly_ in MCdesk is any unusual behavior change in your time-series data. Anomalies can provide valuable insights into your data. For example, for IT infrastructure data, an anomaly in the memory usage metric can help identify early signs of a system failure.
 
 Conventional techniques like visualizations and dashboards can make it difficult to uncover anomalies. Configuring alerts based on static thresholds is possible, but this approach requires prior domain knowledge and may not adapt to data with organic growth or seasonal trends.
 
-Anomaly detection automatically detects anomalies in your SmartObserve data in near real time using the Random Cut Forest (RCF) algorithm. RCF is an unsupervised machine learning algorithm that models a sketch of your incoming data stream to compute an _anomaly grade_ and _confidence score_ value for each incoming data point. These values are used to differentiate an anomaly from normal variations. For more information about how RCF works, see [Robust Random Cut Forest Based Anomaly Detection on Streams](https://www.semanticscholar.org/paper/Robust-Random-Cut-Forest-Based-Anomaly-Detection-on-Guha-Mishra/ecb365ef9b67cd5540cc4c53035a6a7bd88678f9).
+Anomaly detection automatically detects anomalies in your MCdesk data in near real time using the Random Cut Forest (RCF) algorithm. RCF is an unsupervised machine learning algorithm that models a sketch of your incoming data stream to compute an _anomaly grade_ and _confidence score_ value for each incoming data point. These values are used to differentiate an anomaly from normal variations. For more information about how RCF works, see [Robust Random Cut Forest Based Anomaly Detection on Streams](https://www.semanticscholar.org/paper/Robust-Random-Cut-Forest-Based-Anomaly-Detection-on-Guha-Mishra/ecb365ef9b67cd5540cc4c53035a6a7bd88678f9).
 
 You can pair the Anomaly Detection plugin with the [Alerting plugin]({{site.url}}{{site.baseurl}}/monitoring-plugins/alerting/) to notify you as soon as an anomaly is detected.
 {: .note}
 
-## Getting started with anomaly detection in SmartObserve Dashboards
+## Getting started with anomaly detection in MCdesk Dashboards
 
-To get started, go to **SmartObserve Dashboards** > **SmartObserve Plugins** > **Anomaly Detection**. 
+To get started, go to **MCdesk Dashboards** > **MCdesk Plugins** > **Anomaly Detection**. 
 
 ## Step 1: Define a detector
 
@@ -33,9 +33,9 @@ A _detector_ is an individual anomaly detection task. You can define multiple de
 
 3. In the **Select data** pane, specify the data source by selecting one or more sources from the **Index** dropdown menu. You can select indexes, index patterns, or aliases.
 
-   - Detectors can use remote indexes, which you can access using the `cluster-name:index-name` pattern. For more information, see [Cross-cluster search]({{site.url}}{{site.baseurl}}/search-plugins/cross-cluster-search/). Starting in SmartObserve Dashboards 2.17, you can also select clusters and indexes directly. If the Security plugin is enabled, see [Selecting remote indexes with fine-grained access control]({{site.url}}{{site.baseurl}}/observing-your-data/ad/security/#selecting-remote-indexes-with-fine-grained-access-control) in the [Anomaly detection security]({{site.url}}{{site.baseurl}}/observing-your-data/ad/security/) documentation.
+   - Detectors can use remote indexes, which you can access using the `cluster-name:index-name` pattern. For more information, see [Cross-cluster search]({{site.url}}{{site.baseurl}}/search-plugins/cross-cluster-search/). Starting in MCdesk Dashboards 2.17, you can also select clusters and indexes directly. If the Security plugin is enabled, see [Selecting remote indexes with fine-grained access control]({{site.url}}{{site.baseurl}}/observing-your-data/ad/security/#selecting-remote-indexes-with-fine-grained-access-control) in the [Anomaly detection security]({{site.url}}{{site.baseurl}}/observing-your-data/ad/security/) documentation.
 
-   - To create a cross-cluster detector in SmartObserve Dashboards, you must have the following [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/): `indices:data/read/field_caps`, `indices:admin/resolve/index`, and `cluster:monitor/remote/info`.
+   - To create a cross-cluster detector in MCdesk Dashboards, you must have the following [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/): `indices:data/read/field_caps`, `indices:admin/resolve/index`, and `cluster:monitor/remote/info`.
 
 4. (Optional) Filter the data source by selecting **Add data filter** and then specifying the conditions for **Field**, **Operator**, and **Value**. Alternatively, select **Use query DSL** and enter your filter as a JSON-formatted [Boolean query]({{site.url}}{{site.baseurl}}/query-dsl/compound/bool/). Only Boolean queries are supported for query domain-specific language (DSL).
 
@@ -73,9 +73,9 @@ The following example query retrieves documents in which the `urlPath.keyword` f
 
 5. In the **Timestamp** pane, select a field from the **Timestamp field** dropdown list.
 
-6. (Optional) To store anomaly detection results in a custom index, select **Enable custom results index** and provide a name for your index (for example, `abc`). The plugin creates an alias prefixed with `smartobserve-ad-plugin-result-` followed by your chosen name (for example, `smartobserve-ad-plugin-result-abc`). This alias points to an actual index with a name containing the date and a sequence number, such as `smartobserve-ad-plugin-result-abc-history-2024.06.12-000002`, where your results are stored.
+6. (Optional) To store anomaly detection results in a custom index, select **Enable custom results index** and provide a name for your index (for example, `abc`). The plugin creates an alias prefixed with `mcdesk-ad-plugin-result-` followed by your chosen name (for example, `mcdesk-ad-plugin-result-abc`). This alias points to an actual index with a name containing the date and a sequence number, such as `mcdesk-ad-plugin-result-abc-history-2024.06.12-000002`, where your results are stored.
 
-You can use `-` to separate the namespace to manage custom results index permissions. For example, if you use `smartobserve-ad-plugin-result-financial-us-group1` as the results index, you can create a permission role based on the pattern `smartobserve-ad-plugin-result-financial-us-*` to represent the `financial` department at a granular level for the `us` group.
+You can use `-` to separate the namespace to manage custom results index permissions. For example, if you use `mcdesk-ad-plugin-result-financial-us-group1` as the results index, you can create a permission role based on the pattern `mcdesk-ad-plugin-result-financial-us-*` to represent the `financial` department at a granular level for the `us` group.
 {: .note }
 
 #### Permissions
@@ -96,7 +96,7 @@ To use the custom results index option, you must have the following permissions:
 
 #### Flattening nested fields
 
-Custom results index mappings with nested fields pose aggregation and visualization challenges. The **Enable flattened custom result index** option flattens the nested fields in the custom results index. When selecting this option, the plugin creates a separate index prefixed with the custom results index name and detector name. For example, if the detector `Test` uses the custom results index `abc`, a separate index with the alias `smartobserve-ad-plugin-result-abc-flattened-test` will store the anomaly detection results with nested fields flattened. 
+Custom results index mappings with nested fields pose aggregation and visualization challenges. The **Enable flattened custom result index** option flattens the nested fields in the custom results index. When selecting this option, the plugin creates a separate index prefixed with the custom results index name and detector name. For example, if the detector `Test` uses the custom results index `abc`, a separate index with the alias `mcdesk-ad-plugin-result-abc-flattened-test` will store the anomaly detection results with nested fields flattened. 
 
 In addition to creating a separate index, the plugin also sets up an ingest pipeline with a script processor. This pipeline is bound to the separate index and uses a Painless script to flatten all nested fields in the custom results index.
 
@@ -124,7 +124,7 @@ Add features to your detector. A _feature_ is an aggregation of a field or a Pai
 
 You must choose an aggregation method for each feature: `average()`, `count()`, `sum()`, `min()`, or `max()`. The aggregation method determines what constitutes an anomaly. For example, if you choose `min()`, the detector focuses on finding anomalies based on the minimum values of your feature. If you choose `average()`, the detector finds anomalies based on the average values of your feature. 
 
-You can also use [custom JSON aggregation queries](#configuring-a-model-based-on-a-json-aggregation-query) as an aggregation method. For more information about creating JSON aggregation queries, see [Query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/index/).
+You can also use [custom JSON aggregation queries](#configuring-a-model-based-on-a-json-aggregation-query) as an aggregation method. For more information about creating JSON aggregation queries, see [Query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/index/).
 
 
 For each configured feature, you can also select the anomaly criteria. By default, the model detects an anomaly when the actual value is either abnormally higher or lower than the expected value. However, you can customize your feature settings so that anomalies are only registered when the actual value is higher than the expected value (indicating a spike in the data) or lower than the expected value (indicating a dip in the data). For example, when creating a detector for the `cpu_utilization` field, you may choose to register anomalies only when the value spikes in order to reduce alert fatigue.
@@ -180,7 +180,7 @@ To configure an anomaly detection model based on a JSON aggregation query, follo
 4. Enter your JSON aggregation query in the editor.
 5. Select the **Save changes** button.
 
-For acceptable JSON query syntax, see [SmartObserve Query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/index/).
+For acceptable JSON query syntax, see [MCdesk Query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/index/).
 {: .note}
 
 ### Setting categorical fields for high cardinality
@@ -205,12 +205,12 @@ Consider a cluster with 3 data nodes, each with 8 GB of JVM heap size and the de
 
 If the actual total number of unique entities is higher than the number that you calculate (in this case, 2,429), then the anomaly detector attempts to model the extra entities. The detector prioritizes both entities that occur more often and are more recent.
 
-This formula serves as a starting point. Make sure to test it with a representative workload. See the SmartObserve blog post [Improving Anomaly Detection: One million entities in one minute](https://magiccreative.io/blog/one-million-enitities-in-one-minute/) for more information.
+This formula serves as a starting point. Make sure to test it with a representative workload. See the MCdesk blog post [Improving Anomaly Detection: One million entities in one minute](https://magiccreative.io/blog/one-million-enitities-in-one-minute/) for more information.
 {: .note }
 
 #### Operational settings
 
-The **Suggest parameters** button in SmartObserve Dashboards initiates a review of recent history in order to recommend sensible defaults. You can override these defaults by adjusting the following parameters.
+The **Suggest parameters** button in MCdesk Dashboards initiates a review of recent history in order to recommend sensible defaults. You can override these defaults by adjusting the following parameters.
 
 ##### Detector interval
 
@@ -243,7 +243,7 @@ If you're unsure, leave this field blank---the job will use the interval value b
 
 ##### Window delay (Optional)
 
-To add extra processing time for data collection, specify a **Window delay** value. This signals to the detector that data is not ingested into SmartObserve in real time but with a certain delay.
+To add extra processing time for data collection, specify a **Window delay** value. This signals to the detector that data is not ingested into MCdesk in real time but with a certain delay.
 
 **How it works**:
 

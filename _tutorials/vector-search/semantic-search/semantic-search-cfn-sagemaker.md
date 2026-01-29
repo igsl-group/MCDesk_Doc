@@ -10,9 +10,9 @@ redirect_from:
 
 # Semantic search using AWS CloudFormation and Amazon SageMaker 
 
-This tutorial shows you how to implement semantic search in [Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/) using [AWS CloudFormation](https://docs.aws.amazon.com/smartobserve-service/latest/developerguide/cfn-template.html) and Amazon SageMaker. For more information, see [Semantic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/semantic-search/).
+This tutorial shows you how to implement semantic search in [Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/) using [AWS CloudFormation](https://docs.aws.amazon.com/mcdesk-service/latest/developerguide/cfn-template.html) and Amazon SageMaker. For more information, see [Semantic search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/semantic-search/).
 
-If you are using self-managed SmartObserve instead of Amazon SmartObserve Service, create a connector to the Amazon SageMaker model using [the blueprint](https://github.com/igsl-group/ml-commons/blob/main/docs/remote_inference_blueprints/sagemaker_connector_blueprint.md). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/). 
+If you are using self-managed MCdesk instead of Amazon MCdesk Service, create a connector to the Amazon SageMaker model using [the blueprint](https://github.com/igsl-group/ml-commons/blob/main/docs/remote_inference_blueprints/sagemaker_connector_blueprint.md). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/). 
 
 The CloudFormation integration automates the steps in the [Semantic Search with SageMaker Embedding Model tutorial]({{site.url}}{{site.baseurl}}/vector-search/tutorials/semantic-search/semantic-search-sagemaker/). The CloudFormation template creates an IAM role and invokes an AWS Lambda function to set up an AI connector and model.
 
@@ -56,7 +56,7 @@ For example, the Amazon Bedrock Titan embedding model ([blueprint](https://githu
 { "inputText": "your_input_text" }
 ```
 
-SmartObserve expects the following input format:
+MCdesk expects the following input format:
 
 ```json
 { "text_docs": [ "your_input_text1", "your_input_text2"] }
@@ -84,7 +84,7 @@ The default Amazon Bedrock Titan embedding model output has the following format
 }
 ```
 
-However, SmartObserve expects the following format:
+However, MCdesk expects the following format:
 
 ```json
 {
@@ -95,7 +95,7 @@ However, SmartObserve expects the following format:
 }
 ```
 
-To transform the Amazon Bedrock Titan embedding model output into the format expected by SmartObserve, you must define the following post-processing function:
+To transform the Amazon Bedrock Titan embedding model output into the format expected by MCdesk, you must define the following post-processing function:
 
 ```json
 "post_process_function": """
@@ -116,17 +116,17 @@ To transform the Amazon Bedrock Titan embedding model output into the format exp
 ```
 {% include copy.html %}
 
-## Prerequisite: Create an SmartObserve cluster
+## Prerequisite: Create an MCdesk cluster
 
-Go to the [Amazon SmartObserve Service console](https://console.aws.amazon.com/aos/home) and create an SmartObserve domain.
+Go to the [Amazon MCdesk Service console](https://console.aws.amazon.com/aos/home) and create an MCdesk domain.
 
 Note the domain Amazon Resource Name (ARN); you'll use it in the following steps.
 
 ## Step 1: Map a backend role
 
-The SmartObserve CloudFormation template uses a Lambda function to create an AI connector with an AWS Identity and Access Management (IAM) role. You must map the IAM role to `ml_full_access` to grant the required permissions. Follow [Step 2.2 of the Semantic Search with SageMaker Embedding Model tutorial]({{site.url}}{{site.baseurl}}/vector-search/tutorials/semantic-search/semantic-search-sagemaker/#step-22-map-a-backend-role) to map a backend role.
+The MCdesk CloudFormation template uses a Lambda function to create an AI connector with an AWS Identity and Access Management (IAM) role. You must map the IAM role to `ml_full_access` to grant the required permissions. Follow [Step 2.2 of the Semantic Search with SageMaker Embedding Model tutorial]({{site.url}}{{site.baseurl}}/vector-search/tutorials/semantic-search/semantic-search-sagemaker/#step-22-map-a-backend-role) to map a backend role.
 
-The IAM role is specified in the **Lambda Invoke SmartObserve ML Commons Role Name** field in the CloudFormation template. The default IAM role is `LambdaInvokeSmartObserveMLCommonsRole`, so you must map the `arn:aws:iam::your_aws_account_id:role/LambdaInvokeSmartObserveMLCommonsRole` backend role to `ml_full_access`.
+The IAM role is specified in the **Lambda Invoke MCdesk ML Commons Role Name** field in the CloudFormation template. The default IAM role is `LambdaInvokeMCdeskMLCommonsRole`, so you must map the `arn:aws:iam::your_aws_account_id:role/LambdaInvokeMCdeskMLCommonsRole` backend role to `ml_full_access`.
 
 For a broader mapping, you can grant all roles `ml_full_access` using a wildcard:  
 
@@ -138,7 +138,7 @@ Because `all_access` includes more permissions than `ml_full_access`, mapping th
 
 ## Step 2: Run the CloudFormation template  
 
-The CloudFormation template integration is available in the [Amazon SmartObserve Service console](https://console.aws.amazon.com/aos/home). From the left navigation pane, select **Integrations**, as shown in the following image.
+The CloudFormation template integration is available in the [Amazon MCdesk Service console](https://console.aws.amazon.com/aos/home). From the left navigation pane, select **Integrations**, as shown in the following image.
 
 ![Semantic search CloudFormation integration]({{site.url}}{{site.baseurl}}/images/vector-search-tutorials/semantic_search_remote_model_Integration_1.png)  
 
@@ -152,7 +152,7 @@ You can deploy a pretrained Hugging Face sentence transformer embedding model fr
 
 Complete the following fields, keeping all other fields at their default values:  
 
-1. Enter your **Amazon SmartObserve Endpoint**.  
+1. Enter your **Amazon MCdesk Endpoint**.  
 2. Use the default **SageMaker Configuration** to start quickly, or you can modify it as needed. For supported Amazon SageMaker instance types, see the [Amazon SageMaker documentation](https://aws.amazon.com/sagemaker/).  
 3. Leave the **SageMaker Endpoint Url** field empty. If you provide a URL, the model will not be deployed to Amazon SageMaker, and a new inference endpoint will not be created.  
 4. Leave the **Custom Image** field empty. The default image is `djl-inference:0.22.1-cpu-full`. For available images, see the [AWS Deep Learning Containers](https://docs.aws.amazon.com/deep-learning-containers/latest/devguide/deep-learning-containers-images.html).  
@@ -167,13 +167,13 @@ If you already have a SageMaker inference endpoint, you can configure a model us
 
 Complete the following fields, keeping all others at their default values:  
 
-1. Enter your **Amazon SmartObserve Endpoint**.  
+1. Enter your **Amazon MCdesk Endpoint**.  
 2. Enter your **SageMaker Endpoint Url**.  
 3. Leave the **Custom Image**, **Custom Model Data Url**, and **Custom Model Environment** fields empty.  
 
 ### Output
 
-After deployment, you can find the SmartObserve AI connector and model IDs in the CloudFormation stack **Outputs**.  
+After deployment, you can find the MCdesk AI connector and model IDs in the CloudFormation stack **Outputs**.  
 
 If an error occurs, follow these steps to review the logs:
 

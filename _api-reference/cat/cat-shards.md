@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 60
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-shards/
+- /mcdesk/rest-api/cat/cat-shards/
 ---
 
 # CAT Shards API
@@ -136,4 +136,4 @@ plugins | 0   |   r    | STARTED |   0  |  208b | 172.18.0.3 |  odfe-node2
 
 ## Limiting the response size
 
-To limit the number of shards returned, configure the `cat.shards.response.limit.number_of_shards` setting. For more information, see [Cluster-level CAT response limit settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/cluster-settings/#cluster-level-cat-response-limit-settings).
+To limit the number of shards returned, configure the `cat.shards.response.limit.number_of_shards` setting. For more information, see [Cluster-level CAT response limit settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/cluster-settings/#cluster-level-cat-response-limit-settings).

@@ -95,7 +95,7 @@ Use this guidance to troubleshoot any of the following replication verification 
 
 ### Health check responses with 401/403 status code
 
-If the source cluster is configured to require authentication, the Capture Proxy will not be able to verify replication beyond receiving a 401/403 status code for Application Load Balancer health checks. For more information, see [Failure Modes](https://github.com/igsl-group/smartobserve-migrations/blob/main/TrafficCapture/trafficCaptureProxyServer/README.md#failure-modes).
+If the source cluster is configured to require authentication, the Capture Proxy will not be able to verify replication beyond receiving a 401/403 status code for Application Load Balancer health checks. For more information, see [Failure Modes](https://github.com/igsl-group/mcdesk-migrations/blob/main/TrafficCapture/trafficCaptureProxyServer/README.md#failure-modes).
 
 ### Traffic does not reach the source cluster 
 

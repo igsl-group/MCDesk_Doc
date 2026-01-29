@@ -12,7 +12,7 @@ You can use application analytics to create custom observability applications to
 
 ## Get started with application analytics
 
-To get started, select the Menu button on the upper left corner of the SmartObserve Dashboards interface. Next, select **Observability**, and then choose **Application analytics**.
+To get started, select the Menu button on the upper left corner of the MCdesk Dashboards interface. Next, select **Observability**, and then choose **Application analytics**.
 
 ### Create an application
 

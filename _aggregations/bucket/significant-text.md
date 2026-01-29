@@ -22,7 +22,7 @@ You can set the following parameters:
 - `shard_size` - Setting a high value increases stability (and accuracy) at the expense of computational performance.
 - `shard_min_doc_count` - If your text contains many low frequency words and you're not interested in these (for example typos), then you can set the `shard_min_doc_count` parameter to filter out candidate terms at a shard level with a reasonable certainty to not reach the required `min_doc_count` even after merging the local significant text frequencies. The default value is 1, which has no impact until you explicitly set it. We recommend setting this value much lower than the `min_doc_count` value.
 
-Assume that you have the complete works of Shakespeare indexed in an SmartObserve cluster. You can find significant texts in relation to the word "breathe" in the `text_entry` field:
+Assume that you have the complete works of Shakespeare indexed in an MCdesk cluster. You can find significant texts in relation to the word "breathe" in the `text_entry` field:
 
 ```json
 GET shakespeare/_search

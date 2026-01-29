@@ -11,7 +11,7 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-The [rank]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/rank/) eval endpoint allows you to evaluate the quality of ranked search results.
+The [rank]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/rank/) eval endpoint allows you to evaluate the quality of ranked search results.
 
 ## Endpoints
 

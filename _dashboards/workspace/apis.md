@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Workspaces APIs
-parent: Workspace for SmartObserve Dashboards
+parent: Workspace for MCdesk Dashboards
 nav_order: 10
 ---
 
@@ -9,7 +9,7 @@ nav_order: 10
 Introduced 2.18
 {: .label .label-purple }
 
-The Workspaces API provides a set of endpoints for managing workspaces in SmartObserve Dashboards.
+The Workspaces API provides a set of endpoints for managing workspaces in MCdesk Dashboards.
 
 ## List Workspaces API
 

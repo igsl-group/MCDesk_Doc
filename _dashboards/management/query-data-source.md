@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Query and visualize Amazon S3 data  
-parent: Connecting Amazon S3 to SmartObserve
+parent: Connecting Amazon S3 to MCdesk
 grand_parent: Data sources
 nav_order: 10
 has_children: false
@@ -11,11 +11,11 @@ has_children: false
 Introduced 2.11
 {: .label .label-purple }
 
-This tutorial guides you through using the **Query data** use case for querying and visualizing your Amazon Simple Storage Service (Amazon S3) data using SmartObserve Dashboards.
+This tutorial guides you through using the **Query data** use case for querying and visualizing your Amazon Simple Storage Service (Amazon S3) data using MCdesk Dashboards.
 
 ## Prerequisites
 
-You must be using the `smartobserve-security` plugin and have the appropriate role permissions. Contact your IT administrator to assign you the necessary permissions.  
+You must be using the `mcdesk-security` plugin and have the appropriate role permissions. Contact your IT administrator to assign you the necessary permissions.  
 
 ## Get started with querying
 
@@ -43,11 +43,11 @@ To create visualizations, follow these steps:
 
 To use Query Workbench with your Amazon S3 data, follow these steps:
 
-1. From the SmartObserve Dashboards main menu, select **SmartObserve Plugins** > **Query Workbench**.
+1. From the MCdesk Dashboards main menu, select **MCdesk Plugins** > **Query Workbench**.
 2. From the **Data Sources** dropdown menu in the upper-left corner, choose your Amazon S3 data source. Your data begins loading the databases that are part of your data source. 
 3. View the databases listed in the left-side navigation menu and select a database to view its details. Any information about acceleration indexes is listed under **Acceleration index destination**. 
 4. Choose the **Describe Index** button to learn more about how data is stored in that particular index.
-5. Choose the **Drop index** button to delete and clear both the SmartObserve index and the Amazon S3 Spark job that refreshes the data.  
+5. Choose the **Drop index** button to delete and clear both the MCdesk index and the Amazon S3 Spark job that refreshes the data.  
 6. Enter your SQL query and select **Run**.
 
 ## Next steps

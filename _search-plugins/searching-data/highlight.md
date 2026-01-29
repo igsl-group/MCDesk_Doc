@@ -4,7 +4,7 @@ title: Highlight query matches
 parent: Search options
 nav_order: 50
 redirect_from:
-  - /smartobserve/search/highlight/
+  - /mcdesk/search/highlight/
 ---
 
 # Highlight query matches
@@ -111,7 +111,7 @@ Each document in the results contains a `highlight` object that shows your searc
 }
 ```
 
-The highlight function works on the actual field contents. SmartObserve retrieves these contents either from the stored field (the field for which the mapping is to be set to `true`) or from the `_source` field if the field is not stored. You can force the retrieval of field contents from the `_source` field by setting the `force_source` parameter to `true`.
+The highlight function works on the actual field contents. MCdesk retrieves these contents either from the stored field (the field for which the mapping is to be set to `true`) or from the `_source` field if the field is not stored. You can force the retrieval of field contents from the `_source` field by setting the `force_source` parameter to `true`.
 
 The `highlight` parameter highlights the original terms even when using synonyms or stemming for the search itself.
 {: .note}
@@ -120,15 +120,15 @@ The `highlight` parameter highlights the original terms even when using synonyms
 
 To highlight the search terms, the highlighter needs the start and end character offsets of each term. The offsets mark the term's position in the original text. The highlighter can obtain the offsets from the following sources:
 
-- **Postings**: When documents are indexed, SmartObserve creates an inverted search index&mdash;a core data structure used to search for documents. Postings represent the inverted search index and store the mapping of each analyzed term to the list of documents in which it occurs. If you set the `index_options` parameter to `offsets` when mapping a [text field]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/text), SmartObserve adds each term's start and end character offsets to the inverted index. During highlighting, the highlighter reruns the original query directly on the postings to locate each term. Thus, storing offsets makes highlighting more efficient for large fields because it does not require reanalyzing the text. Storing term offsets requires additional disk space, but uses less disk space than storing term vectors.
+- **Postings**: When documents are indexed, MCdesk creates an inverted search index&mdash;a core data structure used to search for documents. Postings represent the inverted search index and store the mapping of each analyzed term to the list of documents in which it occurs. If you set the `index_options` parameter to `offsets` when mapping a [text field]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/text), MCdesk adds each term's start and end character offsets to the inverted index. During highlighting, the highlighter reruns the original query directly on the postings to locate each term. Thus, storing offsets makes highlighting more efficient for large fields because it does not require reanalyzing the text. Storing term offsets requires additional disk space, but uses less disk space than storing term vectors.
 
-- [**Term vectors**]: If you set the [`term_vector` parameter]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/text#term-vector-parameter) to  `with_positions_offsets` when mapping a text field, the highlighter uses the `term_vector` to highlight the field. Storing term vectors requires the most disk space. However, it makes highlighting faster for fields larger than 1 MB and for multi-term queries like prefix or wildcard because term vectors provide access to the dictionary of terms for each document.
+- [**Term vectors**]: If you set the [`term_vector` parameter]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/text#term-vector-parameter) to  `with_positions_offsets` when mapping a text field, the highlighter uses the `term_vector` to highlight the field. Storing term vectors requires the most disk space. However, it makes highlighting faster for fields larger than 1 MB and for multi-term queries like prefix or wildcard because term vectors provide access to the dictionary of terms for each document.
 
 - **Text reanalysis**: In the absence of both postings and term vectors, the highlighter reanalyzes text in order to highlight it. For every document and every field that needs highlighting, the highlighter creates a small in-memory index and reruns the original query through Lucene's query execution planner to access low-level match information for the current document. Reanalyzing the text works well in most use cases. However, this method is more memory and time intensive for large fields.
 
 ## Highlighter types
 
-SmartObserve supports four highlighter implementations: `plain`, `unified`, `fvh` (Fast Vector Highlighter), and `semantic`. 
+MCdesk supports four highlighter implementations: `plain`, `unified`, `fvh` (Fast Vector Highlighter), and `semantic`. 
 
 The following table lists the methods of obtaining the offsets for each highlighter.
 
@@ -161,7 +161,7 @@ GET shakespeare/_search
 
 ### The `unified` highlighter
 
-The `unified` highlighter is based on the Lucene Unified Highlighter and is the default highlighter for SmartObserve. It divides the text into sentences and treats those sentences as individual documents, scoring them in terms of similarity using the BM25 algorithm. The `unified` highlighter supports both exact phrase and multi-term highlighting, including fuzzy, prefix, and regex. If you're using complex queries to highlight multiple fields in multiple documents, we recommend using the `unified` highlighter on `postings` or `term_vector` fields.
+The `unified` highlighter is based on the Lucene Unified Highlighter and is the default highlighter for MCdesk. It divides the text into sentences and treats those sentences as individual documents, scoring them in terms of similarity using the BM25 algorithm. The `unified` highlighter supports both exact phrase and multi-term highlighting, including fuzzy, prefix, and regex. If you're using complex queries to highlight multiple fields in multiple documents, we recommend using the `unified` highlighter on `postings` or `term_vector` fields.
 
 ### The `fvh` highlighter
 
@@ -185,7 +185,7 @@ The `semantic` highlighter supports two processing modes:
 For production environments, we recommend using externally hosted models with batch inference enabled for optimal performance and scalability.
 {: .tip}
 
-Before using the `semantic` highlighter, you must configure and deploy a sentence highlighting model. For more information about using ML models in SmartObserve, see [Integrating ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/). For information about SmartObserve-provided sentence highlighting models, see [Semantic sentence highlighting models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#semantic-sentence-highlighting-models). 
+Before using the `semantic` highlighter, you must configure and deploy a sentence highlighting model. For more information about using ML models in MCdesk, see [Integrating ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/). For information about MCdesk-provided sentence highlighting models, see [Semantic sentence highlighting models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#semantic-sentence-highlighting-models). 
 {: .note}
 
 #### Basic usage (single inference mode)
@@ -320,7 +320,7 @@ Option | Description
 require_field_match | Specifies whether to highlight only fields that contain a search query match. Default is `true`. To highlight all fields, set this option to `false`.
 `pre_tags` | Specifies the HTML start tags for the highlighted text as an array of strings.
 `post_tags` | Specifies the HTML end tags for the highlighted text as an array of strings.
-`tags_schema` | If you set this option to `styled`, SmartObserve uses the built-in tag schema. In this schema, the `pre_tags` are `<em class="hlt1">`, `<em class="hlt2">`, `<em class="hlt3">`, `<em class="hlt4">`, `<em class="hlt5">`, `<em class="hlt6">`, `<em class="hlt7">`, `<em class="hlt8">`, `<em class="hlt9">`, and `<em class="hlt10">`, and the `post_tags` is `</em>`.
+`tags_schema` | If you set this option to `styled`, MCdesk uses the built-in tag schema. In this schema, the `pre_tags` are `<em class="hlt1">`, `<em class="hlt2">`, `<em class="hlt3">`, `<em class="hlt4">`, `<em class="hlt5">`, `<em class="hlt6">`, `<em class="hlt7">`, `<em class="hlt8">`, `<em class="hlt9">`, and `<em class="hlt10">`, and the `post_tags` is `</em>`.
 `boundary_chars` | All boundary characters combined in a string.<br> Default is `".,!? \t\n"`.
 `boundary_scanner` | Valid only for the `unified` and `fvh` highlighters. Specifies whether to split the highlighted fragments into sentences, words, or characters. Valid values are the following:<br>- `sentence`: Split highlighted fragments at sentence boundaries, as defined by the [BreakIterator](https://docs.oracle.com/javase/8/docs/api/java/text/BreakIterator.html). You can specify the BreakIterator's locale in the `boundary_scanner_locale` option. <br>- `word`: Split highlighted fragments at word boundaries, as defined by the [BreakIterator](https://docs.oracle.com/javase/8/docs/api/java/text/BreakIterator.html). You can specify the BreakIterator's locale in the `boundary_scanner_locale` option.<br>- `chars`: Split highlighted fragments at any character listed in `boundary_chars`. Valid only for the `fvh` highlighter. 
 `boundary_scanner_locale` | Provides a [locale](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html) for the `boundary_scanner`. Valid values are language tags (for example, `"en-US"`). Default is [Locale.ROOT](https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#ROOT).
@@ -329,7 +329,7 @@ encoder | Specifies whether the highlighted fragment should be HTML encoded befo
 `fragmenter` | Specifies how to split text into highlighted fragments. Valid only for the `plain` highlighter. Valid values are the following:<br>- `span` (default): Splits text into fragments of the same size but tries not to split text between highlighted terms. <br>- `simple`: Splits text into fragments of the same size.
 fragment_offset | Specifies the character offset from which you want to start highlighting. Valid for the `fvh` highlighter only.
 `fragment_size` | The size of a highlighted fragment, specified as the number of characters. If `number_of_fragments` is set to 0, `fragment_size` is ignored. Default is 100.
-number_of_fragments| The maximum number of returned fragments. If `number_of_fragments` is set to 0, SmartObserve returns the highlighted contents of the entire field. Default is 5.
+number_of_fragments| The maximum number of returned fragments. If `number_of_fragments` is set to 0, MCdesk returns the highlighted contents of the entire field. Default is 5.
 `order` | The sort order for the highlighted fragments. Set `order` to `score` to sort fragments by relevance. Each highlighter uses a different algorithm to calculate relevance scores. Default is `none`.
 `highlight_query` | Specifies that matches for a query other than the search query should be highlighted. The `highlight_query` option is useful when using a faster query to get document matches and a slower query (for example, `rescore_query`) to refine the results. We recommend including the search query as part of the `highlight_query`.
 `matched_fields` | Combines matches from different fields to highlight one field. The most common use case for this functionality is highlighting text that is analyzed in different ways and kept in multi-fields. If using `fvh`, all fields in the `matched_fields` list must have the `term_vector` field set to `with_positions_offsets`. The field in which the matches are combined is the only loaded field, so it is beneficial to set its `store` option to `yes`. Valid only for the `fvh` and `unified` highlighters.
@@ -456,7 +456,7 @@ The play name is highlighted by the new tags in the response:
 
 ## Specifying a highlight query
 
-By default, SmartObserve only considers the search query for highlighting. If you use a fast query to get document matches and a slower query like `rescore_query` to refine the results, it is useful to highlight the refined results. You can do this by adding a `highlight_query`:
+By default, MCdesk only considers the search query for highlighting. If you use a fast query to get document matches and a slower query like `rescore_query` to refine the results, it is useful to highlight the refined results. You can do this by adding a `highlight_query`:
 
 ```json
 GET shakespeare/_search
@@ -1105,6 +1105,6 @@ The response lists documents that contain the word "bragging" first:
 
 Note the following limitations:
 
-- When extracting terms to highlight, highlighters don't reflect the Boolean logic of a query. Therefore, for some complex Boolean queries, such as nested Boolean queries and queries using `minimum_should_match`, SmartObserve may highlight terms that don't correspond to query matches.
+- When extracting terms to highlight, highlighters don't reflect the Boolean logic of a query. Therefore, for some complex Boolean queries, such as nested Boolean queries and queries using `minimum_should_match`, MCdesk may highlight terms that don't correspond to query matches.
 - The `fvh` highlighter does not support span queries.
 - The `semantic` highlighter requires a deployed ML model specified by `model_id` in the `highlight.options`. It does not use traditional offset methods (postings, term vectors) and relies solely on model inference. For batch inference mode (`batch_inference: true`), you must use an externally hosted model with batch processing capabilities.

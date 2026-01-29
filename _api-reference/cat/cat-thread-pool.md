@@ -5,7 +5,7 @@ parent: CAT APIs
 nav_order: 75
 has_children: false
 redirect_from:
-- /smartobserve/rest-api/cat/cat-thread-pool/
+- /mcdesk/rest-api/cat/cat-thread-pool/
 ---
 
 # CAT Thread Pool API

@@ -4,7 +4,7 @@ title: Query string
 parent: Full-text queries
 nav_order: 60
 redirect_from:
-  - /smartobserve/query-dsl/full-text/query-string/
+  - /mcdesk/query-dsl/full-text/query-string/
   - /query-dsl/query-dsl/full-text/query-string/
 ---
 
@@ -37,8 +37,8 @@ You can use query string syntax in the following cases:
     ```
     {% include copy-curl.html %}
 
-1. In the SmartObserve Dashboards Discover or Dashboard apps, if you turn off DQL, as shown in the following image.
-  ![Using query string syntax in SmartObserve Dashboards Discover]({{site.url}}{{site.baseurl}}/images/discover-lucene-syntax.png)
+1. In the MCdesk Dashboards Discover or Dashboard apps, if you turn off DQL, as shown in the following image.
+  ![Using query string syntax in MCdesk Dashboards Discover]({{site.url}}{{site.baseurl}}/images/discover-lucene-syntax.png)
   
   DQL and Query string query (Lucene) language are the two search bar language options in Discover and Dashboards. To compare these language options, see [Discover and Dashboard search bar]({{site.url}}{{site.baseurl}}/dashboards/index/#discover-and-dashboard-search-bar).
   {: .tip}
@@ -173,7 +173,7 @@ Wildcard queries can use a significant amount of memory, which can degrade perfo
 
 For efficiency, pure wildcards such as `*` are rewritten as `exists` queries. Therefore, the `description: *` wildcard will match documents containing an empty value in the `description` field but will not match documents in which the `description` field is either missing or has a `null` value.
 
-If you set `analyze_wildcard` to `true`, SmartObserve will analyze queries that end with a `*` (such as `hist*`). Consequently, SmartObserve will build a Boolean query comprising the resulting tokens by taking exact matches on the first n-1 tokens and a prefix match on the last token.
+If you set `analyze_wildcard` to `true`, MCdesk will analyze queries that end with a `*` (such as `hist*`). Consequently, MCdesk will build a Boolean query comprising the resulting tokens by taking exact matches on the first n-1 tokens and a prefix match on the last token.
 
 ## Regular expressions
 
@@ -209,13 +209,13 @@ GET /testindex/_search
 ```
 {% include copy-curl.html %}
 
-When SmartObserve matches documents, the closer the words in the document to the word order specified in the query (the less the edit distance), the higher the document's relevance score.  
+When MCdesk matches documents, the closer the words in the document to the word order specified in the query (the less the edit distance), the higher the document's relevance score.  
 
 ## Ranges
 
 To specify a range for a numeric, string, or date field, use square brackets (`[min TO max]`) for an inclusive range and curly braces (`{min TO max}`) for an exclusive range. You can also mix square brackets and curly braces to include or exclude the lower and upper bound (for example, `{min TO max]`). 
 
-The dates for a date range must be provided in the format that you used when mapping the field containing the date. For more information about supported date formats, see [Formats]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/#formats).
+The dates for a date range must be provided in the format that you used when mapping the field containing the date. For more information about supported date formats, see [Formats]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/#formats).
 
 The following table provides range syntax examples.
 
@@ -494,15 +494,15 @@ When searching multiple fields, you can pass the additional optional `type` para
 
 Parameter | Data type | Description
 :--- | :--- | :---
-`type` | String | Determines how SmartObserve executes the query and scores the results. Valid values are `best_fields`, `bool_prefix`, `most_fields`, `cross_fields`, `phrase`, and `phrase_prefix`. Default is `best_fields`. For descriptions of valid values, see [Multi-match query types]({{site.url}}{{site.baseurl}}/query-dsl/full-text/multi-match/#multi-match-query-types). 
+`type` | String | Determines how MCdesk executes the query and scores the results. Valid values are `best_fields`, `bool_prefix`, `most_fields`, `cross_fields`, `phrase`, and `phrase_prefix`. Default is `best_fields`. For descriptions of valid values, see [Multi-match query types]({{site.url}}{{site.baseurl}}/query-dsl/full-text/multi-match/#multi-match-query-types). 
 
 ## Synonyms in the `query_string` query
 
-The `query_string` query supports multi-term synonym expansion with the `synonym_graph` token filter. If you use the `synonym_graph` token filter, SmartObserve creates a [match phrase query]({{site.url}}{{site.baseurl}}/query-dsl/full-text/match-phrase/) for each synonym. 
+The `query_string` query supports multi-term synonym expansion with the `synonym_graph` token filter. If you use the `synonym_graph` token filter, MCdesk creates a [match phrase query]({{site.url}}{{site.baseurl}}/query-dsl/full-text/match-phrase/) for each synonym. 
 
-The `auto_generate_synonyms_phrase_query` parameter specifies whether to create a match phrase query automatically for multi-term synonyms. By default, `auto_generate_synonyms_phrase_query` is `true`, so if you specify `ml, machine learning` as synonyms and search for `ml`, SmartObserve searches for `ml OR "machine learning"`. 
+The `auto_generate_synonyms_phrase_query` parameter specifies whether to create a match phrase query automatically for multi-term synonyms. By default, `auto_generate_synonyms_phrase_query` is `true`, so if you specify `ml, machine learning` as synonyms and search for `ml`, MCdesk searches for `ml OR "machine learning"`. 
 
-Alternatively, you can match multi-term synonyms using conjunctions. If you set `auto_generate_synonyms_phrase_query` to `false`, SmartObserve searches for `ml OR (machine AND learning)`. 
+Alternatively, you can match multi-term synonyms using conjunctions. If you set `auto_generate_synonyms_phrase_query` to `false`, MCdesk searches for `ml OR (machine AND learning)`. 
 
 For example, the following query searches for the text `ml models` and specifies not to auto-generate a match phrase query for each synonym:
 
@@ -520,7 +520,7 @@ GET /testindex/_search
 ```
 {% include copy-curl.html %}
 
-For this query, SmartObserve creates the following Boolean query: `(ml OR (machine AND learning)) models`.
+For this query, MCdesk creates the following Boolean query: `(ml OR (machine AND learning)) models`.
 
 ## Minimum should match
 
@@ -542,11 +542,11 @@ GET /testindex/_search
 ```
 {% include copy-curl.html %}
 
-For this query, SmartObserve creates the following Boolean query: `(description:historical description:epic description:film)~2`.
+For this query, MCdesk creates the following Boolean query: `(description:historical description:epic description:film)~2`.
 
 ### Minimum should match with multiple fields
 
-If you specify multiple fields in a `query_string` query, SmartObserve creates a [`dis_max` query]({{site.url}}{{site.baseurl}}/query-dsl/compound/disjunction-max/) for the specified fields. If you don't explicitly specify an operator for the query terms, the whole query text is treated as one clause. SmartObserve builds a query for each field using this single clause. The final Boolean query contains a single clause that corresponds to the `dis_max` query for all fields, therefore the `minimum_should_match` parameter is not applied.
+If you specify multiple fields in a `query_string` query, MCdesk creates a [`dis_max` query]({{site.url}}{{site.baseurl}}/query-dsl/compound/disjunction-max/) for the specified fields. If you don't explicitly specify an operator for the query terms, the whole query text is treated as one clause. MCdesk builds a query for each field using this single clause. The final Boolean query contains a single clause that corresponds to the `dis_max` query for all fields, therefore the `minimum_should_match` parameter is not applied.
 
 For example, in the following query, `historical epic heroic` is treated as a single clause:
 
@@ -567,7 +567,7 @@ GET /testindex/_search
 ```
 {% include copy-curl.html %}
 
-For this query, SmartObserve creates the following Boolean query: `((title:historical title:epic title:heroic) | (description:historical description:epic description:heroic))`.
+For this query, MCdesk creates the following Boolean query: `((title:historical title:epic title:heroic) | (description:historical description:epic description:heroic))`.
 
 If you add explicit operators (`AND` or `OR`) to the query terms, each term is considered a separate clause, to which the `minimum_should_match` parameter can be applied. For example, in the following query, `historical`, `epic`, and `heroic` are considered separate clauses:
 
@@ -588,7 +588,7 @@ GET /testindex/_search
 ```
 {% include copy-curl.html %}
 
-For this query, SmartObserve creates the following Boolean query: `((title:historical | description:historical) (description:epic | title:epic) (description:heroic | title:heroic))~2`. The query matches at least two of the three clauses. Each clause represents a `dis_max` query on both the `title` and `description` fields for each term.
+For this query, MCdesk creates the following Boolean query: `((title:historical | description:historical) (description:epic | title:epic) (description:heroic | title:heroic))~2`. The query matches at least two of the three clauses. Each clause represents a `dis_max` query on both the `title` and `description` fields for each term.
 
 Alternatively, to ensure that `minimum_should_match` can be applied, you can set the `type` parameter to `cross_fields`. This indicates that the fields with the same analyzer should be grouped together when the input text is analyzed:
 
@@ -610,7 +610,7 @@ GET /testindex/_search
 ```
 {% include copy-curl.html %}
 
-For this query, SmartObserve creates the following Boolean query: `((title:historical | description:historical) (description:epic | title:epic) (description:heroic | title:heroic))~2`. 
+For this query, MCdesk creates the following Boolean query: `((title:historical | description:historical) (description:epic | title:epic) (description:heroic | title:heroic))~2`. 
 
 However, if you use different analyzers, you must use explicit operators in the query to ensure that the `minimum_should_match` parameter is applied to each term.
 
@@ -622,24 +622,24 @@ Parameter | Data type | Description
 :--- | :--- | :---
 `query` | String | The text that may contain expressions in the [query string syntax](#query-string-syntax) to use for search. Required.
 `allow_leading_wildcard` | Boolean | Specifies whether `*` and `?` are allowed as first characters of a search term. Default is `true`.
-`analyze_wildcard` | Boolean | Specifies whether SmartObserve should attempt to analyze wildcard terms. Default is `false`.
-`analyzer` | String | The [analyzer]({{site.url}}{{site.baseurl}}/analyzers/index/) used to tokenize the query string text. Default is the index-time analyzer specified for the `default_field`. If no analyzer is specified for the `default_field`, the `analyzer` is the default analyzer for the index. For more information about `index.query.default_field`, see [Dynamic index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/#dynamic-index-level-index-settings).
-`auto_generate_synonyms_phrase_query` | Boolean | Specifies whether to create a [match phrase query]({{site.url}}{{site.baseurl}}/query-dsl/full-text/match-phrase/) automatically for multi-term synonyms. For example, if you specify `ba, batting average` as synonyms and search for `ba`, SmartObserve searches for `ba OR "batting average"` (if this option is `true`) or `ba OR (batting AND average)` (if this option is `false`). Default is `true`.
+`analyze_wildcard` | Boolean | Specifies whether MCdesk should attempt to analyze wildcard terms. Default is `false`.
+`analyzer` | String | The [analyzer]({{site.url}}{{site.baseurl}}/analyzers/index/) used to tokenize the query string text. Default is the index-time analyzer specified for the `default_field`. If no analyzer is specified for the `default_field`, the `analyzer` is the default analyzer for the index. For more information about `index.query.default_field`, see [Dynamic index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/#dynamic-index-level-index-settings).
+`auto_generate_synonyms_phrase_query` | Boolean | Specifies whether to create a [match phrase query]({{site.url}}{{site.baseurl}}/query-dsl/full-text/match-phrase/) automatically for multi-term synonyms. For example, if you specify `ba, batting average` as synonyms and search for `ba`, MCdesk searches for `ba OR "batting average"` (if this option is `true`) or `ba OR (batting AND average)` (if this option is `false`). Default is `true`.
 `boost` | Floating-point | Boosts the clause by the given multiplier. Useful for weighing clauses in compound queries. Values in the [0, 1) range decrease relevance, and values greater than 1 increase relevance. Default is `1`. 
 `default_field` | String | The field in which to search if the field is not specified in the query string. Supports wildcards. Defaults to the value specified in the `index.query. Default_field` index setting. By default, the `index.query. Default_field` is `*`, which means extract all fields eligible for term query and filter the metadata fields. The extracted fields are combined into a query if the `prefix` is not specified. Eligible fields do not include nested documents. Searching all eligible fields could be a resource-intensive operation. The `indices.query.bool.max_clause_count` search setting defines the maximum value for the product of the number of fields and the number of terms that can be queried at one time. The default value for `indices.query.bool.max_clause_count` is 1,024.
 `default_operator`| String | If the query string contains multiple search terms, whether all terms need to match (`AND`) or only one term needs to match (`OR`) for a document to be considered a match. Valid values are:<br>- `OR`: The string `to be` is interpreted as `to OR be`<br>- `AND`: The string `to be` is interpreted as `to AND be`<br> Default is `OR`.
 `enable_position_increments` | Boolean | When `true`, resulting queries are aware of position increments. This setting is useful when the removal of stop words leaves an unwanted "gap" between terms. Default is `true`.
 `fields` | String array | The list of fields to search (for example, `"fields": ["title^4", "description"]`). Supports wildcards. If unspecified, defaults to the `index.query. Default_field` setting, which defaults to `["*"]`.
 `fuzziness` | String | The number of character edits (insert, delete, substitute) that it takes to change one word to another when determining whether a term matched a value. For example, the distance between `wined` and `wind` is 1. Valid values are non-negative integers or `AUTO`. The default, `AUTO`, chooses a value based on the length of each term and is a good choice for most use cases.
-`fuzzy_max_expansions` | Positive integer | The maximum number of terms to which the query can expand. Fuzzy queries “expand to” a number of matching terms that are within the distance specified in `fuzziness`. Then SmartObserve tries to match those terms. Default is `50`.
+`fuzzy_max_expansions` | Positive integer | The maximum number of terms to which the query can expand. Fuzzy queries “expand to” a number of matching terms that are within the distance specified in `fuzziness`. Then MCdesk tries to match those terms. Default is `50`.
 `fuzzy_transpositions` | Boolean | Setting `fuzzy_transpositions` to `true` (default) adds swaps of adjacent characters to the insert, delete, and substitute operations of the `fuzziness` option. For example, the distance between `wind` and `wnid` is 1 if `fuzzy_transpositions` is true (swap "n" and "i") and 2 if it is false (delete "n", insert "n"). If `fuzzy_transpositions` is false, `rewind` and `wnid` have the same distance (2) from `wind`, despite the more human-centric opinion that `wnid` is an obvious typo. The default is a good choice for most use cases.
 `lenient` | Boolean | Setting `lenient` to `true` ignores data type mismatches between the query and the document field. For example, a query string of `"8.2"` could match a field of type `float`. Default is `false`.
 `max_determinized_states` | Positive integer | The maximum number of "[states](https://lucene.apache.org/core/8_9_0/core/org/apache/lucene/util/automaton/Operations.html#DEFAULT_MAX_DETERMINIZED_STATES)" (a measure of complexity) that Lucene can create for query strings that contain regular expressions (for example, `"query": "/wind.+?/"`). Larger numbers allow for queries that use more memory. Default is 10,000.
 `minimum_should_match` | Positive or negative integer, positive or negative percentage, combination | If the query string contains multiple search terms and you use the `or` operator, the number of terms that need to match for the document to be considered a match. For example, if `minimum_should_match` is 2, `wind often rising` does not match `The Wind Rises.` If `minimum_should_match` is `1`, it matches. For details, see [Minimum should match]({{site.url}}{{site.baseurl}}/query-dsl/minimum-should-match/).
 `phrase_slop` | Integer | The maximum number of words that are allowed between the matched words. If `phrase_slop` is 2, a maximum of two words is allowed between matched words in a phrase. Transposed words have a slop of 2. Default is `0` (an exact phrase match where matched words must be next to each other).
 `quote_analyzer` | String | The analyzer used to tokenize quoted text in the query string. Overrides the `analyzer` parameter for quoted text. Default is the `search_quote_analyzer` specified for the `default_field`. 
-`quote_field_suffix` | String | This option supports searching for exact matches (surrounded with quotation marks) using a different analysis method than non-exact matches use. For example, if `quote_field_suffix` is `.exact` and you search for `\"lightly\"` in the `title` field, SmartObserve searches for the word `lightly` in the `title.exact` field. This second field might use a different type (for example, `keyword` rather than `text`) or a different analyzer.  
-`rewrite` | String | Determines how SmartObserve rewrites and scores multi-term queries. Valid values are `constant_score`, `scoring_boolean`, `constant_score_boolean`, `top_terms_N`, `top_terms_boost_N`, and `top_terms_blended_freqs_N`. Default is `constant_score`.
+`quote_field_suffix` | String | This option supports searching for exact matches (surrounded with quotation marks) using a different analysis method than non-exact matches use. For example, if `quote_field_suffix` is `.exact` and you search for `\"lightly\"` in the `title` field, MCdesk searches for the word `lightly` in the `title.exact` field. This second field might use a different type (for example, `keyword` rather than `text`) or a different analyzer.  
+`rewrite` | String | Determines how MCdesk rewrites and scores multi-term queries. Valid values are `constant_score`, `scoring_boolean`, `constant_score_boolean`, `top_terms_N`, `top_terms_boost_N`, and `top_terms_blended_freqs_N`. Default is `constant_score`.
 `time_zone` | String | Specifies the number of hours to offset the desired time zone from `UTC`. You need to indicate the time zone offset number if the query string contains a date range. For example, set `time_zone": "-08:00"` for a query with a date range such as `"query": "wind rises release_date[2012-01-01 TO 2014-01-01]"`). The default time zone format used to specify number of offset hours is `UTC`.
 
 Query string queries may be internally converted into [prefix queries]({{site.url}}{{site.baseurl}}/query-dsl/term/prefix/). If [`search.allow_expensive_queries`]({{site.url}}{{site.baseurl}}/query-dsl/index/#expensive-queries) is set to `false`, prefix queries are not executed. If `index_prefixes` is enabled, the `search.allow_expensive_queries` setting is ignored and an optimized query is built and executed.

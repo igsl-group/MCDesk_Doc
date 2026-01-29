@@ -10,9 +10,9 @@ nav_order: 160
 **Introduced 1.0**
 {: .label .label-purple }
 
-The Create or Update Alias API adds one or more indexes to an alias or updates the settings for an existing alias. For more alias API operations, see [Index aliases]({{site.url}}{{site.baseurl}}/smartobserve/index-alias/).
+The Create or Update Alias API adds one or more indexes to an alias or updates the settings for an existing alias. For more alias API operations, see [Index aliases]({{site.url}}{{site.baseurl}}/mcdesk/index-alias/).
 
-The Create or Update Alias API is distinct from the [Alias API]({{site.url}}{{site.baseurl}}/smartobserve/rest-api/alias/), which supports the addition and removal of aliases and the removal of alias indexes. In contrast, the following API only supports adding or updating an alias without updating the index itself. Each API also uses different request body parameters.
+The Create or Update Alias API is distinct from the [Alias API]({{site.url}}{{site.baseurl}}/mcdesk/rest-api/alias/), which supports the addition and removal of aliases and the removal of alias indexes. In contrast, the following API only supports adding or updating an alias without updating the index itself. Each API also uses different request body parameters.
 {: .note}
 
 ## Endpoints
@@ -55,7 +55,7 @@ Field | Type | Description
 :--- | :--- | :--- | :---
 `index` | String | A comma-delimited list of indexes that you want to associate with the alias. If this field is set, it will override the index name specified in the URL path.
 `alias` | String | The name of the alias. If this field is set, it will override the alias name specified in the URL path.
-`is_write_index` | Boolean | Specifies whether the index should be a write index. An alias can only have one write index at a time. If a write request is submitted to an alias that links to multiple indexes, then SmartObserve runs the request only on the write index.
+`is_write_index` | Boolean | Specifies whether the index should be a write index. An alias can only have one write index at a time. If a write request is submitted to an alias that links to multiple indexes, then MCdesk runs the request only on the write index.
 `routing` | String | Assigns a custom value to a shard for specific operations. 
 `index_routing` | String | Assigns a custom value to a shard only for index operations. 
 `search_routing` | String | Assigns a custom value to a shard only for search operations. 
@@ -106,4 +106,4 @@ response = client.indices.put_alias(
 }
 ```
 
-For more alias API operations, see [Index aliases]({{site.url}}{{site.baseurl}}/smartobserve/index-alias/).
+For more alias API operations, see [Index aliases]({{site.url}}{{site.baseurl}}/mcdesk/index-alias/).

@@ -9,40 +9,40 @@ redirect_from:
 
 # JavaScript client
 
-The SmartObserve JavaScript (JS) client provides a safer and easier way to interact with your SmartObserve cluster. Rather than using SmartObserve from the browser and potentially exposing your data to the public, you can build an SmartObserve client that takes care of sending requests to your cluster. For the client's complete API documentation and additional examples, see the [JS client API documentation](https://smartobserve-project.github.io/smartobserve-js/2.2/index.html).
+The MCdesk JavaScript (JS) client provides a safer and easier way to interact with your MCdesk cluster. Rather than using MCdesk from the browser and potentially exposing your data to the public, you can build an MCdesk client that takes care of sending requests to your cluster. For the client's complete API documentation and additional examples, see the [JS client API documentation](https://mcdesk-project.github.io/mcdesk-js/2.2/index.html).
 
 The client contains a library of APIs that let you perform different operations on your cluster and return a standard response body. The example here demonstrates some basic operations like creating an index, adding documents, and searching your data. 
 
-You can use helper methods to simplify the use of complicated API tasks. For more information, see [Helper methods]({{site.url}}{{site.baseurl}}/clients/javascript/helpers/). For more advanced index actions, see the [`smartobserve-js` guides](https://github.com/igsl-group/smartobserve-js/tree/main/guides) in GitHub.  
+You can use helper methods to simplify the use of complicated API tasks. For more information, see [Helper methods]({{site.url}}{{site.baseurl}}/clients/javascript/helpers/). For more advanced index actions, see the [`mcdesk-js` guides](https://github.com/igsl-group/mcdesk-js/tree/main/guides) in GitHub.  
 
 ## Setup
 
 To add the client to your project, install it from [`npm`](https://www.npmjs.com):
 
 ```bash
-npm install @smartobserve-project/smartobserve
+npm install @mcdesk-project/mcdesk
 ```
 {% include copy.html %}
 
 To install a specific major version of the client, run the following command:
 
 ```bash
-npm install @smartobserve-project/smartobserve@<version>
+npm install @mcdesk-project/mcdesk@<version>
 ```
 {% include copy.html %}
 
-If you prefer to add the client manually or only want to examine the source code, see [`smartobserve-js`](https://github.com/igsl-group/smartobserve-js) on GitHub.
+If you prefer to add the client manually or only want to examine the source code, see [`mcdesk-js`](https://github.com/igsl-group/mcdesk-js) on GitHub.
 
 Then require the client:
 
 ```javascript
-const { Client } = require("@smartobserve-project/smartobserve");
+const { Client } = require("@mcdesk-project/mcdesk");
 ```
 {% include copy.html %}
 
-## Connecting to SmartObserve
+## Connecting to MCdesk
 
-To connect to the default SmartObserve host, create a client object with the address `https://localhost:9200` if you are using the Security plugin:  
+To connect to the default MCdesk host, create a client object with the address `https://localhost:9200` if you are using the Security plugin:  
 
 ```javascript
 var host = "localhost";
@@ -56,7 +56,7 @@ var ca_certs_path = "/full/path/to/root-ca.pem";
 // var client_key_path = '/full/path/to/client-key.pem'
 
 // Create a client with SSL/TLS enabled.
-var { Client } = require("@smartobserve-project/smartobserve");
+var { Client } = require("@mcdesk-project/mcdesk");
 var fs = require("fs");
 var client = new Client({
   node: protocol + "://" + auth + "@" + host + ":" + port,
@@ -79,21 +79,21 @@ var protocol = "http";
 var port = 9200;
 
 // Create a client
-var { Client } = require("@smartobserve-project/smartobserve");
+var { Client } = require("@mcdesk-project/mcdesk");
 var client = new Client({
   node: protocol + "://" + host + ":" + port
 });
 ```
 {% include copy.html %}
 
-## Authenticating with Amazon SmartObserve Service: AWS Signature Version 4
+## Authenticating with Amazon MCdesk Service: AWS Signature Version 4
 
 Use the following code to authenticate with AWS V2 SDK:
 
 ```javascript
 const AWS = require('aws-sdk'); // V2 SDK.
-const { Client } = require('@smartobserve-project/smartobserve');
-const { AwsSigv4Signer } = require('@smartobserve-project/smartobserve/aws');
+const { Client } = require('@mcdesk-project/mcdesk');
+const { AwsSigv4Signer } = require('@mcdesk-project/mcdesk/aws');
 
 const client = new Client({
   ...AwsSigv4Signer({
@@ -118,17 +118,17 @@ const client = new Client({
         });
       }),
   }),
-  node: 'https://search-xxx.region.es.amazonaws.com', // SmartObserve domain URL
+  node: 'https://search-xxx.region.es.amazonaws.com', // MCdesk domain URL
 });
 ```
 {% include copy.html %}
 
-Use the following code to authenticate with the AWS V2 SDK for Amazon SmartObserve Serverless:
+Use the following code to authenticate with the AWS V2 SDK for Amazon MCdesk Serverless:
 
 ```javascript
 const AWS = require('aws-sdk'); // V2 SDK.
-const { Client } = require('@smartobserve-project/smartobserve');
-const { AwsSigv4Signer } = require('@smartobserve-project/smartobserve/aws');
+const { Client } = require('@mcdesk-project/mcdesk');
+const { AwsSigv4Signer } = require('@mcdesk-project/mcdesk/aws');
 
 const client = new Client({
   ...AwsSigv4Signer({
@@ -153,7 +153,7 @@ const client = new Client({
         });
       }),
   }),
-  node: "https://xxx.region.aoss.amazonaws.com" // SmartObserve domain URL
+  node: "https://xxx.region.aoss.amazonaws.com" // MCdesk domain URL
 });
 ```
 {% include copy.html %}
@@ -162,13 +162,13 @@ Use the following code to authenticate with AWS V3 SDK:
 
 ```javascript
 const { defaultProvider } = require('@aws-sdk/credential-provider-node'); // V3 SDK.
-const { Client } = require('@smartobserve-project/smartobserve');
-const { AwsSigv4Signer } = require('@smartobserve-project/smartobserve/aws');
+const { Client } = require('@mcdesk-project/mcdesk');
+const { AwsSigv4Signer } = require('@mcdesk-project/mcdesk/aws');
 
 const client = new Client({
   ...AwsSigv4Signer({
     region: 'us-east-1',
-    service: 'es',  // 'aoss' for SmartObserve Serverless
+    service: 'es',  // 'aoss' for MCdesk Serverless
     // Must return a Promise that resolve to an AWS.Credentials object.
     // This function is used to acquire the credentials when the client start and
     // when the credentials are expired.
@@ -182,18 +182,18 @@ const client = new Client({
       return credentialsProvider();
     },
   }),
-  node: 'https://search-xxx.region.es.amazonaws.com', // SmartObserve domain URL
-  // node: "https://xxx.region.aoss.amazonaws.com" for SmartObserve Serverless
+  node: 'https://search-xxx.region.es.amazonaws.com', // MCdesk domain URL
+  // node: "https://xxx.region.aoss.amazonaws.com" for MCdesk Serverless
 });
 ```
 {% include copy.html %}
 
-Use the following code to authenticate with the AWS V3 SDK for Amazon SmartObserve Serverless:
+Use the following code to authenticate with the AWS V3 SDK for Amazon MCdesk Serverless:
 
 ```javascript
 const { defaultProvider } = require('@aws-sdk/credential-provider-node'); // V3 SDK.
-const { Client } = require('@smartobserve-project/smartobserve');
-const { AwsSigv4Signer } = require('@smartobserve-project/smartobserve/aws');
+const { Client } = require('@mcdesk-project/mcdesk');
+const { AwsSigv4Signer } = require('@mcdesk-project/mcdesk/aws');
 
 const client = new Client({
   ...AwsSigv4Signer({
@@ -212,28 +212,28 @@ const client = new Client({
       return credentialsProvider();
     },
   }),
-  node: "https://xxx.region.aoss.amazonaws.com" // SmartObserve domain URL
+  node: "https://xxx.region.aoss.amazonaws.com" // MCdesk domain URL
 });
 ```
 {% include copy.html %}
 
 ### Authenticating from within an AWS Lambda function
 
-Within an AWS Lambda function, objects declared outside the handler function retain their initialization. For more information, see [Lambda Execution Environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html). Thus, you must initialize the SmartObserve client outside of the handler function to ensure the reuse of the original connection in subsequent invocations. This promotes efficiency and eliminates the need to create a new connection each time. 
+Within an AWS Lambda function, objects declared outside the handler function retain their initialization. For more information, see [Lambda Execution Environment](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html). Thus, you must initialize the MCdesk client outside of the handler function to ensure the reuse of the original connection in subsequent invocations. This promotes efficiency and eliminates the need to create a new connection each time. 
 
 Initializing the client within the handler function poses a potential risk of encountering a `ConnectionError: getaddrinfo EMFILE error`. This error occurs when multiple connections are created in subsequent invocations, exceeding the system's file descriptor limit.
 
-The following example AWS Lambda function code demonstrates the correct initialization of the SmartObserve client:
+The following example AWS Lambda function code demonstrates the correct initialization of the MCdesk client:
 
 ```javascript
 const { defaultProvider } = require('@aws-sdk/credential-provider-node'); // V3 SDK.
-const { Client } = require('@smartobserve-project/smartobserve');
-const { AwsSigv4Signer } = require('@smartobserve-project/smartobserve/aws');
+const { Client } = require('@mcdesk-project/mcdesk');
+const { AwsSigv4Signer } = require('@mcdesk-project/mcdesk/aws');
 
 const client = new Client({
   ...AwsSigv4Signer({
     region: 'us-east-1',
-    service: 'es',  // 'aoss' for SmartObserve Serverless
+    service: 'es',  // 'aoss' for MCdesk Serverless
     // Must return a Promise that resolve to an AWS.Credentials object.
     // This function is used to acquire the credentials when the client start and
     // when the credentials are expired.
@@ -247,8 +247,8 @@ const client = new Client({
       return credentialsProvider();
     },
   }),
-  node: 'https://search-xxx.region.es.amazonaws.com', // SmartObserve domain URL
-  // node: "https://xxx.region.aoss.amazonaws.com" for SmartObserve Serverless
+  node: 'https://search-xxx.region.es.amazonaws.com', // MCdesk domain URL
+  // node: "https://xxx.region.aoss.amazonaws.com" for MCdesk Serverless
 });
 
 export const handler = async (event, context) => {
@@ -276,7 +276,7 @@ export const handler = async (event, context) => {
 
 ## Creating an index
 
-To create an SmartObserve index, use the `indices.create()` method. You can use the following code to construct a JSON object with custom settings:
+To create an MCdesk index, use the `indices.create()` method. You can use the following code to construct a JSON object with custom settings:
 
 ```javascript
 var index_name = "books";
@@ -299,7 +299,7 @@ var response = await client.indices.create({
 
 ## Indexing a document
 
-You can index a document into SmartObserve using the client's `index` method:
+You can index a document into MCdesk using the client's `index` method:
 
 ```javascript
 var document = {
@@ -420,7 +420,7 @@ var ca_certs_path = "/full/path/to/root-ca.pem";
 // var client_key_path = '/full/path/to/client-key.pem'
 
 // Create a client with SSL/TLS enabled
-var { Client } = require("@smartobserve-project/smartobserve");
+var { Client } = require("@mcdesk-project/mcdesk");
 var fs = require("fs");
 var client = new Client({
   node: protocol + "://" + auth + "@" + host + ":" + port,

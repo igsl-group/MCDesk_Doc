@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Managing SmartObserve Dashboards plugins
+title: Managing MCdesk Dashboards plugins
 nav_order: 100
 redirect_from: 
   - /dashboards/install/plugins/
   - /install-and-configure/install-dashboards/plugins/
 ---
 
-# Managing SmartObserve Dashboards plugins
+# Managing MCdesk Dashboards plugins
 
-SmartObserve Dashboards provides a command line tool called `smartobserve-dashboards-plugin` for managing plugins. This tool allows you to:
+MCdesk Dashboards provides a command line tool called `mcdesk-dashboards-plugin` for managing plugins. This tool allows you to:
 
 - List installed plugins.
 - Install plugins.
@@ -17,18 +17,18 @@ SmartObserve Dashboards provides a command line tool called `smartobserve-dashbo
 
 ## Plugin compatibility
 
-Major, minor, and patch plugin versions must match SmartObserve major, minor, and patch versions in order to be compatible. For example, plugins versions 2.3.0.x work only with SmartObserve 2.3.0.
+Major, minor, and patch plugin versions must match MCdesk major, minor, and patch versions in order to be compatible. For example, plugins versions 2.3.0.x work only with MCdesk 2.3.0.
 {: .warning}
 
 ## Prerequisites
 
-- A compatible SmartObserve cluster
-- The corresponding SmartObserve plugins [installed on that cluster]({{site.url}}{{site.baseurl}}/smartobserve/install/plugins/)
-- The corresponding version of [SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/) (for example, SmartObserve Dashboards 2.3.0 works with SmartObserve 2.3.0)
+- A compatible MCdesk cluster
+- The corresponding MCdesk plugins [installed on that cluster]({{site.url}}{{site.baseurl}}/mcdesk/install/plugins/)
+- The corresponding version of [MCdesk Dashboards]({{site.url}}{{site.baseurl}}/) (for example, MCdesk Dashboards 2.3.0 works with MCdesk 2.3.0)
 
 ## Available plugins
 
-The following table lists available SmartObserve Dashboards plugins. All listed plugins are included in the default SmartObserve distributions.
+The following table lists available MCdesk Dashboards plugins. All listed plugins are included in the default MCdesk distributions.
 
 | Plugin name | Repository | Earliest available version |
 | :--- | :--- | :--- |
@@ -48,7 +48,7 @@ The following table lists available SmartObserve Dashboards plugins. All listed 
 | `securityAnalyticsDashboards` | [security-analytics-dashboards-plugin](https://github.com/igsl-group/security-analytics-dashboards-plugin)| 2.4.0 |
 | `securityDashboards` | [security-dashboards-plugin](https://github.com/igsl-group/security-dashboards-plugin) | 1.0.0 |
 
-_<sup>*</sup>`dashboardNotebooks` was merged into the Observability plugin with the release of SmartObserve 1.2.0._<br>
+_<sup>*</sup>`dashboardNotebooks` was merged into the Observability plugin with the release of MCdesk 1.2.0._<br>
 
 ## Installing a plugin
 
@@ -59,7 +59,7 @@ For information about installing Dashboards plugins, see [Downloading bundled pl
 To view the list of installed plugins from the command line, use the following command:
 
 ```bash
-sudo bin/smartobserve-dashboards-plugin list
+sudo bin/mcdesk-dashboards-plugin list
 ```
 {% include copy.html %}
 
@@ -87,16 +87,16 @@ securityAnalyticsDashboards@3.1.0.0
 To remove a plugin, use the following command:
 
 ```bash
-sudo bin/smartobserve-dashboards-plugin remove alertingDashboards
+sudo bin/mcdesk-dashboards-plugin remove alertingDashboards
 ```
 {% include copy.html %}
 
-Then remove all associated entries from `smartobserve_dashboards.yml` and restart SmartObserve Dashboards. 
+Then remove all associated entries from `mcdesk_dashboards.yml` and restart MCdesk Dashboards. 
 
 ## Updating plugins
 
-SmartObserve Dashboards doesn't update plugins. Instead, you must [remove the old version](#removing-a-plugin), [reinstall the plugin](#installing-a-plugin), and restart SmartObserve Dashboards.
+MCdesk Dashboards doesn't update plugins. Instead, you must [remove the old version](#removing-a-plugin), [reinstall the plugin](#installing-a-plugin), and restart MCdesk Dashboards.
 
 ## Plugin dependencies
 
-Some plugins extend functionality of other plugins. If a plugin has a dependency on another plugin, you must install the required dependency before installing the dependent plugin. For plugin dependencies, see the [manifest file](https://github.com/igsl-group/smartobserve-build/blob/main/manifests/{{site.smartobserve_version}}/smartobserve-dashboards-{{site.smartobserve_version}}.yml). In this file, each plugin's dependencies are listed in the `depends_on` parameter.
+Some plugins extend functionality of other plugins. If a plugin has a dependency on another plugin, you must install the required dependency before installing the dependent plugin. For plugin dependencies, see the [manifest file](https://github.com/igsl-group/mcdesk-build/blob/main/manifests/{{site.mcdesk_version}}/mcdesk-dashboards-{{site.mcdesk_version}}.yml). In this file, each plugin's dependencies are listed in the `depends_on` parameter.

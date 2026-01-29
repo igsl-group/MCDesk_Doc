@@ -1,16 +1,16 @@
 ---
 layout: default
-title: SmartObserve Kubernetes Operator
-parent: Installing SmartObserve
+title: MCdesk Kubernetes Operator
+parent: Installing MCdesk
 nav_order: 55
 redirect_from:
   - /clients/k8s-operator/
   - /tools/k8s-operator/
 ---
 
-# SmartObserve Kubernetes Operator
+# MCdesk Kubernetes Operator
 
-The SmartObserve Kubernetes Operator is an open-source kubernetes operator that helps automate the deployment and provisioning of SmartObserve and SmartObserve Dashboards in a containerized environment. The operator can manage multiple SmartObserve clusters that can be scaled up and down depending on your needs. 
+The MCdesk Kubernetes Operator is an open-source kubernetes operator that helps automate the deployment and provisioning of MCdesk and MCdesk Dashboards in a containerized environment. The operator can manage multiple MCdesk clusters that can be scaled up and down depending on your needs. 
 
 
 ## Installation 
@@ -22,30 +22,30 @@ There are two ways to get started with the operator:
 
 ### Use a Helm chart
 
-If you use Helm to manage your Kubernetes cluster, you can use the SmartObserve Kubernetes Operator's Cloud Native Computing Foundation (CNCF) project stored in Artifact Hub, a web-based application for finding, installing, and publishing CNCF packages. 
+If you use Helm to manage your Kubernetes cluster, you can use the MCdesk Kubernetes Operator's Cloud Native Computing Foundation (CNCF) project stored in Artifact Hub, a web-based application for finding, installing, and publishing CNCF packages. 
 
-To begin, log in to your Kubernetes cluster and add the Helm repository (repo) from [Artifact Hub](https://artifacthub.io/packages/helm/smartobserve-operator/smartobserve-operator/). 
+To begin, log in to your Kubernetes cluster and add the Helm repository (repo) from [Artifact Hub](https://artifacthub.io/packages/helm/mcdesk-operator/mcdesk-operator/). 
 
 ```
-helm repo add smartobserve-operator https://smartobserve-project.github.io/smartobserve-k8s-operator/
+helm repo add mcdesk-operator https://mcdesk-project.github.io/mcdesk-k8s-operator/
 ```
 
 Make sure that the repo is included in your Kubernetes cluster. 
 
 ```
-helm repo list | grep smartobserve
+helm repo list | grep mcdesk
 ```
 
-Both the `smartobserve` and `smartobserve-operator` repos appear in the list of repos.
+Both the `mcdesk` and `mcdesk-operator` repos appear in the list of repos.
 
 
-Install the manager that operates all of the SmartObserve Kubernetes Operator's actions. 
+Install the manager that operates all of the MCdesk Kubernetes Operator's actions. 
 
 ```
-helm install smartobserve-operator smartobserve-operator/smartobserve-operator
+helm install mcdesk-operator mcdesk-operator/mcdesk-operator
 ```
 
-After the installation completes, the operator returns information on the deployment with `STATUS: deployed`. Then you can configure and start your [SmartObserve cluster](#deploy-a-new-smartobserve-cluster).
+After the installation completes, the operator returns information on the deployment with `STATUS: deployed`. Then you can configure and start your [MCdesk cluster](#deploy-a-new-mcdesk-cluster).
 
 ### Use a local installation
 
@@ -59,20 +59,20 @@ If this is your first time running Kubernetes and you intend to run through thes
 
 Before running through the installation steps, make sure that you have a Kubernetes environment running locally. When using minikube, open a new terminal window and enter `minikube start`. Kubernetes will now use a containerized minikube cluster with a namespace called `default`.
 
-To enable SmartObserve to start, run the following command:
+To enable MCdesk to start, run the following command:
 
 ```bash
 minikube ssh 'sudo sysctl -w vm.max_map_count=262144'
 ```
 {% include copy.html %}
 
-Then install the SmartObserve Kubernetes Operator using the following steps:
+Then install the MCdesk Kubernetes Operator using the following steps:
 
-You must have `go` installed locally in order to install SmartObserve Kubernetes Operator on your local machine.
+You must have `go` installed locally in order to install MCdesk Kubernetes Operator on your local machine.
 {: .note}
 
-1. In your preferred directory, clone the [SmartObserve Kubernetes Operator repo](https://github.com/Opster/smartobserve-k8s-operator). Navigate into repo's directory using `cd`.
-2. Go to the `smartobserve-operator` folder.
+1. In your preferred directory, clone the [MCdesk Kubernetes Operator repo](https://github.com/Opster/mcdesk-k8s-operator). Navigate into repo's directory using `cd`.
+2. Go to the `mcdesk-operator` folder.
 3. Enter `GOTOOLCHAIN=go1.24.4 make build manifests`.
 4. Start a Kubernetes cluster. When using minikube, open a new terminal window and enter `minikube start`. Kubernetes will now use a containerized minikube cluster with a namespace called `default`. Make sure that `~/.kube/config` points to the cluster.
 
@@ -112,58 +112,58 @@ You must have `go` installed locally in order to install SmartObserve Kubernetes
   ```    
    
 5. Enter `make install` to create the CustomResourceDefinition that runs in your Kubernetes cluster. 
-6. Start the SmartObserve Kubernetes Operator. Enter `make run`. 
+6. Start the MCdesk Kubernetes Operator. Enter `make run`. 
 
 ## Verify operator deployment
 
 If the operator was installed using [local installation](#use-a-local-installation), the operator is not deployed in a pod. However, you can examine the available Custom Resource Definitions (CRDs) using the following command:
 
 ```bash
-kubectl get crds | grep smartobserve
+kubectl get crds | grep mcdesk
 ```
 {% include copy.html %}
 
-If you deployed the operator using [Helm charts](#use-a-helm-chart), to ensure that Kubernetes recognizes the SmartObserve Kubernetes Operator as a namespace, enter `k get ns | grep smartobserve`. Both `smartobserve` and `smartobserve-operator-system` should appear as `Active`.
+If you deployed the operator using [Helm charts](#use-a-helm-chart), to ensure that Kubernetes recognizes the MCdesk Kubernetes Operator as a namespace, enter `k get ns | grep mcdesk`. Both `mcdesk` and `mcdesk-operator-system` should appear as `Active`.
 
-With the operator active, use `k get pod -n smartobserve-operator-system` to make sure that the operator's pods are running. 
+With the operator active, use `k get pod -n mcdesk-operator-system` to make sure that the operator's pods are running. 
 
 ```
 NAME                                              READY   STATUS   RESTARTS   AGE
-smartobserve-operator-controller-manager-<pod-id>   2/2     Running  0          25m
+mcdesk-operator-controller-manager-<pod-id>   2/2     Running  0          25m
 ```
 
-With the Kubernetes cluster running, you can now run SmartObserve inside the cluster.
+With the Kubernetes cluster running, you can now run MCdesk inside the cluster.
 
-## Deploy a new SmartObserve cluster
+## Deploy a new MCdesk cluster
 
-From your cloned SmartObserve Kubernetes Operator repo, navigate to the `smartobserve-operator/examples` directory. There you'll find the `smartobserve-cluster.yaml` file, which can be customized to the needs of your cluster, including the `clusterName` that acts as the namespace in which your new SmartObserve cluster will reside.
+From your cloned MCdesk Kubernetes Operator repo, navigate to the `mcdesk-operator/examples` directory. There you'll find the `mcdesk-cluster.yaml` file, which can be customized to the needs of your cluster, including the `clusterName` that acts as the namespace in which your new MCdesk cluster will reside.
 
 With your cluster configured, run the `kubectl apply` command.
 
 ```
-kubectl apply -f smartobserve-cluster.yaml
+kubectl apply -f mcdesk-cluster.yaml
 ```
 
-The operator creates several pods, including a bootstrap pod, three SmartObserve cluster pods, and one Dashboards pod. To connect to your cluster, use the `port-forward` command.
+The operator creates several pods, including a bootstrap pod, three MCdesk cluster pods, and one Dashboards pod. To connect to your cluster, use the `port-forward` command.
 
 ```
 kubectl port-forward svc/my-cluster-dashboards 5601
 ```
 
-Open http://localhost:5601 in your preferred browser and log in with the default demo credentials `admin / admin`. You can also run curl commands against the SmartObserve REST API by forwarding to port 9200.
+Open http://localhost:5601 in your preferred browser and log in with the default demo credentials `admin / admin`. You can also run curl commands against the MCdesk REST API by forwarding to port 9200.
 
 ```
 kubectl port-forward svc/my-cluster 9200
 ```
 
-In order to delete the SmartObserve cluster, delete the cluster resources. The following command deletes the cluster namespace and all its resources.
+In order to delete the MCdesk cluster, delete the cluster resources. The following command deletes the cluster namespace and all its resources.
 
 ```
-kubectl delete -f smartobserve-cluster.yaml
+kubectl delete -f mcdesk-cluster.yaml
 ```
 
 ## Next steps
 
-To learn more about how to customize your Kubernetes SmartObserve cluster, including data persistence, authentication methods, and scaling, see the [SmartObserve Kubernetes Operator User Guide](https://github.com/Opster/smartobserve-k8s-operator/blob/main/docs/userguide/main.md). 
+To learn more about how to customize your Kubernetes MCdesk cluster, including data persistence, authentication methods, and scaling, see the [MCdesk Kubernetes Operator User Guide](https://github.com/Opster/mcdesk-k8s-operator/blob/main/docs/userguide/main.md). 
 
-If you want to contribute to the development of the SmartObserve Kubernetes Operator, see the repo [design documents](https://github.com/Opster/smartobserve-k8s-operator/blob/main/docs/designs/high-level.md).
+If you want to contribute to the development of the MCdesk Kubernetes Operator, see the repo [design documents](https://github.com/Opster/mcdesk-k8s-operator/blob/main/docs/designs/high-level.md).

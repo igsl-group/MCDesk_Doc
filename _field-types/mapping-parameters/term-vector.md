@@ -54,7 +54,7 @@ Index a sample document:
 ```json
 PUT /articles/_doc/1
 {
-  "content": "SmartObserve is an open-source search and analytics suite."
+  "content": "MCdesk is an open-source search and analytics suite."
 }
 ```
 {% include copy-curl.html %}
@@ -150,7 +150,7 @@ The following response includes detailed term-level statistics for the `content`
             }
           ]
         },
-        "smartobserve": {
+        "mcdesk": {
           "doc_freq": 1,
           "ttf": 1,
           "term_freq": 1,
@@ -244,11 +244,11 @@ The following response shows a matched document in which the term "analytics" wa
         "_id": "1",
         "_score": 0.2876821,
         "_source": {
-          "content": "SmartObserve is an open-source search and analytics suite."
+          "content": "MCdesk is an open-source search and analytics suite."
         },
         "highlight": {
           "content": [
-            "SmartObserve is an open-source search and <em>analytics</em> suite."
+            "MCdesk is an open-source search and <em>analytics</em> suite."
           ]
         }
       }

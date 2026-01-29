@@ -8,20 +8,20 @@ nav_order: 5
 
 # Index request cache
 
-The SmartObserve index request cache is a specialized caching mechanism designed to enhance search performance by storing the results of frequently executed search queries at the shard level. This reduces cluster load and improves response times for repeated searches. This cache is enabled by default and is particularly useful for read-heavy workloads where certain queries are executed frequently.
+The MCdesk index request cache is a specialized caching mechanism designed to enhance search performance by storing the results of frequently executed search queries at the shard level. This reduces cluster load and improves response times for repeated searches. This cache is enabled by default and is particularly useful for read-heavy workloads where certain queries are executed frequently.
 
 The cache is automatically invalidated at the configured refresh interval. The invalidation includes document updates (including document deletions) and changes to index settings. This ensures that stale results are never returned from the cache. When the cache size exceeds its configured limit, the least recently used entries are evicted to make room for new entries.
 
-Some queries are ineligible for the request cache. These include profiled queries, scroll queries, and search requests with non-deterministic characteristics (such as those using `Math.random()` or DFS queries) or relative times (such as `now` or `new Date()`). By default, only requests with `size=0` are cacheable. In SmartObserve 2.19 and later, this behavior can be changed using `indices.requests.cache.maximum_cacheable_size`.
+Some queries are ineligible for the request cache. These include profiled queries, scroll queries, and search requests with non-deterministic characteristics (such as those using `Math.random()` or DFS queries) or relative times (such as `now` or `new Date()`). By default, only requests with `size=0` are cacheable. In MCdesk 2.19 and later, this behavior can be changed using `indices.requests.cache.maximum_cacheable_size`.
 {: .note}
 
 ## Configuring request caching
 
-You can configure the index request cache by setting the parameters in the `smartobserve.yml` configuration file or using the REST API. For more information, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/).
+You can configure the index request cache by setting the parameters in the `mcdesk.yml` configuration file or using the REST API. For more information, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/).
 
 ### Settings
 
-The following table lists the index request cache settings. For more information about dynamic settings, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/).
+The following table lists the index request cache settings. For more information about dynamic settings, see [Index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/).
 
 Setting | Data type  | Default | Level | Static/Dynamic | Description
 :--- |:-----------|:--------| :--- | :--- | :---
@@ -60,7 +60,7 @@ GET /students/_search?request_cache=true
 
 ## Monitoring the request cache
 
-Monitoring cache usage and performance is crucial to maintaining an efficient caching strategy. SmartObserve provides several APIs to help monitor the cache.
+Monitoring cache usage and performance is crucial to maintaining an efficient caching strategy. MCdesk provides several APIs to help monitor the cache.
 
 ### Retrieving cache statistics for all nodes
 

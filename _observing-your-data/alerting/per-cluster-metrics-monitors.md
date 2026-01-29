@@ -39,7 +39,7 @@ Trigger conditions use responses from the following API endpoints. Most APIs tha
 - [_cluster/health]({{site.url}}{{site.baseurl}}/api-reference/cluster-health/)
 - [_cluster/stats]({{site.url}}{{site.baseurl}}/api-reference/cluster-stats/)
 - [_cluster/settings]({{site.url}}{{site.baseurl}}/api-reference/cluster-settings/)
-- [_nodes/stats]({{site.url}}{{site.baseurl}}/smartobserve/popular-api/#get-node-statistics)
+- [_nodes/stats]({{site.url}}{{site.baseurl}}/mcdesk/popular-api/#get-node-statistics)
 - [_cat/indices]({{site.url}}{{site.baseurl}}/api-reference/cat/cat-indices/)
 - [_cat/pending_tasks]({{site.url}}{{site.baseurl}}/api-reference/cat/cat-pending-tasks/)
 - [_cat/recovery]({{site.url}}{{site.baseurl}}/api-reference/cat/cat-recovery/)
@@ -49,7 +49,7 @@ Trigger conditions use responses from the following API endpoints. Most APIs tha
 
 ## Restrict API fields
 
-If you want to hide fields from the API response and not expose them for alerting, reconfigure the [supported_json_payloads.json](https://github.com/igsl-group/alerting/blob/main/alerting/src/main/resources/org/smartobserve/alerting/settings/supported_json_payloads.json) file inside the Alerting plugin. The file functions as an allow list for the API fields you want to use in an alert. By default, all APIs and their parameters can be used for monitors and trigger conditions.
+If you want to hide fields from the API response and not expose them for alerting, reconfigure the [supported_json_payloads.json](https://github.com/igsl-group/alerting/blob/main/alerting/src/main/resources/org/mcdesk/alerting/settings/supported_json_payloads.json) file inside the Alerting plugin. The file functions as an allow list for the API fields you want to use in an alert. By default, all APIs and their parameters can be used for monitors and trigger conditions.
 
 However, you can modify the file so that cluster metrics monitors can only be created for APIs referenced. Furthermore, only fields referenced in the supported files can create trigger conditions. This `supported_json_payloads.json` allows for a cluster metrics monitor to be created for the `_cluster/stats` API, and triggers conditions for the `indices.shards.total` and `indices.shards.index.shards.min` fields.
 
@@ -115,7 +115,7 @@ The `script` parameter points the `source` to the Painless script `for (cluster 
 ```
 The dashboards interface supports the selection of clusters to be monitored and the desired API. A view of the interface is shown in the following image.
 
-The following [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) are required in order to create a cross-cluster monitor through the dashboards UI: `cluster:admin/smartobserve/alerting/remote/indexes/get`, `indices:admin/resolve/index`, `cluster:monitor/health`, and `indices:admin/mappings/get`.
+The following [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) are required in order to create a cross-cluster monitor through the dashboards UI: `cluster:admin/mcdesk/alerting/remote/indexes/get`, `indices:admin/resolve/index`, `cluster:monitor/health`, and `indices:admin/mappings/get`.
 {: .note}
 
 <img src="{{site.url}}{{site.baseurl}}/images/alerting/cross-cluster-cluster-metrics-monitors.png" alt="Cluster metrics monitor" width="700"/>
@@ -124,6 +124,6 @@ The following [permissions]({{site.url}}{{site.baseurl}}/security/access-control
 
 Per cluster metrics monitors have the following limitations:
 
-- The SmartObserve cluster must be in a state where an index's conditions can be monitored and actions can be executed against the index.
+- The MCdesk cluster must be in a state where an index's conditions can be monitored and actions can be executed against the index.
 - Removing resource permissions from a user will not prevent that user’s preexisting monitors for that resource from executing.
 - Users with permissions to create monitors are not blocked from creating monitors for resources for which they do not have permissions; however, those monitors will not run.

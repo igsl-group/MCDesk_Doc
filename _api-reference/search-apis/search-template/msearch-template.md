@@ -36,7 +36,7 @@ Parameter | Type | Description | Supported in metadata
 :--- | :--- | :---  | :---
 allow_no_indices | Boolean | Specifies whether to ignore wildcards that don't match any indexes. Default is `true`. | Yes
 cancel_after_time_interval | Time | The interval of time after which the search request will be canceled. Supported at both parent and child request levels. The order of precedence is child-level parameter, parent-level parameter, and [cluster setting]({{site.url}}{{site.baseurl}}/api-reference/cluster-settings/). Default is `-1`. | Yes
-css_minimize_roundtrips | Boolean | Specifies whether SmartObserve should try to minimize the number of network round trips between the coordinating node and remote clusters (only applicable to cross-cluster search requests). Default is `true`. | No
+css_minimize_roundtrips | Boolean | Specifies whether MCdesk should try to minimize the number of network round trips between the coordinating node and remote clusters (only applicable to cross-cluster search requests). Default is `true`. | No
 expand_wildcards | Enum | Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are `all`, `open`, `closed`, `hidden`, and `none`. Default is `open`. | Yes
 ignore_unavailable | Boolean | If an index or shard from the index list doesn’t exist, then this setting specifies whether to ignore the missing index or shard rather than fail the query. Default is `false`. | Yes
 max_concurrent_searches | Integer | The maximum number of concurrent searches. The default depends on your node count and search thread pool size. Higher values can improve performance, but there may be a risk of overloading the cluster. | No
@@ -70,9 +70,9 @@ Query\n
 ```
 
 - Metadata lines include options, such as which indexes to search and the type of search.
-- Query lines use [query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/).
+- Query lines use [query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/).
 
-Like the [bulk]({{site.url}}{{site.baseurl}}/api-reference/document-apis/bulk/) operation, the JSON doesn't need to be minified---spaces are fine---but it does need to be on a single line. SmartObserve uses newline characters to parse multi-search requests and requires that the request body end with a newline character.
+Like the [bulk]({{site.url}}{{site.baseurl}}/api-reference/document-apis/bulk/) operation, the JSON doesn't need to be minified---spaces are fine---but it does need to be on a single line. MCdesk uses newline characters to parse multi-search requests and requires that the request body end with a newline character.
 
 ## Example request
 
@@ -116,7 +116,7 @@ response = client.msearch_template(
 
 ## Example response
 
-SmartObserve returns an array with the results of each search in the same order as in the multi-search template request:
+MCdesk returns an array with the results of each search in the same order as in the multi-search template request:
 
 ```json
 {

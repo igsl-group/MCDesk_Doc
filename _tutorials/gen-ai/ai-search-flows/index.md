@@ -11,7 +11,7 @@ redirect_from:
 flows:
   - heading: Creating and customizing AI search workflows
     link: /vector-search/ai-search/workflow-builder/
-    description: "Learn how to build AI search flows in SmartObserve Dashboards"   
+    description: "Learn how to build AI search flows in MCdesk Dashboards"   
 ---
 
 # AI search workflows tutorials

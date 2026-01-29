@@ -25,7 +25,7 @@ PUT /<index_name>/_settings
 
 Make sure to reenable `refresh_interval` after indexing is complete.
 
-## Disable replicas (no SmartObserve replica shard)
+## Disable replicas (no MCdesk replica shard)
 
    Set replicas to `0` to prevent duplicate construction of native library indexes in both primary and replica shards. When you enable replicas after indexing completes, the serialized native library indexes are copied directly. If you have no replicas, losing nodes might cause data loss, so it's important that the data be stored elsewhere so that this initial load can be retried in the event of an issue.
 
@@ -38,7 +38,7 @@ Monitor CPU utilization and choose the correct number of threads. Because native
 
 ## Use the derived vector source feature to reduce storage requirements
 
-Starting with SmartObserve 3.0, you can use the derived vector source feature to significantly reduce storage requirements for vector fields. It is an [index setting]({{site.url}}{{site.baseurl}}/vector-search/settings/#index-settings) that is enabled by default. This feature prevents vectors from being stored in the `_source` field while still maintaining all functionality, including the ability to use the `update`, `update_by_query`, and `reindex` APIs.
+Starting with MCdesk 3.0, you can use the derived vector source feature to significantly reduce storage requirements for vector fields. It is an [index setting]({{site.url}}{{site.baseurl}}/vector-search/settings/#index-settings) that is enabled by default. This feature prevents vectors from being stored in the `_source` field while still maintaining all functionality, including the ability to use the `update`, `update_by_query`, and `reindex` APIs.
 
 ## (Expert level) Build vector data structures on demand
 

@@ -46,7 +46,7 @@ Use the following request to examine the tokens generated using the analyzer:
 POST /my_index/_analyze
 {
   "analyzer": "my_ngram_analyzer",
-  "text": "SmartObserve"
+  "text": "MCdesk"
 }
 ```
 {% include copy-curl.html %}

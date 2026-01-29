@@ -4,7 +4,7 @@ title: Sort results
 parent: Search options
 nav_order: 30
 redirect_from:
-  - /smartobserve/search/sort/
+  - /mcdesk/search/sort/
 ---
 
 # Sort results
@@ -232,7 +232,7 @@ The results are sorted by `line_id` in descending order:
 
 The `sort` parameter is an array, so you can specify multiple field values in the order of their priority.
 
-If you have two fields with the same value for `line_id`, SmartObserve uses `speech_number`, which is the second option for sorting:
+If you have two fields with the same value for `line_id`, MCdesk uses `speech_number`, which is the second option for sorting:
 
 ```json
 GET shakespeare/_search
@@ -297,7 +297,7 @@ GET shakespeare/_search
 
 The results are sorted by the `play_name` field in alphabetical order.
 
-Use `sort` with the [`search_after` parameter]({{site.url}}{{site.baseurl}}/smartobserve/search/paginate#the-search_after-parameter) for more efficient scrolling.
+Use `sort` with the [`search_after` parameter]({{site.url}}{{site.baseurl}}/mcdesk/search/paginate#the-search_after-parameter) for more efficient scrolling.
 The results start with the document that comes after the sort values you specify in the `search_after` array.
 
 Make sure you have the same number of values in the `search_after` array as in the `sort` array, also ordered in the same way.
@@ -426,7 +426,7 @@ The response contains students sorted by `grades` in descending order:
 
 ## Sorting nested objects
 
-When sorting [nested]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/nested) objects, provide the `path` parameter specifying the path to the field on which to sort. 
+When sorting [nested]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/nested) objects, provide the `path` parameter specifying the path to the field on which to sort. 
 
 For example, in the index `students`, map the variable `first_sem` as `nested`:
 
@@ -571,7 +571,7 @@ The response lists document 2 first:
 
 ## Ignoring unmapped fields
 
-If a field is not mapped, a search request that sorts by this field fails by default. To avoid this, you can use the `unmapped_type` parameter, which signals to SmartObserve to ignore the field. For example, if you set `unmapped_type` to `long`, the field is treated as if it were mapped as type `long`. Additionally, all documents in the index that have an `unmapped_type` field are treated as if they had no value in this field, so they are not sorted by it.
+If a field is not mapped, a search request that sorts by this field fails by default. To avoid this, you can use the `unmapped_type` parameter, which signals to MCdesk to ignore the field. For example, if you set `unmapped_type` to `long`, the field is treated as if it were mapped as type `long`. Additionally, all documents in the index that have an `unmapped_type` field are treated as if they had no value in this field, so they are not sorted by it.
 
 For example, consider two indexes. Index a document that contains an `average` field in the first index:
 
@@ -849,7 +849,7 @@ The response contains the sorted documents:
 }
 ```
 
-You can provide coordinates in any format supported by the geopoint field type. For a description of all formats, see the [geopoint field type documentation]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point).
+You can provide coordinates in any format supported by the geopoint field type. For a description of all formats, see the [geopoint field type documentation]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point).
 {: .note}
 
 To pass multiple geopoints to `_geo_distance`, use an array:
@@ -879,4 +879,4 @@ For each document, the sorting distance is calculated as the minimum, maximum, o
 
 ## Performance considerations
 
-Sorted field values are loaded into memory for sorting. Therefore, for minimum overhead we recommend mapping [numeric types]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/numeric) to the smallest acceptable types, like `short`, `integer`, and `float`. [String types]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/string) should not have the sorted field analyzed or tokenized.
+Sorted field values are loaded into memory for sorting. Therefore, for minimum overhead we recommend mapping [numeric types]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/numeric) to the smallest acceptable types, like `short`, `integer`, and `float`. [String types]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/string) should not have the sorted field analyzed or tokenized.

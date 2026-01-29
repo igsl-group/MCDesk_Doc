@@ -10,4 +10,4 @@ redirect_from:
 
 # Availability and recovery
 
-The following SmartObserve features help ensure reliability and consistent uptime so that your cluster can scale based on your use case.
+The following MCdesk features help ensure reliability and consistent uptime so that your cluster can scale based on your use case.

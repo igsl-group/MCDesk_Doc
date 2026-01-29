@@ -10,7 +10,7 @@ parent: Supported field types
 A star-tree index precomputes aggregations, accelerating the performance of aggregation queries. 
 If a star-tree index is configured as part of an index mapping, the star-tree index is created and maintained as data is ingested in real time.
 
-SmartObserve will automatically use the star-tree index to optimize aggregations if the queried fields are part of star-tree index dimension fields and the aggregations are on star-tree index metric fields. No changes are required in the query syntax or the request parameters.
+MCdesk will automatically use the star-tree index to optimize aggregations if the queried fields are part of star-tree index dimension fields and the aggregations are on star-tree index metric fields. No changes are required in the query syntax or the request parameters.
 
 For more information, see [Star-tree index]({{site.url}}{{site.baseurl}}/search-plugins/star-tree-index/).
 
@@ -181,7 +181,7 @@ Configure any metric fields on which you need to perform aggregations. `Metrics`
 
 When using `metrics`, follow these best practices: 
 
-- Currently, fields supported by `metrics` are all [numeric field types]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/numeric/), with the exception of `unsigned_long`. For more information, see [GitHub issue #15231](https://github.com/igsl-group/SmartObserve/issues/15231). 
+- Currently, fields supported by `metrics` are all [numeric field types]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/numeric/), with the exception of `unsigned_long`. For more information, see [GitHub issue #15231](https://github.com/igsl-group/MCdesk/issues/15231). 
 - Supported metric aggregations include `Min`, `Max`, `Sum`, `Avg`, and `Value_count`. 
     - `Avg` is a derived metric based on `Sum` and `Value_count` and is not indexed when a query is run. The remaining base metrics are indexed.
 - A maximum of `100` base metrics are supported per star-tree index.

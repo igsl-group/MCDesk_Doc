@@ -9,9 +9,9 @@ redirect_from:
 
 # Configuring TLS certificates
 
-TLS is configured in `smartobserve.yml`. Certificates are used to secure transport-layer traffic (node-to-node communication within your cluster) and REST-layer traffic (communication between a client and a node within your cluster). TLS is optional for the REST layer and mandatory for the transport layer.
+TLS is configured in `mcdesk.yml`. Certificates are used to secure transport-layer traffic (node-to-node communication within your cluster) and REST-layer traffic (communication between a client and a node within your cluster). TLS is optional for the REST layer and mandatory for the transport layer.
 
-You can find an example configuration template with all options on [GitHub](https://github.com/igsl-group/security/blob/main/config/smartobserve.yml.example).
+You can find an example configuration template with all options on [GitHub](https://github.com/igsl-group/security/blob/main/config/mcdesk.yml.example).
 {: .note }
 
 
@@ -79,7 +79,7 @@ Name | Description
 ## Separate client and server certificates for transport layer TLS
 
 By default, transport layer TLS certificates need to be configured as both the client (`TLS Web Client Authentication`) and server (`TLS Web Server Authentication`) in the certificate's `Extended Key Usage` section because the nodes using the TLS certificates assume the responsibility of serving and receiving the communication requests internally.
-If you want to use separate certificates for the client and server, add the `plugins.security.ssl.transport.extended_key_usage_enabled: true` setting to `smartobserve.yml`. Next, configure the settings outlined in the [separate client and server X.509 PEM certificates and PKCS #8 keys]({{site.url}}{{site.baseurl}}/security/configuration/tls/#separate-client-and-server-x509-pem-certificates-and-pkcs-8-keys) or [separate client and server keystore and truststore files]({{site.url}}{{site.baseurl}}/security/configuration/tls/#separate-client-and-server-keystore-and-truststore-files) sections.
+If you want to use separate certificates for the client and server, add the `plugins.security.ssl.transport.extended_key_usage_enabled: true` setting to `mcdesk.yml`. Next, configure the settings outlined in the [separate client and server X.509 PEM certificates and PKCS #8 keys]({{site.url}}{{site.baseurl}}/security/configuration/tls/#separate-client-and-server-x509-pem-certificates-and-pkcs-8-keys) or [separate client and server keystore and truststore files]({{site.url}}{{site.baseurl}}/security/configuration/tls/#separate-client-and-server-keystore-and-truststore-files) sections.
 
 ### Separate client and server X.509 PEM certificates and PKCS #8 keys
 
@@ -113,7 +113,7 @@ Name | Description
 
 ## Configuring node certificates
 
-SmartObserve Security needs to identify requests between the nodes in the cluster. It uses node certificates to secure these requests. The simplest way to configure node certificates is to list the Distinguished Names (DNs) of these certificates in `smartobserve.yml`. All DNs must be included in `smartobserve.yml` on all nodes. Keep in mind that the Security plugin supports wildcards and regular expressions:
+MCdesk Security needs to identify requests between the nodes in the cluster. It uses node certificates to secure these requests. The simplest way to configure node certificates is to list the Distinguished Names (DNs) of these certificates in `mcdesk.yml`. All DNs must be included in `mcdesk.yml` on all nodes. Keep in mind that the Security plugin supports wildcards and regular expressions:
 
 ```yml
 plugins.security.nodes_dn:
@@ -128,7 +128,7 @@ If your node certificates have an Object ID (OID) identifier in the SAN section,
 
 ## Configuring admin certificates
 
-Super admin certificates are regular client certificates that have elevated rights to perform administrative security tasks. You need an admin certificate to change the Security plugin configuration using [`plugins/smartobserve-security/tools/securityadmin.sh`]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/) or the REST API. Super admin certificates are configured in `smartobserve.yml` by stating their DN(s):
+Super admin certificates are regular client certificates that have elevated rights to perform administrative security tasks. You need an admin certificate to change the Security plugin configuration using [`plugins/mcdesk-security/tools/securityadmin.sh`]({{site.url}}{{site.baseurl}}/security/configuration/security-admin/) or the REST API. Super admin certificates are configured in `mcdesk.yml` by stating their DN(s):
 
 ```yml
 plugins.security.authcz.admin_dn:
@@ -147,8 +147,8 @@ In addition to verifying the TLS certificates against the root CA and/or interme
 With `enforce_hostname_verification` enabled, the Security plugin verifies that the hostname of the communication partner matches the hostname in the certificate. The hostname is taken from the `subject` or `SAN` entries of your certificate. For example, if the hostname of your node is `node-0.example.com`, then the hostname in the TLS certificate has to be set to `node-0.example.com`, as well. Otherwise, errors are thrown:
 
 ```
-[ERROR][c.a.o.s.s.t.smartobserveSecuritySSLNettyTransport] [WX6omJY] SSL Problem No name matching <hostname> found
-[ERROR][c.a.o.s.s.t.smartobserveSecuritySSLNettyTransport] [WX6omJY] SSL Problem Received fatal alert: certificate_unknown
+[ERROR][c.a.o.s.s.t.mcdeskSecuritySSLNettyTransport] [WX6omJY] SSL Problem No name matching <hostname> found
+[ERROR][c.a.o.s.s.t.mcdeskSecuritySSLNettyTransport] [WX6omJY] SSL Problem Received fatal alert: certificate_unknown
 ```
 
 In addition, when `resolve_hostname` is enabled, the Security plugin resolves the (verified) hostname against your DNS. If the hostname does not resolve, errors are thrown:
@@ -168,7 +168,7 @@ With TLS client authentication enabled, REST clients can send a TLS certificate 
 
 - Providing an admin certificate when using the REST management API.
 - Configuring roles and permissions based on a client certificate.
-- Providing identity information for tools like SmartObserve Dashboards, Logstash, or Beats.
+- Providing identity information for tools like MCdesk Dashboards, Logstash, or Beats.
 
 TLS client authentication has three modes:
 
@@ -245,7 +245,7 @@ These settings allow for the use of encrypted passwords in the settings.
 
 Updating expired or nearly expired TLS certificates on the HTTP and transport layers does not require restarting the cluster. Instead, you can enable hot reloading of TLS certificates. When enabled, in-place hot reloading monitors your keystore resources for updates every 5 seconds. If you add or modify a certificate, key file, or keystore setting in the Opensearch `config` directory, the nodes in the cluster detect the change and automatically reload the keys and certificates.
 
-To enable in-place hot reloading, add the following line to `smartobserve.yml`:
+To enable in-place hot reloading, add the following line to `mcdesk.yml`:
 
 ```yml
 plugins.security.ssl.certificates_hot_reload.enabled: true
@@ -256,7 +256,7 @@ plugins.security.ssl.certificates_hot_reload.enabled: true
 
 When not using hot reloading, you can use the Reload Certificates API to reread the replaced certificates.
 
-To enable the Reload Certificates API, add the following line to `smartobserve.yml`:
+To enable the Reload Certificates API, add the following line to `mcdesk.yml`:
 
 ```yml
 plugins.security.ssl_cert_reload_enabled: true
@@ -266,9 +266,9 @@ plugins.security.ssl_cert_reload_enabled: true
 This setting is `false` by default.
 {: .note }
 
-After enabling reloading, use the Reload Certificates API to replace the expired certificates. The new certificates need to be stored in the same location as the previous certificates in order to prevent any changes to the `smartobserve.yml` file.
+After enabling reloading, use the Reload Certificates API to replace the expired certificates. The new certificates need to be stored in the same location as the previous certificates in order to prevent any changes to the `mcdesk.yml` file.
 
-By default, the Reload Certificates API expects the old certificates to be replaced with valid certificates issued with the same `Issuer/Subject DN` and `SAN`. This behavior can be disabled by adding the following settings in `smartobserve.yml`:
+By default, the Reload Certificates API expects the old certificates to be replaced with valid certificates issued with the same `Issuer/Subject DN` and `SAN`. This behavior can be disabled by adding the following settings in `mcdesk.yml`:
 
 ```yml
 plugins.security.ssl.http.enforce_cert_reload_dn_verification: false
@@ -315,7 +315,7 @@ You should receive the following response:
 gRPC supports encryption in transit only. Trust stores and certificates configured as root CAs in PEM format are used only for the purpose of TLS client authorization. Role-based access is not available for gRPC endpoints.
 {: .warning}
 
-You can configure TLS on the optional gRPC transport in `smartobserve.yml`. For more information about using the gRPC plugin, see [Enabling gRPC APIs]({{site.url}}{{site.baseurl}}/api-reference/grpc-apis/index/#grpc-settings).
+You can configure TLS on the optional gRPC transport in `mcdesk.yml`. For more information about using the gRPC plugin, see [Enabling gRPC APIs]({{site.url}}{{site.baseurl}}/api-reference/grpc-apis/index/#grpc-settings).
 
 ### PEM key settings (X.509 PEM certificates and PKCS #8 keys)
 

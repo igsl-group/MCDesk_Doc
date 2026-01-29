@@ -1,14 +1,14 @@
 ---
-title: Managing workloads in SmartObserve Dashboards
+title: Managing workloads in MCdesk Dashboards
 layout: default
 parent: Workload management
 grand_parent: Availability and recovery
 nav_order: 60
 ---
 
-# Managing workloads in SmartObserve Dashboards
+# Managing workloads in MCdesk Dashboards
 
-You can monitor and control resource usage across your cluster in SmartObserve Dashboards:
+You can monitor and control resource usage across your cluster in MCdesk Dashboards:
 
 - View real-time CPU and memory usage by workload group.
 - Identify groups exceeding resource thresholds.
@@ -21,7 +21,7 @@ Before you start, install the Workload Management plugin. For more information, 
 
 ## Monitoring workload usage
 
-To monitor workload resource usage across the cluster, on the top menu bar, go to **SmartObserve Plugins** > **Workload management**. The workload management landing page is shown in the following image.
+To monitor workload resource usage across the cluster, on the top menu bar, go to **MCdesk Plugins** > **Workload management**. The workload management landing page is shown in the following image.
 
 ![Landing page for workload management]({{site.url}}{{site.baseurl}}/images/Workload-Management/Overview.png)
 

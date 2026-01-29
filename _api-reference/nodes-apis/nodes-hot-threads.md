@@ -67,18 +67,18 @@ response = client.nodes.info(
 ## Example response
 
 ```bash
-::: {smartobserve}{F-ByTQzVQ3GQeYzQJArJGQ}{GxbcLdCATPWggOuQHJAoCw}{127.0.0.1}{127.0.0.1:9300}{dimr}{shard_indexing_pressure_enabled=true}
+::: {mcdesk}{F-ByTQzVQ3GQeYzQJArJGQ}{GxbcLdCATPWggOuQHJAoCw}{127.0.0.1}{127.0.0.1:9300}{dimr}{shard_indexing_pressure_enabled=true}
    Hot threads at 2022-09-29T19:46:44.533Z, interval=500ms, busiestThreads=3, ignoreIdleThreads=true:
    
     0.1% (455.5micros out of 500ms) cpu usage by thread 'ScheduledMetricCollectorsExecutor'
      10/10 snapshots sharing following 2 elements
        java.base@17.0.4/java.lang.Thread.sleep(Native Method)
-       org.smartobserve.performanceanalyzer.collectors.ScheduledMetricCollectorsExecutor.run(ScheduledMetricCollectorsExecutor.java:100)
+       org.mcdesk.performanceanalyzer.collectors.ScheduledMetricCollectorsExecutor.run(ScheduledMetricCollectorsExecutor.java:100)
 ```
 
 ## Example response
 
-Unlike the majority of SmartObserve API responses, this response is in a text format.
+Unlike the majority of MCdesk API responses, this response is in a text format.
 
 It consists of one section per each cluster node included in the response.
 
@@ -101,7 +101,7 @@ Then information about threads of the selected type is provided.
 ::: {global-eu-35}{uFPbKLDOTlOmdnwUlKW8sw}{OAM8OT5CQAyasWuIDeVyUA}{global-eu-35.local}{[gdv2:a284:2acv:5fa6:0:3a2:7260:74cf]:9300}{dimr}{zone=west-a2, shard_indexing_pressure_enabled=true}
    Hot threads at 2022-04-01T15:15:27.658Z, interval=500ms, busiestThreads=3, ignoreIdleThreads=true:
    
-    0.1% (645micros out of 500ms) cpu usage by thread 'smartobserve[global-eu-35][transport_worker][T#7]'
+    0.1% (645micros out of 500ms) cpu usage by thread 'mcdesk[global-eu-35][transport_worker][T#7]'
      4/10 snapshots sharing following 3 elements
        io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986)
        io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
@@ -109,7 +109,7 @@ Then information about threads of the selected type is provided.
 ::: {global-eu-62}{4knOxAdERlOB19zLQIT1bQ}{HJuZs2HiQ_-8Elj0Fvi_1g}{global-eu-62.local}{[gdv2:a284:2acv:5fa6:0:3a2:bba6:fe3f]:9300}{dimr}{zone=west-a2, shard_indexing_pressure_enabled=true}
    Hot threads at 2022-04-01T15:15:27.659Z, interval=500ms, busiestThreads=3, ignoreIdleThreads=true:
       
-   18.7% (93.4ms out of 500ms) cpu usage by thread 'smartobserve[global-eu-62][transport_worker][T#3]'
+   18.7% (93.4ms out of 500ms) cpu usage by thread 'mcdesk[global-eu-62][transport_worker][T#3]'
      6/10 snapshots sharing following 3 elements
        io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986)
        io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
@@ -117,7 +117,7 @@ Then information about threads of the selected type is provided.
 ::: {global-eu-44}{8WW3hrkcTwGvgah_L8D_jw}{Sok7spHISFyol0jFV6i0kw}{global-eu-44.local}{[gdv2:a284:2acv:5fa6:0:3a2:9120:e79e]:9300}{dimr}{zone=west-a2, shard_indexing_pressure_enabled=true}
    Hot threads at 2022-04-01T15:15:27.659Z, interval=500ms, busiestThreads=3, ignoreIdleThreads=true:
    
-   42.6% (212.7ms out of 500ms) cpu usage by thread 'smartobserve[global-eu-44][write][T#5]'
+   42.6% (212.7ms out of 500ms) cpu usage by thread 'mcdesk[global-eu-44][write][T#5]'
      2/10 snapshots sharing following 43 elements
        java.base@11.0.14.1/sun.nio.ch.IOUtil.write1(Native Method)
        java.base@11.0.14.1/sun.nio.ch.EPollSelectorImpl.wakeup(EPollSelectorImpl.java:254)
@@ -129,8 +129,8 @@ Then information about threads of the selected type is provided.
        io.netty.channel.AbstractChannelHandlerContext.writeAndFlush(AbstractChannelHandlerContext.java:758)
        io.netty.channel.DefaultChannelPipeline.writeAndFlush(DefaultChannelPipeline.java:1020)
        io.netty.channel.AbstractChannel.writeAndFlush(AbstractChannel.java:311)
-       org.smartobserve.transport.netty4.Netty4TcpChannel.sendMessage(Netty4TcpChannel.java:159)
-       app//org.smartobserve.transport.OutboundHan...
+       org.mcdesk.transport.netty4.Netty4TcpChannel.sendMessage(Netty4TcpChannel.java:159)
+       app//org.mcdesk.transport.OutboundHan...
 ```
 
 ## Required permissions

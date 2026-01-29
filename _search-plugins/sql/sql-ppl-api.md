@@ -7,7 +7,7 @@ nav_order: 1
 
 # SQL and PPL API
 
-Use the SQL and PPL API to send queries to the SQL plugin. Use the `_sql` endpoint to send queries in SQL, and the `_ppl` endpoint to send queries in PPL. For both of these, you can also use the `_explain` endpoint to translate your query into [SmartObserve domain-specific language]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/) (DSL) or to troubleshoot errors.
+Use the SQL and PPL API to send queries to the SQL plugin. Use the `_sql` endpoint to send queries in SQL, and the `_ppl` endpoint to send queries in PPL. For both of these, you can also use the `_explain` endpoint to translate your query into [MCdesk domain-specific language]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/) (DSL) or to troubleshoot errors.
 
 ## Query API
 
@@ -157,13 +157,13 @@ schema | Array | Specifies the field names and types for all fields.
 data_rows | 2D array | An array of results. Each result represents one matching row (document).
 total | Integer | The total number of rows (documents) in the index.
 size | Integer | The number of results to return in one response.
-status | String | The HTTP response status SmartObserve returns after running the query.
+status | String | The HTTP response status MCdesk returns after running the query.
 
 ## `Explain` API
 
-The SQL plugin's `explain` feature shows how a query is executed against SmartObserve, which is useful for debugging and development. A POST request to the `_plugins/_sql/_explain` or `_plugins/_ppl/_explain` endpoint returns [SmartObserve domain-specific language]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/) (DSL) in JSON format.
+The SQL plugin's `explain` feature shows how a query is executed against MCdesk, which is useful for debugging and development. A POST request to the `_plugins/_sql/_explain` or `_plugins/_ppl/_explain` endpoint returns [MCdesk domain-specific language]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/) (DSL) in JSON format.
 
-Starting with SmartObserve 3.0.0, when you set `plugins.calcite.enabled` to `true`, the `explain` response provides enhanced information about query execution plans. The API supports four output formats:
+Starting with MCdesk 3.0.0, when you set `plugins.calcite.enabled` to `true`, the `explain` response provides enhanced information about query execution plans. The API supports four output formats:
 
 - `standard`: Displays logical and physical plans (default if not specified)
 - `simple`: Displays logical plan without attributes
@@ -195,9 +195,9 @@ The response shows the query execution plan:
     },
     "children": [
       {
-        "name": "SmartObserveIndexScan",
+        "name": "MCdeskIndexScan",
         "description": {
-          "request": """SmartObserveQueryRequest(indexName=accounts, sourceBuilder={"from":0,"size":200,"timeout":"1m","query":{"range":{"age":{"from":20,"to":null,"include_lower":false,"include_upper":true,"boost":1.0}}},"_source":{"includes":["firstname","lastname"],"excludes":[]},"sort":[{"_doc":{"order":"asc"}}]}, searchDone=false)"""
+          "request": """MCdeskQueryRequest(indexName=accounts, sourceBuilder={"from":0,"size":200,"timeout":"1m","query":{"range":{"age":{"from":20,"to":null,"include_lower":false,"include_upper":true,"boost":1.0}}},"_source":{"includes":["firstname","lastname"],"excludes":[]},"sort":[{"_doc":{"order":"asc"}}]}, searchDone=false)"""
         },
         "children": []
       }
@@ -227,10 +227,10 @@ The response shows both logical and physical plans in the standard format:
     "logical": """LogicalProject(count()=[$1], country=[$0])
   LogicalAggregate(group=[{1}], count()=[COUNT()])
     LogicalFilter(condition=[SEARCH($1, Sarg['England', 'USA':CHAR(7)]:CHAR(7))])
-      CalciteLogicalIndexScan(table=[[SmartObserve, state_country]])
+      CalciteLogicalIndexScan(table=[[MCdesk, state_country]])
 """,
     "physical": """EnumerableCalc(expr#0..1=[{inputs}], count()=[$t1], country=[$t0])
-  CalciteEnumerableIndexScan(table=[[SmartObserve, state_country]], PushDownContext=[[FILTER->SEARCH($1, Sarg['England', 'USA':CHAR(7)]:CHAR(7)), AGGREGATION->rel#53:LogicalAggregate.NONE.[](input=RelSubset#43,group={1},count()=COUNT())], SmartObserveRequestBuilder(sourceBuilder={"from":0,"size":0,"timeout":"1m","query":{"terms":{"country":["England","USA"],"boost":1.0}},"sort":[{"_doc":{"order":"asc"}}],"aggregations":{"composite_buckets":{"composite":{"size":1000,"sources":[{"country":{"terms":{"field":"country","missing_bucket":true,"missing_order":"first","order":"asc"}}}]},"aggregations":{"count()":{"value_count":{"field":"_index"}}}}}}, requestedTotalSize=10000, pageSize=null, startFrom=0)])
+  CalciteEnumerableIndexScan(table=[[MCdesk, state_country]], PushDownContext=[[FILTER->SEARCH($1, Sarg['England', 'USA':CHAR(7)]:CHAR(7)), AGGREGATION->rel#53:LogicalAggregate.NONE.[](input=RelSubset#43,group={1},count()=COUNT())], MCdeskRequestBuilder(sourceBuilder={"from":0,"size":0,"timeout":"1m","query":{"terms":{"country":["England","USA"],"boost":1.0}},"sort":[{"_doc":{"order":"asc"}}],"aggregations":{"composite_buckets":{"composite":{"size":1000,"sources":[{"country":{"terms":{"field":"country","missing_bucket":true,"missing_order":"first","order":"asc"}}}]},"aggregations":{"count()":{"value_count":{"field":"_index"}}}}}}, requestedTotalSize=10000, pageSize=null, startFrom=0)])
 """
   }
 }
@@ -262,7 +262,7 @@ The response shows a condensed logical plan:
 ```
 {% include copy.html %}
 
-For queries that require post-processing, the `explain` response includes a query plan in addition to the SmartObserve DSL. For queries that don't require post-processing, you'll see only the complete DSL.
+For queries that require post-processing, the `explain` response includes a query plan in addition to the MCdesk DSL. For queries that don't require post-processing, you'll see only the complete DSL.
 
 ## Paginating results
 
@@ -379,7 +379,7 @@ POST /_plugins/_sql/close
 }'
 ```
 
-The response is an acknowledgement from SmartObserve:
+The response is an acknowledgement from MCdesk:
 
 ```json
 {"succeeded":true}
@@ -387,7 +387,7 @@ The response is an acknowledgement from SmartObserve:
 
 ## Filtering results
 
-You can use the `filter` parameter to add more conditions to the SmartObserve DSL directly.
+You can use the `filter` parameter to add more conditions to the MCdesk DSL directly.
 
 The following SQL query returns the names and account balances of all customers. The results are then filtered to contain only those customers with less than $10,000 balance. 
 
@@ -441,7 +441,7 @@ The response contains the matching results:
 }
 ```
 
-You can use the Explain API to see how this query is executed against SmartObserve:
+You can use the Explain API to see how this query is executed against MCdesk:
 
 ```json
 POST /_plugins/_sql/_explain 
@@ -457,7 +457,7 @@ POST /_plugins/_sql/_explain
 }'
 ```
 
-The response contains the Boolean query in SmartObserve DSL that corresponds to the query above:
+The response contains the Boolean query in MCdesk DSL that corresponds to the query above:
 
 ```json
 {
@@ -514,7 +514,7 @@ POST /_plugins/_sql/_explain
 }
 ```
 
-The response contains the Boolean query in SmartObserve DSL that corresponds to the SQL query above:
+The response contains the Boolean query in MCdesk DSL that corresponds to the SQL query above:
 
 ```json
 {

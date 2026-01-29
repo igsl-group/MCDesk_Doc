@@ -11,7 +11,7 @@ grand_parent: Availability and recovery
 Introduced 2.15
 {: .label .label-purple }
 
-Remote-backed storage offers a new way to protect against data loss by automatically creating backups of all index transactions and sending them to remote storage. To use this feature, [segment replication]({{site.url}}{{site.baseurl}}/smartobserve/segment-replication/) must be enabled.
+Remote-backed storage offers a new way to protect against data loss by automatically creating backups of all index transactions and sending them to remote storage. To use this feature, [segment replication]({{site.url}}{{site.baseurl}}/mcdesk/segment-replication/) must be enabled.
 
 You can migrate a document-replication-based cluster to remote-backed storage through the rolling upgrade mechanism.
 
@@ -19,16 +19,16 @@ Rolling upgrades, sometimes referred to as *node replacement upgrades*, can be p
 
 ## Preparing to migrate
 
-Review [Upgrading SmartObserve]({{site.url}}{{site.baseurl}}/migrate-or-upgrade/index/) for recommendations about backing up your configuration files and creating a snapshot of the cluster state and indexes before you make any changes to your SmartObserve cluster.
+Review [Upgrading MCdesk]({{site.url}}{{site.baseurl}}/migrate-or-upgrade/index/) for recommendations about backing up your configuration files and creating a snapshot of the cluster state and indexes before you make any changes to your MCdesk cluster.
 
-Before migrating to remote-backed storage, upgrade to SmartObserve 2.15 or later.
+Before migrating to remote-backed storage, upgrade to MCdesk 2.15 or later.
 
-Before upgrading to SmartObserve 2.15, take a cluster snapshot and store it remotely. SmartObserve 2.15 nodes cannot revert to document replication. If a migration needs to be undone, perform a fresh SmartObserve installation and restore from the remote snapshot. Storing the snapshot remotely allows you to retrieve and restore it if issues arise during migration.
+Before upgrading to MCdesk 2.15, take a cluster snapshot and store it remotely. MCdesk 2.15 nodes cannot revert to document replication. If a migration needs to be undone, perform a fresh MCdesk installation and restore from the remote snapshot. Storing the snapshot remotely allows you to retrieve and restore it if issues arise during migration.
 {: .important}
 
 ## Performing the upgrade
 
-1. Verify the health of your SmartObserve cluster before you begin using the [Cluster Health API]({{site.url}}{{site.baseurl}}/api-reference/cluster-api/cluster-health/). Resolve any index or shard allocation issues prior to upgrading to ensure that your data is preserved. A status of **green** indicates that all primary and replica shards are allocated. You can query the `_cluster/health` API endpoint using a command similar to the following:
+1. Verify the health of your MCdesk cluster before you begin using the [Cluster Health API]({{site.url}}{{site.baseurl}}/api-reference/cluster-api/cluster-health/). Resolve any index or shard allocation issues prior to upgrading to ensure that your data is preserved. A status of **green** indicates that all primary and replica shards are allocated. You can query the `_cluster/health` API endpoint using a command similar to the following:
 
    ```json
    GET "/_cluster/health?pretty"
@@ -38,7 +38,7 @@ Before upgrading to SmartObserve 2.15, take a cluster snapshot and store it remo
 
    ```json
    {
-       "cluster_name":"smartobserve-dev-cluster",
+       "cluster_name":"mcdesk-dev-cluster",
        "status":"green",
        "timed_out":false,
        "number_of_nodes":4,
@@ -131,7 +131,7 @@ Before upgrading to SmartObserve 2.15, take a cluster snapshot and store it remo
    ```
    
 1. Review your cluster and identify the first node to be upgraded.
-1. Provide the remote store repository details as node attributes in `smartobserve.yml`, as shown in the following example:
+1. Provide the remote store repository details as node attributes in `mcdesk.yml`, as shown in the following example:
 
    ```yml
    # Repository name
@@ -162,11 +162,11 @@ Before upgrading to SmartObserve 2.15, take a cluster snapshot and store it remo
    
    ```
 
-1. Stop the node you are migrating. Do not delete the volume associated with the container when you delete the container. The new SmartObserve container will use the existing volume. **Deleting the volume will result in data loss**.
+1. Stop the node you are migrating. Do not delete the volume associated with the container when you delete the container. The new MCdesk container will use the existing volume. **Deleting the volume will result in data loss**.
 
-1. Deploy a new container running the same version of SmartObserve and mapped to the same volume as the container you deleted.
+1. Deploy a new container running the same version of MCdesk and mapped to the same volume as the container you deleted.
 
-1. Query the `_cat/nodes` endpoint after SmartObserve is running on the new node to confirm that it has joined the cluster. Wait for the cluster to become green again.
+1. Query the `_cat/nodes` endpoint after MCdesk is running on the new node to confirm that it has joined the cluster. Wait for the cluster to become green again.
 
 1. Repeat steps 2 through 5 for each node in your cluster. 
 
@@ -207,7 +207,7 @@ Before upgrading to SmartObserve 2.15, take a cluster snapshot and store it remo
    You should receive a response similar to the following:
    ```json
    {
-     "cluster_name" : "smartobserve-dev-cluster",
+     "cluster_name" : "mcdesk-dev-cluster",
      "status" : "green",
      "timed_out" : false,
      "number_of_nodes" : 4,

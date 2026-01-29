@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Index settings
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 60
 redirect_from:
   - /im-plugin/index-settings/
@@ -11,7 +11,7 @@ redirect_from:
 
 Index settings can be of two types: [cluster-level settings](#cluster-level-index-settings) that affect all indexes in the cluster and [index-level settings](#index-level-index-settings) that affect individual indexes.
 
-To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 ## Cluster-level index settings
 
@@ -22,7 +22,7 @@ There are two types of cluster settings:
 
 ### Static cluster-level index settings
 
-SmartObserve supports the following static cluster-level index settings:
+MCdesk supports the following static cluster-level index settings:
 
 - `indices.cache.cleanup_interval` (Time unit): Schedules a recurring background task that cleans up expired entries from the cache at the specified interval. Default is `1m` (1 minute). For more information, see [Index request cache]({{site.url}}{{site.baseurl}}/search-plugins/caching/request-cache/).
 
@@ -42,7 +42,7 @@ SmartObserve supports the following static cluster-level index settings:
 
 ### Dynamic cluster-level index settings
 
-SmartObserve supports the following dynamic cluster-level index settings:
+MCdesk supports the following dynamic cluster-level index settings:
 
 - `action.auto_create_index` (Boolean): Automatically creates an index if the index doesn't already exist. Also applies any index templates that are configured. Default is `true`. 
 
@@ -52,7 +52,7 @@ SmartObserve supports the following dynamic cluster-level index settings:
 
 - `cluster.minimum.index.refresh_interval` (Time unit): Sets the minimum refresh interval and applies it to all indexes in the cluster. The `cluster.default.index.refresh_interval` setting should be higher than this setting's value. If, during index creation, the `index.refresh_interval` setting is lower than the minimum set, index creation fails. 
 
-- `cluster.indices.close.enable` (Boolean): Enables closing of open indexes in SmartObserve. Default is `true`. 
+- `cluster.indices.close.enable` (Boolean): Enables closing of open indexes in MCdesk. Default is `true`. 
 
 - `indices.recovery.max_bytes_per_sec` (String): Limits the total inbound and outbound recovery traffic for each node. This applies to peer recoveries and snapshot recoveries. Default is `40mb`. If you set the recovery traffic value to less than or equal to `0mb`, rate limiting will be disabled, which causes recovery data to be transferred at the highest possible rate. 
 
@@ -64,9 +64,9 @@ SmartObserve supports the following dynamic cluster-level index settings:
 
 - `indices.replication.max_bytes_per_sec` (String): Limits the total inbound and outbound replication traffic for each node. If a value is not specified in the configured value the `indices.recovery.max_bytes_per_sec` setting is used, which defaults to 40 mb. If you set the replication traffic value to less than or equal to 0 mb, rate limiting is disabled, which causes replication data to be transferred at the highest possible rate.
 
-- `indices.fielddata.cache.size` (String): The maximum size of the field data cache. May be specified as an absolute value (for example, `8GB`) or a percentage of the node heap (for example, `50%`). This setting is dynamic. If you don't specify this setting, the maximum size is `35%`. This value should be smaller than the `indices.breaker.fielddata.limit`. For more information, see [Field data circuit breaker]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/circuit-breaker/#field-data-circuit-breaker-settings).
+- `indices.fielddata.cache.size` (String): The maximum size of the field data cache. May be specified as an absolute value (for example, `8GB`) or a percentage of the node heap (for example, `50%`). This setting is dynamic. If you don't specify this setting, the maximum size is `35%`. This value should be smaller than the `indices.breaker.fielddata.limit`. For more information, see [Field data circuit breaker]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/circuit-breaker/#field-data-circuit-breaker-settings).
 
-- `indices.query.bool.max_clause_count` (Integer): Defines the maximum product of fields and terms that are queryable simultaneously. Before SmartObserve 2.16, a cluster restart was required in order to apply this static setting. Now dynamic, existing search thread pools may use the old static value initially, causing `TooManyClauses` exceptions. New thread pools use the updated value. Default is `1024`.
+- `indices.query.bool.max_clause_count` (Integer): Defines the maximum product of fields and terms that are queryable simultaneously. Before MCdesk 2.16, a cluster restart was required in order to apply this static setting. Now dynamic, existing search thread pools may use the old static value initially, causing `TooManyClauses` exceptions. New thread pools use the updated value. Default is `1024`.
 
 - `cluster.remote_store.index.path.type` (String): The path strategy for the data stored in the remote store. This setting is effective only for remote-store-enabled clusters. This setting supports the following values:
   - `fixed`: Stores the data in path structure `<repository_base_path>/<index_uuid>/<shard_id>/`.
@@ -93,11 +93,11 @@ SmartObserve supports the following dynamic cluster-level index settings:
 
 - `cluster.default_number_of_replicas` (Integer): Controls the default number of replicas for indexes in the cluster. The index-level `index.number_of_replicas` setting defaults to this value if not configured. Default is `1`.
 
-- `cluster.thread_pool.<fixed-threadpool>.size` (Integer): Controls the sizes of both the fixed and resizable queue thread pools. Overrides the defaults provided in `smartobserve.yml`.
+- `cluster.thread_pool.<fixed-threadpool>.size` (Integer): Controls the sizes of both the fixed and resizable queue thread pools. Overrides the defaults provided in `mcdesk.yml`.
 
-- `cluster.thread_pool.<scaling-threadpool>.max` (Integer): Sets the maximum size of the scaling thread pool. Overrides the default provided in `smartobserve.yml`.
+- `cluster.thread_pool.<scaling-threadpool>.max` (Integer): Sets the maximum size of the scaling thread pool. Overrides the default provided in `mcdesk.yml`.
 
-- `cluster.thread_pool.<scaling-threadpool>.core` (Integer): Specifies the core size of the scaling thread pool. Overrides the default provided in `smartobserve.yml`.
+- `cluster.thread_pool.<scaling-threadpool>.core` (Integer): Specifies the core size of the scaling thread pool. Overrides the default provided in `mcdesk.yml`.
 
 
 Before tuning thread pool settings dynamically, note that these are expert-level settings that can potentially destabilize your cluster. Modifying thread pool settings applies the same thread pool size to all nodes, so it's not recommended for clusters with different hardware for the same roles. Similarly, avoid tuning thread pools shared by both data nodes and cluster manager nodes. After making these changes, we recommend monitoring your cluster to ensure that it remains stable and performs as expected.
@@ -105,7 +105,7 @@ Before tuning thread pool settings dynamically, note that these are expert-level
 
 ### Updating dynamic cluster settings
 
-To learn how to update dynamic settings, see [Updating cluster settings using the API]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/#updating-cluster-settings-using-the-api).
+To learn how to update dynamic settings, see [Updating cluster settings using the API]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/#updating-cluster-settings-using-the-api).
 
 ## Index-level index settings
 
@@ -131,7 +131,7 @@ PUT /testindex
 
 ### Static index-level index settings
 
-SmartObserve supports the following static index-level index settings:
+MCdesk supports the following static index-level index settings:
 
 - `index.number_of_shards` (Integer): The number of primary shards in the index. Default is 1.
 
@@ -145,14 +145,14 @@ SmartObserve supports the following static index-level index settings:
         
     - `default`
     - `best_compression`
-    - `zstd` (SmartObserve 2.9 and later)
-    - `zstd_no_dict`(SmartObserve 2.9 and later)
-    - `qat_lz4` (SmartObserve 2.14 and later, on supported systems)
-    - `qat_deflate` (SmartObserve 2.14 and later, on supported systems)
+    - `zstd` (MCdesk 2.9 and later)
+    - `zstd_no_dict`(MCdesk 2.9 and later)
+    - `qat_lz4` (MCdesk 2.14 and later, on supported systems)
+    - `qat_deflate` (MCdesk 2.14 and later, on supported systems)
         
 For `zstd`, `zstd_no_dict`, `qat_lz4`, and `qat_deflate`, you can specify the compression level in the `index.codec.compression_level` setting. For more information, see [Index codec settings]({{site.url}}{{site.baseurl}}/im-plugin/index-codecs/). Optional. Default is `default`.
 
-- `index.codec.compression_level` (Integer): The compression level setting provides a trade-off between compression ratio and speed. A higher compression level results in a higher compression ratio (smaller storage size), but slower compression and decompression speeds lead to higher indexing and search latencies. This setting can only be specified if `index.codec` is set to `zstd` and `zstd_no_dict` in SmartObserve 2.9 and later or `qat_lz4` and `qat_deflate` in SmartObserve 2.14 and later. Valid values are integers in the [1, 6] range. For more information, see [Index codec settings]({{site.url}}{{site.baseurl}}/im-plugin/index-codecs/). Optional. Default is 3.
+- `index.codec.compression_level` (Integer): The compression level setting provides a trade-off between compression ratio and speed. A higher compression level results in a higher compression ratio (smaller storage size), but slower compression and decompression speeds lead to higher indexing and search latencies. This setting can only be specified if `index.codec` is set to `zstd` and `zstd_no_dict` in MCdesk 2.9 and later or `qat_lz4` and `qat_deflate` in MCdesk 2.14 and later. Valid values are integers in the [1, 6] range. For more information, see [Index codec settings]({{site.url}}{{site.baseurl}}/im-plugin/index-codecs/). Optional. Default is 3.
 
 - `index.codec.qatmode` (String): The hardware acceleration mode used for the `qat_lz4` and `qat_deflate` compression codecs. Valid values are `auto` and `hardware`. For more information, see [Index codec settings]({{site.url}}{{site.baseurl}}/im-plugin/index-codecs/). Optional. Default is `auto`. 
 
@@ -170,13 +170,13 @@ For `zstd`, `zstd_no_dict`, `qat_lz4`, and `qat_deflate`, you can specify the co
 
 - `index.sort.missing` (String): Determines how documents missing the sort field are handled. Valid values are `_last` (places documents without the field at the end) and `_first` (places documents without the field at the beginning).
 
-- `index.load_fixed_bitset_filters_eagerly` (Boolean): Whether SmartObserve should preload cached filters. Available options are `true` and `false`. Default is `true`.
+- `index.load_fixed_bitset_filters_eagerly` (Boolean): Whether MCdesk should preload cached filters. Available options are `true` and `false`. Default is `true`.
 
 - `index.hidden` (Boolean): Whether the index should be hidden. Hidden indexes are not returned as part of queries that have wildcards. Available options are `true` and `false`. Default is `false`.
 
 - `index.merge.policy` (String): This setting controls the merge policy for the Lucene segments. The available options are `tiered` and `log_byte_size`. The default is `tiered`, but for time-series data, such as log events, we recommend that you use the `log_byte_size` merge policy, which can improve query performance when conducting range queries on the `@timestamp` field. We recommend that you not change the merge policy of an existing index. Instead, configure this setting when creating a new index.
 
-- `index.merge_on_flush.enabled` (Boolean): This setting controls Apache Lucene's merge-on-refresh feature that aims to reduce the number of segments by performing merges _on refresh_ (or in terms of SmartObserve, _on flush_). Default is `true`.
+- `index.merge_on_flush.enabled` (Boolean): This setting controls Apache Lucene's merge-on-refresh feature that aims to reduce the number of segments by performing merges _on refresh_ (or in terms of MCdesk, _on flush_). Default is `true`.
 
 - `index.merge_on_flush.max_full_flush_merge_wait_time` (Time unit): This setting sets the amount of time to wait for merges when `index.merge_on_flush.enabled` is enabled. Default is `10s`.
 
@@ -225,7 +225,7 @@ For more information about updating settings, including supported query paramete
 
 ### Dynamic index-level index settings
 
-SmartObserve supports the following dynamic index-level index settings:
+MCdesk supports the following dynamic index-level index settings:
 
 - `index.number_of_replicas` (Integer): The number of replica shards each primary shard should have. For example, if you have 4 primary shards and set `index.number_of_replicas` to 3, the index has 12 replica shards. If not set, defaults to `cluster.default_number_of_replicas` (which is `1` by default).
 
@@ -269,7 +269,7 @@ SmartObserve supports the following dynamic index-level index settings:
 
 - `index.max_regex_length` (Integer): The maximum character length of regex that can be in a regexp query. Default is 1000.
 
-- `index.query.default_field` (List): A field or list of fields that SmartObserve uses in queries in case a field isn't specified in the parameters.
+- `index.query.default_field` (List): A field or list of fields that MCdesk uses in queries in case a field isn't specified in the parameters.
 
 - `index.query.max_nested_depth` (Integer): The maximum number of nesting levels for `nested` queries. Default is `20`. Minimum is `1` (single `nested` query).
 

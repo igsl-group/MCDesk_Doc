@@ -1,14 +1,14 @@
 ---
 layout: default
 title: Multi-tenancy configuration
-parent: SmartObserve Dashboards multi-tenancy
+parent: MCdesk Dashboards multi-tenancy
 nav_order: 145
 ---
 
 
 # Multi-tenancy configuration
 
-Multi-tenancy is enabled in SmartObserve Dashboards by default. If you need to disable or change settings related to multi-tenancy, see the `kibana` settings in `config/smartobserve-security/config.yml`, as shown in the following example:
+Multi-tenancy is enabled in MCdesk Dashboards by default. If you need to disable or change settings related to multi-tenancy, see the `kibana` settings in `config/mcdesk-security/config.yml`, as shown in the following example:
 
 ```yml
 config:
@@ -27,41 +27,41 @@ config:
 | `multitenancy_enabled` | Enable or disable multi-tenancy. Default is `true`. |
 | `private_tenant_enabled` | Enable or disable the private tenant. Default is `true`. |
 | `default_tenant` | Use to set the tenant that is available when users log in. |
-| `server_username` | Must match the name of the SmartObserve Dashboards server user in `smartobserve_dashboards.yml`. Default is `kibanaserver`. If a different user is configured, then make sure that user is mapped to the `kibana_server` role through the `role_mappings.yml` file in order to give them the appropriate permissions listed in [kibana_server role details]({{site.url}}{{site.baseurl}}/security/multi-tenancy/multi-tenancy-config/#kibana_server-role-details). |
-| `index` | Must match the name of the SmartObserve Dashboards index from `smartobserve_dashboards.yml`. Default is `.kibana`. |
+| `server_username` | Must match the name of the MCdesk Dashboards server user in `mcdesk_dashboards.yml`. Default is `kibanaserver`. If a different user is configured, then make sure that user is mapped to the `kibana_server` role through the `role_mappings.yml` file in order to give them the appropriate permissions listed in [kibana_server role details]({{site.url}}{{site.baseurl}}/security/multi-tenancy/multi-tenancy-config/#kibana_server-role-details). |
+| `index` | Must match the name of the MCdesk Dashboards index from `mcdesk_dashboards.yml`. Default is `.kibana`. |
 | `do_not_fail_on_forbidden` | When `true`, the Security plugin removes any content that a user is not allowed to see from the search results. When `false`, the plugin returns a security exception. Default is `false`. |
 
-The `smartobserve_dashboards.yml` file includes additional settings:
+The `mcdesk_dashboards.yml` file includes additional settings:
 
 ```yml
-smartobserve.username: kibanaserver
-smartobserve.password: kibanaserver
-smartobserve.requestHeadersAllowlist: ["securitytenant","Authorization"]
-smartobserve_security.multitenancy.enabled: true
-smartobserve_security.multitenancy.tenants.enable_global: true
-smartobserve_security.multitenancy.tenants.enable_private: true
-smartobserve_security.multitenancy.tenants.preferred: ["Private", "Global"]
-smartobserve_security.multitenancy.enable_filter: false
+mcdesk.username: kibanaserver
+mcdesk.password: kibanaserver
+mcdesk.requestHeadersAllowlist: ["securitytenant","Authorization"]
+mcdesk_security.multitenancy.enabled: true
+mcdesk_security.multitenancy.tenants.enable_global: true
+mcdesk_security.multitenancy.tenants.enable_private: true
+mcdesk_security.multitenancy.tenants.preferred: ["Private", "Global"]
+mcdesk_security.multitenancy.enable_filter: false
 ```
 
 | Setting | Description |
 | :--- | :--- |
-| `smartobserve.requestHeadersAllowlist` | SmartObserve Dashboards requires that you add all HTTP headers to the allow list so that the headers pass to SmartObserve. Multi-tenancy uses a specific header, `securitytenant`, that must be present with the standard `Authorization` header. If the `securitytenant` header is not on the allow list, SmartObserve Dashboards starts with a red status.
-| `smartobserve_security.multitenancy.enabled` | Enables or disables multi-tenancy in SmartObserve Dashboards. Default is `true`. |
-| `smartobserve_security.multitenancy.tenants.enable_global` | Enables or disables the global tenant. Default is `true`. |
-| `smartobserve_security.multitenancy.tenants.enable_private` | Enables or disables private tenants. Default is `true`. |
-| `smartobserve_security.multitenancy.tenants.preferred` | Lets you change ordering in the **Tenants** tab of SmartObserve Dashboards. By default, the list starts with Global and Private (if enabled) and then proceeds alphabetically. You can add tenants here to move them to the top of the list. |
-| `smartobserve_security.multitenancy.enable_filter` | If you have many tenants, you can add a search bar to the top of the list. Default is `false`. |
+| `mcdesk.requestHeadersAllowlist` | MCdesk Dashboards requires that you add all HTTP headers to the allow list so that the headers pass to MCdesk. Multi-tenancy uses a specific header, `securitytenant`, that must be present with the standard `Authorization` header. If the `securitytenant` header is not on the allow list, MCdesk Dashboards starts with a red status.
+| `mcdesk_security.multitenancy.enabled` | Enables or disables multi-tenancy in MCdesk Dashboards. Default is `true`. |
+| `mcdesk_security.multitenancy.tenants.enable_global` | Enables or disables the global tenant. Default is `true`. |
+| `mcdesk_security.multitenancy.tenants.enable_private` | Enables or disables private tenants. Default is `true`. |
+| `mcdesk_security.multitenancy.tenants.preferred` | Lets you change ordering in the **Tenants** tab of MCdesk Dashboards. By default, the list starts with Global and Private (if enabled) and then proceeds alphabetically. You can add tenants here to move them to the top of the list. |
+| `mcdesk_security.multitenancy.enable_filter` | If you have many tenants, you can add a search bar to the top of the list. Default is `false`. |
 
 
 ## Add tenants
 
-To create tenants, use SmartObserve Dashboards, the REST API, or `tenants.yml`.
+To create tenants, use MCdesk Dashboards, the REST API, or `tenants.yml`.
 
 
-#### SmartObserve Dashboards
+#### MCdesk Dashboards
 
-1. Open SmartObserve Dashboards.
+1. Open MCdesk Dashboards.
 1. Choose **Security**, **Tenants**, and **Create tenant**.
 1. Give the tenant a name and description.
 1. Choose **Create**.
@@ -88,15 +88,15 @@ admin_tenant:
 
 ## Give roles access to tenants
 
-After creating a tenant, give a role access to it using SmartObserve Dashboards, the REST API, or `roles.yml`.
+After creating a tenant, give a role access to it using MCdesk Dashboards, the REST API, or `roles.yml`.
 
 - Read-write (`kibana_all_write`) permissions let the role view and modify objects in the tenant.
 - Read-only (`kibana_all_read`) permissions let the role view objects, but not modify them.
 
 
-#### SmartObserve Dashboards
+#### MCdesk Dashboards
 
-1. Open SmartObserve Dashboards.
+1. Open MCdesk Dashboards.
 1. Choose **Security**, **Roles**, and a role.
 1. For **Tenant permissions**, add tenants, press Enter, and give the role read and/or write permissions to it.
 
@@ -136,9 +136,9 @@ _meta:
 ```
 
 
-## Manage SmartObserve Dashboards indexes
+## Manage MCdesk Dashboards indexes
 
-The open source version of SmartObserve Dashboards saves all objects to a single index: `.kibana`. The Security plugin uses this index for the global tenant, but separate indexes for every other tenant. Each user also has a private tenant, so you might see a large number of indexes that follow two patterns:
+The open source version of MCdesk Dashboards saves all objects to a single index: `.kibana`. The Security plugin uses this index for the global tenant, but separate indexes for every other tenant. Each user also has a private tenant, so you might see a large number of indexes that follow two patterns:
 
 ```
 .kibana_<hash>_<tenant_name>
@@ -148,11 +148,11 @@ The open source version of SmartObserve Dashboards saves all objects to a single
 The Security plugin scrubs these index names of special characters, so they might not be a perfect match of tenant names and usernames.
 {: .tip }
 
-To back up your SmartObserve Dashboards data, [take a snapshot]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/snapshot-restore/) of all tenant indexes using an index pattern such as `.kibana*`.
+To back up your MCdesk Dashboards data, [take a snapshot]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/snapshot-restore/) of all tenant indexes using an index pattern such as `.kibana*`.
 
 ## `kibana_server` role details
 
-SmartObserve Dashboards uses the`kibana_server` role to perform necessary SmartObserve operations. By default, `kibanauser` is mapped to this role through the `role_mappings.yml` file. You can view the full list of permissions assigned to this role by sending a GET request to the `_plugins/_security/api/roles/kibana_server` API (include the admin certificate, key, and certificate authority file in the GET request).
+MCdesk Dashboards uses the`kibana_server` role to perform necessary MCdesk operations. By default, `kibanauser` is mapped to this role through the `role_mappings.yml` file. You can view the full list of permissions assigned to this role by sending a GET request to the `_plugins/_security/api/roles/kibana_server` API (include the admin certificate, key, and certificate authority file in the GET request).
 The following list includes the permissions assigned to this role:
 
 ```
@@ -173,7 +173,7 @@ The following list includes the permissions assigned to this role:
       {
         "index_patterns" : [
           ".kibana",
-          ".smartobserve_dashboards"
+          ".mcdesk_dashboards"
         ],
         "fls" : [ ],
         "masked_fields" : [ ],
@@ -184,7 +184,7 @@ The following list includes the permissions assigned to this role:
       {
         "index_patterns" : [
           ".kibana-6",
-          ".smartobserve_dashboards-6"
+          ".mcdesk_dashboards-6"
         ],
         "fls" : [ ],
         "masked_fields" : [ ],
@@ -195,7 +195,7 @@ The following list includes the permissions assigned to this role:
       {
         "index_patterns" : [
           ".kibana_*",
-          ".smartobserve_dashboards_*"
+          ".mcdesk_dashboards_*"
         ],
         "fls" : [ ],
         "masked_fields" : [ ],

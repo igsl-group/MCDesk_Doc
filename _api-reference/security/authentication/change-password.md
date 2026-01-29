@@ -105,7 +105,7 @@ The response body is a JSON object with the following fields.
 
 ## Password best practices
 
-Proper password management is essential for securing your SmartObserve cluster. When using this API to change a password, keep the following guidelines in mind:
+Proper password management is essential for securing your MCdesk cluster. When using this API to change a password, keep the following guidelines in mind:
 
 - You can only use this API to change the password of the currently authenticated user.
 - Make sure the new password meets any configured password policies.

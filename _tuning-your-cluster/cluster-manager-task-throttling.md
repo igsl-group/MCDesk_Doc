@@ -15,11 +15,11 @@ By default, the cluster manager uses predefined throttling limits to determine w
 
 The cluster manager rejects a task based on its type. For any incoming task, the cluster manager evaluates the total number of tasks of the same type in the pending task queue. If this number exceeds the threshold for this task type, the cluster manager rejects the incoming task. Rejecting a task does not affect tasks of a different type. For example, if the cluster manager rejects a `put-mapping` task, it can still accept a subsequent `create-index` task. 
 
-When the cluster manager rejects a task, the node performs retries with exponential backoff to resubmit the task to the cluster manager. If retries are unsuccessful within the timeout period, SmartObserve returns a cluster timeout error.
+When the cluster manager rejects a task, the node performs retries with exponential backoff to resubmit the task to the cluster manager. If retries are unsuccessful within the timeout period, MCdesk returns a cluster timeout error.
 
 ## Setting throttling limits
 
-You can set throttling limits by specifying them in the `cluster_manager.throttling.thresholds` object and updating the [SmartObserve cluster settings]({{site.url}}{{site.baseurl}}/api-reference/cluster-settings). The setting is dynamic, so you can change the behavior of this feature without restarting your cluster.
+You can set throttling limits by specifying them in the `cluster_manager.throttling.thresholds` object and updating the [MCdesk cluster settings]({{site.url}}{{site.baseurl}}/api-reference/cluster-settings). The setting is dynamic, so you can change the behavior of this feature without restarting your cluster.
 
 By default, throttling is enabled for all task types. To disable throttling for a specific task type, set its threshold value to `-1`.
 {: .note}

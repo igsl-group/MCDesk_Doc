@@ -6,7 +6,7 @@ nav_order: 35
 
 # Searching vector data
 
-SmartObserve supports various methods for searching vector data, tailored to how the vectors were created and indexed. This guide explains the query syntax and options for raw vector search and auto-generated embedding search.
+MCdesk supports various methods for searching vector data, tailored to how the vectors were created and indexed. This guide explains the query syntax and options for raw vector search and auto-generated embedding search.
 
 ## Search type comparison
 
@@ -38,7 +38,7 @@ GET /my-raw-vector-index/_search
 
 ## Searching auto-generated embeddings
 
-SmartObserve supports [AI-powered search methods]({{site.url}}{{site.baseurl}}/vector-search/ai-search/), including semantic, hybrid, multimodal, and conversational search with retrieval-augmented generation (RAG). These methods automatically generate embeddings from query input.
+MCdesk supports [AI-powered search methods]({{site.url}}{{site.baseurl}}/vector-search/ai-search/), including semantic, hybrid, multimodal, and conversational search with retrieval-augmented generation (RAG). These methods automatically generate embeddings from query input.
 
 To run an AI-powered search, use the `neural` query type. Specify the `query_text` input, the model ID of the embedding model you [configured in the ingest pipeline]({{site.url}}{{site.baseurl}}/vector-search/creating-vector-index/#converting-data-to-embeddings-during-ingestion), and the number of returned results `k`. To exclude embeddings from being returned in search results, specify the embedding field in the `_source.excludes` parameter:
 
@@ -65,7 +65,7 @@ GET /my-ai-search-index/_search
 
 ## Working with sparse vectors
 
-SmartObserve also supports sparse vectors. For more information, see [Neural sparse search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-search/).
+MCdesk also supports sparse vectors. For more information, see [Neural sparse search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/neural-sparse-search/).
 
 ## Next steps
 

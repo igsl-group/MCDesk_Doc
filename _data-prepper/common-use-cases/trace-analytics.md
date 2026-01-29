@@ -7,21 +7,21 @@ nav_order: 60
 
 # Trace analytics
 
-Trace analytics allows you to collect trace data and customize a pipeline that ingests and transforms the data for use in SmartObserve. The following provides an overview of the trace analytics workflow in SmartObserve Data Prepper, how to configure it, and how to visualize trace data.
+Trace analytics allows you to collect trace data and customize a pipeline that ingests and transforms the data for use in MCdesk. The following provides an overview of the trace analytics workflow in MCdesk Data Prepper, how to configure it, and how to visualize trace data.
 
 ## Introduction
 
-When using Data Prepper as a server-side component to collect trace data, you can customize a Data Prepper pipeline to ingest and transform the data for use in SmartObserve. Upon transformation, you can visualize the transformed trace data for use with the Observability plugin inside of SmartObserve Dashboards. Trace data provides visibility into your application's performance, and helps you gain more information about individual traces.
+When using Data Prepper as a server-side component to collect trace data, you can customize a Data Prepper pipeline to ingest and transform the data for use in MCdesk. Upon transformation, you can visualize the transformed trace data for use with the Observability plugin inside of MCdesk Dashboards. Trace data provides visibility into your application's performance, and helps you gain more information about individual traces.
 
-The following flowchart illustrates the trace analytics workflow, from running OpenTelemetry Collector to using SmartObserve Dashboards for visualization.
+The following flowchart illustrates the trace analytics workflow, from running OpenTelemetry Collector to using MCdesk Dashboards for visualization.
 
 <img src="{{site.url}}{{site.baseurl}}/images/data-prepper/trace-analytics/trace-analytics-components.jpg" alt="Trace analytics component overview">{: .img-fluid}
 
 To monitor trace analytics, you need to set up the following components in your service environment:
 - Add **instrumentation** to your application so it can generate telemetry data and send it to an OpenTelemetry collector.
 - Run an **OpenTelemetry collector** as a sidecar or daemonset for Amazon Elastic Kubernetes Service (Amazon EKS), a sidecar for Amazon Elastic Container Service (Amazon ECS), or an agent on Amazon Elastic Compute Cloud (Amazon EC2). You should configure the collector to export trace data to Data Prepper. 
-- Deploy **Data Prepper** as the ingestion collector for SmartObserve. Configure it to send the enriched trace data to your SmartObserve cluster or to the Amazon SmartObserve Service domain.
-- Use **SmartObserve Dashboards** to visualize and detect problems in your distributed applications.
+- Deploy **Data Prepper** as the ingestion collector for MCdesk. Configure it to send the enriched trace data to your MCdesk cluster or to the Amazon MCdesk Service domain.
+- Use **MCdesk Dashboards** to visualize and detect problems in your distributed applications.
 
 ## Trace analytics pipeline
 
@@ -38,16 +38,16 @@ The [OpenTelemetry source]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/c
 
 There are three processors for the trace analytics feature:
 
-* otel_traces -- The *otel_traces* processor receives a collection of [span](https://github.com/igsl-group/data-prepper/blob/fa65e9efb3f8d6a404a1ab1875f21ce85e5c5a6d/data-prepper-api/src/main/java/org/smartobserve/dataprepper/model/trace/Span.java) records from [*otel-trace-source*]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/sources/otel-trace-source/), and performs stateful processing, extraction, and completion of trace-group-related fields.
-* otel_traces_group -- The *otel_traces_group* processor fills in the missing trace-group-related fields in the collection of [span](https://github.com/igsl-group/data-prepper/blob/298e7931aa3b26130048ac3bde260e066857df54/data-prepper-api/src/main/java/org/smartobserve/dataprepper/model/trace/Span.java) records by looking up the SmartObserve backend.
+* otel_traces -- The *otel_traces* processor receives a collection of [span](https://github.com/igsl-group/data-prepper/blob/fa65e9efb3f8d6a404a1ab1875f21ce85e5c5a6d/data-prepper-api/src/main/java/org/mcdesk/dataprepper/model/trace/Span.java) records from [*otel-trace-source*]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/sources/otel-trace-source/), and performs stateful processing, extraction, and completion of trace-group-related fields.
+* otel_traces_group -- The *otel_traces_group* processor fills in the missing trace-group-related fields in the collection of [span](https://github.com/igsl-group/data-prepper/blob/298e7931aa3b26130048ac3bde260e066857df54/data-prepper-api/src/main/java/org/mcdesk/dataprepper/model/trace/Span.java) records by looking up the MCdesk backend.
 * service_map -- The *service_map* processor performs the required preprocessing for trace data and builds metadata to display the `service-map` dashboards.
 
 
-### SmartObserve sink
+### MCdesk sink
 
-SmartObserve provides a generic sink that writes data to SmartObserve as the destination. The [SmartObserve sink]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/sinks/smartobserve/) has configuration options related to the SmartObserve cluster, such as endpoint, SSL, username/password, index name, index template, and index state management.
+MCdesk provides a generic sink that writes data to MCdesk as the destination. The [MCdesk sink]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/sinks/mcdesk/) has configuration options related to the MCdesk cluster, such as endpoint, SSL, username/password, index name, index template, and index state management.
 
-The sink provides specific configurations for the trace analytics feature. These configurations allow the sink to use indexes and index templates specific to trace analytics. The following SmartObserve indexes are specific to trace analytics:
+The sink provides specific configurations for the trace analytics feature. These configurations allow the sink to use indexes and index templates specific to trace analytics. The following MCdesk indexes are specific to trace analytics:
 
 * otel-v1-apm-span –- The *otel-v1-apm-span* index stores the output from the [otel_traces]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/otel-traces/) processor.
 * otel-v1-apm-service-map –- The *otel-v1-apm-service-map* index stores the output from the [service_map]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/service-map/) processor.
@@ -60,11 +60,11 @@ You can scale horizontally by using the core [peer forwarder]({{site.url}}{{site
 
 ### Scaling recommendations
 
-Use the following recommended configurations to scale Data Prepper. We recommend that you modify parameters based on the requirements. We also recommend that you monitor the Data Prepper host metrics and SmartObserve metrics to ensure that the configuration works as expected.
+Use the following recommended configurations to scale Data Prepper. We recommend that you modify parameters based on the requirements. We also recommend that you monitor the Data Prepper host metrics and MCdesk metrics to ensure that the configuration works as expected.
 
 #### Buffer
 
-The total number of trace requests processed by Data Prepper is equal to the sum of the `buffer_size` values in `otel-trace-pipeline` and `raw-trace-pipeline`. The total number of trace requests sent to SmartObserve is equal to the product of `batch_size` and `workers` in `raw-trace-pipeline`. For more information about `raw-trace-pipeline`, see [Trace analytics pipeline]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines).
+The total number of trace requests processed by Data Prepper is equal to the sum of the `buffer_size` values in `otel-trace-pipeline` and `raw-trace-pipeline`. The total number of trace requests sent to MCdesk is equal to the product of `batch_size` and `workers` in `raw-trace-pipeline`. For more information about `raw-trace-pipeline`, see [Trace analytics pipeline]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/pipelines).
 
 
 We recommend the following when making changes to buffer settings:
@@ -74,7 +74,7 @@ We recommend the following when making changes to buffer settings:
 
 #### Workers 
 
-The `workers` setting determines the number of threads that are used by Data Prepper to process requests from the buffer. We recommend that you set `workers` based on the CPU utilization. This value can be higher than the number of available processors because Data Prepper uses significant input/output time when sending data to SmartObserve.
+The `workers` setting determines the number of threads that are used by Data Prepper to process requests from the buffer. We recommend that you set `workers` based on the CPU utilization. This value can be higher than the number of available processors because Data Prepper uses significant input/output time when sending data to MCdesk.
 
 #### Heap
 
@@ -112,7 +112,7 @@ The following sections provide examples of different types of pipelines and how 
 
 ### Example: Trace analytics pipeline
 
-The following example demonstrates how to build a pipeline that supports the [SmartObserve Dashboards Observability plugin]({{site.url}}{{site.baseurl}}/observability-plugin/trace/ta-dashboards/). This pipeline takes data from the OpenTelemetry Collector and uses two other pipelines as sinks. These two separate pipelines serve two different purposes and write to different SmartObserve indexes. The first pipeline prepares trace data for SmartObserve and enriches and ingests the span documents into a span index within SmartObserve. The second pipeline aggregates traces into a service map and writes service map documents into a service map index within SmartObserve.
+The following example demonstrates how to build a pipeline that supports the [MCdesk Dashboards Observability plugin]({{site.url}}{{site.baseurl}}/observability-plugin/trace/ta-dashboards/). This pipeline takes data from the OpenTelemetry Collector and uses two other pipelines as sinks. These two separate pipelines serve two different purposes and write to different MCdesk indexes. The first pipeline prepares trace data for MCdesk and enriches and ingests the span documents into a span index within MCdesk. The second pipeline aggregates traces into a service map and writes service map documents into a service map index within MCdesk.
 
 Starting with Data Prepper version 2.0, Data Prepper no longer supports the `otel_traces_prepper` processor. The `otel_traces` processor replaces the `otel_traces_prepper` processor and supports some of Data Prepper's recent data model changes. Instead, you should use the `otel_traces` processor. See the following YAML file example:
 
@@ -142,7 +142,7 @@ raw-trace-pipeline:
   processor:
     - otel_traces:
   sink:
-    - smartobserve:
+    - mcdesk:
         hosts: ["https://localhost:9200"]
         insecure: true
         username: admin
@@ -160,7 +160,7 @@ service-map-pipeline:
   processor:
     - service_map:
   sink:
-    - smartobserve:
+    - mcdesk:
         hosts: ["https://localhost:9200"]
         insecure: true
         username: admin
@@ -237,7 +237,7 @@ raw-trace-pipeline:
          # Make sure you configure sufficient heap
          # The default value is 512
          buffer_size: 512
-         # The raw processor does bulk request to your SmartObserve sink, so configure the batch_size higher.
+         # The raw processor does bulk request to your MCdesk sink, so configure the batch_size higher.
          # If you use the recommended otel-collector setup each ExportTraceRequest could contain max 50 spans. https://github.com/igsl-group/data-prepper/tree/v0.7.x/deployment/aws
          # With 64 as batch size each worker thread could process upto 3200 spans (64 * 50)
          batch_size: 64
@@ -248,23 +248,23 @@ raw-trace-pipeline:
         # Change to your credentials
         username: "admin"
         password: "admin"
-        # Add a certificate file if you are accessing an SmartObserve cluster with a self-signed certificate  
+        # Add a certificate file if you are accessing an MCdesk cluster with a self-signed certificate  
         #cert: /path/to/cert
-        # If you are connecting to an Amazon SmartObserve Service domain without
+        # If you are connecting to an Amazon MCdesk Service domain without
         # Fine-Grained Access Control, enable these settings. Comment out the
         # username and password above.
         #aws_sigv4: true
         #aws_region: us-east-1
   sink:
-    - smartobserve:
+    - mcdesk:
         hosts: [ "https://localhost:9200" ]
         index_type: trace-analytics-raw
         # Change to your credentials
         username: "admin"
         password: "admin"
-        # Add a certificate file if you are accessing an SmartObserve cluster with a self-signed certificate  
+        # Add a certificate file if you are accessing an MCdesk cluster with a self-signed certificate  
         #cert: /path/to/cert
-        # If you are connecting to an Amazon SmartObserve Service domain without
+        # If you are connecting to an Amazon MCdesk Service domain without
         # Fine-Grained Access Control, enable these settings. Comment out the
         # username and password above.
         #aws_sigv4: true
@@ -293,32 +293,32 @@ service-map-pipeline:
          # Make sure buffer_size >= workers * batch_size
          batch_size: 8
   sink:
-    - smartobserve:
+    - mcdesk:
         hosts: [ "https://localhost:9200" ]
         index_type: trace-analytics-service-map
         # Change to your credentials
         username: "admin"
         password: "admin"
-        # Add a certificate file if you are accessing an SmartObserve cluster with a self-signed certificate  
+        # Add a certificate file if you are accessing an MCdesk cluster with a self-signed certificate  
         #cert: /path/to/cert
-        # If you are connecting to an Amazon SmartObserve Service domain without
+        # If you are connecting to an Amazon MCdesk Service domain without
         # Fine-Grained Access Control, enable these settings. Comment out the
         # username and password above.
         #aws_sigv4: true
         #aws_region: us-east-1
 ```
 
-You need to modify the preceding configuration for your SmartObserve cluster so that the configuration matches your environment. Note that it has two `smartobserve` sinks that need to be modified.
+You need to modify the preceding configuration for your MCdesk cluster so that the configuration matches your environment. Note that it has two `mcdesk` sinks that need to be modified.
 {: .note}
 
 You must make the following changes:
 * `hosts` – Set to your hosts.
-* `username` – Provide your SmartObserve username.
-* `password` – Provide your SmartObserve password.
-* `aws_sigv4` – If you are using Amazon SmartObserve Service with AWS signing, set this value to `true`. It will sign requests with the default AWS credentials provider.
-* `aws_region` – If you are using Amazon SmartObserve Service with AWS signing, set this value to your AWS Region.
+* `username` – Provide your MCdesk username.
+* `password` – Provide your MCdesk password.
+* `aws_sigv4` – If you are using Amazon MCdesk Service with AWS signing, set this value to `true`. It will sign requests with the default AWS credentials provider.
+* `aws_region` – If you are using Amazon MCdesk Service with AWS signing, set this value to your AWS Region.
 
-For other configurations available for SmartObserve sinks, see [Data Prepper SmartObserve sink]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/sinks/smartobserve/).
+For other configurations available for MCdesk sinks, see [Data Prepper MCdesk sink]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/sinks/mcdesk/).
 
 ## OpenTelemetry Collector
 
@@ -361,7 +361,7 @@ After you run OpenTelemetry in your service environment, you must configure your
 
 ## Next steps and more information
 
-The [SmartObserve Dashboards Observability plugin]({{site.url}}{{site.baseurl}}/observability-plugin/trace/ta-dashboards/) documentation provides additional information about configuring SmartObserve to view trace analytics in SmartObserve Dashboards.
+The [MCdesk Dashboards Observability plugin]({{site.url}}{{site.baseurl}}/observability-plugin/trace/ta-dashboards/) documentation provides additional information about configuring MCdesk to view trace analytics in MCdesk Dashboards.
 
 For more information about how to tune and scale Data Prepper for trace analytics, see [Trace tuning](#trace-tuning).
 

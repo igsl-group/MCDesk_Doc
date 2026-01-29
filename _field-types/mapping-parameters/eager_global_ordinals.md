@@ -16,7 +16,7 @@ Global ordinals represent a mapping from term values to integer identifiers and 
 
 By default, `eager_global_ordinals` are disabled, ensuring that the cluster is optimized for indexing speed.
 
-Global ordinals are stored in the field data cache and consume heap memory. Fields with high cardinality can consume a large amount of heap memory. To prevent memory-related issues, it is important to carefully configure the [field data circuit breaker settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/circuit-breaker/#field-data-circuit-breaker-settings).
+Global ordinals are stored in the field data cache and consume heap memory. Fields with high cardinality can consume a large amount of heap memory. To prevent memory-related issues, it is important to carefully configure the [field data circuit breaker settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/circuit-breaker/#field-data-circuit-breaker-settings).
 
 ## When global ordinals are used
 

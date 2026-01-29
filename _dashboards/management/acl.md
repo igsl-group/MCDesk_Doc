@@ -22,7 +22,7 @@ ACLs are applied at two levels:
 
 The ACL feature must be enabled before you can define any access controls. Enable it by:
 
-1. Opening your `smartobserve_dashboards.yml` file.
+1. Opening your `mcdesk_dashboards.yml` file.
 2. Enabling permissions with `savedObjects.permission.enabled: true`.
 
 ## Defining ACL permissions

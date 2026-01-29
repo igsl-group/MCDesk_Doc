@@ -10,7 +10,7 @@ redirect_from:
 
 # Defining users and roles
 
-You define users in SmartObserve to control who has access to SmartObserve data. You can use the internal user database to store users, or you can store them in an external authentication system, such as [LDAP or Active Directory]({{site.url}}{{site.baseurl}}/security/authentication-backends/ldap/).
+You define users in MCdesk to control who has access to MCdesk data. You can use the internal user database to store users, or you can store them in an external authentication system, such as [LDAP or Active Directory]({{site.url}}{{site.baseurl}}/security/authentication-backends/ldap/).
 
 You define roles to determine the scope of a permission or action group. You can create roles with specific privileges, for example, roles that contain any combination of cluster-wide permissions, index-specific permissions, document- and field-level security, and tenants.
 
@@ -31,12 +31,12 @@ You can map users to roles during user creation or after users and roles have be
 
 ## Defining users
 
-You can define users by using SmartObserve Dashboards, `internal_users.yml`, or the REST API. When creating users, you can map users to roles by using `internal_users.yml` or the REST API. If you are using SmartObserve Dashboards to define users, follow the steps in the [Map users to roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#mapping-users-to-roles) tutorial.
+You can define users by using MCdesk Dashboards, `internal_users.yml`, or the REST API. When creating users, you can map users to roles by using `internal_users.yml` or the REST API. If you are using MCdesk Dashboards to define users, follow the steps in the [Map users to roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#mapping-users-to-roles) tutorial.
 
-Unless you are defining new [reserved or hidden users]({{site.url}}{{site.baseurl}}/security/access-control/api/#reserved-and-hidden-resources), using SmartObserve Dashboards or the REST API to create new users, roles, and role mappings is recommended. The `.yml` files are for initial setup and are not for ongoing use.
+Unless you are defining new [reserved or hidden users]({{site.url}}{{site.baseurl}}/security/access-control/api/#reserved-and-hidden-resources), using MCdesk Dashboards or the REST API to create new users, roles, and role mappings is recommended. The `.yml` files are for initial setup and are not for ongoing use.
 {: .warning }
 
-### SmartObserve Dashboards
+### MCdesk Dashboards
 
 1. Choose **Security**, **Internal Users**, and **Create internal user**.
 1. Provide a username and password. The Security plugin automatically hashes the password and stores it in the `.opendistro_security` index.
@@ -58,12 +58,12 @@ See [Create user]({{site.url}}{{site.baseurl}}/security/access-control/api/#crea
 
 ## Defining roles
 
-Similarly to defining users, you can define roles using SmartObserve Dashboards, `roles.yml`, or the REST API. SmartObserve provides predefined roles and a special read-only role.
+Similarly to defining users, you can define roles using MCdesk Dashboards, `roles.yml`, or the REST API. MCdesk provides predefined roles and a special read-only role.
 
-Unless you are defining new [reserved or hidden users]({{site.url}}{{site.baseurl}}/security/access-control/api/#reserved-and-hidden-resources), using SmartObserve Dashboards or the REST API to create new users, roles, and role mappings is recommended. The `.yml` files are for initial setup and are not for ongoing use.
+Unless you are defining new [reserved or hidden users]({{site.url}}{{site.baseurl}}/security/access-control/api/#reserved-and-hidden-resources), using MCdesk Dashboards or the REST API to create new users, roles, and role mappings is recommended. The `.yml` files are for initial setup and are not for ongoing use.
 {: .warning }
 
-### SmartObserve Dashboards
+### MCdesk Dashboards
 
 1. Choose **Security**, **Roles**, and **Create role**.
 1. Provide a name for the role.
@@ -87,7 +87,7 @@ See [Create role]({{site.url}}{{site.baseurl}}/security/access-control/api/#crea
 
 You can edit roles using one of the following methods.
 
-### SmartObserve Dashboards
+### MCdesk Dashboards
 
 1. Choose **Security** > **Roles**. In the **Create role** section, select **Explore existing roles**. 
 1. Select the role you want to edit. 
@@ -106,9 +106,9 @@ See [Patch role]({{site.url}}{{site.baseurl}}/security/access-control/api/#patch
 
 If you didn't specify roles when you created your user, you can map roles to it afterwards.
 
-Just like users and roles, you create role mappings using SmartObserve Dashboards, `roles_mapping.yml`, or the REST API.
+Just like users and roles, you create role mappings using MCdesk Dashboards, `roles_mapping.yml`, or the REST API.
 
-### SmartObserve Dashboards
+### MCdesk Dashboards
 
 1. Choose **Security**, **Roles**, and a role.
 1. Choose the **Mapped users** tab and **Manage mapping**.
@@ -127,20 +127,20 @@ See [Create role mapping]({{site.url}}{{site.baseurl}}/security/access-control/a
 
 ## Defining read-only roles
 
-A read-only role grants a user the ability to read data from the SmartObserve cluster but not to modify or delete any data. The read-only role is useful when you want to provide access to data for reporting, analysis, or visualization purposes without allowing modifications to the data or the cluster itself. This maintains data integrity and prevents accidental or unauthorized changes.
+A read-only role grants a user the ability to read data from the MCdesk cluster but not to modify or delete any data. The read-only role is useful when you want to provide access to data for reporting, analysis, or visualization purposes without allowing modifications to the data or the cluster itself. This maintains data integrity and prevents accidental or unauthorized changes.
 
-As with any role in SmartObserve, a read-only role can be configured using the following methods:
+As with any role in MCdesk, a read-only role can be configured using the following methods:
  
-- Using SmartObserve Dashboards
+- Using MCdesk Dashboards
 - Modifying the `yml` configuration files
 - Using the Cluster Settings API 
 
-The simplest way to get familiar with roles and role mappings is to use SmartObserve Dashboards. The interface simplifies creating roles and assigning those roles to users, with an easy-to-navigate workflow. 
+The simplest way to get familiar with roles and role mappings is to use MCdesk Dashboards. The interface simplifies creating roles and assigning those roles to users, with an easy-to-navigate workflow. 
 {: .tip}
 
 ### Defining a basic read-only role
 
-To create a basic read-only role that allows a user to access SmartObserve Dashboards, view existing dashboards and visualizations, and query different indexes, use the following permissions. These permissions give the user access to all tenants and indexes on the cluster.
+To create a basic read-only role that allows a user to access MCdesk Dashboards, view existing dashboards and visualizations, and query different indexes, use the following permissions. These permissions give the user access to all tenants and indexes on the cluster.
 
 
 #### Cluster permissions
@@ -161,15 +161,15 @@ After setting all permission types and defining the role, you can map the role d
 
 ![mapping users]({{site.url}}{{site.baseurl}}/images/mapping-users.png)
 
-### SmartObserve Dashboards `readonly_mode`
+### MCdesk Dashboards `readonly_mode`
 
-The SmartObserve Dashboards `readonly_mode` functionality is used to give a user access to the `Dashboards` interface only, removing all other UI elements from view.
+The MCdesk Dashboards `readonly_mode` functionality is used to give a user access to the `Dashboards` interface only, removing all other UI elements from view.
 
-To configure this role, add the following line to your `smartobserve_dashboards.yml` file:
+To configure this role, add the following line to your `mcdesk_dashboards.yml` file:
 
-```smartobserve_security.readonly_mode.roles: [new_role]```
+```mcdesk_security.readonly_mode.roles: [new_role]```
 
-Even if the assigned role grants additional privileges or a user is mapped to other roles with write access to indexes, SmartObserve Dashboards restricts this access. Direct access to SmartObserve data using CURL or API is still allowed. SmartObserve Dashboards is not involved in this communication. 
+Even if the assigned role grants additional privileges or a user is mapped to other roles with write access to indexes, MCdesk Dashboards restricts this access. Direct access to MCdesk data using CURL or API is still allowed. MCdesk Dashboards is not involved in this communication. 
 
 If a user is mapped to the `readonly_mode` role, all other elements of the UI will be removed, except for `Dashboards`. In the following image, the view on the left shows the screen from the perspective of a user mapped to a `readonly_mode` role. The view on the right shows a user's standard view.
 
@@ -179,7 +179,7 @@ Mapping a user to only the `readonly_mode` role does not allow them to view rele
 {: .note }
 
 
-If a user is also mapped to any role listed under `plugins.security.restapi.roles_enabled` in `smartobserve.yml`, for example, `all_access` or `security_rest_api_access`, then `readonly_mode` is ignored, giving them access to the standard UI elements.
+If a user is also mapped to any role listed under `plugins.security.restapi.roles_enabled` in `mcdesk.yml`, for example, `all_access` or `security_rest_api_access`, then `readonly_mode` is ignored, giving them access to the standard UI elements.
 
 ### Additional permissions
 
@@ -207,8 +207,8 @@ The Security plugin includes several predefined roles that serve as useful defau
 | `ml_read_access` | Grants permissions to view ML features and results but not to modify them. |
 | `notifications_full_access` | Grants full permissions to perform all notification actions. |
 | `notifications_read_access` | Grants permissions to view notifications and their configurations but not to modify them. |
-| `smartobserve_dashboards_read_only` | Grants read-only access to SmartObserve Dashboards. |
-| `smartobserve_dashboards_user` | Grants basic user access to SmartObserve Dashboards. |
+| `mcdesk_dashboards_read_only` | Grants read-only access to MCdesk Dashboards. |
+| `mcdesk_dashboards_user` | Grants basic user access to MCdesk Dashboards. |
 | `point_in_time_full_access`  | Grants full permissions to perform all Point in Time operations. |
 | `readall` | Grants permissions for cluster-wide searches like `msearch` and search permissions for all indexes. |
 | `reports_instances_read_access` | Grants permissions to generate on-demand reports and download existing reports but not to view or create report definitions. |
@@ -225,11 +225,11 @@ For more detailed summaries of the permissions for each role, reference their ac
 
 ## Example 
 
-The following tutorial describes the steps for creating a bulk access role in SmartObserve Dashboards.
+The following tutorial describes the steps for creating a bulk access role in MCdesk Dashboards.
 
 Create a new `bulk_access` role:
 
-1. Open SmartObserve Dashboards.
+1. Open MCdesk Dashboards.
 1. Choose **Security**, **Roles**.
 1. Create a new role named `bulk_access`.
 1. For **Cluster permissions**, add the `cluster_composite_ops` action group.
@@ -245,13 +245,13 @@ Map the role to your user:
 
 ## Admin and super admin roles
 
-SmartObserve user roles are essential for controlling access to cluster resources. Users can be categorized as regular users, admin users, or super admin users based on their access rights and responsibilities.
+MCdesk user roles are essential for controlling access to cluster resources. Users can be categorized as regular users, admin users, or super admin users based on their access rights and responsibilities.
 
 For more information about defining users, see [Defining users]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#defining-users). For more information about defining roles, see [Defining roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#defining-roles).
 
 
 ### Regular users
-Regular users have basic access permissions that allow them to interact with the SmartObserve cluster, such as querying data and using dashboards, but they do not have administrative privileges.
+Regular users have basic access permissions that allow them to interact with the MCdesk cluster, such as querying data and using dashboards, but they do not have administrative privileges.
 
 ### Admin users
 Admin users have elevated permissions that allow them to perform various administrative tasks within the cluster. They have broader access compared to regular users, including permissions to:
@@ -259,10 +259,10 @@ Admin users have elevated permissions that allow them to perform various adminis
 - Configure permissions.
 - Adjust backend settings.
 
-Admin users can perform these tasks by configuring settings in the `smartobserve.yml` file, using SmartObserve Dashboards, or interacting with the REST API. For more information about configuring users and roles, see [predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#predefined-roles).
+Admin users can perform these tasks by configuring settings in the `mcdesk.yml` file, using MCdesk Dashboards, or interacting with the REST API. For more information about configuring users and roles, see [predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles/#predefined-roles).
 
 ### Super admin users
-Super admin users have the highest level of administrative authority within the SmartObserve environment. This role is typically reserved for select users and should be managed carefully.
+Super admin users have the highest level of administrative authority within the MCdesk environment. This role is typically reserved for select users and should be managed carefully.
 
 Super admin users have unrestricted access to all settings and data within the cluster, including permissions to:
 - Modify Security plugin configurations.
@@ -271,13 +271,13 @@ Super admin users have unrestricted access to all settings and data within the c
 
 #### Authentication of the super admin role
 
-Super admin users are authenticated through certificates, not passwords. The necessary certificates are defined in the `admin_dn` section of the `smartobserve.yml` file and must be signed with the same root certificate authority (CA), as shown in the following example:
+Super admin users are authenticated through certificates, not passwords. The necessary certificates are defined in the `admin_dn` section of the `mcdesk.yml` file and must be signed with the same root certificate authority (CA), as shown in the following example:
 ```
 YAML
 plugins.security.authcz.admin_dn:
 - CN=kirk,OU=client,O=client,L=test, C=de
 ``` 
 
-If the super admin certificate is signed by a different CA, then the admin CA must be concatenated with the node's CA in the file defined in `plugins.security.ssl.http.pemtrustedcas_filepath` in `smartobserve.yml`. 
+If the super admin certificate is signed by a different CA, then the admin CA must be concatenated with the node's CA in the file defined in `plugins.security.ssl.http.pemtrustedcas_filepath` in `mcdesk.yml`. 
 
 For more information, see [Configuring super admin certificates]({{site.url}}{{site.baseurl}}/security/configuration/tls/#configuring-admin-certificates).

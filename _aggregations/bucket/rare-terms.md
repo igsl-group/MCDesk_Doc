@@ -48,7 +48,7 @@ Sensitivity error rarely exceeds 2.5% at the default `precision`, even for datas
 
 The `rare_terms` aggregation uses breadth-first collection mode and is incompatible with aggregations that require depth-first collection mode in some subaggregations and nesting configurations. 
 
-For more information about breadth-first search in SmartObserve, see [Collect mode]({{site.url}}{{site.baseurl}}/aggregations/bucket/terms#collect-mode).
+For more information about breadth-first search in MCdesk, see [Collect mode]({{site.url}}{{site.baseurl}}/aggregations/bucket/terms#collect-mode).
 
 
 ## Parameters
@@ -67,10 +67,10 @@ The `rare_terms` aggregation takes the following parameters.
 
 ## Example
 
-The following request returns all destination airport codes that appear only once in the SmartObserve Dashboards sample flight data:
+The following request returns all destination airport codes that appear only once in the MCdesk Dashboards sample flight data:
 
 ```json
-GET /smartobserve_dashboards_sample_data_flights/_search
+GET /mcdesk_dashboards_sample_data_flights/_search
 {
   "size": 0,
   "aggs": {
@@ -129,10 +129,10 @@ The response shows that there are two airports that meet the criterion of appear
 
 Use the `max_doc_count` parameter to specify the largest document count that the `rare_terms` aggregation can return. There is no limit on the number of terms returned by `rare_terms`, so a large `max_doc_count` value can potentially return very large result sets. For this reason, `100` is the largest allowable `max_doc_count`.
 
-The following request returns all destination airport codes that appear two times at most in the SmartObserve Dashboards sample flight data:
+The following request returns all destination airport codes that appear two times at most in the MCdesk Dashboards sample flight data:
 
 ```json
-GET /smartobserve_dashboards_sample_data_flights/_search
+GET /mcdesk_dashboards_sample_data_flights/_search
 {
   "size": 0,
   "aggs": {
@@ -226,7 +226,7 @@ The arguments to `include` and `exclude` can be regular expressions (regex), inc
 The following example modifies the previous example to include all airport codes beginning with "A" but exclude the "ABQ" airport code:
 
 ```json
-GET /smartobserve_dashboards_sample_data_flights/_search
+GET /mcdesk_dashboards_sample_data_flights/_search
 {
   "size": 0,
   "aggs": {
@@ -283,10 +283,10 @@ The response shows the two airport codes that meet the filtering requirements:
 
 ### Example: Filtering with array input
 
-The following example returns all destination airport codes that appear two times at most in the SmartObserve Dashboards sample flight data but specifies an array of airport codes to exclude:
+The following example returns all destination airport codes that appear two times at most in the MCdesk Dashboards sample flight data but specifies an array of airport codes to exclude:
 
 ```json
-GET /smartobserve_dashboards_sample_data_flights/_search
+GET /mcdesk_dashboards_sample_data_flights/_search
 {
   "size": 0,
   "aggs": {

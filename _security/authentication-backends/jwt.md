@@ -87,7 +87,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI
 
 ## Configuring JWTs
 
-If you use a JWT as your only authentication method, disable the user cache by setting the `plugins.security.cache.ttl_minutes` property to `0`. For more information about this property, see [smartobserve.yml]({{site.url}}{{site.baseurl}}/security/configuration/yaml/#smartobserveyml).
+If you use a JWT as your only authentication method, disable the user cache by setting the `plugins.security.cache.ttl_minutes` property to `0`. For more information about this property, see [mcdesk.yml]({{site.url}}{{site.baseurl}}/security/configuration/yaml/#mcdeskyml).
 {: .important }
 
 Set up an authentication domain and choose `jwt` as the HTTP authentication type. Because the tokens already contain all required information to verify the request, `challenge` must be set to `false` and `authentication_backend` to `noop`:
@@ -124,7 +124,7 @@ Name | Description
 `roles_key` | The key in the JSON payload that stores the user's roles. The value must be a comma-separated list of roles. You can configure `roles_key` as a list to extract roles from nested JWT claims.
 `required_audience` | The name of the audience that the JWT must specify. You can set a single value (for example, `project1`) or multiple comma-separated values (for example, `project1,admin`). If you set multiple values, the JWT must have at least one required audience. This parameter corresponds to the [`aud` claim of the JWT](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3).
 `required_issuer` | The target issuer of JWT stored in the JSON payload. This corresponds to the [`iss` claim of the JWT](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.1).
-`jwt_clock_skew_tolerance_seconds` | Sets a window of time, in seconds, to compensate for any disparity between the JWT authentication server and SmartObserve node clock times, thereby preventing authentication failures due to the misalignment. Security sets 30 seconds as the default. Use this setting to apply a custom value.
+`jwt_clock_skew_tolerance_seconds` | Sets a window of time, in seconds, to compensate for any disparity between the JWT authentication server and MCdesk node clock times, thereby preventing authentication failures due to the misalignment. Security sets 30 seconds as the default. Use this setting to apply a custom value.
 
 Because JWTs are self-contained and the user is authenticated at the HTTP level, no additional `authentication_backend` is needed. Set this value to `noop`.
 
@@ -223,7 +223,7 @@ ES512: ECDSA using P-521 and SHA-512
 
 ## Using a JWKS endpoint to validate a JWT
 
-Validating the signature of the signed JWT is the last step in granting user access. SmartObserve validates the signature when the client sends the JWT with a REST request. The signature is verified in every authentication request.
+Validating the signature of the signed JWT is the last step in granting user access. MCdesk validates the signature when the client sends the JWT with a REST request. The signature is verified in every authentication request.
 
 Rather than store the cryptographic key used for validation in the local `config.yml` file's `authc` section, you can specify a JSON Web Key Set (JWKS) endpoint to retrieve the key from its location on the issuer's server. This method of validating the JWT can help streamline management of public keys and certificates.
 
@@ -324,7 +324,7 @@ JWKS responses are cached to optimize performance:
 
 ### Backward compatibility
 
-JWT authentication supports direct JWKS endpoint configuration starting with SmartObserve 3.3. The feature maintains full backward compatibility:
+JWT authentication supports direct JWKS endpoint configuration starting with MCdesk 3.3. The feature maintains full backward compatibility:
 
 - When `jwks_uri` is not specified or set to `null`, the system uses the existing static `signing_key` mechanism.
 - Existing JWT configurations continue to work without modification.
@@ -340,7 +340,7 @@ This section details how to troubleshoot common issues with your security config
 
 ### Verify correct claims
 
-Ensure that the JWT token contains the correct `iat` (issued at), `nbf` (not before), and `exp` (expiry) claims, all of which SmartObserve validates automatically.
+Ensure that the JWT token contains the correct `iat` (issued at), `nbf` (not before), and `exp` (expiry) claims, all of which MCdesk validates automatically.
 
 
 ### JWT URL parameter
@@ -372,13 +372,13 @@ The user should then appear on the **Mapped Users** tab.
 ![image](https://user-images.githubusercontent.com/5849965/179158750-1bb5e232-dd61-449a-a561-0613b71bfd68.png)
 
 
-### SmartObserve Dashboards configuration
+### MCdesk Dashboards configuration
 
-Even though JWT URL parameter authentication works when querying SmartObserve directly, it fails when used to access SmartObserve Dashboards. 
+Even though JWT URL parameter authentication works when querying MCdesk directly, it fails when used to access MCdesk Dashboards. 
 
-**Solution:** Ensure the following lines are present in the `smartobserve_dashboards.yml` configuration file:
+**Solution:** Ensure the following lines are present in the `mcdesk_dashboards.yml` configuration file:
 
 ```yml
-smartobserve_security.auth.type: "jwt"
-smartobserve_security.jwt.url_param: <your-param-name-here>
+mcdesk_security.auth.type: "jwt"
+mcdesk_security.jwt.url_param: <your-param-name-here>
 ```

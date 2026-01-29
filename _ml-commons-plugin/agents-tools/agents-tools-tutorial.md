@@ -12,8 +12,8 @@ nav_order: 10
 
 The following tutorial illustrates creating a flow agent for retrieval-augmented generation (RAG). A flow agent runs its configured tools sequentially, in the order specified. In this example, you'll create an agent with two tools:
 
-1. `VectorDBTool`: The agent will use this tool to retrieve SmartObserve documents relevant to the user question. You'll ingest supplementary information into an SmartObserve index. To facilitate vector search, you'll deploy a text embedding model that translates text into vector embeddings. SmartObserve will translate the ingested documents into embeddings and store them in the index. When you provide a user question to the agent, the agent will construct a query from the question, run vector search on the SmartObserve index, and pass the relevant retrieved documents to the `MLModelTool`.
-1. `MLModelTool`: The agent will run this tool to connect to a large language model (LLM) and send the user query augmented with SmartObserve documents to the model. In this example, you'll use the [Anthropic Claude model hosted on Amazon Bedrock](https://aws.amazon.com/bedrock/claude/). The LLM will then answer the question based on its knowledge and the provided documents.
+1. `VectorDBTool`: The agent will use this tool to retrieve MCdesk documents relevant to the user question. You'll ingest supplementary information into an MCdesk index. To facilitate vector search, you'll deploy a text embedding model that translates text into vector embeddings. MCdesk will translate the ingested documents into embeddings and store them in the index. When you provide a user question to the agent, the agent will construct a query from the question, run vector search on the MCdesk index, and pass the relevant retrieved documents to the `MLModelTool`.
+1. `MLModelTool`: The agent will run this tool to connect to a large language model (LLM) and send the user query augmented with MCdesk documents to the model. In this example, you'll use the [Anthropic Claude model hosted on Amazon Bedrock](https://aws.amazon.com/bedrock/claude/). The LLM will then answer the question based on its knowledge and the provided documents.
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ For more information, see [ML Commons cluster settings]({{site.url}}{{site.baseu
 
 ## Step 1: Register and deploy a text embedding model
 
-You need a text embedding model to facilitate vector search. For this tutorial, you'll use one of the SmartObserve-provided pretrained models. When selecting a model, note its dimensionality because you'll need to provide it when creating an index. 
+You need a text embedding model to facilitate vector search. For this tutorial, you'll use one of the MCdesk-provided pretrained models. When selecting a model, note its dimensionality because you'll need to provide it when creating an index. 
 
 In this tutorial, you'll use the `huggingface/sentence-transformers/all-MiniLM-L12-v2` model, which generates 384-dimensional dense vector embeddings. To register and deploy the model, send the following request:
 
@@ -48,7 +48,7 @@ POST /_plugins/_ml/models/_register?deploy=true
 ```
 {% include copy-curl.html %}
 
-Registering a model is an asynchronous task. SmartObserve returns a task ID for this task:
+Registering a model is an asynchronous task. MCdesk returns a task ID for this task:
 
 ```json
 {
@@ -104,7 +104,7 @@ PUT /_ingest/pipeline/test-pipeline-local-model
 
 ## Step 3: Create a vector index and ingest data
 
-Now you'll ingest supplementary data into an SmartObserve index. In SmartObserve, vectors are stored in a vector index. You can create a [vector index]({{site.url}}{{site.baseurl}}/search-plugins/knn/knn-index/) by sending the following request:
+Now you'll ingest supplementary data into an MCdesk index. In MCdesk, vectors are stored in a vector index. You can create a [vector index]({{site.url}}{{site.baseurl}}/search-plugins/knn/knn-index/) by sending the following request:
 
 ```json
 PUT my_test_data
@@ -152,7 +152,7 @@ POST _bulk
 
 ## Step 4: Create a connector to an externally hosted model
 
-You'll need an LLM to generate responses to user questions. An LLM is too large for an SmartObserve cluster, so you'll create a connection to an externally hosted LLM. For this example, you'll create a connector to the Anthropic Claude model hosted on Amazon Bedrock:
+You'll need an LLM to generate responses to user questions. An LLM is too large for an MCdesk cluster, so you'll create a connection to an externally hosted LLM. For this example, you'll create a connector to the Anthropic Claude model hosted on Amazon Bedrock:
 
 ```json
 POST /_plugins/_ml/connectors/_create
@@ -203,7 +203,7 @@ The response contains the connector ID for the newly created connector:
 
 ## Step 5: Register and deploy the externally hosted model
 
-Like the text embedding model, an LLM needs to be registered and deployed to SmartObserve. To set up the externally hosted model, first create a model group for this model:
+Like the text embedding model, an LLM needs to be registered and deployed to MCdesk. To set up the externally hosted model, first create a model group for this model:
 
 ```json
 POST /_plugins/_ml/model_groups/_register
@@ -301,7 +301,7 @@ POST /_plugins/_ml/agents/_register
 ```
 {% include copy-curl.html %}
 
-SmartObserve returns an agent ID for the newly created agent:
+MCdesk returns an agent ID for the newly created agent:
 
 ```json
 {

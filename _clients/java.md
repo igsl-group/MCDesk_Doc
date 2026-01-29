@@ -6,18 +6,18 @@ nav_order: 30
 
 # Java client
 
-The SmartObserve Java client allows you to interact with your SmartObserve clusters through Java methods and data structures rather than HTTP methods and raw JSON. For example, you can submit requests to your cluster using objects to create indexes, add data to documents, or complete some other operation using the client's built-in methods. For the client's complete API documentation and additional examples, see the [javadoc](https://www.javadoc.io/doc/org.smartobserve.client/smartobserve-java/latest/index.html).
+The MCdesk Java client allows you to interact with your MCdesk clusters through Java methods and data structures rather than HTTP methods and raw JSON. For example, you can submit requests to your cluster using objects to create indexes, add data to documents, or complete some other operation using the client's built-in methods. For the client's complete API documentation and additional examples, see the [javadoc](https://www.javadoc.io/doc/org.mcdesk.client/mcdesk-java/latest/index.html).
 
-This getting started guide illustrates how to connect to SmartObserve, index documents, and run queries. For the client source code, see the [`smartobserve-java` repo](https://github.com/igsl-group/smartobserve-java).
+This getting started guide illustrates how to connect to MCdesk, index documents, and run queries. For the client source code, see the [`mcdesk-java` repo](https://github.com/igsl-group/mcdesk-java).
 
 ## Installing the client using Apache HttpClient 5 Transport
 
-To start using the SmartObserve Java client, you need to provide a transport. The default `ApacheHttpClient5TransportBuilder` transport comes with the Java client. To use the SmartObserve Java client with the default transport, add it to your `pom.xml` file as a dependency:
+To start using the MCdesk Java client, you need to provide a transport. The default `ApacheHttpClient5TransportBuilder` transport comes with the Java client. To use the MCdesk Java client with the default transport, add it to your `pom.xml` file as a dependency:
 
 ```xml
 <dependency>
-  <groupId>org.smartobserve.client</groupId>
-  <artifactId>smartobserve-java</artifactId>
+  <groupId>org.mcdesk.client</groupId>
+  <artifactId>mcdesk-java</artifactId>
   <version>3.0.0</version>
 </dependency>
 
@@ -33,13 +33,13 @@ If you're using Gradle, add the following dependencies to your project:
 
 ```
 dependencies {
-  implementation 'org.smartobserve.client:smartobserve-java:3.0.0'
+  implementation 'org.mcdesk.client:mcdesk-java:3.0.0'
   implementation 'org.apache.httpcomponents.client5:httpclient5:5.2.1'
 }
 ```
 {% include copy.html %}
 
-You can now start your SmartObserve cluster.
+You can now start your MCdesk cluster.
 
 ## Installing the client using RestClient Transport
 
@@ -47,14 +47,14 @@ Alternatively, you can create a Java client by using the `RestClient`-based tran
 
 ```xml
 <dependency>
-  <groupId>org.smartobserve.client</groupId>
-  <artifactId>smartobserve-rest-client</artifactId>
-  <version>{{site.smartobserve_version}}</version>
+  <groupId>org.mcdesk.client</groupId>
+  <artifactId>mcdesk-rest-client</artifactId>
+  <version>{{site.mcdesk_version}}</version>
 </dependency>
 
 <dependency>
-  <groupId>org.smartobserve.client</groupId>
-  <artifactId>smartobserve-java</artifactId>
+  <groupId>org.mcdesk.client</groupId>
+  <artifactId>mcdesk-java</artifactId>
   <version>2.6.0</version>
 </dependency>
 ```
@@ -64,13 +64,13 @@ If you're using Gradle, add the following dependencies to your project"
 
 ```
 dependencies {
-  implementation 'org.smartobserve.client:smartobserve-rest-client:{{site.smartobserve_version}}'
-  implementation 'org.smartobserve.client:smartobserve-java:2.6.0'
+  implementation 'org.mcdesk.client:mcdesk-rest-client:{{site.mcdesk_version}}'
+  implementation 'org.mcdesk.client:mcdesk-java:2.6.0'
 }
 ```
 {% include copy.html %}
 
-You can now start your SmartObserve cluster.
+You can now start your MCdesk cluster.
 
 ## Security
 
@@ -89,7 +89,7 @@ If you run into issues when configuring security, see [common issues]({{site.url
 
 ## Sample data
 
-This section uses a class called `IndexData`, which is a simple Java class that stores basic data and methods. For your own SmartObserve cluster, you might find that you need a more robust class to store your data.
+This section uses a class called `IndexData`, which is a simple Java class that stores basic data and methods. For your own MCdesk cluster, you might find that you need a more robust class to store your data.
 
 ### IndexData class
 
@@ -129,7 +129,7 @@ static class IndexData {
 
 ## Initializing the client with SSL and TLS enabled using Apache HttpClient 5 Transport
 
-This code example uses basic credentials that come with the default SmartObserve configuration. If you’re using the Java client with your own SmartObserve cluster, be sure to change the code so that it uses your own credentials.
+This code example uses basic credentials that come with the default MCdesk configuration. If you’re using the Java client with your own MCdesk cluster, be sure to change the code so that it uses your own credentials.
 
 The following sample code initializes a client with SSL and TLS enabled:
 
@@ -149,11 +149,11 @@ import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
 import org.apache.hc.core5.reactor.ssl.TlsDetails;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.smartobserve.client.smartobserve.SmartObserveClient;
-import org.smartobserve.client.transport.SmartObserveTransport;
-import org.smartobserve.client.transport.httpclient5.ApacheHttpClient5TransportBuilder;
+import org.mcdesk.client.mcdesk.MCdeskClient;
+import org.mcdesk.client.transport.MCdeskTransport;
+import org.mcdesk.client.transport.httpclient5.ApacheHttpClient5TransportBuilder;
 
-public class SmartObserveClientExample {
+public class MCdeskClientExample {
   public static void main(String[] args) throws Exception {
     System.setProperty("javax.net.ssl.trustStore", "/full/path/to/keystore");
     System.setProperty("javax.net.ssl.trustStorePassword", "password-to-keystore");
@@ -191,8 +191,8 @@ public class SmartObserveClientExample {
         .setConnectionManager(connectionManager);
     });
 
-    final SmartObserveTransport transport = builder.build();
-    SmartObserveClient client = new SmartObserveClient(transport);
+    final MCdeskTransport transport = builder.build();
+    MCdeskClient client = new MCdeskClient(transport);
   }
 }
 
@@ -200,7 +200,7 @@ public class SmartObserveClientExample {
 
 ## Initializing the client with SSL and TLS enabled using RestClient Transport
 
-This code example uses basic credentials that come with the default SmartObserve configuration. If you’re using the Java client with your own SmartObserve cluster, be sure to change the code so that it uses your own credentials.
+This code example uses basic credentials that come with the default MCdesk configuration. If you’re using the Java client with your own MCdesk cluster, be sure to change the code so that it uses your own credentials.
 
 The following sample code initializes a client with SSL and TLS enabled:
 
@@ -210,14 +210,14 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.smartobserve.client.RestClient;
-import org.smartobserve.client.RestClientBuilder;
-import org.smartobserve.client.json.jackson.JacksonJsonpMapper;
-import org.smartobserve.client.smartobserve.SmartObserveClient;
-import org.smartobserve.client.transport.SmartObserveTransport;
-import org.smartobserve.client.transport.rest_client.RestClientTransport;
+import org.mcdesk.client.RestClient;
+import org.mcdesk.client.RestClientBuilder;
+import org.mcdesk.client.json.jackson.JacksonJsonpMapper;
+import org.mcdesk.client.mcdesk.MCdeskClient;
+import org.mcdesk.client.transport.MCdeskTransport;
+import org.mcdesk.client.transport.rest_client.RestClientTransport;
 
-public class SmartObserveClientExample {
+public class MCdeskClientExample {
   public static void main(String[] args) throws Exception {
     System.setProperty("javax.net.ssl.trustStore", "/full/path/to/keystore");
     System.setProperty("javax.net.ssl.trustStorePassword", "password-to-keystore");
@@ -236,24 +236,24 @@ public class SmartObserveClientExample {
         }
       }).build();
 
-    final SmartObserveTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
-    final SmartObserveClient client = new SmartObserveClient(transport);
+    final MCdeskTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+    final MCdeskClient client = new MCdeskClient(transport);
   }
 }
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Service
+## Connecting to Amazon MCdesk Service
 
-The following example illustrates connecting to Amazon SmartObserve Service:
+The following example illustrates connecting to Amazon MCdesk Service:
 
 ```java
 SdkHttpClient httpClient = ApacheHttpClient.builder().build();
 
-SmartObserveClient client = new SmartObserveClient(
+MCdeskClient client = new MCdeskClient(
     new AwsSdk2Transport(
         httpClient,
-        "search-...us-west-2.es.amazonaws.com", // SmartObserve endpoint, without https://
+        "search-...us-west-2.es.amazonaws.com", // MCdesk endpoint, without https://
         "es",
         Region.US_WEST_2, // signing service region
         AwsSdk2TransportOptions.builder().build()
@@ -267,17 +267,17 @@ httpClient.close();
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Serverless
+## Connecting to Amazon MCdesk Serverless
 
-The following example illustrates connecting to Amazon SmartObserve Serverless Service:
+The following example illustrates connecting to Amazon MCdesk Serverless Service:
 
 ```java
 SdkHttpClient httpClient = ApacheHttpClient.builder().build();
 
-SmartObserveClient client = new SmartObserveClient(
+MCdeskClient client = new MCdeskClient(
     new AwsSdk2Transport(
         httpClient,
-        "search-...us-west-2.aoss.amazonaws.com", // SmartObserve endpoint, without https://
+        "search-...us-west-2.aoss.amazonaws.com", // MCdesk endpoint, without https://
         "aoss"
         Region.US_WEST_2, // signing service region
         AwsSdk2TransportOptions.builder().build()
@@ -309,7 +309,7 @@ client.indices().putSettings(putIndicesSettingsRequest);
 
 ## Indexing data
 
-You can index data into SmartObserve using the following code:
+You can index data into MCdesk using the following code:
 
 ```java
 IndexData indexData = new IndexData("first_name", "Bruce");
@@ -360,21 +360,21 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
-import org.smartobserve.client.RestClient;
-import org.smartobserve.client.RestClientBuilder;
-import org.smartobserve.client.base.RestClientTransport;
-import org.smartobserve.client.base.Transport;
-import org.smartobserve.client.json.jackson.JacksonJsonpMapper;
-import org.smartobserve.client.smartobserve.SmartObserveClient;
-import org.smartobserve.client.smartobserve._global.IndexRequest;
-import org.smartobserve.client.smartobserve._global.IndexResponse;
-import org.smartobserve.client.smartobserve._global.SearchResponse;
-import org.smartobserve.client.smartobserve.indices.*;
-import org.smartobserve.client.smartobserve.indices.put_settings.IndexSettingsBody;
+import org.mcdesk.client.RestClient;
+import org.mcdesk.client.RestClientBuilder;
+import org.mcdesk.client.base.RestClientTransport;
+import org.mcdesk.client.base.Transport;
+import org.mcdesk.client.json.jackson.JacksonJsonpMapper;
+import org.mcdesk.client.mcdesk.MCdeskClient;
+import org.mcdesk.client.mcdesk._global.IndexRequest;
+import org.mcdesk.client.mcdesk._global.IndexResponse;
+import org.mcdesk.client.mcdesk._global.SearchResponse;
+import org.mcdesk.client.mcdesk.indices.*;
+import org.mcdesk.client.mcdesk.indices.put_settings.IndexSettingsBody;
 
 import java.io.IOException;
 
-public class SmartObserveClientExample {
+public class MCdeskClientExample {
   public static void main(String[] args) {
     RestClient restClient = null;
     try{
@@ -395,7 +395,7 @@ public class SmartObserveClientExample {
           }
         }).build();
       Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
-      SmartObserveClient client = new SmartObserveClient(transport);
+      MCdeskClient client = new MCdeskClient(transport);
 
       //Create the index
       String index = "sample-index";

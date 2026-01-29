@@ -4,8 +4,8 @@ title: Create index
 parent: Index APIs
 nav_order: 40
 redirect_from:
-  - /smartobserve/rest-api/index-apis/create-index/
-  - /smartobserve/rest-api/create-index/
+  - /mcdesk/rest-api/index-apis/create-index/
+  - /mcdesk/rest-api/create-index/
 ---
 
 # Create Index API
@@ -24,7 +24,7 @@ PUT <index>
 
 ## Index naming restrictions
 
-SmartObserve indexes have the following naming restrictions:
+MCdesk indexes have the following naming restrictions:
 
 - All letters must be lowercase.
 - Index names can't begin with underscores (`_`) or hyphens (`-`).
@@ -44,13 +44,13 @@ You can include the following query parameters in your request. All parameters a
 
 Parameter | Type | Description
 :--- | :--- | :---
-wait_for_active_shards | String | Specifies the number of active shards that must be available before SmartObserve processes the request. Default is 1 (only the primary shard). Set to `all` or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the request to succeed.
+wait_for_active_shards | String | Specifies the number of active shards that must be available before MCdesk processes the request. Default is 1 (only the primary shard). Set to `all` or a positive integer. Values greater than 1 require replicas. For example, if you specify a value of 3, the index must have two replicas distributed across two additional nodes for the request to succeed.
 cluster_manager_timeout | Time | How long to wait for a connection to the cluster manager node. Default is `30s`.
 timeout | Time | How long to wait for the request to return. Default is `30s`.
 
 ## Request body
 
-As part of your request, you can optionally specify [index settings]({{site.url}}{{site.baseurl}}/im-plugin/index-settings/), [mappings]({{site.url}}{{site.baseurl}}/field-types/index/), [aliases]({{site.url}}{{site.baseurl}}/smartobserve/index-alias/), and [index context]({{site.url}}{{site.baseurl}}/smartobserve/index-context/). 
+As part of your request, you can optionally specify [index settings]({{site.url}}{{site.baseurl}}/im-plugin/index-settings/), [mappings]({{site.url}}{{site.baseurl}}/field-types/index/), [aliases]({{site.url}}{{site.baseurl}}/mcdesk/index-alias/), and [index context]({{site.url}}{{site.baseurl}}/mcdesk/index-context/). 
 
 ## Example request
 

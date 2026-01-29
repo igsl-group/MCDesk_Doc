@@ -20,13 +20,13 @@ POST /<index>/_forcemerge/
 
 ## The merge operation
 
-In SmartObserve, a shard is a Lucene index, which consists of _segments_ (or segment files). Segments store the indexed data. Periodically, smaller segments are merged into larger ones and the larger segments become immutable. Merging reduces the overall number of segments on each shard and frees up disk space. 
+In MCdesk, a shard is a Lucene index, which consists of _segments_ (or segment files). Segments store the indexed data. Periodically, smaller segments are merged into larger ones and the larger segments become immutable. Merging reduces the overall number of segments on each shard and frees up disk space. 
 
-SmartObserve performs background segment merges that produce segments no larger than `index.merge.policy.max_merged_segment` (the default is 5 GB).
+MCdesk performs background segment merges that produce segments no larger than `index.merge.policy.max_merged_segment` (the default is 5 GB).
 
 ## Deleted documents
 
-When a document is deleted from an SmartObserve index, it is not deleted from the Lucene segment but is rather only marked to be deleted. When the segment files are merged, deleted documents are removed (or _expunged_). Thus, merging also frees up space occupied by documents marked as deleted.
+When a document is deleted from an MCdesk index, it is not deleted from the Lucene segment but is rather only marked to be deleted. When the segment files are merged, deleted documents are removed (or _expunged_). Thus, merging also frees up space occupied by documents marked as deleted.
 
 ## Force Merge API
 
@@ -70,9 +70,9 @@ The following table lists the available query parameters. All query parameters a
 | `allow_no_indices` | Boolean | If `false`, the request returns an error if any wildcard expression or index alias targets any closed or missing indexes. Default is `true`. |
 | `expand_wildcards` | String | Specifies the types of indexes to which wildcard expressions can expand. Supports comma-separated values. Valid values are: <br> - `all`: Expand to all open and closed indexes, including hidden indexes. <br> - `open`: Expand to open indexes. <br> - `closed`: Expand to closed indexes. <br> - `hidden`: Include hidden indexes when expanding. Must be combined with `open`, `closed`, or both. <br> - `none`: Do not accept wildcard expressions. <br> Default is `open`. |
 | `flush` | Boolean | Performs a flush on the indexes after the force merge. A flush ensures that the files are persisted to disk. Default is `true`. |
-| `ignore_unavailable` | Boolean | If `true`, SmartObserve ignores missing or closed indexes. If `false`, SmartObserve returns an error if the force merge operation encounters missing or closed indexes. Default is `false`. |
+| `ignore_unavailable` | Boolean | If `true`, MCdesk ignores missing or closed indexes. If `false`, MCdesk returns an error if the force merge operation encounters missing or closed indexes. Default is `false`. |
 | `max_num_segments` | Integer | The number of larger segments into which smaller segments are merged. Set this parameter to `1` to merge all segments into one segment. The default behavior is to perform the merge as necessary. |
-| `only_expunge_deletes` | Boolean | If `true`, the merge operation only expunges segments containing a certain percentage of deleted documents. The percentage is 10% by default and is configurable in the `index.merge.policy.expunge_deletes_allowed` setting. Prior to SmartObserve 2.12, `only_expunge_deletes` ignored the `index.merge.policy.max_merged_segment` setting. Starting with SmartObserve 2.12, using `only_expunge_deletes` does not produce segments larger than `index.merge.policy.max_merged_segment` (by default, 5 GB). For more information, see [Deleted documents](#deleted-documents). Default is `false`. |
+| `only_expunge_deletes` | Boolean | If `true`, the merge operation only expunges segments containing a certain percentage of deleted documents. The percentage is 10% by default and is configurable in the `index.merge.policy.expunge_deletes_allowed` setting. Prior to MCdesk 2.12, `only_expunge_deletes` ignored the `index.merge.policy.max_merged_segment` setting. Starting with MCdesk 2.12, using `only_expunge_deletes` does not produce segments larger than `index.merge.policy.max_merged_segment` (by default, 5 GB). For more information, see [Deleted documents](#deleted-documents). Default is `false`. |
 | `primary_only` | Boolean | If set to `true`, then the merge operation is performed only on the primary shards of an index. This can be useful when you want to take a snapshot of the index after the merge is complete. Snapshots only copy segments from the primary shards. Merging the primary shards can reduce resource consumption. Default is `false`. |
 
 ## Example requests

@@ -26,4 +26,4 @@ Parameter | Description
 
 ## Disabling hybrid queries
 
-By default, hybrid queries are enabled. To disable hybrid queries in your cluster, set the `plugins.neural_search.hybrid_search_disabled` setting to `true` in `smartobserve.yml`. 
+By default, hybrid queries are enabled. To disable hybrid queries in your cluster, set the `plugins.neural_search.hybrid_search_disabled` setting to `true` in `mcdesk.yml`. 

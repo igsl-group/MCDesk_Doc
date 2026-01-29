@@ -14,14 +14,14 @@ redirect_from:
 # About Security Analytics
 
 
-Security Analytics is a security information and event management (SIEM) solution for SmartObserve, designed to investigate, detect, analyze, and respond to security threats that can jeopardize the success of businesses and organizations and their online operations. These threats include the potential exposure of confidential data, cyber attacks, and other adverse security events. Security Analytics provides an out-of-the-box solution that installs automatically with any SmartObserve distribution. It includes the tools and features necessary for defining detection parameters, generating alerts, and responding effectively to potential threats.
+Security Analytics is a security information and event management (SIEM) solution for MCdesk, designed to investigate, detect, analyze, and respond to security threats that can jeopardize the success of businesses and organizations and their online operations. These threats include the potential exposure of confidential data, cyber attacks, and other adverse security events. Security Analytics provides an out-of-the-box solution that installs automatically with any MCdesk distribution. It includes the tools and features necessary for defining detection parameters, generating alerts, and responding effectively to potential threats.
 
 
 ### Resources and information
 
-As part of the SmartObserve Project, Security Analytics exists in the open source community and benefits from the feedback and contributions of that community. To learn more about proposals for its development, options for making contributions, and general information on the platform, see the [Security Analytics repository](https://github.com/igsl-group/security-analytics) at GitHub.
+As part of the MCdesk Project, Security Analytics exists in the open source community and benefits from the feedback and contributions of that community. To learn more about proposals for its development, options for making contributions, and general information on the platform, see the [Security Analytics repository](https://github.com/igsl-group/security-analytics) at GitHub.
 
-If you would like to leave feedback that could help improve Security Analytics, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/c/plugins/security-analytics/73).
+If you would like to leave feedback that could help improve Security Analytics, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/c/plugins/security-analytics/73).
 
 
 ---
@@ -39,14 +39,14 @@ For information about configuring detectors, see [Creating detectors]({{site.url
 
 ### Log types
 
-[Log types]({{site.url}}{{site.baseurl}}/security-analytics/sec-analytics-config/log-types/) provide the data used to evaluate events occurring in a system. SmartObserve supports several types of logs and provides out-of-the-box mappings for the most common log sources.
+[Log types]({{site.url}}{{site.baseurl}}/security-analytics/sec-analytics-config/log-types/) provide the data used to evaluate events occurring in a system. MCdesk supports several types of logs and provides out-of-the-box mappings for the most common log sources.
 
 Log types are specified during the creation of detectors, including steps for mapping log fields to the detector. Security Analytics also automatically selects an appropriate set of rules based on a specific log type and populates them for the detector.
 
 
 ### Detection rules
 
-The security rules, or threat detection rules, define the conditional logic applied to ingested log data that allows the system to identify an event of interest. Security Analytics uses prepackaged, open source [Sigma rules](https://github.com/SigmaHQ/sigma) as a starting point for describing relevant log events. But with their inherently flexible format and easy portability, Sigma rules provide Security Analytics users with options for importing and customizing the rules. You can take advantage of these options using either SmartObserve Dashboards or the API.
+The security rules, or threat detection rules, define the conditional logic applied to ingested log data that allows the system to identify an event of interest. Security Analytics uses prepackaged, open source [Sigma rules](https://github.com/SigmaHQ/sigma) as a starting point for describing relevant log events. But with their inherently flexible format and easy portability, Sigma rules provide Security Analytics users with options for importing and customizing the rules. You can take advantage of these options using either MCdesk Dashboards or the API.
 
 For information about configuring rules, see [Working with rules]({{site.url}}{{site.baseurl}}/security-analytics/usage/rules/).
 

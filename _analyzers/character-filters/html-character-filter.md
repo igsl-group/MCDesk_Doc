@@ -85,7 +85,7 @@ Use the following request to examine the tokens generated using the analyzer:
 GET /html_strip_and_lowercase_analyzer/_analyze
 {
   "analyzer": "html_strip_analyzer",
-  "text": "<h1>Welcome to <strong>SmartObserve</strong>!</h1>"
+  "text": "<h1>Welcome to <strong>MCdesk</strong>!</h1>"
 }
 ```
 {% include copy-curl.html %}
@@ -110,7 +110,7 @@ In the response, the HTML tags have been removed and the plain text has been con
       "position": 1
     },
     {
-      "token": "smartobserve",
+      "token": "mcdesk",
       "start_offset": 23,
       "end_offset": 42,
       "type": "<ALPHANUM>",

@@ -58,7 +58,7 @@ layout: table_wrappers
       </div>
       <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">        
         <div class="version-wrapper" id="version-panel">
-          {% if page.section == "smartobserve" %}
+          {% if page.section == "mcdesk" %}
             <a href="{{site.url}}{{site.baseurl}}/about/" class="site-category">{{ page.section-name }}</a>
           {% else %}
             <a href="{{site.url}}{{site.baseurl}}/{{ page.section}}/" class="site-category">{{ page.section-name }}</a>
@@ -66,7 +66,7 @@ layout: table_wrappers
           
           <a href="{{site.url}}{{site.latesturl}}/" class="back-link">&#x2190; Back to docs home</a>
           
-          {% if page.section == "smartobserve" %}
+          {% if page.section == "mcdesk" %}
             <version-selector selected="{{ site.data.versions.current }}"></version-selector>
           {% endif %}
           </div>
@@ -79,8 +79,8 @@ layout: table_wrappers
           {% include nav.html pages=site.html_pages key=nil expanded=true %}
         {% endif %}
 
-        {% if page.section == "smartobserve" %}
-          {% assign section = site.smartobserve_collection.collections %}
+        {% if page.section == "mcdesk" %}
+          {% assign section = site.mcdesk_collection.collections %}
         {% elsif page.section == "data-prepper" %}
           {% assign section = site.data_prepper_collection.collections %}
         {% elsif page.section == "clients" %}
@@ -228,11 +228,11 @@ layout: table_wrappers
           {% endif %}
         {% endunless %}
         <div id="main-content" class="main-content" role="main">
-          {% if page.section == "smartobserve" %}
+          {% if page.section == "mcdesk" %}
             {% if site.doc_version == "supported" %}            
-              <p class="supported-version-warning">You're viewing version {{site.smartobserve_major_minor_version}} of the SmartObserve documentation. For the latest version, see the <a href="{{ site.url }}{{ site.latesturl }}{{ page.url }}">current documentation</a>. For information about SmartObserve version maintenance, see <a href="https://magiccreative.io/releases.html">Release Schedule and Maintenance Policy</a>.</p>
+              <p class="supported-version-warning">You're viewing version {{site.mcdesk_major_minor_version}} of the MCdesk documentation. For the latest version, see the <a href="{{ site.url }}{{ site.latesturl }}{{ page.url }}">current documentation</a>. For information about MCdesk version maintenance, see <a href="https://magiccreative.io/releases.html">Release Schedule and Maintenance Policy</a>.</p>
             {% elsif site.doc_version == "unsupported" %}
-              <p class="unsupported-version-warning">You're viewing version {{site.smartobserve_major_minor_version}} of the SmartObserve documentation. This version is no longer maintained. For the latest version, see the <a href="{{ site.url }}{{ site.latesturl }}{{ page.url }}">current documentation</a>. For information about SmartObserve version maintenance, see <a href="https://magiccreative.io/releases.html">Release Schedule and Maintenance Policy</a>.</p>
+              <p class="unsupported-version-warning">You're viewing version {{site.mcdesk_major_minor_version}} of the MCdesk documentation. This version is no longer maintained. For the latest version, see the <a href="{{ site.url }}{{ site.latesturl }}{{ page.url }}">current documentation</a>. For information about MCdesk version maintenance, see <a href="https://magiccreative.io/releases.html">Release Schedule and Maintenance Policy</a>.</p>
             {% endif %}
           {% endif %}
           {% if site.heading_anchors != false %}

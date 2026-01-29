@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Building AI search workflows in SmartObserve Dashboards
+title: Building AI search workflows in MCdesk Dashboards
 parent: AI search
 has_children: true
 has_toc: false
@@ -11,9 +11,9 @@ redirect_from:
   - /tutorials/gen-ai/ai-search-flows/building-flows/
 ---
 
-# Building AI search workflows in SmartObserve Dashboards
+# Building AI search workflows in MCdesk Dashboards
 
-In SmartObserve Dashboards, you can iteratively build and test workflows containing ingest and search pipelines using AI Search Flows. Using a UI editor to build workflows simplifies the creation of artificial intelligence and machine learning (AI/ML) use cases that include ML inference processors, such as vector search and retrieval-augmented generation (RAG). 
+In MCdesk Dashboards, you can iteratively build and test workflows containing ingest and search pipelines using AI Search Flows. Using a UI editor to build workflows simplifies the creation of artificial intelligence and machine learning (AI/ML) use cases that include ML inference processors, such as vector search and retrieval-augmented generation (RAG). 
 
 For example configurations of available AI search types (including semantic search, hybrid search, RAG, and multimodal search), see [Configuring AI search types]({{site.url}}{{site.baseurl}}/vector-search/ai-search/building-flows/). 
 
@@ -23,7 +23,7 @@ Once your workflow is finalized, you can export it as a [workflow template]({{si
 
 ## Prerequisite knowledge
 
-[Ingest pipelines]({{site.url}}{{site.baseurl}}/ingest-pipelines/) and [search pipelines]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/index/) enable data transformation at different stages of ingest and search operations in SmartObserve. An _ingest pipeline_ consists of a sequence of [_ingest processors_]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/index-processors/), while a _search pipeline_ consists of [_search request processors_]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/search-processors#search-request-processors) and/or [_search response processors_]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/search-processors#search-response-processors). You can combine these processors to create custom pipelines tailored to your data processing needs.
+[Ingest pipelines]({{site.url}}{{site.baseurl}}/ingest-pipelines/) and [search pipelines]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/index/) enable data transformation at different stages of ingest and search operations in MCdesk. An _ingest pipeline_ consists of a sequence of [_ingest processors_]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/index-processors/), while a _search pipeline_ consists of [_search request processors_]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/search-processors#search-request-processors) and/or [_search response processors_]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/search-processors#search-response-processors). You can combine these processors to create custom pipelines tailored to your data processing needs.
 
 These pipelines modify data at three key stages:
 
@@ -31,11 +31,11 @@ These pipelines modify data at three key stages:
 2. **Search request**: Transform the search request before executing the search.
 3. **Search response**: Transform the search response, including documents in the results, after executing the search but before returning the response.
 
-In SmartObserve, you can [integrate models hosted on third-party platforms]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/) and use their inference capabilities directly in SmartObserve. Both ingest and search pipelines offer [ML inference processors]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/ml-inference/), allowing you to use externally hosted models for inference in your pipelines during both ingestion and search.
+In MCdesk, you can [integrate models hosted on third-party platforms]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/) and use their inference capabilities directly in MCdesk. Both ingest and search pipelines offer [ML inference processors]({{site.url}}{{site.baseurl}}/ingest-pipelines/processors/ml-inference/), allowing you to use externally hosted models for inference in your pipelines during both ingestion and search.
 
 ## Accessing AI Search Flows
 
-To access AI Search Flows, go to **SmartObserve Dashboards** and select **SmartObserve Plugins** > **AI Search Flows** from the top menu.
+To access AI Search Flows, go to **MCdesk Dashboards** and select **MCdesk Plugins** > **AI Search Flows** from the top menu.
 
 ## Preset templates
 
@@ -58,7 +58,7 @@ The workflow editor is organized like an integrated development environment (IDE
   - **Test flow**: Allows you to run your search flow, with or without a search pipeline, and view results in a table or as raw JSON.
   - **Ingest response**: Displays the API response after updating your ingest flows.
   - **Errors**: Shows the latest errors from updates, ingest operations, or searches. This tab opens automatically when a new error occurs.
-  - **Resources**: Lists SmartObserve resources linked to the workflow, including up to one ingest pipeline, one index, and one search pipeline. To view resource details, select **Inspect**.
+  - **Resources**: Lists MCdesk resources linked to the workflow, including up to one ingest pipeline, one index, and one search pipeline. To view resource details, select **Inspect**.
   - **Preview**: A read-only visualization of how data moves through your ingest and search flows. As you make changes to your flow, this view updates automatically. You can also switch to the **JSON** tab to see the underlying template configuration.
 
 ## Example: Semantic search with RAG
@@ -116,7 +116,7 @@ We strongly recommend using models with full model interfaces. For a list of exa
 - Modify existing processors under **Transform query** or **Transform results**.
 - Add or remove processors under **Transform query** or **Transform results**.
 
-14. To export your workflow, select **Export** in the header. The displayed data represents the [Workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/), which contains the full configuration for the SmartObserve resources you've created, including the ingest pipeline, index, and search pipeline. You can download the template in JSON or YAML format by selecting the button on the right. To build identical resources in other SmartObserve clusters, use the [Provision Workflow API]({{site.url}}{{site.baseurl}}/automating-configurations/api/provision-workflow/).
+14. To export your workflow, select **Export** in the header. The displayed data represents the [Workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/), which contains the full configuration for the MCdesk resources you've created, including the ingest pipeline, index, and search pipeline. You can download the template in JSON or YAML format by selecting the button on the right. To build identical resources in other MCdesk clusters, use the [Provision Workflow API]({{site.url}}{{site.baseurl}}/automating-configurations/api/provision-workflow/).
 
 ## Advanced data transformations
 

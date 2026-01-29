@@ -48,7 +48,7 @@ This API supports the following request body fields.
 | `horizon`                     | Integer             | Optional | The number of future intervals to forecast.                                                                                                  |
 | `window_delay`                | Object              | Optional | A delay added to account for ingestion latency.                                                                                              |
 | `category_field`              | String          | Optional | One or two fields used to group forecasts by entity.                                                                                         |
-| `result_index`                | String              | Optional | A custom index alias for storing forecast results. Must begin with `smartobserve-forecast-result-`. Defaults to `smartobserve-forecast-results`. |
+| `result_index`                | String              | Optional | A custom index alias for storing forecast results. Must begin with `mcdesk-forecast-result-`. Defaults to `mcdesk-forecast-results`. |
 | `suggested_seasonality`       | Integer             | Optional | The seasonal pattern length in intervals. Expected range: 8–256.                                                                             |
 | `recency_emphasis`            | Integer             | Optional | Controls how much recent data affects the forecast. Defaults to `2560`.                                                                      |
 | `history`                     | Integer             | Optional | The number of past intervals used for model training.                                                                                        |
@@ -337,7 +337,7 @@ The response includes the `forecaster`, `realtime_task`, and `run_once_task` sec
 
 Updates the configuration of an existing forecaster. You must stop any active forecasting jobs before making updates. 
 
-Any change that affects the model, such as modifying the `category_field`, `result_index`, or `feature_attributes`, invalidates previous results shown in the SmartObserve Dashboards UI.
+Any change that affects the model, such as modifying the `category_field`, `result_index`, or `feature_attributes`, invalidates previous results shown in the MCdesk Dashboards UI.
 
 ### Endpoints
 
@@ -352,7 +352,7 @@ The following displays the definition of forecaster `forecaster-i1nwqooBLXq6T-gG
 
 ```json
 {
-    "_index": ".smartobserve-forecasters",
+    "_index": ".mcdesk-forecasters",
     "_id": "forecaster-i1nwqooBLXq6T-gGbXI-",
     "_version": 1,
     "_seq_no": 0,
@@ -402,7 +402,7 @@ The following displays the definition of forecaster `forecaster-i1nwqooBLXq6T-gG
             }
         },
         "shingle_size": 8,
-        "result_index": "smartobserve-forecast-result-a"
+        "result_index": "mcdesk-forecast-result-a"
     }
 }
 ```
@@ -569,10 +569,10 @@ The response returns the task ID assigned to the run-once job:
 
 ### Example request: Search forecast results by task ID
 
-Use the returned `taskId` to query the `smartobserve-forecast-results*` index for historical forecast output:
+Use the returned `taskId` to query the `mcdesk-forecast-results*` index for historical forecast output:
 
 ```json
-GET smartobserve-forecast-results*/_search?pretty
+GET mcdesk-forecast-results*/_search?pretty
 {
   "sort": {
     "data_end_time": "desc"
@@ -608,7 +608,7 @@ This query returns the 10 most recent forecast results matching the specified ta
 **Introduced 3.1**  
 {: .label .label-purple }
 
-Provides standard `_search` functionality on the `.smartobserve-forecasters` system index, which stores forecaster configurations. You must use this API to query `.smartobserve-forecasters` directly because the index is a system index and cannot be accessed through regular SmartObserve queries.
+Provides standard `_search` functionality on the `.mcdesk-forecasters` system index, which stores forecaster configurations. You must use this API to query `.mcdesk-forecasters` directly because the index is a system index and cannot be accessed through regular MCdesk queries.
 
 ### Endpoint
 
@@ -655,7 +655,7 @@ GET _plugins/_forecast/forecasters/_search
     },
     "max_score": 1.0,
     "hits": [{
-      "_index": ".smartobserve-forecasters",
+      "_index": ".mcdesk-forecasters",
       "_id": "forecast-i1nwqooBLXq6T-gGbXI-",
       "_version": 1,
       "_seq_no": 0,
@@ -714,7 +714,7 @@ GET _plugins/_forecast/forecasters/_search
 **Introduced 3.1**
 {: .label .label-purple }
 
-Query tasks in the `.smartobserve-forecast-state` index.
+Query tasks in the `.mcdesk-forecast-state` index.
 
 ### Endpoint
 
@@ -772,7 +772,7 @@ GET _plugins/_forecast/forecasters/tasks/_search
     "max_score": null,
     "hits": [
       {
-        "_index": ".smartobserve-forecast-state",
+        "_index": ".mcdesk-forecast-state",
         "_id": "4JaunooBHh7Wss2wOwcw",
         "_version": 3,
         "_seq_no": 5,

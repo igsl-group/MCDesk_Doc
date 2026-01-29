@@ -7,7 +7,7 @@ parent: Metrics
 
 # Summary report
 
-At the end of each run, SmartObserve Benchmark shows a summary report based on the metric keys defined in the workload. This page gives details on each line of the summary report and that line's associated metric key.
+At the end of each run, MCdesk Benchmark shows a summary report based on the metric keys defined in the workload. This page gives details on each line of the summary report and that line's associated metric key.
 
 ## Cumulative indexing time of primary shards
 
@@ -214,40 +214,40 @@ The total number of failed ingest operations by all nodes within the cluster ove
 
 Reports the minimum, mean, median, and maximum throughput for each task.
 
-The number of operations that SmartObserve can perform within a certain time period per second. The report includes the minimum, mean, median, and maximum throughput for each task.
+The number of operations that MCdesk can perform within a certain time period per second. The report includes the minimum, mean, median, and maximum throughput for each task.
 
 
 ## Latency
 
 **Corresponding metrics key**: `latency`
 
-The time period between submission of a request and receiving the complete response. It includes the wait time the request spends waiting before it is processed by SmartObserve. SmartObserve reports several percentile numbers for each task. Which percentiles are shown depends on how many requests SmartObserve can capture during the latency period.
+The time period between submission of a request and receiving the complete response. It includes the wait time the request spends waiting before it is processed by MCdesk. MCdesk reports several percentile numbers for each task. Which percentiles are shown depends on how many requests MCdesk can capture during the latency period.
 
 
 ## Service time
 
 **Corresponding metrics key**: `service_time`
 
-The time period between sending a request and receiving the corresponding response. It does not include waiting time. While many load testing tools refer to this metric as _latency_, it is not the same. SmartObserve reports several percentile numbers for each task. Which percentiles are shown depends on how many requests SmartObserve can capture during the latency period.
+The time period between sending a request and receiving the corresponding response. It does not include waiting time. While many load testing tools refer to this metric as _latency_, it is not the same. MCdesk reports several percentile numbers for each task. Which percentiles are shown depends on how many requests MCdesk can capture during the latency period.
 
 
 
 ## Processing time
 
-Processing time is only reported if the setting `output.processingtime` is set to `true` in the SmartObserve Benchmark configuration file.
+Processing time is only reported if the setting `output.processingtime` is set to `true` in the MCdesk Benchmark configuration file.
 {: note.}
 
 **Corresponding metrics key**: `processing_time`
 
 
-The time period between start of request processing and retrieval of the complete response. Unlike `service_time`, this metric includes SmartObserve’s client-side processing overhead. The larger the difference between `service_time` and `processing_time`, the higher the overhead in the client. Depending on your processing goals, this can point to a potential client-side bottleneck that requires investigation.
+The time period between start of request processing and retrieval of the complete response. Unlike `service_time`, this metric includes MCdesk’s client-side processing overhead. The larger the difference between `service_time` and `processing_time`, the higher the overhead in the client. Depending on your processing goals, this can point to a potential client-side bottleneck that requires investigation.
 
 
 ## Error rate
 
 Corresponding metrics key: `service_time`. Each `service_time` record has a `meta.success` flag. 
 
-The ratio of erroneous responses relative to the total number of responses. Any exception thrown by the Python SmartObserve client is considered erroneous, for example, HTTP response codes 4xx, 5xx, or network errors (network unreachable). You can investigate the root cause by inspecting SmartObserve and SmartObserve Benchmark logs and rerunning the benchmark.
+The ratio of erroneous responses relative to the total number of responses. Any exception thrown by the Python MCdesk client is considered erroneous, for example, HTTP response codes 4xx, 5xx, or network errors (network unreachable). You can investigate the root cause by inspecting MCdesk and MCdesk Benchmark logs and rerunning the benchmark.
 
 
 ## Disk usage

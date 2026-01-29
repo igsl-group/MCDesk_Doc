@@ -8,7 +8,7 @@ nav_order: 75
 
 # Retrieve inner hits
 
-In SmartObserve, when you perform a search using [nested objects]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/nested/) or [parent-join]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/join/), the underlying hits (nested inner objects or child documents) are hidden by default. You can retrieve inner hits by using the `inner_hits` parameter in the search query.
+In MCdesk, when you perform a search using [nested objects]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/nested/) or [parent-join]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/join/), the underlying hits (nested inner objects or child documents) are hidden by default. You can retrieve inner hits by using the `inner_hits` parameter in the search query.
 
 You can also use `inner_hits` with the following features:
 
@@ -792,13 +792,13 @@ The following is the expected result:
 
 * **Optimized performance**
 
-    Without `inner_hits`, you may need to run multiple queries to fetch related documents. Using `inner_hits` consolidates these into a single query, reducing the number of round trips to the SmartObserve server and improving overall performance.
+    Without `inner_hits`, you may need to run multiple queries to fetch related documents. Using `inner_hits` consolidates these into a single query, reducing the number of round trips to the MCdesk server and improving overall performance.
 
     Example use case: In an e-commerce application, you have products as parent documents and reviews as child documents. A single query using `inner_hits` can fetch products and their relevant reviews, avoiding multiple separate queries.
 
 * **Simplified query logic**
 
-    You can combine parent/child or nested document logic in a single query to simplify the application code and reduce complexity. This helps to ensure that the code is more maintainable and consistent by centralizing the query logic in SmartObserve
+    You can combine parent/child or nested document logic in a single query to simplify the application code and reduce complexity. This helps to ensure that the code is more maintainable and consistent by centralizing the query logic in MCdesk
 
     Example use case: In a job portal, you have jobs as parent documents and applications as nested or child documents. You can simplify the application logic by fetching jobs along with specific applications in one query.
 

@@ -55,7 +55,7 @@ POST _plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %} 
 
-SmartObserve responds with a connector ID:
+MCdesk responds with a connector ID:
 
 ```json
 {
@@ -100,7 +100,7 @@ POST /_plugins/_ml/agents/_register
 
 For parameter descriptions, see [Register parameters](#register-parameters).
 
-SmartObserve responds with an agent ID:
+MCdesk responds with an agent ID:
 
 ```json
 {
@@ -123,7 +123,7 @@ POST /_plugins/_ml/agents/9X7xWI0Bpc3sThaJdY9i/_execute
 ```
 {% include copy-curl.html %} 
 
-SmartObserve returns the output of the Lambda function execution. In the output, the field name is `response`, and the `result` field contains the Lambda function result:
+MCdesk returns the output of the Lambda function execution. In the output, the field name is `response`, and the `result` field contains the Lambda function result:
 
 ```json
 {

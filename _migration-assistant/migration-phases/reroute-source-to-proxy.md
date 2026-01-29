@@ -3,7 +3,7 @@ layout: default
 title: Reroute client traffic
 nav_order: 3
 parent: Migration phases
-grand_parent: Migration Assistant for SmartObserve
+grand_parent: Migration Assistant for MCdesk
 permalink: /migration-assistant/migration-phases/reroute-source-to-proxy/
 ---
 

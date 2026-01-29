@@ -11,7 +11,7 @@ nav_order: 5
 
 Creates a snapshot within an existing repository.
 
-* To learn more about snapshots, see [Snapshots]({{site.url}}{{site.baseurl}}/smartobserve/snapshots/index/).
+* To learn more about snapshots, see [Snapshots]({{site.url}}{{site.baseurl}}/mcdesk/snapshots/index/).
 
 * To view a list of your repositories, see [Get snapshot repository]({{site.url}}{{site.baseurl}}/api-reference/snapshots/get-snapshot-repository/).
 
@@ -85,7 +85,7 @@ component: example_code
 rest: PUT /_snapshot/my-s3-repository/2
 body: |
 {
-  "indices": "smartobserve-dashboards*,my-index*,-my-index-2016",
+  "indices": "mcdesk-dashboards*,my-index*,-my-index-2016",
   "ignore_unavailable": true,
   "include_global_state": false,
   "partial": false
@@ -94,7 +94,7 @@ body: |
 {% capture step1_rest %}
 PUT /_snapshot/my-s3-repository/2
 {
-  "indices": "smartobserve-dashboards*,my-index*,-my-index-2016",
+  "indices": "mcdesk-dashboards*,my-index*,-my-index-2016",
   "ignore_unavailable": true,
   "include_global_state": false,
   "partial": false
@@ -108,7 +108,7 @@ response = client.snapshot.create(
   repository = "my-s3-repository",
   snapshot = "2",
   body =   {
-    "indices": "smartobserve-dashboards*,my-index*,-my-index-2016",
+    "indices": "mcdesk-dashboards*,my-index*,-my-index-2016",
     "ignore_unavailable": true,
     "include_global_state": false,
     "partial": false
@@ -150,10 +150,10 @@ The snapshot definition is returned.
     "version" : "2.0.1",
     "indices" : [
       ".opendistro-reports-instances",
-      ".smartobserve-observability",
+      ".mcdesk-observability",
       ".kibana_1",
-      "smartobserve_dashboards_sample_data_flights",
-      ".smartobserve-notifications-config",
+      "mcdesk_dashboards_sample_data_flights",
+      ".mcdesk-notifications-config",
       ".opendistro-reports-definitions",
       "shakespeare"
     ],

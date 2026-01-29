@@ -24,10 +24,10 @@ The `cumulative_sum` aggregation takes the following parameters.
 
 ## Example
 
-The following example creates a date histogram with a one-month interval from the SmartObserve Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of all bytes for each month. Finally, the `cumulative_sum` aggregation calculates the cumulative number of bytes for each month's bucket:
+The following example creates a date histogram with a one-month interval from the MCdesk Dashboards e-commerce sample data. The `sum` subaggregation calculates the sum of all bytes for each month. Finally, the `cumulative_sum` aggregation calculates the cumulative number of bytes for each month's bucket:
 
 ```json
-GET smartobserve_dashboards_sample_data_logs/_search
+GET mcdesk_dashboards_sample_data_logs/_search
 {
   "size": 0,
   "aggs": {

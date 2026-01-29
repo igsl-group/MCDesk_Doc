@@ -9,11 +9,11 @@ redirect_from:
 
 # Creating dashboards
 
-The **Dashboard** application in SmartObserve Dashboards lets you visually represent your analytical, operational, and strategic data to help you quickly understand the trends in your data, giving you a high-level view of key metrics, simplifying data exploration, and delivering insights when and where you need them.
+The **Dashboard** application in MCdesk Dashboards lets you visually represent your analytical, operational, and strategic data to help you quickly understand the trends in your data, giving you a high-level view of key metrics, simplifying data exploration, and delivering insights when and where you need them.
 
-In this tutorial you'll learn the basics of creating a dashboard using the **Dashboard** application and SmartObserve sample data. The sample dataset has existing sample visualizations, and you can use those visualizations or create new visualizations for the dashboard. In this tutorial, you'll do both. Once you've completed this tutorial, you'll have learned the foundations of creating a new dashboard with multiple panels in SmartObserve Dashboards. 
+In this tutorial you'll learn the basics of creating a dashboard using the **Dashboard** application and MCdesk sample data. The sample dataset has existing sample visualizations, and you can use those visualizations or create new visualizations for the dashboard. In this tutorial, you'll do both. Once you've completed this tutorial, you'll have learned the foundations of creating a new dashboard with multiple panels in MCdesk Dashboards. 
 
-This SmartObserve Playground [dashboard example](https://playground.magiccreative.io/app/dashboards#/view/722b74f0-b882-11e8-a6d9-e546fe2bba5f?_g=(filters:!(),refreshInterval:(pause:!f,value:900000),time:(from:now-7d,to:now))&_a=(description:'Analyze%20mock%20eCommerce%20orders%20and%20revenue',filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),query:(language:kuery,query:''),timeRestore:!t,title:'%5BeCommerce%5D%20Revenue%20Dashboard',viewMode:view)) shows you what's possible with SmartObserve Dashboards.
+This MCdesk Playground [dashboard example](https://playground.magiccreative.io/app/dashboards#/view/722b74f0-b882-11e8-a6d9-e546fe2bba5f?_g=(filters:!(),refreshInterval:(pause:!f,value:900000),time:(from:now-7d,to:now))&_a=(description:'Analyze%20mock%20eCommerce%20orders%20and%20revenue',filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),query:(language:kuery,query:''),timeRestore:!t,title:'%5BeCommerce%5D%20Revenue%20Dashboard',viewMode:view)) shows you what's possible with MCdesk Dashboards.
 {: .note}
 
 ## Getting familiar with the UI
@@ -22,7 +22,7 @@ Before getting started, let's get familiar with the **Dashboard** UI. The UI com
 
 ![Dashboard user interface]({{site.url}}{{site.baseurl}}/images/dashboards/dashboard-UI.png)
 
-- The **navigation panel** (A) on the left contains the SmartObserve Dashboards applications.
+- The **navigation panel** (A) on the left contains the MCdesk Dashboards applications.
 - The **search** bar (B) lets you search for documents and other objects and add filters.
 - The **filter** (C) lets you narrow a dashboard's results.
 - The **toolbar** (D) contains frequently used commands and shortcuts.
@@ -31,22 +31,22 @@ Before getting started, let's get familiar with the **Dashboard** UI. The UI com
 
 ## Defining terminology
 
-The following is some useful terminology for working with SmartObserve Dashboards and the **Dashboard** application:
+The following is some useful terminology for working with MCdesk Dashboards and the **Dashboard** application:
 
-- _Dashboards_ is the abbreviated name for SmartObserve Dashboards. SmartObserve Dashboards is an open-source visualization tool designed to work with SmartObserve.
-- _Dashboard_ is the SmartObserve Dashboards application used to track, analyze, and display data.
+- _Dashboards_ is the abbreviated name for MCdesk Dashboards. MCdesk Dashboards is an open-source visualization tool designed to work with MCdesk.
+- _Dashboard_ is the MCdesk Dashboards application used to track, analyze, and display data.
 - _dashboard_ or _dashboards_ are common names for a tool used to visually display data.
 - _Panel_ is a term used to refer to a visualization displayed on a dashboard. The terms _panel_ and _visualization_ may be used interchangeably throughout this and other Dashboards documentation.
 
-The following tutorial assumes you're either using your existing installation of SmartObserve Dashboards or using the [SmartObserve Playground](https://playground.magiccreative.io/app/home#/). Depending on which one you use, certain capabilities may not be available. For example, sample datasets may not be included in your existing installation, and saving a dashboard isn't an option in the SmartObserve Playground.
+The following tutorial assumes you're either using your existing installation of MCdesk Dashboards or using the [MCdesk Playground](https://playground.magiccreative.io/app/home#/). Depending on which one you use, certain capabilities may not be available. For example, sample datasets may not be included in your existing installation, and saving a dashboard isn't an option in the MCdesk Playground.
 {: .note}
 
 ## Creating a dashboard and adding an existing visualization
 
 To create a dashboard and add a sample visualization:
 
-1. Connect to `https://localhost:5601`. The username and password are `admin`. Alternatively, go to the [SmartObserve Playground](https://playground.magiccreative.io/app/home#/).
-1. On the top menu, go to **SmartObserve Dashboards > Dashboard**.
+1. Connect to `https://localhost:5601`. The username and password are `admin`. Alternatively, go to the [MCdesk Playground](https://playground.magiccreative.io/app/home#/).
+1. On the top menu, go to **MCdesk Dashboards > Dashboard**.
 1. From the **Dashboards** panel, choose **Create Dashboard**.
 1. Choose the calendar icon and set the time filter to **Last 30 days**.
 1. From the panel, choose **Add an existing**.
@@ -61,7 +61,7 @@ You've now created the following basic dashboard with a single panel, which you'
 Continuing with the dashboard you created in the preceding steps, you'll create a new visualization and save it to the dashboard:
 
 1. From the dashboard toolbar, choose **Create new**.
-1. From the **New Visualization** window, choose **Gauge** and then select the index pattern **smartobserve_dashboards_sample_data_ecommerce**. 
+1. From the **New Visualization** window, choose **Gauge** and then select the index pattern **mcdesk_dashboards_sample_data_ecommerce**. 
 1. From the toolbar, choose **Save**.
 1. In the **Save visualization** window, enter a title for the visualization. For example, the title for the gauge chart panel is [eCommerce] Orders.
 1. Choose **Save and return**.  

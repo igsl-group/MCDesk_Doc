@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Security settings
-parent: Configuring SmartObserve
+parent: Configuring MCdesk
 nav_order: 40
 ---
 
@@ -9,7 +9,7 @@ nav_order: 40
 
 The Security plugin provides a number of YAML configuration files that are used to store the necessary settings that define the way the Security plugin manages users, roles, and activity within the cluster. For a full list of the Security plugin configuration files, see [Modifying the YAML files]({{site.url}}{{site.baseurl}}/security/configuration/yaml/).
 
-The following sections describe security-related settings in `smartobserve.yml`. You can find the `smartobserve.yml` in the `<OPENSEARCH_HOME>/config/smartobserve.yml`. To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+The following sections describe security-related settings in `mcdesk.yml`. You can find the `mcdesk.yml` in the `<OPENSEARCH_HOME>/config/mcdesk.yml`. To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 ## Common settings
 
@@ -27,7 +27,7 @@ The Security plugin supports the following common settings:
     - `BACKENDROLES_ONLY`: Backend roles are mapped to security roles directly. Settings in `roles_mapping.yml` have no effect.
     - `BOTH`: Backend roles are mapped to security roles both directly and through `roles_mapping.yml`.
 
-- `plugins.security.dls.mode` (Static): Sets the document-level security (DLS) evaluation mode. Default is `adaptive`. See [How to set the DLS evaluation mode]({{site.url}}{{site.baseurl}}/security/access-control/document-level-security/#how-to-set-the-dls-evaluation-mode-in-smartobserveyml).
+- `plugins.security.dls.mode` (Static): Sets the document-level security (DLS) evaluation mode. Default is `adaptive`. See [How to set the DLS evaluation mode]({{site.url}}{{site.baseurl}}/security/access-control/document-level-security/#how-to-set-the-dls-evaluation-mode-in-mcdeskyml).
 
 - `plugins.security.compliance.salt` (Static): The salt to use when generating the hash value for field masking. Must be at least 32 characters. Only ASCII characters are allowed. Optional.
 
@@ -35,7 +35,7 @@ The Security plugin supports the following common settings:
 
 - `config.dynamic.http.anonymous_auth_enabled` (Static): Enables anonymous authentication. This will cause all HTTP authenticators to not challenge. Default is `false`.
 
-- `http.detailed_errors.enabled` (Static): Enables a detailed error message for REST calls performed against the SmartObserve cluster. If set to `true`,  provides the `root_cause` together with the error code. Default is `true`.  
+- `http.detailed_errors.enabled` (Static): Enables a detailed error message for REST calls performed against the MCdesk cluster. If set to `true`,  provides the `root_cause` together with the error code. Default is `true`.  
 
 ## REST management API settings
 
@@ -63,12 +63,12 @@ The Security plugin supports the following advanced settings:
 
 - `plugins.security.authcz.rest_impersonation_user` (Static): Enables REST layer impersonation. This allows users to impersonate as other users. See [User impersonation]({{site.url}}{{site.baseurl}}/security/access-control/impersonation/).
 
-- `plugins.security.allow_default_init_securityindex` (Static): When set to `true`, SmartObserve Security will automatically initialize the configuration index with the files in the `/config` directory if the index does not exist.
+- `plugins.security.allow_default_init_securityindex` (Static): When set to `true`, MCdesk Security will automatically initialize the configuration index with the files in the `/config` directory if the index does not exist.
 
   This will use well-known default passwords. Use only in a private network/environment.
   {: .warning}
 
-- `plugins.security.allow_unsafe_democertificates` (Static): When set to `true`, SmartObserve starts up with demo certificates. These certificates are issued only for demo purposes.
+- `plugins.security.allow_unsafe_democertificates` (Static): When set to `true`, MCdesk starts up with demo certificates. These certificates are issued only for demo purposes.
 
   These certificates are well known and therefore unsafe for production. Use only in a private network/environment.
   {: .warning}
@@ -86,7 +86,7 @@ The Security plugin supports the following expert-level settings:
 
 - `plugins.security.cert.oid` (Static): Defines the Object Identifier (OID) of server node certificates.
 
-- `plugins.security.cert.intercluster_request_evaluator_class` (Static): Specifies the implementation of `org.smartobserve.security.transport.InterClusterRequestEvaluator` that is used to evaluate intercluster requests. Instances of `org.smartobserve.security.transport.InterClusterRequestEvaluator` must implement a single-argument constructor that takes an `org.smartobserve.common.settings.Settings` object.
+- `plugins.security.cert.intercluster_request_evaluator_class` (Static): Specifies the implementation of `org.mcdesk.security.transport.InterClusterRequestEvaluator` that is used to evaluate intercluster requests. Instances of `org.mcdesk.security.transport.InterClusterRequestEvaluator` must implement a single-argument constructor that takes an `org.mcdesk.common.settings.Settings` object.
 
 - `plugins.security.enable_snapshot_restore_privilege` (Static): When set to `false`, this setting disables snapshot restore for regular users. In this case, only snapshot restore requests signed by an admin TLS certificate are accepted. When set to `true` (default), regular users can restore snapshots if they have the `cluster:admin/snapshot/restore`, `indices:admin/create`, and `indices:data/write/index` privileges.
 
@@ -97,7 +97,7 @@ The Security plugin supports the following expert-level settings:
 
 - `plugins.security.cache.ttl_minutes` (Static): Determines how long it takes for authentication caching to time out. The authentication cache helps speed up authentication by temporarily storing user objects returned from the backend so that the Security plugin is not required to make repeated requests for them. Set the value in minutes. The default is `60`. Disable caching by setting the value to `0`.
 
-- `plugins.security.disabled` (Static): Disables SmartObserve Security.
+- `plugins.security.disabled` (Static): Disables MCdesk Security.
 
   Disabling this plugin can expose your configuration (including passwords) to the public.
   {:warning}
@@ -112,7 +112,7 @@ The Security plugin supports the following expert-level settings:
 
 - `plugins.security.system_indices.indices` (Static): A list of indexes to be used as system indexes. This setting is controlled by the `plugins.security.system_indices.enabled` setting.
 
-- `plugins.security.allow_default_init_securityindex` (Static): When set to `true`, sets the Security plugin to its default security settings if an attempt to create the security index fails when SmartObserve launches. Default security settings are stored in YAML files contained in the `smartobserve-project/security/config` directory. Default is `false`.
+- `plugins.security.allow_default_init_securityindex` (Static): When set to `true`, sets the Security plugin to its default security settings if an attempt to create the security index fails when MCdesk launches. Default security settings are stored in YAML files contained in the `mcdesk-project/security/config` directory. Default is `false`.
 
 - `plugins.security.cert.intercluster_request_evaluator_class` (Static): A class to be used for evaluating intercluster communication.
 
@@ -185,7 +185,7 @@ The Security plugin supports the following audit log settings:
 
 - `plugins.security.audit.ignore_users` (Dynamic): An array of users. Audit requests from the users in the list will not be logged.
 
-- `plugins.security.audit.type` (Static): The destination of audit log events. Valid values are `internal_smartobserve`, `external_smartobserve`, `debug`, and `webhook`.
+- `plugins.security.audit.type` (Static): The destination of audit log events. Valid values are `internal_mcdesk`, `external_mcdesk`, `debug`, and `webhook`.
 
 - `plugins.security.audit.config.http_endpoints` (Static): A list of endpoints for `localhost`.
 
@@ -406,7 +406,7 @@ plugins.security.allow_unsafe_democertificates: true
 plugins.security.allow_default_init_securityindex: true
 plugins.security.nodes_dn_dynamic_config_enabled: false
 plugins.security.cert.intercluster_request_evaluator_class: # need example value for this.
-plugins.security.audit.type: internal_smartobserve
+plugins.security.audit.type: internal_mcdesk
 plugins.security.enable_snapshot_restore_privilege: true
 plugins.security.check_snapshot_restore_write_privileges: true
 plugins.security.cache.ttl_minutes: 60
@@ -431,9 +431,9 @@ plugins.security.audit.ignore_requests: ["indices:data/read/*","*_bulk"]
 plugins.security.audit.threadpool.size: 10
 plugins.security.audit.threadpool.max_queue_len: 100000
 plugins.security.audit.ignore_users: ['kibanaserver','some*user','/also.*regex possible/']
-plugins.security.audit.type: internal_smartobserve
+plugins.security.audit.type: internal_mcdesk
 #
-# external_smartobserve settings
+# external_mcdesk settings
 plugins.security.audit.config.http_endpoints: ['localhost:9200','localhost:9201','localhost:9202']
 plugins.security.audit.config.index: "'auditlog6-'2023.06.15"
 plugins.security.audit.config.type: auditlog
@@ -495,7 +495,7 @@ plugins.security.ssl.transport.client.keystore_alias: my_other_alias
 plugins.security.ssl.transport.server.truststore_alias: trustore_alias_1
 plugins.security.ssl.transport.client.truststore_alias: trustore_alias_2
 plugins.security.ssl.client.external_context_id: my_context_id
-plugins.security.ssl.transport.principal_extractor_class: org.smartobserve.security.ssl.ExampleExtractor
+plugins.security.ssl.transport.principal_extractor_class: org.mcdesk.security.ssl.ExampleExtractor
 plugins.security.ssl.http.crl.file_path: ssl/crl/revoked.crl
 plugins.security.ssl.http.crl.validate: true
 plugins.security.ssl.http.crl.prefer_crlfile_over_ocsp: true
@@ -504,10 +504,10 @@ plugins.security.ssl.http.crl.disable_ocsp: true
 plugins.security.ssl.http.crl.disable_crldp: true
 plugins.security.ssl.allow_client_initiated_renegotiation: true
 #
-# Expert settings - use only if you understand their use completely: accidental values can potentially cause security risks or failures to SmartObserve Security.
+# Expert settings - use only if you understand their use completely: accidental values can potentially cause security risks or failures to MCdesk Security.
 plugins.security.config_index_name: .opendistro_security
 plugins.security.cert.oid: '1.2.3.4.5.5'
-plugins.security.cert.intercluster_request_evaluator_class: org.smartobserve.security.transport.DefaultInterClusterRequestEvaluator
+plugins.security.cert.intercluster_request_evaluator_class: org.mcdesk.security.transport.DefaultInterClusterRequestEvaluator
 plugins.security.enable_snapshot_restore_privilege: true
 plugins.security.check_snapshot_restore_write_privileges: true
 plugins.security.cache.ttl_minutes: 60
@@ -516,6 +516,6 @@ plugins.security.protected_indices.enabled: true
 plugins.security.protected_indices.roles: ['all_access']
 plugins.security.protected_indices.indices: []
 plugins.security.system_indices.enabled: true
-plugins.security.system_indices.indices: ['.opendistro-alerting-config', '.opendistro-ism-*', '.opendistro-reports-*', '.smartobserve-notifications-*', '.smartobserve-notebooks', '.smartobserve-observability', '.opendistro-asynchronous-search-response*', '.replication-metadata-store']
+plugins.security.system_indices.indices: ['.opendistro-alerting-config', '.opendistro-ism-*', '.opendistro-reports-*', '.mcdesk-notifications-*', '.mcdesk-notebooks', '.mcdesk-observability', '.opendistro-asynchronous-search-response*', '.replication-metadata-store']
 ```
 {% include copy.html %}

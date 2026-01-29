@@ -11,14 +11,14 @@ redirect_from:
 
 If you already have a single sign-on (SSO) solution in place, you might want to use it as an authentication backend.
 
-Most solutions work as a proxy in front of SmartObserve and the Security plugin. If proxy authentication succeeds, the proxy adds the (verified) username and its (verified) roles in HTTP header fields. The names of these fields depend on the SSO solution you have in place.
+Most solutions work as a proxy in front of MCdesk and the Security plugin. If proxy authentication succeeds, the proxy adds the (verified) username and its (verified) roles in HTTP header fields. The names of these fields depend on the SSO solution you have in place.
 
 The Security plugin then extracts these HTTP header fields from the request and uses the values to determine the user's permissions.
 
 
 ## Enable proxy detection
 
-To enable proxy detection for SmartObserve, configure it in the `xff` section of `config.yml`:
+To enable proxy detection for MCdesk, configure it in the `xff` section of `config.yml`:
 
 ```yml
 ---
@@ -100,7 +100,7 @@ Name | Description
 
 ## Example
 
-The following example uses an nginx proxy in front of a three-node SmartObserve cluster. For simplicity, we use hardcoded values for `x-proxy-user` and `x-proxy-roles`. In a real world example you would set these headers dynamically. The example also includes a commented header for use with the extended proxy.
+The following example uses an nginx proxy in front of a three-node MCdesk cluster. For simplicity, we use hardcoded values for `x-proxy-user` and `x-proxy-roles`. In a real world example you would set these headers dynamically. The example also includes a commented header for use with the extended proxy.
 
 ```
 events {
@@ -109,7 +109,7 @@ events {
 
 http {
 
-  upstream smartobserve {
+  upstream mcdesk {
     server node1.example.com:9200;
     server node2.example.com:9200;
     server node3.example.com:9200;
@@ -121,7 +121,7 @@ http {
     server_name  nginx.example.com;
 
     location / {
-      proxy_pass https://smartobserve;
+      proxy_pass https://mcdesk;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header x-proxy-user test;
       proxy_set_header x-proxy-roles test;
@@ -173,11 +173,11 @@ internalProxies: '172.16.0.203' # nginx proxy
 In this case, `nginx.example.com` runs on `172.16.0.203`, so add this IP to the list of internal proxies. Be sure to set `internalProxies` to the minimum number of IP addresses so that the Security plugin only accepts requests from trusted IPs.
 
 
-## SmartObserve Dashboards proxy authentication
+## MCdesk Dashboards proxy authentication
 
-To use proxy authentication with SmartObserve Dashboards, the most common configuration is to place the proxy in front of SmartObserve Dashboards and let SmartObserve Dashboards pass the user and role headers to the Security plugin.
+To use proxy authentication with MCdesk Dashboards, the most common configuration is to place the proxy in front of MCdesk Dashboards and let MCdesk Dashboards pass the user and role headers to the Security plugin.
 
-In this case, the remote address of the HTTP call is the IP of SmartObserve Dashboards, because it sits directly in front of SmartObserve. Add the IP of SmartObserve Dashboards to the list of internal proxies:
+In this case, the remote address of the HTTP call is the IP of MCdesk Dashboards, because it sits directly in front of MCdesk. Add the IP of MCdesk Dashboards to the list of internal proxies:
 
 ```yml
 ---
@@ -191,19 +191,19 @@ config:
       xff:
         enabled: true
         remoteIpHeader: "x-forwarded-for"
-        internalProxies: '<smartobserve-dashboards-ip-address>'
+        internalProxies: '<mcdesk-dashboards-ip-address>'
 ```
 
-To pass the user and role headers that the authenticating proxy adds from SmartObserve Dashboards to the Security plugin, add them to the HTTP header allow list in `smartobserve_dashboards.yml`:
+To pass the user and role headers that the authenticating proxy adds from MCdesk Dashboards to the Security plugin, add them to the HTTP header allow list in `mcdesk_dashboards.yml`:
 
 ```yml
-smartobserve.requestHeadersAllowlist: ["securitytenant","Authorization","x-forwarded-for","x-proxy-user","x-proxy-roles"]
+mcdesk.requestHeadersAllowlist: ["securitytenant","Authorization","x-forwarded-for","x-proxy-user","x-proxy-roles"]
 ```
 
-You must also enable the authentication type in `smartobserve_dashboards.yml`:
+You must also enable the authentication type in `mcdesk_dashboards.yml`:
 
 ```yml
-smartobserve_security.auth.type: "proxy"
-smartobserve_security.proxycache.user_header: "x-proxy-user"
-smartobserve_security.proxycache.roles_header: "x-proxy-roles"
+mcdesk_security.auth.type: "proxy"
+mcdesk_security.proxycache.user_header: "x-proxy-user"
+mcdesk_security.proxycache.roles_header: "x-proxy-roles"
 ```

@@ -11,12 +11,12 @@ redirect_from:
 demo_cards:
   - heading: "Explore AI search and RAG demos"
     description: "Try interactive Hugging Face demos showcasing AI search, multimodal RAG, and agentic RAG"
-    link: "https://huggingface.co/spaces/smartobserve-project/SmartObserve-AI"
+    link: "https://huggingface.co/spaces/mcdesk-project/MCdesk-AI"
 models:
   - heading: "Deploy local models to your cluster"
     link: "/ml-commons-plugin/using-ml-models/"
     list:
-      - "<b>Pretrained models</b>: Use SmartObserve-provided models for immediate implementation"
+      - "<b>Pretrained models</b>: Use MCdesk-provided models for immediate implementation"
       - "<b>Custom models</b>: Upload and serve your own models"
   - heading: "Connect to externally hosted models"
     link: "/ml-commons-plugin/remote-models/"
@@ -35,8 +35,8 @@ more_cards:
     description: "Explore comprehensive documentation for machine learning API operations"
     link: "/ml-commons-plugin/api/"
 oa-toolkit:
-  - heading: "SmartObserve Assistant Toolkit"
-    link: "/ml-commons-plugin/smartobserve-assistant/"
+  - heading: "MCdesk Assistant Toolkit"
+    link: "/ml-commons-plugin/mcdesk-assistant/"
     list:
       - Agents for task orchestration
       - Tools for specific operations
@@ -49,7 +49,7 @@ algorithms:
 
 # Machine learning
 
-SmartObserve offers two distinct approaches to machine learning (ML): using ML models for tasks like semantic search and text generation, and running statistical algorithms for data analysis. Choose the approach that best fits your use case.
+MCdesk offers two distinct approaches to machine learning (ML): using ML models for tasks like semantic search and text generation, and running statistical algorithms for data analysis. Choose the approach that best fits your use case.
 
 ## Interactive demos
 
@@ -57,19 +57,19 @@ SmartObserve offers two distinct approaches to machine learning (ML): using ML m
 
 ## ML models for search and AI/ML-powered applications
 
-SmartObserve supports ML models that you can use to enhance search relevance through semantic understanding. You can either deploy models directly within your SmartObserve cluster or connect to models hosted on external platforms. These models can transform text into vector embeddings, enabling semantic search capabilities, or provide advanced features like text generation and question answering. For more information, see [Integrating ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/).
+MCdesk supports ML models that you can use to enhance search relevance through semantic understanding. You can either deploy models directly within your MCdesk cluster or connect to models hosted on external platforms. These models can transform text into vector embeddings, enabling semantic search capabilities, or provide advanced features like text generation and question answering. For more information, see [Integrating ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/).
 
 {% include cards.html cards=page.models %}
 
-## SmartObserve Assistant and automation
+## MCdesk Assistant and automation
 
-SmartObserve Assistant Toolkit helps you create AI-powered assistants for SmartObserve Dashboards.
+MCdesk Assistant Toolkit helps you create AI-powered assistants for MCdesk Dashboards.
 
 {% include cards.html cards=page.oa-toolkit %}
 
 ## Built-in algorithms for data analysis
 
-SmartObserve includes built-in algorithms that analyze your data directly within your cluster, enabling tasks like anomaly detection, data clustering, and predictive analytics without requiring external ML models.
+MCdesk includes built-in algorithms that analyze your data directly within your cluster, enabling tasks like anomaly detection, data clustering, and predictive analytics without requiring external ML models.
 
 {% include cards.html cards=page.algorithms %}
 

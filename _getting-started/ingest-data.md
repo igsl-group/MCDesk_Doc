@@ -4,14 +4,14 @@ title: Ingest data
 nav_order: 40
 ---
 
-# Ingest your data into SmartObserve
+# Ingest your data into MCdesk
 
-There are several ways to ingest data into SmartObserve:
+There are several ways to ingest data into MCdesk:
 
 - Ingest individual documents. For more information, see [Indexing documents]({{site.url}}{{site.baseurl}}/getting-started/communicate/#indexing-documents).
 - Index multiple documents in bulk. For more information, see [Bulk indexing](#bulk-indexing).
-- Use Data Prepper---an SmartObserve server-side data collector that can enrich data for downstream analysis and visualization. For more information, see [Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/). 
-- Use other ingestion tools. For more information, see [SmartObserve tools]({{site.url}}{{site.baseurl}}/tools/).
+- Use Data Prepper---an MCdesk server-side data collector that can enrich data for downstream analysis and visualization. For more information, see [Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/). 
+- Use other ingestion tools. For more information, see [MCdesk tools]({{site.url}}{{site.baseurl}}/tools/).
 
 ## Bulk indexing
 
@@ -28,41 +28,41 @@ POST _bulk
 
 ## Experiment with sample data
 
-SmartObserve provides a fictitious e-commerce dataset that you can use to experiment with REST API requests and SmartObserve Dashboards visualizations. You can create an index and define field mappings by downloading the corresponding dataset and mapping files. 
+MCdesk provides a fictitious e-commerce dataset that you can use to experiment with REST API requests and MCdesk Dashboards visualizations. You can create an index and define field mappings by downloading the corresponding dataset and mapping files. 
 
 ### Create a sample index
 
 Use the following steps to create a sample index and define field mappings for the document fields:
 
-1. Download [ecommerce-field_mappings.json](https://github.com/igsl-group/documentation-website/blob/{{site.smartobserve_major_minor_version}}/assets/examples/ecommerce-field_mappings.json). This file defines a [mapping]({{site.url}}{{site.baseurl}}/smartobserve/mappings/) for the sample data you will use.
+1. Download [ecommerce-field_mappings.json](https://github.com/igsl-group/documentation-website/blob/{{site.mcdesk_major_minor_version}}/assets/examples/ecommerce-field_mappings.json). This file defines a [mapping]({{site.url}}{{site.baseurl}}/mcdesk/mappings/) for the sample data you will use.
     
     To use cURL, send the following request:
 
     ```bash
-    curl -O https://raw.githubusercontent.com/smartobserve-project/documentation-website/{{site.smartobserve_major_minor_version}}/assets/examples/ecommerce-field_mappings.json
+    curl -O https://raw.githubusercontent.com/mcdesk-project/documentation-website/{{site.mcdesk_major_minor_version}}/assets/examples/ecommerce-field_mappings.json
     ```
     {% include copy.html %}
 
     To use wget, send the following request:
 
     ```
-    wget https://raw.githubusercontent.com/smartobserve-project/documentation-website/{{site.smartobserve_major_minor_version}}/assets/examples/ecommerce-field_mappings.json
+    wget https://raw.githubusercontent.com/mcdesk-project/documentation-website/{{site.mcdesk_major_minor_version}}/assets/examples/ecommerce-field_mappings.json
     ```
     {% include copy.html %}
 
-1. Download [ecommerce.ndjson](https://github.com/igsl-group/documentation-website/blob/{{site.smartobserve_major_minor_version}}/assets/examples/ecommerce.ndjson). This file contains the index data formatted so that it can be ingested by the Bulk API:
+1. Download [ecommerce.ndjson](https://github.com/igsl-group/documentation-website/blob/{{site.mcdesk_major_minor_version}}/assets/examples/ecommerce.ndjson). This file contains the index data formatted so that it can be ingested by the Bulk API:
     
     To use cURL, send the following request:
 
     ```bash
-    curl -O https://raw.githubusercontent.com/smartobserve-project/documentation-website/{{site.smartobserve_major_minor_version}}/assets/examples/ecommerce.ndjson
+    curl -O https://raw.githubusercontent.com/mcdesk-project/documentation-website/{{site.mcdesk_major_minor_version}}/assets/examples/ecommerce.ndjson
     ```
     {% include copy.html %}
 
     To use wget, send the following request:
 
     ```
-    wget https://raw.githubusercontent.com/smartobserve-project/documentation-website/{{site.smartobserve_major_minor_version}}/assets/examples/ecommerce.ndjson
+    wget https://raw.githubusercontent.com/mcdesk-project/documentation-website/{{site.mcdesk_major_minor_version}}/assets/examples/ecommerce.ndjson
     ```
     {% include copy.html %}
 
@@ -97,13 +97,13 @@ GET ecommerce/_search
 
 ### Visualize the data
 
-To learn how to use SmartObserve Dashboards to visualize the data, see the [SmartObserve Dashboards quickstart guide]({{site.url}}{{site.baseurl}}/dashboards/quickstart/).
+To learn how to use MCdesk Dashboards to visualize the data, see the [MCdesk Dashboards quickstart guide]({{site.url}}{{site.baseurl}}/dashboards/quickstart/).
 
 ## Further reading
 
 - For information about Data Prepper, see [Data Prepper]({{site.url}}{{site.baseurl}}/data-prepper/).
-- For information about ingestion tools, see [SmartObserve tools]({{site.url}}{{site.baseurl}}/tools/).
-- For information about SmartObserve Dashboards, see [SmartObserve Dashboards quickstart guide]({{site.url}}{{site.baseurl}}/dashboards/quickstart/).
+- For information about ingestion tools, see [MCdesk tools]({{site.url}}{{site.baseurl}}/tools/).
+- For information about MCdesk Dashboards, see [MCdesk Dashboards quickstart guide]({{site.url}}{{site.baseurl}}/dashboards/quickstart/).
 - For information about bulk indexing, see [Bulk API]({{site.url}}{{site.baseurl}}/api-reference/document-apis/bulk/).
 
 ## Next steps

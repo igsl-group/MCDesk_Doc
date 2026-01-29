@@ -1,18 +1,18 @@
 ---
 layout: default
 title: Configuring AI search types
-parent: Building AI search workflows in SmartObserve Dashboards
+parent: Building AI search workflows in MCdesk Dashboards
 grand_parent: AI search
 nav_order: 10
 ---
 
 # Configuring AI search types
 
-This page provides example configurations for different AI search workflow types. Each example shows how to tailor the setup to a specific use case, such as semantic search or hybrid retrieval. To build a workflow from start to finish, follow the steps in [Building AI search workflows in SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/vector-search/ai-search/workflow-builder/), applying your use case configuration to the appropriate parts of the setup. 
+This page provides example configurations for different AI search workflow types. Each example shows how to tailor the setup to a specific use case, such as semantic search or hybrid retrieval. To build a workflow from start to finish, follow the steps in [Building AI search workflows in MCdesk Dashboards]({{site.url}}{{site.baseurl}}/vector-search/ai-search/workflow-builder/), applying your use case configuration to the appropriate parts of the setup. 
 
 ## Prerequisite: Provision ML resources
 
-Before you start, select and provision the necessary machine learning (ML) resources, depending on your use case. For example, to implement semantic search, you must configure a text embedding model in your SmartObserve cluster. For more information about deploying ML models locally or connecting to externally hosted models, see [Integrating ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/).
+Before you start, select and provision the necessary machine learning (ML) resources, depending on your use case. For example, to implement semantic search, you must configure a text embedding model in your MCdesk cluster. For more information about deploying ML models locally or connecting to externally hosted models, see [Integrating ML models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/).
 
 <details markdown="block">
   <summary>
@@ -321,7 +321,7 @@ Configure a single ML inference processor. Map your input text field to the `tex
 
 Reranking can be implemented in various ways, depending on the capabilities of the model used. Typically, models require at least two inputs: the original query and the data to be assigned a relevance score. Some models support batching, allowing multiple results to be processed in a single inference call, while others require scoring each result individually.
 
-In SmartObserve, this leads to two common reranking patterns:
+In MCdesk, this leads to two common reranking patterns:
 
 1. **Batching enabled**
 

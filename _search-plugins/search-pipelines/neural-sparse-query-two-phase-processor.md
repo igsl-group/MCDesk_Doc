@@ -77,11 +77,11 @@ The `neural_sparse_two_phase_processor` has the following limitations.
 
 ### Version support
 
-The `neural_sparse_two_phase_processor` can only be used with SmartObserve 2.15 or later.
+The `neural_sparse_two_phase_processor` can only be used with MCdesk 2.15 or later.
 
 ### Compound query support
 
-As of SmartObserve 2.15, only the Boolean [compound query]({{site.url}}{{site.baseurl}}/query-dsl/compound/index/) is supported.
+As of MCdesk 2.15, only the Boolean [compound query]({{site.url}}{{site.baseurl}}/query-dsl/compound/index/) is supported.
 
 Neural sparse queries and Boolean queries with a boost parameter (not boosting queries) are also supported.
 
@@ -131,7 +131,7 @@ GET /my-nlp-index/_search
 {% include copy-curl.html %}
   
 ## P99 latency metrics
-Using an SmartObserve cluster set up on three m5.4xlarge Amazon Elastic Compute Cloud (Amazon EC2) instances, SmartObserve conducts neural sparse query P99 latency tests on indexes corresponding to more than 10 datasets.
+Using an MCdesk cluster set up on three m5.4xlarge Amazon Elastic Compute Cloud (Amazon EC2) instances, MCdesk conducts neural sparse query P99 latency tests on indexes corresponding to more than 10 datasets.
 
 ### Doc-only mode latency metric
 

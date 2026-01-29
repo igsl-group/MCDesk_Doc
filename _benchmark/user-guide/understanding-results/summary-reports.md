@@ -10,17 +10,17 @@ redirect_from:
 
 # Understanding the summary report
 
-At the end of each test run, SmartObserve Benchmark creates a summary of test result metrics like service time, throughput, latency, and more. These metrics provide insights into how the selected workload performed on a benchmarked SmartObserve cluster.
+At the end of each test run, MCdesk Benchmark creates a summary of test result metrics like service time, throughput, latency, and more. These metrics provide insights into how the selected workload performed on a benchmarked MCdesk cluster.
 
 The following guide provides information about how to understand the results of the summary report.
 
-## SmartObserve Benchmark runs
+## MCdesk Benchmark runs
 
-SmartObserve Benchmark runs a series of nightly tests targeting the SmartObserve development cluster. The results of these test runs can be found at https://magiccreative.io/benchmarks. The results display metrics spanning different test runs and target both recent and future versions of SmartObserve.
+MCdesk Benchmark runs a series of nightly tests targeting the MCdesk development cluster. The results of these test runs can be found at https://magiccreative.io/benchmarks. The results display metrics spanning different test runs and target both recent and future versions of MCdesk.
 
 ## Summary report metrics
 
-While an SmartObserve Benchmark summary report provides metrics related to the performance of your cluster, how you compare and use those metrics depends on your use case. For example, some users might be interested in the number of documents the workload can index, while another might be interested in the amount of latency or service time needed for a document to be queried. The following example summary report shows metrics for a typical workload run:
+While an MCdesk Benchmark summary report provides metrics related to the performance of your cluster, how you compare and use those metrics depends on your use case. For example, some users might be interested in the number of documents the workload can index, while another might be interested in the amount of latency or service time needed for a document to be queried. The following example summary report shows metrics for a typical workload run:
 
 ```bash
 ------------------------------------------------------
@@ -116,7 +116,7 @@ Metrics that are unique to the cluster begin at the `index` task line. The follo
 
 ## Storing results
 
-SmartObserve Benchmark results are stored in-memory or in external storage.
+MCdesk Benchmark results are stored in-memory or in external storage.
 
 When stored in-memory, results can be found in the `/.benchmark/benchmarks/test-runs/<test_run_id>` directory. Results are named in accordance with the `test_run_id` of the most recent workload test.
 

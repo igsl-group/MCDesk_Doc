@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Dynamic configuration in SmartObserve Dashboards
-parent: SmartObserve Dashboards multi-tenancy
+title: Dynamic configuration in MCdesk Dashboards
+parent: MCdesk Dashboards multi-tenancy
 nav_order: 147
 ---
 
 
-# Dynamic configuration in SmartObserve Dashboards
+# Dynamic configuration in MCdesk Dashboards
 
-Multi-tenancy includes dynamic configuration options in SmartObserve Dashboards so you can manage common settings for tenancy without having to make changes to the configuration YAML files on each node and then restart the cluster. You can take advantage of this functionality by using the Dashboards interface or the REST API. The following list includes descriptions of the options currently covered by dynamic configuration:
+Multi-tenancy includes dynamic configuration options in MCdesk Dashboards so you can manage common settings for tenancy without having to make changes to the configuration YAML files on each node and then restart the cluster. You can take advantage of this functionality by using the Dashboards interface or the REST API. The following list includes descriptions of the options currently covered by dynamic configuration:
 
 - **Disable or enable multi-tenancy**: Administrators can disable and enable multi-tenancy dynamically. Disabling multi-tenancy does not pose a risk of data loss. If and when an administrator chooses to reenable tenancy, all previously saved objects are preserved and made available. The default is `multitenancy_enabled: true`.
   
@@ -16,14 +16,14 @@ Multi-tenancy includes dynamic configuration options in SmartObserve Dashboards 
   {: .note }
 
 - **Disable or enable private tenant**: This option allows administrators to enable and disable private tenants. As with the enable multi-tenancy setting, when private tenants are reenabled all previously saved objects are preserved and made available.
-- **Default tenant**: This option allows an administrator to choose either a global, private, or custom tenant as the default when users log in. In cases where a user doesn't have access to the default tenant (for example, if a custom tenant unavailable to the user was specified as the default), the default transitions to the preferred tenant, which is specified by the `smartobserve_security.multitenancy.tenants.preferred` setting in the `smartobserve-dashboards.yml` file. See [Multi-tenancy configuration]({{site.url}}{{site.baseurl}}/security/multi-tenancy/multi-tenancy-config/) for more information about this setting.
+- **Default tenant**: This option allows an administrator to choose either a global, private, or custom tenant as the default when users log in. In cases where a user doesn't have access to the default tenant (for example, if a custom tenant unavailable to the user was specified as the default), the default transitions to the preferred tenant, which is specified by the `mcdesk_security.multitenancy.tenants.preferred` setting in the `mcdesk-dashboards.yml` file. See [Multi-tenancy configuration]({{site.url}}{{site.baseurl}}/security/multi-tenancy/multi-tenancy-config/) for more information about this setting.
 
 Depending on the specific changes made to multi-tenancy using dynamic configuration, some users may be logged out of their Dashboards session once the changes are saved. For example, if an admin user disables multi-tenancy, users with either a private or custom tenant as their selected tenant will be logged out and will need to log back in. Similarly, if an admin user disables private tenants, users with the private tenant selected will be logged out and will need to log back in. 
 
 The global tenant, however, is a special case. Because this tenant is never disabled, users with the global tenant selected as their active tenant will experience no interruption to their session. Furthermore, changing the default tenant has no impact on a user's session.
 
 
-## Configuring multi-tenancy in SmartObserve Dashboards
+## Configuring multi-tenancy in MCdesk Dashboards
 
 To configure multi-tenancy in Dashboards, follow these steps:
 
@@ -98,9 +98,9 @@ GET /_plugins/_security/dashboardsinfo
 {
   "user_name" : "admin",
   "not_fail_on_forbidden_enabled" : false,
-  "smartobserve_dashboards_mt_enabled" : true,
-  "smartobserve_dashboards_index" : ".kibana",
-  "smartobserve_dashboards_server_user" : "kibanaserver",
+  "mcdesk_dashboards_mt_enabled" : true,
+  "mcdesk_dashboards_index" : ".kibana",
+  "mcdesk_dashboards_server_user" : "kibanaserver",
   "multitenancy_enabled" : true,
   "private_tenant_enabled" : true,
   "default_tenant" : "Private"

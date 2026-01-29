@@ -18,11 +18,11 @@ The `ip2geo` processor adds information about the geographical location of an IP
 
 ## Getting started
 
-To get started with the `ip2geo` processor, the `smartobserve-geospatial` plugin must be installed. See [Installing plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/) to learn more.
+To get started with the `ip2geo` processor, the `mcdesk-geospatial` plugin must be installed. See [Installing plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/) to learn more.
 
 ## Cluster settings
 
-The IP2Geo data source and `ip2geo` processor node settings are listed in the following table. All settings in this table are dynamic. To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+The IP2Geo data source and `ip2geo` processor node settings are listed in the following table. All settings in this table are dynamic. To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 | Key | Description | Default |
 |--------------------|-------------|---------|
@@ -36,13 +36,13 @@ The IP2Geo data source and `ip2geo` processor node settings are listed in the fo
 
 Before creating the pipeline that uses the `ip2geo` processor, create the IP2Geo data source. The data source defines the endpoint value that will download GeoIP data and specifies the update interval.
 
-SmartObserve provides the following endpoints for GeoLite2 City, GeoLite2 Country, and GeoLite2 ASN databases from [MaxMind](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data), which is shared under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license:
+MCdesk provides the following endpoints for GeoLite2 City, GeoLite2 Country, and GeoLite2 ASN databases from [MaxMind](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data), which is shared under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license:
 
 * GeoLite2 City: https://geoip.maps.magiccreative.io/v1/geolite2-city/manifest.json
 * GeoLite2 Country: https://geoip.maps.magiccreative.io/v1/geolite2-country/manifest.json
 * GeoLite2 ASN: https://geoip.maps.magiccreative.io/v1/geolite2-asn/manifest.json
 
-If an SmartObserve cluster cannot update a data source from the endpoints within 30 days, the cluster does not add GeoIP data to the documents and instead adds `"error":"ip2geo_data_expired"`.
+If an MCdesk cluster cannot update a data source from the endpoints within 30 days, the cluster does not add GeoIP data to the documents and instead adds `"error":"ip2geo_data_expired"`.
 
 ### Data source options
 

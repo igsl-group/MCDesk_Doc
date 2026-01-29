@@ -54,7 +54,7 @@ GET products/_search
 ```
 {% include copy-curl.html %}
 
-For more information about supported date formats, see [Formats]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/#formats).
+For more information about supported date formats, see [Formats]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/#formats).
 
 ### Format
 
@@ -80,7 +80,7 @@ GET /products/_search
 
 ### Missing date components
 
-SmartObserve populates missing date components with the following values:
+MCdesk populates missing date components with the following values:
 
 - `MONTH_OF_YEAR`: `01`
 - `DAY_OF_MONTH`: `01`
@@ -112,7 +112,7 @@ The start date is populated with the default values, so the `gte` parameter used
 
 ### Relative dates
 
-You can specify relative dates by using [date math]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/#date-math).
+You can specify relative dates by using [date math]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/#date-math).
 
 To subtract 1 year and 1 day from the specified date, use the following query:
 
@@ -212,10 +212,10 @@ In addition to [operators](#operators), you can specify the following optional p
 
 Parameter | Data type | Description
 :--- | :--- | :---
-`format` | String | A [format]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/#formats) for dates in this query. Default is the field's mapped format.
-`relation` | String | Indicates how the range query matches values for [`range`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/range/) fields. Valid values are:<br> - `INTERSECTS` (default): Matches documents whose `range` field value intersects the range provided in the query.  <br> - `CONTAINS`: Matches documents whose `range` field value contains the entire range provided in the query. <br> - `WITHIN`: Matches documents whose `range` field value is entirely within the range provided in the query.
+`format` | String | A [format]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/#formats) for dates in this query. Default is the field's mapped format.
+`relation` | String | Indicates how the range query matches values for [`range`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/range/) fields. Valid values are:<br> - `INTERSECTS` (default): Matches documents whose `range` field value intersects the range provided in the query.  <br> - `CONTAINS`: Matches documents whose `range` field value contains the entire range provided in the query. <br> - `WITHIN`: Matches documents whose `range` field value is entirely within the range provided in the query.
 `boost` | Floating-point | A floating-point value that specifies the weight of this field toward the relevance score. Values above 1.0 increase the field’s relevance. Values between 0.0 and 1.0 decrease the field’s relevance. Default is 1.0.
-`time_zone` | String | The time zone used to convert [`date`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/date/) values to UTC in the query. Valid values are ISO 8601 [UTC offsets](https://en.wikipedia.org/wiki/List_of_UTC_offsets) and [IANA time zone IDs](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For more information, see [Time zone](#time-zone).
+`time_zone` | String | The time zone used to convert [`date`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/date/) values to UTC in the query. Valid values are ISO 8601 [UTC offsets](https://en.wikipedia.org/wiki/List_of_UTC_offsets) and [IANA time zone IDs](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For more information, see [Time zone](#time-zone).
 
-If [`search.allow_expensive_queries`]({{site.url}}{{site.baseurl}}/query-dsl/index/#expensive-queries) is set to `false`, then range queries on [`text`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/text/) and [`keyword`]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/keyword/) fields are not executed.
+If [`search.allow_expensive_queries`]({{site.url}}{{site.baseurl}}/query-dsl/index/#expensive-queries) is set to `false`, then range queries on [`text`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/text/) and [`keyword`]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/keyword/) fields are not executed.
 {: .important}

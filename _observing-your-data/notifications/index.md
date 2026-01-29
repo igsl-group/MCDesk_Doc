@@ -11,36 +11,36 @@ redirect_from:
 
 # Notifications
 
-The Notifications plugin provides a central location for all of your notifications from SmartObserve plugins. Using the plugin, you can configure which communication service you want to use and see relevant statistics and troubleshooting information. Currently, the Alerting and ISM plugins have integrated with the Notifications plugin.
+The Notifications plugin provides a central location for all of your notifications from MCdesk plugins. Using the plugin, you can configure which communication service you want to use and see relevant statistics and troubleshooting information. Currently, the Alerting and ISM plugins have integrated with the Notifications plugin.
 
-You can use either SmartObserve Dashboards or the REST API to configure notifications. Dashboards offers a more organized way of selecting a channel type and selecting which SmartObserve plugin sources you want to use, whereas the REST API lets you programmatically define your notification channels for better versioning and reuse later on.
+You can use either MCdesk Dashboards or the REST API to configure notifications. Dashboards offers a more organized way of selecting a channel type and selecting which MCdesk plugin sources you want to use, whereas the REST API lets you programmatically define your notification channels for better versioning and reuse later on.
 
 1. Use the Dashboards UI to first create a channel that receives notifications from other plugins. Supported communication channels include Amazon Chime, Amazon Simple Notification Service (Amazon SNS), Amazon Simple Email Service (Amazon SES), email through SMTP, Slack, Microsoft Teams, and custom webhooks. After you’ve configured your channel and plugin sources, send messages and start tracking your notifications from the Notifications plugin's dashboard.
 
-2. Use the Notifications REST API to configure all of your channel's settings. To use the API, you must have your notification's name, description, channel type, which SmartObserve plugins to use as sources, and other associated URLs or groups.
+2. Use the Notifications REST API to configure all of your channel's settings. To use the API, you must have your notification's name, description, channel type, which MCdesk plugins to use as sources, and other associated URLs or groups.
 
 ## Create a channel
 
-In SmartObserve Dashboards, choose **Notifications**, **Channels**, and **Create channel**.
+In MCdesk Dashboards, choose **Notifications**, **Channels**, and **Create channel**.
 
 1. In the **Name and description** section, specify a name and optional description for your channel.
 2. In the **Configurations** section, select the channel type and enter the necessary information for each type. For more information about configuring a channel that uses Amazon SNS or email, refer to the sections below. If you want to use Amazon Chime or Slack, you need to specify the webhook URL. For more information about using webhooks, see the documentation for [Slack](https://api.slack.com/messaging/webhooks), [Microsoft Teams](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/what-are-webhooks-and-connectors), or [Amazon Chime](https://docs.aws.amazon.com/chime/latest/ug/webhooks.html).
 
 If you want to use custom webhooks, you must specify more information: parameters and headers. For example, if your endpoint requires basic authentication, you might need to add a header with an authorization key and a value of `Basic <Base64-encoded-credential-string>`. You might also need to change `Content-Type` to whatever your webhook requires. Popular values are `application/json`, `application/xml`, and `text/plain`.
 
-This information is stored in plain text in the SmartObserve cluster. We will improve this design in the future, but for now, the encoded credentials (which are neither encrypted nor hashed) might be visible to other SmartObserve users.
+This information is stored in plain text in the MCdesk cluster. We will improve this design in the future, but for now, the encoded credentials (which are neither encrypted nor hashed) might be visible to other MCdesk users.
 
-1. In the **Availability** section, select the SmartObserve plugins you want to use with the notification channel.
+1. In the **Availability** section, select the MCdesk plugins you want to use with the notification channel.
 2. Choose **Create**.
 
 ### Amazon SNS as a channel type
 
-SmartObserve supports Amazon SNS for notifications. This integration with Amazon SNS means that, in addition to the other channel types, the Notifications plugin can send email messages, text messages, and even run AWS Lambda functions using SNS topics. For more information about Amazon SNS, see the [Amazon Simple Notification Service Developer Guide](https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
+MCdesk supports Amazon SNS for notifications. This integration with Amazon SNS means that, in addition to the other channel types, the Notifications plugin can send email messages, text messages, and even run AWS Lambda functions using SNS topics. For more information about Amazon SNS, see the [Amazon Simple Notification Service Developer Guide](https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
 
 The Notifications plugin currently supports two ways to authenticate users:
 
 1. Provide the user with full access to Amazon SNS.
-2. Let the user assume an AWS Identity and Access Management (IAM) role that has permissions to access Amazon SNS. Once you configure the notification channel to use the right Amazon SNS permissions, select the SmartObserve plugins that can trigger notifications.
+2. Let the user assume an AWS Identity and Access Management (IAM) role that has permissions to access Amazon SNS. Once you configure the notification channel to use the right Amazon SNS permissions, select the MCdesk plugins that can trigger notifications.
 
 ### Provide full Amazon SNS access permissions
 
@@ -103,7 +103,7 @@ Then add this policy into the IAM user’s trust relationship to actually assume
 
 ### Host deny list
 
-Define IP ranges or hostnames where SmartObserve nodes should not initiate requests. 
+Define IP ranges or hostnames where MCdesk nodes should not initiate requests. 
 
 ## Email as a channel type
 
@@ -113,8 +113,8 @@ To send or receive notifications with email, choose **Email** as the channel typ
 
 1. Specify a unique name to associate with the sender.
 2. Enter an email address and, if applicable, its host (for example, smtp.gmail.com) and the port. If you're using Amazon SES, enter the IAM role Amazon Resource Name (ARN) of the AWS account to send notifications from, along with the AWS Region.
-3. Choose an encryption method. Most email providers require Secure Sockets Layer (SSL) or Transport Layer Security (TLS), which require a user name and password in the SmartObserve keystore. See [Authenticate sender account](#authenticate-sender-account) to learn more. Selecting an encryption method is only applicable if you're creating an SMTP sender.
-4. Choose **Create** to save the configuration and create the sender. You can create a sender before you add your credentials to the SmartObserve keystore; however, you must [authenticate each sender account](#authenticate-sender-account) before you use the sender in your channel configuration.
+3. Choose an encryption method. Most email providers require Secure Sockets Layer (SSL) or Transport Layer Security (TLS), which require a user name and password in the MCdesk keystore. See [Authenticate sender account](#authenticate-sender-account) to learn more. Selecting an encryption method is only applicable if you're creating an SMTP sender.
+4. Choose **Create** to save the configuration and create the sender. You can create a sender before you add your credentials to the MCdesk keystore; however, you must [authenticate each sender account](#authenticate-sender-account) before you use the sender in your channel configuration.
 
 ### Create email recipient group
 
@@ -124,14 +124,14 @@ To send or receive notifications with email, choose **Email** as the channel typ
 
 ### Authenticate sender account
 
-If your email provider requires SSL or TLS, you must authenticate each sender account before you can send an email. Enter the sender account credentials in the SmartObserve keystore using the command line interface (CLI). Run the following commands (in your SmartObserve directory) to enter your user name and password. The &lt;sender_name&gt; is the name you entered for **Sender** earlier.
+If your email provider requires SSL or TLS, you must authenticate each sender account before you can send an email. Enter the sender account credentials in the MCdesk keystore using the command line interface (CLI). Run the following commands (in your MCdesk directory) to enter your user name and password. The &lt;sender_name&gt; is the name you entered for **Sender** earlier.
 
 ```json
-/usr/share/smartobserve/bin/smartobserve-keystore add smartobserve.notifications.core.email.<sender_name>.username
-/usr/share/smartobserve/bin/smartobserve-keystore add smartobserve.notifications.core.email.<sender_name>.password
+/usr/share/mcdesk/bin/mcdesk-keystore add mcdesk.notifications.core.email.<sender_name>.username
+/usr/share/mcdesk/bin/mcdesk-keystore add mcdesk.notifications.core.email.<sender_name>.password
 ```
 
-To change or update your credentials (after you’ve added them to the keystore on every node), call the reload API to automatically update those credentials without restarting SmartObserve.
+To change or update your credentials (after you’ve added them to the keystore on every node), call the reload API to automatically update those credentials without restarting MCdesk.
 
 ```json
 POST _nodes/reload_secure_settings

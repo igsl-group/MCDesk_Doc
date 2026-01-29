@@ -5,7 +5,7 @@ items:
       - label: Releases
         url: https://magiccreative.io/releases.html
       - label: Roadmap
-        url: https://github.com/orgs/smartobserve-project/projects/1
+        url: https://github.com/orgs/mcdesk-project/projects/1
       - label: FAQ
         url: https://magiccreative.io/faq/
   - label: Platform
@@ -40,18 +40,18 @@ items:
       - label: Members
         url: https://magiccreative.io/authors-list/
   - label: Documentation
-    url: https://smartobserve-doc.hopto.org/latest/
+    url: https://mcdesk-doc.hopto.org/latest/
     children:
-      - label: SmartObserve and Dashboards
-        url: https://smartobserve-doc.hopto.org/latest/about/
+      - label: MCdesk and Dashboards
+        url: https://mcdesk-doc.hopto.org/latest/about/
       - label: Data Prepper
-        url: https://smartobserve-doc.hopto.org/latest/data-prepper/
+        url: https://mcdesk-doc.hopto.org/latest/data-prepper/
       - label: Clients
-        url: https://smartobserve-doc.hopto.org/latest/clients/
+        url: https://mcdesk-doc.hopto.org/latest/clients/
       - label: Benchmark
-        url: https://smartobserve-doc.hopto.org/latest/benchmark/
+        url: https://mcdesk-doc.hopto.org/latest/benchmark/
       - label: Migration Assistant
-        url: https://smartobserve-doc.hopto.org/latest/migration-assistant/
+        url: https://mcdesk-doc.hopto.org/latest/migration-assistant/
   - label: Blog
     url: https://magiccreative.io/blog/
   - label: Download

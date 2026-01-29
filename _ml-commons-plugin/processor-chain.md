@@ -23,7 +23,7 @@ Processors execute in the order in which they appear in the array. Each processo
 
 Processor chains are specifically designed for ML workflows and differ from processors in ingest and search pipelines:
 
-- [**Ingest pipelines**]({{site.url}}{{site.baseurl}}/ingest-pipelines/): Transform documents during indexing into SmartObserve.
+- [**Ingest pipelines**]({{site.url}}{{site.baseurl}}/ingest-pipelines/): Transform documents during indexing into MCdesk.
 - [**Search pipelines**]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/): Transform queries and search results during search operations.
 - **Processor chains**: Transform data within ML Commons workflows (agent tools, model inputs/outputs).
 

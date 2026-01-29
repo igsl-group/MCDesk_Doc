@@ -10,14 +10,14 @@ nav_order: 20
 
 A _method_ defines the algorithm used for organizing vector data at indexing time and searching it at search time in [approximate k-NN search]({{site.url}}{{site.baseurl}}/vector-search/vector-search-techniques/approximate-knn/). 
 
-SmartObserve supports the following methods:
+MCdesk supports the following methods:
 
 - **Hierarchical Navigable Small World (HNSW)** creates a hierarchical graph structure of connections between vectors. For more information about the algorithm, see [Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs](https://arxiv.org/abs/1603.09320).
 - **Inverted File Index (IVF)** organizes vectors into buckets based on clustering and, during search, searches only a subset of the buckets.
 
 An _engine_ is the library that implements these methods. Different engines can implement the same method, sometimes with varying optimizations or characteristics. For example, HNSW is implemented by all supported engines, each with its own advantages.
 
-SmartObserve supports the following engines:
+MCdesk supports the following engines:
 - [**Lucene**](#lucene-engine): The native search library, offering an HNSW implementation with efficient filtering capabilities
 - [**Faiss**](#faiss-engine) (Facebook AI Similarity Search): A comprehensive library implementing both the HNSW and IVF methods, with additional vector compression options
 - [**NMSLIB**](#nmslib-engine-deprecated) (Non-Metric Space Library): A legacy implementation of HNSW (now deprecated)
@@ -87,7 +87,7 @@ The Lucene engine supports the following method.
 
 Method name | Requires training | Supported spaces 
 :--- | :--- |:---
-[`hnsw`](#hnsw-parameters) | No | `l2`, `cosinesimil`, `innerproduct` (supported in SmartObserve 2.13 and later) 
+[`hnsw`](#hnsw-parameters) | No | `l2`, `cosinesimil`, `innerproduct` (supported in MCdesk 2.13 and later) 
 
 #### HNSW parameters
 
@@ -95,13 +95,13 @@ The HNSW method supports the following parameters.
 
 Parameter name | Required | Default | Updatable | Description
 :--- | :--- | :--- | :--- | :---
-`ef_construction` | No | 100 | No | The size of the dynamic list used during k-NN graph creation. Higher values result in a more accurate graph but slower indexing speed.<br>Note: Lucene uses the term `beam_width` internally, but the SmartObserve documentation uses `ef_construction` for consistency.
-`m` | No | 16 | No | The number of bidirectional links created for each new element. Impacts memory consumption significantly. Keep between `2` and `100`.<br>Note: Lucene uses the term `max_connections` internally, but the SmartObserve documentation uses `m` for consistency.
+`ef_construction` | No | 100 | No | The size of the dynamic list used during k-NN graph creation. Higher values result in a more accurate graph but slower indexing speed.<br>Note: Lucene uses the term `beam_width` internally, but the MCdesk documentation uses `ef_construction` for consistency.
+`m` | No | 16 | No | The number of bidirectional links created for each new element. Impacts memory consumption significantly. Keep between `2` and `100`.<br>Note: Lucene uses the term `max_connections` internally, but the MCdesk documentation uses `m` for consistency.
 
 The Lucene HNSW implementation ignores `ef_search` and dynamically sets it to the value of "k" in the search request. There is therefore no need to configure settings for `ef_search` when using the Lucene engine.
 {: .note}
 
-An index created in SmartObserve version 2.11 or earlier will still use the previous `ef_construction` value (`512`).
+An index created in MCdesk version 2.11 or earlier will still use the previous `ef_construction` value (`512`).
 {: .note}
 
 ### Example configuration
@@ -127,8 +127,8 @@ The Faiss engine supports the following methods.
 
 Method name | Requires training | Supported spaces 
 :--- | :--- |:---
-[`hnsw`](#hnsw-parameters-1) | No | `l2`, `innerproduct` (not available when [PQ](#pq-parameters) is used), `hamming`, and `cosinesimil` (supported in SmartObserve 2.19 and later).
-[`ivf`](#ivf-parameters) | Yes | `l2`, `innerproduct`, `hamming` (supported for binary vectors in SmartObserve version 2.16 and later. For more information, see [Binary k-NN vectors]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-memory-optimized#binary-vectors), `cosinesimil` (supported in SmartObserve 2.19 and later).
+[`hnsw`](#hnsw-parameters-1) | No | `l2`, `innerproduct` (not available when [PQ](#pq-parameters) is used), `hamming`, and `cosinesimil` (supported in MCdesk 2.19 and later).
+[`ivf`](#ivf-parameters) | Yes | `l2`, `innerproduct`, `hamming` (supported for binary vectors in MCdesk version 2.16 and later. For more information, see [Binary k-NN vectors]({{site.url}}{{site.baseurl}}/field-types/supported-field-types/knn-memory-optimized#binary-vectors), `cosinesimil` (supported in MCdesk 2.19 and later).
 
 
 #### HNSW parameters
@@ -142,7 +142,7 @@ Parameter name | Required | Default | Updatable | Description
 `m` | No | 16 | No | The number of bidirectional links that the plugin creates for each new element. Increasing and decreasing this value can have a large impact on memory consumption. Keep this value between `2` and `100`.
 `encoder` | No | flat | No | An encoder definition for encoding vectors. Encoders can reduce the memory footprint of your index at the expense of search accuracy.
 
-An index created in SmartObserve version 2.11 or earlier will still use the previous `ef_construction` value (`512`).
+An index created in MCdesk version 2.11 or earlier will still use the previous `ef_construction` value (`512`).
 {: .note}
 
 #### IVF parameters
@@ -165,13 +165,13 @@ The IVF algorithm requires a training step. To create an index that uses IVF, yo
 
 You can use encoders to reduce the memory footprint of a vector index at the expense of search accuracy. 
 
-SmartObserve currently supports the following encoders in the Faiss library.
+MCdesk currently supports the following encoders in the Faiss library.
 
 Encoder name | Requires training | Description
 :--- | :--- | :---
 `flat` (Default) | No | Encode vectors as floating-point arrays. This encoding does not reduce memory footprint.
 [`pq`](#pq-parameters) | Yes | An abbreviation for _product quantization_, PQ is a lossy compression technique that uses clustering to encode a vector into a fixed byte size, with the goal of minimizing the drop in k-NN search accuracy. At a high level, vectors are separated into `m` subvectors, and then each subvector is represented by a `code_size` code obtained from a code book produced during training. For more information about product quantization, see [this blog post](https://medium.com/dotstar/understanding-faiss-part-2-79d90b1e5388).
-[`sq`](#sq-parameters) | No | An abbreviation for _scalar quantization_. Starting with SmartObserve version 2.13, you can use the `sq` encoder to quantize 32-bit floating-point vectors into 16-bit floats. In version 2.13, the built-in `sq` encoder is the SQFP16 Faiss encoder. The encoder reduces memory footprint with a minimal loss of precision and improves performance by using SIMD optimization (using AVX2 on x86 architecture or Neon on ARM64 architecture). For more information, see [Faiss scalar quantization]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/faiss-16-bit-quantization/).
+[`sq`](#sq-parameters) | No | An abbreviation for _scalar quantization_. Starting with MCdesk version 2.13, you can use the `sq` encoder to quantize 32-bit floating-point vectors into 16-bit floats. In version 2.13, the built-in `sq` encoder is the SQFP16 Faiss encoder. The encoder reduces memory footprint with a minimal loss of precision and improves performance by using SIMD optimization (using AVX2 on x86 architecture or Neon on ARM64 architecture). For more information, see [Faiss scalar quantization]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/faiss-16-bit-quantization/).
 
 #### PQ parameters
 
@@ -182,7 +182,7 @@ Parameter name | Required | Default | Updatable | Description
 `m` | No | `1` | No |  Determines the number of subvectors into which to separate the vector. Subvectors are encoded independently of each other. This vector dimension must be divisible by `m`. Maximum value is 1,024.
 `code_size` | No | `8` | No | Determines the number of bits into which to encode a subvector. Maximum value is `8`. For `ivf`, this value must be less than or equal to `8`. For `hnsw`, this value must be `8`.
 
-The `hnsw` method supports the `pq` encoder for SmartObserve version 2.10 and later. The `code_size` parameter of a `pq` encoder with the `hnsw` method must be **8**.
+The `hnsw` method supports the `pq` encoder for MCdesk version 2.10 and later. The `code_size` parameter of a `pq` encoder with the `hnsw` method must be **8**.
 {: .important}
 
 #### SQ parameters
@@ -191,14 +191,14 @@ The `sq` encoder supports the following parameters.
 
 Parameter name | Required | Default | Updatable | Description
 :--- | :--- | :-- | :--- | :---
-`type` | No | `fp16` | No |  The type of scalar quantization to be used to encode 32-bit float vectors into the corresponding type. As of SmartObserve 2.13, only the `fp16` encoder type is supported. For the `fp16` encoder, vector values must be in the [-65504.0, 65504.0] range. 
+`type` | No | `fp16` | No |  The type of scalar quantization to be used to encode 32-bit float vectors into the corresponding type. As of MCdesk 2.13, only the `fp16` encoder type is supported. For the `fp16` encoder, vector values must be in the [-65504.0, 65504.0] range. 
 `clip` | No | `false` | No | If `true`, then any vector values outside of the supported range for the specified vector type are rounded so that they are within the range. If `false`, then the request is rejected if any vector values are outside of the supported range. Setting `clip` to `true` may decrease recall.
 
 For more information and examples, see [Using Faiss scalar quantization]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/faiss-16-bit-quantization/).
 
 ### SIMD optimization 
 
-Starting with version 2.13, SmartObserve supports [Single Instruction Multiple Data (SIMD)](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data) processing if the underlying hardware supports SIMD instructions (AVX2 on x64 architecture and Neon on ARM64 architecture). SIMD is supported by default on Linux machines only for the Faiss engine. SIMD architecture helps boost overall performance by improving indexing throughput and reducing search latency. Starting with version 2.18, SmartObserve supports AVX-512 SIMD instructions on x64 architecture. Starting with version 2.19, SmartObserve supports advanced AVX-512 SIMD instructions on x64 architecture for Intel Sapphire Rapids or a newer-generation processor, improving the performance of Hamming distance computation. 
+Starting with version 2.13, MCdesk supports [Single Instruction Multiple Data (SIMD)](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data) processing if the underlying hardware supports SIMD instructions (AVX2 on x64 architecture and Neon on ARM64 architecture). SIMD is supported by default on Linux machines only for the Faiss engine. SIMD architecture helps boost overall performance by improving indexing throughput and reducing search latency. Starting with version 2.18, MCdesk supports AVX-512 SIMD instructions on x64 architecture. Starting with version 2.19, MCdesk supports advanced AVX-512 SIMD instructions on x64 architecture for Intel Sapphire Rapids or a newer-generation processor, improving the performance of Hamming distance computation. 
 
 SIMD optimization is applicable only if the vector dimension is a multiple of 8.
 {: .note}
@@ -209,31 +209,31 @@ SIMD optimization is applicable only if the vector dimension is a multiple of 8.
 
 For x64 architecture, the following versions of the Faiss library are built and shipped with the artifact:
 
-- `libsmartobserveknn_faiss_avx512_spr.so`: The Faiss library containing advanced AVX-512 SIMD instructions for newer-generation processors, available on public clouds such as AWS for c/m/r 7i or newer instances. 
-- `libsmartobserveknn_faiss_avx512.so`: The Faiss library containing AVX-512 SIMD instructions. 
-- `libsmartobserveknn_faiss_avx2.so`: The Faiss library containing AVX2 SIMD instructions.
-- `libsmartobserveknn_faiss.so`: The non-optimized Faiss library without SIMD instructions.
+- `libmcdeskknn_faiss_avx512_spr.so`: The Faiss library containing advanced AVX-512 SIMD instructions for newer-generation processors, available on public clouds such as AWS for c/m/r 7i or newer instances. 
+- `libmcdeskknn_faiss_avx512.so`: The Faiss library containing AVX-512 SIMD instructions. 
+- `libmcdeskknn_faiss_avx2.so`: The Faiss library containing AVX2 SIMD instructions.
+- `libmcdeskknn_faiss.so`: The non-optimized Faiss library without SIMD instructions.
 
 When using the Faiss library, the performance ranking is as follows: advanced AVX-512 > AVX-512 > AVX2 > no optimization.
 {: .note }
 
-If your hardware supports advanced AVX-512(spr), SmartObserve loads the `libsmartobserveknn_faiss_avx512_spr.so` library at runtime.
+If your hardware supports advanced AVX-512(spr), MCdesk loads the `libmcdeskknn_faiss_avx512_spr.so` library at runtime.
 
-If your hardware supports AVX-512, SmartObserve loads the `libsmartobserveknn_faiss_avx512.so` library at runtime.
+If your hardware supports AVX-512, MCdesk loads the `libmcdeskknn_faiss_avx512.so` library at runtime.
 
-If your hardware supports AVX2 but doesn't support AVX-512, SmartObserve loads the `libsmartobserveknn_faiss_avx2.so` library at runtime.
+If your hardware supports AVX2 but doesn't support AVX-512, MCdesk loads the `libmcdeskknn_faiss_avx2.so` library at runtime.
 
-To disable the advanced AVX-512 (for Sapphire Rapids or newer-generation processors), AVX-512, and AVX2 SIMD instructions and load the non-optimized Faiss library (`libsmartobserveknn_faiss.so`), specify the `knn.faiss.avx512_spr.disabled`, `knn.faiss.avx512.disabled`, and `knn.faiss.avx2.disabled` static settings as `true` in `smartobserve.yml` (by default, all of these are set to `false`).
+To disable the advanced AVX-512 (for Sapphire Rapids or newer-generation processors), AVX-512, and AVX2 SIMD instructions and load the non-optimized Faiss library (`libmcdeskknn_faiss.so`), specify the `knn.faiss.avx512_spr.disabled`, `knn.faiss.avx512.disabled`, and `knn.faiss.avx2.disabled` static settings as `true` in `mcdesk.yml` (by default, all of these are set to `false`).
 
-Note that to update a static setting, you must stop the cluster, change the setting, and restart the cluster. For more information, see [Static settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/#static-settings).
+Note that to update a static setting, you must stop the cluster, change the setting, and restart the cluster. For more information, see [Static settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/#static-settings).
 
 #### ARM64 architecture
 
-For the ARM64 architecture, only one performance-boosting Faiss library (`libsmartobserveknn_faiss.so`) is built and shipped. The library contains Neon SIMD instructions and cannot be disabled. 
+For the ARM64 architecture, only one performance-boosting Faiss library (`libmcdeskknn_faiss.so`) is built and shipped. The library contains Neon SIMD instructions and cannot be disabled. 
 
 ### Example configurations
 
-The following example uses the `ivf` method without specifying an encoder (by default, SmartObserve uses the `flat` encoder):
+The following example uses the `ivf` method without specifying an encoder (by default, MCdesk uses the `flat` encoder):
 
 ```json
 "method": {
@@ -264,7 +264,7 @@ The following example uses the `ivf` method with a `pq` encoder:
 }
 ```
 
-The following example uses the `hnsw` method without specifying an encoder (by default, SmartObserve uses the `flat` encoder):
+The following example uses the `hnsw` method without specifying an encoder (by default, MCdesk uses the `flat` encoder):
 
 ```json
 "method": {
@@ -318,7 +318,7 @@ The following example uses the `hnsw` method with an `sq` encoder of type `fp16`
 
 ## NMSLIB engine (deprecated)
 
-The Non-Metric Space Library (NMSLIB) engine was one of the first vector search implementations in SmartObserve. While still supported, it has been deprecated in favor of the Faiss and Lucene engines.
+The Non-Metric Space Library (NMSLIB) engine was one of the first vector search implementations in MCdesk. While still supported, it has been deprecated in favor of the Faiss and Lucene engines.
 
 ### Supported methods
 
@@ -340,7 +340,7 @@ Parameter name | Required | Default | Updatable | Description
 For NMSLIB (deprecated), *ef_search* is set in the [index settings]({{site.url}}{{site.baseurl}}/vector-search/settings/#index-settings).
 {: .note}
 
-An index created in SmartObserve version 2.11 or earlier will still use the previous `ef_construction` value (`512`).
+An index created in MCdesk version 2.11 or earlier will still use the previous `ef_construction` value (`512`).
 {: .note}
 
 ### Example configuration
@@ -387,7 +387,7 @@ In general, select Faiss for large-scale use cases. Lucene is a good option for 
 
 ## Memory estimation
 
-In a typical SmartObserve cluster, a certain portion of RAM is reserved for the JVM heap. SmartObserve allocates native library indexes to a portion of the remaining RAM. This portion's size is determined by the `circuit_breaker_limit` cluster setting. By default, the limit is set to 50%.
+In a typical MCdesk cluster, a certain portion of RAM is reserved for the JVM heap. MCdesk allocates native library indexes to a portion of the remaining RAM. This portion's size is determined by the `circuit_breaker_limit` cluster setting. By default, the limit is set to 50%.
 
 Using a replica doubles the total number of vectors.
 {: .note }

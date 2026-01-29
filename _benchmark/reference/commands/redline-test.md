@@ -3,18 +3,18 @@ layout: default
 title: redline-test
 nav_order: 85
 parent: Command reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 ---
 
 # Redline testing
 
-The `--redline-test` command enables SmartObserve Benchmark to automatically determine the maximum request throughput your SmartObserve cluster can handle under increasing load. It dynamically adjusts the number of active clients based on real-time cluster performance, helping with capacity planning and identifying performance regressions.
+The `--redline-test` command enables MCdesk Benchmark to automatically determine the maximum request throughput your MCdesk cluster can handle under increasing load. It dynamically adjusts the number of active clients based on real-time cluster performance, helping with capacity planning and identifying performance regressions.
 
-When the `--redline-test` flag is used, SmartObserve Benchmark performs the following steps:
+When the `--redline-test` flag is used, MCdesk Benchmark performs the following steps:
 
-1. **Client initialization**: SmartObserve Benchmark initializes a large number of clients (default: 1,000). You can override this with the optional `--redline-max-clients=<int>` flag.
-2. **Feedback mechanism**: SmartObserve Benchmark ramps up the number of active clients. A FeedbackActor monitors real-time request failures and adjusts the client count accordingly.
-3. **Shared state coordination**: SmartObserve Benchmark uses Python's multiprocessing library to manage shared dictionaries and queues for inter-process communication:
+1. **Client initialization**: MCdesk Benchmark initializes a large number of clients (default: 1,000). You can override this with the optional `--redline-max-clients=<int>` flag.
+2. **Feedback mechanism**: MCdesk Benchmark ramps up the number of active clients. A FeedbackActor monitors real-time request failures and adjusts the client count accordingly.
+3. **Shared state coordination**: MCdesk Benchmark uses Python's multiprocessing library to manage shared dictionaries and queues for inter-process communication:
    - **Workers** create and share client state maps with the WorkerCoordinatorActor.
    - The **WorkerCoordinatorActor** aggregates client state and forwards it to the FeedbackActor.
    - The **FeedbackActor** increases the number of clients until it detects request errors, then pauses clients, waits 30 seconds, and resumes testing.
@@ -31,7 +31,7 @@ To perform a redline test, use the `run` command with the `--redline-test` flag 
 This test procedure defines a timed workload using the keyword-terms operation. It runs in two phases:
 
 - **Warmup phase**: The test begins with a warmup period (`warmup-time-period`) to stabilize performance metrics before measurement begins. This helps avoid skewing results with cold-start effects.
-- **Measurement phase**: During the `time-period`, SmartObserve Benchmark sends requests at a `target-throughput` (requests per second) using a specified number of clients. The redline test logic will scale the number of active clients from this baseline to determine the cluster's maximum sustainable load.
+- **Measurement phase**: During the `time-period`, MCdesk Benchmark sends requests at a `target-throughput` (requests per second) using a specified number of clients. The redline test logic will scale the number of active clients from this baseline to determine the cluster's maximum sustainable load.
 
 The following example timed test procedure is used as input to a redline test, which then dynamically adjusts the client load to find the maximum request throughput your cluster can handle without errors:
 
@@ -51,12 +51,12 @@ The following example timed test procedure is used as input to a redline test, w
 ```
 {% include copy.html %}
 
-Run the following command to start a redline test using a timed test procedure against your SmartObserve cluster:
+Run the following command to start a redline test using a timed test procedure against your MCdesk cluster:
 
 ```bash
-smartobserve-benchmark run \
+mcdesk-benchmark run \
   --pipeline=benchmark-only \
-  --target-hosts=<your-smartobserve-cluster> \
+  --target-hosts=<your-mcdesk-cluster> \
   --workload=<workload> \
   --test-procedure=timed-mode-test-procedure \
   --redline-test
@@ -65,9 +65,9 @@ smartobserve-benchmark run \
 
 ## Latency- or CPU-based feedback
 
-SmartObserve Benchmark supports a `timeout` value per request, which cancels a request if it exceeds the specified duration. You can set this value using the `--client-options=timeout:<int>` flag. The default is 10 seconds.
+MCdesk Benchmark supports a `timeout` value per request, which cancels a request if it exceeds the specified duration. You can set this value using the `--client-options=timeout:<int>` flag. The default is 10 seconds.
 
-You can adjust this value to define the maximum request latency that SmartObserve Benchmark should tolerate during redline testing. For example, to determine the highest load your cluster can handle without exceeding 15 seconds of latency, set the timeout in client options to `15`.
+You can adjust this value to define the maximum request latency that MCdesk Benchmark should tolerate during redline testing. For example, to determine the highest load your cluster can handle without exceeding 15 seconds of latency, set the timeout in client options to `15`.
 
 Redline testing also supports CPU-based feedback in addition to latency and request error monitoring. This helps to prevent exceeding safe utilization limits for your cluster.
 
@@ -95,7 +95,7 @@ The redline CPU feedback loop operates with the following behaviors:
 
 ## Results
 
-During a redline test, SmartObserve Benchmark provides detailed logs with scaling decisions and request failures during the test. At the end of a redline test, SmartObserve Benchmark logs the maximum number of clients that your cluster supported without request errors.
+During a redline test, MCdesk Benchmark provides detailed logs with scaling decisions and request failures during the test. At the end of a redline test, MCdesk Benchmark logs the maximum number of clients that your cluster supported without request errors.
 
 The following example log output indicates that the redline test detected a `15%` error rate for the keyword-terms operation and determined that the cluster's maximum stable client load before errors occurred was `410`:
 
@@ -111,7 +111,7 @@ Use the following optional command flags to better understand and customize a re
 - `--redline-scale-step`: Specifies the number of clients to unpause in each scaling iteration.
 - `--redline-scaledown-percentage`: Specifies the percentage of clients to pause when an error occurs.
 - `--redline-post-scaledown-sleep`: Specifies the number of seconds the feedback actor waits before initiating a scale-up after scaling down.
-- `--redline-max-clients`: Specifies the maximum number of clients allowed during redline testing. If unset, SmartObserve Benchmark defaults to the number of clients defined in the test procedure.
+- `--redline-max-clients`: Specifies the maximum number of clients allowed during redline testing. If unset, MCdesk Benchmark defaults to the number of clients defined in the test procedure.
 
 ### For CPU-based feedback
 

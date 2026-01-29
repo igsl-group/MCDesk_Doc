@@ -8,7 +8,7 @@ nav_order: 15
 
 # Example UBI query DSL queries
 
-You can use the SmartObserve search query language, [query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/), to write User Behavior Insights (UBI) queries. The following example returns the number of times that each `action_name` event occurs.
+You can use the MCdesk search query language, [query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/), to write User Behavior Insights (UBI) queries. The following example returns the number of times that each `action_name` event occurs.
 For more extensive analytic queries, see [Example UBI SQL queries]({{site.url}}{{site.baseurl}}/search-plugins/ubi/sql-queries/). 
 #### Example request
 ```json
@@ -95,4 +95,4 @@ GET ubi_events/_search
 ```
 {% include copy.html %}
 
-You can run the preceding queries in the SmartObserve Dashboards [Dev Tools]({{site.url}}{{site.baseurl}}/dashboards/dev-tools/index-dev/) console.
+You can run the preceding queries in the MCdesk Dashboards [Dev Tools]({{site.url}}{{site.baseurl}}/dashboards/dev-tools/index-dev/) console.

@@ -133,7 +133,7 @@ GET /_plugins/_ml/memory_containers/HudqiJkB1SltqOcZusVU/memories/history/eMxnTp
   "memory_id": "4bJMy5kByIxXWyhQvGr9",
   "action": "ADD",
   "after": {
-    "memory": "A comprehensive security investigation was performed across multiple data sources including 55 SmartObserve indices, 50 CloudTrail events, 22 VPC Flow logs, 38 WAF events, 74 CloudWatch log groups, active CloudWatch alarms, and SmartObserve cluster security configuration."
+    "memory": "A comprehensive security investigation was performed across multiple data sources including 55 MCdesk indices, 50 CloudTrail events, 22 VPC Flow logs, 38 WAF events, 74 CloudWatch log groups, active CloudWatch alarms, and MCdesk cluster security configuration."
   },
   "namespace": {
     "agent_id": "chat-agent"

@@ -102,7 +102,7 @@ search source=accounts | dedup gender consecutive=true | fields account_number, 
 
 ### Limitations
 
-The `dedup` command is not rewritten to SmartObserve DSL, it is only executed on the coordination node.
+The `dedup` command is not rewritten to MCdesk DSL, it is only executed on the coordination node.
 
 ## eval
 
@@ -167,7 +167,7 @@ search source=accounts | eval doubleAge = age * 2, ddAge = doubleAge * 2 | field
 
 ### Limitation
 
-The ``eval`` command is not rewritten to SmartObserve DSL, it is only executed on the coordination node.
+The ``eval`` command is not rewritten to MCdesk DSL, it is only executed on the coordination node.
 
 ## fields
 
@@ -335,7 +335,7 @@ search source=accounts | rename account_number as an, employer as emp | fields a
 
 ### Limitations
 
-The `rename` command is not rewritten to SmartObserve DSL, it is only executed on the coordination node.
+The `rename` command is not rewritten to MCdesk DSL, it is only executed on the coordination node.
 
 ## sort
 
@@ -585,7 +585,7 @@ search source=accounts | fields firstname, age | head 2;
 
 ### Limitations
 
-The `head` command is not rewritten to SmartObserve DSL, it is only executed on the coordination node.
+The `head` command is not rewritten to MCdesk DSL, it is only executed on the coordination node.
 
 ## rare
 
@@ -632,7 +632,7 @@ search source=accounts | rare age by gender;
 
 ### Limitations
 
-The `rare` command is not rewritten to SmartObserve DSL, it is only executed on the coordination node.
+The `rare` command is not rewritten to MCdesk DSL, it is only executed on the coordination node.
 
 ## top {#top-command}
 
@@ -690,7 +690,7 @@ search source=accounts | top 1 age by gender;
 
 ### Limitations
 
-The `top` command is not rewritten to SmartObserve DSL, it is only executed on the coordination node.
+The `top` command is not rewritten to MCdesk DSL, it is only executed on the coordination node.
 
 ## ad
 
@@ -775,7 +775,7 @@ sepal_length_in_cm | sepal_width_in_cm | petal_length_in_cm | petal_width_in_cm 
 
 ## join
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
 You can combine two datasets using the `join` command. The left side can be an index or results from piped commands, while the right side can be either an index or a subquery.
@@ -869,7 +869,7 @@ The `join` command works only when `plugins.calcite.enabled` is set to `true`.
 
 ## lookup
 
-This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [SmartObserve forum](https://forum.magiccreative.io/).    
+This is an experimental feature and is not recommended for use in a production environment. For updates on the progress of the feature or if you want to leave feedback, join the discussion on the [MCdesk forum](https://forum.magiccreative.io/).    
 {: .warning}
 
 The `lookup` command enriches your search data by adding or replacing data from a lookup index (dimension table). You can extend index fields with values from a dimension table or append/replace values when a lookup condition is matched. As an alternative to the `join` command, the `lookup` command is more suitable for enriching the source data with a static dataset.

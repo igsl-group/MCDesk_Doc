@@ -6,19 +6,19 @@ nav_order: 70
 
 # Concepts  
 
-This page defines key terms and concepts related to SmartObserve.
+This page defines key terms and concepts related to MCdesk.
 
 ## Basic concepts
 
-- [***Document***]({{site.url}}{{site.baseurl}}/getting-started/intro/#document): The basic unit of information in SmartObserve, stored in JSON format.
+- [***Document***]({{site.url}}{{site.baseurl}}/getting-started/intro/#document): The basic unit of information in MCdesk, stored in JSON format.
 - [***Index***]({{site.url}}{{site.baseurl}}/getting-started/intro/#index): A collection of related documents.
-- [***JSON (JavaScript object notation)***](https://www.json.org/): A text format used to store data in SmartObserve, representing information as key-value pairs.
+- [***JSON (JavaScript object notation)***](https://www.json.org/): A text format used to store data in MCdesk, representing information as key-value pairs.
 - [***Mapping***]({{site.url}}{{site.baseurl}}/field-types/): The schema definition for an index that specifies how documents and their fields should be stored and indexed.
 
 ## Cluster architecture
 
-- [***Node***]({{site.url}}{{site.baseurl}}/getting-started/intro/#clusters-and-nodes): A single server that is part of an SmartObserve cluster.
-- [***Cluster***]({{site.url}}{{site.baseurl}}/getting-started/intro/#clusters-and-nodes): A collection of SmartObserve nodes working together.
+- [***Node***]({{site.url}}{{site.baseurl}}/getting-started/intro/#clusters-and-nodes): A single server that is part of an MCdesk cluster.
+- [***Cluster***]({{site.url}}{{site.baseurl}}/getting-started/intro/#clusters-and-nodes): A collection of MCdesk nodes working together.
 - [***Cluster manager***]({{site.url}}{{site.baseurl}}/getting-started/intro/#clusters-and-nodes): The node responsible for managing cluster-wide operations.
 - [***Shard***]({{site.url}}{{site.baseurl}}/getting-started/intro/#shards): A subset of an index's data; indexes are split into shards for distribution across nodes.
 - [***Primary shard***]({{site.url}}{{site.baseurl}}/getting-started/intro/#primary-and-replica-shards): The original shard containing index data.
@@ -29,13 +29,13 @@ This page defines key terms and concepts related to SmartObserve.
 
 - [***Doc values***]({{site.url}}{{site.baseurl}}/field-types/mapping-parameters/doc-values/): An on-disk data structure for efficient sorting and aggregating of field values.
 - [***Inverted index***]({{site.url}}{{site.baseurl}}/getting-started/intro/#inverted-index): A data structure that maps words to the documents containing them.
-- ***Lucene***: The underlying search library that SmartObserve uses to index and search data.
+- ***Lucene***: The underlying search library that MCdesk uses to index and search data.
 - ***Segment***: An immutable unit of data storage within a shard.
 
 ## Data operations
 
-- ***Ingestion***: The process of adding data to SmartObserve.
-- [***Indexing***]({{site.url}}{{site.baseurl}}/api-reference/document-apis/index-document/): The process of storing and organizing data in SmartObserve to make it searchable.
+- ***Ingestion***: The process of adding data to MCdesk.
+- [***Indexing***]({{site.url}}{{site.baseurl}}/api-reference/document-apis/index-document/): The process of storing and organizing data in MCdesk to make it searchable.
 - [***Bulk indexing***]({{site.url}}{{site.baseurl}}/api-reference/document-apis/bulk/): The process of indexing multiple documents in a single request.
 
 ## Text analysis
@@ -52,17 +52,17 @@ This page defines key terms and concepts related to SmartObserve.
 
 ## Search and query concepts
 
-- ***Query***: A request to SmartObserve that describes what you're searching for in your data.
+- ***Query***: A request to MCdesk that describes what you're searching for in your data.
 - ***Query clause***: A single condition within a query that specifies criteria for matching documents.
 - [***Filter***]({{site.url}}{{site.baseurl}}/query-dsl/query-filter-context/#filter-context): A query component that finds exact matches without scoring.
 - [***Filter context***]({{site.url}}{{site.baseurl}}/query-dsl/query-filter-context/): A query clause in a filter context asks the question _"Does the document match the query clause?"_
 - [***Query context***]({{site.url}}{{site.baseurl}}/query-dsl/query-filter-context/): A query clause in a query context asks the question _"How well does the document match the query clause?"_
 - [***Full-text search***]({{site.url}}{{site.baseurl}}/query-dsl/term-vs-full-text/): Search that analyzes and matches text fields, considering variations in word forms.
 - [***Keyword search***]({{site.url}}{{site.baseurl}}/query-dsl/term-vs-full-text/): Search that requires exact text matches.
-- [***Query domain-specific language (DSL)***]({{site.url}}{{site.baseurl}}/query-dsl/): SmartObserve's primary query language for creating complex, customizable searches.
+- [***Query domain-specific language (DSL)***]({{site.url}}{{site.baseurl}}/query-dsl/): MCdesk's primary query language for creating complex, customizable searches.
 - [***Query string query language***]({{site.url}}{{site.baseurl}}/query-dsl/full-text/query-string/): A simplified query syntax that can be used in URL parameters.
-- [***Dashboards Query Language (DQL)***]({{site.url}}{{site.baseurl}}/dashboards/dql/): A simple text-based query language used specifically for filtering data in SmartObserve Dashboards.
-- [***Piped Processing Language (PPL)***]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/): A query language that uses pipe syntax (`|`) to chain commands for data processing and analysis. Primarily used for observability use cases in SmartObserve.
+- [***Dashboards Query Language (DQL)***]({{site.url}}{{site.baseurl}}/dashboards/dql/): A simple text-based query language used specifically for filtering data in MCdesk Dashboards.
+- [***Piped Processing Language (PPL)***]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/): A query language that uses pipe syntax (`|`) to chain commands for data processing and analysis. Primarily used for observability use cases in MCdesk.
 - [***Relevance score***]({{site.url}}{{site.baseurl}}/getting-started/intro/#relevance): A number indicating how well a document matches a query.
 - [***Aggregation***]({{site.url}}{{site.baseurl}}/aggregations/): A way to analyze and summarize data based on a search query.
 
@@ -72,7 +72,7 @@ See [Vector search concepts]({{site.url}}{{site.baseurl}}/vector-search/getting-
 
 ## Advanced concepts
 
-The following section describes more advanced SmartObserve concepts.
+The following section describes more advanced MCdesk concepts.
 
 ### Update lifecycle
 
@@ -89,12 +89,12 @@ An indexing or bulk call responds when the documents have been written to the tr
 
 ### Refresh
 
-Periodically, SmartObserve performs a _refresh_ operation, which writes the documents from the in-memory Lucene index to files. These files are not guaranteed to be durable because an `fsync` is not performed. A refresh makes documents available for search.
+Periodically, MCdesk performs a _refresh_ operation, which writes the documents from the in-memory Lucene index to files. These files are not guaranteed to be durable because an `fsync` is not performed. A refresh makes documents available for search.
 
 ### Flush
 
-A _flush_ operation persists the files to disk using `fsync`, ensuring durability. Flushing ensures that the data stored only in the translog is recorded in the Lucene index. SmartObserve performs a flush as needed to ensure that the translog does not grow too large.
+A _flush_ operation persists the files to disk using `fsync`, ensuring durability. Flushing ensures that the data stored only in the translog is recorded in the Lucene index. MCdesk performs a flush as needed to ensure that the translog does not grow too large.
 
 ### Merge
 
-In SmartObserve, a shard is a Lucene index, which consists of _segments_ (or segment files). Segments store the indexed data and are immutable. Periodically, smaller segments are merged into larger ones. Merging reduces the overall number of segments on each shard, frees up disk space, and improves search performance. Eventually, segments reach a maximum size specified in the merge policy and are no longer merged into larger segments. The merge policy also specifies how often merges are performed. 
+In MCdesk, a shard is a Lucene index, which consists of _segments_ (or segment files). Segments store the indexed data and are immutable. Periodically, smaller segments are merged into larger ones. Merging reduces the overall number of segments on each shard, frees up disk space, and improves search performance. Eventually, segments reach a maximum size specified in the merge policy and are no longer merged into larger segments. The merge policy also specifies how often merges are performed. 

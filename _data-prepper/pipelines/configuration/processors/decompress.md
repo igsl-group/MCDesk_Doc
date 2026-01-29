@@ -33,7 +33,7 @@ processor:
 
 ## Metrics 
 
-The following table describes common [abstract processor](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-api/src/main/java/org/smartobserve/dataprepper/model/processor/AbstractProcessor.java) metrics.
+The following table describes common [abstract processor](https://github.com/igsl-group/data-prepper/blob/main/data-prepper-api/src/main/java/org/mcdesk/dataprepper/model/processor/AbstractProcessor.java) metrics.
 
 | Metric name | Type | Description |
 | ------------- | ---- | -----------|

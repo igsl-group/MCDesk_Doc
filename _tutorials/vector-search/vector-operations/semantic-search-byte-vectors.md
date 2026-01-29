@@ -55,7 +55,7 @@ POST /_plugins/_ml/connectors/_create
             "method": "POST",
             "headers": {
                 "Authorization": "Bearer ${credential.cohere_key}",
-                "Request-Source": "unspecified:smartobserve"
+                "Request-Source": "unspecified:mcdesk"
             },
             "url": "https://api.cohere.ai/v1/embed",
             "request_body": "{ \"model\": \"${parameters.model}\", \"texts\": ${parameters.texts}, \"input_type\":\"${parameters.input_type}\", \"embedding_types\": ${parameters.embedding_types} }",
@@ -67,7 +67,7 @@ POST /_plugins/_ml/connectors/_create
 ```
 {% include copy-curl.html %}
 
-To ensure compatibility with SmartObserve, the `data_type` (output in the `inference_results.output.data_type` field of the response) must be set to `FLOAT32` in the post-processing function, even though the actual embedding type will be `INT8`.
+To ensure compatibility with MCdesk, the `data_type` (output in the `inference_results.output.data_type` field of the response) must be set to `FLOAT32` in the post-processing function, even though the actual embedding type will be `INT8`.
 {: .important}
 
 Note the connector ID in the response; you'll use it to register the model.
@@ -205,7 +205,7 @@ Last, ingest test data:
 ```json
 POST _bulk
 { "index" : { "_index" : "my_test_data" } }
-{ "passage_text" : "SmartObserve is the flexible, scalable, open-source way to build solutions for data-intensive applications. Explore, enrich, and visualize your data with built-in performance, developer-friendly tools, and powerful integrations for machine learning, data processing, and more." }
+{ "passage_text" : "MCdesk is the flexible, scalable, open-source way to build solutions for data-intensive applications. Explore, enrich, and visualize your data with built-in performance, developer-friendly tools, and powerful integrations for machine learning, data processing, and more." }
 { "index" : { "_index" : "my_test_data"} }
 { "passage_text" : "BM25 is a keyword-based algorithm that performs well on queries containing keywords but fails to capture the semantic meaning of the query terms. Semantic search, unlike keyword-based search, takes into account the meaning of the query in the search context. Thus, semantic search performs well when a query requires natural language understanding." }
 ```
@@ -236,7 +236,7 @@ POST /_plugins/_ml/connectors/_create
             "method": "POST",
             "headers": {
                 "Authorization": "Bearer ${credential.cohere_key}",
-                "Request-Source": "unspecified:smartobserve"
+                "Request-Source": "unspecified:mcdesk"
             },
             "url": "https://api.cohere.ai/v1/embed",
             "request_body": "{ \"model\": \"${parameters.model}\", \"texts\": ${parameters.texts}, \"input_type\":\"${parameters.input_type}\", \"embedding_types\": ${parameters.embedding_types} }",

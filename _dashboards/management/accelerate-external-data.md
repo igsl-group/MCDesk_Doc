@@ -1,31 +1,31 @@
 ---
 layout: default
-title: Optimizing query performance using SmartObserve indexing
+title: Optimizing query performance using MCdesk indexing
 parent: Data sources
 nav_order: 17
 ---
 
-# Optimizing query performance using SmartObserve indexing
+# Optimizing query performance using MCdesk indexing
 Introduced 2.11
 {: .label .label-purple }
 
 
-Query performance can be slow when using external data sources for reasons such as network latency, data transformation, and data volume. You can optimize your query performance by using SmartObserve indexes, such as a skipping index or a covering index. 
+Query performance can be slow when using external data sources for reasons such as network latency, data transformation, and data volume. You can optimize your query performance by using MCdesk indexes, such as a skipping index or a covering index. 
 
 - A _skipping index_ uses skip acceleration methods, such as partition, minimum and maximum values, and value sets, to ingest and create compact aggregate data structures. This makes them an economical option for direct querying scenarios. For more information, see [Skipping indexes]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/#skipping-indexes).
-- A _covering index_ ingests all or some of the data from the source into SmartObserve and makes it possible to use all SmartObserve Dashboards and plugin functionality. For more information, see [Covering indexes]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/#covering-indexes).
+- A _covering index_ ingests all or some of the data from the source into MCdesk and makes it possible to use all MCdesk Dashboards and plugin functionality. For more information, see [Covering indexes]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/#covering-indexes).
 - A _materialized view_ enhances query performance by storing precomputed and aggregated data from the source data. For more information, see [Materialized views]({{site.url}}{{site.baseurl}}/dashboards/management/accelerate-external-data/#materialized-views).
 
-For comprehensive guidance on each indexing process, see the [Flint Index Reference Manual](https://github.com/igsl-group/smartobserve-spark/blob/main/docs/index.md). 
+For comprehensive guidance on each indexing process, see the [Flint Index Reference Manual](https://github.com/igsl-group/mcdesk-spark/blob/main/docs/index.md). 
 
 ## Data sources use case: Accelerate performance
 
 To get started with accelerating query performance, perform the following steps:
 
-1. Go to **SmartObserve Dashboards** > **Query Workbench** and select your data source from the **Data sources** dropdown menu.
+1. Go to **MCdesk Dashboards** > **Query Workbench** and select your data source from the **Data sources** dropdown menu.
 2. From the navigation menu, select a database.
 3. View the results in the table and confirm that you have the correct data.
-4. Create an SmartObserve index by following these steps:
+4. Create an MCdesk index by following these steps:
     1. Select **Accelerate data**. A pop-up window appears. 
     2. Enter your database and table details under **Select data fields**.
 5. For **Acceleration type**, select the type of acceleration according to your use case. Then, enter the information for your acceleration type. For more information, see the following sections:
@@ -47,7 +47,7 @@ With a skipping index, you can index only the metadata of the data stored in Ama
   - `ValueSet`: Uses a unique value set to locate data. This type is best for columns with low to moderate cardinality that require exact matching.
   - `BloomFilter`: Uses the bloom filter algorithm to locate data. This type is best for columns with high cardinality that do not require exact matching.
 2. Select **Create acceleration** to apply your skipping index settings. 
-3. View the skipping index query details and then click **Run**. SmartObserve adds your index to the left navigation pane.
+3. View the skipping index query details and then click **Run**. MCdesk adds your index to the left navigation pane.
 
 Alternately, you can manually create a skipping index using Query Workbench. Select your data source from the dropdown and run a query like the following:
 
@@ -67,20 +67,20 @@ checkpoint_location = 's3://accountnum-vpcflow/AWSLogs/checkpoint'
 
 ## Covering indexes
 
-A _covering index_ ingests all or some of the data from the source into SmartObserve and makes it possible to use all SmartObserve Dashboards and plugin functionality.
+A _covering index_ ingests all or some of the data from the source into MCdesk and makes it possible to use all MCdesk Dashboards and plugin functionality.
 
-With a covering index, you can ingest data from a specified column in a table. This is the most performant of the three indexing types. Because SmartObserve ingests all data from your desired column, you get better performance and can perform advanced analytics.
+With a covering index, you can ingest data from a specified column in a table. This is the most performant of the three indexing types. Because MCdesk ingests all data from your desired column, you get better performance and can perform advanced analytics.
 
-SmartObserve creates a new index from the covering index data. You can use this new index to create visualizations, or for anomaly detection and geospatial capabilities. You can manage the covering view index with Index State Management. For more information, see [Index State Management]({{site.url}}{{site.baseurl}}/im-plugin/ism/index/).
+MCdesk creates a new index from the covering index data. You can use this new index to create visualizations, or for anomaly detection and geospatial capabilities. You can manage the covering view index with Index State Management. For more information, see [Index State Management]({{site.url}}{{site.baseurl}}/im-plugin/ism/index/).
 
 ### Define covering index settings
 
 1. For **Index name**, enter a valid index name. Note that each table can have multiple covering indexes.
-2. Choose a **Refresh type**. By default, SmartObserve automatically refreshes the index. Otherwise, you must manually trigger a refresh using a REFRESH statement.
+2. Choose a **Refresh type**. By default, MCdesk automatically refreshes the index. Otherwise, you must manually trigger a refresh using a REFRESH statement.
 3. Enter a **Checkpoint location**, which is a path for refresh job checkpoints. The location must be a path in a file system compatible with the Hadoop Distributed File System (HDFS). For more information, see [Starting streaming queries](https://spark.apache.org/docs/3.5.1/structured-streaming-programming-guide.html#starting-streaming-queries).
 4. Define the covering index fields by selecting **(add fields here)** under **Covering index definition**. 
 5. Select **Create acceleration** to apply your covering index settings.
-6. View the covering index query details and then click **Run**. SmartObserve adds your index to the left navigation pane.
+6. View the covering index query details and then click **Run**. MCdesk adds your index to the left navigation pane.
 
 Alternately, you can manually create a covering index on your table using Query Workbench. Select your data source from the dropdown and run a query like the following:
 
@@ -100,17 +100,17 @@ WITH (
 
 ## Materialized views
 
-With _materialized views_, you can use complex queries, such as aggregations, to power Dashboards visualizations. Materialized views ingest a small amount of your data, depending on the query, into SmartObserve. SmartObserve then forms an index from the ingested data that you can use for visualizations. You can manage the materialized view index with Index State Management. For more information, see [Index State Management]({{site.url}}{{site.baseurl}}/im-plugin/ism/index/).
+With _materialized views_, you can use complex queries, such as aggregations, to power Dashboards visualizations. Materialized views ingest a small amount of your data, depending on the query, into MCdesk. MCdesk then forms an index from the ingested data that you can use for visualizations. You can manage the materialized view index with Index State Management. For more information, see [Index State Management]({{site.url}}{{site.baseurl}}/im-plugin/ism/index/).
 
 ### Define materialized view settings
 
 1. For **Index name**, enter a valid index name. Note that each table can have multiple covering indexes.
-2. Choose a **Refresh type**. By default, SmartObserve automatically refreshes the index. Otherwise, you must manually trigger a refresh using a `REFRESH` statement.
+2. Choose a **Refresh type**. By default, MCdesk automatically refreshes the index. Otherwise, you must manually trigger a refresh using a `REFRESH` statement.
 3. Enter a **Checkpoint location**, which is a path for refresh job checkpoints. The location must be a path in an HDFS compatible file system. 
 4. Enter a **Watermark delay**, which defines how late data can come and still be processed, such as 1 minute or 10 seconds.
 5. Define the covering index fields under **Materialized view definition**.
 6. Select **Create acceleration** to apply your materialized view index settings.
-7. View the materialized view query details and then click **Run**. SmartObserve adds your index to the left navigation pane.
+7. View the materialized view query details and then click **Run**. MCdesk adds your index to the left navigation pane.
 
 Alternately, you can manually create a materialized view index on your table using Query Workbench. Select your data source from the dropdown and run a query like the following:
 
@@ -179,4 +179,4 @@ WITH (
 
 ## Limitations
 
-This feature is still under development, so there are some limitations. For real-time updates, see the [developer documentation on GitHub](https://github.com/igsl-group/smartobserve-spark/blob/main/docs/index.md#limitations).
+This feature is still under development, so there are some limitations. For real-time updates, see the [developer documentation on GitHub](https://github.com/igsl-group/mcdesk-spark/blob/main/docs/index.md#limitations).

@@ -10,7 +10,7 @@ redirect_from:
 
 # Anomaly detection security
 
-You can use the Security plugin with anomaly detection in SmartObserve to limit non-admin users to specific actions. For example, you might want some users to only be able to create, update, or delete detectors, while others to only view detectors.
+You can use the Security plugin with anomaly detection in MCdesk to limit non-admin users to specific actions. For example, you might want some users to only be able to create, update, or delete detectors, while others to only view detectors.
 
 All anomaly detection indexes are protected as system indexes. Only a super admin user or an admin user with a TLS certificate can access system indexes. For more information, see [System indexes]({{site.url}}{{site.baseurl}}/security/configuration/system-indices/).
 
@@ -23,12 +23,12 @@ As an admin user, you can use the Security plugin to assign specific permissions
 
 The Security plugin has two built-in roles that cover most anomaly detection use cases: `anomaly_full_access` and `anomaly_read_access`. For descriptions of each, see [Predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles#predefined-roles).
 
-If you use SmartObserve Dashboards to create your anomaly detectors, you may experience access issues even with `anomaly_full_access`. This issue has been resolved in SmartObserve 2.17, but for earlier versions, the following additional permissions need to be added: 
+If you use MCdesk Dashboards to create your anomaly detectors, you may experience access issues even with `anomaly_full_access`. This issue has been resolved in MCdesk 2.17, but for earlier versions, the following additional permissions need to be added: 
 
 - `indices:data/read/search` -- You need this permission because the Anomaly Detection plugin needs to search the data source in order to validate whether there is enough data to train the model.
 - `indices:admin/mappings/fields/get` and `indices:admin/mappings/fields/get*` -- You need these permissions to validate whether the given data source has a valid timestamp field and categorical field (in the case of creating a high-cardinality detector).
 
-If these roles don't meet your needs, mix and match individual anomaly detection [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/smartobserve/ad/detector/delete` permission lets you delete detectors.
+If these roles don't meet your needs, mix and match individual anomaly detection [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/mcdesk/ad/detector/delete` permission lets you delete detectors.
 
 ### A note on alerts and fine-grained access control
 
@@ -70,7 +70,7 @@ curl -XPUT -k -u 'admin:<custom-admin-password>' -H 'Content-Type: application/j
 
 ### Custom results index
 
-To use a custom results index, you need additional permissions not included in the default roles provided by the SmartObserve Security plugin. To add these permissions, see [Step 1: Define a detector]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/#step-1-define-a-detector) in the [Anomaly detection]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/) documentation.
+To use a custom results index, you need additional permissions not included in the default roles provided by the MCdesk Security plugin. To add these permissions, see [Step 1: Define a detector]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/#step-1-define-a-detector) in the [Anomaly detection]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/) documentation.
 
 ## (Advanced) Limit access by backend role
 
@@ -89,7 +89,7 @@ PUT _cluster/settings
 }
 ```
 
-Now when users view anomaly detection resources in SmartObserve Dashboards (or make REST API calls), they only see detectors created by users who share at least one backend role.
+Now when users view anomaly detection resources in MCdesk Dashboards (or make REST API calls), they only see detectors created by users who share at least one backend role.
 For example, consider two users: `alice` and `bob`.
 
 `alice` has an analyst backend role:

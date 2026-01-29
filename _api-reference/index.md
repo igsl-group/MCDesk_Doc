@@ -7,19 +7,19 @@ has_children: true
 nav_exclude: true
 permalink: /api-reference/
 redirect_from:
-  - /smartobserve/rest-api/index/
+  - /mcdesk/rest-api/index/
   - /api-reference/index/
 ---
 
 # API reference
 
-You can use [REST APIs](#rest-apis) for most operations in SmartObserve. Starting with SmartObserve 3.0, you can use alternative experimental [gRPC APIs](#grpc-apis). 
+You can use [REST APIs](#rest-apis) for most operations in MCdesk. Starting with MCdesk 3.0, you can use alternative experimental [gRPC APIs](#grpc-apis). 
 
 ## REST APIs 
 **Introduced 1.0**
 {: .label .label-purple }
 
-SmartObserve supports the following REST APIs:
+MCdesk supports the following REST APIs:
 
 ### Core APIs (in this section)
 
@@ -75,4 +75,4 @@ SmartObserve supports the following REST APIs:
 **Introduced 3.0**
 {: .label .label-purple }
 
-Starting with SmartObserve 3.0, you can use gRPC APIs---a high-performance alternative to traditional REST interfaces. These APIs use the gRPC protocol to provide more efficient communication with SmartObserve clusters. For more information and supported APIs, see [gRPC APIs]({{site.url}}{{site.baseurl}}/api-reference/grpc-apis/).
+Starting with MCdesk 3.0, you can use gRPC APIs---a high-performance alternative to traditional REST interfaces. These APIs use the gRPC protocol to provide more efficient communication with MCdesk clusters. For more information and supported APIs, see [gRPC APIs]({{site.url}}{{site.baseurl}}/api-reference/grpc-apis/).

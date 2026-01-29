@@ -11,9 +11,9 @@ redirect_from:
 
 # RAG using the DeepSeek Chat API
 
-This tutorial shows you how to implement retrieval-augmented generation (RAG) using [Amazon SmartObserve Service](https://docs.aws.amazon.com/smartobserve-service/) and the [DeepSeek chat model](https://api-docs.deepseek.com/api/create-chat-completion).
+This tutorial shows you how to implement retrieval-augmented generation (RAG) using [Amazon MCdesk Service](https://docs.aws.amazon.com/mcdesk-service/) and the [DeepSeek chat model](https://api-docs.deepseek.com/api/create-chat-completion).
 
-If you are using self-managed SmartObserve instead of Amazon SmartObserve Service, obtain a DeepSeek API key and create a connector to the DeepSeek chat model using [the blueprint](https://github.com/igsl-group/ml-commons/blob/main/docs/remote_inference_blueprints/deepseek_connector_chat_blueprint.md). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/). Then go directly to [Step 5](#step-5-create-and-test-the-model).
+If you are using self-managed MCdesk instead of Amazon MCdesk Service, obtain a DeepSeek API key and create a connector to the DeepSeek chat model using [the blueprint](https://github.com/igsl-group/ml-commons/blob/main/docs/remote_inference_blueprints/deepseek_connector_chat_blueprint.md). For more information about creating a connector, see [Connectors]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/connectors/). Then go directly to [Step 5](#step-5-create-and-test-the-model).
 
 Replace the placeholders beginning with the prefix `your_` with your own values.
 {: .note}
@@ -29,9 +29,9 @@ When configuring Amazon settings, only change the values mentioned in this tutor
 
 If you don't have a DeepSeek API key already, obtain one before starting this tutorial. 
 
-### Create an SmartObserve cluster
+### Create an MCdesk cluster
 
-Go to the [Amazon SmartObserve Service console](https://console.aws.amazon.com/aos/home) and create an SmartObserve domain.
+Go to the [Amazon MCdesk Service console](https://console.aws.amazon.com/aos/home) and create an MCdesk domain.
 
 Note the domain Amazon Resource Name (ARN) and URL; you'll use them in the following steps.
 
@@ -92,9 +92,9 @@ Go to the IAM console, create a new IAM role named `my_deepseek_secret_role`, an
 
 Note the role ARN; you'll use it in the following steps.
 
-## Step 3: Configure an IAM role in Amazon SmartObserve Service
+## Step 3: Configure an IAM role in Amazon MCdesk Service
 
-Follow these steps to configure an IAM role in Amazon SmartObserve Service.
+Follow these steps to configure an IAM role in Amazon MCdesk Service.
 
 ### Step 3.1: Create an IAM role for signing connector requests
 
@@ -136,7 +136,7 @@ You'll use the `your_iam_user_arn` IAM user to assume the role in Step 4.
     {
       "Effect": "Allow",
       "Action": "es:ESHttpPost",
-      "Resource": "your_smartobserve_domain_arn"
+      "Resource": "your_mcdesk_domain_arn"
     }
   ]
 }
@@ -149,14 +149,14 @@ Note this role ARN; you'll use it in the following steps.
 
 Follow these steps to map a backend role:
 
-1. Log in to SmartObserve Dashboards and select **Security** on the top menu.
+1. Log in to MCdesk Dashboards and select **Security** on the top menu.
 2. Select **Roles**, and then select the **ml_full_access** role. 
 3. On the **ml_full_access** role details page, select **Mapped users**, and then select **Manage mapping**. 
 4. Enter the IAM role ARN created in Step 3.1 in the **Backend roles** field, as shown in the following image.
     ![Mapping a backend role]({{site.url}}{{site.baseurl}}/images/vector-search-tutorials/mapping_iam_role_arn.png)
 4. Select **Map**. 
 
-The IAM role is now successfully configured in your SmartObserve cluster.
+The IAM role is now successfully configured in your MCdesk cluster.
 
 ## Step 4: Create a connector
 
@@ -183,8 +183,8 @@ import boto3
 import requests 
 from requests_aws4auth import AWS4Auth
 
-host = 'your_amazon_smartobserve_domain_endpoint'
-region = 'your_amazon_smartobserve_domain_region'
+host = 'your_amazon_mcdesk_domain_endpoint'
+region = 'your_amazon_mcdesk_domain_region'
 service = 'es'
 
 assume_role_response = boto3.Session().client('sts').assume_role(
@@ -242,7 +242,7 @@ Note the connector ID; you'll use it in the next step.
 
 ## Step 5: Create and test the model
 
-Log in to SmartObserve Dashboards, open the DevTools console, and run the following requests to create and test the DeepSeek chat model.
+Log in to MCdesk Dashboards, open the DevTools console, and run the following requests to create and test the DeepSeek chat model.
 
 1. Create a model group:
 

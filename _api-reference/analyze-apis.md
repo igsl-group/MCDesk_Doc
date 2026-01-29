@@ -4,7 +4,7 @@ title: Analyze API
 nav_order: 7
 redirect_from:
   - /api-reference/analyze-apis/perform-text-analysis/
-  - /smartobserve/rest-api/analyze-apis/
+  - /mcdesk/rest-api/analyze-apis/
   - /api-reference/analyze-apis/terminology/
   - /api-reference/analyze-apis/index/
 ---
@@ -183,14 +183,14 @@ rest: GET /_analyze
 body: |
 {
   "analyzer" : "standard",
-  "text" : "SmartObserve text analysis"
+  "text" : "MCdesk text analysis"
 }
 -->
 {% capture step1_rest %}
 GET /_analyze
 {
   "analyzer": "standard",
-  "text": "SmartObserve text analysis"
+  "text": "MCdesk text analysis"
 }
 {% endcapture %}
 
@@ -200,7 +200,7 @@ GET /_analyze
 response = client.indices.analyze(
   body =   {
     "analyzer": "standard",
-    "text": "SmartObserve text analysis"
+    "text": "MCdesk text analysis"
   }
 )
 
@@ -217,7 +217,7 @@ The previous request returns the following fields:
 {
   "tokens" : [
     {
-      "token" : "smartobserve",
+      "token" : "mcdesk",
       "start_offset" : 0,
       "end_offset" : 10,
       "type" : "<ALPHANUM>",
@@ -334,7 +334,7 @@ body: |
 {
   "tokenizer" : "keyword",
   "filter" : ["uppercase"],
-  "text" : "SmartObserve filter"
+  "text" : "MCdesk filter"
 }
 -->
 {% capture step1_rest %}
@@ -344,7 +344,7 @@ GET /_analyze
   "filter": [
     "uppercase"
   ],
-  "text": "SmartObserve filter"
+  "text": "MCdesk filter"
 }
 {% endcapture %}
 
@@ -357,7 +357,7 @@ response = client.indices.analyze(
     "filter": [
       "uppercase"
     ],
-    "text": "SmartObserve filter"
+    "text": "MCdesk filter"
   }
 )
 
@@ -574,13 +574,13 @@ component: example_code
 rest: GET /books/_analyze
 body: |
 {
-  "text" : "SmartObserve analyze test"
+  "text" : "MCdesk analyze test"
 }
 -->
 {% capture step1_rest %}
 GET /books/_analyze
 {
-  "text": "SmartObserve analyze test"
+  "text": "MCdesk analyze test"
 }
 {% endcapture %}
 
@@ -590,7 +590,7 @@ GET /books/_analyze
 response = client.indices.analyze(
   index = "books",
   body =   {
-    "text": "SmartObserve analyze test"
+    "text": "MCdesk analyze test"
   }
 )
 
@@ -607,7 +607,7 @@ The previous request returns the following fields:
 
   "tokens" : [
     {
-      "token" : "smartobserve",
+      "token" : "mcdesk",
       "start_offset" : 0,
       "end_offset" : 10,
       "type" : "<ALPHANUM>",
@@ -641,14 +641,14 @@ rest: GET /books/_analyze
 body: |
 {
   "analyzer" : "keyword",
-  "text" : "SmartObserve analyze test"
+  "text" : "MCdesk analyze test"
 }
 -->
 {% capture step1_rest %}
 GET /books/_analyze
 {
   "analyzer": "keyword",
-  "text": "SmartObserve analyze test"
+  "text": "MCdesk analyze test"
 }
 {% endcapture %}
 
@@ -659,7 +659,7 @@ response = client.indices.analyze(
   index = "books",
   body =   {
     "analyzer": "keyword",
-    "text": "SmartObserve analyze test"
+    "text": "MCdesk analyze test"
   }
 )
 
@@ -676,7 +676,7 @@ The previous request returns the following fields:
 {
   "tokens" : [
     {
-      "token" : "SmartObserve analyze test",
+      "token" : "MCdesk analyze test",
       "start_offset" : 0,
       "end_offset" : 23,
       "type" : "word",
@@ -700,14 +700,14 @@ rest: GET /books2/_analyze
 body: |
 {
   "field" : "name",
-  "text" : "SmartObserve analyze test"
+  "text" : "MCdesk analyze test"
 }
 -->
 {% capture step1_rest %}
 GET /books2/_analyze
 {
   "field": "name",
-  "text": "SmartObserve analyze test"
+  "text": "MCdesk analyze test"
 }
 {% endcapture %}
 
@@ -718,7 +718,7 @@ response = client.indices.analyze(
   index = "books2",
   body =   {
     "field": "name",
-    "text": "SmartObserve analyze test"
+    "text": "MCdesk analyze test"
   }
 )
 
@@ -735,7 +735,7 @@ The previous request returns the following fields:
 {
   "tokens" : [
     {
-      "token" : "smartobserve",
+      "token" : "mcdesk",
       "start_offset" : 0,
       "end_offset" : 10,
       "type" : "<ALPHANUM>",
@@ -891,7 +891,7 @@ body: |
 {
   "tokenizer" : "standard",
   "filter" : ["reverse"],
-  "text" : "SmartObserve analyze test",
+  "text" : "MCdesk analyze test",
   "explain" : true,
   "attributes" : ["keyword"]
 }
@@ -903,7 +903,7 @@ GET /_analyze
   "filter": [
     "reverse"
   ],
-  "text": "SmartObserve analyze test",
+  "text": "MCdesk analyze test",
   "explain": true,
   "attributes": [
     "keyword"
@@ -920,7 +920,7 @@ response = client.indices.analyze(
     "filter": [
       "reverse"
     ],
-    "text": "SmartObserve analyze test",
+    "text": "MCdesk analyze test",
     "explain": true,
     "attributes": [
       "keyword"
@@ -946,7 +946,7 @@ The previous request returns the following fields:
       "name" : "standard",
       "tokens" : [
         {
-          "token" : "SmartObserve",
+          "token" : "MCdesk",
           "start_offset" : 0,
           "end_offset" : 10,
           "type" : "<ALPHANUM>",
@@ -1016,7 +1016,7 @@ PUT /books2
 ````
 {% include copy-curl.html %}
 
-The preceding request is an index API rather than an analyze API. See [Dynamic index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index-settings/#dynamic-index-level-index-settings) for additional details.
+The preceding request is an index API rather than an analyze API. See [Dynamic index-level index settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index-settings/#dynamic-index-level-index-settings) for additional details.
 {: .note}
 
 ## Response body fields

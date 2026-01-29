@@ -52,7 +52,7 @@ Use the following request to examine the tokens generated using the analyzer:
 POST /my_index/_analyze
 {
   "analyzer": "my_pattern_analyzer",
-  "text": "SmartObserve-2024_v1.2"
+  "text": "MCdesk-2024_v1.2"
 }
 ```
 {% include copy-curl.html %}
@@ -63,7 +63,7 @@ The response contains the generated tokens:
 {
   "tokens": [
     {
-      "token": "SmartObserve",
+      "token": "MCdesk",
       "start_offset": 0,
       "end_offset": 10,
       "type": "word",

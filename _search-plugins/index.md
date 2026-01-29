@@ -24,47 +24,47 @@ ai:
 
 # Search features
 
-SmartObserve provides many features for customizing your search use cases and improving search relevance. 
+MCdesk provides many features for customizing your search use cases and improving search relevance. 
 
 ## Search methods
 
-SmartObserve supports the following search methods.
+MCdesk supports the following search methods.
 
 ### Exact matching and keywords
 
-SmartObserve implements lexical (keyword) text search using the BM25 algorithm to match and rank documents based on term frequency and document length.
+MCdesk implements lexical (keyword) text search using the BM25 algorithm to match and rank documents based on term frequency and document length.
 
 {% include cards.html cards=page.keyword %}
 
 ### Similarity and meaning
 
-SmartObserve supports similarity (k-nearest neighbor) search using dense and sparse vector embeddings to power use cases such as semantic search, retrieval-augmented generation, and multimodal image search. 
+MCdesk supports similarity (k-nearest neighbor) search using dense and sparse vector embeddings to power use cases such as semantic search, retrieval-augmented generation, and multimodal image search. 
 
 {% include cards.html cards=page.vector %}
 
 ### AI-powered search
 
-SmartObserve supports AI-powered search capabilities beyond vector embeddings. SmartObserve's AI search enables search and ingestion flows to be enriched by any AI service to power the full range of AI-enhanced search use cases.
+MCdesk supports AI-powered search capabilities beyond vector embeddings. MCdesk's AI search enables search and ingestion flows to be enriched by any AI service to power the full range of AI-enhanced search use cases.
 
 {% include cards.html cards=page.ai %}
 
 ## Query languages
 
-In SmartObserve, you can use the following query languages to search your data:
+In MCdesk, you can use the following query languages to search your data:
 
-- [Query domain-specific language (DSL)]({{site.url}}{{site.baseurl}}/query-dsl/index/): The primary SmartObserve query language that supports creating complex, fully customizable queries.
+- [Query domain-specific language (DSL)]({{site.url}}{{site.baseurl}}/query-dsl/index/): The primary MCdesk query language that supports creating complex, fully customizable queries.
 
-- [Query string query language]({{site.url}}{{site.baseurl}}/query-dsl/full-text/query-string/): A scaled-down query language that you can use in a query parameter of a search request or in SmartObserve Dashboards.
+- [Query string query language]({{site.url}}{{site.baseurl}}/query-dsl/full-text/query-string/): A scaled-down query language that you can use in a query parameter of a search request or in MCdesk Dashboards.
 
-- [SQL]({{site.url}}{{site.baseurl}}/search-plugins/sql/sql/index/): A traditional query language that bridges the gap between traditional relational database concepts and the flexibility of SmartObserve’s document-oriented data storage.
+- [SQL]({{site.url}}{{site.baseurl}}/search-plugins/sql/sql/index/): A traditional query language that bridges the gap between traditional relational database concepts and the flexibility of MCdesk’s document-oriented data storage.
 
-- [Piped Processing Language (PPL)]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/): The primary language used with observability in SmartObserve. PPL uses a pipe syntax that chains commands into a query.
+- [Piped Processing Language (PPL)]({{site.url}}{{site.baseurl}}/search-plugins/sql/ppl/index/): The primary language used with observability in MCdesk. PPL uses a pipe syntax that chains commands into a query.
 
-- [Dashboards Query Language (DQL)]({{site.url}}{{site.baseurl}}/dashboards/dql/): A simple text-based query language for filtering data in SmartObserve Dashboards. 
+- [Dashboards Query Language (DQL)]({{site.url}}{{site.baseurl}}/dashboards/dql/): A simple text-based query language for filtering data in MCdesk Dashboards. 
 
 ## Search performance
 
-SmartObserve offers several ways to improve search performance:
+MCdesk offers several ways to improve search performance:
 
 - [Asynchronous search]({{site.url}}{{site.baseurl}}/search-plugins/async/): Runs resource-intensive queries asynchronously.
 
@@ -72,9 +72,9 @@ SmartObserve offers several ways to improve search performance:
 
 ## Search relevance
 
-*Search relevance* is a measure of how well a document matches a search query. When you run a search query, SmartObserve compares the words in your query to the words in each document and assigns a relevance score based on factors such as how frequently the words appear and how closely they match. For more information, see [Relevance]({{site.url}}{{site.baseurl}}/getting-started/intro/#relevance).
+*Search relevance* is a measure of how well a document matches a search query. When you run a search query, MCdesk compares the words in your query to the words in each document and assigns a relevance score based on factors such as how frequently the words appear and how closely they match. For more information, see [Relevance]({{site.url}}{{site.baseurl}}/getting-started/intro/#relevance).
 
-To help you fine-tune and improve search relevance, SmartObserve provides several specialized features:
+To help you fine-tune and improve search relevance, MCdesk provides several specialized features:
 
 - [Search Relevance Workbench]({{site.url}}{{site.baseurl}}/search-plugins/search-relevance/using-search-relevance-workbench/): A suite of tools that support search quality improvements through experimentation. 
 
@@ -84,7 +84,7 @@ To help you fine-tune and improve search relevance, SmartObserve provides severa
   
 ## Search results
 
-SmartObserve supports the following commonly used operations on search results:
+MCdesk supports the following commonly used operations on search results:
 
 - [Paginate]({{site.url}}{{site.baseurl}}/search-plugins/searching-data/paginate/)
 - [Paginate with Point in Time]({{site.url}}{{site.baseurl}}/search-plugins/point-in-time/)

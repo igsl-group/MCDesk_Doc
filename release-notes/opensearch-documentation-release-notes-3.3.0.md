@@ -1,6 +1,6 @@
-# SmartObserve Documentation Website 3.3.0 Release Notes
+# MCdesk Documentation Website 3.3.0 Release Notes
 
-The SmartObserve 3.3.0 documentation includes the following additions and updates.
+The MCdesk 3.3.0 documentation includes the following additions and updates.
 
 ## New documentation for 3.3.0
 
@@ -16,7 +16,7 @@ The SmartObserve 3.3.0 documentation includes the following additions and update
 - docs(ad): add Managing anomalies guide, expand Operational settings [#11180](https://github.com/igsl-group/documentation-website/pull/11180)
 - [ML] Add tool output processor documentation [#11171](https://github.com/igsl-group/documentation-website/pull/11171)
 - Add streaming support doc [#11170](https://github.com/igsl-group/documentation-website/pull/11170)
-- Add comprehensive agentic memory API documentation for SmartObserve 3.3 [#11169](https://github.com/igsl-group/documentation-website/pull/11169)
+- Add comprehensive agentic memory API documentation for MCdesk 3.3 [#11169](https://github.com/igsl-group/documentation-website/pull/11169)
 - Add lateInteractionScore Function [#11168](https://github.com/igsl-group/documentation-website/pull/11168)
 - Add doc for scratchpad tools [#11167](https://github.com/igsl-group/documentation-website/pull/11167)
 - [ML] Add updated_time to message [#11165](https://github.com/igsl-group/documentation-website/pull/11165)

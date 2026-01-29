@@ -17,6 +17,6 @@ storage_cards:
 
 # Optimizing vector storage
 
-Vector search operations can be resource intensive, especially when dealing with large-scale vector datasets. SmartObserve provides several optimization techniques for reducing memory usage. 
+Vector search operations can be resource intensive, especially when dealing with large-scale vector datasets. MCdesk provides several optimization techniques for reducing memory usage. 
 
 {% include cards.html cards=page.storage_cards %}

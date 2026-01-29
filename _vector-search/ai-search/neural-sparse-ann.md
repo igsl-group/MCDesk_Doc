@@ -116,7 +116,7 @@ Ingest documents with sparse embeddings where tokens are represented as integers
 ```json
 POST _bulk
 { "create": { "_index": "my-sparse-ann-index", "_id": "1" } }
-{ "sparse_embedding": {"10": 0.85, "23": 1.92, "24": 0.67, "78": 2.54, "156": 0.73}, "text": "SmartObserve neural sparse search" }
+{ "sparse_embedding": {"10": 0.85, "23": 1.92, "24": 0.67, "78": 2.54, "156": 0.73}, "text": "MCdesk neural sparse search" }
 { "create": { "_index": "my-sparse-ann-index", "_id": "2" } }
 { "sparse_embedding": {"3": 1.22, "19": 0.11, "21": 0.35, "300": 1.74, "985": 0.96}, "text": "Machine learning algorithms" }
 ```
@@ -216,9 +216,9 @@ PUT /_cluster/settings
 
 ### Memory and caching settings
 
-Neural sparse ANN search provides a circuit breaker that prevents the algorithm from using excessive memory and ensures that other SmartObserve operations remain unaffected. The default value of `circuit_breaker.limit` is `10%`. you can adjust this setting to control the total memory allocated to the algorithm. When memory usage reaches the defined limit, a cache eviction occurs, removing the least recently used data. 
+Neural sparse ANN search provides a circuit breaker that prevents the algorithm from using excessive memory and ensures that other MCdesk operations remain unaffected. The default value of `circuit_breaker.limit` is `10%`. you can adjust this setting to control the total memory allocated to the algorithm. When memory usage reaches the defined limit, a cache eviction occurs, removing the least recently used data. 
 
-A higher circuit breaker limit allows more memory usage and reduces the frequency of cache evictions but may impact other SmartObserve operations. A lower limit provides greater safety but can result in more frequent cache evictions.
+A higher circuit breaker limit allows more memory usage and reduces the frequency of cache evictions but may impact other MCdesk operations. A lower limit provides greater safety but can result in more frequent cache evictions.
 
 To configure the circuit breaker limit, send the following request:
 

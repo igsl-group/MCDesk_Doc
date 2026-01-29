@@ -26,7 +26,7 @@ Option | Required | Type | Description
 
 ## Usage
 
-The following examples show how the `flatten` processor can be used in SmartObserve Data Prepper pipelines.
+The following examples show how the `flatten` processor can be used in MCdesk Data Prepper pipelines.
 
 ### Minimum configuration
 

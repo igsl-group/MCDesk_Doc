@@ -10,16 +10,16 @@ parent: .NET clients
 
 The following sections provide information regarding the considerations and best practices for using .NET clients.
 
-## Registering SmartObserve.Client as a singleton
+## Registering MCdesk.Client as a singleton
 
-As a rule, you should set up your SmartObserve.Client as a singleton. SmartObserve.Client manages connections to the server and the states of the nodes in a cluster. Additionally, each client uses a lot of configuration for its setup. Therefore, it is beneficial to create an SmartObserve.Client instance once and reuse it for all SmartObserve operations. The client is thread safe, so the same instance can be shared by multiple threads.
+As a rule, you should set up your MCdesk.Client as a singleton. MCdesk.Client manages connections to the server and the states of the nodes in a cluster. Additionally, each client uses a lot of configuration for its setup. Therefore, it is beneficial to create an MCdesk.Client instance once and reuse it for all MCdesk operations. The client is thread safe, so the same instance can be shared by multiple threads.
 
 ## Exceptions
 
 The following are the types of exceptions that may be thrown by .NET clients:
 
-- `SmartObserveClientException` is a known exception that occurs either in the request pipeline (for example, timeout reached) or in SmartObserve (for example, malformed query). If it is an SmartObserve exception, the `ServerError` response property contains the error that SmartObserve returns. 
-- `UnexpectedSmartObserveClientException` is an unknown exception (for example, an error during deserialization) and is a subclass of SmartObserveClientException.
+- `MCdeskClientException` is a known exception that occurs either in the request pipeline (for example, timeout reached) or in MCdesk (for example, malformed query). If it is an MCdesk exception, the `ServerError` response property contains the error that MCdesk returns. 
+- `UnexpectedMCdeskClientException` is an unknown exception (for example, an error during deserialization) and is a subclass of MCdeskClientException.
 - System exceptions are thrown when the API is not used properly. 
 
 ## Nodes
@@ -27,20 +27,20 @@ The following are the types of exceptions that may be thrown by .NET clients:
 To create a node, pass a `Uri` object into its constructor:
 
 ```cs
-var uri = new Uri("http://example.org/smartobserve");
+var uri = new Uri("http://example.org/mcdesk");
 var node = new Node(uri);
 ```
 {% include copy.html %}
 
 When first created, a node is master eligible, and its `HoldsData` property is set to true. 
-The `AbsolutePath` property of the node created above is `"/smartobserve/"`: A trailing forward slash is appended so that the paths can be easily combined. If not specified, the default `Port` is 80.
+The `AbsolutePath` property of the node created above is `"/mcdesk/"`: A trailing forward slash is appended so that the paths can be easily combined. If not specified, the default `Port` is 80.
 
 Nodes are considered equal if they have the same endpoint. Metadata is not taken into account when checking nodes for equality.
 {: .note}
 
 ## Connection pools
 
-Connection pools are instances of `IConnectionPool` and are responsible for managing the nodes in the SmartObserve cluster. We recommend creating a [singleton client](#registering-smartobserveclient-as-a-singleton) with a single `ConnectionSettings` object. The lifetime of both the client and its `ConnectionSettings` is the lifetime of the application.
+Connection pools are instances of `IConnectionPool` and are responsible for managing the nodes in the MCdesk cluster. We recommend creating a [singleton client](#registering-mcdeskclient-as-a-singleton) with a single `ConnectionSettings` object. The lifetime of both the client and its `ConnectionSettings` is the lifetime of the application.
 
 The following are connection pool types.
 
@@ -70,7 +70,7 @@ The following are connection pool types.
 
 ## Retries
 
-If a request does not succeed, it is automatically retried. By default, the number of retries is the number of nodes known to SmartObserve.Client in your cluster. The number of retries is also limited by the timeout parameter, so SmartObserve.Client retries requests as many times as possible within the timeout period. 
+If a request does not succeed, it is automatically retried. By default, the number of retries is the number of nodes known to MCdesk.Client in your cluster. The number of retries is also limited by the timeout parameter, so MCdesk.Client retries requests as many times as possible within the timeout period. 
 
 To set the maximum number of retries, specify the number in the `MaximumRetries` property on the `ConnectionSettings` object.
 

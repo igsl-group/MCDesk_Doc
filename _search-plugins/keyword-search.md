@@ -7,7 +7,7 @@ nav_order: 10
 
 # Keyword search
 
-By default, SmartObserve calculates document scores using the [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm. BM25 is a keyword-based algorithm that performs lexical search for words that appear in the query. 
+By default, MCdesk calculates document scores using the [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm. BM25 is a keyword-based algorithm that performs lexical search for words that appear in the query. 
 
 When determining a document's relevance, BM25 considers [term frequency/inverse document frequency (TF/IDF)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf):
 
@@ -117,14 +117,14 @@ The response contains the matching documents, each with a relevance score in the
 The following table lists the supported similarity algorithms.
 
 Algorithm | Description
-`BM25` | The default SmartObserve [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) similarity algorithm. 
-`LegacyBM25` (Deprecated) | The older [LegacyBM25Similarity](https://github.com/igsl-group/SmartObserve/blob/main/server/src/main/java/org/smartobserve/lucene/similarity/LegacyBM25Similarity.java) implementation. Kept for backward compatibility.
+`BM25` | The default MCdesk [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25) similarity algorithm. 
+`LegacyBM25` (Deprecated) | The older [LegacyBM25Similarity](https://github.com/igsl-group/MCdesk/blob/main/server/src/main/java/org/mcdesk/lucene/similarity/LegacyBM25Similarity.java) implementation. Kept for backward compatibility.
 `boolean` | Assigns terms a score equal to their boost value. Use `boolean` similarity when you want the document scores to be based on the binary value of whether the terms match.
 
 
-### Important changes to BM25 scoring in SmartObserve 3.0
+### Important changes to BM25 scoring in MCdesk 3.0
 
-In SmartObserve 3.0, the default similarity algorithm changed from `LegacyBM25Similarity` to Lucene's native `BM25Similarity`.
+In MCdesk 3.0, the default similarity algorithm changed from `LegacyBM25Similarity` to Lucene's native `BM25Similarity`.
 
 This change improves alignment with Lucene standards and simplifies scoring behavior, but it introduces an important difference:
 
@@ -220,4 +220,4 @@ PUT /testindex
 ## Next steps
 
 - Learn about [query and filter context]({{site.url}}{{site.baseurl}}/query-dsl/query-filter-context/).
-- Learn about the [query types]({{site.url}}{{site.baseurl}}/query-dsl/index/) SmartObserve supports.
+- Learn about the [query types]({{site.url}}{{site.baseurl}}/query-dsl/index/) MCdesk supports.

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Workspace access control lists
-parent: Workspace for SmartObserve Dashboards
+parent: Workspace for MCdesk Dashboards
 nav_order: 3
 ---
 
@@ -9,13 +9,13 @@ nav_order: 3
 Introduced 2.18
 {: .label .label-purple }
 
-Workspace access control lists (ACLs) manage authorization for saved objects `AuthZ(Authorization)` while enabling [Security in SmartObserve]({{site.url}}{{site.baseurl}}/security/) for `AuthN(Authentication)`.
+Workspace access control lists (ACLs) manage authorization for saved objects `AuthZ(Authorization)` while enabling [Security in MCdesk]({{site.url}}{{site.baseurl}}/security/) for `AuthN(Authentication)`.
 
 ## Personas
 
 **Workspace** use cases involve the following key personas:
 
-* **Dashboard admin:** Has full access to all SmartObserve Dashboards functions and data.
+* **Dashboard admin:** Has full access to all MCdesk Dashboards functions and data.
 * **Workspace administrator (also called _owner_):** Has full control over a specific workspace, including its configuration and saved objects. When a workspace is created, its creator is automatically assigned the role of workspace owner.
 * **Workspace content producer:** Can view, create, and update saved objects within the workspace.
 * **Workspace viewer:** Has read-only access to saved objects in the workspace.
@@ -29,11 +29,11 @@ See [Enabling the ACL feature]({{site.url}}{{site.baseurl}}/dashboards/managemen
 
 ## Configuring dashboard administrators
 
-To grant full access to all workspaces and objects in SmartObserve Dashboards, configure the admin permissions. Edit the `smartobserve_dashboards.yml` file to define the admin by user ID and backend role, as shown in the following configuration:
+To grant full access to all workspaces and objects in MCdesk Dashboards, configure the admin permissions. Edit the `mcdesk_dashboards.yml` file to define the admin by user ID and backend role, as shown in the following configuration:
 
 ```yaml
-smartobserveDashboards.dashboardAdmin.users: ["UserID"]
-smartobserveDashboards.dashboardAdmin.groups: ["BackendRole"]
+mcdeskDashboards.dashboardAdmin.users: ["UserID"]
+mcdeskDashboards.dashboardAdmin.groups: ["BackendRole"]
 savedObjects.permission.enabled: true
 ```
 {% include copy.html %}
@@ -45,7 +45,7 @@ By default, the configuration is set to `[]`, meaning that no users are designat
 Set all users as admins with this wildcard setting:
 
 ```yaml
-smartobserveDashboards.dashboardAdmin.users: ["*"]
+mcdeskDashboards.dashboardAdmin.users: ["*"]
 ```
 {% include copy-curl.html %}
 
@@ -54,7 +54,7 @@ smartobserveDashboards.dashboardAdmin.users: ["*"]
 Configure a user with the `admin-user-id` setting:
 
 ```yaml
-smartobserveDashboards.dashboardAdmin.users: ["admin-user-id"]
+mcdeskDashboards.dashboardAdmin.users: ["admin-user-id"]
 ```
 {% include copy-curl.html %}
 
@@ -63,7 +63,7 @@ smartobserveDashboards.dashboardAdmin.users: ["admin-user-id"]
 Configure a user with the `admin-role` setting:
 
 ```yaml
-smartobserveDashboards.dashboardAdmin.groups: ["admin-role"]
+mcdeskDashboards.dashboardAdmin.groups: ["admin-role"]
 ```
 {% include copy-curl.html %}
 

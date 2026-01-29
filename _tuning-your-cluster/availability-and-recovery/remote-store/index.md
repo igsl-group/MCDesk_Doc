@@ -5,7 +5,7 @@ nav_order: 40
 has_children: true
 parent: Availability and recovery
 redirect_from:
-  - /smartobserve/remote/
+  - /mcdesk/remote/
   - /tuning-your-cluster/availability-and-recovery/remote/
   - /tuning-your-cluster/availability-and-recovery/remote-store/
 ---
@@ -16,9 +16,9 @@ Introduced 2.10
 {: .label .label-purple }
 
 
-Remote-backed storage offers SmartObserve users a new way to protect against data loss by automatically creating backups of all index transactions and sending them to remote storage. In order to expose this feature, segment replication must also be enabled. See [Segment replication]({{site.url}}{{site.baseurl}}/smartobserve/segment-replication/) for additional information.
+Remote-backed storage offers MCdesk users a new way to protect against data loss by automatically creating backups of all index transactions and sending them to remote storage. In order to expose this feature, segment replication must also be enabled. See [Segment replication]({{site.url}}{{site.baseurl}}/mcdesk/segment-replication/) for additional information.
 
-With remote-backed storage, when a write request lands on the primary shard, the request is indexed to Lucene on the primary shard only. The corresponding translog is then uploaded to remote store. SmartObserve does not send the write request to the replicas, but rather performs a primary term validation to confirm that the request originator shard is still the primary shard. Primary term validation ensures that the acting primary shard fails if it becomes isolated and is unaware of the cluster manager electing a new primary.
+With remote-backed storage, when a write request lands on the primary shard, the request is indexed to Lucene on the primary shard only. The corresponding translog is then uploaded to remote store. MCdesk does not send the write request to the replicas, but rather performs a primary term validation to confirm that the request originator shard is still the primary shard. Primary term validation ensures that the acting primary shard fails if it becomes isolated and is unaware of the cluster manager electing a new primary.
 
 After segments are created on the primary shard as part of the refresh, flush, and merge flow, the segments are uploaded to remote segment store and the replica shards source a copy from the same remote segment store. This prevents the primary shard from having to perform any write operations.
 
@@ -31,7 +31,7 @@ Communication with the configured remote cluster happens in the Repository plugi
 Make sure remote store settings are configured the same way across all nodes in the cluster. If not, bootstrapping will fail for nodes whose attributes are different from the elected cluster manager node.
 {: .note}
 
-To enable remote-backed storage for a given cluster, provide the remote store repository details as node attributes in `smartobserve.yml`, as shown in the following example:
+To enable remote-backed storage for a given cluster, provide the remote store repository details as node attributes in `mcdesk.yml`, as shown in the following example:
 
 ```yml
 # Repository name
@@ -57,7 +57,7 @@ For more information about configuring settings for the remote cluster state, se
 
 You do not have to use three different remote store repositories for segment, translog, and state. All three stores can share the same repository. 
 
-During the bootstrapping process, the remote-backed repositories listed in `smartobserve.yml` are automatically registered. After the cluster is created with the `remote_store` settings, all indexes created in that cluster will start uploading data to the configured remote store.
+During the bootstrapping process, the remote-backed repositories listed in `mcdesk.yml` are automatically registered. After the cluster is created with the `remote_store` settings, all indexes created in that cluster will start uploading data to the configured remote store.
 
 ## Related cluster settings
 
@@ -106,11 +106,11 @@ You can use remote-backed storage to:
 
 ## Benchmarks
 
-The SmartObserve Project has run remote store using multiple workload options available within the [SmartObserve Benchmark]({{site.url}}{{site.baseurl}}/benchmark/index/) tool. This section summarizes the benchmark results for the following workloads: 
+The MCdesk Project has run remote store using multiple workload options available within the [MCdesk Benchmark]({{site.url}}{{site.baseurl}}/benchmark/index/) tool. This section summarizes the benchmark results for the following workloads: 
 
-- [StackOverflow](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/so)
-- [HTTP logs](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/http_logs)
-- [NYC taxis](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/nyc_taxis),
+- [StackOverflow](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/so)
+- [HTTP logs](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/http_logs)
+- [NYC taxis](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/nyc_taxis),
 
 Each workload was tested against multiple bulk indexing client configurations in order to simulate varying degrees of request concurrency.
 
@@ -122,7 +122,7 @@ For these benchmarks, we used the following cluster, shard, and test configurati
 
 * Nodes: Three nodes, each using the data, ingest, and cluster manager roles
 * Node instance: Amazon EC2 r6g.xlarge
-* SmartObserve Benchmark host: Single Amazon EC2 m5.2xlarge instance
+* MCdesk Benchmark host: Single Amazon EC2 m5.2xlarge instance
 * Shard configuration: Three shards with one replica
 * The `repository-s3` plugin installed with the default S3 settings 
 
@@ -159,9 +159,9 @@ The following table lists the benchmarking results for the `http_logs` workload 
 |Indexing throughput	|P50	|91645.1	|93906.7	|2.47	|89659.8	|125443	|39.91	|91120.3	|132166	|45.05	|
 |Indexing latency	|P90	|995.217	|1014.01	|1.89	|2236.33	|1750.06	|-21.74	|3353.45	|2472	|-26.28	|
 
-As shown by the results, there are consistent gains in cases where the indexing latency is more than the average remote upload time. When you increase the number of bulk indexing clients, a remote-enabled configuration provides indexing throughput gains of up to 60--65%. For more detailed results, see [Issue #9790](https://github.com/igsl-group/SmartObserve/issues/9790).
+As shown by the results, there are consistent gains in cases where the indexing latency is more than the average remote upload time. When you increase the number of bulk indexing clients, a remote-enabled configuration provides indexing throughput gains of up to 60--65%. For more detailed results, see [Issue #9790](https://github.com/igsl-group/MCdesk/issues/9790).
 
 ## Next steps
 
-To track future enhancements to remote-backed storage, see [Issue #10181](https://github.com/igsl-group/SmartObserve/issues/10181).
+To track future enhancements to remote-backed storage, see [Issue #10181](https://github.com/igsl-group/MCdesk/issues/10181).
 

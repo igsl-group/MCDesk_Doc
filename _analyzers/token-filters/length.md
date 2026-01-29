@@ -55,7 +55,7 @@ Use the following request to examine the tokens generated using the analyzer:
 GET /my_index/_analyze
 {
   "analyzer": "only_keep_4_to_10_characters",
-  "text": "SmartObserve is a great tool!"
+  "text": "MCdesk is a great tool!"
 }
 ```
 {% include copy-curl.html %}
@@ -66,7 +66,7 @@ The response contains the generated tokens:
 {
   "tokens": [
     {
-      "token": "SmartObserve",
+      "token": "MCdesk",
       "start_offset": 0,
       "end_offset": 10,
       "type": "word",

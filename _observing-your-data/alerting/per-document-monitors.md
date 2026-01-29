@@ -11,7 +11,7 @@ has_children: false
 Introduced 2.0
 {: .label .label-purple }
 
-Per document monitors are a type of alert monitor that can be used to identify and alert on specific documents in an SmartObserve index. For example, you can use the monitor to:
+Per document monitors are a type of alert monitor that can be used to identify and alert on specific documents in an MCdesk index. For example, you can use the monitor to:
 
 - Detect corrupted data or unauthorized changes.
 - Enforce data quality policies, such as ensuring all documents contain a certain field or that values in a field are within a certain range. 
@@ -38,12 +38,12 @@ You can only use _tags_--- that is, labels that can be applied to multiple queri
 
 ## Document findings
 
-The Alerting plugin creates a list of _Findings_ that contain metadata about which document matches each query. A _Finding_ is a record of a document identified by the per document monitor query as meeting the alert condition. Key components of a finding include the document ID, timestamp, alert condition details. Findings are stored in the Findings index, `.smartobserve-alerting-finding*`. 
+The Alerting plugin creates a list of _Findings_ that contain metadata about which document matches each query. A _Finding_ is a record of a document identified by the per document monitor query as meeting the alert condition. Key components of a finding include the document ID, timestamp, alert condition details. Findings are stored in the Findings index, `.mcdesk-alerting-finding*`. 
 
 Security Analytics can use the findings data to keep track of and analyze the query data separately from the alert processes. See [Working with findings]({{site.url}}{{site.baseurl}}/security-analytics/usage/findings/) to learn more.
 {: .note}
 
-The Alerting API also provides a _document-level monitor_ that programmatically accomplishes the same function as the _per document monitor_ in SmartObserve Dashboards. See [Document-level monitors]({{site.url}}{{site.baseurl}}/monitoring-plugins/alerting/api/#document-level-monitors) to learn more.
+The Alerting API also provides a _document-level monitor_ that programmatically accomplishes the same function as the _per document monitor_ in MCdesk Dashboards. See [Document-level monitors]({{site.url}}{{site.baseurl}}/monitoring-plugins/alerting/api/#document-level-monitors) to learn more.
 
 To prevent a large volume of findings in a high-ingestion cluster, configuring alert notifications for each finding is not recommended unless rules are well defined.
 {: .important}

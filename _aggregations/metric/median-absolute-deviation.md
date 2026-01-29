@@ -20,7 +20,7 @@ median_absolute_deviation = median( | x<sub>i</sub> - median(x<sub>i</sub>) | )
 ```
 
 
-SmartObserve estimates `median_absolute_deviation`, rather than calculating it directly, because of memory limitations. This estimation is computationally expensive. You can adjust the trade-off between estimation accuracy and performance. For more information, see [Adjusting estimation accuracy](https://github.com/igsl-group/documentation-website/pull/9453/files#adjusting-estimation-accuracy).
+MCdesk estimates `median_absolute_deviation`, rather than calculating it directly, because of memory limitations. This estimation is computationally expensive. You can adjust the trade-off between estimation accuracy and performance. For more information, see [Adjusting estimation accuracy](https://github.com/igsl-group/documentation-website/pull/9453/files#adjusting-estimation-accuracy).
 
 ## Parameters
 
@@ -34,10 +34,10 @@ The `median_absolute_deviation` aggregation takes the following parameters.
 
 ## Example
 
-The following example calculates the median absolute deviation of the `DistanceMiles` field in the `smartobserve_dashboards_sample_data_flights` dataset:
+The following example calculates the median absolute deviation of the `DistanceMiles` field in the `mcdesk_dashboards_sample_data_flights` dataset:
 
 ```json
-GET smartobserve_dashboards_sample_data_flights/_search
+GET mcdesk_dashboards_sample_data_flights/_search
 {
   "size": 0,
   "aggs": {
@@ -83,7 +83,7 @@ As shown in the following example response, the aggregation returns an estimate 
 
 ## Missing values
 
-SmartObserve ignores missing and null values when computing `median_absolute_deviation`.
+MCdesk ignores missing and null values when computing `median_absolute_deviation`.
 
 You can assign a value to missing instances of the aggregated field. See [Missing aggregations]({{site.url}}{{site.baseurl}}/aggregations/bucket/missing/) for more information.
 
@@ -92,7 +92,7 @@ You can assign a value to missing instances of the aggregated field. See [Missin
 The median absolute deviation is calculated using the [t-digest](https://github.com/tdunning/t-digest/tree/main) data structure, which takes a `compression` parameter to balance performance and estimation accuracy. Lower values of `compression` improve performance but may reduce estimation accuracy, as shown in the following request:
 
 ```json
-GET smartobserve_dashboards_sample_data_flights/_search
+GET mcdesk_dashboards_sample_data_flights/_search
 {
   "size": 0,
   "aggs": {
@@ -111,7 +111,7 @@ The estimation error depends on the dataset but is usually below 5%, even for `c
 
 Note the decreased computation time (`took` time) and the slightly less accurate value of the estimated parameter in the following response.
 
-For reference, SmartObserve's best estimate (with `compression` set arbitrarily high) for the median absolute deviation of `DistanceMiles` is `1831.076904296875`:
+For reference, MCdesk's best estimate (with `compression` set arbitrarily high) for the median absolute deviation of `DistanceMiles` is `1831.076904296875`:
 
 
 ```json

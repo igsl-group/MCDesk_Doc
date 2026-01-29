@@ -20,7 +20,7 @@ module Api
     attr_reader :deprecated
     # @return [String] The deprecation message
     attr_reader :deprecation_message
-    # @return [String] The SmartObserve version when the parameter was deprecated
+    # @return [String] The MCdesk version when the parameter was deprecated
     attr_reader :version_deprecated
 
     def initialize(name:, description:, required:, schema:, default:, deprecated:, deprecation_message:,

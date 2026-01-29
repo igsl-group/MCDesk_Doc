@@ -7,7 +7,7 @@ nav_order: 90
 
 # Search shard routing
 
-To ensure redundancy and improve search performance, SmartObserve distributes index data across multiple primary shards, with each primary shard having one or more replica shards. When a search query is executed, SmartObserve routes the request to a node containing either a primary or replica index shard. This technique is known as _search shard routing_.
+To ensure redundancy and improve search performance, MCdesk distributes index data across multiple primary shards, with each primary shard having one or more replica shards. When a search query is executed, MCdesk routes the request to a node containing either a primary or replica index shard. This technique is known as _search shard routing_.
 
 
 ## Adaptive replica selection
@@ -18,7 +18,7 @@ In order to improve latency, search requests are routed using _adaptive replica 
 - The latency between the coordinating node and the selected node.
 - The queue size of the node's search thread pool.
 
-If you have permissions to call the SmartObserve REST APIs, you can turn off search shard routing. For more information about REST API user access, see [REST management API settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/security-settings/#rest-management-api-settings). To disable search shard routing, update the cluster settings as follows:
+If you have permissions to call the MCdesk REST APIs, you can turn off search shard routing. For more information about REST API user access, see [REST management API settings]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/security-settings/#rest-management-api-settings). To disable search shard routing, update the cluster settings as follows:
 
 ```json
 PUT /_cluster/settings
@@ -30,12 +30,12 @@ PUT /_cluster/settings
 ```
 {% include copy-curl.html %}
 
-If you turn off search shard routing, SmartObserve will use round-robin routing, which can negatively impact search latency.
+If you turn off search shard routing, MCdesk will use round-robin routing, which can negatively impact search latency.
 {: .note}
 
 ## Node and shard selection during searches
 
-SmartObserve uses all nodes to choose the best routing for search requests. However, in some cases you may want to manually select the nodes or shards to which the search request is sent, including the following:
+MCdesk uses all nodes to choose the best routing for search requests. However, in some cases you may want to manually select the nodes or shards to which the search request is sent, including the following:
 
 - Using cached previous searches.
 - Dedicating specific hardware to searches.
@@ -111,7 +111,7 @@ You can use the `preference` parameter in the search query to indicate the searc
 You can specify routing during both indexing and search operations.
 
 ### Routing during indexing
-When you index a document, SmartObserve calculates a hash of the routing value and uses this hash to determine the shard on which the document will be stored. If you don't specify a routing value, SmartObserve uses the document ID to calculate the hash.
+When you index a document, MCdesk calculates a hash of the routing value and uses this hash to determine the shard on which the document will be stored. If you don't specify a routing value, MCdesk uses the document ID to calculate the hash.
 
 The following is an example index operation with a routing value:
 
@@ -154,7 +154,7 @@ Caution needs to be exercised when using custom routing in order to prevent hot 
 
 ## Concurrent shard request
 
-Hitting a large number of shards simultaneously during a search can significantly impact CPU and memory consumption. By default, SmartObserve does not reject these requests. However, there are a number of methods that you can use to mitigate this risk. The following sections describe these methods.
+Hitting a large number of shards simultaneously during a search can significantly impact CPU and memory consumption. By default, MCdesk does not reject these requests. However, there are a number of methods that you can use to mitigate this risk. The following sections describe these methods.
 
 ### Limit the number of shards that can be queried concurrently
 
@@ -173,7 +173,7 @@ GET /index1/_search?max_concurrent_shard_requests=12
 
 ### Define a search shard count limit
 
-You can define the dynamic `action.search.shard_count.limit` setting either in your `smartobserve.yml` file or by using the REST API. Any search request that exceeds this limit will be rejected and throw an error. This helps to prevent a single search request from consuming too many resources, which can degrade the performance of the entire cluster. The following example request updates this cluster setting using the API:
+You can define the dynamic `action.search.shard_count.limit` setting either in your `mcdesk.yml` file or by using the REST API. Any search request that exceeds this limit will be rejected and throw an error. This helps to prevent a single search request from consuming too many resources, which can degrade the performance of the entire cluster. The following example request updates this cluster setting using the API:
 
 ```json
 PUT /_cluster/settings
@@ -187,12 +187,12 @@ PUT /_cluster/settings
 
 ### Search thread pool
 
-SmartObserve uses thread pools to manage the execution of various tasks, including search operations. The search thread pool is specifically used for search requests. You can adjust the size and queue capacity of the search thread pool by adding the following settings to `smartobserve.yml`:
+MCdesk uses thread pools to manage the execution of various tasks, including search operations. The search thread pool is specifically used for search requests. You can adjust the size and queue capacity of the search thread pool by adding the following settings to `mcdesk.yml`:
 ```
 thread_pool.search.size: 100
 thread_pool.search.queue_size: 1000
 ```
-This setting is static. For more information about how to configure dynamic and static settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+This setting is static. For more information about how to configure dynamic and static settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 #### Thread pool states
 

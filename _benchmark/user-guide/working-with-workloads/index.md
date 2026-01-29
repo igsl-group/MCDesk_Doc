@@ -13,7 +13,7 @@ redirect_from:
 
 Once you [understand workloads]({{site.url}}{{site.baseurl}}/benchmark/user-guide/understanding-workloads/index/) and have [chosen a workload]({{site.url}}{{site.baseurl}}/benchmark/user-guide/understanding-workloads/choosing-a-workload/) to run your benchmarks with, you can begin working with workloads.
 
-- [Running workloads]({{site.url}}{{site.baseurl}}/benchmark/user-guide/working-with-workloads/running-workloads/): Learn how to run an SmartObserve Benchmark workload.
+- [Running workloads]({{site.url}}{{site.baseurl}}/benchmark/user-guide/working-with-workloads/running-workloads/): Learn how to run an MCdesk Benchmark workload.
 - [Creating custom workloads]({{site.url}}{{site.baseurl}}/benchmark/user-guide/working-with-workloads/creating-custom-workloads/): Create a custom workload with your own datasets.
 - [Fine-tuning workloads]({{site.url}}{{site.baseurl}}/benchmark/user-guide/working-with-workloads/finetune-workloads/): Fine-tune your custom workload according to the needs of your cluster.
-- [Contributing workloads]({{site.url}}{{site.baseurl}}/benchmark/user-guide/working-with-workloads/contributing-workloads/): Contribute your custom workload for the SmartObserve community to use.
+- [Contributing workloads]({{site.url}}{{site.baseurl}}/benchmark/user-guide/working-with-workloads/contributing-workloads/): Contribute your custom workload for the MCdesk community to use.

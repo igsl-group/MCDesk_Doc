@@ -13,7 +13,7 @@ Introduced 2.9
 
 The `personalize_search_ranking` search response processor intercepts a search response and uses [Amazon Personalize](https://aws.amazon.com/personalize/) to rerank search results according to their Amazon Personalize ranking. This ranking is based on the user's past behavior and metadata about the search items and the user.
 
-To use the `personalize_search_ranking` processor, you must first install the Amazon Personalize Search Ranking (`smartobserve-search-processor`) plugin. For detailed instructions, see [Installing and configuring the Amazon Personalize Search Ranking plugin](https://docs.aws.amazon.com/personalize/latest/dg/smartobserve-install.html).
+To use the `personalize_search_ranking` processor, you must first install the Amazon Personalize Search Ranking (`mcdesk-search-processor`) plugin. For detailed instructions, see [Installing and configuring the Amazon Personalize Search Ranking plugin](https://docs.aws.amazon.com/personalize/latest/dg/mcdesk-install.html).
 {: .important}
 
 ## Request body fields
@@ -24,12 +24,12 @@ Field | Data type | Description
 :--- | :--- | :--- 
 `campaign_arn` | String |  The Amazon Resource Name (ARN) of the Amazon Personalize campaign used to personalize results. Required.
 `recipe` | String | The name of the Amazon Personalize recipe to use. Currently, the only supported value for this field is `aws-personalized-ranking`. Required.
-`weight` | Float | The weight to use with rankings provided by SmartObserve and Amazon Personalize. Valid values are in the [0.0, 1.0] range. The closer the weight is to 1.0, the more weight is given to Amazon Personalize as opposed to SmartObserve when calculating the ranking. If you specify 0.0, SmartObserve rankings are used. If you specify 1.0, Amazon Personalize rankings are used. Required.
-`item_id_field` | String | If the `_id` field for an indexed document in SmartObserve doesn't correspond with your Amazon Personalize `itemId`, specify the name of the field that does. By default, the plugin assumes the `_id` data matches the `itemId` in your Amazon Personalize data.
-`iam_role_arn` | String | If you use multiple roles to restrict permissions for different groups of users in your organization, specify the ARN of the role that has permission to access Amazon Personalize. If you use only the AWS credentials in your SmartObserve keystore, you can omit this field. Optional.
+`weight` | Float | The weight to use with rankings provided by MCdesk and Amazon Personalize. Valid values are in the [0.0, 1.0] range. The closer the weight is to 1.0, the more weight is given to Amazon Personalize as opposed to MCdesk when calculating the ranking. If you specify 0.0, MCdesk rankings are used. If you specify 1.0, Amazon Personalize rankings are used. Required.
+`item_id_field` | String | If the `_id` field for an indexed document in MCdesk doesn't correspond with your Amazon Personalize `itemId`, specify the name of the field that does. By default, the plugin assumes the `_id` data matches the `itemId` in your Amazon Personalize data.
+`iam_role_arn` | String | If you use multiple roles to restrict permissions for different groups of users in your organization, specify the ARN of the role that has permission to access Amazon Personalize. If you use only the AWS credentials in your MCdesk keystore, you can omit this field. Optional.
 `tag` | String | The processor's identifier. Optional.
 `description` | String | A description of the processor. Optional.
-`ignore_failure` | Boolean | If `true`, SmartObserve [ignores any failure]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/creating-search-pipeline/#ignoring-processor-failures) of this processor and continues to run the remaining processors in the search pipeline. Optional. Default is `false`.
+`ignore_failure` | Boolean | If `true`, MCdesk [ignores any failure]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/creating-search-pipeline/#ignoring-processor-failures) of this processor and continues to run the remaining processors in the search pipeline. Optional. Default is `false`.
 
 ## Example 
 
@@ -83,4 +83,4 @@ GET /movies/_search?search_pipeline=my-pipeline
 ```
 {% include copy-curl.html %}
 
-For additional details, see [Personalizing search results from SmartObserve (self-managed)](https://docs.aws.amazon.com/personalize/latest/dg/personalize-smartobserve.html).
+For additional details, see [Personalizing search results from MCdesk (self-managed)](https://docs.aws.amazon.com/personalize/latest/dg/personalize-mcdesk.html).

@@ -7,7 +7,7 @@ nav_order: 45
 
 # Sampling
 
-SmartObserve Data Prepper provides the following sampling capabilities:
+MCdesk Data Prepper provides the following sampling capabilities:
 
 - Time sampling
 - Percentage sampling

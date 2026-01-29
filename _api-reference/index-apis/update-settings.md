@@ -4,14 +4,14 @@ title: Update settings
 parent: Index APIs
 nav_order: 165
 redirect_from:
-  - /smartobserve/rest-api/index-apis/update-settings/
+  - /mcdesk/rest-api/index-apis/update-settings/
 ---
 
 # Update Settings API
 **Introduced 1.0**
 {: .label .label-purple }
 
-You can use the update settings API operation to update index-level settings. You can change dynamic index settings at any time, but static settings cannot be changed after index creation. For more information about static and dynamic index settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+You can use the update settings API operation to update index-level settings. You can change dynamic index settings at any time, but static settings cannot be changed after index creation. For more information about static and dynamic index settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).
 
 Aside from the static and dynamic index settings, you can also update individual plugins' settings. To get the full list of updatable settings, run `GET <target-index>/_settings?include_defaults=true`.
 

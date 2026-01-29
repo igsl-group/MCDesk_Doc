@@ -9,9 +9,9 @@ redirect_from:
   - /search-plugins/neural-search/
   - /vector-search/ai-search/
 model_cards:
-  - heading: "Use a pretrained model provided by SmartObserve"
+  - heading: "Use a pretrained model provided by MCdesk"
     link: "/ml-commons-plugin/pretrained-models/"
-  - heading: "Upload your own model to SmartObserve"
+  - heading: "Upload your own model to MCdesk"
     link: "/ml-commons-plugin/custom-local-models/"
   - heading: "Connect to a model hosted on an external platform"
     link: "/ml-commons-plugin/remote-models/index/"
@@ -42,15 +42,15 @@ search_method_cards:
 
 # AI search
 
-AI search streamlines your workflow by generating embeddings automatically. SmartObserve converts text to vectors during indexing and querying. It creates and indexes vector embeddings for documents and then processes query text into embeddings to find and return the most relevant results.
+AI search streamlines your workflow by generating embeddings automatically. MCdesk converts text to vectors during indexing and querying. It creates and indexes vector embeddings for documents and then processes query text into embeddings to find and return the most relevant results.
 
 ## Prerequisite
 
 Before using AI search, you must set up an ML model for embedding generation. When selecting a model, you have the following options:
 
-- Use a pretrained model provided by SmartObserve. For more information, see [SmartObserve-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
+- Use a pretrained model provided by MCdesk. For more information, see [MCdesk-provided pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/).
 
-- Upload your own model to SmartObserve. For more information, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
+- Upload your own model to MCdesk. For more information, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
 
 - Connect to a foundation model hosted on an external platform. For more information, see [Connecting to externally hosted models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/remote-models/index/).
 

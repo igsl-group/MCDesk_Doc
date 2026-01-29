@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Configuring SmartObserve Dashboards
+title: Configuring MCdesk Dashboards
 nav_order: 15
 ---
 
-# Configuring SmartObserve Dashboards
+# Configuring MCdesk Dashboards
 
-SmartObserve Dashboards uses the `smartobserve_dashboards.yml` configuration file to read settings when you spin up a cluster. You can find `smartobserve_dashboards.yml` in `/usr/share/smartobserve-dashboards/config/smartobserve_dashboards.yml` (Docker) or `/etc/smartobserve-dashboards/smartobserve_dashboards.yml` (most Linux distributions) on each node.
+MCdesk Dashboards uses the `mcdesk_dashboards.yml` configuration file to read settings when you spin up a cluster. You can find `mcdesk_dashboards.yml` in `/usr/share/mcdesk-dashboards/config/mcdesk_dashboards.yml` (Docker) or `/etc/mcdesk-dashboards/mcdesk_dashboards.yml` (most Linux distributions) on each node.
 
-For information about SmartObserve Dashboards settings, see the sample [`smartobserve_dashboards.yml`](https://github.com/igsl-group/SmartObserve-Dashboards/blob/main/config/smartobserve_dashboards.yml) file.
+For information about MCdesk Dashboards settings, see the sample [`mcdesk_dashboards.yml`](https://github.com/igsl-group/MCdesk-Dashboards/blob/main/config/mcdesk_dashboards.yml) file.

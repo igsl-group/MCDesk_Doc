@@ -10,12 +10,12 @@ redirect_from:
 
 # Complex queries
 
-Besides simple SFW (`SELECT-FROM-WHERE`) queries, the SQL plugin supports complex queries such as subquery, join, union, and minus. These queries operate on more than one SmartObserve index. To examine how these queries execute behind the scenes, use the `explain` operation.
+Besides simple SFW (`SELECT-FROM-WHERE`) queries, the SQL plugin supports complex queries such as subquery, join, union, and minus. These queries operate on more than one MCdesk index. To examine how these queries execute behind the scenes, use the `explain` operation.
 
 
 ## Joins
 
-SmartObserve SQL supports inner joins, cross joins, and left outer joins.
+MCdesk SQL supports inner joins, cross joins, and left outer joins.
 
 ### Constraints
 
@@ -72,7 +72,7 @@ JOIN employees_nested e
 
 Explain:
 
-The `explain` output is complicated, because a `JOIN` clause is associated with two SmartObserve DSL queries that execute in separate query planner frameworks. You can interpret it by examining the `Physical Plan` and `Logical Plan` objects.
+The `explain` output is complicated, because a `JOIN` clause is associated with two MCdesk DSL queries that execute in separate query planner frameworks. You can interpret it by examining the `Physical Plan` and `Logical Plan` objects.
 
 ```json
 {

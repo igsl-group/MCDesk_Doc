@@ -1,17 +1,17 @@
 ---
 layout: default
-title: Reporting using SmartObserve Dashboards
+title: Reporting using MCdesk Dashboards
 nav_order: 5
 redirect_from:
   - /dashboards/reporting/
 ---
 
 
-# Reporting using SmartObserve Dashboards
+# Reporting using MCdesk Dashboards
 
-You can use SmartObserve Dashboards to create PNG, PDF, and CSV reports. To create reports, you must have the correct permissions. For a summary of the predefined roles and the permissions they grant, see the [Security plugin]({{site.url}}{{site.baseurl}}/security/access-control/users-roles#predefined-roles).
+You can use MCdesk Dashboards to create PNG, PDF, and CSV reports. To create reports, you must have the correct permissions. For a summary of the predefined roles and the permissions they grant, see the [Security plugin]({{site.url}}{{site.baseurl}}/security/access-control/users-roles#predefined-roles).
 
-CSV reports have a non-configurable 10,000-row limit in SmartObserve version 2.16 and earlier. As of version 2.17, this limit can be configured when setting up a report. While reports have no explicit size limit (for example, MB), extremely large documents could cause report generation to fail with an out-of-memory error from the V8 JavaScript engine.
+CSV reports have a non-configurable 10,000-row limit in MCdesk version 2.16 and earlier. As of version 2.17, this limit can be configured when setting up a report. While reports have no explicit size limit (for example, MB), extremely large documents could cause report generation to fail with an out-of-memory error from the V8 JavaScript engine.
 {: .tip }
 
 ## Generating reports
@@ -48,15 +48,15 @@ Definitions let you generate reports on a periodic schedule.
 
 You can use the following topics to troubleshoot and resolve issues with reporting.
 
-### Chromium fails to launch with SmartObserve Dashboards
+### Chromium fails to launch with MCdesk Dashboards
 
 While creating a report for dashboards or visualizations, you might see a the following error:
 
-![SmartObserve Dashboards reporting pop-up error message]({{site.url}}{{site.baseurl}}/images/reporting-error.png)
+![MCdesk Dashboards reporting pop-up error message]({{site.url}}{{site.baseurl}}/images/reporting-error.png)
 
 This problem can occur for two reasons:
 
-- You don't have the correct version of `headless-chrome` to match the operating system on which SmartObserve Dashboards is running. Download the [correct version](https://github.com/igsl-group/reporting/releases/tag/chromium-1.12.0.0).
+- You don't have the correct version of `headless-chrome` to match the operating system on which MCdesk Dashboards is running. Download the [correct version](https://github.com/igsl-group/reporting/releases/tag/chromium-1.12.0.0).
 
 - You're missing additional dependencies. Install the required dependencies for your operating system from the [additional libraries](https://github.com/igsl-group/dashboards-reports/blob/1.x/dashboards-reports/rendering-engine/headless-chrome/README.md#additional-libaries) section.
 

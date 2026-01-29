@@ -11,9 +11,9 @@ The Security Analytics plugin supports the following settings. All settings in t
 
 `plugins.security_analytics.index_timeout` (Time value): The timeout for creating detectors, findings, rules, and custom log types using the REST APIs. Default is 60 seconds.
 
-`plugins.security_analytics.alert_history_enabled` (Boolean): Specifies whether to create `.smartobserve-sap-<detector_type>-alerts-history-<date>` indexes. Default is `true`.
+`plugins.security_analytics.alert_history_enabled` (Boolean): Specifies whether to create `.mcdesk-sap-<detector_type>-alerts-history-<date>` indexes. Default is `true`.
 
-`plugins.security_analytics.alert_finding_enabled` (Boolean): Specifies whether to create `.smartobserve-sap-<detector_type>-findings-<date>` indexes. Default is `true`.
+`plugins.security_analytics.alert_finding_enabled` (Boolean): Specifies whether to create `.mcdesk-sap-<detector_type>-findings-<date>` indexes. Default is `true`.
 
 `plugins.security_analytics.alert_history_rollover_period` (Time value): Specifies how frequently to roll over and delete alert history indexes. Default is 12 hours.
 
@@ -39,9 +39,9 @@ The Security Analytics plugin supports the following settings. All settings in t
 
 `plugins.security_analytics.correlation_history_retention_period` (Time value): The amount of time to keep correlation history indexes before automatically deleting them. Default is 60 days.
 
-`plugins.security_analytics.request_timeout` (Time value): The timeout for all requests the Security Analytics plugin sends to other parts of SmartObserve. Default is 10 seconds.
+`plugins.security_analytics.request_timeout` (Time value): The timeout for all requests the Security Analytics plugin sends to other parts of MCdesk. Default is 10 seconds.
 
-`plugins.security_analytics.action_throttle_max_value` (Time value): The maximum amount of time you can set for action throttling. Default is 24 hours. (This value displays as 1440 minutes in SmartObserve Dashboards.)
+`plugins.security_analytics.action_throttle_max_value` (Time value): The maximum amount of time you can set for action throttling. Default is 24 hours. (This value displays as 1440 minutes in MCdesk Dashboards.)
 
 `plugins.security_analytics.filter_by_backend_roles` (Boolean): When set to `true`, restricts access to detectors, alerts, findings, and custom log types by backend role when enabled. Default is `false`.
 
@@ -57,4 +57,4 @@ The Security Analytics plugin supports the following settings. All settings in t
 
 `plugins.security_analytics.threat_intel_timeout` (Time value): The timeout value for creating and deleting threat intelligence feed data. Default is 30 seconds.
 
-To learn more about static and dynamic settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/index/).
+To learn more about static and dynamic settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/index/).

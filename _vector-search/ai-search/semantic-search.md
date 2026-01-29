@@ -11,7 +11,7 @@ redirect_from:
 
 # Semantic search
 
-Semantic search considers the context and intent of a query. In SmartObserve, semantic search is facilitated by text embedding models. Semantic search creates a dense vector (a list of floats) and ingests data into a vector index. 
+Semantic search considers the context and intent of a query. In MCdesk, semantic search is facilitated by text embedding models. Semantic search creates a dense vector (a list of floats) and ingests data into a vector index. 
 
 **PREREQUISITE**<br>
 Before using semantic search, you must set up a text embedding model. For more information, see [Choosing a model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/#choosing-a-model).
@@ -27,7 +27,7 @@ There are two ways to configure semantic search:
 
 ## Automated workflow
 
-SmartObserve provides a [workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/#semantic-search) that automatically creates both an ingest pipeline and an index. You must provide the model ID for the configured model when creating a workflow. Review the semantic search workflow template [defaults](https://github.com/igsl-group/flow-framework/blob/main/src/main/resources/defaults/semantic-search-defaults.json) to determine whether you need to update any of the parameters. For example, if the model dimensionality is different from the default (`1024`), specify the dimensionality of your model in the `output_dimension` parameter. To create the default semantic search workflow, send the following request:
+MCdesk provides a [workflow template]({{site.url}}{{site.baseurl}}/automating-configurations/workflow-templates/#semantic-search) that automatically creates both an ingest pipeline and an index. You must provide the model ID for the configured model when creating a workflow. Review the semantic search workflow template [defaults](https://github.com/igsl-group/flow-framework/blob/main/src/main/resources/defaults/semantic-search-defaults.json) to determine whether you need to update any of the parameters. For example, if the model dimensionality is different from the default (`1024`), specify the dimensionality of your model in the `output_dimension` parameter. To create the default semantic search workflow, send the following request:
 
 ```json
 POST /_plugins/_flow_framework/workflow?use_case=semantic_search&provision=true
@@ -37,7 +37,7 @@ POST /_plugins/_flow_framework/workflow?use_case=semantic_search&provision=true
 ```
 {% include copy-curl.html %}
 
-SmartObserve responds with a workflow ID for the created workflow:
+MCdesk responds with a workflow ID for the created workflow:
 
 ```json
 {
@@ -159,7 +159,7 @@ Before the document is ingested into the index, the ingest pipeline runs the `te
 
 ### Step 4: Search the index
 
-To perform a vector search on your index, use the `neural` query clause either in the [Search for a Model API]({{site.url}}{{site.baseurl}}/vector-search/api/knn/#search-for-a-model) or [Query DSL]({{site.url}}{{site.baseurl}}/smartobserve/query-dsl/index/) queries. You can refine the results by using a [vector search filter]({{site.url}}{{site.baseurl}}/search-plugins/knn/filter-search-knn/).
+To perform a vector search on your index, use the `neural` query clause either in the [Search for a Model API]({{site.url}}{{site.baseurl}}/vector-search/api/knn/#search-for-a-model) or [Query DSL]({{site.url}}{{site.baseurl}}/mcdesk/query-dsl/index/) queries. You can refine the results by using a [vector search filter]({{site.url}}{{site.baseurl}}/search-plugins/knn/filter-search-knn/).
 
 The following example request uses a Boolean query to combine a filter clause and two query clauses---a neural query and a `match` query. The `script_score` query assigns custom weights to the query clauses:
 
@@ -349,7 +349,7 @@ To manually configure semantic search using a `semantic` field, follow these ste
 
 ### Step 1: Create an index with a semantic field
 
-Create an index and specify the `model_id` in the `semantic` field. In this example, the `semantic` field is `passage_text`. SmartObserve automatically creates the corresponding embedding field based on the model configuration. An ingest pipeline is not required---SmartObserve automatically generates the embeddings using the specified model during indexing:
+Create an index and specify the `model_id` in the `semantic` field. In this example, the `semantic` field is `passage_text`. MCdesk automatically creates the corresponding embedding field based on the model configuration. An ingest pipeline is not required---MCdesk automatically generates the embeddings using the specified model during indexing:
 
 ```json
 PUT /my-nlp-index
@@ -438,7 +438,7 @@ PUT /my-nlp-index/_doc/1
 ```
 {% include copy-curl.html %}
 
-Before the document is ingested into the index, SmartObserve runs a built-in ingest pipeline that generates embeddings and stores them in the `passage_text_semantic_info.embedding` field. To verify that the embedding is generated properly, you can run a search request to retrieve the document:
+Before the document is ingested into the index, MCdesk runs a built-in ingest pipeline that generates embeddings and stores them in the `passage_text_semantic_info.embedding` field. To verify that the embedding is generated properly, you can run a search request to retrieve the document:
 
 ```json
 GET /my-nlp-index/_doc/1
@@ -470,7 +470,7 @@ GET /my-nlp-index/_doc/1
 
 ### Step 3: Search the index
 
-To query the embedding of the `semantic` field, provide the `semantic` field's name (in this example, `passage_text`) and the query text. There's no need to specify the `model_id`---SmartObserve automatically retrieves it from the field's configuration in the index mapping and rewrites the query to target the underlying embedding field:
+To query the embedding of the `semantic` field, provide the `semantic` field's name (in this example, `passage_text`) and the query text. There's no need to specify the `model_id`---MCdesk automatically retrieves it from the field's configuration in the index mapping and rewrites the query to target the underlying embedding field:
 
 ```json
 GET /my-nlp-index/_search

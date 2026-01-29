@@ -58,7 +58,7 @@ The following table lists the available query parameters. All query parameters a
 
 Field | Data type | Description  
 :--- | :--- | :---
-`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/binary/) or an array of binaries | The PIT IDs of the PITs whose segments are to be listed. Required.
+`pit_id` | [Base64-encoded binary]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/binary/) or an array of binaries | The PIT IDs of the PITs whose segments are to be listed. Required.
 
 ## Example request: PIT segments for all PITs
 

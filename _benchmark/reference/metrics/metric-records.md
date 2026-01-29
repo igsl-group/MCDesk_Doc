@@ -3,14 +3,14 @@ layout: default
 title: Metric records
 nav_order: 30
 parent: Metrics reference
-grand_parent: SmartObserve Benchmark Reference
+grand_parent: MCdesk Benchmark Reference
 redirect_from:
   - /benchmark/metrics/metric-records/
 ---
 
 # Metric records
 
-SmartObserve Benchmark stores metrics in the `benchmark-metrics-*` indexes. A new index is created each month. The following is an example metric record stored in the `benchmark-metrics-2023-08` index:
+MCdesk Benchmark stores metrics in the `benchmark-metrics-*` indexes. A new index is created each month. The following is an example metric record stored in the `benchmark-metrics-2023-08` index:
 
 ```json
 {
@@ -55,10 +55,10 @@ SmartObserve Benchmark stores metrics in the `benchmark-metrics-*` indexes. A ne
   },
   "highlight": {
     "workload": [
-      "@smartobserve-dashboards-highlighted-field@geonames@/smartobserve-dashboards-highlighted-field@"
+      "@mcdesk-dashboards-highlighted-field@geonames@/mcdesk-dashboards-highlighted-field@"
     ],
     "meta.index": [
-      "@smartobserve-dashboards-highlighted-field@geonames@/smartobserve-dashboards-highlighted-field@"
+      "@mcdesk-dashboards-highlighted-field@geonames@/mcdesk-dashboards-highlighted-field@"
     ]
   },
   "sort": [
@@ -67,13 +67,13 @@ SmartObserve Benchmark stores metrics in the `benchmark-metrics-*` indexes. A ne
 }
 ```
 
-The following fields found in the `_source` section of the metric's record are configurable in the `smartobserve-benchmarks-metrics-*` file.
+The following fields found in the `_source` section of the metric's record are configurable in the `mcdesk-benchmarks-metrics-*` file.
 
 <!-- vale off -->
 ## @timestamp
 <!-- vale on -->
 
-The timestamp of when the sample was taken since the epoch, in milliseconds. For request-related metrics, such as `latency` or `service_time`, this is the timestamp of when SmartObserve Benchmark issued the request.
+The timestamp of when the sample was taken since the epoch, in milliseconds. For request-related metrics, such as `latency` or `service_time`, this is the timestamp of when MCdesk Benchmark issued the request.
 
 <!-- vale off -->
 ## relative-time-ms
@@ -97,7 +97,7 @@ The timestamp of when the workload was invoked (always in UTC).
 ## environment
 <!-- vale on -->
 
-The `environment` describes the origin of a metric record. This is defined when initially [configuring]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/) SmartObserve Benchmark. You can use separate environments for different benchmarks but store the metric records in the same index.
+The `environment` describes the origin of a metric record. This is defined when initially [configuring]({{site.url}}{{site.baseurl}}/benchmark/configuring-benchmark/) MCdesk Benchmark. You can use separate environments for different benchmarks but store the metric records in the same index.
 
 <!-- vale off -->
 ## workload, test_procedure, cluster-config-instance
@@ -109,7 +109,7 @@ The workload, test procedures, and configuration instances for which the metrics
 ## name, value, unit
 <!-- vale on -->
 
-The actual metric name and value, with an optional unit. Depending on the nature of a metric, it is either sampled periodically by SmartObserve Benchmark, for example, CPU utilization or query latency, or measured once, for example, the final size of the index.
+The actual metric name and value, with an optional unit. Depending on the nature of a metric, it is either sampled periodically by MCdesk Benchmark, for example, CPU utilization or query latency, or measured once, for example, the final size of the index.
 
 <!-- vale off -->
 ## sample-type
@@ -126,15 +126,15 @@ The meta information for each metric record, including the following:
 - CPU info: The number of physical and logical cores and the model name.
 - OS info: The name and version of the operating system.
 - Hostname.
-- Node name: A unique name given to each node when SmartObserve Benchmark provisions the cluster.
-- Source revision: The Git hash of the version of SmartObserve that is benchmarked.
-- Distribution version: The distribution version of SmartObserve that is benchmarked.
-- Custom tags: You can define custom tags by using the command line flag `--user-tags`. The tags are prefixed by `tag_` in order to avoid accidental clashes with SmartObserve Benchmark internal tags.
+- Node name: A unique name given to each node when MCdesk Benchmark provisions the cluster.
+- Source revision: The Git hash of the version of MCdesk that is benchmarked.
+- Distribution version: The distribution version of MCdesk that is benchmarked.
+- Custom tags: You can define custom tags by using the command line flag `--user-tags`. The tags are prefixed by `tag_` in order to avoid accidental clashes with MCdesk Benchmark internal tags.
 - Operation specific: An optional substructure of the operation. For bulk requests, this may be the number of documents; for searches, the number of hits.
 
 Depending on the metric record, some meta information might be missing.
 
 ## Next steps
 
-- For more information about how to access SmartObserve Benchmark metrics, see [Metrics]({{site.url}}{{site.baseurl}}/benchmark/metrics/index/).
-- For more information about the metrics stored in SmartObserve Benchmark, see [Metric keys]({{site.url}}{{site.baseurl}}/benchmark/metrics/metric-keys/).
+- For more information about how to access MCdesk Benchmark metrics, see [Metrics]({{site.url}}{{site.baseurl}}/benchmark/metrics/index/).
+- For more information about the metrics stored in MCdesk Benchmark, see [Metric keys]({{site.url}}{{site.baseurl}}/benchmark/metrics/metric-keys/).

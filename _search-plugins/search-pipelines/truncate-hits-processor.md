@@ -13,7 +13,7 @@ Introduced 2.12
 
 The `truncate_hits` response processor discards returned search hits after a given hit count is reached. The `truncate_hits` processor is designed to work with the [`oversample` request processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/oversample-processor/) but may be used on its own.
 
-The `target_size` parameter (which specifies where to truncate) is optional. If it is not specified, then SmartObserve uses the `original_size` variable set by the
+The `target_size` parameter (which specifies where to truncate) is optional. If it is not specified, then MCdesk uses the `original_size` variable set by the
 `oversample` processor (if available).
 
 The following is a common usage pattern:
@@ -32,7 +32,7 @@ Field | Data type | Description
 `context_prefix` | String | May be used to read the `original_size` variable from a specific scope in order to avoid collisions. Optional.
 `tag` | String | The processor's identifier. Optional.
 `description` | String | A description of the processor. Optional.
-`ignore_failure` | Boolean | If `true`, SmartObserve [ignores any failure]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/creating-search-pipeline/#ignoring-processor-failures) of this processor and continues to run the remaining processors in the search pipeline. Optional. Default is `false`.
+`ignore_failure` | Boolean | If `true`, MCdesk [ignores any failure]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/creating-search-pipeline/#ignoring-processor-failures) of this processor and continues to run the remaining processors in the search pipeline. Optional. Default is `false`.
 
 ## Example
 

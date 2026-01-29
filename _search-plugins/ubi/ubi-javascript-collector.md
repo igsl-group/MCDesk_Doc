@@ -111,7 +111,7 @@ ubiClient.trackEvent(event);
 
 ## Tracking queries
 
-You can optionally track queries using the client (instead of using the UBI plugin for SmartObserve).
+You can optionally track queries using the client (instead of using the UBI plugin for MCdesk).
 
 The code is similar to that used for tracking events:
 

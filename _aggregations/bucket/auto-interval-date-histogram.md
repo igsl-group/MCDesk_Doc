@@ -24,7 +24,7 @@ The following table lists the possible returned intervals for each time unit.
 | Months | Multiples of 1 and 3                         |
 | Years  | Multiples of 1, 5, 10, 20, 50, and 100        |
 
-If an aggregation returns too many buckets (for example, daily buckets), SmartObserve will automatically reduce the number of buckets to ensure a manageable result. Instead of returning the exact number of requested daily buckets, it will reduce them by a factor of about 1/7. For example, if you ask for 70 buckets but the data contains too many daily intervals, SmartObserve might return only 10 buckets, grouping the data into larger intervals (such as weeks) to avoid an overwhelming number of results. This helps optimize the aggregation and prevent excessive detail when too much data is available.
+If an aggregation returns too many buckets (for example, daily buckets), MCdesk will automatically reduce the number of buckets to ensure a manageable result. Instead of returning the exact number of requested daily buckets, it will reduce them by a factor of about 1/7. For example, if you ask for 70 buckets but the data contains too many daily intervals, MCdesk might return only 10 buckets, grouping the data into larger intervals (such as weeks) to avoid an overwhelming number of results. This helps optimize the aggregation and prevent excessive detail when too much data is available.
 
 ## Example
 
@@ -52,7 +52,7 @@ Next, index the following documents into the `blogs` index:
 ```json
 PUT blogs/_doc/1
 {
-  "name": "Semantic search in SmartObserve",
+  "name": "Semantic search in MCdesk",
   "date_posted": "2022-04-17"
 }
 ```
@@ -61,7 +61,7 @@ PUT blogs/_doc/1
 ```json
 PUT blogs/_doc/2
 {
-  "name": "Sparse search in SmartObserve",
+  "name": "Sparse search in MCdesk",
   "date_posted": "2022-05-02"
 }
 ```
@@ -79,7 +79,7 @@ PUT blogs/_doc/3
 ```json
 PUT blogs/_doc/4
 {
-  "name": "Observability in SmartObserve",
+  "name": "Observability in MCdesk",
   "date_posted": "2023-03-23"
 }
 
@@ -158,7 +158,7 @@ Each bucket contains the following information:
 }
 ```
 
-In SmartObserve, dates are internally stored as 64-bit integers representing timestamps in milliseconds since the epoch. In the aggregation response, each bucket `key` is returned as such a timestamp. The `key_as_string` value shows the same timestamp but formatted as a date string based on the [`format`](#date-format) parameter. The `doc_count` field contains the number of documents in the bucket.
+In MCdesk, dates are internally stored as 64-bit integers representing timestamps in milliseconds since the epoch. In the aggregation response, each bucket `key` is returned as such a timestamp. The `key_as_string` value shows the same timestamp but formatted as a date string based on the [`format`](#date-format) parameter. The `doc_count` field contains the number of documents in the bucket.
 
 ## Parameters
 
@@ -241,7 +241,7 @@ As an example, index the following documents into an index:
 ```json
 PUT blogs1/_doc/1
 {
-  "name": "Semantic search in SmartObserve",
+  "name": "Semantic search in MCdesk",
   "date_posted": "2022-04-17T01:00:00.000Z"
 }
 ```
@@ -250,7 +250,7 @@ PUT blogs1/_doc/1
 ```json
 PUT blogs1/_doc/2
 {
-  "name": "Sparse search in SmartObserve",
+  "name": "Sparse search in MCdesk",
   "date_posted": "2022-04-17T04:00:00.000Z"
 }
 ```

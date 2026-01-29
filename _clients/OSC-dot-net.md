@@ -6,25 +6,25 @@ has_children: false
 parent: .NET clients
 ---
 
-# Getting started with the high-level .NET client (SmartObserve.Client)
+# Getting started with the high-level .NET client (MCdesk.Client)
 
-SmartObserve.Client is a high-level .NET client. It provides strongly typed requests and responses as well as Query DSL. It frees you from constructing raw JSON requests and parsing raw JSON responses by providing models that parse and serialize/deserialize requests and responses automatically. SmartObserve.Client also exposes the SmartObserve.Net low-level client if you need it. For the client's complete API documentation, see the [SmartObserve.Client API documentation](https://smartobserve-project.github.io/smartobserve-net/api/SmartObserve.Client.html).
+MCdesk.Client is a high-level .NET client. It provides strongly typed requests and responses as well as Query DSL. It frees you from constructing raw JSON requests and parsing raw JSON responses by providing models that parse and serialize/deserialize requests and responses automatically. MCdesk.Client also exposes the MCdesk.Net low-level client if you need it. For the client's complete API documentation, see the [MCdesk.Client API documentation](https://mcdesk-project.github.io/mcdesk-net/api/MCdesk.Client.html).
 
 
-This getting started guide illustrates how to connect to SmartObserve, index documents, and run queries. For the client source code, see the [smartobserve-net repo](https://github.com/igsl-group/smartobserve-net).
+This getting started guide illustrates how to connect to MCdesk, index documents, and run queries. For the client source code, see the [mcdesk-net repo](https://github.com/igsl-group/mcdesk-net).
 
-## Installing SmartObserve.Client
+## Installing MCdesk.Client
 
-To install SmartObserve.Client, download the [SmartObserve.Client NuGet package](https://www.nuget.org/packages/SmartObserve.Client/) and add it to your project in an IDE of your choice. In Microsoft Visual Studio, follow the steps below: 
+To install MCdesk.Client, download the [MCdesk.Client NuGet package](https://www.nuget.org/packages/MCdesk.Client/) and add it to your project in an IDE of your choice. In Microsoft Visual Studio, follow the steps below: 
 - In the **Solution Explorer** panel, right-click on your solution or project and select **Manage NuGet Packages for Solution**.
-- Search for the SmartObserve.Client NuGet package, and select **Install**.
+- Search for the MCdesk.Client NuGet package, and select **Install**.
 
-Alternatively, you can add SmartObserve.Client to your .csproj file:
+Alternatively, you can add MCdesk.Client to your .csproj file:
 ```xml
 <Project>
   ...
   <ItemGroup>
-    <PackageReference Include="SmartObserve.Client" Version="1.0.0" />
+    <PackageReference Include="MCdesk.Client" Version="1.0.0" />
   </ItemGroup>
 </Project>
 ```
@@ -32,7 +32,7 @@ Alternatively, you can add SmartObserve.Client to your .csproj file:
 
 ## Example
 
-The following example illustrates connecting to SmartObserve, indexing documents, and sending queries on the data. It uses the Student class to represent one student, which is equivalent to one document in the index.
+The following example illustrates connecting to MCdesk, indexing documents, and sending queries on the data. It uses the Student class to represent one student, which is equivalent to one document in the index.
 
 ```cs
 public class Student
@@ -46,27 +46,27 @@ public class Student
 ```
 {% include copy.html %}
 
-By default, SmartObserve.Client uses camel case to convert property names to field names.
+By default, MCdesk.Client uses camel case to convert property names to field names.
 {: .note}
 
-## Connecting to SmartObserve
+## Connecting to MCdesk
 
-Use the default constructor when creating an SmartObserveClient object to connect to the default SmartObserve host (`http://localhost:9200`). 
+Use the default constructor when creating an MCdeskClient object to connect to the default MCdesk host (`http://localhost:9200`). 
 
 ```cs
-var client  = new SmartObserveClient();
+var client  = new MCdeskClient();
 ```
 {% include copy.html %}
 
-To connect to your SmartObserve cluster through a single node with a known address, specify this address when creating an instance of SmartObserve.Client:
+To connect to your MCdesk cluster through a single node with a known address, specify this address when creating an instance of MCdesk.Client:
 
 ```cs
 var nodeAddress = new Uri("http://myserver:9200");
-var client = new SmartObserveClient(nodeAddress);
+var client = new MCdeskClient(nodeAddress);
 ```
 {% include copy.html %}
 
-You can also connect to SmartObserve through multiple nodes. Connecting to your SmartObserve cluster with a node pool provides advantages like load balancing and cluster failover support. To connect to your SmartObserve cluster using multiple nodes, specify their addresses and create a `ConnectionSettings` object for the SmartObserve.Client instance:
+You can also connect to MCdesk through multiple nodes. Connecting to your MCdesk cluster with a node pool provides advantages like load balancing and cluster failover support. To connect to your MCdesk cluster using multiple nodes, specify their addresses and create a `ConnectionSettings` object for the MCdesk.Client instance:
 
 ```cs
 var nodes = new Uri[]
@@ -78,19 +78,19 @@ var nodes = new Uri[]
 
 var pool = new StaticConnectionPool(nodes);
 var settings = new ConnectionSettings(pool);
-var client = new SmartObserveClient(settings);
+var client = new MCdeskClient(settings);
 ```
 {% include copy.html %}
 
 ## Using ConnectionSettings
 
-`ConnectionConfiguration` is used to pass configuration options to the low-level SmartObserve.Net client. `ConnectionSettings` inherits from `ConnectionConfiguration` and provides additional configuration options.
+`ConnectionConfiguration` is used to pass configuration options to the low-level MCdesk.Net client. `ConnectionSettings` inherits from `ConnectionConfiguration` and provides additional configuration options.
 To set the address of the node and the default index name for requests that don't specify the index name, create a `ConnectionSettings` object:
 
 ```cs
 var node = new Uri("http://myserver:9200");
 var config = new ConnectionSettings(node).DefaultIndex("students");
-var client = new SmartObserveClient(config);
+var client = new MCdeskClient(config);
 ```
 {% include copy.html %}
 
@@ -121,7 +121,7 @@ var response = client.Index(new IndexRequest<Student>(student, "students"));
 
 ## Indexing many documents
 
-You can index many documents from a collection at the same time by using the SmartObserve.Client's `IndexMany` method: 
+You can index many documents from a collection at the same time by using the MCdesk.Client's `IndexMany` method: 
 
 ```cs
 var studentArray = new Student[]
@@ -164,7 +164,7 @@ GET students/_search
 }
 ```
 
-In SmartObserve.Client, this query looks like this:
+In MCdesk.Client, this query looks like this:
 
 ```cs
 var searchResponse = client.Search<Student>(s => s
@@ -193,9 +193,9 @@ The response contains one document, which corresponds to the correct student:
 
 `100 Santos Paulo 3.93 2021`
 
-## Using SmartObserve.Client methods asynchronously
+## Using MCdesk.Client methods asynchronously
 
-For applications that require asynchronous code, all method calls in SmartObserve.Client have asynchronous counterparts:
+For applications that require asynchronous code, all method calls in MCdesk.Client have asynchronous counterparts:
 
 ```cs
 // synchronous method
@@ -205,9 +205,9 @@ var response = client.Index(student, i => i.Index("students"));
 var response = await client.IndexAsync(student, i => i.Index("students"));
 ```
 
-## Falling back on the low-level SmartObserve.Net client
+## Falling back on the low-level MCdesk.Net client
 
-SmartObserve.Client exposes the low-level the SmartObserve.Net client you can use if anything is missing:
+MCdesk.Client exposes the low-level the MCdesk.Net client you can use if anything is missing:
 
 ```cs
 var lowLevelClient = client.LowLevel;
@@ -243,14 +243,14 @@ if (searchResponseLow.IsValid)
 The following is a complete sample program that illustrates all of the concepts described above. It uses the Student class defined above.
 
 ```cs
-using SmartObserve.Client;
-using SmartObserve.Net;
+using MCdesk.Client;
+using MCdesk.Net;
 
 namespace NetClientProgram;
 
 internal class Program
 {
-    private static ISmartObserveClient osClient = new SmartObserveClient();
+    private static IMCdeskClient osClient = new MCdeskClient();
 
     public static void Main(string[] args)
     {       

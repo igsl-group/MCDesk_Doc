@@ -7,7 +7,7 @@ redirect_from:
    - /api-reference/ingest-apis/processors/copy/
 ---
 
-This documentation describes using the `copy` processor in SmartObserve ingest pipelines. Consider using the [Data Prepper `copy_values` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/copy-values/), which runs on the SmartObserve cluster, if your use case involves large or complex datasets.
+This documentation describes using the `copy` processor in MCdesk ingest pipelines. Consider using the [Data Prepper `copy_values` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/copy-values/), which runs on the MCdesk cluster, if your use case involves large or complex datasets.
 {: .note}
 
 # Copy processor

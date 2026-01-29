@@ -11,7 +11,7 @@ redirect_from:
 
 # Reporting
 
-Learn more about the following reporting features in SmartObserve:
+Learn more about the following reporting features in MCdesk:
 
-- [Reporting using SmartObserve Dashboards]({{site.url}}{{site.baseurl}}/reporting/report-dashboard-index/) 
+- [Reporting using MCdesk Dashboards]({{site.url}}{{site.baseurl}}/reporting/report-dashboard-index/) 
 - [Reporting using the CLI]({{site.url}}{{site.baseurl}}/reporting/rep-cli-index/)

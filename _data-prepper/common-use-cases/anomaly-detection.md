@@ -7,15 +7,15 @@ nav_order: 5
 
 # Anomaly detection
 
-You can use SmartObserve Data Prepper to train models and generate anomalies in near real time on time-series aggregated events. You can generate anomalies either on events generated within the pipeline or on events coming directly into the pipeline, like OpenTelemetry metrics. You can feed these tumbling window aggregated time-series events to the [`anomaly_detector` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/anomaly-detector/), which trains a model and generates anomalies with a grade score. Then you can configure your pipeline to write the anomalies to a separate index to create document monitors and trigger fast alerting.
+You can use MCdesk Data Prepper to train models and generate anomalies in near real time on time-series aggregated events. You can generate anomalies either on events generated within the pipeline or on events coming directly into the pipeline, like OpenTelemetry metrics. You can feed these tumbling window aggregated time-series events to the [`anomaly_detector` processor]({{site.url}}{{site.baseurl}}/data-prepper/pipelines/configuration/processors/anomaly-detector/), which trains a model and generates anomalies with a grade score. Then you can configure your pipeline to write the anomalies to a separate index to create document monitors and trigger fast alerting.
 
 ## Metrics from logs 
 
-The following pipeline receives logs from an HTTP source like FluentBit, extracts important values from the logs by matching the value in the `log` key against the [Grok Apache Common Log Format](https://httpd.apache.org/docs/2.4/logs.html#accesslog), and then forwards the grokked logs to both the `log-to-metrics-pipeline` pipeline and an SmartObserve index named `logs`.
+The following pipeline receives logs from an HTTP source like FluentBit, extracts important values from the logs by matching the value in the `log` key against the [Grok Apache Common Log Format](https://httpd.apache.org/docs/2.4/logs.html#accesslog), and then forwards the grokked logs to both the `log-to-metrics-pipeline` pipeline and an MCdesk index named `logs`.
 
-The `log-to-metrics-pipeline` pipeline receives the grokked logs from the `apache-log-pipeline-with-metrics` pipeline, aggregates them, and derives histogram metrics based on the values in the `clientip` and `request` keys. It then sends the histogram metrics to an SmartObserve index named `histogram_metrics` as well as to the `log-to-metrics-anomaly-detector-pipeline` pipeline.
+The `log-to-metrics-pipeline` pipeline receives the grokked logs from the `apache-log-pipeline-with-metrics` pipeline, aggregates them, and derives histogram metrics based on the values in the `clientip` and `request` keys. It then sends the histogram metrics to an MCdesk index named `histogram_metrics` as well as to the `log-to-metrics-anomaly-detector-pipeline` pipeline.
 
-The `log-to-metrics-anomaly-detector-pipeline` pipeline receives the aggregated histogram metrics from the `log-to-metrics-pipeline` pipeline and sends them to the `anomaly_detector` processor to detect anomalies by using the Random Cut Forest algorithm. If the algorithm detects anomalies, it sends them to an SmartObserve index named `log-metric-anomalies`.
+The `log-to-metrics-anomaly-detector-pipeline` pipeline receives the aggregated histogram metrics from the `log-to-metrics-pipeline` pipeline and sends them to the `anomaly_detector` processor to detect anomalies by using the Random Cut Forest algorithm. If the algorithm detects anomalies, it sends them to an MCdesk index named `log-metric-anomalies`.
 
 ```json
 apache-log-pipeline-with-metrics:
@@ -29,7 +29,7 @@ apache-log-pipeline-with-metrics:
         match:
           log: [ "%{COMMONAPACHELOG_DATATYPED}" ]
   sink:
-    - smartobserve:
+    - mcdesk:
         ...
         index: "logs"
     - pipeline:
@@ -53,7 +53,7 @@ log-to-metrics-pipeline:
         # Pick the required aggregation period
         group_duration: "30s"
   sink:
-    - smartobserve:
+    - mcdesk:
         ...
         index: "histogram_metrics"
     - pipeline:
@@ -70,7 +70,7 @@ log-to-metrics-anomaly-detector-pipeline:
         mode:
           random_cut_forest:
   sink:
-    - smartobserve:
+    - mcdesk:
         ...
         index: "log-metric-anomalies"
 ```
@@ -80,13 +80,13 @@ log-to-metrics-anomaly-detector-pipeline:
 
 You can derive metrics from traces and find anomalies in those metrics. In this example, the `entry-pipeline` pipeline receives trace data from the OpenTelemetry Collector and forwards it to the following pipelines:
 
-- `span-pipeline` –- Extracts the raw spans from the traces. The pipeline sends the raw spans to any indexes SmartObserve prefixed with `otel-v1-apm-span`.
+- `span-pipeline` –- Extracts the raw spans from the traces. The pipeline sends the raw spans to any indexes MCdesk prefixed with `otel-v1-apm-span`.
 
-- `service-map-pipeline` –- Aggregates and analyzes the traces to create documents that represent connections between services. The pipeline sends these documents to an SmartObserve index named `otel-v1-apm-service-map`. You can then see a visualization of the service map through the [Trace Analytics]({{site.url}}{{site.baseurl}}/observing-your-data/trace/index/) plugin for SmartObserve Dashboards.
+- `service-map-pipeline` –- Aggregates and analyzes the traces to create documents that represent connections between services. The pipeline sends these documents to an MCdesk index named `otel-v1-apm-service-map`. You can then see a visualization of the service map through the [Trace Analytics]({{site.url}}{{site.baseurl}}/observing-your-data/trace/index/) plugin for MCdesk Dashboards.
 
-- `trace-to-metrics-pipeline` -- Aggregates and derives histogram metrics from the traces based on the value of the `serviceName`. The pipeline then sends the derived metrics to an SmartObserve index named `metrics_for_traces` and to the `trace-to-metrics-anomaly-detector-pipeline` pipeline.
+- `trace-to-metrics-pipeline` -- Aggregates and derives histogram metrics from the traces based on the value of the `serviceName`. The pipeline then sends the derived metrics to an MCdesk index named `metrics_for_traces` and to the `trace-to-metrics-anomaly-detector-pipeline` pipeline.
 
-The `trace-to-metrics-anomaly-detector-pipeline` pipeline receives the aggregated histogram metrics from the `trace-to-metrics-pipeline` and sends them to the `anomaly_detector` processor to detect anomalies by using the Random Cut Forest algorithm. If the algorithm detects any anomalies, it sends them to an SmartObserve index named `trace-metric-anomalies`.
+The `trace-to-metrics-anomaly-detector-pipeline` pipeline receives the aggregated histogram metrics from the `trace-to-metrics-pipeline` and sends them to the `anomaly_detector` processor to detect anomalies by using the Random Cut Forest algorithm. If the algorithm detects any anomalies, it sends them to an MCdesk index named `trace-metric-anomalies`.
 
 ```json
 entry-pipeline:
@@ -113,7 +113,7 @@ span-pipeline:
   processor:
     - otel_traces:
   sink:
-    - smartobserve:
+    - mcdesk:
         ...
         index_type: "trace-analytics-raw"
 
@@ -124,7 +124,7 @@ service-map-pipeline:
   processor:
     - service_map:
   sink:
-    - smartobserve:
+    - mcdesk:
         ...
         index_type: "trace-analytics-service-map"
 
@@ -146,7 +146,7 @@ trace-to-metrics-pipeline:
         # Pick the required aggregation period
         group_duration: "30s"
   sink:
-    - smartobserve:
+    - mcdesk:
         ...
         index: "metrics_for_traces"
     - pipeline:
@@ -163,7 +163,7 @@ trace-to-metrics-anomaly-detector-pipeline:
         mode:
           random_cut_forest:
   sink:
-    - smartobserve:
+    - mcdesk:
         ...
         index: "trace-metric-anomalies"
 ```
@@ -188,7 +188,7 @@ entry-pipeline:
         name: "ad-pipeline"
         routes:
           - gauge_route
-    - smartobserve:
+    - mcdesk:
         ...
         index: "otel-metrics"
 
@@ -203,7 +203,7 @@ ad-pipeline:
         mode:
           random_cut_forest:
     sink:
-      - smartobserve:
+      - mcdesk:
         ...
         index: otel-metrics-anomalies                     
 ```

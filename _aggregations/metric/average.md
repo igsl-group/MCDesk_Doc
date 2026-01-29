@@ -22,10 +22,10 @@ The `avg` aggregation takes the following parameters.
 
 ## Example
 
- The following example request calculates the average of the `taxful_total_price` field in the SmartObserve Dashboards e-commerce sample data:
+ The following example request calculates the average of the `taxful_total_price` field in the MCdesk Dashboards e-commerce sample data:
 
 ```json
-GET smartobserve_dashboards_sample_data_ecommerce/_search
+GET mcdesk_dashboards_sample_data_ecommerce/_search
 {
   "size": 0,
   "aggs": {

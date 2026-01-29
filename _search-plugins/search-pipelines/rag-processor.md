@@ -11,9 +11,9 @@ grand_parent: Search pipelines
 Introduced 2.12
 {: .label .label-purple }
 
-The `retrieval_augmented_generation` processor is a search results processor that you can use in [conversational search]({{site.url}}{{site.baseurl}}/search-plugins/conversational-search/) for retrieval-augmented generation (RAG). The processor intercepts query results, retrieves previous messages from the conversation from the conversational memory, and sends a prompt to a large language model (LLM). After the processor receives a response from the LLM, it saves the response in conversational memory and returns both the original SmartObserve query results and the LLM response.
+The `retrieval_augmented_generation` processor is a search results processor that you can use in [conversational search]({{site.url}}{{site.baseurl}}/search-plugins/conversational-search/) for retrieval-augmented generation (RAG). The processor intercepts query results, retrieves previous messages from the conversation from the conversational memory, and sends a prompt to a large language model (LLM). After the processor receives a response from the LLM, it saves the response in conversational memory and returns both the original MCdesk query results and the LLM response.
 
-As of SmartObserve 2.12, the `retrieval_augmented_generation` processor supports only OpenAI and Amazon Bedrock models.
+As of MCdesk 2.12, the `retrieval_augmented_generation` processor supports only OpenAI and Amazon Bedrock models.
 {: .note}
 
 ## Request body fields
@@ -31,7 +31,7 @@ Field | Data type | Description
 
 ### Context field list
 
-The `context_field_list` is a list of fields contained in document sources that the pipeline uses as context for RAG. For example, suppose your SmartObserve index contains a collection of documents, each including a `title` and `text`:
+The `context_field_list` is a list of fields contained in document sources that the pipeline uses as context for RAG. For example, suppose your MCdesk index contains a collection of documents, each including a `title` and `text`:
 
 ```json
 {
@@ -75,7 +75,7 @@ PUT /_search/pipeline/rag_pipeline
 
 ### Using a search pipeline
 
-Combine an SmartObserve query with an `ext` object that stores generative question answering parameters for the LLM:
+Combine an MCdesk query with an `ext` object that stores generative question answering parameters for the LLM:
 
 ```json
 GET /my_rag_test_data/_search?search_pipeline=rag_pipeline

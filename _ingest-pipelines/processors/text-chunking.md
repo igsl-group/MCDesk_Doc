@@ -58,7 +58,7 @@ The following table lists the optional parameters for the `fixed_token_length` a
 | `overlap_rate`	    | Float     | Optional	 | The degree of overlap in the token algorithm. Valid values are floats between `0` and `0.5`, inclusive. Default is `0`.	                                              |
 | `max_chunk_limit`	 | Integer   | Optional	 | The chunk limit for chunking algorithms. Default is `100`. To disable this parameter, set it to `-1`.	|
 
-The default value of `token_limit` is calculated as `512 (tokens) * 0.75 = 384` so that output passages don't exceed the token limit constraint of the downstream text embedding models. For [SmartObserve-supported pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#supported-pretrained-models), like `msmarco-distilbert-base-tas-b` and `smartobserve-neural-sparse-encoding-v1`, the input token limit is `512`. The `standard` tokenizer tokenizes text into words. According to [OpenAI](https://platform.openai.com/docs/introduction), 1 token equals approximately 0.75 words of English text.
+The default value of `token_limit` is calculated as `512 (tokens) * 0.75 = 384` so that output passages don't exceed the token limit constraint of the downstream text embedding models. For [MCdesk-supported pretrained models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#supported-pretrained-models), like `msmarco-distilbert-base-tas-b` and `mcdesk-neural-sparse-encoding-v1`, the input token limit is `512`. The `standard` tokenizer tokenizes text into words. According to [OpenAI](https://platform.openai.com/docs/introduction), 1 token equals approximately 0.75 words of English text.
 {: .note}
 
 You can set the `overlap_rate` to a decimal percentage value in the 0--0.5 range, inclusive. As suggested by [Amazon Bedrock](https://aws.amazon.com/blogs/aws/knowledge-bases-now-delivers-fully-managed-rag-experience-in-amazon-bedrock/), we recommend setting this parameter to a value of 0–0.2 to improve accuracy.
@@ -145,7 +145,7 @@ POST _ingest/pipeline/text-chunking-ingest-pipeline/_simulate
       "_index": "testindex",
       "_id": "1",
       "_source":{
-         "passage_text": "This is an example document to be chunked. The document contains a single paragraph, two sentences and 24 tokens by standard tokenizer in SmartObserve."
+         "passage_text": "This is an example document to be chunked. The document contains a single paragraph, two sentences and 24 tokens by standard tokenizer in MCdesk."
       }
     }
   ]
@@ -165,11 +165,11 @@ The response confirms that, in addition to the `passage_text` field, the process
         "_index": "testindex",
         "_id": "1",
         "_source": {
-          "passage_text": "This is an example document to be chunked. The document contains a single paragraph, two sentences and 24 tokens by standard tokenizer in SmartObserve.",
+          "passage_text": "This is an example document to be chunked. The document contains a single paragraph, two sentences and 24 tokens by standard tokenizer in MCdesk.",
           "passage_chunk": [
             "This is an example document to be chunked. The document ",
             "The document contains a single paragraph, two sentences and 24 ",
-            "and 24 tokens by standard tokenizer in SmartObserve."
+            "and 24 tokens by standard tokenizer in MCdesk."
           ]
         },
         "_ingest": {
@@ -283,4 +283,4 @@ PUT _ingest/pipeline/recursively-text-chunking-cascade-ingest-pipeline
 - For a complete example, see [Text chunking]({{site.url}}{{site.baseurl}}/search-plugins/text-chunking/).
 - To learn more about semantic search, see [Semantic search]({{site.url}}{{site.baseurl}}/search-plugins/semantic-search/).
 - To learn more about sparse search, see [Neural sparse search]({{site.url}}{{site.baseurl}}/search-plugins/neural-sparse-search/).
-- To learn more about using models in SmartObserve, see [Choosing a model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/#choosing-a-model).
+- To learn more about using models in MCdesk, see [Choosing a model]({{site.url}}{{site.baseurl}}/ml-commons-plugin/integrating-ml-models/#choosing-a-model).

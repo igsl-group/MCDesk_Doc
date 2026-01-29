@@ -14,7 +14,7 @@ Introduced 2.12
 You can rerank search results using a cross-encoder model in order to improve search relevance. To implement reranking, you need to configure a [search pipeline]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/index/) that runs at search time. The search pipeline intercepts search results and applies the [`rerank` processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/rerank-processor/) to them. The `rerank` processor evaluates the search results and sorts them based on the new scores provided by the cross-encoder model. 
 
 **PREREQUISITE**<br>
-Before configuring a reranking pipeline, you must set up a cross-encoder model. For information about using an SmartObserve-provided model, see [Cross-encoder models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#cross-encoder-models). For information about using a custom model, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
+Before configuring a reranking pipeline, you must set up a cross-encoder model. For information about using an MCdesk-provided model, see [Cross-encoder models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/pretrained-models/#cross-encoder-models). For information about using a custom model, see [Custom local models]({{site.url}}{{site.baseurl}}/ml-commons-plugin/custom-local-models/).
 {: .note}
 
 ## Running a search with reranking
@@ -28,7 +28,7 @@ To run a search with reranking, follow these steps:
 
 ## Step 1: Configure a search pipeline
 
-Next, configure a search pipeline with a [`rerank` processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/rerank-processor/) and specify the `ml_smartobserve` rerank type. In the request, provide a model ID for the cross-encoder model and the document fields to use as context:
+Next, configure a search pipeline with a [`rerank` processor]({{site.url}}{{site.baseurl}}/search-plugins/search-pipelines/rerank-processor/) and specify the `ml_mcdesk` rerank type. In the request, provide a model ID for the cross-encoder model and the document fields to use as context:
 
 ```json
 PUT /_search/pipeline/my_pipeline
@@ -37,7 +37,7 @@ PUT /_search/pipeline/my_pipeline
   "response_processors": [
     {
       "rerank": {
-        "ml_smartobserve": {
+        "ml_mcdesk": {
           "model_id": "gnDIbI0BfUsSoeNT_jAw"
         },
         "context": {
@@ -56,7 +56,7 @@ For more information about the request fields, see [Request fields]({{site.url}}
 
 ## Step 2: Create an index for ingestion
 
-In order to use the `rerank` processor defined in your pipeline, create an SmartObserve index and add the pipeline created in the previous step as the default pipeline:
+In order to use the `rerank` processor defined in your pipeline, create an MCdesk index and add the pipeline created in the previous step as the default pipeline:
 
 ```json
 PUT /my-index
@@ -93,7 +93,7 @@ POST /_bulk
 
 ## Step 4: Search using reranking
 
-To perform a reranking search on your index, use any SmartObserve query and provide an additional `ext.rerank` field:
+To perform a reranking search on your index, use any MCdesk query and provide an additional `ext.rerank` field:
 
 ```json
 POST /my-index/_search

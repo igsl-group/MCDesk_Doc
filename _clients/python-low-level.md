@@ -8,35 +8,35 @@ redirect_from:
 
 # Low-level Python client
 
-The SmartObserve low-level Python client (`smartobserve-py`) provides wrapper methods for the SmartObserve REST API so that you can interact with your cluster more naturally in Python. Rather than sending raw HTTP requests to a given URL, you can create an SmartObserve client for your cluster and call the client's built-in functions. 
+The MCdesk low-level Python client (`mcdesk-py`) provides wrapper methods for the MCdesk REST API so that you can interact with your cluster more naturally in Python. Rather than sending raw HTTP requests to a given URL, you can create an MCdesk client for your cluster and call the client's built-in functions. 
 
-This getting started guide illustrates how to connect to SmartObserve, index documents, and run queries. For additional information, see the following resources: 
-- [SmartObserve Python repo](https://github.com/igsl-group/smartobserve-py)
-- [API reference](https://smartobserve-project.github.io/smartobserve-py/api-ref.html) 
-- [User guides](https://github.com/igsl-group/smartobserve-py/tree/main/guides)
-- [Samples](https://github.com/igsl-group/smartobserve-py/tree/main/samples)
+This getting started guide illustrates how to connect to MCdesk, index documents, and run queries. For additional information, see the following resources: 
+- [MCdesk Python repo](https://github.com/igsl-group/mcdesk-py)
+- [API reference](https://mcdesk-project.github.io/mcdesk-py/api-ref.html) 
+- [User guides](https://github.com/igsl-group/mcdesk-py/tree/main/guides)
+- [Samples](https://github.com/igsl-group/mcdesk-py/tree/main/samples)
 
-If you have any questions or would like to contribute, you can [create an issue](https://github.com/igsl-group/smartobserve-py/issues) to interact with the SmartObserve Python team directly. 
+If you have any questions or would like to contribute, you can [create an issue](https://github.com/igsl-group/mcdesk-py/issues) to interact with the MCdesk Python team directly. 
 
 ## Setup
 
 To add the client to your project, install it using [pip](https://pip.pypa.io/):
 
 ```bash
-pip install smartobserve-py
+pip install mcdesk-py
 ```
 {% include copy.html %}
 
 After installing the client, you can import it like any other module:
 
 ```python
-from smartobservepy import SmartObserve
+from mcdeskpy import MCdesk
 ```
 {% include copy.html %}
 
-## Connecting to SmartObserve
+## Connecting to MCdesk
 
-To connect to the default SmartObserve host, create a client object with SSL enabled if you are using the Security plugin. You can use the default credentials for testing purposes:
+To connect to the default MCdesk host, create a client object with SSL enabled if you are using the Security plugin. You can use the default credentials for testing purposes:
 
 ```python
 host = 'localhost'
@@ -45,7 +45,7 @@ auth = ('admin', 'admin') # For testing only. Don't store credentials in code.
 ca_certs_path = '/full/path/to/root-ca.pem' # Provide a CA bundle if you use intermediate CAs with your root CA.
 
 # Create the client with SSL/TLS enabled, but hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     http_auth = auth,
@@ -71,7 +71,7 @@ client_cert_path = '/full/path/to/client.pem'
 client_key_path = '/full/path/to/client-key.pem'
 
 # Create the client with SSL/TLS enabled, but hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     http_auth = auth,
@@ -93,7 +93,7 @@ host = 'localhost'
 port = 9200
 
 # Create the client with SSL/TLS and hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     use_ssl = False,
@@ -104,12 +104,12 @@ client = SmartObserve(
 ```
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Service
+## Connecting to Amazon MCdesk Service
 
-The following example illustrates connecting to Amazon SmartObserve Service using IAM credentials:
+The following example illustrates connecting to Amazon MCdesk Service using IAM credentials:
 
 ```python
-from smartobservepy import SmartObserve, RequestsHttpConnection, AWSV4SignerAuth
+from mcdeskpy import MCdesk, RequestsHttpConnection, AWSV4SignerAuth
 import boto3
 
 host = '' # cluster endpoint, for example: my-test-domain.us-east-1.es.amazonaws.com
@@ -118,7 +118,7 @@ service = 'es'
 credentials = boto3.Session().get_credentials()
 auth = AWSV4SignerAuth(credentials, region, service)
 
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': 443}],
     http_auth = auth,
     use_ssl = True,
@@ -128,14 +128,14 @@ client = SmartObserve(
 )
 ```
 
-To connect to Amazon SmartObserve Service through HTTP with a username and password, use the following code:
+To connect to Amazon MCdesk Service through HTTP with a username and password, use the following code:
 
 ```python
-from smartobservepy import SmartObserve
+from mcdeskpy import MCdesk
 
 auth = ('admin', 'admin') # For testing only. Don't store credentials in code.
 
-client = SmartObserve(
+client = MCdesk(
     hosts=[{"host": host, "port": 443}],
     http_auth=auth,
     http_compress=True,  # enables gzip compression for request bodies
@@ -148,12 +148,12 @@ client = SmartObserve(
 
 {% include copy.html %}
 
-## Connecting to Amazon SmartObserve Serverless
+## Connecting to Amazon MCdesk Serverless
 
-The following example illustrates connecting to Amazon SmartObserve Serverless Service:
+The following example illustrates connecting to Amazon MCdesk Serverless Service:
 
 ```python
-from smartobservepy import SmartObserve, RequestsHttpConnection, AWSV4SignerAuth
+from mcdeskpy import MCdesk, RequestsHttpConnection, AWSV4SignerAuth
 import boto3
 
 host = '' # cluster endpoint, for example: my-test-domain.us-east-1.aoss.amazonaws.com
@@ -162,7 +162,7 @@ service = 'aoss'
 credentials = boto3.Session().get_credentials()
 auth = AWSV4SignerAuth(credentials, region, service)
 
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': 443}],
     http_auth = auth,
     use_ssl = True,
@@ -176,7 +176,7 @@ client = SmartObserve(
 
 ## Creating an index
 
-To create an SmartObserve index, use the `client.indices.create()` method. You can use the following code to construct a JSON object with custom settings:
+To create an MCdesk index, use the `client.indices.create()` method. You can use the following code to construct a JSON object with custom settings:
 
 ```python
 index_name = 'python-test-index'
@@ -274,7 +274,7 @@ response = client.indices.delete(
 The following sample program creates a client, adds an index with non-default settings, inserts a document, performs bulk operations, searches for the document, deletes the document, and then deletes the index:
 
 ```python
-from smartobservepy import SmartObserve
+from mcdeskpy import MCdesk
 
 host = 'localhost'
 port = 9200
@@ -286,7 +286,7 @@ ca_certs_path = '/full/path/to/root-ca.pem' # Provide a CA bundle if you use int
 # client_key_path = '/full/path/to/client-key.pem'
 
 # Create the client with SSL/TLS enabled, but hostname verification disabled.
-client = SmartObserve(
+client = MCdesk(
     hosts = [{'host': host, 'port': port}],
     http_compress = True, # enables gzip compression for request bodies
     http_auth = auth,
@@ -377,5 +377,5 @@ print(response)
 
 ## Next steps
 
-- For Python client API, see the [`smartobserve-py` API documentation](https://smartobserve-project.github.io/smartobserve-py/).
-- For Python code samples, see [Samples](https://github.com/igsl-group/smartobserve-py/tree/main/samples).
+- For Python client API, see the [`mcdesk-py` API documentation](https://mcdesk-project.github.io/mcdesk-py/).
+- For Python code samples, see [Samples](https://github.com/igsl-group/mcdesk-py/tree/main/samples).

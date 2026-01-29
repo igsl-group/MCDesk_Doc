@@ -31,7 +31,7 @@ When beginning to use `create-workload` to fine-tune a custom workload, consider
 
 ## Example
 
-The following example contains an index named `stocks`. The `stocks` index includes documents containing statistics on all stocks being traded on the New York Stock Exchange (NYSE). SmartObserve Dashboards provides information about the `stocks` index, as shown in the following code example:
+The following example contains an index named `stocks`. The `stocks` index includes documents containing statistics on all stocks being traded on the New York Stock Exchange (NYSE). MCdesk Dashboards provides information about the `stocks` index, as shown in the following code example:
 
 ```
 health status index  uuid              pri rep docs.count docs.deleted store.size pri.store.size
@@ -43,7 +43,7 @@ Using this information, you can start adjusting the workload to your specificati
 1. **Fetch queries associated with this index** -- Obtain the queries needed to make requests to the `stocks` index.
 2. **Find the shard size for the index** -- To get the shard size of the index, divide the store size by the number of shards in the index: `720 / (12 + (12 * 1)) = 30`. 30 GB is the shard size. You can verify this by dividing the primary store size value by the number of primary shards.
 3. **Determine the number of index shards** -- Determine the number of shards needed in the index to represent your application under a production load. For example, if you want your index to hold 300 GB of documents, but 300 GB is too much for the benchmark, determine a number that makes sense. For example, 300 GB of documents divided by the 30 GB shard size determined in the last step, or `300 / 30 = 10`, produces 10 shards. These 10 shards can either be 10 primary shards and 0 replicas, 5 primary shards and 1 replica, or 2 primary shards and 4 replicas. The shard configuration depends on your cluster's index needs.
-4. **Decide how many documents to extract** -- To retain 30 GB and have 10 shards, you need to extract at least 300 GB of documents. To determine the number of documents to extract, divide the store size value by the index size value, in this example, `720 / 300 = 2.4`. Because you want to make sure you reach a value of 30 GB per shard, it is best to round down and choose 2 as the extraction multiple, which means that SmartObserve Benchmark will extract every other document.
+4. **Decide how many documents to extract** -- To retain 30 GB and have 10 shards, you need to extract at least 300 GB of documents. To determine the number of documents to extract, divide the store size value by the index size value, in this example, `720 / 300 = 2.4`. Because you want to make sure you reach a value of 30 GB per shard, it is best to round down and choose 2 as the extraction multiple, which means that MCdesk Benchmark will extract every other document.
 5. **Think about the target cluster configuration** -- Assess the cluster you're planning to work on. Consider the use case, the size of the cluster, and the number of nodes. While fine-tuning the workload, this could be an iterative process where small adjustments to the cluster are made according to the results of the workload runs.
 
 

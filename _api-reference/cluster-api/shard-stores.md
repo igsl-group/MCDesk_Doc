@@ -129,7 +129,7 @@ The response lists the stores that were assigned to each shard. If a shard has n
           "stores": [
             {
               "UFyVYVMCSDOObiRwPxSW5w": {
-                "name": "smartobserve-node1",
+                "name": "mcdesk-node1",
                 "ephemeral_id": "vkSB_-M7QVyFXvgda6oRZg",
                 "transport_address": "172.19.0.2:9300",
                 "attributes": {

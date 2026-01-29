@@ -117,4 +117,4 @@ Parameter | Data type | Description
 
 ## Accepted formats
 
-You can specify the geopoint coordinates when indexing a document and searching for documents in any [format]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point#formats) accepted by the geopoint field type.  
+You can specify the geopoint coordinates when indexing a document and searching for documents in any [format]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point#formats) accepted by the geopoint field type.  

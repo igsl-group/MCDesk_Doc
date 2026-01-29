@@ -4,7 +4,7 @@ title: Tasks APIs
 has_children: yes
 nav_order: 85
 redirect_from:
- - /smartobserve/rest-api/tasks/
+ - /mcdesk/rest-api/tasks/
  - /api-reference/tasks/
 ---
 
@@ -12,7 +12,7 @@ redirect_from:
 **Introduced 1.0**
 {: .label .label-purple }
 
-A _task_ is any operation that you run in a cluster. For example, searching your data collection of books for a title or author name is a task. When you run SmartObserve, a task is automatically created to monitor your cluster's health and performance. For more information about all of the tasks currently executing in your cluster, you can use the `tasks` API operation.
+A _task_ is any operation that you run in a cluster. For example, searching your data collection of books for a title or author name is a task. When you run MCdesk, a task is automatically created to monitor your cluster's health and performance. For more information about all of the tasks currently executing in your cluster, you can use the `tasks` API operation.
 
 ## Attaching headers to tasks
 
@@ -36,7 +36,7 @@ content-length: 768
 {
   "nodes": {
     "Mgqdm0r9SEGClWxp_RbnaQ": {
-      "name": "smartobserve-node1",
+      "name": "mcdesk-node1",
       "transport_address": "172.18.0.4:9300",
       "host": "172.18.0.4",
       "ip": "172.18.0.4:9300",
@@ -80,6 +80,6 @@ content-length: 768
 This operation supports the same parameters as the `tasks` operation. The following example shows you how to associate `X-Opaque-Id` with specific tasks:
 
 ```bash
-curl -i -H "X-Opaque-Id: 123456" "https://localhost:9200/_tasks?nodes=smartobserve-node1" -u 'admin:<custom-admin-password>' --insecure
+curl -i -H "X-Opaque-Id: 123456" "https://localhost:9200/_tasks?nodes=mcdesk-node1" -u 'admin:<custom-admin-password>' --insecure
 ```
 {% include copy.html %}

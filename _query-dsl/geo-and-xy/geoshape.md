@@ -7,7 +7,7 @@ nav_order: 40
 
 # Geoshape query
 
-Use a geoshape query to search for documents that contain [geopoint]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-point/) or [geoshape]({{site.url}}{{site.baseurl}}/smartobserve/supported-field-types/geo-shape/) fields. You can filter documents using a [geoshape that is defined within a query](#using-a-new-shape-definition) or use a [pre-indexed geoshape](#using-a-pre-indexed-shape-definition).
+Use a geoshape query to search for documents that contain [geopoint]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-point/) or [geoshape]({{site.url}}{{site.baseurl}}/mcdesk/supported-field-types/geo-shape/) fields. You can filter documents using a [geoshape that is defined within a query](#using-a-new-shape-definition) or use a [pre-indexed geoshape](#using-a-pre-indexed-shape-definition).
 
 The searched document field must be mapped as `geo_point` or `geo_shape`.
 {: .note}

@@ -5,10 +5,10 @@ nav_order: 15
 has_children: true
 more_cards:
   - heading: "Get started with AI search"
-    description: "Learn how to implement semantic and hybrid search in SmartObserve"
+    description: "Learn how to implement semantic and hybrid search in MCdesk"
     link: "/vector-search/tutorials/neural-search-tutorial/"
 local_model:
-  - heading: "Pretrained models provided by SmartObserve"
+  - heading: "Pretrained models provided by MCdesk"
     link: "/ml-commons-plugin/pretrained-models/"
     description: "Requires minimal setup and avoids the time and effort required to train a custom model"
   - heading: "Custom models"
@@ -22,7 +22,7 @@ external_model:
 
 # Integrating ML models
 
-SmartObserve offers support for machine learning (ML) models that you can use in conjunction with k-NN search to retrieve semantically similar documents. This semantic search capability improves search relevance for your applications.
+MCdesk offers support for machine learning (ML) models that you can use in conjunction with k-NN search to retrieve semantically similar documents. This semantic search capability improves search relevance for your applications.
 
 Before you get started, you'll need to [set up]({{site.url}}{{site.baseurl}}/quickstart/) and [secure]({{site.url}}{{site.baseurl}}/security/index/) your cluster. 
 {: .tip}
@@ -33,17 +33,17 @@ To integrate an ML model into your search workflow, choose one of the following 
 
 ### Local model
 
-Upload a model to the SmartObserve cluster and use it locally. This option allows you to serve the model in your SmartObserve cluster but may require significant system resources.
+Upload a model to the MCdesk cluster and use it locally. This option allows you to serve the model in your MCdesk cluster but may require significant system resources.
 
 {% include cards.html cards=page.local_model %}
 
 ### Externally hosted model
 
-Connect to a model hosted on a third-party platform. This requires more setup but allows the use of models that are already hosted on a service other than SmartObserve.     
+Connect to a model hosted on a third-party platform. This requires more setup but allows the use of models that are already hosted on a service other than MCdesk.     
     
 {% include cards.html cards=page.external_model %}    
 
-In SmartObserve version 2.9 and later, you can integrate local and external models simultaneously within a single cluster.
+In MCdesk version 2.9 and later, you can integrate local and external models simultaneously within a single cluster.
 {: .note}
 
 ## Tutorial
@@ -65,7 +65,7 @@ You can invoke your model by calling the [Predict API]({{site.url}}{{site.baseur
 
 ### Using a model for search
 
-SmartObserve supports multiple search methods that integrate with ML models. For more information, see [AI search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/).
+MCdesk supports multiple search methods that integrate with ML models. For more information, see [AI search]({{site.url}}{{site.baseurl}}/vector-search/ai-search/).
 
 ## Disabling a model
 
@@ -80,4 +80,4 @@ Setting a rate limit for Predict API calls on your ML models allows you to reduc
 
 Model-level rate limiting applies to all users of the model. If you specify both a model-level rate limit and a user-level rate limit, the overall rate limit is set to the more restrictive of the two. For example, if the model-level limit is 2 requests per minute and the user-level limit is 4 requests per minute, the overall limit will be set to 2 requests per minute.
 
-To set the rate limit, you must provide two inputs: the maximum number of requests and the time frame. SmartObserve uses these inputs to calculate the rate limit as the maximum number of requests divided by the time frame. For example, if you set the limit to be 4 requests per minute, the rate limit is `4 requests / 1 minute`, which is `1 request / 0.25 minutes`, or `1 request / 15 seconds`. SmartObserve processes predict requests sequentially, in a first-come-first-served manner, and will limit those requests to 1 request per 15 seconds. Imagine two users, Alice and Bob, calling the Predict API for the same model, which has a rate limit of 1 request per 15 seconds. If Alice calls the Predict API and immediately after that Bob calls the Predict API, SmartObserve processes Alice's predict request and rejects Bob's request. Once 15 seconds has passed since Alice's request, Bob can send a request again, and this request will be processed. 
+To set the rate limit, you must provide two inputs: the maximum number of requests and the time frame. MCdesk uses these inputs to calculate the rate limit as the maximum number of requests divided by the time frame. For example, if you set the limit to be 4 requests per minute, the rate limit is `4 requests / 1 minute`, which is `1 request / 0.25 minutes`, or `1 request / 15 seconds`. MCdesk processes predict requests sequentially, in a first-come-first-served manner, and will limit those requests to 1 request per 15 seconds. Imagine two users, Alice and Bob, calling the Predict API for the same model, which has a rate limit of 1 request per 15 seconds. If Alice calls the Predict API and immediately after that Bob calls the Predict API, MCdesk processes Alice's predict request and rejects Bob's request. Once 15 seconds has passed since Alice's request, Bob can send a request again, and this request will be processed. 

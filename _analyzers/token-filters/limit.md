@@ -53,7 +53,7 @@ Use the following request to examine the tokens generated using the analyzer:
 GET /my_index/_analyze
 {
   "analyzer": "three_token_limit",
-  "text": "SmartObserve is a powerful and flexible search engine."
+  "text": "MCdesk is a powerful and flexible search engine."
 }
 ```
 {% include copy-curl.html %}
@@ -64,7 +64,7 @@ The response contains the generated tokens:
 {
   "tokens": [
     {
-      "token": "SmartObserve",
+      "token": "MCdesk",
       "start_offset": 0,
       "end_offset": 10,
       "type": "<ALPHANUM>",

@@ -10,7 +10,7 @@ redirect_from:
 
 # Monitors
 
-Proactively monitor your data in SmartObserve with features available in Alerting and Anomaly Detection. For example, you can pair Anomaly Detection with Alerting to ensure that you're notified as soon as an anomaly is detected. You can do this by setting up a detector to automatically detect outliers in your streaming data and monitors to alert you through notifications when data exceeds certain thresholds. 
+Proactively monitor your data in MCdesk with features available in Alerting and Anomaly Detection. For example, you can pair Anomaly Detection with Alerting to ensure that you're notified as soon as an anomaly is detected. You can do this by setting up a detector to automatically detect outliers in your streaming data and monitors to alert you through notifications when data exceeds certain thresholds. 
 
 ## Monitor types
 
@@ -52,7 +52,7 @@ Variable | Data type | Description
 `ctx.periodEnd` | String | The end of the period during which the alert triggered.
 `ctx.error` | String | The error message if the trigger was unable to retrieve results or unable to evaluate the trigger, typically due to a compile error or null pointer exception. Null otherwise.
 `ctx.alert` | Object | The current, active alert (if it exists). Includes `ctx.alert.id`, `ctx.alert.version`, and `ctx.alert.isAcknowledged`. Null if no alert is active. Only available with query-level monitors.
-`ctx.dedupedAlerts` | Object | Alerts that have already been triggered. SmartObserve keeps the existing alert to prevent the plugin from creating endless amounts of the same alerts. Only available with bucket-level monitors.
+`ctx.dedupedAlerts` | Object | Alerts that have already been triggered. MCdesk keeps the existing alert to prevent the plugin from creating endless amounts of the same alerts. Only available with bucket-level monitors.
 `ctx.newAlerts` | Object | Newly created alerts. Only available with bucket-level monitors.
 `ctx.completedAlerts` | Object | Alerts that are no longer ongoing. Only available with bucket-level monitors.
 `bucket_keys` | String | Comma-separated list of the monitor's bucket key values. Available only for `ctx.dedupedAlerts`, `ctx.newAlerts`, and `ctx.completedAlerts`. Accessed through `ctx.dedupedAlerts[0].bucket_keys`.

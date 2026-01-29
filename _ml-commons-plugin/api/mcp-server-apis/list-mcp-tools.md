@@ -26,7 +26,7 @@ GET /_plugins/_ml/mcp/tools/_list
 
 ## Example response
 
-SmartObserve responds with the MCP tool list:
+MCdesk responds with the MCP tool list:
 
 ```json
 {

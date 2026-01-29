@@ -8,17 +8,17 @@ nav_order: 30
 
 # Memory-optimized vectors
 
-Vector search operations can be memory intensive, particularly when dealing with large-scale deployments. SmartObserve provides several strategies for optimizing memory usage while maintaining search performance. You can choose between different workload modes that prioritize either low latency or low cost, apply various compression levels to reduce memory footprint, or use alternative vector representations like byte or binary vectors. These optimization techniques allow you to balance memory consumption, search performance, and cost based on your specific use case requirements.
+Vector search operations can be memory intensive, particularly when dealing with large-scale deployments. MCdesk provides several strategies for optimizing memory usage while maintaining search performance. You can choose between different workload modes that prioritize either low latency or low cost, apply various compression levels to reduce memory footprint, or use alternative vector representations like byte or binary vectors. These optimization techniques allow you to balance memory consumption, search performance, and cost based on your specific use case requirements.
 
 ## Vector workload modes
 
 Vector search requires balancing search performance and operational costs. While in-memory search provides the lowest latency, [disk-based search]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/disk-based-vector-search/) offers a more cost-effective approach by reducing memory usage, though it results in slightly higher search latency. To choose between these approaches, use the `mode` mapping parameter in your `knn_vector` field configuration. This parameter sets appropriate default values for k-NN parameters based on your priority: either low latency or low cost. For additional optimization, you can override these default parameter values in your k-NN field mapping.
 
-SmartObserve supports the following vector workload modes.
+MCdesk supports the following vector workload modes.
 
 | Mode    | Default engine | Description                                                                                                                                                                                                                                             |
 |:---|:---|:---|
-| `in_memory` (Default) | `faiss`        | Prioritizes low-latency search. This mode uses the `faiss` engine without any quantization applied. It is configured with the default parameter values for vector search in SmartObserve.                                                                 |
+| `in_memory` (Default) | `faiss`        | Prioritizes low-latency search. This mode uses the `faiss` engine without any quantization applied. It is configured with the default parameter values for vector search in MCdesk.                                                                 |
 | `on_disk`             | `faiss`        | Prioritizes low-cost vector search while maintaining strong recall. By default, the `on_disk` mode uses quantization and rescoring to execute a two-phase approach in order to retrieve the top neighbors. The `on_disk` mode supports only `float` vector types. |
 
 To create a vector index that uses the `on_disk` mode for low-cost search, send the following request:
@@ -63,7 +63,7 @@ For example, if a `compression_level` of `32x` is passed for a `float32` index o
 If you set the `compression_level` parameter, then you cannot specify an `encoder` in the `method` mapping. Compression levels greater than `1x` are only supported for `float` vector types.
 {: .note}
 
-Starting with SmartObserve 3.1, enabling `on_disk` mode with a `1x` compression level activates [memory-optimized search]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/memory-optimized-search/). In this mode, the engine loads data on demand during search instead of loading all data into memory at once.
+Starting with MCdesk 3.1, enabling `on_disk` mode with a `1x` compression level activates [memory-optimized search]({{site.url}}{{site.baseurl}}/vector-search/optimizing-storage/memory-optimized-search/). In this mode, the engine loads data on demand during search instead of loading all data into memory at once.
 {: .important}
 
 The following table lists the default `compression_level` values for the available workload modes.
@@ -172,7 +172,7 @@ By default, k-NN vectors are `float` vectors, in which each dimension is 4 bytes
 Byte vectors are supported only for the `lucene` and `faiss` engines. They are not supported for the `nmslib` engine.
 {: .note}
 
-In [k-NN benchmarking tests](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/vectorsearch), the use of `byte` rather than `float` vectors resulted in a significant reduction in storage and memory usage as well as improved indexing throughput and reduced query latency. Additionally, recall precision was not greatly affected (note that recall can depend on various factors, such as the [quantization technique](#quantization-techniques) used and the data distribution). 
+In [k-NN benchmarking tests](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/vectorsearch), the use of `byte` rather than `float` vectors resulted in a significant reduction in storage and memory usage as well as improved indexing throughput and reduced query latency. Additionally, recall precision was not greatly affected (note that recall can depend on various factors, such as the [quantization technique](#quantization-techniques) used and the data distribution). 
 
 When using `byte` vectors, expect some loss of recall precision compared to using `float` vectors. Byte vectors are useful in large-scale applications and use cases that prioritize a reduced memory footprint in exchange for a minimal loss of recall.
 {: .important}
@@ -408,7 +408,7 @@ As an example, assume that you have 1 million vectors with a `dimension` of `256
 
 ### Quantization techniques
 
-If your vectors are of the type `float`, you need to first convert them to the `byte` type before ingesting documents. This conversion is accomplished by _quantizing the dataset_---reducing the precision of its vectors. The Faiss engine supports several quantization techniques, such as scalar quantization (SQ) and product quantization (PQ). The choice of quantization technique depends on the type of data you're using and can affect the accuracy of recall values. The following sections describe the scalar quantization algorithms that were used to quantize the [k-NN benchmarking test](https://github.com/igsl-group/smartobserve-benchmark-workloads/tree/main/vectorsearch) data for the [L2](#scalar-quantization-for-the-l2-space-type) and [cosine similarity](#scalar-quantization-for-the-cosine-similarity-space-type) space types. The provided pseudocode is for illustration purposes only.
+If your vectors are of the type `float`, you need to first convert them to the `byte` type before ingesting documents. This conversion is accomplished by _quantizing the dataset_---reducing the precision of its vectors. The Faiss engine supports several quantization techniques, such as scalar quantization (SQ) and product quantization (PQ). The choice of quantization technique depends on the type of data you're using and can affect the accuracy of recall values. The following sections describe the scalar quantization algorithms that were used to quantize the [k-NN benchmarking test](https://github.com/igsl-group/mcdesk-benchmark-workloads/tree/main/vectorsearch) data for the [L2](#scalar-quantization-for-the-l2-space-type) and [cosine similarity](#scalar-quantization-for-the-cosine-similarity-space-type) space types. The provided pseudocode is for illustration purposes only.
 
 #### Scalar quantization for the L2 space type
 
@@ -519,7 +519,7 @@ Binary format is available for the following k-NN search types:
 
 ### Requirements 
 
-There are several requirements for using binary vectors in the SmartObserve k-NN plugin:
+There are several requirements for using binary vectors in the MCdesk k-NN plugin:
 
 - The `data_type` of the binary vector index must be `binary`.
 - The `space_type` of the binary vector index must be `hamming`.

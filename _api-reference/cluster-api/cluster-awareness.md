@@ -6,7 +6,7 @@ parent: Cluster APIs
 has_children: false
 redirect_from:
   - /api-reference/cluster-awareness/
-  - /smartobserve/rest-api/cluster-awareness/
+  - /mcdesk/rest-api/cluster-awareness/
 ---
 
 # Cluster Routing And Awareness API
@@ -17,9 +17,9 @@ To control how search traffic is routed across zones, you can assign weights to 
 
 ## Prerequisites
 
-Before using this API, you must configure cluster awareness attributes and node attributes. This can be done either in the `smartobserve.yml` file or through the Cluster Settings API. 
+Before using this API, you must configure cluster awareness attributes and node attributes. This can be done either in the `mcdesk.yml` file or through the Cluster Settings API. 
 
-For example, to configure `zone` and `rack` awareness attributes using `smartobserve.yml`, specify them as a comma-separated list:
+For example, to configure `zone` and `rack` awareness attributes using `mcdesk.yml`, specify them as a comma-separated list:
 
 ```yaml
 cluster.routing.allocation.awareness.attributes: zone,rack
@@ -76,7 +76,7 @@ response = client.cluster.put_weighted_routing(
     python=step1_python %}
 <!-- spec_insert_end -->
 
-For more information about SmartObserve settings, see [Configuring SmartObserve]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-smartobserve/).
+For more information about MCdesk settings, see [Configuring MCdesk]({{site.url}}{{site.baseurl}}/install-and-configure/configuring-mcdesk/).
 
 ## Endpoints
 
@@ -276,4 +276,4 @@ After this request, the `_version` increments to `2`.
 ## Next steps
 
 - For more information about zone commissioning, see [Cluster decommission]({{site.url}}{{site.baseurl}}/api-reference/cluster-decommission/).
-- For more information about allocation awareness, see [Cluster formation]({{site.url}}{{site.baseurl}}/smartobserve/cluster/#advanced-step-6-configure-shard-allocation-awareness-or-forced-awareness).
+- For more information about allocation awareness, see [Cluster formation]({{site.url}}{{site.baseurl}}/mcdesk/cluster/#advanced-step-6-configure-shard-allocation-awareness-or-forced-awareness).

@@ -20,7 +20,7 @@ POST _plugins/_sql
 }
 ```
 
-If a query isn't behaving the way you expect, use the `_explain` API to see the translated query, which you can then troubleshoot. For most operations, `_explain` returns SmartObserve query DSL. For `UNION`, `MINUS`, and `JOIN`, it returns something more akin to a SQL execution plan.
+If a query isn't behaving the way you expect, use the `_explain` API to see the translated query, which you can then troubleshoot. For most operations, `_explain` returns MCdesk query DSL. For `UNION`, `MINUS`, and `JOIN`, it returns something more akin to a SQL execution plan.
 
 #### Example request
 
