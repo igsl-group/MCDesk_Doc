@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Service Desk / Incident Management
-parent: Major Function and Features
 nav_order: 2
 ---
 

@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Reporting & Analytics
-parent: Major Function and Features
 nav_order: 10
 ---
 

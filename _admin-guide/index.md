@@ -21,6 +21,10 @@ The audience for this document is for **Administrator** to admin the system. The
 
 This section describes the solution component of MCdesk and MCdiscovery.
 
+![MCdesk and MCdiscovery architecture]({{site.url}}{{site.baseurl}}/images/admin-guide/sr-fig2.png)
+
+![Solution components of MCdesk and MCdiscovery]({{site.url}}{{site.baseurl}}/images/admin-guide/sr-fig3.png)
+
 Below are the MCdesk ITSM components:
 
 - **Maintain Catalogs** – View all catalog that host categories and catalog item

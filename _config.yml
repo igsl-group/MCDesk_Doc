@@ -7,8 +7,8 @@ url: "https://mcdesk-doc.magiccreative.ai" # the base hostname & protocol for yo
 permalink: /:path/
 
 mcdesk_version: '2.0.0'
-mcdesk_dashboards_version: '3.3.0'
-mcdesk_major_minor_version: '3.3'
+mcdesk_dashboards_version: '2.0.0'
+mcdesk_major_minor_version: '2.0'
 lucene_version: '10_3_1'
 
 # Build settings
@@ -144,11 +144,11 @@ mcdesk_collection:
     getting-started:
       name: Getting started
       nav_fold: true
-    admin-guide:
-      name: SR Module & MyService Portal Admin Guide
-      nav_fold: true
     major-features:
       name: Major Function and Features
+      nav_fold: true
+    admin-guide:
+      name: SR Module & MyService Portal Admin Guide
       nav_fold: true
     tutorials:
       name: Tutorials

@@ -1,7 +1,6 @@
 ---
 layout: default
 title: ITIL 4 Alignment – How MCdesk Relates
-parent: Major Function and Features
 nav_order: 12
 ---
 

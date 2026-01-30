@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Service Level Management
-parent: Major Function and Features
 nav_order: 9
 ---
 

@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Change Enablement
-parent: Major Function and Features
 nav_order: 5
 ---
 

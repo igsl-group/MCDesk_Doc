@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Knowledge Management
-parent: Major Function and Features
 nav_order: 8
 ---
 

@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Service Request Management / Self-Service Portal
-parent: Major Function and Features
 nav_order: 3
 ---
 

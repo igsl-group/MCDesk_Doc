@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Configuration Management Database (CMDB)
-parent: Major Function and Features
 nav_order: 6
 ---
 

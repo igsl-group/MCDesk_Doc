@@ -2,7 +2,8 @@
 layout: default
 title: Major Function and Features
 nav_order: 1
-has_children: true
+has_children: false
+nav_exclude: true
 ---
 
 # MCdesk Major Function and Features

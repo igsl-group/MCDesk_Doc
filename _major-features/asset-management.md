@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Asset Management (incl. Mcdiscovery & DCIM)
-parent: Major Function and Features
 nav_order: 7
 ---
 
