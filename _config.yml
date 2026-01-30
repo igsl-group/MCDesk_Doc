@@ -6,7 +6,7 @@ latesturl: "/latest" # The subpath of the latest version. Used for non-version-s
 url: "https://mcdesk-doc.magiccreative.ai" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: /:path/
 
-mcdesk_version: '3.3.0'
+mcdesk_version: '2.0.0'
 mcdesk_dashboards_version: '3.3.0'
 mcdesk_major_minor_version: '3.3'
 lucene_version: '10_3_1'

@@ -59,9 +59,9 @@ layout: table_wrappers
       <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">        
         <div class="version-wrapper" id="version-panel">
           {% if page.section == "mcdesk" %}
-            <a href="{{site.url}}{{site.baseurl}}/about/" class="site-category">{{ page.section-name }}</a>
+            <a href="{{site.url}}{{site.baseurl}}/about/index/" class="site-category">{{ page.section-name }}</a>
           {% else %}
-            <a href="{{site.url}}{{site.baseurl}}/{{ page.section}}/" class="site-category">{{ page.section-name }}</a>
+            <a href="{{site.url}}{{site.baseurl}}/{{ page.section}}/index/" class="site-category">{{ page.section-name }}</a>
           {% endif %}
           
           <a href="{{site.url}}{{site.latesturl}}/" class="back-link">&#x2190; Back to docs home</a>
@@ -107,8 +107,8 @@ layout: table_wrappers
                   >
                     <li role="none" class="nav-list-item{% if page.collection == collection_key %} active{% endif %}">
                       
-                      {% assign collection_url_path = collection_key | append: "/" %}
-                      {% assign category_comparison_url = "/" | append: collection_url_path %}
+                      {% assign collection_url_path = collection_key | append: "/index/" %}
+                      {% assign category_comparison_url = "/" | append: collection_key | append: "/index/" %}
                       {%- if collection.size > 1 -%}
                         <a 
                           role="treeitem"
@@ -129,7 +129,8 @@ layout: table_wrappers
                     </li>
                   </ul>
                 {% else %}
-                  {% assign collection_url_path = collection_key | append: "/" %}
+                  {% assign collection_url_path = collection_key | append: "/index/" %}
+                  {% assign category_comparison_url = "/" | append: collection_key | append: "/index/" %}
                   <a 
                     role="treeitem"
                     aria-owns="{{ owned_tree_id }}"

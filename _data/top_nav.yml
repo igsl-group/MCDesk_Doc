@@ -43,15 +43,15 @@ items:
     url: https://mcdesk-doc.hopto.org/latest/
     children:
       - label: MCdesk and Dashboards
-        url: https://mcdesk-doc.hopto.org/latest/about/
+        url: https://mcdesk-doc.hopto.org/latest/about/index/
       - label: Data Prepper
-        url: https://mcdesk-doc.hopto.org/latest/data-prepper/
+        url: https://mcdesk-doc.hopto.org/latest/data-prepper/index/
       - label: Clients
-        url: https://mcdesk-doc.hopto.org/latest/clients/
+        url: https://mcdesk-doc.hopto.org/latest/clients/index/
       - label: Benchmark
-        url: https://mcdesk-doc.hopto.org/latest/benchmark/
+        url: https://mcdesk-doc.hopto.org/latest/benchmark/index/
       - label: Migration Assistant
-        url: https://mcdesk-doc.hopto.org/latest/migration-assistant/
+        url: https://mcdesk-doc.hopto.org/latest/migration-assistant/index/
   - label: Blog
     url: https://magiccreative.io/blog/
   - label: Download
