@@ -55,9 +55,20 @@ This section lists out the admin steps in scenario base:
 
 - [Create a Baseline Service Request Workflow]({{site.url}}{{site.baseurl}}/admin-guide/workflow/create-baseline-workflow/)
 
+## Administration General
+
+General administration procedures (from the Administration-General guide):
+
+- [Administration General]({{site.url}}{{site.baseurl}}/admin-guide/administration-general/) – Conventions and overview
+- [Create New Incident]({{site.url}}{{site.baseurl}}/admin-guide/create-incident/) – Log an incident
+- [User Management]({{site.url}}{{site.baseurl}}/admin-guide/user-management/index/) – Create groups, users, and roles
+- [System Setting]({{site.url}}{{site.baseurl}}/admin-guide/system-setting/index/) – Versions and license, locations, announcements
+- [Notification]({{site.url}}{{site.baseurl}}/admin-guide/notification/index/) – Mail accounts, notification templates, and notification rules
+
 ## Next steps
 
-- [Service Request]({{site.url}}{{site.baseurl}}/admin-guide/service-request/) – Configure and request service requests
-- [SLA Definition]({{site.url}}{{site.baseurl}}/admin-guide/sla-definition/) – Create time sheets and SLA definitions
-- [Workflow]({{site.url}}{{site.baseurl}}/admin-guide/workflow/) – Create baseline workflows
-- [System Setting]({{site.url}}{{site.baseurl}}/admin-guide/system-setting/) – Overview of system settings
+- [Service Request]({{site.url}}{{site.baseurl}}/admin-guide/service-request/index/) – Configure and request service requests
+- [SLA Definition]({{site.url}}{{site.baseurl}}/admin-guide/sla-definition/index/) – Create time sheets and SLA definitions
+- [Workflow]({{site.url}}{{site.baseurl}}/admin-guide/workflow/index/) – Create baseline workflows
+- [System Setting]({{site.url}}{{site.baseurl}}/admin-guide/system-setting/index/) – Overview and procedures (versions, locations, announcements)
+- [Notification]({{site.url}}{{site.baseurl}}/admin-guide/notification/index/) – Mail accounts, notification templates, and notification rules

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: System Setting
-nav_order: 5
-has_children: false
+nav_order: 8
+has_children: true
 ---
 
 # System Setting
@@ -33,7 +33,8 @@ System Setting provides access to the following areas:
 
 ### Email
 
-- **Email Settings > Notification Template**
+- **Email Settings > Mail Accounts** – Configure email accounts for sending notifications
+- **Email Settings > Notification Template** – Create notification email templates
 - **Email Settings > Notification Rule**
 - **Email Settings > Inbound Email Rule**
 - **Email Settings > Sent Email History** – View logs of all email sent by system
@@ -75,4 +76,14 @@ System Setting provides access to the following areas:
 - **System Translation > Translated Contents**
 - **System Translation > Field Labels**
 
-For step-by-step procedures, see [Service Request]({{site.url}}{{site.baseurl}}/admin-guide/service-request/), [SLA Definition]({{site.url}}{{site.baseurl}}/admin-guide/sla-definition/), and [Workflow]({{site.url}}{{site.baseurl}}/admin-guide/workflow/).
+## Procedures (Administration General)
+
+Step-by-step procedures for common System Management tasks:
+
+- [Identify versions and license]({{site.url}}{{site.baseurl}}/admin-guide/system-setting/versions-license/) – View system version and license key
+- [Create Locations]({{site.url}}{{site.baseurl}}/admin-guide/system-setting/locations/) – Create a new location
+- [Create Announcement]({{site.url}}{{site.baseurl}}/admin-guide/system-setting/announcement/) – Create an announcement
+
+For email and notification procedures (mail accounts, notification template, notification rule), see [Notification]({{site.url}}{{site.baseurl}}/admin-guide/notification/index/).
+
+For other procedures, see [Service Request]({{site.url}}{{site.baseurl}}/admin-guide/service-request/index/), [SLA Definition]({{site.url}}{{site.baseurl}}/admin-guide/sla-definition/index/), and [Workflow]({{site.url}}{{site.baseurl}}/admin-guide/workflow/index/).
