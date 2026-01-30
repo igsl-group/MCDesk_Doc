@@ -8,3 +8,5 @@ Gemfile.lock
 .jekyll-cache
 .project
 vendor/bundle
+*.docx
+*.xlsx
