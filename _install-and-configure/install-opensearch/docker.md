@@ -10,7 +10,7 @@ redirect_from:
 
 # Docker
 
-[Docker](https://www.docker.com/) greatly simplifies the process of configuring and managing your MCdesk clusters. You can pull official images from [Docker Hub](https://hub.docker.com/u/mcdeskproject) or [Amazon Elastic Container Registry (Amazon ECR)](https://gallery.ecr.aws/mcdeskproject/) and quickly deploy a cluster using [Docker Compose](https://github.com/docker/compose) and any of the sample Docker Compose files included in this guide. Experienced MCdesk users can further customize their deployment by creating a custom Docker Compose file.
+[Docker](https://www.docker.com/) greatly simplifies the process of configuring and managing your Test clusters. You can pull official images from [Docker Hub](https://hub.docker.com/u/mcdeskproject) or [Amazon Elastic Container Registry (Amazon ECR)](https://gallery.ecr.aws/mcdeskproject/) and quickly deploy a cluster using [Docker Compose](https://github.com/docker/compose) and any of the sample Docker Compose files included in this guide. Experienced MCdesk users can further customize their deployment by creating a custom Docker Compose file.
 
 Docker containers are portable and will run on any compatible host that supports Docker (such as Linux, MacOS, or Windows). The portability of a Docker container offers flexibility over other installations methods, like [RPM]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/rpm/) or a manual [Tarball]({{site.url}}{{site.baseurl}}/install-and-configure/install-mcdesk/tar/) installation, which both require additional configuration after downloading and unpacking.
 

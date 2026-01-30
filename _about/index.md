@@ -43,6 +43,9 @@ features:
     description: "Visualize your data in MCdesk Dashboards"
     link: "/dashboards/"
 getting_started:
+  - heading: "SR Module & MyService Portal Admin Guide"
+    description: "Administer MCdesk ITSM: Service Request, SLA Definition, Workflow, and System Setting"
+    link: "/admin-guide/"
   - heading: "Get started with MCdesk"
     description: "Learn about MCdesk and start ingesting and searching data"
     link: "/getting-started/"

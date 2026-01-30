@@ -128,6 +128,12 @@ collections:
   tutorials:
     permalink: /:collection/:path/
     output: true
+  admin-guide:
+    permalink: /:collection/:path/
+    output: true
+  major-features:
+    permalink: /:collection/:path/
+    output: true
 
 mcdesk_collection:
   # Define the collections used in the theme
@@ -137,6 +143,12 @@ mcdesk_collection:
       nav_fold: true
     getting-started:
       name: Getting started
+      nav_fold: true
+    admin-guide:
+      name: SR Module & MyService Portal Admin Guide
+      nav_fold: true
+    major-features:
+      name: Major Function and Features
       nav_fold: true
     tutorials:
       name: Tutorials
@@ -269,6 +281,18 @@ defaults:
     values:
       section: "migration-assistant"
       section-name: "Migration Assistant for MCdesk"
+  -
+    scope:
+      path: "_admin-guide"
+    values:
+      section: "mcdesk"
+      section-name: "MCdesk and MCdesk Dashboards"
+  -
+    scope:
+      path: "_major-features"
+    values:
+      section: "mcdesk"
+      section-name: "MCdesk and MCdesk Dashboards"
 
 # Enable or disable the site search
 # By default, just-the-docs enables its JSON file-based search. We also have an MCdesk-driven search functionality.
