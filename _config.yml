@@ -3,7 +3,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Documentation for MCdesk, the Apache 2.0 search, analytics, and visualization suite with advanced security, alerting, SQL support, automated index management, deep performance analysis, and more.
 baseurl: "/latest" # The subpath of the current version. This is version-specific. For example, for 2.19, the base URL is /docs/2.19.
 latesturl: "/latest" # The subpath of the latest version. Used for non-version-specific documentation, like Data Prepper, etc.
-url: "https://mcdesk-doc.magiccreative.ai" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://doc-mcdesk.magiccreative.ai" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: /:path/
 
 mcdesk_version: '2.0.0'
